@@ -9,14 +9,8 @@ import pandas as pd
 import prompts
 from .clean import clean_predictions
 
-def _run(extraction_model, extraction_client, docs, output_dir, prompt_set='', **extract_kwargs):
-    short_model_name = extraction_model.split('/')[-1]
-
+def extract(extraction_model, extraction_client, docs, output_dir, prompt_set='', **extract_kwargs):
     extract_kwargs.pop('search_query', None)
-
-    outname = f"{prompt_set}_{short_model_name}"
-    predictions_path = output_dir / f'{outname}.json'
-    clean_predictions_path = output_dir / f'{outname}_clean.csv'
 
     # Extract
     predictions = extract_from_text(
@@ -29,11 +23,9 @@ def _run(extraction_model, extraction_client, docs, output_dir, prompt_set='', *
     for i, pred in enumerate(predictions):
         pred['pmcid'] = docs['pmcid'].iloc[i]
 
-    json.dump(predictions, open(predictions_path, 'w'))
+    clean_preds = clean_predictions(predictions)
 
-    clean_predictions(predictions).to_csv(
-        clean_predictions_path, index=False
-    )
+    return predictions, clean_preds
 
 
 def _load_client(model_name):
@@ -47,6 +39,48 @@ def _load_client(model_name):
 
 def _load_prompt_config(prompt_set):
     return getattr(prompts, prompt_set)
+
+def _save_predictions(predictions, clean_preds, extraction_model, prompt_set, output_dir):
+    short_model_name = extraction_model.split('/')[-1]
+    outname = f"{prompt_set}_{short_model_name}"
+    predictions_path = output_dir / f'{outname}.json'
+    clean_predictions_path = output_dir / f'{outname}_clean.csv'
+
+    json.dump(predictions, open(predictions_path, 'w'))
+
+    clean_preds.to_csv(
+        clean_predictions_path, index=False
+    )
+
+def run(extraction_model, docs_path, prompt_set, output_dir=None, **kwargs):
+    """ Run the participant demographics extraction pipeline. 
+
+    Args:
+        extraction_model (str): The model to use for extraction.
+        docs_path (str): The path to the JSON file containing the documents.
+        output_dir (str): The directory to save the output files.
+        prompt_set (str): The prompt set to use for the extraction.
+        **kwargs: Additional keyword arguments to pass to the extraction function.
+    """
+
+    docs = pd.read_json(docs_path)
+
+    extraction_client = _load_client(extraction_model)
+
+    prompt_config = _load_prompt_config(prompt_set)
+    if kwargs is not None:
+        prompt_config.update(kwargs)
+
+    output_dir = Path(output_dir)
+
+    predictions, clean_preds = extract(
+        extraction_model, extraction_client, docs, output_dir, prompt_set=prompt_set,
+        **prompt_config
+    )
+
+    # Save predictions
+    _save_predictions(predictions, clean_preds, output_dir)
+
 
 if __name__ == '__main__':
     import argparse
@@ -69,17 +103,4 @@ if __name__ == '__main__':
         help='The prompt set to use for the extraction.'
     )
 
-    args = parser.parse_args()
-
-    docs = pd.read_json(args.docs_path)
-
-    extraction_client = _load_client(args.extraction_model)
-
-    prompt_config = _load_prompt_config(args.prompt_set)
-
-    output_dir = Path(args.output_dir)
-
-    _run(
-        args.extraction_model, extraction_client, docs, output_dir, prompt_set=args.prompt_set,
-        **prompt_config
-    )
+    run(**vars(parser.parse_args()))
