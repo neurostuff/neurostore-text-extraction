@@ -19,15 +19,8 @@ Run all available pipelines and harmonize outputs using CLI (todo)
 
 
 ### Pipeline outputs
-Pipeline results are output to `data/outputs/{pipeline_name}/{unique_timestamp_id}`.
+Pipeline results are output to `data/outputs/{input_hash}/{pipeline_name}.
 Outputs include extracted features `features.csv`, feature descriptions `descriptions.json`, and extraction information `info.json`.
 
 Pipeline outputs are not stored as part of this repository.
 See `ns-text-extraction-outputs` sub repository. 
-
-
-
-
-
-
-
