@@ -71,6 +71,7 @@ def run(extraction_model, docs_path, prompt_set, output_dir=None, **kwargs):
     if kwargs is not None:
         prompt_config.update(kwargs)
 
+    # TODO: add utilities to auto generate output_dir
     output_dir = Path(output_dir)
 
     predictions, clean_preds = extract(
@@ -80,27 +81,3 @@ def run(extraction_model, docs_path, prompt_set, output_dir=None, **kwargs):
 
     # Save predictions
     _save_predictions(predictions, clean_preds, output_dir)
-
-
-if __name__ == '__main__':
-    import argparse
-
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        '--extraction-model', type=str, required=True,
-        help='The model to use for extraction.'
-    )
-    parser.add_argument(
-        '--docs-path', type=str, required=True,
-        help='The path to the JSON file containing the documents.'
-    )
-    parser.add_argument(
-        '--output-dir', type=str, required=True,
-        help='The directory to save the output files.'
-    )
-    parser.add_argument(
-        '--prompt-set', type=str, default='ZERO_SHOT_MULTI_GROUP_FTSTRICT_FC',
-        help='The prompt set to use for the extraction.'
-    )
-
-    run(**vars(parser.parse_args()))
