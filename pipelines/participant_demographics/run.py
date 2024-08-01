@@ -5,6 +5,7 @@ from openai import OpenAI
 from pathlib import Path
 import json
 import pandas as pd
+import logging
 
 from . import prompts
 from .clean import clean_predictions
@@ -21,6 +22,9 @@ def extract(extraction_model, extraction_client, docs, **extract_kwargs):
 
     # Add PMCID to predictions
     for i, pred in enumerate(predictions):
+        if not pred:
+            logging.warning(f"No prediction for document {docs['pmid'].iloc[i]}")
+            continue
         pred['pmid'] = int(docs['pmid'].iloc[i])
 
     clean_preds = clean_predictions(predictions)
