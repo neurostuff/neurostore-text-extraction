@@ -4,30 +4,17 @@ import spacy
 from scispacy.candidate_generation import CandidateGenerator
 from scispacy.abbreviation import AbbreviationDetector
 import pandas as pd
-from pathlib import Path
-from labelrepo import database
 from tqdm import tqdm
+import warnings
+from multiprocessing import Pool
 
-nlp = spacy.load("en_core_sci_sm")
-nlp.add_pipe("abbreviation_detector")
+def _load_spacy_model():
+    nlp = spacy.load("en_core_sci_sm")
+    nlp.add_pipe("abbreviation_detector")
 
-generator = CandidateGenerator(name='umls')
+    generator = CandidateGenerator(name='umls')
 
-
-def load_docs(pmids, source='md'):
-    if source == 'md':
-        docs = pd.read_sql(
-            "select pmcid, text from document",
-            database.get_database_connection(),
-        )
-        docs = docs[
-            docs.pmcid.isin(pmids)].to_dict(orient='records')
-
-    elif source == 'html':
-        docs = pd.read_csv('../data/html_combined.csv')
-        docs = docs[docs.pmcid.isin(pmids)].to_dict(orient='records')
-
-    return docs
+    return nlp, generator
 
 
 def get_candidates(
@@ -36,6 +23,7 @@ def get_candidates(
     """ Given a text and a target, return the UMLS entities that match the target
     Takes advantage of abbreciation detection from full text and entity linking to UMLS.
     """
+    generator = CandidateGenerator(name='umls')
     # First we need to resolve abbreciation in the target text
     if resolve_abbreviations:
         for abrv in processed_doc._.abbreviations:
@@ -65,14 +53,16 @@ def get_candidates(
     return target, sorted_predicted[: max_entities_per_mention]
 
 
-def run_extraction(docs, predictions, pmcids=None):
-    if pmcids is not None:
-        docs = [d for d in docs if int(d['pmcid']) in pmcids]
+def run_extraction(doc_preds):
+    nlp, generator = _load_spacy_model()
 
     results = []
-    for doc in tqdm(docs):
-        doc_preds = predictions[predictions.pmcid == doc['pmcid']]
-        processed_doc = nlp(doc['text'])
+    for data in tqdm(doc_preds):
+        doc_preds = data['preds']
+        doc = data['body']
+        pmid = data['pmid']
+
+        processed_doc = nlp(doc['body'])
         for ix, pred in doc_preds.iterrows():
             # Get the UMLS entities that match the targettarg
             start_char = pred['start_char'] if 'start_char' in pred else None
@@ -83,7 +73,7 @@ def run_extraction(docs, predictions, pmcids=None):
 
                 for ent in target_ents:
                     results.append({
-                        "pmcid": int(doc['pmcid']),
+                        "pmid": int(doc['pmid']),
                         "diagnosis": resolved_target,
                         "umls_cui": ent[0],
                         "umls_name": ent[1],
@@ -97,25 +87,71 @@ def run_extraction(docs, predictions, pmcids=None):
     return results
 
 
-# Apply to all predictions, with different sources
-input_predictions = [
-    # ('md', 'full_md_demographics-zeroshot_gpt-4o-mini-2024-07-18_clean.csv'),
-    # ('md', 'full_md_demographics-zeroshot_gpt-4o-2024-05-13_clean.csv'),
-    # ('html', 'full_html_demographics-zeroshot_gpt-4o-mini-2024-07-18_clean.csv'),
-    # ('md', 'chunked_demographics-zeroshot_gpt-4o-2024-05-13_minc-40_maxc-4000_clean.csv')
-    # ('md', 'chunked_demographics-zeroshot_gpt-4o-mini-2024-07-18_minc-40_maxc-4000_clean.csv')
-    ('md', 'full_md_demographics-zeroshot-ftstrict_gpt-4o-mini-2024-07-18_clean.csv'),
-    ('md', 'full_md_demographics-zeroshot-ftstrict_gpt-4o-2024-05-13_clean.csv')
-]
+def _load_docs_preds(docs_path, preds_path):
+    """ Load the documents and predictions dataframes. 
+    Both CSV files should have a 'pmid' column.
+    They will be loaded into a single dictionary with the pmid as the key.
+    """
+    texts = pd.read_csv(docs_path)
+    texts = dict(zip(texts['pmid'], texts['body']))
 
-output_dir = Path('../outputs')
+    preds = pd.read_csv(preds_path)
+    
+    combined = []
+    for pmid, row in preds.groupby('pmid'):
+        if pmid not in texts:
+            warnings.warn(f"PMID {pmid} not found in documents, skipping")
+            continue
+        
+        combined.append(
+            {
+                'pmid': pmid,
+                'body': texts[pmid],
+                'preds': row
+            }
+        )
 
-for source, pred_path in input_predictions:
-    predictions = pd.read_csv(output_dir / pred_path)
-    docs = load_docs(predictions.pmcid.unique(), source)
-    results = run_extraction(docs, predictions)
+    return combined
+
+# Split data into chunks
+def split_data(data, n_chunks):
+    chunk_size = len(data) // n_chunks
+    return [data[i * chunk_size:(i + 1) * chunk_size] for i in range(n_chunks)]
+
+def __main__(docs_path, preds_path, output_dir=None, n_workers=1, **kwargs):
+    """ Run the participant demographics extraction pipeline. 
+
+    Args:
+        docs_path (str): The path to the csv file containing the documents.
+        preds_path (str): The path to the csv file containing the participant demographics predictions.
+        output_dir (str): The directory to save the output files.
+        **kwargs: Additional keyword arguments to pass to the extraction function.
+    """
+
+    doc_preds = _load_docs_preds(docs_path, preds_path)
+
+    if n_workers > 1:
+        # Split the data into chunks
+        chunks = split_data(doc_preds, n_workers)
+
+        # Create a pool of workers
+        with Pool(n_workers) as pool:
+            # Distribute the chunks to the workers
+            results = pool.map(run_extraction, chunks)
+
+        # Merge the results
+        results = [item for sublist in results for item in sublist]
+
+        # Print or use the merged results
+        print(f"Processed {len(results)} chunks of data.")
+    else:
+        results = run_extraction(doc_preds)
+        
     results_df = pd.DataFrame(results)
 
-    # Remove _clean from the filename
-    out_name = pred_path.replace('_clean', '_umls')
-    results_df.to_csv(output_dir / out_name, index=False)
+    if output_dir is not None:
+        out_name = preds_path.replace('_clean', '_umls').stem
+        out_path = output_dir / f'{out_name}.csv'
+        results_df.to_csv(out_path, index=False)
+
+    return results_df
