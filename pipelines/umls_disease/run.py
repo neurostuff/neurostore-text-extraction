@@ -5,7 +5,8 @@ from scispacy.candidate_generation import CandidateGenerator
 from scispacy.abbreviation import AbbreviationDetector
 import pandas as pd
 from tqdm import tqdm
-
+import json
+from pathlib import Path
 
 from spacy.language import Language
 @Language.component("serialize_abbreviation")
@@ -169,14 +170,19 @@ def __main__(docs_path, preds_path, replace_abreviations=True, output_dir=None, 
 
     # Refactor to replace abbrevations while loading
     preds, abbreviations = _load_preds(preds_path, docs_path, replace_abreviations, n_workers)
-
+    
+    if abbreviations is not None and output_dir is not None:
+        out_name = Path(preds_path).stem.replace('_clean', '_abrv')
+        out_path = Path(output_dir) / f'{out_name}.json'
+        json.dump(abbreviations, out_path.open('w'))
+        
     results = run_umls_extraction(preds, abbreviations=abbreviations)
         
     results_df = pd.DataFrame(results)
 
     if output_dir is not None:
-        out_name = preds_path.replace('_clean', '_umls').stem
-        out_path = output_dir / f'{out_name}.csv'
+        out_name = Path(preds_path).stem.replace('_clean', '_umls')
+        out_path = Path(output_dir) / f'{out_name}.csv'
         results_df.to_csv(out_path, index=False)
 
     return results_df
