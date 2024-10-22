@@ -1,0 +1,11 @@
+{
+    "title": "Differential components of prospective memory? Evidence from fMRI.",
+    "authors": "Simons, Jon S;Sch\u00f6lvinck, Marieke L;Gilbert, Sam J;Frith, Chris D;Burgess, Paul W",
+    "journal": "Neuropsychologia",
+    "keywords": null,
+    "abstract": "Two of the principal components of prospective memory (i.e., remembering to carry out delayed intentions) are recognizing the appropriate context to act (\"cue identification\") and remembering the action to be performed (\"intention retrieval\"). In this experiment, the demands on these components were manipulated while measuring brain activity using fMRI to explore whether the two components share a common neural basis. The results showed significant behavioral differences between the cue identification and intention retrieval conditions. However, a consistent pattern of hemodynamic changes was found in both prospective memory conditions in anterior prefrontal cortex (BA 10), with lateral BA 10 activation accompanied by medial BA 10 deactivation. These effects were more pronounced when demands on intention retrieval were high. This is consistent with the hypothesis that anterior prefrontal cortex (area 10) supports the biasing of attention between external events (e.g., identifying the cue amid distracting stimuli) and internal thought processes (i.e., maintaining the intention and remembering the intended actions). Together, the results suggest that whilst cue identification and intention retrieval may be behaviorally separable, they share at least some common neural basis in anterior prefrontal cortex.",
+    "publication_year": 2006,
+    "coordinate_space": "MNI",
+    "license": null,
+    "text": true
+}

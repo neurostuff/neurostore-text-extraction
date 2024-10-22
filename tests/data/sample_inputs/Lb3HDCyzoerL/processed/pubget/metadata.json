@@ -1,0 +1,11 @@
+{
+    "title": "Brain gray matter abnormalities in progressive supranuclear palsy revisited",
+    "authors": "Pan, PingLei; Liu, Yi; Zhang, Yang; Zhao, Hui; Ye, Xing; Xu, Yun",
+    "journal": "Oncotarget",
+    "keywords": "progressive supranuclear palsy\nvoxel-based morphometry\nmeta-analysis\ncortical-subcortical circuitries\nseed-based d mapping\n",
+    "abstract": " \nWhole-brain voxel-based morphometry (VBM) studies of progressive supranuclear palsy (PSP) have demonstrated heterogeneous findings regarding gray matter (GM) abnormalities. Here, we used Seed-based   d   Mapping, a coordinate-based meta-analytic approach to identify consistent regions of GM anomalies across studies of PSP. Totally, 18 original VBM studies, comprising 284 patients with PSP and 367 healthy controls were included. As compared to healthy controls, patients with PSP demonstrated significant GM reductions in both cortical and subcortical regions, including the frontal motor cortices, medial (including anterior cingulate cortex) and lateral frontal cortices, insula, superior temporal gyrus, striatum (putamen and caudate nucleus), thalamus, midbrain, and anterior cerebellum. Our study further suggests that many confounding factors, such as age, male ratio, motor severity, cognitive impairment severity, and illness duration of PSP patients, and scanner field-strength, could contribute to the heterogeneity of GM alterations in PSP across studies. Our comprehensive meta-analysis demonstrates a specific neuroanatomical pattern of GM atrophy in PSP with the involvement of the cortical-subcortical circuitries that mediate vertical supranuclear gaze palsy, motor disabilities (postural instability with falls and parkinsonism), and cognitive-behavioral disturbances. Confounding factors merit attention in future studies. \n ",
+    "publication_year": 2017,
+    "coordinate_space": "MNI",
+    "license": "http://creativecommons.org/licenses/by/3.0/",
+    "text": true
+}

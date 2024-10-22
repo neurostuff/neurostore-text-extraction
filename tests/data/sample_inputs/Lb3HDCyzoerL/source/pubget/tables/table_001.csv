@@ -1,0 +1,6 @@
+Cluster,Anatomical label,"Peak MNI coordinate (x, y, z)",No. of voxels,SDM-Z value,SDM-p value,Egger's test (p value)
+A,"Left inferior frontal gyrus/insula/superior temporal gyrus/precentral gyrus (premotor cortex)/putamen/OFC (BAs 47, 13, 44, 22, 6, 45, and 9)","-48, 18, 0",5063,-4.8,∼0,0.56
+B,Right/Left thalamus/midbrain/caudate nucleus,"4, -14, 6",3916,-4.7,∼0,0.29
+C,"Right/Left ACC/(pre-) SMA/superior medial frontal cortex/medial OFC (BAs 32, 24, 8, 9, 6,11, and 10)","-4, 12, 44",3457,-3.32,0.000067,0.27
+D,"Right inferior frontal gyrus/insula/superior temporal gyrus/putamen/precentral gyrus (premotor cortex) (BAs 44, 13, 47, 22, 6, 45, and 9)","54, 16, 16",3186,-4.27,0.027743R254,0.78
+E,Left anterior cerebellum (lobule III/IV/V),"-14, -44, -24",108,-2.74,0.0014,0.83

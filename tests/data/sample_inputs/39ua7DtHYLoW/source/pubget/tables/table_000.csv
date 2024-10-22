@@ -1,0 +1,17 @@
+INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy,INHIBITION Angry > Happy
+Unnamed: 0_level_1,Brain regions,Time window (ms),z-value,p-value,MNI coordinates,MNI coordinates,MNI coordinates
+Unnamed: 0_level_2,Unnamed: 1_level_2,Unnamed: 2_level_2,Unnamed: 3_level_2,Unnamed: 4_level_2,x,y,z
+R,Middle OG,100–175,2.82,0.004,26,−94,6
+R,Angular G,125–175,2.76,0.003,54,−56,20
+R,Posterior OFG,225–275,2.73,0.003,32,22,−14
+R,Anterior OFG,225–275,2.54,0.005,28,52,−4
+R,Posterior OFG,250–300,3.17,0.001,26,20,−16
+R,Anterior OFG,250–300,2.93,0.002,32,50,−8
+R,Posterior OFG,275–325,3.04,0.001,26,20,−18
+R,Anterior OFG,275–325,2.63,0.004,34,50,−10
+L,Anterior ITG,325–375,2.73,0.003,−46,−18,−32
+L,Occipital G,325–375,2.67,0.004,−8,−94,−18
+L,Anterior ITG,350–400,2.72,0.003,−44,−18,−32
+L,Occipital G,350–400,2.63,0.003,−8,−94,−18
+L,Anterior ITG,375–425,2.64,0.004,−44,−20,−34
+L,Hippocampus,375–425,2.64,0.005,−34,−4,−32
