@@ -175,6 +175,8 @@ class Pipeline(ABC):
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
+    _pipeline_type = "independent"
+
     @abstractmethod
     def function(self, study_inputs: Dict[str, Any]) -> Dict:
         """Run the pipeline function on a single study. Returns a dictionary of results."""
@@ -205,6 +207,8 @@ class IndependentPipeline(Pipeline):
 
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
+
+    _pipeline_type = "dependent"
 
     @abstractmethod
     def group_function(self, dataset_inputs: Dict[str, Any]) -> Dict:
