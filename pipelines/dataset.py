@@ -1,11 +1,21 @@
 """Dataset creation for processing inputs."""
-from dataclasses import dataclass
+from copy import deepcopy
+from dataclasses import dataclass, field
 from pathlib import Path
 import re
 import json
+from typing import Union, Optional
 
+INPUTS = [
+    "text",
+    "coordinates",
+    "metadata",
+    "html",
+    "xml",
+    "tables",
+    "tables_xml",
+]
 
-    
 @dataclass
 class AceRaw:
     html: Path
@@ -18,9 +28,10 @@ class PubgetRaw:
 
 @dataclass
 class ProcessedData:
-    coordinates: Path
-    text: Path
-    metadata: Path
+    coordinates: Path = None
+    text: Path = None
+    metadata: Path = None
+    raw: Optional[Union['PubgetRaw', 'AceRaw']] = field(default=None)
 
 @dataclass
 class Study:
@@ -28,10 +39,8 @@ class Study:
     doi: str = None
     pmid: str = None
     pmcid: str = None
-    ace: ProcessedData = None
-    pubget: ProcessedData = None
-    ace_raw: AceRaw = None
-    pubget_raw: PubgetRaw = None
+    ace: ProcessedData = field(default_factory=ProcessedData)
+    pubget: ProcessedData = field(default_factory=ProcessedData)
 
 
 class Dataset:
@@ -40,6 +49,12 @@ class Dataset:
     def __init__(self, input_directory):
         """Initialize the dataset."""
         self.data = self.load_directory(input_directory)
+
+    def slice(self, ids):
+        """Slice the dataset."""
+        deepcopy_obj = deepcopy(self)
+        deepcopy_obj.data = {k: v for k, v in deepcopy_obj.data.items() if k in ids}
+        return deepcopy_obj
 
     def load_directory(self, input_directory):
         """Load the input directory.
@@ -75,20 +90,20 @@ class Dataset:
 
             # check if the source ace directory exists and load appropriate files
             if (source_dir / "ace").exists():
-                study_obj.ace_raw = AceRaw(html=source_dir / "ace" / f"{study_obj.pmid}.html")
+                study_obj.ace.raw = AceRaw(html=source_dir / "ace" / f"{study_obj.pmid}.html")
 
             # check if the source pubget directory exists and load appropriate files
             if (source_dir / "pubget").exists():
-                study_obj.pubget_raw = PubgetRaw(
+                study_obj.pubget.raw = PubgetRaw(
                     xml=source_dir / "pubget" / f"{study_obj.pmcid}.xml",
                 )
-                study_obj.pubget_raw.tables_xml = source_dir / "pubget" / "tables" / "tables.xml"
+                study_obj.pubget.raw.tables_xml = source_dir / "pubget" / "tables" / "tables.xml"
 
                 tables_files = (source_dir / "pubget" / "tables").glob("*.xml")
                 tables_files = [t for t in tables_files if t.name != "tables.xml"]
 
                 num_tables = len(tables_files) // 2
-                study_obj.pubget_raw.tables = {
+                study_obj.pubget.raw.tables = {
                     '{0:03}'.format(t): {"metadata": None, "contents": None}
                     for t in range(num_tables)
                 }
@@ -100,23 +115,19 @@ class Dataset:
                     else:
                         key = "contents"
 
-                    study_obj.pubget_raw.tables[table_number][key] = tf
+                    study_obj.pubget.raw.tables[table_number][key] = tf
 
             # processed directory
             processed_dir = study_dir / "processed"
             if (processed_dir / "ace").exists():
-                study_obj.ace = ProcessedData(
-                    coordinates=processed_dir / "ace" / "coordinates.csv",
-                    text=processed_dir / "ace" / "text.txt",
-                    metadata=processed_dir / "ace" / "metadata.json"
-                )
+                study_obj.ace.coordinates = processed_dir / "ace" / "coordinates.csv"
+                study_obj.ace.text = processed_dir / "ace" / "text.txt"
+                study_obj.ace.metadata = processed_dir / "ace" / "metadata.json"
 
             if (processed_dir / "pubget").exists():
-                study_obj.pubget = ProcessedData(
-                    coordinates=processed_dir / "pubget" / "coordinates.csv",
-                    text=processed_dir / "pubget" / "text.txt",
-                    metadata=processed_dir / "pubget" / "metadata.json"
-                )
+                study_obj.pubget.coordinates = processed_dir / "pubget" / "coordinates.csv"
+                study_obj.pubget.text = processed_dir / "pubget" / "text.txt"
+                study_obj.pubget.metadata = processed_dir / "pubget" / "metadata.json"
 
             dset_data[study_id] = study_obj
 
