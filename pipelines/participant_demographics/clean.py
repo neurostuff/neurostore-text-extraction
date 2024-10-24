@@ -4,9 +4,9 @@ import numpy as np
 
 def clean_predictions(predictions):
     # Clean known issues with GPT demographics predictions
-    predictions = [p for p in predictions if "groups" in p]
+    predictions = [p for p in predictions if p and "groups" in p]
 
-    meta_keys = ["pmcid", "rank", "start_char", "end_char", "id"]
+    meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
     meta_keys = [k for k in meta_keys if k in predictions[0]]
     
     # Convert JSON to DataFrame
