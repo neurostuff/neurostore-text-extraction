@@ -9,6 +9,8 @@ import pandas as pd
 import prompts
 from .clean import clean_predictions
 
+from pipelines.pipeline import IndependentPipeline
+
 def extract(extraction_model, extraction_client, docs, output_dir, prompt_set='', **extract_kwargs):
     extract_kwargs.pop('search_query', None)
 
@@ -81,3 +83,43 @@ def run(extraction_model, docs_path, prompt_set, output_dir=None, **kwargs):
 
     # Save predictions
     _save_predictions(predictions, clean_preds, output_dir)
+
+
+def ParticipantDemographics(IndependentPipeline):
+    """Participant demographics extraction pipeline."""
+
+    _version = "1.0.0"
+    _hash_args = ["extraction_model", "prompt_set", "kwargs", "_inputs", "_input_sources"]
+
+    def __init__(
+        self,
+        extraction_model,
+        prompt_set, inputs=("text",),
+        input_sources=("pubget", "ace"),
+        **kwargs
+    ):
+        super().__init__(inputs=inputs, input_sources=input_sources)
+        self.extraction_model = extraction_model
+        self.prompt_set = prompt_set
+        self.kwargs = kwargs
+
+    def function(self, study_inputs):
+        """Run the participant demographics extraction pipeline."""
+        extraction_client = _load_client(self.extraction_model)
+
+        prompt_config = _load_prompt_config(self.prompt_set)
+        if self.kwargs is not None:
+            prompt_config.update(self.kwargs)
+
+
+        predictions, clean_preds = extract(
+            self.extraction_model,
+            extraction_client,
+            study_inputs["text"],
+            prompt_set=self.prompt_set,
+            **prompt_config
+        )
+
+        # Save predictions
+
+        return {"predictions": predictions, "clean_predictions": clean_preds}
