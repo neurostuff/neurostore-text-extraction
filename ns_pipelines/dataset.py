@@ -20,11 +20,39 @@ INPUTS = [
 class AceRaw:
     html: Path
 
+    def __post_init__(self):
+        # Preprocessing logic for AceRaw can be added here if needed
+        if not self.html.exists():
+            raise ValueError(f"HTML file {self.html} does not exist.")
+
 @dataclass
 class PubgetRaw:
     xml: Path
-    tables: dict = None
+    tables: dict = field(default_factory=dict)
     tables_xml: Path = None
+
+    def __post_init__(self):
+        # Load tables and assign file paths
+        if not self.xml.exists():
+            raise ValueError(f"XML file {self.xml} does not exist.")
+        
+        if self.tables_xml and not self.tables_xml.exists():
+            raise ValueError(f"Tables XML file {self.tables_xml} does not exist.")
+
+        if self.tables_xml:
+            tables_files = list(self.tables_xml.parent.glob("*.xml"))
+            tables_files = [t for t in tables_files if t.name != self.tables_xml.name]
+
+            num_tables = len(tables_files) // 2
+            self.tables = {f'{t:03}': {"metadata": None, "contents": None} for t in range(num_tables)}
+
+            for tf in tables_files:
+                table_number = tf.stem.split("_")[1]
+                if tf.suffix == ".json":
+                    key = "metadata"
+                else:
+                    key = "contents"
+                self.tables[table_number][key] = tf
 
 @dataclass
 class ProcessedData:
@@ -33,14 +61,65 @@ class ProcessedData:
     metadata: Path = None
     raw: Optional[Union['PubgetRaw', 'AceRaw']] = field(default=None)
 
+    def __post_init__(self):
+        # Ensure the processed data files exist
+        if self.coordinates and not self.coordinates.exists():
+            raise ValueError(f"Coordinates file {self.coordinates} does not exist.")
+        if self.text and not self.text.exists():
+            raise ValueError(f"Text file {self.text} does not exist.")
+        if self.metadata and not self.metadata.exists():
+            raise ValueError(f"Metadata file {self.metadata} does not exist.")
+
 @dataclass
 class Study:
     dbid: str
+    study_dir: Path
     doi: str = None
     pmid: str = None
     pmcid: str = None
-    ace: ProcessedData = field(default_factory=ProcessedData)
-    pubget: ProcessedData = field(default_factory=ProcessedData)
+    ace: ProcessedData = None
+    pubget: ProcessedData = None
+
+    def __post_init__(self):
+        self.dbid = self.study_dir.name
+
+        # Load identifiers
+        with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
+            ids = json.load(ident_fp)
+
+        # Setup the processed data objects
+        # Load AceRaw if available
+        source_dir = self.study_dir / "source"
+        ace_raw = None
+        pubget_raw = None
+
+        # Load AceRaw if available
+        ace_path = source_dir / "ace" / f"{self.pmid}.html"
+        if ace_path.exists():
+            ace_raw = AceRaw(html=ace_path)
+
+        # Load PubgetRaw if available
+        pubget_dir = source_dir / "pubget"
+        pubget_xml_path = pubget_dir / f"{self.pmcid}.xml"
+        tables_xml_path = pubget_dir / "tables" / "tables.xml"
+        if pubget_xml_path.exists():
+            pubget_raw = PubgetRaw(
+                xml=pubget_xml_path,
+                tables_xml=tables_xml_path
+            )
+
+        # Load processed data
+        for t in ["ace", "pubget"]:
+            processed_dir = self.study_dir / "processed" / t
+            if processed_dir.exists():
+                processed = ProcessedData(
+                    coordinates=processed_dir / "coordinates.csv",
+                    text=processed_dir / "text.txt",
+                    metadata=processed_dir / "metadata.json",
+                    raw = ace_raw if t == "ace" else pubget_raw
+                )
+
+                setattr(self, t, processed)
 
 
 class Dataset:
@@ -57,16 +136,9 @@ class Dataset:
         return deepcopy_obj
 
     def load_directory(self, input_directory):
-        """Load the input directory.
-        input_directory (str): The input directory containing the text.
-        processed (bool): Whether the input text is already processed.
-        source (str): The source of the input text.
-                      (ace or pubget, if None, tries to find both)
-        """
+        """Load the input directory."""
         pattern = re.compile(r'^[a-zA-Z0-9]{12}$')
-
         sub_directories = input_directory.glob("[0-9A-Za-z]*")
-
         study_directories = [
             dir_ for dir_ in sub_directories
             if dir_.is_dir() and pattern.match(dir_.name)
@@ -75,64 +147,11 @@ class Dataset:
         dset_data = {}
 
         for study_dir in study_directories:
+            study_obj = Study(study_dir=study_dir)
 
-            study_id = study_dir.name
-            study_obj = Study(dbid=study_id)
-            # associate IDs with study object
-            with open((study_dir / "identifiers.json"), "r") as ident_fp:
-                ids = json.load(ident_fp)
-
-            study_obj.doi = ids["doi"] or None
-            study_obj.pmid = ids["pmid"] or None
-            study_obj.pmcid = ids["pmcid"] or None
-
-            source_dir = study_dir / "source"
-
-            # check if the source ace directory exists and load appropriate files
-            if (source_dir / "ace").exists():
-                study_obj.ace.raw = AceRaw(html=source_dir / "ace" / f"{study_obj.pmid}.html")
-
-            # check if the source pubget directory exists and load appropriate files
-            if (source_dir / "pubget").exists():
-                study_obj.pubget.raw = PubgetRaw(
-                    xml=source_dir / "pubget" / f"{study_obj.pmcid}.xml",
-                )
-                study_obj.pubget.raw.tables_xml = source_dir / "pubget" / "tables" / "tables.xml"
-
-                tables_files = (source_dir / "pubget" / "tables").glob("*.xml")
-                tables_files = [t for t in tables_files if t.name != "tables.xml"]
-
-                num_tables = len(tables_files) // 2
-                study_obj.pubget.raw.tables = {
-                    '{0:03}'.format(t): {"metadata": None, "contents": None}
-                    for t in range(num_tables)
-                }
-
-                for tf in tables_files:
-                    table_number = tf.stem.split("_")[1]
-                    if tf.suffix == ".json":
-                        key = "metadata"
-                    else:
-                        key = "contents"
-
-                    study_obj.pubget.raw.tables[table_number][key] = tf
-
-            # processed directory
-            processed_dir = study_dir / "processed"
-            if (processed_dir / "ace").exists():
-                study_obj.ace.coordinates = processed_dir / "ace" / "coordinates.csv"
-                study_obj.ace.text = processed_dir / "ace" / "text.txt"
-                study_obj.ace.metadata = processed_dir / "ace" / "metadata.json"
-
-            if (processed_dir / "pubget").exists():
-                study_obj.pubget.coordinates = processed_dir / "pubget" / "coordinates.csv"
-                study_obj.pubget.text = processed_dir / "pubget" / "text.txt"
-                study_obj.pubget.metadata = processed_dir / "pubget" / "metadata.json"
-
-            dset_data[study_id] = study_obj
+            dset_data[study_obj.dbid] = study_obj
 
         return dset_data
-
     def __len__(self):
         """Return the length of the dataset."""
         return len(self.data)
