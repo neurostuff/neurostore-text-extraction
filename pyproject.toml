@@ -41,4 +41,4 @@ word_count = [
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "pipelines/_version.py"
+version-file = "ns_pipelines/_version.py"

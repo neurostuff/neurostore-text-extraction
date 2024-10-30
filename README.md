@@ -12,7 +12,7 @@ To install the necessary dependencies, run:
 
 ## Usage
 ### Running pipelines
-Executable workflows in `pipelines/{pipeline_name}/run.py` will take as input standardized pubget-style text inputs (row row per article).
+Executable workflows in `pipelines/{pipeline_name}/run.py` will take as input standardized pubget-style text inputs (1 row per article).
 
 
 Run all available pipelines and harmonize outputs using CLI (todo)
@@ -28,11 +28,11 @@ See `ns-text-extraction-outputs` sub repository.
 ### Types of pipelines
 
 
-#### Each study is indepentently processed
+#### Each study is independently processed
 
-1) scenerio 1: nothing changed
-2) scenerio 2: a study was added
-3) scenerio 3: a study was changed
+1) scenario 1: nothing changed
+2) scenario 2: a study was added
+3) scenario 3: a study was changed
 
 `info.json` in the output directory
 increment (value): 0
@@ -45,9 +45,8 @@ have a place for the raw output of the API/external service.
 raw.json
 and clean.json
 clean function for a pipeline output, that can be used to clean the output of a pipeline
+
 #### Each study is processed in the context of all other studies
-
-
 
 Have a dev version
 only include openaccess papers

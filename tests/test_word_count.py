@@ -1,6 +1,6 @@
 from pathlib import Path
-from pipelines.word_count.run import WordCountExtraction, WordDevianceExtraction
-from pipelines.dataset import Dataset
+from ns_pipelines.word_count.run import WordCountExtraction, WordDevianceExtraction
+from ns_pipelines.dataset import Dataset
 
 
 def test_WordCountExtraction(sample_data, tmp_path):

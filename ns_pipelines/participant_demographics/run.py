@@ -10,13 +10,9 @@ import logging
 from . import prompts
 from .clean import clean_predictions
 
-<<<<<<< HEAD
-from pipelines.pipeline import IndependentPipeline
+from ns_pipelines.pipeline import IndependentPipeline
 
 def extract(extraction_model, extraction_client, docs, output_dir, prompt_set='', **extract_kwargs):
-=======
-def extract(extraction_model, extraction_client, docs, **extract_kwargs):
->>>>>>> f3ce9c24f4aaea67df4a5fb3b7d6a53e892ac747
     extract_kwargs.pop('search_query', None)
 
     # Extract

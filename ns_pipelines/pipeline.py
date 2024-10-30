@@ -72,12 +72,10 @@ class Pipeline(ABC):
         self._inputs = inputs
         self._input_sources = input_sources
 
-    @abstractmethod
     def function(self, study_inputs: Dict[str, Any]) -> Dict:
         """Run the pipeline function on a single study. Returns a dictionary of results."""
         pass
 
-    @abstractmethod
     def group_function(self, dataset_inputs: Dict[str, Any]) -> Dict:
         """Run the pipeline function on a group of studies. Returns a dictionary of results."""
         pass

@@ -2,7 +2,7 @@ from datetime import datetime
 import hashlib
 import json
 
-from pipelines.pipeline import IndependentPipeline, DependentPipeline
+from ns_pipelines.pipeline import IndependentPipeline, DependentPipeline
 
 
 class WordCountExtraction(IndependentPipeline):
