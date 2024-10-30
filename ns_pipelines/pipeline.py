@@ -64,7 +64,7 @@ class FileManager:
 class Pipeline(ABC):
     """Abstract pipeline class for processing data."""
 
-    _hash_attrs: List[str] = []
+    _hash_attrs: List[str] = ['_inputs', '_input_sources']
     _pipeline_type: str = None  # independent or dependent
     _version: str = None
 
