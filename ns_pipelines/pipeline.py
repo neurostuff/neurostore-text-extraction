@@ -64,7 +64,7 @@ class FileManager:
 class Pipeline(ABC):
     """Abstract pipeline class for processing data."""
 
-    _hash_args: List[str] = []
+    _hash_attrs: List[str] = []
     _pipeline_type: str = None  # independent or dependent
     _version: str = None
 
@@ -78,7 +78,7 @@ class Pipeline(ABC):
 
     def serialize_pipeline_args(self) -> str:
         """Return a hashable string of the arguments."""
-        return '_'.join([str(getattr(self, arg)) for arg in self._hash_args])
+        return '_'.join([str(getattr(self, arg)) for arg in self._hash_attrs])
 
     def full_output_hash(self, dataset_str: str, arg_str: str) -> str:
         """Return the full hash."""

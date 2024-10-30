@@ -9,7 +9,7 @@ class WordCountExtraction(IndependentPipeline):
     """Word count extraction pipeline."""
 
     _version = "1.0.0"
-    _hash_args = ["_inputs", "_input_sources"]
+    _hash_attrs = ["_inputs", "_input_sources"]
     _pipeline_type = "independent"
 
     def function(self, study_inputs):
@@ -29,7 +29,7 @@ class WordDevianceExtraction(DependentPipeline):
     """
 
     _version = "1.0.0"
-    _hash_args = ["_inputs", "_input_sources"]
+    _hash_attrs = ["_inputs", "_input_sources"]
     _pipeline_type = "dependent"
 
     def function(self, all_study_inputs):
