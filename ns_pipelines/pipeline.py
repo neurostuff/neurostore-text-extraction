@@ -169,16 +169,21 @@ class Pipeline(ABC):
         }
         FileManager.write_json(hash_outdir / db_id / "info.json", output_info)
 
+    @abstractmethod
+    def run(self, dataset: Any, output_directory: Path):
+        """Run the pipeline."""
+        pass
+
+    @abstractmethod
+    def function(self, study_inputs: Dict[str, Any]) -> Dict:
+        """Run the pipeline function."""
+        pass
+
 
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
     _pipeline_type = "independent"
-
-    @abstractmethod
-    def function(self, study_inputs: Dict[str, Any]) -> Dict:
-        """Run the pipeline function on a single study. Returns a dictionary of results."""
-        pass
 
     def run(self, dataset: Any, output_directory: Path):
         """Run the pipeline for independent studies."""
@@ -208,11 +213,6 @@ class DependentPipeline(Pipeline):
 
     _pipeline_type = "dependent"
 
-    @abstractmethod
-    def group_function(self, dataset_inputs: Dict[str, Any]) -> Dict:
-        """Run the pipeline function on a group of studies. Returns a dictionary of results."""
-        pass
-
     def run(self, dataset: Any, output_directory: Path):
         """Run the pipeline for dependent studies."""
         hash_str = self.create_directory_hash(dataset)
@@ -230,7 +230,7 @@ class DependentPipeline(Pipeline):
 
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
-        grouped_results = self.group_function(all_study_inputs)
+        grouped_results = self.function(all_study_inputs)
         for db_id, results in grouped_results.items():
             study_outdir = hash_outdir / db_id
             study_outdir.mkdir(parents=True, exist_ok=True)
