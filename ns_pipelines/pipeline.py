@@ -72,14 +72,6 @@ class Pipeline(ABC):
         self._inputs = inputs
         self._input_sources = input_sources
 
-    def function(self, study_inputs: Dict[str, Any]) -> Dict:
-        """Run the pipeline function on a single study. Returns a dictionary of results."""
-        pass
-
-    def group_function(self, dataset_inputs: Dict[str, Any]) -> Dict:
-        """Run the pipeline function on a group of studies. Returns a dictionary of results."""
-        pass
-
     def serialize_dataset_keys(self, dataset: Any) -> str:
         """Return a hashable string of the input dataset."""
         return "_".join(list(dataset.data.keys()))
@@ -153,6 +145,14 @@ class Pipeline(ABC):
             db_id: self.are_file_hashes_identical(study_inputs, existing_results.get(db_id, {}).get("inputs", {}))
             for db_id, study_inputs in dataset_inputs.items()
         }
+
+    def filter_inputs(self, output_directory: Path, dataset: Any) -> bool:
+        """Filter inputs based on the pipeline type."""
+        existing_results = self.filter_existing_results(output_directory, dataset)
+        matching_results = self.identify_matching_results(dataset, existing_results)
+        # Return True if any of the studies' inputs have changed or if new studies exist
+        keep_ids = set(dataset.data.keys()) - {db_id for db_id, match in matching_results.items() if match}
+        return dataset.slice(keep_ids)
 
     def check_for_changes(self, output_directory: Path, dataset: Any) -> bool:
         """Check if any study inputs have changed or if there are new studies."""
