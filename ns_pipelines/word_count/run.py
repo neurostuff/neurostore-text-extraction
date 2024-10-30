@@ -32,7 +32,7 @@ class WordDevianceExtraction(DependentPipeline):
     _hash_args = ["_inputs", "_input_sources"]
     _pipeline_type = "dependent"
 
-    def group_function(self, all_study_inputs):
+    def function(self, all_study_inputs):
         """Run the word count extraction pipeline."""
 
         # Calculate the average word count
