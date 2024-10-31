@@ -37,6 +37,10 @@ word_count = [
     "pandas",
 ]
 
+tests = [
+    "pytest",
+]
+
 [tool.hatch.version]
 source = "vcs"
 
