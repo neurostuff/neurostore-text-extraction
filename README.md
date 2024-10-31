@@ -11,22 +11,28 @@ To install the necessary dependencies, run:
 
 
 ## Usage
-### Running pipelines
-Executable workflows in `pipelines/{pipeline_name}/run.py` will take as input standardized pubget-style text inputs (1 row per article).
 
+### Overview
+
+Executable workflows in `pipelines/{pipeline_name}/run.py` will have a specific class that implements the `run` method.
+The `run` method will take a `Dataset` object and an output directory as input, and will output extracted features to the output directory in the following format:
+
+        # the pipeline info file contains configuration information about the pipeline
+        output_dir/{pipeline_name}/{pipeline_version}/{input_hash}/pipeline_info.json
+        # the study results file contains whatever extracted features from the study by the pipeline
+        output_dir/{pipeline_name}/{pipeline_version}/{input_hash}/{study_id}/results.json
+        # the study info file contains metadata about the inputs to the pipeline
+        output_dir/{pipeline_name}/{pipeline_version}/{input_hash}/{study_id}/info.json
+
+You will need to create a dataset object that contains the studies you want to process, and then pass that dataset object to the `run` method of the pipeline class.
 
 Run all available pipelines and harmonize outputs using CLI (todo)
 
+Pipelines can either be "dependent" or "independent".
+Dependent pipelines are those whose outputs for each individual study depend on the outputs of other studies.
+Independent pipelines are those whose outputs for each individual study do not depend on the outputs of other studies.
 
-### Pipeline outputs
-Pipeline results are output to `data/outputs/{input_hash}/{pipeline_name}.
-Outputs include extracted features `features.csv`, feature descriptions `descriptions.json`, and extraction information `info.json`.
-
-Pipeline outputs are not stored as part of this repository.
-See `ns-text-extraction-outputs` sub repository. 
-
-### Types of pipelines
-
+## Note(s) for self
 
 #### Each study is independently processed
 
