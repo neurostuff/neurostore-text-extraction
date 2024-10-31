@@ -94,7 +94,8 @@ def ParticipantDemographics(IndependentPipeline):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
-    _hash_attrs = ["extraction_model", "prompt_set", "kwargs", "_inputs", "_input_sources"]
+    # _hash_attrs = ["extraction_model", "prompt_set", "kwargs", "_inputs", "_input_sources"]
+    # everything in __init__ is hashed with _inputs and _input_sources
 
     def __init__(
         self,
@@ -108,7 +109,7 @@ def ParticipantDemographics(IndependentPipeline):
         self.prompt_set = prompt_set
         self.kwargs = kwargs
 
-    def function(self, study_inputs):
+    def _run(self, study_inputs, n_cpus=1):
         """Run the participant demographics extraction pipeline."""
         extraction_client = _load_client(self.extraction_model)
 

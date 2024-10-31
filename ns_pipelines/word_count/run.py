@@ -9,12 +9,18 @@ class WordCountExtraction(IndependentPipeline):
     """Word count extraction pipeline."""
 
     _version = "1.0.0"
-    _hash_attrs = ["_inputs", "_input_sources"]
-    _pipeline_type = "independent"
 
-    def function(self, study_inputs):
+    def __init__(self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False):
+        """add any pipeline configuration here (as opposed to runtime arguments like n_cpus or n_cores)"""
+        self.square_root = square_root
+        super().__init__(inputs=inputs, input_sources=input_sources)
+
+    def _run(self, study_inputs, debug=False):
         """Run the word count extraction pipeline."""
         text_file = study_inputs["text"]
+
+        if debug:
+            print(f"Processing {text_file}")
 
         with open(text_file, "r") as f:
             text = f.read()
@@ -29,16 +35,23 @@ class WordDevianceExtraction(DependentPipeline):
     """
 
     _version = "1.0.0"
-    _hash_attrs = ["_inputs", "_input_sources"]
-    _pipeline_type = "dependent"
 
-    def function(self, all_study_inputs):
+    def __init__(self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False):
+        """add any pipeline configuration here (as opposed to runtime arguments like n_cpus or n_cores)"""
+        self.square_root = square_root
+        super().__init__(inputs=inputs, input_sources=input_sources)
+
+    def _run(self, all_study_inputs, debug=False):
         """Run the word count extraction pipeline."""
 
         # Calculate the average word count
         total_word_count = 0
         total_studies = len(all_study_inputs)
         study_word_counts = {}
+
+        if debug:
+            print(f"Processing {total_studies} studies")
+
         for study_id, study_inputs in all_study_inputs.items():
             text_file = study_inputs["text"]
 

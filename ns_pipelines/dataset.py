@@ -35,7 +35,7 @@ class PubgetRaw:
         # Load tables and assign file paths
         if not self.xml.exists():
             raise ValueError(f"XML file {self.xml} does not exist.")
-        
+
         if self.tables_xml and not self.tables_xml.exists():
             raise ValueError(f"Tables XML file {self.tables_xml} does not exist.")
 
@@ -72,8 +72,8 @@ class ProcessedData:
 
 @dataclass
 class Study:
-    dbid: str
     study_dir: Path
+    dbid: str = None
     doi: str = None
     pmid: str = None
     pmcid: str = None
