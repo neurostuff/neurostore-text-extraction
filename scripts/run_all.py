@@ -16,7 +16,7 @@ def run_pipeline(pipeline_name, input_data_path, output_dir):
     # Create a subdirectory for the hash of the input data
     hash_dir = os.path.join(output_dir, hash(input_data_path))
     os.makedirs(hash_dir, exist_ok=True)
-    
+
     # Execute the {pipeline_name}/run.py script with the input data
     pipeline_script = os.path.join(pipeline_name, "run.py")
     subprocess.run(["python", pipeline_script, input_data_path, hash_dir])

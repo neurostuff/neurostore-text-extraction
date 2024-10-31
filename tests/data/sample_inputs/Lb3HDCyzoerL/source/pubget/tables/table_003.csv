@@ -1,0 +1,8 @@
+Anatomical regions,Maximum MNI coordinate,No. of Voxels,SDM-Z,p
+"Right inferior frontal gyrus/insula/superior temporal gyrus (BAs 47, 13, 38, 45, and 48)","46, 14, 2",1523,4.8,0.0000046
+"Left insula/superior temporal gyrus (BAs 47, 13, and 48)","-40, 0, -2",984,4.59,0.0000077
+"Right/Left ACC/medial OFC (BAs 32, 10, 11, and 24)","2, 50, 8",962,4.26,0.000034
+Right/Left thalamus,"2, -18, -8",306,5.17,∼0
+"Left inferior frontal gyrus (BAs 45, and 44)","-50, 20, 22",178,3.49,0.00044
+Left cerebellum (lobule III),"-8, -34, -18",37,3.19,0.0011
+Right caudate nucleus,"12, -2, 20",11,2.77,0.0030
