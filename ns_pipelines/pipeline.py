@@ -144,22 +144,39 @@ class Pipeline(ABC):
     def _filter_existing_results(self, output_dir: Path, dataset: Any) -> Dict[str, Dict]:
         """Find the most recent result for an existing study."""
         existing_results = {}
-        for d in output_dir.glob(f"{self._version}/**/*"):
-            if d.is_dir() and d.name in set(dataset.data.keys()):
-                info_file = d / "info.json"
+        result_directory = output_dir / self.__class__.__name__ / self._version
+        current_args = {
+                arg: getattr(self, arg) for arg in inspect.signature(self.__init__).parameters.keys()
+            }
+
+        for d in result_directory.glob(f"*"):
+            if not d.is_dir():
+                continue
+
+            pipeline_info = FileManager.load_json(d / "pipeline_info.json")
+            pipeline_args = pipeline_info.get("arguments", {})
+
+            if pipeline_args != current_args:
+                continue
+
+            for sub_d in d.glob("*"):
+                if not sub_d.is_dir():
+                    continue
+
+                info_file = sub_d / "info.json"
                 if info_file.exists():
                     info = FileManager.load_json(info_file)
                     found_info = {
                         "date": info["date"],
                         "inputs": info["inputs"],
-                        "hash": d.parents[0].name
+                        "hash": sub_d.name
                     }
                     if (
-                        existing_results.get(d.name) is None
+                        existing_results.get(sub_d.name) is None
                         or datetime.strptime(info["date"], '%Y-%m-%d') >
-                        datetime.strptime(existing_results[d.name]["date"], '%Y-%m-%d')
+                        datetime.strptime(existing_results[sub_d.name]["date"], '%Y-%m-%d')
                     ):
-                        existing_results[d.name] = found_info
+                        existing_results[sub_d.name] = found_info
         return existing_results
 
     def _are_file_hashes_identical(self, study_inputs: Dict[str, Path], existing_inputs: Dict[str, str]) -> bool:
@@ -188,7 +205,7 @@ class IndependentPipeline(Pipeline):
     def run(self, dataset: Any, output_directory: Path, **kwargs):
         """Run the pipeline for studies that are independent of eachother."""
         hash_str = self.create_directory_hash(dataset)
-        hash_outdir = output_directory / self._version / hash_str
+        hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
 
         # If the directory exists, find the next available directory with a suffix like "-1", "-2", etc.
         if hash_outdir.exists():
@@ -222,7 +239,7 @@ class DependentPipeline(Pipeline):
     def run(self, dataset: Any, output_directory: Path, **kwargs):
         """Run the pipeline for dependent studies."""
         hash_str = self.create_directory_hash(dataset)
-        hash_outdir = output_directory / self._version / hash_str
+        hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
 
         # Check if there are any changes for dependent mode
         if not self.check_for_changes(output_directory, dataset):
