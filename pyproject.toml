@@ -39,6 +39,8 @@ word_count = [
 
 tests = [
     "pytest",
+    "pytest-recording",
+    "vcrpy",
 ]
 
 [tool.hatch.version]

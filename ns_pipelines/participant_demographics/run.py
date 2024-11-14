@@ -1,5 +1,6 @@
 """ Extract participant demographics from HTML files. """
 import os
+
 from publang.extract import extract_from_text
 from openai import OpenAI
 from pathlib import Path
@@ -8,35 +9,34 @@ import pandas as pd
 import logging
 
 from . import prompts
-from .clean import clean_predictions
+from .clean import clean_prediction
 
 from ns_pipelines.pipeline import IndependentPipeline
 
-def extract(extraction_model, extraction_client, docs, output_dir, prompt_set='', **extract_kwargs):
+
+def extract(extraction_model, extraction_client, text, prompt_set='', **extract_kwargs):
     extract_kwargs.pop('search_query', None)
 
     # Extract
     predictions = extract_from_text(
-        docs['body'].to_list(),
-        model=extraction_model, client=extraction_client,
+        text,
+        model=extraction_model,
+        client=extraction_client,
         **extract_kwargs
     )
 
-    # Add PMCID to predictions
-    for i, pred in enumerate(predictions):
-        if not pred:
-            logging.warning(f"No prediction for document {docs['pmid'].iloc[i]}")
-            continue
-        pred['pmid'] = int(docs['pmid'].iloc[i])
+    if not predictions:
+        logging.warning("No predictions found.")
+        return None, None
 
-    clean_preds = clean_predictions(predictions)
+    clean_preds = clean_prediction(predictions)
 
     return predictions, clean_preds
 
 
 def _load_client(model_name):
     if 'gpt' in model_name:
-        client = OpenAI(api_key=os.getenv('MYOPENAI_API_KEY'))
+        client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
     else:
         raise ValueError(f"Model {model_name} not supported")
@@ -90,7 +90,7 @@ def __main__(extraction_model, docs_path, prompt_set, output_dir=None, **kwargs)
     return predictions, clean_preds
 
 
-def ParticipantDemographics(IndependentPipeline):
+class ParticipantDemographicsExtraction(IndependentPipeline):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
@@ -100,7 +100,8 @@ def ParticipantDemographics(IndependentPipeline):
     def __init__(
         self,
         extraction_model,
-        prompt_set, inputs=("text",),
+        prompt_set,
+        inputs=("text",),
         input_sources=("pubget", "ace"),
         **kwargs
     ):
@@ -117,11 +118,13 @@ def ParticipantDemographics(IndependentPipeline):
         if self.kwargs is not None:
             prompt_config.update(self.kwargs)
 
+        with open(study_inputs["text"]) as f:
+            text = f.read()
 
         predictions, clean_preds = extract(
             self.extraction_model,
             extraction_client,
-            study_inputs["text"],
+            text,
             prompt_set=self.prompt_set,
             **prompt_config
         )

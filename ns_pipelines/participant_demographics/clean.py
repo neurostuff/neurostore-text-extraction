@@ -2,49 +2,48 @@ import pandas as pd
 import numpy as np
 
 
-def clean_predictions(predictions):
-    # Clean known issues with GPT demographics predictions
-    predictions = [p for p in predictions if p and "groups" in p]
+def clean_prediction(prediction):
+    # Clean known issues with GPT demographics prediction
 
     meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
-    meta_keys = [k for k in meta_keys if k in predictions[0]]
-    
+    meta_keys = [k for k in meta_keys if k in prediction]
+
     # Convert JSON to DataFrame
-    predictions = pd.json_normalize(
-        predictions, record_path=["groups"],
+    prediction = pd.json_normalize(
+        prediction, record_path=["groups"],
         meta=meta_keys
         )
     
-    predictions.columns = predictions.columns.str.replace(' ', '_')
+    prediction.columns = prediction.columns.str.replace(' ', '_')
 
-    predictions = predictions.fillna(value=np.nan)
-    predictions["group_name"] = predictions["group_name"].fillna("healthy")
+    prediction = prediction.fillna(value=np.nan)
+    prediction["group_name"] = prediction["group_name"].fillna("healthy")
 
     # Drop rows where count is NA
-    predictions = predictions[~pd.isna(predictions["count"])]
+    prediction = prediction[~pd.isna(prediction["count"])]
 
     # Set group_name to healthy if no diagnosis
-    predictions.loc[
-        (predictions["group_name"] != "healthy") & (pd.isna(predictions["diagnosis"])),
+    prediction.loc[
+        (prediction["group_name"] != "healthy") & (pd.isna(prediction["diagnosis"])),
         "group_name",
     ] = "healthy"
 
     # If no male count, substract count from female count columns
-    ix_male_miss = (pd.isna(predictions["male_count"])) & ~(
-        pd.isna(predictions["female_count"])
+    ix_male_miss = (pd.isna(prediction["male_count"])) & ~(
+        pd.isna(prediction["female_count"])
     )
-    predictions.loc[ix_male_miss, "male_count"] = (
-        predictions.loc[ix_male_miss, "count"]
-        - predictions.loc[ix_male_miss, "female_count"]
+    prediction.loc[ix_male_miss, "male_count"] = (
+        prediction.loc[ix_male_miss, "count"]
+        - prediction.loc[ix_male_miss, "female_count"]
     )
 
     # Same for female count
-    ix_female_miss = (pd.isna(predictions["female_count"])) & ~(
-        pd.isna(predictions["male_count"])
+    ix_female_miss = (pd.isna(prediction["female_count"])) & ~(
+        pd.isna(prediction["male_count"])
     )
-    predictions.loc[ix_female_miss, "female_count"] = (
-        predictions.loc[ix_female_miss, "count"]
-        - predictions.loc[ix_female_miss, "male_count"]
+    prediction.loc[ix_female_miss, "female_count"] = (
+        prediction.loc[ix_female_miss, "count"]
+        - prediction.loc[ix_female_miss, "male_count"]
     )
 
-    return predictions
+    return {"groups": prediction.to_dict(orient="records")}
