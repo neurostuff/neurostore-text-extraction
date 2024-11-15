@@ -22,8 +22,8 @@ participant_demographics = [
     "pandas",
     "numpy",
     "pydantic",
-    "publang",
-    "openai",
+    "publang @ git+https://github.com/adelavega/publang.git",
+    "openai"
 ]
 umls_disease = [
     "pandas",
@@ -48,3 +48,6 @@ source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
 version-file = "ns_pipelines/_version.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true
