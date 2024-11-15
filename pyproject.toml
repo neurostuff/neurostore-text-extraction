@@ -3,7 +3,7 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "neurostore_text_extractor"
+name = "neurostore-text-extractor"
 authors = [{name = "James Kent", email = "jamesdkent21@gmail.com"}]
 description = "A package for extracting text features from the NeuroStore database."
 readme = "README.md"
