@@ -50,7 +50,6 @@ class ParticipantDemographicsExtraction(IndependentPipeline):
 
     _version = "1.0.0"
     # _hash_attrs = ["extraction_model", "prompt_set", "kwargs", "_inputs", "_input_sources"]
-    # everything in __init__ is hashed with _inputs and _input_sources
 
     def __init__(
         self,
