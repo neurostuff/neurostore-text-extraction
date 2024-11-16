@@ -42,7 +42,7 @@ class WordDevianceExtraction(DependentPipeline):
         super().__init__(inputs=inputs, input_sources=input_sources)
 
     def _run(self, all_study_inputs, debug=False):
-        """Run the word count extraction pipeline."""
+        """Run the word deviance extraction pipeline."""
 
         # Calculate the average word count
         total_word_count = 0
