@@ -35,7 +35,6 @@ class WordDevianceExtraction(DependentPipeline):
     _version = "1.0.0"
 
     def __init__(self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False):
-        """add any pipeline configuration here (as opposed to runtime arguments like n_cpus or n_cores)"""
         self.square_root = square_root
         super().__init__(inputs=inputs, input_sources=input_sources)
 
