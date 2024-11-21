@@ -31,10 +31,9 @@ def extract(extraction_model, extraction_client, text, prompt_set='', **extract_
     return predictions, clean_preds
 
 
-def _load_client(model_name):
+def _load_client(model_name, api_key):
     if 'gpt' in model_name:
-        client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-
+        client = OpenAI(api_key=api_key)
     else:
         raise ValueError(f"Model {model_name} not supported")
 
@@ -45,7 +44,7 @@ def _load_prompt_config(prompt_set):
     return getattr(prompts, prompt_set)
 
 
-class ParticipantDemographicsExtraction(IndependentPipeline):
+class ParticipantDemographicsExtractor(IndependentPipeline):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
@@ -56,16 +55,33 @@ class ParticipantDemographicsExtraction(IndependentPipeline):
         prompt_set,
         inputs=("text",),
         input_sources=("pubget", "ace"),
+        env_variable=None,
+        env_file=None,
         **kwargs
     ):
         super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model
         self.prompt_set = prompt_set
+        self.env_variable = env_variable
+        self.env_file = env_file
         self.kwargs = kwargs
+
+    def get_api_key(self):
+        """Read the API key from the environment variable or file."""
+        if self.env_variable:
+            api_key = os.getenv(self.env_variable)
+            if api_key is not None:
+                return api_key
+        if self.env_file:
+            with open(self.env_file) as f:
+                return ''.join(f.read().strip().split("=")[1])
+        else:
+            raise ValueError("No API key provided")
 
     def _run(self, study_inputs, n_cpus=1):
         """Run the participant demographics extraction pipeline."""
-        extraction_client = _load_client(self.extraction_model)
+        api_key = self.get_api_key()
+        extraction_client = _load_client(self.extraction_model, api_key)
 
         prompt_config = _load_prompt_config(self.prompt_set)
         if self.kwargs is not None:

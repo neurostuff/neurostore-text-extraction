@@ -2,7 +2,7 @@
 from ns_pipelines.pipeline import IndependentPipeline, DependentPipeline
 
 
-class WordCountExtraction(IndependentPipeline):
+class WordCountExtractor(IndependentPipeline):
     """Word count extraction pipeline."""
 
     _version = "1.0.0"
@@ -25,7 +25,7 @@ class WordCountExtraction(IndependentPipeline):
         return {"word_count": len(text.split())}
 
 
-class WordDevianceExtraction(DependentPipeline):
+class WordDevianceExtractor(DependentPipeline):
     """Word deviance pipeline.
 
     Count the deviance of each study from the average word count.

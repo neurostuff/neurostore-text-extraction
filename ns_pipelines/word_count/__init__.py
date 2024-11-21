@@ -1,6 +1,6 @@
-from .run import WordCountExtraction
+from .model import WordCountExtractor, WordDevianceExtractor
 
 __all__ = [
-    "WordCountExtraction",
-    "WordDevianceExtraction",
+    "WordCountExtractor",
+    "WordDevianceExtractor",
 ]
