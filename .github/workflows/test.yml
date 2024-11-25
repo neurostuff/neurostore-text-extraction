@@ -1,0 +1,36 @@
+name: Install and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: testing-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: pip install -e .[tests,participant_demographics,word_count]
+
+      - name: Test with pytest
+        env:
+          OPENAI_API_KEY: "fake_key"
+        run: |
+          cp .keys.example .keys
+          pytest

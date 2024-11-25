@@ -8,6 +8,8 @@ from tqdm import tqdm
 import json
 from pathlib import Path
 
+from ns_pipelines.pipeline import IndependentPipeline
+
 from spacy.language import Language
 @Language.component("serialize_abbreviation")
 def replace_abbrev_with_json(spacy_doc):
@@ -170,14 +172,14 @@ def __main__(docs_path, preds_path, replace_abreviations=True, output_dir=None, 
 
     # Refactor to replace abbrevations while loading
     preds, abbreviations = _load_preds(preds_path, docs_path, replace_abreviations, n_workers)
-    
+
     if abbreviations is not None and output_dir is not None:
         out_name = Path(preds_path).stem.replace('_clean', '_abrv')
         out_path = Path(output_dir) / f'{out_name}.json'
         json.dump(abbreviations, out_path.open('w'))
-        
+
     results = run_umls_extraction(preds, abbreviations=abbreviations)
-        
+
     results_df = pd.DataFrame(results)
 
     if output_dir is not None:

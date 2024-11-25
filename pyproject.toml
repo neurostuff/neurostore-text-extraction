@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "neurostore-text-extractor"
+authors = [{name = "James Kent", email = "jamesdkent21@gmail.com"}]
+description = "A package for extracting text features from the NeuroStore database."
+readme = "README.md"
+keywords = ["neurostore", "neurosynth", "neuroimaging", "meta-analysis"]
+license = {text = "BSD 3-Clause License"} 
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version"]
+# dependencies = ["pandas"]
+
+
+[project.optional-dependencies]
+participant_demographics = [
+    "pandas",
+    "numpy",
+    "pydantic",
+    "publang @ git+https://github.com/adelavega/publang.git",
+    "openai"
+]
+umls_disease = [
+    "pandas",
+    "numpy",
+    "labelrepo",
+    "spacy",
+    "scispacy",
+    "tqdm",
+]
+word_count = [
+    "pandas",
+]
+
+tests = [
+    "pytest",
+    "pytest-recording",
+    "vcrpy",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "ns_pipelines/_version.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true

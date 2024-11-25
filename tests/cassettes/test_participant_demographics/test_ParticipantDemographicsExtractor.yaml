@@ -1,0 +1,2111 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "\nYou will be provided with
+      a text sample from a scientific journal.\nThe sample is delimited with triple
+      backticks.\n\nYour task is to identify groups of participants that participated
+      in the study, and underwent MRI.\nIf there is no mention of any participant
+      groups, return a null array.\n\nFor each group identify:\n    - the number of
+      participants in each group, and the diagnosis.\n    - the number of male participants,
+      and their mean age, median age, minimum and maximum age\n    - the number of
+      female participants, and their mean age, median age, minimum and maximum age.\n    -
+      if this group of participants underwent MRI, fMRI or neuroimaging procedure.\n\nBe
+      as accurate as possible, and report information (especially diagnosis) using
+      the technical terms (and abbreviations) used in the article.\nIf any of the
+      information is missing, return `null` for that field.\n\nText sample:  \n##
+      Introduction \n  \nWith more than 25% of high school seniors reporting recent
+      use and 6.5% of 12th graders being daily users ( ), marijuana (MJ) is the most
+      frequently used illicit substance among adolescents. Across all age groups over
+      70% of new drug initiates start with using MJ at an average age of 18 years
+      ( ). Indeed, the scope of MJ use prevalence is of great public interest, as
+      MJ use in early adolescence is associated with increased risk of greater substance
+      use, legal problems, disrupting education, injuries/medical problems, developing
+      psychopathology, cognitive changes and chronic psychosocial struggles ( ,  ,  ,  ).
+      Taken together, rates of MJ use are suggestive of an epidemic based in adolescence,
+      which is concerning not just due to societal cost, but also due to the potential
+      to offset sensitive brain development during this period. \n\nDespite its prevalence,
+      the impact of MJ use on adolescent brain development is not fully known. Important
+      neuromaturational processes during adolescence through young adulthood are believed
+      to bring about improved higher-order cognition by refining neural systems locally
+      and globally through white and gray matter development ( ,  ,  ). In general,
+      gray matter reductions and cortical thinning coincide with increased white matter
+      volume and organization through adolescence and young adulthood, suggestive
+      of synaptic pruning and axonal myelination ( ,  ,  ,  ,  ). The endogenous cannabinoid
+      (CB) system is also immature during adolescence ( ,  ). In an animal model (
+      ) imaged CB1 receptor binding using PET and found relatively lower activation
+      of CB1 receptors in adolescent rats compared to adult rats in brain areas including
+      those in the frontal cortex, temporal lobe (hippocampus and amygdala) and sub-cortical
+      regions including striatal regions, thalamus, hypothalamus, superior colliculus.
+      Thus, adolescence represents a developmental period with vulnerability to structural
+      and functional changes due to exogenous MJ exposure. \n\nAdolescent MJ use has
+      the potential to cause structural and functional changes in the brain by altering
+      cannabinoid signaling. One possible mechanism would be blunt neurotoxic influence.
+      For example, delta9-tetrahydrocannabinol (THC), the primary psychoactive component
+      in MJ that binds CB1 receptors, is reported to cause cell shrinkage and damage
+      DNA strands in THC-treated neuron cultures ( ). This may be the mechanism by
+      which smaller volumes have been observed in individuals exposed to cannabis
+      during adolescence ( ). However, it is more likely that MJ exerts its influence
+      on brain development indirectly. The cannabinoid system plays a role in modulating
+      other neurotransmitters, including gamma-aminobutyric acid (GABA), glutamate
+      and monoamines ( ). Specifically, activation of CB1 receptors is associated
+      with down-regulating inhibitory GABAergic transmission in cortical interneurons
+      during adolescence ( ,  ). In addition, CB signaling inhibits microglia function
+      ( ). These two points are important because cortical pruning processes involve
+      glial-mediated synaptic elimination and altering the excitatory/inhibitory balance
+      is liable to disrupt the selective tagging and preserving synapses ( ). The
+      impact of this indirect influence on the developing brain may be in the observations
+      of abnormal connectivity in those who began MJ use in adolescence ( ). Evidence
+      from human neuroimaging studies lends greater support to MJ-related disruptions
+      to brain development. \n\nStructural neuroimaging studies have indicated that
+      volumes of several brain areas are smaller in heavy adult MJ users especially
+      in areas enriched with cannabinoid 1 (CB1) receptors, such as medial temporal
+      lobe, and prefrontal cortex ( ). Studies of adult chronic MJ users note brain
+      volume reductions in temporal lobe, insula, and prefrontal cortex, amygdala
+      and hippocampus ( ,  ,  ,  ,  ). Among different characteristics of MJ involvement
+      (e.g., dependence symptoms, use frequency, consumption), the age of initial
+      MJ use is a robust factor that has been associated with smaller brain volumes
+      in users. For example,   observed left parahippocampal gyrus and right temporal
+      pole structural differences in 25 regular MJ users compared to 22 occasional
+      users, however, even the occasional users who began smoking MJ during adolescence
+      (before age 18) demonstrated similar brain changes as the regular users. Our
+      group has also found links with early MJ use onset ( ) and structural connectivity
+      with orbitofrontal cortex in a cohort of daily MJ users, suggesting complex
+      neuroadaptive processes related to MJ use in the context of adolescent brain
+      development ( ). These findings underscore the potential for significant heterogeneity
+      in brain changes among adult MJ users, especially those who began using MJ during
+      neurodevelopment. \n\nStudies comparing early adolescent MJ use to users initiating
+      MJ use in later adolescence provide further evidence for the potential of MJ
+      to cause enduring change. The few studies that have directly investigated the
+      timing of the effects of MJ during adolescence have noted divergent neurodevelopment
+      effects. For example, in an fMRI study by Gruber and colleagues, functional
+      and behavioral differences during an interference task were reported between
+      early (before age 16) and late (after age 16) MJ users ( ) ( ). The same group
+      also reported decreased white matter integrity in early onset vs. late onset
+      MJ users (mean age 14.46 vs. 17.93) ( ). Similar differential effects have also
+      been noted in parietal lobe activation between early and late adolescent binge
+      drinkers during a spatial working memory task ( ). These studies highlight the
+      importance of clarifying the differential neural effects of early- and late-adolescent
+      onset use. \n\nTo that end, in the current study, we compared daily MJ users
+      who were early onset users (<16 years old) versus late onset users (16 years
+      old) on measures of cortical morphology that are sensitive to developmental
+      changes. We aimed to characterize both the effect of early onset status on cortical
+      morphology as well as assess for morphological patterns linked to the continued
+      use of MJ after early and late adolescent MJ initiation. We expected early onset
+      users to show a morphological pattern consistent with disruption of early adolescent
+      brain development (e.g., increased cortical thickness, greater gray/white definition
+      of the cortical ribbon via disruptions to adolescent pruning processes) that
+      may be more consistent with indirect impact of MJ of brain development. While
+      gray matter decline has been shown to be associated with marijuana use, particularly
+      in areas rich in CB1 receptors, increased cortical thickness and greater gray/white
+      definition in the cortical ribbon point to potential disruption in neurodevelopment
+      (i.e. synaptic pruning) that may result from MJ use at key developmental stages
+      (i.e. earlier as opposed to later in adolescent neuronal development). Such
+      disruptions may extend to gyrification as well. While this process begins in
+      utero, there is evidence that gyrification is ongoing into adolescence ( ,  ,  )
+      and may also display aberrant developmental patterns in the presence of MJ use.
+      \n\n\n## Methods \n  \nThis study was approved by the University of Texas at
+      Dallas (UTD) and University of Texas Southwestern Medical Center (UTSW) Institutional
+      Review Boards. All participants were recruited from the Dallas-Ft.Worth metro
+      area via flyers and advertisements. Following informed consent, MJ users completed
+      two sessions  a baseline appointment for collecting demographic, psychosocial
+      and behavioral measures and a thorough substance use history. Three days later
+      the participants returned for a neuroimaging appointment. Prior to their scanning
+      session, participants were asked to be abstinent from MJ use for 72h, from alcohol
+      for 24h, and from caffeine and cigarettes for the preceding 2h. These were confirmed
+      by self-report (MJ, alcohol, caffeine and cigarettes), quantitative THC urinalysis
+      (MJ), and by breath alcohol level of .000 (alcohol) at the start of their session.
+      \n\n### Participants \n  \nWe scanned 45 regular heavy MJ users as part of the
+      parent project. Inclusion criteria were: right-handedness, English as the primary
+      language and no histories of psychosis, traumatic brain injury, and MRI contraindications
+      (e.g., pregnancy, non-removal metallic implants, claustrophobia). One subject
+      reported a history of anxiety and depression and one other reported a history
+      of ADHD as a child. Additional exclusions for the current study included: Axis
+      I diagnosis (via SCID) other than cannabis use disorder, unusable sMRI due to
+      motion artifact or poor signal-to-noise ratio that precluded accurate tissue
+      segmentation (  n  =1) and incomplete drug use histories (  n  =2). Of the 42
+      remaining cases, 22 were early onset users (onset of first use before age 16).
+      Group categorization using onset of regular use as opposed to onset of first
+      use maintained the same grouping (mean early onset of regular use=16.5, mean
+      late onset of regular use=19.0). Regular use was defined as at least one time
+      per week. To determine how age of onset of regular MJ use influenced our reported
+      effects, we performed these analyses while covarying for age of onset of regular
+      use (see  ).   summarizes demographic and substance use information according
+      to onset status.   summarizes the correlation between age and identified marijuana
+      use variables. Only MJ years of use and current age showed a statistically significant
+      correlation. Participants were recruited based on self-reported daily MJ use
+      and a positive urinalysis for THC metabolites at their baseline visit. All of
+      the participants were screened via urinalysis for other drugs of abuse and were
+      excluded if drugs (other than MJ) were detected. Participants were required
+      to have used MJ for a minimum of 5000 lifetime occasions and self-report daily
+      use (without >24h abstinence) for the last 60 days.   \nSample characteristics.
+      MJ, marijuana. \n          \nThe correlations between current age and all MJ
+      use variables. \n      \n\n\n### MRI acquisition and analysis \n  \n#### Image
+      acquisition \n  \nScanning sessions took place at the Advanced Imaging Research
+      Center at the University of Texas, Southwestern Medical Center three days following
+      their initial visit. Another verification of THC metabolites via urinalysis
+      was also performed before the scan. MRI images were collected using a 3T Philips
+      whole-body scanner equipped with Quasar gradient subsystem (40mT/m amplitude,
+      a slew rate of 220mT/m/ms). High-resolution T1-weighted anatomical scans were
+      collected using a MPRAGE sequence: TR/TE/TI=2100/3.70/1100ms; flip angle=12;
+      field of view=256mm256mm; slab thickness=160mm (along left-right direction);
+      voxel size=1mm1mm1mm, Total scan time=3m 57s. \n\n\n#### Image processing \n  \nMPRAGE
+      anatomical scans were pre-processed for surface-based analyses using FreeSurfer
+      v5.3 semi-automated pipeline ( ). This semi-automated pipeline included spatial
+      (Talairach) and signal intensity normalization of images, volumetric segmentation
+      and subcortical labeling ( ,  ). Outer gray matter and white matter boundaries
+      were then identified and reconstructed into a mesh of over 150,000 tessellated
+      vertices to allow point-to-point surface measures ( ). Next, gyral anatomy is
+      aligned to a standard spherical template using surface convexity and curvature
+      measures. Resulting surfaces were inspected, blind to MJ onset status, to identify
+      and correct any errors made during cortical reconstruction. Modifications to
+      the volumes were made as necessary to correct for tissue misclassifications
+      according to FreeSurfer''s wiki manual ( ). In preparation for analysis, each
+      morphological measure for each case was co-registered to a standard template
+      (fsaverage). Anatomical labels in FreeSurfer ( ) were used for interpretation
+      of results. \n\n\n\n### Morphological measures \n  \n#### Cortical thickness
+      \n  \nThe width of the cortical ribbon was measured as the distance between
+      corresponding vertices of the white matter and gray matter surfaces at each
+      vertex in the cortical mantel ( ). \n\n\n#### Graywhite matter ratio (GWR) \n  \nTo
+      assess the quality of cortical ribbon definition, a tissue contrast between
+      gray and white matter signal intensities was computed as a percent ratio (WG)/(.5*(W+G))
+      (from pctsurfcon v1.11.2.1, inbuilt component of FreeSurfer pipeline v5.3, 2011).
+      White matter signal intensities were measured at an absolute length of 1mm below
+      the graywhite border surface and gray matter signal was measured 30% into the
+      cortical ribbon ( ). \n\n\n#### Local gyrification index \n  \nThe cortical
+      surface from FreeSurfer''s main pipeline is further processed to create an outer
+      surface that encapsulates the gyral and sulcal curvature for each hemisphere,
+      which serves as a basis for calculating a local gyrification index ( ). LGI
+      is measured as the amount of cortex within the sulcal folds beneath the outer
+      surface compared to the amount of visible cortex that touches the outer surface.
+      Cortical maps are generated from repeated iterations of delineating a 25mm radius
+      sphere on the outer surface and its corresponding point on the cortical surface
+      using a matching algorithm. \n\n\n\n### Background and premorbid characteristics
+      \n  \n#### Sample characteristics \n  \nAge, gender, education level, ethnicity,
+      along with other background information, was obtained using a standard demographics
+      questionnaire. The two-subtest administration of the Wechsler Abbreviated Scale
+      of Intelligence (Vocabulary and Matrix Reasoning) provided estimates of intellect
+      ( ). \n\n\n#### Substance use \n  \nThe Substance Use Disorder modules of the
+      Structured Clinical Interview for DSM-IV (SCID) ( ) were administered by a trained
+      research assistant to assess for lifetime and current symptoms of abuse and
+      dependence for alcohol, nicotine, MJ and other substances. The SCID interview
+      also provided the onset of use information. A Time Line Follow-Back (TLFB) approach
+      was used to quantify alcohol, nicotine, and MJ use patterns for 90 days prior
+      to study participation ( ). Marijuana use in grams was obtained via self-report
+      in response to probes aimed at quantifying their regular use. \n\n\n\n### Statistical
+      analyses \n  \nStatistical analyses were conducted in SPSS 18.0 for behavioral
+      and psychosocial measures whereas general linear model group comparisons on
+      surfaced-based morphology measures were carried out FreeSurfer''s built-in application
+      QDEC (v1.5). Independent samples   t  -tests, MannWhitney   U  -tests or chi-square
+      tests, compared groups on background and demographic variables (see  ). Before
+      statistical analysis was conducted, the dependent measures of cortical thickness,
+      GWR and LGI were smoothed using a FWHM Gaussian filter with a width of either
+      10 or 15mm. Separate univariate general linear model (GLM) was then used to
+      model cortical thickness, GWR and LGI with onset status of MJ use as a between
+      groups factor. The dependent variables were thickness, graywhite ratio or local
+      gyrification index and the independent variables were either recent monthly
+      MJ use in grams (MJ grams) or duration of MJ use (MJ years). Age and total drinks
+      in the past 2 months were treated as nuisance covariates in the model. Using
+      MJ years of use and MJ grams as independent predictors of interest allowed us
+      to characterize and differentiate the latent developmental effects from cumulative
+      and current effects of MJ use. The variable marijuana years of use was based
+      on the participants response to the question For how many years have you been
+      using marijuana regularly? Of note, an outlier in the early onset group was
+      removed before the statistical comparisons were performed. \n\n\n\n## Results
+      \n  \n### Cortical thickness \n  \nThere were no regions of group differences
+      in cortical thickness by early onset status alone, controlled for age and alcohol
+      use. However, MJ use characteristics were correlated with anterior dorsolateral
+      prefrontal cortex thickness based on onset status. Early onset users showed
+      increased thickness with increased MJ grams while late onset users showed thinner
+      cortex with increased MJ grams (  p  <0.05 uncorrected) ( ). The same pattern
+      emerged with more years of MJ use being associated with thicker region of the
+      right medial temporal lobe in the early onset users and the reverse for the
+      late onset users (  p  <0.05 uncorrected) ( ).   \nClusters of significant age
+      of onsetmarijuana use interactions. GWR, gray/white matter border ratio; LGI,
+      local gyrification index. \n        \nEarly vs. late onset marijuana users show
+      divergent morphological patterns based on current marijuana use (measured in
+      grams; MJ grams) in overlapping areas of anterior prefrontal cortex. GWR, gray/white
+      matter border ratio; LGI, local gyrification index. \n  \n\n\n### Graywhite
+      matter contrast \n  \nThere were no regions of group differences in graywhite
+      matter contrast by early onset status alone, controlled for age and alcohol
+      use. However, current MJ consumption (grams) and onset status were differentially
+      correlated with graywhite matter contrast in a left anterior dorsal frontal
+      region (  p  <0.05, FWE corrected). Increased graywhite contrast with heavier
+      MJ use was seen in the early onset users and the opposite was seen in later
+      onset users (heavier current use linked to decreasing GWR). The same pattern
+      was seen between duration of MJ use in two prefrontal cortex clusters of the
+      right dorsal frontal and medial orbitofrontal area   p  <0.05, FWE corrected  more
+      years of MJ use were linked to greater GWR among early users ( ). \n\n\n###
+      Gyrification \n  \nMJ use onset status alone showed no significant main effects
+      above age and alcohol covariates. However, onset status was correlated with
+      divergent patterns between local gyrification and MJ use, whereby early onset
+      users showed decreasing LGI with increasing MJ consumption and longer duration
+      of use in prefrontal cortex regions   p  <0.05, FWE corrected. The left hemisphere
+      clusters encompassed the majority of the length of the middle lateral surface
+      of the left cortex, including motor cortices, parietal lobe and multimodal integration
+      areas ( ). \n\n\n\n## Discussion \n  \nThe present study was designed to characterize
+      the cortical architecture in adolescent onset MJ users by comparing early adolescent
+      onset users to late adolescent onset in MJ use on measures of cortical thickness,
+      gray/white matter contrast and gyrification. The primary finding was that early
+      versus late onset MJ users showed a divergent pattern in cortical thickness,
+      definition of the cortical ribbon and local gyrification with continued use
+      through and beyond adolescent years. Specifically, early onset users showed
+      cortical thickening, enhanced gray/white matter contrast, and decreased gyrification
+      in association with more years of MJ use and current consumption of MJ in grams
+      in frontal and temporal regions  areas that underlie higher order cognition
+      including executive functioning, learning and memory. Findings were above and
+      beyond effects of alcohol and current age, therefore, results are less likely
+      to reflect morphological trends due to aging. \n\nOur findings did not find
+      the expected age of onset differences previously reported in marijuana users
+      ( ,  ). This inconsistency suggests that the age of onset effects may be more
+      robust in brain white matter connectivity ( ) and function ( ) than brain surface
+      morphometry. To date, the few studies that have described altered cortical morphology
+      in MJ users have led to mixed findings.   identified brain regions with decreased
+      sulcal depth suggestive of lower gyrification in a study of adult MJ users.   recently
+      reported increased cortical thickness in the entorhinal cortex among 24 adolescent
+      MJ users (mean age=17.7, mean MJ onset age=15.4) relative to peer controls.
+      However, the authors also reported a negative relationship between cortical
+      thickness and total MJ use in the right paracentral gyrus, and they observed
+      consistent positive relationships in various brain regions between age of MJ
+      onset and thickness. In the only other known adolescent study of cortical thickness
+      and MJ, Lopez-Larson and colleagues studied 18 adolescent heavy MJ users (similar
+      in age and MJ onset as  ) and reported mixed findings of increased thickness
+      in prefrontal/insula regions and decreased thickness in posterior/temporal lobe
+      areas in the MJ users compared to controls. In contrast to  ,   found areas
+      of the frontal lobe and insula that were thinner with increased urine THC metabolites
+      and thicker with earlier age of onset. Select findings from the current study
+      align with aspects of both of these studies, with a consensus supporting findings
+      of a negative dose-dependent relationship between MJ use and cortical thickness.
+      Given the low availability of studies to compare, this consensus is very limited.
+      Although Jacobus et al. and Lopez-Larson et al. found the opposite effect of
+      age of onset on thickness, the pattern of divergence among early vs. late onset
+      users in the current study is more consistent with the latter study, whereby
+      we saw early onset users exhibit thicker cortex with continued MJ use. Taken
+      together, findings of increased thickness related to early MJ onset accompanied
+      by negative dose-dependent relationships with MJ exposure may reflect two distinct
+      processes. One process may be specific to the interactions with cortical development
+      during early adolescence, likely leading to a disruption in pruning, and, the
+      other, specific to the pharmacological effect with heavy chronic MJ use. \n\nIn
+      the only known study to examine the curvature-morphology of the cortex in adult
+      MJ users,   identified decreased sulcal concavity and thinner sulci in 23MJ
+      users compared to controls (  n  =44), also in prefrontal areas. However, they
+      did not observe significant relationships with age, MJ onset age, or cumulative
+      MJ use. It is interesting that the authors detected group level differences
+      (MJ vs. controls) but no correlations with MJ use characteristics such as dose
+      or age of onset, whereas our primary findings are the consistent effects of
+      continued MJ use differing after early or late adolescent onset. There are substantial
+      methodological explanations for this disparity. For example, the current study
+      did not compare morphology in MJ users to a normative control sample, therefore,
+      it is feasible that group-level differences may emerge with such a comparison.
+      Likewise, we deliberately covaried for current age in order to control for brain
+      changes with aging and thus optimize our interrogation of developmental effects
+      of early onset age and of aspects of continued use. \n\nThe heterogeneity of
+      MJ effects clearly suggests a multifactorial system of neurobiological processes
+      involved. The primary results uphold that age of onset is a robust variable
+      that differentiates heavy MJ users based on early versus late MJ onset. However,
+      this group distinction relied on current use characteristics. Therefore, in
+      the absence of group-level differences, the interactions between onset age and
+      current use indicates that continued cannabis exposure and early adolescent
+      developmental factors both contribute to a dynamic and sustained departure from
+      what is expected based on developmental studies. \n\nTypical synaptic refinement
+      processes during early adolescence are in the context of long-term depression
+      and potentiation of cortical neurons in order to facilitate neuronal remodeling.
+      Thus, the normal course of early adolescent development is uniquely vulnerable
+      to disruption by MJ due to the electrochemical conditions and maturity of brain
+      processes that would not present together again. Cass and colleagues tested
+      the sensitivity of early adolescence cannabinoid exposure in an animal model
+      ( ). They found that acute administration of cannabinoid agonists in early,
+      middle and late adolescent rats led to a state of frequency-dependent disinhibition
+      of neurons in the frontal cortex in the early-to-middle adolescent rats, but
+      not in the late adolescent rats. Moreover, the authors also noted that adult
+      rats previously exposed to cannabinoid agonists in adolescence displayed comparable
+      neuronal disinhibition. Thus, by changing the inhibitory/excitatory landscape
+      during adolescence, MJ can influence lasting changes to typical cortical remodeling
+      during sensitive early adolescent years. \n\nThe sequence of pruning and myelination
+      likely plays a formative role in lasting changes from early adolescent onset
+      MJ use. With decreased synaptic elimination, our findings of greater GW border
+      contrast may reflect greater proliferation of myelin at the boundary of the
+      cortical ribbon where non-pruned synapses remained with linked axons. Findings
+      of altered white matter tissue qualities are mixed in adolescent and adult MJ
+      user samples. Some report both increases and decreases in fractional anisotropy
+      (FA) and average water diffusion ( ) whereas others report consistent decreases
+      in FA among adolescent MJ users ( ,  ) or null findings ( ). Two studies of
+      diffusion tensor imaging in adult MJ users reported reduced FA in users compared
+      to controls ( ,  ). In addition to equivocal findings, research is needed to
+      address the microstructural changes that could result in altered definition
+      of the cortical ribbon. For example, rather than whole brain techniques that
+      assess diffusion measures along major white matter tracts, indices assessing
+      axonal organization along radial and interneuron association fibers along the
+      cortical ribbon are needed. This scenario played out could result in increased
+      gray matter (thicker cortex from disrupted pruning) and the myelination of connections
+      to these spared terminals would result in increased density of white matter
+      at the cortical boundary. Without any known studies of adolescent development
+      of the gray/white tissue contrast at the cortical border to serve as a point
+      of comparison, we speculate that early adolescent disruption of pruning and
+      subsequent myelination of connections at the cortical boundary would be reflected
+      by increased GWR as we saw in the current study. \n\n\n## Limitations and conclusions
+      \n  \nThe cross-sectional nature of this study limits causal attributions in
+      terms of what we can infer to be directly related to the effects of MJ. Although
+      a longitudinal design is optimal for addressing brain changes directly due to
+      MJ, cross-sectional studies facilitate data-driven hypotheses that can be assessed
+      directly in prospective studies. \n\nIt is important to keep in mind that the
+      participants were not explicitly asked for possible years of abstinence during
+      their period of regular use, which may have created possible inflation in reported
+      duration of regular use. However, because the participants provided number of
+      years of regular marijuana use, this inherently suggests continued, uninterrupted
+      years of use. Concurrent nicotine use could have also influenced our reported
+      results. But in the absence of a larger sample size and the presence of huge
+      variance in nicotine use in the current sample, we were unable to verify the
+      effect of nicotine use in the reported results. \n\nInterpretation of these
+      findings is also limited by the lack of behavioral anchors for the observed
+      morphological effects and lack of information on other aspects of developmental
+      history that could further characterize the effects of marijuana during neurodevelopment.
+      This is further limited by the absence of expected patterns based on normative
+      data. Given the varied directions of effects and the small sample size, these
+      findings should be replicated and be viewed as preliminary. \n\nTo conclude,
+      early MJ use was linked to altered neurodevelopmental patterns in brain regions
+      sub-serving higher-order cognitive process. Clinical implications include need
+      for early, targeted intervention. Given that the most robust results were related
+      to interactions between onset age and continued use through emerging adulthood,
+      harm reduction approaches may be effective in moderating adolescent MJ use to
+      levels that are less likely to cause long-term developmental changes. \n\n\n##
+      Conflict of interest \n  \nThe authors report no conflicts of interest. \n\n
+      \n\n Call the extractData function to save the output."}], "model": "gpt-4o-2024-08-06",
+      "response_format": null, "temperature": 0, "tools": [{"type": "function", "function":
+      {"name": "extractData", "description": "Extract data from scientific text",
+      "parameters": {"$defs": {"GroupImaging": {"properties": {"count": {"description":
+      "Number of participants in this group", "title": "Count", "type": "integer"},
+      "diagnosis": {"description": "Diagnosis of the group, if any", "title": "Diagnosis",
+      "type": "string"}, "group_name": {"description": "Group name, healthy or patients",
+      "enum": ["healthy", "patients"], "title": "Group Name", "type": "string"}, "subgroup_name":
+      {"description": "Subgroup name", "title": "Subgroup Name", "type": "string"},
+      "male_count": {"description": "Number of male participants in this group", "title":
+      "Male Count", "type": "integer"}, "female_count": {"description": "Number of
+      female participants in this group", "title": "Female Count", "type": "integer"},
+      "age_mean": {"description": "Mean age of participants in this group", "title":
+      "Age Mean", "type": "number"}, "age_range": {"description": "Age range of participants
+      in this group, separated by a dash", "title": "Age Range", "type": "string"},
+      "age_minimum": {"description": "Minimum age of participants in this group",
+      "title": "Age Minimum", "type": "integer"}, "age_maximum": {"description": "Maximum
+      age of participants in this group", "title": "Age Maximum", "type": "integer"},
+      "age_median": {"description": "Median age of participants in this group", "title":
+      "Age Median", "type": "integer"}, "imaging_sample": {"description": "Did this
+      subgroup undergo fMRI, MRI or neuroimaging, yes or no", "enum": ["yes", "no"],
+      "title": "Imaging Sample", "type": "string"}}, "required": ["count", "diagnosis",
+      "group_name", "subgroup_name", "male_count", "female_count", "age_mean", "age_range",
+      "age_minimum", "age_maximum", "age_median", "imaging_sample"], "title": "GroupImaging",
+      "type": "object"}}, "properties": {"groups": {"items": {"$ref": "#/$defs/GroupImaging"},
+      "title": "Groups", "type": "array"}}, "required": ["groups"], "title": "BaseDemographicsSchema",
+      "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '31493'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.37.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.37.1
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.8.10
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA9RUy27bMBC86yuIPduF/Ijj6Nakh6RNgRYI2kMUCGtyJbPhQyCpwo7hfy8oPyS7
+        LtBLD9VBIGZ2Z5cj7W4SxkAKyBjwJQauazV8/+1xNR1NXu8e78RkpST/PB99e5s/+e/8o4NBzLCL
+        H8TDIesdt7pWFKQ1O5o7wkBRdXQ9GaeTq5vRtCW0FaRiWlWH4dQOx+l4Okznw3S2T1xayclDxp4T
+        xhjbtO/YohG0goylgwOiyXusCLJjEGPgrIoIoPfSBzQBBh3JrQlkYtemUapHBGtVwVGprvDu2fTO
+        nU+oVPHwVP4M80/a3zYP97dzffP19f7ty3rdq7eTXtdtQ2Vj+NGfHn/Es7NijIFB3ebSKjjk4QMG
+        PEtnDNBVjSYTYuuwyaFytql9DtnzJgduGxNyyMbjQQ5CYmWsl5HMgaMxuJCeNZ6YkN46QS6HwV6h
+        iMXbwBqDjPot55vFGU3o1JpZ4ylEKbeL06ioOFRv3c6hpEsoVlRoQnOKODQVnQVJI3Wjz0BcXQBJ
+        yL6g1FhJUxUe41/adr0mn8N20Lco/WcWKQz0nzr0soWTH26bXDq/9GbJUdl4VPsh2+Pb49QqW9XO
+        LvzZEEIpjfTLwhH6dhj6M5kcqrV1oDkZe6id1XUogn0lE2Wv5rP9koBuLXX06Gq6Z4MNqDpilo4O
+        zIlkISigbFfDcRtx5EsSXW63lbAR0vaIpHf93/u5pL2zIH6Nv5DvCM6pDiSK2pGQ/PTOXZijuLf/
+        FHY0um0Y/NoH0kUpTUWudrJdnVDWxXU5W9CEykUKyTb5BQAA//8DAKrW+b1DBgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8e51c8ac2901ead2-ORD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Nov 2024 17:05:17 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=sGrTcK5E7Ct.ppW5yThMUCHNxAW3nIxA32MDCQMpw1o-1732035917-1.0.1.1-ED0Fe3g2_MhvQpa03qgIf8BLpiNO7UZuxL113lYLKJkYlfJcxi9pElz62.UtLwmtvxJ4muSctlu2hfL4Nr7Rkw;
+        path=/; expires=Tue, 19-Nov-24 17:35:17 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=zIK9O3IKG30PlMWJ4cBX5UsUC0ZCp0Z.H6VJPptxFuM-1732035917620-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - university-of-texas-at-austin-8nppuy
+      openai-processing-ms:
+      - '3263'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '2000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '1992688'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 219ms
+      x-request-id:
+      - req_244a43589da3f6500219210f74ff57f2
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "\nYou will be provided with
+      a text sample from a scientific journal.\nThe sample is delimited with triple
+      backticks.\n\nYour task is to identify groups of participants that participated
+      in the study, and underwent MRI.\nIf there is no mention of any participant
+      groups, return a null array.\n\nFor each group identify:\n    - the number of
+      participants in each group, and the diagnosis.\n    - the number of male participants,
+      and their mean age, median age, minimum and maximum age\n    - the number of
+      female participants, and their mean age, median age, minimum and maximum age.\n    -
+      if this group of participants underwent MRI, fMRI or neuroimaging procedure.\n\nBe
+      as accurate as possible, and report information (especially diagnosis) using
+      the technical terms (and abbreviations) used in the article.\nIf any of the
+      information is missing, return `null` for that field.\n\nText sample: \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHippocampal
+      spatial mechanisms relate to the development of arithmetic symbol processing
+      in children - PMC\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n          Back
+      to Top\n        \nSkip to main content\n\n\n\n\n\n\nAn official website of the
+      United States government\n\nHere''s how you know\n\n\n\n\n\n\n\n\nThe .gov means
+      its official.\n\n            Federal government websites often end in .gov or
+      .mil. Before\n            sharing sensitive information, make sure youre on
+      a federal\n            government site.\n          \n\n\n\n\n\n\nThe site is
+      secure.\n\n            The https:// ensures that you are connecting to the\n            official
+      website and that any information you provide is encrypted\n            and transmitted
+      securely.\n          \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLog in\n\n\n\nShow account
+      info\n\n\n\n\n\nClose\nAccount\n\n\n\t\t\t\t\t\tLogged in as:\nusername\n\n\n\nDashboard\nPublications\nAccount
+      settings\nLog out\n\n\n\n\n\n\n\n\nAccess keys\nNCBI Homepage\nMyNCBI Homepage\nMain
+      Content\nMain Navigation\n\n\n\n\n\n\n\n\n\n\n\n                        Preview
+      improvements coming to the PMC website in October 2024.\n                        Learn
+      More or\n                        Try it out now.\n                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSearch
+      PMC Full-Text Archive\n\n\n\n\n\nSearch in PMC\n\n\n\n\n\n\n\n                            Advanced
+      Search\n                        \n\n\n\n                            User Guide\n                        \n\n\n\n\n\n\n\n\n\n\n\nJournal
+      List\n\n\nDev Cogn Neurosci\n\n\nv.30; 2018 Apr\n\n\n                    PMC6969119\n                \n\n\n\n\n\nOther
+      Formats\n\nPDF (708K)\n\n\n\nActions\n\n\n\nCite\n\n\n\n\n\n\nCollections\n\n\n\nAdd
+      to Collections\n\n\n\n\n\n\n\nCreate a new collection\n\n\n\nAdd to an existing
+      collection\n\n\n\n\n\n\n        Name your collection:\n      \n\n\n        Name
+      must be less than  characters\n      \n\n\n\n        Choose a collection:\n      \n\n\n\n        Unable
+      to load your collection due to an error\nPlease try again\n\n\n\n\n\n      Add\n    \n\n      Cancel\n    \n\n\n\n\n\n\n\n\n\n\nShare\n\n\n\n\n\n\n\n
+      \n\n\n\n\n                                Permalink\n                              \n\n\nCopy\n\n\n\n\n\n\n\n\nRESOURCES\n\n\n\n\n                        Similar
+      articles\n                    \n\n\n\n\n\n\n\n                        Cited
+      by other articles\n                    \n\n\n\n\n\n\n\n                        Links
+      to NCBI Databases\n                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJournal
+      List\n\n\nDev Cogn Neurosci\n\n\nv.30; 2018 Apr\n\n\n                    PMC6969119\n                \n\n\n\n    As
+      a library, NLM provides access to scientific literature. Inclusion in an NLM
+      database does not imply endorsement of, or agreement with,\n    the contents
+      by NLM or the National Institutes of Health.\n    Learn more:\n    PMC Disclaimer\n    |\n    \n        PMC
+      Copyright Notice\n    \n\n\n\n\n\nDev Cogn Neurosci. 2018 Apr; 30: 324-332.
+      Published online 2017 Jun 13.  doi: 10.1016/j.dcn.2017.06.001PMCID: PMC6969119PMID:
+      28648549Hippocampal spatial mechanisms relate to the development of arithmetic
+      symbol processing in childrenRomain Mathieu,a,b, Justine Epinat-Duclos,a Jessica
+      Lone,a Michel Fayol,c Catherine Thevenot,d and  Jrme Pradoa,Romain MathieuaInstitut
+      des Sciences Cognitives Marc Jeannerod, UMR 5304, Centre National de la Recherche
+      Scientifique (CNRS) & Universit de Lyon, Bron, FrancebFacult de Psychologie
+      et des Sciences de lEducation, Universit de Genve, 1205 Genve, SwitzerlandFind
+      articles by Romain MathieuJustine Epinat-DuclosaInstitut des Sciences Cognitives
+      Marc Jeannerod, UMR 5304, Centre National de la Recherche Scientifique (CNRS)
+      & Universit de Lyon, Bron, FranceFind articles by Justine Epinat-DuclosJessica
+      LoneaInstitut des Sciences Cognitives Marc Jeannerod, UMR 5304, Centre National
+      de la Recherche Scientifique (CNRS) & Universit de Lyon, Bron, FranceFind articles
+      by Jessica LoneMichel FayolcUniversit de Clermont Auvergne & CNRS, 63037 Clermont-Ferrand,
+      FranceFind articles by Michel FayolCatherine ThevenotdInstitut de Psychologie,
+      Universit de Lausanne, 1015 Lausanne, SwitzerlandFind articles by Catherine
+      ThevenotJrme PradoaInstitut des Sciences Cognitives Marc Jeannerod, UMR 5304,
+      Centre National de la Recherche Scientifique (CNRS) & Universit de Lyon, Bron,
+      FranceFind articles by Jrme PradoAuthor information Article notes Copyright
+      and License information PMC DisclaimeraInstitut des Sciences Cognitives Marc
+      Jeannerod, UMR 5304, Centre National de la Recherche Scientifique (CNRS) & Universit
+      de Lyon, Bron, FrancebFacult de Psychologie et des Sciences de lEducation, Universit
+      de Genve, 1205 Genve, SwitzerlandcUniversit de Clermont Auvergne & CNRS, 63037
+      Clermont-Ferrand, FrancedInstitut de Psychologie, Universit de Lausanne, 1015
+      Lausanne, SwitzerlandRomain Mathieu: rf.srnc.csi@ueihtamr;  Jrme Prado: rf.srnc.csi@odarpj
+      Corresponding authors at: Institut des Sciences Cognitives Marc Jeannerod, UMR
+      5304, Centre National de la Recherche Scientifique (CNRS) & Universit de Lyon,
+      67 Boulevard Pinel, 69675 Bron cedex, France. rf.srnc.csi@ueihtamr, rf.srnc.csi@odarpjReceived
+      2016 Aug 13; Revised 2017 May 4; Accepted 2017 Jun 3.Copyright  2017 The AuthorsThis
+      is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).Associated
+      DataSupplementary Materialsmmc1.docx (414K)GUID: 753C89A9-7F53-4790-896E-8D8C1A531EE4AbstractUnderstanding
+      the meaning of abstract mathematical symbols is a cornerstone of arithmetic
+      learning in children. Studies have long focused on the role of spatial intuitions
+      in the processing of numerals. However, it has been argued that such intuitions
+      may also underlie symbols that convey fundamental arithmetic concepts, such
+      as arithmetic operators. In the present cross-sectional study, we used fMRI
+      to investigate how and when associations between arithmetic operators and brain
+      regions processing spatial information emerge in children from 3rd to 10th grade.
+      We found that the mere perception of a + sign elicited grade-related increases
+      of spatial activity in the right hippocampus. That is, merely perceiving + signs  without
+      any operands  elicited enhanced hippocampal activity after around 7th grade
+      (1213 years old). In these children, hippocampal activity in response to a +
+      sign was further correlated with the degree to which calculation performance
+      was facilitated by the preview of that sign before an addition problem, an effect
+      termed operator-priming. Grade-related increases of hippocampal spatial activity
+      were operation-specific because they were not observed with  signs, which might
+      evoke rote retrieval rather than numerical manipulation. Our study raises the
+      possibility that hippocampal spatial mechanisms help build associations between
+      some arithmetic operators and space throughout age and/or education.Keywords:
+      Arithmetic, Development, Attention, Space, fMRI, Hippocampus1.IntroductionHumans
+      are unique in their ability to represent abstract mathematical concepts by culturally
+      invented symbols, such as Arabic numerals and arithmetic signs. Because these
+      symbols are arbitrary, learning the relationship between their identity and
+      the concept they represent is a challenge during early math education in children.
+      Most prior studies have focused on the mechanisms supporting the acquisition
+      of symbols representing numerical quantities (Piazza et al., 2007, Ansari, 2008,
+      Holloway and Ansari, 2009, Lyons and Ansari, 2009, Mundy and Gilmore, 2009).
+      However, efficient processing of symbols that convey fundamental arithmetic
+      concepts (i.e., operators) may be an important and largely neglected aspect
+      of arithmetic skills. This is suggested by the operator-priming effect (Roussel
+      et al., 2002, Fayol and Thevenot, 2012, Mathieu et al., 2017), whereby the anticipated
+      presentation of a + or - sign 150ms before a single-digit addition or subtraction
+      problem facilitates problem-solving in adults.What aspect of the processing
+      of an operator may cause the operator-priming effect in adults? A first possibility
+      is that an arithmetic sign may automatically evoke a network of facts. For example,
+      the perception of a + or - sign might pre-activate a network of additive or
+      subtractive facts that would have been built in declarative memory after years
+      of practice (Campbell and Xue, 2001, Ashcraft, 1992). Pre-activating such a
+      network would facilitate the retrieval of the answer from memory when operands
+      are presented. A second possibility is that an arithmetic sign may prime a specific
+      procedure that would have been automatized after its repeated practice during
+      arithmetic learning. For instance, Fayol and Thevenot argued that perceiving
+      a + or - sign might trigger an automatized procedure that could be linked to
+      the convocation of the mental number line and could correspond to a preparation
+      for a quick left-to-right or right-to-left browsing of this mental line (Fayol
+      and Thevenot, 2012). This proposal echoes the idea that adding or subtracting
+      numbers involves rightward and leftward shifts of attention from a source to
+      a target number along a mental map of numbers oriented from left to right, i.e.,
+      the mental number line (MNL) (Hubbard et al., 2005, Masson and Pesenti, 2014,
+      Mathieu et al., 2016, Pinheiro-Chagas et al., 2017). Pre-activating such a procedure
+      would result in a facilitation of subsequent calculation when operands are presented,
+      thereby explaining the operator-priming effect.Interestingly, two lines of evidence
+      favor the procedural over the declarative interpretation of the operator-priming
+      effect. First, the effect is not observed with the  sign and multiplication
+      problems (Roussel et al., 2002, Mathieu et al., 2017). Multiplication problems,
+      however, are explicitly learned by rote in school and multiplication is unanimously
+      viewed as the operation having the strongest association with a network of facts
+      in memory (Campbell and Xue, 2001, Galfano et al., 2003, Thibodeau et al., 1996).
+      Therefore, the lack of operator-priming effect for multiplication problems is
+      difficult to reconcile with the idea that the effect is due to associations
+      between operators and networks of stored facts. Second, in line with Fayol and
+      Thevenots proposal that + and  signs may prime a spatial scanning of the MNL,
+      a recent study suggests that + and  signs do evoke spatial intuitions. Specifically,
+      Pinhas et al. (2014) found that, when instructed to categorize + and  signs
+      with left-hand or right-hand responses, adults tend to respond faster to + signs
+      with the right hand than with the left hand, whereas they tend to respond faster
+      to - signs with the left hand than with the right hand (Pinhas et al., 2014).
+      Thus, + and  signs appear to have some automatic associations with the right
+      and left sides of space, respectively.Using fMRI, we recently found that such
+      spatial associations may stem from the fact that some arithmetic operators are
+      automatically processed in brain regions involved in spatial attention in adults.
+      We showed that the mere perception of a + sign elicits greater activity than
+      the mere perception of a  sign in brain regions underlying overt spatial attention.
+      These included the frontal eye fields (FEF) and the posterior superior parietal
+      lobule (PSPL) (Mathieu et al., 2017). Thus, perceiving a + sign (but not a  sign)
+      may be associated with a deployment of spatial attention in educated adults.
+      Therefore, the rightward shifts of attention that have been posited to underlie
+      addition problem-solving (Hubbard et al., 2005, Masson and Pesenti, 2014, Mathieu
+      et al., 2016) might be primed by the mere preview of the addition sign (but
+      not by the preview of a multiplication sign because multiplication is typically
+      learned by rote and unlikely to be associated with movements along the MNL).
+      Overall, there is mounting evidence that at least some arithmetic operators
+      (e.g., + but not  signs) evoke spatial intuitions in adults, and that these
+      intuitions may relate to the operator-priming effect.However, associations between
+      operators and space are arguably not innate. Therefore, a fundamental outstanding
+      question is how and when such associations emerge in the developing brain. To
+      answer that question, we studied 34 children from 3rd to 10th grade while they
+      performed 3 tasks. First, fMRI activity was measured while children were instructed
+      to make eye saccades towards visually presented targets. This allowed us to
+      precisely localize several regions of interest (ROIs) involved in spatial attention
+      across children. Second, fMRI activity was measured in these spatial attention
+      ROIs while children were presented with trials in which a + sign was displayed
+      without any operands (hereafter addition sign-only trials). As in our previous
+      study in adults (Mathieu et al., accepted), activity during the perception of
+      addition sign-only trials was compared to activity associated with trials in
+      which a  sign was displayed without any operands (hereafter multiplication sign-only
+      trials) because these do not appear to evoke any specific intuitions in adults
+      (Fayol and Thevenot 2012). This allowed us to identify the spatial attention
+      ROIs in which activity in response to a + sign (as compared to a  sign) increases
+      with age and/or education, as well as the developmental time course of these
+      effects.1 Third, outside of the scanner, we asked subjects to perform an operator-priming
+      task and measured the correlation between inter-individual differences in the
+      size of the operator-priming effect and inter-individual differences in sign-related
+      activity in spatial attention ROIs as a function of grade. This allowed us to
+      evaluate when sign-related activity in spatial attention ROIs leads to an operator-priming
+      effect in children.2.Material and methods2.1. ParticipantsForty-two right-handed
+      children from 3rd to 10th grade participated in the study. All were native French
+      speakers. Participants did not have prior history of neurological disease, psychiatric
+      disorders, learning disabilities or attention deficits. All children and parents
+      provided written informed consent to participate in the study, which was approved
+      by the local ethics committee (CPP Sud-Est-II). Families received 80 for their
+      participation. Data from 8 subjects were excluded because of excessive head-movement
+      in the scanner (see criteria in the Section 2.7., n=3), poor whole-brain coverage
+      (i.e. susceptibility artefacts from dental braces, n=3) and unacceptably low
+      performance during the task (i.e., lower than 50% accuracy on the sign-plus-operand
+      trials, n=2). Therefore, the final sample consisted of 34 children (20 males)
+      from 3rd to 10th grade (age range: 815, mean age=11.37, SD=1.84). For each child,
+      a continuous measure of grade was calculated by taking into account the specific
+      date within the grade year when that child was scanned. The whole sample (n=34)
+      was evenly split into three groups as a function of grade: 11 children were
+      from the lower grades group (grade 3.25.4; mean=4.4), 11 children were from
+      the intermediate grades group (grade 5.66.9; mean=6.2), and 12 children were
+      from the higher grades group (grade 7.610.2; mean=8.5).2.2. Standardized measuresChildren
+      were administered standardized tests of intellectual and arithmetic abilities
+      to ensure that there were no age differences with respect to those measures.
+      Full-scale IQ was measured using the NEMI-2 (Cognet, 2006). Basic arithmetic
+      knowledge was evaluated with the Math-Fluency subtest of the Woodcock-Johnson-III
+      Tests of Achievement (WJ-III) (Woodcock et al., 2001). Across all participants,
+      standardized (i.e., age-normalized) scores on IQ (mean=112; SD=10) and Math
+      Fluency (mean=106; SD=16) tests were within the normal range. One-way ANOVAs
+      with the between-subject factor group (lower, intermediate, higher grades) revealed
+      no main effect of group on IQ (F(2,31)=0.591, p=0.560, BF10=0.29), indicating
+      that age-normalized intellectual abilities were similar across groups. However,
+      there was a main effect of group on Math Fluency (F(2,31)=5.867, p=0.007, BF10=7.24):
+      Children from intermediate grades had a higher age-normalized score (mean=118;
+      SD=18) than children from lower (mean=100; SD=11) and higher grades (mean=100;
+      SD=13). Therefore, we included standardized Math-Fluency scores as nuisance
+      covariate in all of our analyses.2.3. Behavioral sessionAfter standardized testing,
+      children participated in a behavioral session during which they performed an
+      operator-priming task adapted from Fayol and Thevenot (2012) and Roussel et
+      al. (2002). Children were asked to evaluate 56 single-digit addition and 56
+      multiplication problems composed of operands between 2 and 9. Problems were
+      presented in both commutative orders. Tie problems were excluded. Problems with
+      a sum smaller than or equal to 11 and a product smaller or equal to 24 were
+      considered small. Other problems were considered large.In each trial, a problem
+      was presented with an answer (Fig. 1a). The arithmetic sign was presented either
+      150ms before (Negative SOA condition) or at the same time (Null SOA condition)
+      as the operands (Fig. 1a). All problems were presented once in both SOA condition
+      with a valid answer. Twenty-eight addition and 28 multiplication problems were
+      also presented in both SOA condition with an invalid answer (obtained by adding
+      or subtracting 1 to or from the valid answer). Trials were pseudorandomly ordered
+      so that no more than three problems of the same type appeared consecutively.
+      Problems with an invalid answer were randomly chosen across subjects and the
+      order of blocks was counter-balanced between subjects. The experiment started
+      with 8 practice trials.Open in a separate windowFig. 1Experimental design. (a)
+      During the behavioral session, children (n=34) were asked to evaluate the result
+      of single-digit addition and multiplication problems. For both operations, the
+      arithmetic sign was presented either 150ms before (negative SOA trials), or
+      at the same time as the operands (null SOA trials). (b) In the scanner, children
+      (n=34) performed an arithmetic task during which they were presented with sign-only
+      (left) and sign-plus-operands (right) addition, multiplication and baseline
+      trials. In each trial, a sign (+,  or ) was presented at the center of the screen
+      for 150ms. In sign-only trials, the trial ended with the presentation of the
+      sign and was simply followed by the inter-trial period of fixation. In sign-plus-operands
+      trials (filler trials), the + or  sign was immediately followed by a single-digit
+      addition or multiplication problem (respectively) presented along an answer
+      and the  sign was followed by 3 letters. In those cases, children had 5000ms
+      to evaluate whether the answer of the problem was true or false or to indicate
+      whether one of the 3 letters was a B.The experiment was controlled by Presentation
+      software (Neurobehavioral Systems, Albany, CA). Problems were displayed in white
+      Arial 60-point font on a black background. All trials started with the presentation
+      of a white central fixation dot for 1500ms, immediately followed by a red central
+      fixation dot for 1000ms signaling that the problem was about to be presented,
+      either in the negative SOA condition or in the null SOA condition (Fig. 1a).
+      Subjects had a maximum of 5000ms to evaluate whether the response was valid
+      or invalid as quickly as possible by pressing one of two keys on the computer
+      keyboard.2.4. fMRI sessionDuring fMRI scanning, children performed a spatial
+      attention localizer task and an arithmetic task. The spatial attention localizer
+      task consisted in alternating blocks of fixation and saccades. During saccade
+      blocks (n=9), participants were asked to make saccades towards several successive
+      target dots. Each saccade block contained 16 target dots (0.2 visual angle)
+      that appeared at random positions with an eccentricity of 3, 3.5, 4, 4.5, 5
+      or 5.5 in the left or right visual field for an average of 800ms (with a jitter
+      of 200ms). During fixation blocks (n=9), participants were asked to maintain
+      fixation on a central dot for 12,800ms. Block order was counterbalanced across
+      children.During the arithmetic task, children were presented with sign-only
+      and sign-plus-operands versions of addition and multiplication trials (Fig.
+      1b). Each trial started with the presentation of either a + or a  sign at the
+      center of the screen for 150ms. In sign-only trials (n=30), the trial ended
+      with the presentation of the sign and was simply followed by the inter-trial
+      period of fixation (see below). These sign-only trials were our trials of interest
+      and allowed us to isolate neural activity due to the presentation of a sign
+      alone. We also included in the experiment sign-plus-operands trials (n=50).
+      In those filler trials, the + or  sign was immediately followed by a single-digit
+      addition or multiplication problem (respectively) presented with an answer.
+      Participants were asked to indicate whether the answer was true or false. The
+      goal of these filler trials (for which associated activity would be difficult
+      to interpret because any effects could be attributable to the anticipatory presentation
+      of the operator, the appearance of the operands, or a combination of both of
+      these factors) was only to keep children engaged and attentive in the scanner.
+      They also induced an arithmetic context, thereby ensuring that the + and  signs
+      presented in sign-only trials were perceived as arithmetic signs. Problems in
+      sign-plus-operand trials were constructed following the same criteria as in
+      the behavioral session. Finally, the baseline consisted in trials in which the
+      arithmetic sign was replaced by an abstract non-arithmetic sign (i.e., ). We
+      included 30 baseline sign-only trials (in which the  sign was presented in isolation)
+      and 50 baseline sign-plus-operand trials (in which the  sign was followed by
+      3 letters and participants had to indicate whether one of these letters was
+      a B). All trials were followed by a variable period of visual fixation ranging
+      from 3000ms to 3800ms. That period consisted in a central white fixation dot
+      that turned red 1000ms before the onset of the next trial. The arithmetic task
+      was decomposed in 4 functional runs. All trials were intermixed and the timing
+      and order of trial presentation within each run was optimized for estimation
+      efficiency using optseq2 (http://surfer.nmr.mgh.harvard.edu/optseq/). Behavioral
+      responses were recorded using an MR-compatible response device.Stimuli were
+      generated using Presentation software (Neurobehavioral Systems, Albany, CA).
+      Prior scanning, children were familiarized with the fMRI environment during
+      a practice session that took place after the standardized testing and the behavioral
+      session. During this practice session, children learned to minimize head movement
+      in a mock fMRI scanner. The actual scanning session took place no more than
+      3 weeks after the practice session.2.5. Behavioral analysesRT data associated
+      with the operator-priming task were normalized using a logarithmic transformation
+      prior all analyses to improve the conformity of the data to the standard assumptions
+      of parametric testing. Following Fayol and Thevenot (2012), mean RT was analyzed
+      using planned comparisons that followed from a within-subject ANOVA with the
+      factors Operation (Addition/Multiplication) and SOA (Negative/Null), conducted
+      separately for each group. We report for all effects the corresponding Bayes
+      factors (BF10), indicating the strength of evidence for the alternative hypothesis
+      (H1) relative to the null hypothesis (H0). Substantial evidence in favor of
+      the alternative hypothesis is typically suggested by a BF10 greater than 3 (Jeffreys,
+      1961, Dienes, 2011).2.6. fMRI data acquisitionImages were collected with a Siemens
+      Prisma 3T MRI scanner (Siemens Healthcare, Erlangen, Germany) at the CERMEP
+      Imagerie du vivant in Lyon, France. The BOLD signal was measured with a susceptibility
+      weighted single-shot EPI sequence. Imaging parameters were as follows: TR=2000ms,
+      TE=24ms, flip angle=80, matrix size=128120, field of view=220206mm, slice thickness=3mm
+      (0.48mm gap), number of slices=32. A high-resolution T1-weighted whole-brain
+      anatomical volume was also collected for each participant. Parameters were as
+      follows: TR=3500ms, TE=2.24ms, flip angle=8, matrix size=256256, field of view=224224mm,
+      slice thickness=0.9mm, number of slices=192.2.7. fMRI preprocessingData analysis
+      was performed using SPM12 (http://www.fil.ion.ucl.ac.uk/spm). Functional images
+      were corrected for slice acquisition delays and spatially realigned to the first
+      image of the first run. Images were then spatially smoothed with a Gaussian
+      filter equal to twice the voxel size. ArtRepair was used to help remove motion
+      from the functional images prior to normalization (Mazaika et al., 2009). Volumes
+      with rapid scan-to-scan movements of greater than 1.5mm were repaired by interpolation
+      of the two nearest non-repaired scans. Each run with more than 5% of the total
+      number of volumes replaced was removed from the analyses. A subject was excluded
+      from further analysis if more than one run was removed. The number of volumes
+      replaced did not differ between grade groups (F(2,31)=2.20; p=0.13). Finally,
+      functional images were normalized into the standard MNI space (normalized voxel
+      size, 223.5mm3).2.8. fMRI processingEvent-related statistical analysis was performed
+      according to the general linear model (GLM). For the localizer task, brain activity
+      associated with saccades and fixation blocks was modeled as epochs with onsets
+      and offsets time-locked to the beginning and the end of each block. Each epoch
+      was convolved with a canonical hemodynamic response function (HRF) and the time
+      series data from each run were high-pass filtered (1/128Hz). Finally, serial
+      correlations were corrected using an autoregressive AR(1) model. Following our
+      previous study using the same task in adults (Mathieu et al., 2017), brain activity
+      associated with sign-only trials during the arithmetic task was estimated using
+      a finite impulse response (FIR) model. We modeled 8 time points with an interval
+      of 2s (corresponding to one TR) ranging from the onset of the sign to 16s after
+      the sign. The magnitude of the fMRI response for each type of sign-only trial
+      was calculated by subtracting activity at the onset of the sign (i.e., 1st bin,
+      or 0s after the onset) from the peak activity (i.e., 4th bin, or 8s after the
+      onset). The time series data from each run were high-pass filtered (1/128Hz),
+      and serial correlations were corrected using an autoregressive AR(1) model.2.9.
+      Region of interest (ROI) definition and analysesThe present study used a Region-of-Interest
+      (ROI) approach to analyze brain activity associated with sign-only trials in
+      brain regions involved in the orienting of spatial attention in children. All
+      ROIs were independently defined using the contrast of saccades versus fixation
+      blocks in the spatial attention localizer task. All subject-specific contrasts
+      were entered into a random effect (RFX) one-sample t-test across subjects. The
+      RFX contrast map was then thresholded across the whole-brain using an uncorrected
+      voxel-level threshold of p<0.001 and a false-discovery-rate (FDR) corrected
+      cluster-level threshold of p<0.05 (Chumbley and Friston 2009). Using the SPM
+      toolbox Marsbar (http://marsbar.sourceforge.net/), ROIs were defined as 6-mm
+      radius spheres around the peak coordinate of each region.Within each ROI and
+      for each participant, we calculated the average response (parameter estimates)
+      for + signs using the contrast of addition sign-only trials versus baseline
+      sign-only trials. Similarly, we calculated the average response for  signs using
+      the contrast of multiplication sign-only trials versus baseline sign-only trials.
+      Two analyses were performed in each ROI. First, we identified the ROI(s) in
+      which a difference in fMRI activity between + and  signs emerged throughout
+      age and/or education, using a 32 ANOVA with the between-subject factor group
+      (lower/intermediate/higher grades) and the within-subject factor sign (+/).
+      Second, we tested in these ROIs whether inter-individual differences in the
+      fMRI response to an arithmetic sign were correlated with inter-individual differences
+      in the size of the operator-priming effect (measured in the behavioral session)
+      for each group. In all analyses, we report uncorrected P values as well as P
+      values corrected for multiple comparisons across all identified ROIs using the
+      Bonferroni procedure. Bayes factor are also reported.3.Results3.1. The spatial
+      localizer task activates a brain network encompassing frontal, parietal, occipital
+      and hippocampal regionsContrasting saccades to fixation blocks in the spatial
+      attention localizer task, we first identified 10 clusters supporting the orienting
+      of spatial attention across subjects: the bilateral Frontal Eye Field (FEF),
+      bilateral Posterior Superior Parietal Lobule (PSPL), bilateral Middle Temporal
+      Gyri (MTG), bilateral Middle Occipital Gyri (MOG), right dorsal Inferior Frontal
+      Gyrus (dIFG), and right Hippocampus (see Table 1 and Fig. 2). Therefore, a large
+      brain network was involved in the orienting of spatial attention across subjects.
+      Each of these regions served as an ROI in subsequent analyses.Table 1Brain regions
+      that were activated during the spatial attention localizer task. Each of these
+      regions constituted an ROI.Anatomical locationBACluster size (mm3)MNI coordinatesZ-scoreXYZL.
+      Middle Occipital Gyrus17246402496105.37R. Middle Occipital Gyrus/Calcarine18149224.77L.
+      Frontal Eye Field65824348555.34R. Middle Temporal Gyrus2195345452134.68R. Frontal
+      Eye Field65166284484.65R. Posterior Superior Parietal Lobule752501866664.61L.
+      Posterior Superior Parietal Lobule731782264664.58L. dorsal Inferior Frontal
+      Gyrus6/4413165610204.52L. Middle Temporal Gyrus2136265054134.33R. Hippocampus6302416183.48Open
+      in a separate windowL.=left; R.=right; BA=approximate Brodmanns area; MNI=Montreal
+      Neurological Institute.Open in a separate windowFig. 2Brain regions activated
+      in the spatial attention localizer task. Brain regions that were more activated
+      during saccades than fixation blocks. Activations are overlaid on slices of
+      the MNI-normalized anatomical brain. PSPL, Posterior Superior Parietal Lobule;
+      FEF, Frontal Eye Field; MTG, Middle Temporal Gyrus; dIFG, dorsal Inferior Frontal
+      Gyrus; MOG, Middle Occipital Gyrus.; HIPP, Hippocampus.3.2. The right hippocampus
+      region identified by the spatial localizer task is increasingly activated in
+      response to a + sign but not to a  sign throughout age and/or educationA 32
+      ANOVA with the between-subject factor group (lower/intermediate/higher grades)
+      and the within-subject factor sign (+/) was then conducted in each of the 10
+      ROIs identified by the spatial attention localizer. We found an interaction
+      between group and sign in the right hippocampus (F(2.30)=6.75, p=0.0038, pcorr=0.038;
+      Fig. 3a and b), but not in any other ROIs (all Fs<3.44, all ps>0.046, all pscorr>0.46).
+      Bayes Factor analysis indicated substantial evidence for this interaction in
+      the right hippocampus (BF10=11.53), while no or anecdotal evidence for such
+      an interaction was found in the other ROIs (BF10<1.63). Follow-up t-tests in
+      the hippocampus ROI revealed that children from higher grades (average grade=8.5)
+      exhibited greater activity for addition than multiplication sign-only trials
+      (t11=3.02, p=0.012), whereas there was no difference between signs in children
+      from intermediate grades (average grade=6.2) (t10=0.87, p=0.41) and even a trend
+      for less activity for addition than multiplication sign-only trials in children
+      from lower grades (average grade=4.4) (t10=2.22, p=0.051). Bayes Factor analysis
+      indicated substantial evidence for a difference of activity between addition
+      and multiplication sign-only trials in children from higher grades (BF10=5.21),
+      but evidence for this difference was absent in intermediate grades (BF10=0.41)
+      and anecdotal in lower grades (BF10=1.69). Finally, across all groups, addition
+      sign-only trials were associated with greater activity than baseline sign-only
+      trials in children from higher grades (t11=2.63, p=0.023), but not in any other
+      groups (all ts<1.32, all ps>0.21). Multiplication sign-only trials were associated
+      with greater activity than baseline sign-only trials in none of the groups (all
+      ts<1.38, all ps>0.20). Bayes Factor analysis indicated substantial evidence
+      for a difference between addition sign-only trials and baseline sign-only trials
+      in children from higher grades (BF10=3.00), but no or anecdotal evidence in
+      the other groups (all BF10s<0.60) and for multiplication sign-only trials (all
+      BF10s<0.63). Overall, then, a difference in fMRI response to a + and a  sign
+      emerged throughout age and/or education in the right hippocampus.Open in a separate
+      windowFig. 3Grade-related changes of activity in the right hippocampus.(a) Location
+      of the right hippocampus ROI overlaid on a coronal slice of the MNI-normalized
+      anatomical brain. (b) Activity in the right Hippocampus for addition versus
+      baseline sign-only trials (red) and multiplication versus baseline sign-only
+      trials (blue) in children from lower (n=11; grade 3.25.4; mean grade=4.4; mean
+      age=9.4), intermediate (n=11; grade 5.66.9; mean grade=6.2; mean age=11.1) and
+      higher grades (n=12; grade 7.610.2; mean grade=8.5; mean age=13.4). (c) Difference
+      in activity between addition and multiplication sign-only trials over grade
+      in the right Hippocampus. *p<0.05; r represents the Pearson correlation coefficient.The
+      findings above were confirmed by an additional correlation analysis in which
+      grade was treated as a continuous predictor across all subjects. The difference
+      in activity between addition and multiplication sign-only trials was positively
+      correlated with grade in the right hippocampus (r=0.53, p=0.001, pcorr=0.01;
+      Fig. 3c). No other significant grade-related changes were found in any other
+      regions (all rs<0.38, all ps>0.03, all pscorr>0.30). Bayes Factor analysis indicated
+      substantial evidence for this correlation in the right hippocampus (BF10=20.97),
+      but no or anecdotal evidence in any other ROIs (all BF10s<2.03). In the right
+      hippocampus, the correlation between grade and the contrast of addition sign-only
+      trials versus baseline sign-only trials, was also near significance (r=0.33,
+      p=0.056; BF10=1.22).2 The correlation between grade and the contrast of multiplication
+      sign-only trials versus baseline sign-only trials, however, was not significant
+      (r=0.18, p=0.32; BF10=0.35).3.3. Spatial hippocampal activity in response to
+      a + sign relates to an addition-priming effect in children from higher gradesWe
+      then tested whether the hippocampal response to a + sign observed in children
+      from higher grades was related to the operator-priming effect. To this aim,
+      each child performed a version of the operator-priming task outside of the scanner
+      (see Fig. 1a).First, we tested whether the results obtained by Fayol and Thevenot
+      (2012) in adults (i.e., an operator-priming effect for addition but not for
+      multiplication across subjects) could be extended to our children participants.
+      Because children from lower grades had a performance close to chance on large
+      problems (58%), we exclusively focused our analyses on small problems for which
+      accuracy was significantly above chance in all groups (lower grades: 80%, intermediate
+      grades: 92%, higher grades: 96%). Planned comparisons revealed an operator-priming
+      effect for addition in children from higher grades (1491ms versus 1577ms; F(1,11)=8.11,
+      p=0.016), but not in children from lower grades (2289ms versus 2417ms; F(1,10)=2.66,
+      p=0.134) and intermediate grades (1530 versus 1509ms; F(1,10)=0.01, p=0.941).
+      No operator-priming effect for multiplication was observed in any groups (lower
+      grades: F(1,10)=3.50, p=0.091; intermediate grades: F(1,10)=1.52, p=0.246; higher
+      grades: F(1,11)=0.14, p=0.715). Bayes Factor analysis indicated substantial
+      evidence for an operator-priming effect with addition problems in children from
+      higher grades (BF10=4.08), but no evidence in children from intermediate (BF10=0.30)
+      and lower (BF10=0.83) grades. There was also no or anecdotal evidence for an
+      operator-priming effect with multiplication problems in any group (higher grades:
+      BF10=0.31; intermediate grades: BF10=0.55; lower grades: BF10=1.09).Second,
+      we tested whether the size of the operator-priming effect in children (measured
+      on small problems) was correlated to the magnitude of the response for addition
+      sign-only trials versus baseline sign-only trials in the right hippocampus.
+      Such a correlation was found to be highly significant in children from higher
+      grades (r=0.82, p=0.0012, Fig. 4), surviving Bonferroni correction for multiple
+      comparisons between the two conditions and across the three groups (pcorr=0.007).
+      That is, children from higher grades who show greater responses to + signs in
+      the right hippocampus are those who show larger operator-priming effect with
+      addition problems. No significant correlation was found in children from lower
+      (r=0.15, p=0.66 Fig. 4) and intermediate (r=0.24, p=0.48, Fig. 4) grades. Bayes
+      Factor analysis indicated substantial evidence for the correlation in children
+      from higher grades (BF10=38.15), but no evidence in children from lower (BF10=0.40)
+      and intermediate (BF10=0.46) grades. There was also no significant (and anecdotal
+      evidence for a) correlation between the operator-priming effect for addition
+      problems and the fMRI response to multiplication sign-only trials (compared
+      to baseline sign-only trials) in the right hippocampus, in any of the groups
+      (lower grades: r=0.06, p=0.87, BF10=0.37; intermediate grades: r=0.32, p=0.34,
+      BF10=0.56; higher grades: r=0.51, p=0.09, BF10=1.28). Therefore, not only did
+      we observe an operator-priming effect for addition in the only group in which
+      we also observed a greater hippocampal response to + than  signs (i.e., children
+      from higher grades), but inter-individual differences in the size of the operator-priming
+      effect in that group was also related to hippocampal activity.Open in a separate
+      windowFig. 4Hippocampus brain-behavior correlation over grade.Activity in the
+      right hippocampus in response to addition sign-only trials versus baseline sign-only
+      trials as a function of the operator-priming effect calculated in the behavioral
+      session for addition problems in children from lower (n=11; grade 3.25.4; mean
+      grade=4.4; mean age=9.4), intermediate (n=11; grade 5.66.9; mean grade=6.2;
+      mean age=11.1) and higher grades (n=12; grade 7.610.2; mean grade=8.5; mean
+      age=13.4). r represents the Pearson correlation coefficient.Third, we tested
+      whether the correlation between the operator-priming effect and the contrast
+      of addition sign-only trials versus baseline sign-only trials increased over
+      grade. This was done by transforming the correlation coefficient in each group
+      to a Fischers z score before comparing the groups using the cocor package (Diedenhofen
+      and Musch, 2015). Although the correlation was not greater in children from
+      intermediate than lower grades (z=0.19, p=0.43, one-tailed), it was significantly
+      greater in children from higher than lower grades (z=2.07, p=0.019, one-tailed)
+      and in children from higher than intermediate grades (z=1.88, p=0.030, one-tailed).
+      Therefore, this brain-behavior correlation increased over grade.4.DiscussionIn
+      the present study, we used fMRI and a cross-sectional design to investigate
+      (i) how and when spatial processing related to the perception of an addition
+      sign emerges in the developing brain, and (ii) to what extent it contributes
+      to the emergence of an operator-priming effect.4.1. The mere perception of a
+      + sign is associated with increased hippocampal spatial activity throughout
+      age and/or educationIt has been shown that the processing of a + sign is associated
+      with the right side of space (Pinhas et al., 2014) and activates brain regions
+      involved in overt spatial attention in adults (Mathieu et al., 2017). Therefore,
+      we expected arithmetic learning to be associated with increased recruitment
+      of brain regions involved in spatial attention in response to the perception
+      of a + sign throughout age and/or education in children. This was the case in
+      a region of the right hippocampus that we identified in our spatial attention
+      localizer task. Therefore, it is possible that hippocampal spatial mechanisms
+      may scaffold the progressive association between an arithmetic operator (i.e.,
+      a + sign) and spatial intuitions throughout age and/or education. There is increasing
+      evidence that the hippocampal formation, and particularly the right hippocampus,
+      may house a sense of space (Buffalo, 2015). Specifically, the right hippocampus
+      has been extensively reported to support spatial representation and navigation
+      in humans (Maguire et al., 1998, Burgess et al., 2002) as well as in non-human
+      primates and rodents (O''keefe and Nadel, 1978, Bird and Burgess, 2008). For
+      example, the hippocampus is typically activated when human participants learn
+      to navigate through a mental representation of space (i.e., mental scanning)
+      (Mellet et al., 2002, Spiers and Maguire, 2006). Interestingly, a recent study
+      in monkeys demonstrated that neurons in the hippocampal formation may encode
+      the direction of overt (Killian et al., 2015) as well as covert (Wilming et
+      al., 2015) shifts of attention. Therefore, the hippocampal formation is likely
+      a critical region for both representing a mental map of space and navigating
+      along that map (Killian et al., 2012, Meister and Buffalo, 2016).Why would such
+      a hippocampal spatial navigation mechanism be increasingly recruited by the
+      mere perception of a+ sign throughout age and/or education? One possibility
+      is that this mechanism might enable children to construct a detailed representation
+      of numbers in mental space, as well as to navigate along that mental representation.
+      Indeed, there is overwhelming evidence that numbers of increasing size are organized
+      along a left-to-right mental map (i.e., the MNL) in adults (Fischer and Shaki
+      2014). This spatial representation may enable individuals to add or subtract
+      numbers by navigating from a source to a target number to the left or right
+      of that MNL. This is supported by behavioral studies showing that addition and
+      subtraction problem-solving is associated with rightward and leftward shifts
+      of attention (Masson and Pesenti, 2014, Mathieu et al., 2016), as well as by
+      a neuroimaging study indicating an overlap between the brain regions involved
+      in overt shifts of attention and those involved in arithmetic calculation in
+      adults (Knops et al., 2009). Such strategies may be acquired early by children,
+      sometimes even explicitly in the classroom where addition and subtraction is
+      often demonstrated on visual number lines. Yet, it is only with practice that
+      they might become progressively attached to and evoked by an arithmetic operator
+      such as a +, which might explain the grade-related increases of activity in
+      this region in response to the + sign (and the fact that it is only by 7th grade
+      that children exhibit significant activity in response to that sign).4.2. Hippocampal
+      spatial activity in response to a + sign relates to the operator-priming effect
+      in children from higher gradesA critical question is to what extent this automatic
+      processing of a + sign in hippocampal spatial mechanisms is associated with
+      childrens behavior. To answer this question, we asked all children to perform
+      a version of the operator-priming task developed by Fayol and Thevenot (2012)
+      and Roussel et al. (2002). First, we replicated the operator-priming effect
+      observed in adults with addition problems (i.e., a facilitation of problem-solving
+      when the operator is presented 150ms before the operands), but only in children
+      from higher grades (after around 7th grade). Like in adults, this effect was
+      specific to addition problems and not observed with multiplication problems.
+      Thus, the perception of a + sign (but not that of a  sign) appears to pre-activate
+      a process that is likely used to solve the subsequent problem in children from
+      higher grades. More central to our current interest, we found that the size
+      of the operator-priming effect in these children was highly correlated with
+      the degree of activation of hippocampal spatial mechanisms in response to a
+      + sign. This indicates that hippocampal spatial activity may be at the source
+      of the operator priming-effect in older children, perhaps because these children
+      might prepare for an attentional movement along the MNL as soon as a + sign
+      is presented. Because no brain-behavior correlation was observed in younger
+      children, extensive practice might be needed before such mechanisms are triggered
+      by the mere perception of the sign.4.3. Hippocampal spatial activity in response
+      to a + sign is transient in developmentStrikingly, the spatial brain mechanisms
+      that respond to the mere perception of a + sign appear to be different in children
+      and adults. That is, albeit we found increased hippocampal spatial activity
+      throughout age and/or education in the present study, we did not identify these
+      mechanisms in our previous study in adult participants using the exact same
+      task (Mathieu et al., 2017). Rather, we found increased activity in response
+      to a + sign in neocortical regions of the FEF and PSPL in adults. Therefore,
+      the contribution of the hippocampus to the automatic processing of a + sign
+      is likely transient. Such a transient involvement of the hippocampus is consistent
+      with a wealth of studies that have demonstrated that the spatial representations
+      initially supported by the hippocampus during learning become independent from
+      this brain structure over experience and transferred to neocortical regions
+      (Rosenbaum et al., 2004, Hirshhorn et al., 2012b). For example, longitudinal
+      studies demonstrate that right hippocampal activity associated with learning
+      to mentally navigate through a new environment disappears and is replaced by
+      neocortical activity when individuals become familiar with that environment
+      (Spiers and Maguire, 2007, Hirshhorn et al., 2012a). It is possible that the
+      same phenomenon is at play here: The hippocampus may be involved in the early
+      representation of (and navigation along) the MNL before that representation
+      is transferred to neocortical regions of the fronto-parietal cortex. Future
+      investigations with a wider age sample than in the present study are needed
+      to test this hypothesis.4.4. Can right hippocampal involvement in the present
+      study reflect mnemonic operations involved in learning arithmetic?Although there
+      is no doubt that the hippocampus supports spatial processing (Burgess et al.,
+      2002, Spiers and Maguire, 2007), this brain structure is also well known to
+      support the encoding and consolidation of verbal declarative knowledge into
+      long-term memory (Eichenbaum, 2004). In fact, previous developmental studies
+      have largely explained the involvement of the hippocampus during arithmetic
+      learning by referring to its role in declarative memory rather than spatial
+      processing (Rivera et al., 2005, De Smedt et al., 2011, Cho et al., 2011, Cho
+      et al., 2012, Qin et al., 2014). This interpretation relies on the claim that
+      results of well-practiced arithmetic facts (e.g., 2+3 or 42) might become progressively
+      retrieved from memory (rather than calculated) over the course of learning and
+      development (Campbell and Xue, 2001). The hippocampus might thus support the
+      encoding and consolidation of networks of arithmetic facts in children.Can the
+      role of the hippocampus in declarative memory explain the operator-specific
+      activity over grade (and correlation with the operator-priming effect) observed
+      in the region of the right hippocampus identified by our spatial localizer task?
+      We acknowledge that we did not have a task identifying processes involved in
+      declarative memory. Thus, even if the right hippocampus is usually more associated
+      with spatial than mnemonic processes (Burgess et al., 2002), it is possible
+      that the hippocampal cluster that we identified as being involved in spatial
+      processing may also be involved in some aspects of declarative memory. One might
+      thus argue that grade-related increases of activity in relation to + signs reflect
+      the progressive association between a + and a network of additive facts. This
+      explanation, however, can be ruled out by an examination of activity related
+      to  signs. Because single-digit multiplication problems are almost exclusively
+      learned by rote in school, multiplication is the operation that is perhaps the
+      most associated with a network of stored facts in the literature (Campbell and
+      Xue, 2001). Thus, if increased hippocampal activity in relation to + signs were
+      due to the progressive building of a network of additive facts, increased activity
+      in that same region should have been observed during the perception of  signs
+      (perhaps even more so for the perception of + signs). Yet, this is not the case.
+      Not only did we not find any grade-related increase of activity for  signs in
+      the hippocampal cluster identified by our spatial localizer task, but activity
+      was significantly greater for + than  signs in higher graders (who are as proficient
+      in single-digit multiplication as addition). Similarly, no operator-priming
+      effect was observed for multiplication problems in higher graders, indicating
+      that the operator-priming effect observed for addition is likely to have little
+      to do with the pre-activation of a network of stored facts (because this should
+      be also observed for multiplication). Therefore, the specificity of our results
+      to + signs (as compared to  signs) in the right hippocampus ROI makes it very
+      unlikely that our results are related to mnemonic operations. In our view, emerging
+      associations between + signs and spatial intuitions related to the MNL are the
+      best explanation of the effects reported here.Of course, the fact that the role
+      of the hippocampus in declarative memory is unlikely to explain our operator-specific
+      findings in the right hippocampus ROI does not mean that hippocampal mechanisms
+      supporting mnemonic operations do not contribute to arithmetic learning. Instead,
+      they indicate that the hippocampus might contribute to arithmetic learning through
+      its role in both declarative memory and spatial processing. Interestingly, the
+      operator-specific activity observed in our (spatially localized) right hippocampal
+      cluster is not observed in a mirror (left lateralized) cluster that is not activated
+      in the localizer contrast (see Supplementary information). In that mirror region,
+      no difference was observed between activity related to + and  signs in any group
+      of children (and left hippocampal activity was not related to the operator-priming
+      effect). Thus, the developmental effect reported here appears to be restricted
+      to the right hippocampus. This specificity suggests that the observed developmental
+      changes in the right hippocampus may not simply reflect general brain maturation
+      but rather mechanisms that are specific to arithmetic learning.4.5. LimitationsIt
+      is worth acknowledging here 2 potential limitations of the present work. First,
+      as is the case for any cross-sectional fMRI studies, our study is correlational
+      in nature. Thus, although our findings are consistent with the idea that the
+      right hippocampus might scaffold the progressive association between (at least
+      some) arithmetic operators and space throughout age and/or education, future
+      studies might specifically investigate the causal role of these hippocampal
+      mechanisms. Second, our finding of a correlation between grade and the processing
+      of an addition sign in the right hippocampus (see Fig. 3C) relies on a relatively
+      large sample size of 34 children. However, other findings involve subgroups
+      of participants and therefore rely on smaller sample sizes. In particular, null
+      findings in relation to these subgroups might be difficult to interpret because
+      of potential lack of power. For example, whereas we found an operator-priming
+      effect in children from higher grades and no effect in children from intermediate
+      grades, there was no significant difference between these groups in terms of
+      response times in negative SOA trials (1491ms versus 1530ms; t21=0.21; p=0.84;
+      BF10=0.39). Behavioral studies focusing on the operator-priming effect in children
+      might test whether this difference emerges with larger sample sizes. More generally,
+      future studies are needed to improve our understanding of the present results.5.ConclusionIn
+      sum, our findings suggest that the right hippocampus might contribute to the
+      progressive association between (at least some) arithmetic operators and space
+      throughout age and/or education. Therefore, our study raises the possibility
+      that increased hippocampal activity during arithmetic learning in children may
+      be explained by the role of this structure in spatial representations as well
+      as in declarative memory.Conflict of interestThe authors declare no competing
+      financial interests.AcknowledgmentsThis research was supported by a grant from
+      the European Union (Marie Curie Career Integration Grant n PCIG12-GA-2012-333602)
+      to J.P. and a grant from the French Ministry of Higher Education and Research
+      to R.M. We thank the Hospices Civils de Lyon for sponsoring the research, as
+      well as Flora Schwartz and the MRI engineers (Franck Lamberton and Danielle
+      Ibarrola) at the CERMEP-Lyon platform for their assistance in collecting the
+      fMRI data. Finally, we are grateful to Pr. Christian Scheiber for his help with
+      the pre-MRI medical exams.Footnotes1Note that to induce an arithmetic context
+      and disguise the goal of the experiment, we also included trials in which a
+      + or a  sign was followed 150ms later by operands and participants were asked
+      to solve the problem. The low temporal resolution of fMRI, however, makes it
+      impossible to dissociate activity associated with the sign from activity associated
+      with operands in these problems. Therefore, they were simply designed to be
+      filler trials.2There was a tendency for a correlation between grade and activity
+      associated with addition sign-only trials (versus fixation) in the right hippocampus
+      (r=0.29, p=0.09; BF10=0.82), but no correlation for baseline sign-only trials
+      (versus fixation) (r=0.10, p=0.58; BF10=0.25). Thus, the correlation between
+      grade and the contrast of addition sign-only trials versus baseline sign-only
+      trials was more likely driven by changes of activity in addition sign-only trials
+      than in baseline sign-only trials.Appendix ASupplementary data associated with
+      this article can be found, in the online version, at http://dx.doi.org/10.1016/j.dcn.2017.06.001.Appendix
+      A.Supplementary dataThe following is Supplementary data to this article:Click
+      here to view.(414K, docx)ReferencesAnsari D. Effects of development and enculturation
+      on number representation in the brain. Nat. Rev. Neurosci. 2008;9:278-291. [PubMed]
+      [Google Scholar]Ashcraft M.H. Cognitive arithmetic: a review of data and theory.
+      Cognition. 1992;44:75-106. [PubMed] [Google Scholar]Bird C.M., Burgess N. The
+      hippocampus and memory: insights from spatial processing. Nat. Rev. Neurosci.
+      2008;9:182-194. [PubMed] [Google Scholar]Buffalo E.A. Bridging the gap between
+      spatial and mnemonic views of the hippocampal formation. Hippocampus. 2015;25:713-718.
+      [PMC free article] [PubMed] [Google Scholar]Burgess N., Maguire E.A., O''Keefe
+      J. The human hippocampus and spatial and episodic memory. Neuron. 2002;35:625-641.
+      [PubMed] [Google Scholar]Campbell J.I., Xue Q. Cognitive arithmetic across cultures.
+      J. Exp. Psychol. Gen. 2001;130:299-315. [PubMed] [Google Scholar]Cho S., Ryali
+      S., Geary D.C., Menon V. How does a child solve 7+ 8 decoding brain activity
+      patterns associated with counting and retrieval strategies. Dev. Sci. 2011;14:989-1001.
+      [PMC free article] [PubMed] [Google Scholar]Cho S., Metcalfe A.W., Young C.B.,
+      Ryali S., Geary D.C., Menon V. Hippocampalprefrontal engagement and dynamic
+      causal interactions in the maturation of children''s fact retrieval. J. Cogn.
+      Neurosci. 2012;24:1849-1866. [PMC free article] [PubMed] [Google Scholar]Chumbley
+      J.R., Friston K.J. False discovery rate revisited: FDR and topological inference
+      using Gaussian random fields. Neuroimage. 2009;44:62-70. [PubMed] [Google Scholar]Cognet
+      G.  Editions du Centre de Psychologie Applique; Paris: 2006. Nouvelle Echelle
+      Mtrique de lIntelligence. [Google Scholar]De Smedt B., Holloway I.D., Ansari
+      D. Effects of problem size and arithmetic operation on brain activation during
+      calculation in children with varying levels of arithmetical fluency. Neuroimage.
+      2011;57:771-781. [PubMed] [Google Scholar]Diedenhofen B., Musch J. Cocor: a
+      comprehensive solution for the statistical comparison of correlations. PLoS
+      One. 2015;10:e0121945. [PMC free article] [PubMed] [Google Scholar]Dienes Z.
+      Bayesian versus orthodox statistics: which side are you on? Perspect. Psychol.
+      Sci. 2011;6:274-290. [PubMed] [Google Scholar]Eichenbaum H. Hippocampus: cognitive
+      processes and neural representations that underlie declarative memory. Neuron.
+      2004;44(1):109-120. [PubMed] [Google Scholar]Fayol M., Thevenot C. The use of
+      procedural knowledge in simple addition and subtraction problems. Cognition.
+      2012;123:392-403. [PubMed] [Google Scholar]Fischer M.H., Shaki S. Spatial associations
+      in numerical cognitionfrom single digits to arithmetic. Q. J. Exp. Psychol.
+      2014;67:1461-1483. [PubMed] [Google Scholar]Galfano G., Rusconi E., Umilt C.
+      Automatic activation of multiplication facts: evidence from the nodes adjacent
+      to the product. Q. J. Exp. Psychol.: Sect. A. 2003;56:31-61. [PubMed] [Google
+      Scholar]Hirshhorn M., Grady C., Rosenbaum R.S., Winocur G., Moscovitch M. The
+      hippocampus is involved in mental navigation for a recently learned, but not
+      a highly familiar environment: a longitudinal fMRI study. Hippocampus. 2012;22:842-852.
+      [PubMed] [Google Scholar]Hirshhorn M., Grady C., Rosenbaum R.S., Winocur G.,
+      Moscovitch M. Brain regions involved in the retrieval of spatial and episodic
+      details associated with a familiar environment: an fMRI study. Neuropsychologia.
+      2012;50:3094-3106. [PubMed] [Google Scholar]Holloway I.D., Ansari D. Mapping
+      numerical magnitudes onto symbols: the numerical distance effect and individual
+      differences in childrens mathematics achievement. J. Exp. Child Psychol. 2009;103:17-29.
+      [PubMed] [Google Scholar]Hubbard E.M., Piazza M., Pinel P., Dehaene S. Interactions
+      between number and space in parietal cortex. Nat. Rev. Neurosci. 2005;6:435-448.
+      [PubMed] [Google Scholar]Jeffreys H.  3rd ed. Oxford University Press; Oxford:
+      1961. Theory of Probability. [Google Scholar]Killian N.J., Jutras M.J., Buffalo
+      E.A. A map of visual space in the primate entorhinal cortex. Nature. 2012;491:761-764.
+      [PMC free article] [PubMed] [Google Scholar]Killian N.J., Potter S.M., Buffalo
+      E.A. Saccade direction encoding in the primate entorhinal cortex during visual
+      exploration. Proc. Natl. Acad. Sci. 2015;112:15743-15748. [PMC free article]
+      [PubMed] [Google Scholar]Knops A., Thirion B., Hubbard E.M., Michel V., Dehaene
+      S. Recruitment of an area involved in eye movements during mental arithmetic.
+      Science. 2009;324:1583-1585. [PubMed] [Google Scholar]Lyons I.M., Ansari D.
+      The cerebral basis of mapping nonsymbolic numerical quantities onto abstract
+      symbols: an fMRI training study. J. Cogn. Neurosci. 2009;21:1720-1735. [PubMed]
+      [Google Scholar]Maguire E.A., Burgess N., Donnett J.G., Frackowiak R.S., Frith
+      C.D., O''Keefe J. Knowing where and getting there: a human navigation network.
+      Science. 1998;280:921-924. [PubMed] [Google Scholar]Masson N., Pesenti M. Attentional
+      bias induced by solving simple and complex addition and subtraction problems.
+      Q. J. Exp. Psychol. 2014;67:1514-1526. [PubMed] [Google Scholar]Mathieu R.,
+      Gourjon A., Couderc A., Thevenot C., Prado J. Running the number line: rapid
+      shifts of attention in single-digit arithmetic. Cognition. 2016;146:229-239.
+      [PubMed] [Google Scholar]Mathieu R., Epinat-Duclos J., Sigovan M., Breton A.,
+      Cheylus A., Fayol M., Thevenot C., Prado J. Whats behind a + sign? Perceiving
+      an arithmetic operator recruits brain circuits for spatial orienting. Cereb.
+      Cortex. 2017:1-12. [PubMed] [Google Scholar]Mazaika P.K., Hoeft F., Glover G.H.,
+      Reiss A.L. Methods and software for fMRI analysis of clinical subjects. Neuroimage.
+      2009;47:S58. [Google Scholar]Meister M.L., Buffalo E.A. Getting directions from
+      the hippocampus: the neural connection between looking and memory. Neurobiol.
+      Learn. Mem. 2016;134:135-144. [PMC free article] [PubMed] [Google Scholar]Mellet
+      E., Bricogne S., Crivello F., Mazoyer B., Denis M., Tzourio-Mazoyer N. Neural
+      basis of mental scanning of a topographic representation built from a text.
+      Cereb. Cortex. 2002;12:1322-1330. [PubMed] [Google Scholar]Mundy E., Gilmore
+      C.K. Childrens mapping between symbolic and nonsymbolic representations of number.
+      J. Exp. Child Psychol. 2009;103:490-502. [PubMed] [Google Scholar]O''keefe J.,
+      Nadel L.  Oxford University Press; USA: 1978. The Hippocampus as a Cognitive
+      Map. [Google Scholar]Piazza M., Pinel P., Le Bihan D., Dehaene S. A magnitude
+      code common to numerosities and number symbols in human intraparietal cortex.
+      Neuron. 2007;53:293-305. [PubMed] [Google Scholar]Pinhas M., Shaki S., Fischer
+      M.H. Heed the signs: operation signs have spatial associations. Q. J. Exp. Psychol.
+      2014;67:1527-1540. [PubMed] [Google Scholar]Pinheiro-Chagas P., Dotan D., Piazza
+      M., Dehaene S. Finger tracking reveals the covert stages of mental arithmetic.
+      Open Mind. 2017;1:30-41. [PMC free article] [PubMed] [Google Scholar]Qin S.,
+      Cho S., Chen T., Rosenberg-Lee M., Geary D.C., Menon V. Hippocampal-neocortical
+      functional reorganization underlies children''s cognitive development. Nat.
+      Neurosci. 2014;17:1263-1269. [PMC free article] [PubMed] [Google Scholar]Rivera
+      S.M., Reiss A., Eckert M.A., Menon V. Developmental changes in mental arithmetic:
+      evidence for increased functional specialization in the left inferior parietal
+      cortex. Cereb. Cortex. 2005;15:1779-1790. [PubMed] [Google Scholar]Rosenbaum
+      R.S., Ziegler M., Winocur G., Grady C.L., Moscovitch M. I have often walked
+      down this street before: fMRI studies on the hippocampus and other structures
+      during mental navigation of an old environment. Hippocampus. 2004;14:826-835.
+      [PubMed] [Google Scholar]Roussel J.-L., Fayol M., Barrouillet P. Procedural
+      vs. direct retrieval strategies in arithmetic: a comparison between additive
+      and multiplicative problem solving. Eur. J. Cognit. Psychol. 2002;14:61-104.
+      [Google Scholar]Spiers H., Maguire E.A. Thoughts, behaviour, and brain dynamics
+      during navigation in the real world. Neuroimage. 2006;31:1826-1840. [PubMed]
+      [Google Scholar]Spiers H., Maguire E.A. The neuroscience of remote spatial memory:
+      a tale of two cities. Neuroscience. 2007;149:7-27. [PubMed] [Google Scholar]Thibodeau
+      M.H., Lefevre J.A., Bisanz J. The extension of the interference effect to multiplication.
+      Can. J. Exp. Psychol. 1996;50:393-396. [PubMed] [Google Scholar]Wilming N.,
+      Knig P., Buffalo E.A. Grid cells reflect the locus of attention, even in the
+      absence of movement. In Cosyne 2015 Main Meeting Program. 2015 p. 33. [Google
+      Scholar]Woodcock R.W., McGrew K., Mather N.  Riverside Publishing; Itasca IL:
+      2001. Woodcock-Johnson Tests of Achievement. [Google Scholar]Articles from Developmental
+      Cognitive Neuroscience are provided here courtesy of Elsevier\n\n\n\n\n\nOther
+      Formats\n\nPDF (708K)\n\n\n\nActions\n\n\n\nCite\n\n\n\n\n\n\nCollections\n\n\n\nAdd
+      to Collections\n\n\n\n\n\n\n\nCreate a new collection\n\n\n\nAdd to an existing
+      collection\n\n\n\n\n\n\n        Name your collection:\n      \n\n\n        Name
+      must be less than  characters\n      \n\n\n\n        Choose a collection:\n      \n\n\n\n        Unable
+      to load your collection due to an error\nPlease try again\n\n\n\n\n\n      Add\n    \n\n      Cancel\n    \n\n\n\n\n\n\n\n\n\n\nShare\n\n\n\n\n\n\n\n
+      \n\n\n\n\n                                Permalink\n                              \n\n\nCopy\n\n\n\n\n\n\n\n\nRESOURCES\n\n\n\n\n                        Similar
+      articles\n                    \n\n\n\n\n\n\n\n                        Cited
+      by other articles\n                    \n\n\n\n\n\n\n\n                        Links
+      to NCBI Databases\n                    \n\n\n\n\n\n\n\n\n\n\n[x]\nCite\n\n\n\n\n      Copy\n    \n\nDownload
+      .nbib\n.nbib\n\n\nFormat:\n\n\n        AMA\n      \n\n        APA\n      \n\n        MLA\n      \n\n        NLM\n      \n\n\n\n\n\n\n\n\n\nFollow
+      NCBI\n\n\n\n\n\n\nTwitter\n\n\n\n\nFacebook\n\n\n\n\nLinkedIn\n\n\n\n\n\n\n\nGitHub\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConnect
+      with NLM\n\n\n\nSM-Twitter\n\n\n\n\n\n\n\n\n\n\n\n\nSM-Facebook\n\n\n\n\n\n\n\n\n\nSM-Youtube\n\n\n\n\n\n\n\n\n\nNational
+      Library of Medicine\n8600 Rockville Pike\n                  Bethesda, MD 20894\n\n\nWeb
+      Policies\nFOIA\nHHS Vulnerability Disclosure\n\n\nHelp\nAccessibility\nCareers\n\n\n\n\n\n\n\nNLM\n\n\nNIH\n\n\nHHS\n\n\nUSA.gov\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+      Call the extractData function to save the output."}], "model": "gpt-4o-2024-08-06",
+      "response_format": null, "temperature": 0, "tools": [{"type": "function", "function":
+      {"name": "extractData", "description": "Extract data from scientific text",
+      "parameters": {"$defs": {"GroupImaging": {"properties": {"count": {"description":
+      "Number of participants in this group", "title": "Count", "type": "integer"},
+      "diagnosis": {"description": "Diagnosis of the group, if any", "title": "Diagnosis",
+      "type": "string"}, "group_name": {"description": "Group name, healthy or patients",
+      "enum": ["healthy", "patients"], "title": "Group Name", "type": "string"}, "subgroup_name":
+      {"description": "Subgroup name", "title": "Subgroup Name", "type": "string"},
+      "male_count": {"description": "Number of male participants in this group", "title":
+      "Male Count", "type": "integer"}, "female_count": {"description": "Number of
+      female participants in this group", "title": "Female Count", "type": "integer"},
+      "age_mean": {"description": "Mean age of participants in this group", "title":
+      "Age Mean", "type": "number"}, "age_range": {"description": "Age range of participants
+      in this group, separated by a dash", "title": "Age Range", "type": "string"},
+      "age_minimum": {"description": "Minimum age of participants in this group",
+      "title": "Age Minimum", "type": "integer"}, "age_maximum": {"description": "Maximum
+      age of participants in this group", "title": "Age Maximum", "type": "integer"},
+      "age_median": {"description": "Median age of participants in this group", "title":
+      "Age Median", "type": "integer"}, "imaging_sample": {"description": "Did this
+      subgroup undergo fMRI, MRI or neuroimaging, yes or no", "enum": ["yes", "no"],
+      "title": "Imaging Sample", "type": "string"}}, "required": ["count", "diagnosis",
+      "group_name", "subgroup_name", "male_count", "female_count", "age_mean", "age_range",
+      "age_minimum", "age_maximum", "age_median", "imaging_sample"], "title": "GroupImaging",
+      "type": "object"}}, "properties": {"groups": {"items": {"$ref": "#/$defs/GroupImaging"},
+      "title": "Groups", "type": "array"}}, "required": ["groups"], "title": "BaseDemographicsSchema",
+      "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '68307'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.37.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.37.1
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.8.10
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xVwW6bQBC9+ytWc8YRYJw43NpEaVU1h1RNVDVEaL0MsOmyi3aXxpblf492bQN2
+        U6mXHiqVg4Xfm/dmGOCxmRACvICUAKupZU0rpu8ePq8WPPr4Po6va361EvT73cP9dVQmVy2HwCnU
+        8hmZPajOmGpagZYruaOZRmrRuUYXsziczS+jhScaVaBwsqq100RN4zBOpuFiGp7vhbXiDA2k5HFC
+        CCEb/+tGlAWuICVhcEAaNIZWCGlfRAhoJRwC1BhuLJUWgoFkSlqUbmrZCTEirFIiZ1SIofHu2IzO
+        hz1RIfKvt2GT3MTPy09f1LfFz7ubD+LyZXV7P+q3s163fqCyk6zfz4jv8fSkGSEgaeO1uLKaMntN
+        LT2REwJUV12D0rrRYZNBpVXXmgzSx00GTHXSZpDOkiCDgtNKKsMdmYFbQQbBXpC7Xh6vkQpbrz1l
+        uuUJK9QLalJpWqDxJQ0VmB/axGGQQYlHWORa0wrzBql0/6Oz2cUe0lRWO9/FNJp7P1/JJW+6JoN0
+        cUDoao9E896u4N7Q38sMeEMrLqvcUPcoetO1m3Eb/I09cGlR+xEs/l8H1Lyq/7Xn4mkLR+/SdvLW
+        +dMoJjSWnaFinx97fNsHklBVq9XSnOQLlFxyU+caqfHv+ThuJoduvg90R4kGrVZNa3OrfqB0ttE8
+        TuKdLwyRO/BxfGCtslSMhcl5ErxhmhdoKfe510cto6zGYhAPkUu7gqsRMRkt4NeB3vLeLcHdjz+w
+        HwjGsLVY5K3GgrPjix7KNLqP0u/K+lX7gcGsjcUmL7msULea++8ClG1+UZ4vcYblMoTJdvIKAAD/
+        /wMAn6F8UiAHAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8e51c8c61b631246-ORD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Nov 2024 17:05:25 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=y7.WhaADGAk4TBTpcQAwBoS6JjvjywCRkTDAUX1avj4-1732035925-1.0.1.1-RAPmpg19jdvzyCKEULwBNv161qm5iIPfjf3UnLgZjLtNj0oP5Fk.FO9JbLr061raWUnQdCGBk08GcxYVO28.Iw;
+        path=/; expires=Tue, 19-Nov-24 17:35:25 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=4fTQYgQxmwK3rCIlLhugPLNVp43K4XEAg9W.owgb2CU-1732035925267-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - university-of-texas-at-austin-8nppuy
+      openai-processing-ms:
+      - '7365'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '2000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '1983651'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 490ms
+      x-request-id:
+      - req_5ee4a68ad82676e30ffb1275f4ac969a
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "\nYou will be provided with
+      a text sample from a scientific journal.\nThe sample is delimited with triple
+      backticks.\n\nYour task is to identify groups of participants that participated
+      in the study, and underwent MRI.\nIf there is no mention of any participant
+      groups, return a null array.\n\nFor each group identify:\n    - the number of
+      participants in each group, and the diagnosis.\n    - the number of male participants,
+      and their mean age, median age, minimum and maximum age\n    - the number of
+      female participants, and their mean age, median age, minimum and maximum age.\n    -
+      if this group of participants underwent MRI, fMRI or neuroimaging procedure.\n\nBe
+      as accurate as possible, and report information (especially diagnosis) using
+      the technical terms (and abbreviations) used in the article.\nIf any of the
+      information is missing, return `null` for that field.\n\nText sample:  \n##
+      Significance Statement \n  \nPsychopathic criminals are commonly seen as instrumentally
+      abusive and emotionally callous, yet social challenges often trigger uncontrolled
+      emotional behavior in those individuals. This study shows how this paradoxical
+      aspect of psychopathy relates to altered neuroendocrine interactions between
+      testosterone and the cerebral circuit coordinating emotional action tendencies.
+      The anterior prefrontal cortex, a region necessary for controlling emotional
+      behavior, showed blunted responses and reduced connectivity with the amygdala
+      in psychopathic criminals engaged in controlling their emotional action tendencies.
+      This cerebral pattern was strongest in psychopathic individuals with high endogenous
+      testosterone levels. This neuroendocrine signature of altered emotional control
+      highlights the relevance of considering the testosterone level of individual
+      psychopathic patients during treatment of their impulsive behavior. \n\n\n##
+      Introduction \n  \nPsychopathy is a disorder often associated with blunted emotional
+      responding and increased goal-directed behavior ( ;  ). On the other hand, offenders
+      with psychopathy also show a paradoxical increase in impulsive behavior and
+      uncontrolled aggression after emotional provocations ( ;  ;  ;  ;  ;  ), which
+      may be related to heightened testosterone levels ( ;  ). These two aspects of
+      psychopathy are also distinguished within the most commonly used psychopathy
+      checklist, the Psychopathy Check List-Revised (PCL-R), potentially reflecting
+      differing traits among psychopathic individuals ( ;  ). Importantly, enhanced
+      difficulty in controlling emotional impulses, a crucial component of criminal
+      psychopathy associated with PCL-R factor 2, has been largely neglected by cognitive
+      neuroscience. Yet, the clinical relevance of this cognitive trait is large:
+      reduced behavioral control and increased impulsivity predict recidivism in psychopathic
+      offenders ( ), and behavioral control in psychopathic offenders appears particularly
+      fragile when dealing with emotionally relevant behavior ( ;  , chapter 7;  ).
+      Accordingly, understanding the neurobiological systems underlying the altered
+      control of social emotional behavior in psychopathic individuals is relevant
+      for improving currently available interventions, which are plagued by low treatment
+      response and high recidivism ( ). Here we study those neuroendocrine systems
+      in a group of psychopathic offenders engaged in an experimental paradigm that
+      requires rule-driven control of emotional behavior. \n\nPrevious investigations
+      of psychopathy showed altered reactivity to emotional material in several brain
+      regions that include the anterior part of the PFC (aPFC) and the amygdala (
+      ;  ;  ). Furthermore, individuals with psychopathy showed decreased functional
+      and anatomical connectivity between the PFC and amygdala at rest ( ;  ), an
+      indication that these brain regions might have a reduced ability to interact
+      effectively. Studies in healthy participants have shown that this cerebral circuit
+      is necessary for implementing the control of emotionally relevant actions (
+      ). Namely, aPFC downregulates neural processing in the amygdala during emotional
+      control ( ), while high levels of endogenous testosterone reduce such control-related
+      connectivity between aPFC and amygdala ( ). Those findings raise the possibility
+      that aPFCamygdala connectivity is altered when psychopathic offenders need to
+      control emotionally relevant actions, with high levels of endogenous testosterone
+      exacerbating that altered connectivity. \n\nThis study tests these hypotheses
+      by measuring brain activity with functional magnetic resonance imaging (fMRI)
+      in 15 psychopathic criminals and 19 matched healthy control subjects dealing
+      with a challenge to control their emotional behavior. The psychopathy sample
+      was obtained by focused and comprehensive screening excluding confounds that
+      are frequently associated with random criminal sampling (e.g., medication use,
+      comorbidity). The social approachavoidance (AA) task was used to provide reliable
+      indexes of control over social emotional behavior ( ;  ;  , ). Behaviorally,
+      psychopathic participants previously showed altered AA behavior to explicitly
+      approaching and avoiding emotional faces ( ). Similar findings occurred after
+      testosterone administration in healthy participants ( ). Interestingly, a more
+      subtle version of the AA task has been shown to be sensitive to testosterone-related
+      alterations and genetic variations in the aPFCamygdala pathway, while keeping
+      behavior constant across experimental groups ( ), opening the way for isolating
+      neural vulnerability factors ( ) in psychopathy. During this task, participants
+      respond to affective faces (happy, angry) presented for a short time with approach
+      and avoidance movements. Automatic emotional tendencies (approachhappy and avoidangry
+      faces; affect-congruent response conditions) need to be controlled during affect-incongruent
+      response conditions in order to apply the counterintuitive action of approaching
+      angry and avoiding happy faces ( ;  ). Healthy participants respond more slowly
+      and rely more strongly on the aPFC when emotional control is required, operationalized
+      by the differences evoked between affect-incongruent and affect-congruent trials
+      ( ;  ). Accordingly, this study tests whether exerting control over emotionally
+      relevant actions is reflected by reduced functionality of the aPFCamygdala circuit
+      in psychopathic individuals, suggesting less prefrontal regulation of emotional
+      actions. In addition, it sets out to test whether this alteration is intensified
+      by high levels of endogenous testosterone. \n  \nThe emotional control AA task.
+      The AA task involved the presentation of happy and angry faces, and the performance
+      of approach and avoidance responses. During the AA task, the participants had
+      to select their response according to the perceived emotion of the face. At
+      the beginning of each block of 12 trials, the participants received instructions
+      on whether to pull the joystick toward themselves (approach) or push it away
+      (avoid) when seeing a face with a particular emotion. When viewing happy or
+      angry faces, automatic stimulusresponse tendencies trigger corresponding approach
+      or avoidance actions. These tendencies could be followed during the affect-congruent
+      condition (approachhappy, avoidangry). In contrast, when task instructions required
+      participants to avoid happy faces or to approach angry faces, automatic tendencies
+      needed to be controlled and overridden with the instructed response (affect-incongruent
+      condition). Participants saw the faces and moved the joystick while lying in
+      a MR scanner (top left corner of the table). Figure adapted from  ). \n  \n\n##
+      Materials and Methods \n  \n### Participants \n  \nThe psychopathic group was
+      recruited from in-patient populations of the Pompestichting and Oldenkotte,
+      forensic psychiatric institutes (TBS-clinics) in the Netherlands. TBS-clinics
+      are facilities for criminal offenders with a mental disorder treated on behalf
+      of the state. \n\nSeventeen male psychopathic violent offenders (age range,
+      23-56 years) participated; all had received a diagnosis with a PCL-R score of
+      26, according to European standards ( ;  ;  ). PCL-R consensus scores were obtained
+      by trained clinicians based on a structured PCL-R interview, clinical status,
+      and history. After the independent scoring, the two raters compared their scores
+      and came to the consensus score. When no consensus could be found, a third independent
+      rater was included in the process. Dutch versions of the National Adult Reading
+      Test and Edinburgh Handedness Inventory were used to assess IQ levels and right-handedness
+      ( ;  ). Twenty-one healthy male control subjects (HCs) matched for age, right-handedness,
+      and IQ, without criminal records or history of psychiatric disorders, were recruited
+      from staff of the clinics. All participants received oral and written information
+      about the experiment and gave written informed consent according to guidelines
+      of the local ethics committee (Commissie Mensengebonden Onderzoek region Arnhem-Nijmegen).
+      Psychiatric exclusion criteria consisted of neurological, axis-I, and axis-II
+      disorders, besides antisocial personality disorder for the psychopathic group.
+      They were screened for these exclusion criteria by trained psychologists using
+      Dutch versions of the Structured Clinical Interview (SCID;  ) and Mini-International
+      Neuropsychiatric Interview (MINI;  ) for   Diagnostic and Statistical Manual
+      of Mental Disorders  , 4th edition, disorders. All participants were asked about
+      drug use and medical/neurological history to exclude the following: alcohol
+      use of >3 units/day, cannabis, or other illicit drug use 1 week before, psychotropic
+      medication other than oxazepam 5 d before, 1 unit of alcohol or oxazepam use
+      within 24 h before the experiment; history of trauma capitis; visual and auditive
+      disorder; and neurological disorder. Furthermore, general exclusion criteria
+      for MRI experiments were applied. Two psychopathic patients (PPs) and two HCs
+      were excluded from the analyses, due to incomplete scanning procedures (1 PP,
+      1 HC) or too many errors on the task (>16%, representing the outlier with a   z  -score
+      >3). The final groups did not differ in age, IQ, and handedness (see  ). \n  \nDemographical
+      data \n    \n\n### Procedure \n  \nTwo test sessions took place. During the
+      first session, right-handedness, IQ, MINI, and SCID were assessed. During the
+      second session, participants completed several questionnaires upon arrival in
+      the laboratory, including the State-Trait Anxiety Inventory (STAI) to measure
+      anxiety levels ( ). Next, they provided saliva for the testosterone measurement.
+      Afterward, participants were positioned in the 1.5 T MR scanner and familiarized
+      with the task setup. Immediately after this, the fMRI session started with the
+      AA task (duration, 30 min) followed by another task (not included in this report).
+      After a short break outside the scanner, the anatomical scan (duration, 5 min)
+      and an unrelated task were acquired in the side-by-side 3 T MR scanner. \n\n\n###
+      Experimental task \n  \nThe AA task consisted of 24 blocks (with 12 trials per
+      block and a baseline period of 21-24 s) during which participants had to respond
+      to visually presented faces either by pulling a joystick toward themselves (approach)
+      or by pushing it away from themselves (avoid;  ). The participants had to categorize
+      faces as happy, angry, and neutral (filler items), based on their affective
+      expressions. During each block, two of the three affective expressions were
+      presented as stimuli, because only two responses could be given to categorize
+      the stimulus. This resulted in six different block types each used four times,
+      representing the affect (happyangry, happyneutral, angryneutral)  movement (approachavoid)
+      combinations. At the start of each block, participants received written instructions
+      regarding the required response mapping. The affect  movement combinations were
+      pseudorandomly and evenly distributed (with no affect combination repetition),
+      and the combination of the first block was counterbalanced across participants.
+      Within each block, affective expressions and gender types were pseudorandomly
+      presented, avoiding three or more sequential presentations of the same expression/gender,
+      and two presentations of the same facial model. Each face was presented for
+      100 ms, preceded by a 300 ms blank screen, and followed by the participants
+      response, a blank screen, and by a pseudorandom intertrial interval (ITI; 1-3
+      s). A baseline period of 21-24 s preceded each block. The faces were from 36
+      models (18 male) obtained from several databases ( ;  ;  ; ), each showing all
+      expressions. The pictures were in grayscale, matched for brightness and contrast
+      values, and displayed against a black background. To exclude influence from
+      hair and nonfacial contours, the faces were trimmed. Joystick displacements
+      of >80% along the sagittal plane within 2 s from stimulus presentation were
+      marked as valid responses. Invalid responses were signaled for 1 s with written
+      feedback stating you did not move your joystick far enough. After moving the
+      joystick, participants had to return to the starting position (defined as the
+      central area extending 20% along the sagittal plane) before the end of the ITI.
+      Otherwise, visual feedback indicated return the joystick to the starting position,
+      and the ITI was repeated after participants returned the joystick. The training
+      at the beginning consisted of six blocks; one block of eight trials for each
+      of the six affect  movement combinations. Different visual stimuli were used
+      during the training and scanning blocks. \n\n\n### Materials and apparatus \n  \nThe
+      fMR images were acquired on a 1.5 T MRI scanner (Avanto, Siemens Medical Systems)
+      with an eight-channel head coil using a multiecho generalized autocalibrating
+      partially parallel acquisitions (GRAPPA) sequence [ ; repetition time (TR),
+      2.14 ms; five echo times (TEs), 9.4/21/33/44/56 ms; 34 transversal slices; ascending
+      acquisition; distance factor, 17%; effective voxel size, 3.3  3.3  3.5 mm; field
+      of view (FOV), 212 mm]. High-resolution anatomical images were acquired on a
+      3 T MRI scanner with a 32-channel head coil using a magnetization prepared rapid
+      gradient echo sequence (TR, 2300 ms; TE, 3.03 ms; 192 sagittal slices; voxel
+      size, 1.0  1.0  1.0 mm; FOV, 256 mm). \n\nAn MR-compatible joystick (Fiber Optic
+      Joystick, Current Designs; sampling rate, 550 Hz) was placed on participants
+      abdomens to ensure comfortable push-and-pull movements ( ). Participants wore
+      MR-compatible headphones to reduce scanner noise (Commander XG MRI Audio System,
+      Resonance Technologies). Stimuli were projected at the center of a screen, viewed
+      via a mirror above the participants head, with a visual angle of 4  6 (width  height).
+      Stimuli presentation and acquisition of joystick positions were controlled by
+      a PC running Presentation version 13 ( ). \n\n\n### Salivary measurements \n  \nParticipants
+      filled two Salicaps (IBL) with saliva for testosterone measurement, which were
+      stored at 25C. Testosterone concentration was measured using competitive chemiluminescence
+      immunoassay with a sensitivity of 0.0025 ng/ml (IBL International, Tecan). Intra-assay
+      and interassay coefficients are between 10% and 12%. To control variables influencing
+      testosterone levels, participants were instructed to refrain from any food,
+      cigarettes, and drinks (except water) for 1 h before the experiment. \n\n\n###
+      Behavioral analysis \n  \nBehavioral data was analyzed using MATLAB version
+      7.9 (MathWorks) and PASW Statistics 18 (SPSS Inc.). First, to obtain a precise
+      measure of movement onset [reaction time (RT)], the joystick movement for each
+      trial was reconstructed using the joystick displacement measurements. Excluded
+      trials showed a joystick movement in the wrong direction, an extreme RT (<150
+      or >1500 ms), peak velocity (<0.1 cm/s), or movement time (>400 ms); or an error
+      rate of above chance level in a block (in that case, the whole block was excluded).
+      RTs and testosterone levels were log transformed to obtain a normal distribution.
+      Second, following previous studies ( ;  ), we conducted three-way repeated-measures
+      ANOVA (ANCOVArm) on the mean RT and error rates, with factors group (PP, HC),
+      movement (approach, avoid), and valence (happy, angry), including standardized
+      testosterone and STAI state as covariate. A measure of anxiety (STAI) was included
+      to account for the effects of psychopathy type (e.g., primary vs secondary);
+      and the possible effects on emotional behavior, hormonal levels, amygdala, and
+      prefrontal cortex functioning ( ;  ;  ; ). The -level was set at   p   < 0.05.
+      \n\n\n### Functional MRI data \n  \n#### Single-subject analyses \n  \nImaging
+      data were preprocessed and analyzed using SPM8 (Statistical Parametric Mapping;  ).
+      The first four volumes of each participants dataset were discarded to allow
+      for   T   equilibration. Given the multiecho GRAPPA MR sequence (Poser et al.,
+      2006), head motion parameters were estimated on MR images with the shortest
+      TE (9.4 ms), since these are least affected by possible artifacts. These motion
+      correction parameters, estimated using a least-squares approach with six rigid
+      body transformation parameters (translations, rotations), were applied to the
+      five echo images collected for each excitation. After spatial realignment, the
+      five echo images were combined into a single MR volume using an optimized echo
+      weighting method (Poser et al., 2006). The time series for each voxel was temporally
+      realigned to the first slice in time. The   T  -weighted image was spatially
+      coregistered to the mean of the functional images. The fMRI time series were
+      transformed and resampled at an isotropic voxel size of 2 mm into standard Montreal
+      Neurological Institute (MNI) space by unified segmentation and normalization
+      using the coregistered   T  -weighted image ( ). The normalized functional images
+      were spatially smoothed using an isotropic 8 mm full-width at half-maximum Gaussian
+      kernel. \n\nThe fMRI time series of each subject were further analyzed using
+      an event-related approach in the context of general linear model, including
+      the following effects: approachhappy, approachneutral, approachangry, avoidhappy,
+      avoidneutral, and avoidangry. Trials excluded from behavioral analyses and periods
+      of instructions or feedback were modeled as regressors. Vectors describing the
+      time of picture presentation (onset) and RT of each event (duration) were convolved
+      with the canonical hemodynamic response function. Potential confounding effects
+      of residual head movement were modeled using original, squared, cubic, first-order,
+      and second-order derivatives of the movement correction parameters ( ). Three
+      further regressors, describing the time course of signal intensities of white
+      matter, CSF, and the portion of the MR image outside the skull were also added.
+      This procedure accounts for image intensity shifts due to hand movements within
+      or near the magnetic field of the scanner ( ). Finally, fMRI time series were
+      high-pass filtered (cutoff 120 s). Temporal autocorrelation was modeled as a
+      first-order autoregressive process. \n\n\n#### Group analyses \n  \nConsistent
+      effects across participants and between groups were tested using a random-effects
+      multiple regression analysis that included six contrast images (approachhappy,
+      approachneutral, approachangry, avoidhappy, avoidneutral, avoidangry) per participant.
+      Together, these images represented the estimated cerebral effects from 12 conditions
+      of the experimental design [group (PP, HC)  valence (happy, neutral, angry)  response
+      (approach, avoid)]. Standardized log-transformed testosterone and standardized
+      STAI state levels were included in the multiple regression analysis as condition-specific
+      [group (PP, HC)  valence (happy, neutral, angry)  response (approach, avoid)]
+      regressors, generating another 12 regressors per variable. \n\nAll analyses
+      assessed the congruency effect, reflecting task-related differences of affect-incongruent
+      (approachangry, avoidhappy) versus affect-congruent trials (approachhappy, avoidangry;  ;  ).
+      We considered two effects. First, to test for general effects of congruency,
+      we performed an analysis on the congruency effect over both groups and for each
+      group separately. When assessing the effects of one group explicitly, we also
+      tested whether those effects were specific to that group and were significantly
+      weaker in the other group (at   p   < 0.05 uncorrected) by masking the statistical
+      map describing the congruency effect in the first group (using multiple comparisons
+      correction, see below) with the statistical map describing the group  congruency
+      contrast. Second, to test whether testosterone differentially modulated the
+      control of emotionally relevant actions in the groups, we performed a group  congruency
+      contrast on the regressor parametrizing interindividual differences in testosterone
+      on task-related conditions. If such an interaction is present, the testosterone
+      modulation on the congruency effect of each group separately is considered.
+      In addition to whole-brain analyses, we used a volume of interest (VOI) on coordinates
+      previously found to be modulated by testosterone during the congruency effect
+      in healthy students (two 8-mm-radius spheres centered on the following MNI coordinates:   x  ,
+      30;   y  , 58; and z, 2; and   x  , 32;   y  , 54; and   z  , 8;  ). \n\nThe
+      reported activations are corrected for multiple comparisons using familywise
+      error (FWE) correction. For whole-brain analyses, we made inferences at cluster
+      level (FWE:   p   < 0.05, corresponding to a cluster size of >140 on the basis
+      of intensity threshold,   p   < 0.001). For VOI analyses, we made inferences
+      at voxel-level (FWE corrected,   p   < 0.05;  ;  ). Anatomical inference is
+      drawn by superimposing SPM showing significant signal changes on structural
+      images of participants. For anatomical accuracy, we report only activation peaks
+      in gray matter. Anatomical landmarks were identified using the atlas of  . Brodmann
+      areas (BAs) were assigned by superimposing significant SPM on the SPM anatomy
+      toolbox ( ) and MRIcron template ( /). \n\n\n\n### Connectivity analyses \n  \nThe
+      aim of the following analysis was to test whether inter-regional coupling of
+      the aPFC (see Results) with the amygdala and other brain regions during the
+      congruency effect was different between the groups and modulated by testosterone.
+      To test for these effects, we used the psychophysiological interactions (PPIs)
+      method ( ). More specifically, we tested for significant differences between
+      the regression coefficients of each voxel over the right aPFC during the affect-incongruent
+      versus the affect-congruent conditions. To select voxels to be included in the
+      VOI, we used the following anatomical constraints ( ): for each participant,
+      selected voxels fell within a sphere with a radius of 4 mm around the peak voxel
+      corresponding to the activated cluster of the congruency effect over both groups
+      (coordinates:   x  , 30;   y  , 58;   z  , 14; see Results). Participant specific
+      contrast images were generated describing the PPI between the time courses of
+      the right aPFC VOI and affect-incongruent versus affect-congruent conditions.
+      Group differences and testosterone modulations on task-related coupling between
+      the aPFC and other regions were then assessed using a multiple regression design
+      on participant-specific contrast images with their corresponding testosterone
+      (log-transformed, standardized) and STAI state (standardized) levels as subject-
+      and group-specific regressors. In addition to whole-brain analyses, we assessed
+      significant voxel-level effects (FWE corrected for multiple comparisons,   p   <
+      0.05) within the amygdala, defined on the Automated Anatomical Labeling atlas
+      ( ) using the WFU PickAtlas tool ( ). \n\n\n\n## Results \n  \n### Behavioral
+      results \n  \nFifteen psychopathic criminals (PPs; PCL-R score of 26, according
+      to European standards ( ;  ;  ) and 19 HCs (for demographics, see  ) were included
+      in the analyses. Participants performed the task accurately and consistently
+      (error rates: PPs, 7.9%; HCs, 7.3%; omissions: PPs, 1.6%; HCs, 1.5%; undefined
+      responses: PPs, 0.9%; HCs, 0.3%;  ). \n  \nRTs and error rates for each group
+      and factor of the AA task \n    \nA significant movement  valence interaction
+      for the RTs indicated that, over groups, participants responded more slowly
+      during affect-incongruent (approachangry, avoidhappy) than during affect-congruent
+      trials (approachhappy, avoidangry;   F   = 10.4,   p   = 0.003;  ). This congruency
+      effect replicates the behavioral results from previous fMRI studies ( ;  ).
+      Furthermore, there were main effects of movement (  F   = 26.3,   p   < 0.001)
+      and valence (  F   = 28.7,   p   < 0.001), reflecting the slowing of avoidance
+      movements and responses to angry faces in general ( ). There were no significant
+      effects involving group, including no main effect (  p   > 0.3). The congruency
+      effect correlated positively (without corrections for multiple comparisons)
+      with the PCL-R total score (  p   = 0.048,   R   = 0.517, respectively). Excluding
+      anxiety from the analyses did not affect the outcomes. Moreover, when including
+      the neutral conditions in the analyses, the movement  valence (happy, neutral,
+      angry) interaction for RTs remained significant (  F   = 5.5,   p   = 0.010),
+      showing that neutral approachavoidance effects are intermediary compared with
+      happy and angry ( ). \n  \nBehavioral results. Mean RTs (SEM) for the affect-congruent
+      and affect-incongruent conditions of the AA task for the healthy control subjects
+      and psychopathic offenders. The groups were significantly slower to provide
+      affect-incongruent responses (approachangry; avoidhappy) than affect-congruent
+      responses (approachhappy; avoidangry), with no significant group differences.
+      \n  \nFor the error rates, the three-way ANCOVArm showed main effects of movement
+      (  F   = 27.5,   p   < 0.001), valence (  F   = 25.9,   p   < 0.001), and testosterone
+      (  F   = 4.6,   p   = 0.040), and a valence  testosterone interaction (  F   =
+      4.3,   p   = 0.047). There were no other significant effects for the error rates
+      (  p   > 0.15). \n\nEndogenous testosterone levels [median (SD): PPs, 101 pg/ml
+      (70 pg/ml); HCs, 90 pg/ml (46 pg/ml)] and state anxiety levels [STAI mean (SD):
+      PPs, 32 (8); HCs, 32 (5)] did not differ between groups (  p   > 0.4), and showed
+      no correlations with psychopathy (PCL-R) scores or with each other (  p   >
+      0.1). \n\n\n### fMRI results \n  \n#### Multiple regression analyses \n  \nTo
+      assess the two main questions of this study, we isolated cerebral structures
+      showing stronger responses during affect-incongruent than affect-congruent trials
+      (congruency effect), and cerebral structures in which the congruency effect
+      was modulated by testosterone levels. \n\nThe results showed a significant congruency
+      effect across groups in the aPFC [ROI analysis: MNI coordinates (  x  ,   y  ,   z  ):
+      (30, 58, 14) and (30 58 10);   p   = 0.001 and 0.036;   t   = 4.46 and 3.43;
+      for further details, see  ]. As expected, this effect was driven by the healthy
+      control group, and it was significantly weaker in the psychopathic offenders
+      [  p   = 0.001 and 0.040;   t   = 4.58 and 3.40, on the congruency effect in
+      healthy control subjects masked implicitly by group (HC > PP)  congruency interaction].
+      The implicit masking demonstrates that the group  congruency interaction is
+      also significant at   p   < 0.05 within the significant voxels corrected for
+      multiple comparisons on the HC congruency effect. The psychopathy group showed
+      no significant congruency effect in this region (  p   > 0.3). There was also
+      a significant congruency effect across groups in the right superior parietal
+      lobule (whole-brain analysis); this effect was driven mainly by the psychopathy
+      group ( ). \n  \nClusters showing significantly larger activity for the affect-incongruent
+      vs the affect-congruent conditions (emotion-control effect) \n    \nCritically,
+      testosterone modulated the congruency effect in the aPFC differently in psychopathic
+      offenders and healthy control subjects (whole-brain analysis on testosterone  group  congruency:
+      MINI coordinates (  x  ,   y  ,   z  ): (30, 58, 12);   p   < 0.001;   t   =
+      5.10; for all details, see  ).   Post hoc   analyses revealed that, in the psychopathy
+      group, congruency effects decreased as testosterone levels increased [MNI coordinates
+      (  x  ,   y  ,   z  ): (32, 56, 10) and (30, 58, 8);   p   = 0.002 and 0.015;   t   =
+      4.34 and 3.74]. The modulatory effect of testosterone on congruency was absent
+      in the healthy control subjects (  p    0.05;  ). The whole-brain analysis also
+      showed an effect in the right caudate nucleus and right inferior supramarginal
+      gyrus, driven by reduced congruency effects as a function of testosterone in
+      the psychopathy group ( ;  ). \n  \nTestosterone modulations of the cerebral
+      congruency effect in psychopathic offenders and healthy control subjects.    A   ,    D   ,
+      Brain image showing testosterone-modulated congruency effects (affect-incongruentaffect-congruent)
+      in the psychopathic offenders in the bilateral aPFC (   A   ) and right supramarginal
+      gyrus (   D   ).    B   ,    E   , Bar graphs showing the mean activation (SEM)
+      of the active voxels within the yellow circles per group. *  p   < 0.05. ns,
+      Not significant.    C   ,    F   , Scatterplots showing the correlation of the
+      mean activation of active voxels within the yellow circles with testosterone
+      (log-transformed and standardized) for the healthy control group and the psychopathy
+      group. The ROI activations are presented at   p   < 0.05, uncorrected for visualization
+      purposes. There are no outliers [Mahalanobis distances   D     < 4.2 (cutoff
+      at   p   < 0.05;   D   = 7.74);  ;  ]. Healthy control subjects show an increased
+      aPFC activity for the congruency effect and no modulation by testosterone, while
+      in psychopathic offenders endogenous testosterone levels modulate the activity
+      of the aPFC and right supramarginal gyrus. \n  \n\n#### Effective connectivity
+      analyses \n  \nGiven the relevance of aPFCamygdala connectivity for implementing
+      emotional control as evoked by the AA task ( ), we assessed whether psychopathy
+      also resulted in altered connectivity along that neural pathway. Connectivity
+      analyses using the right aPFC [4-mm-radius sphere; central voxel from main analysis
+      (MNI coordinates:   x  , 30;   y  , 58;   z  , 14)] as the seed region on the
+      congruency effect indicated a significant group difference (PP > HC) with the
+      right amygdala ( ; ROI analysis; extent, 3 voxels;   t   = 3.82;   p   = 0.027;
+      MNI coordinates of local maxima:   x  , 32;   y  , 0;   z  , 16). When testing
+      effects for both groups separately, healthy control subjects showed a significant
+      negative coupling between the right aPFC and amygdala (ROI analysis; extent:
+      3 voxels,   t   = 3.70;   p   = 0.036; MNI coordinates of local maxima:   x  ,
+      32;   y  , 0;   z  , 16), while psychopathic offenders showed no differential
+      connectivity effect.   Post hoc   testing on right amygdala voxels showing the
+      group interaction (threshold,   p   < 0.05 FWE) indicated a significant positive
+      correlation with testosterone over both groups (ROI analysis; extent, 1 voxel;   t   =
+      2.29;   p   = 0.029; MNI coordinates of local maxima:   x  , 32;   y  , 2;   z  ,
+      16). There was no correlation between aPFCamygdala connectivity and the PCL-R
+      scores (  p   > 0.2). \n  \nGroup difference on congruency-related aPFCamygdala
+      connectivity.    A   , Brain images illustrating the congruency-related modulation
+      of connectivity between the right aPFC (yellow circle, axial slice) and the
+      right amygdala (coronal slice) for the congruency contrast. The activations
+      are presented at   p   < 0.05, uncorrected for visualization purposes.    B   ,
+      Bar graph visualizing the strength of the congruency-specific change (SEM) in
+      aPFCamygdala connectivity for the healthy control subjects and psychopathic
+      offenders. There is a significant negative aPFCamygdala coupling in the healthy
+      control subjects, which is not present in the psychopathic offenders. \n  \n\n\n\n##
+      Discussion \n  \nThis study indicates that psychopathic offenders show reduced
+      aPFC activity as well as less aPFCamygdala connectivity during the control of
+      emotional behavior. Emotional control was measured by comparing affect-incongruent
+      and affect-congruent approachavoidance responses to emotional faces (congruency
+      effect on the AA task;  ). When healthy control subjects exerted emotional control,
+      reaction times, aPFC activity, and aPFCamygdala anticorrelations increased,
+      confirming previous observations ( ). In contrast, psychopathic offenders did
+      not show this typical control-related pattern of aPFC activity and connectivity.
+      In addition, these effects were significantly modulated by endogenous testosterone.
+      Namely, psychopathic individuals with relatively lower testosterone levels showed
+      a neural activity and connectivity pattern that resembled the findings in healthy
+      control subjects, while this pattern was absent in those with higher testosterone
+      levels. This indicates that especially psychopathic individuals with high testosterone
+      levels have less prefrontal regulation of amygdala-driven emotional actions
+      when the control of emotional behavior is required. \n\n### Emotional control
+      in psychopathy \n  \nImaging studies have illustrated an association between
+      psychopathy and altered processing of fear, including altered amygdala responses
+      ( ;  ;  ), attentional deficits for peripheral stimuli ( ), and moral/empathic
+      insensitivity ( ;  ). However, psychopathic offenders also show clear impulsivity
+      problems ( ), for example, when control is required during emotionally provoking
+      situations. To address this relatively unexplored but crucial component of criminal
+      psychopathy, we used a paradigm requiring rule-driven control of emotional actions.
+      With this paradigm, it was possible to move beyond simple motor inhibition and
+      to target the flexible control of emotionally driven action tendencies. \n\nFirst,
+      the aPFC (also called BA 10) was less active in psychopathic offenders as a
+      function of testosterone. The aPFC is a region crucial for the control of social
+      emotional behavior. When aPFC functioning is temporarily disrupted, participants
+      have increased difficulty in overriding emotional tendencies with rule-driven
+      behavior ( ). Moreover, the aPFC seems especially important for integrating
+      and coordinating multiple cognitive processes to facilitate response selection
+      ( ;  ). For example, transcranial magnetic stimulation-induced reduction of
+      aPFC functioning during the control of emotional behavior decreased activity
+      in brain areas associated with rule selection (posterior parietal cortex), while
+      both amygdala activity and automatic action tendencies increased ( ). The current
+      study indicates that psychopathic individuals with especially high testosterone
+      levels recruited the aPFC less when the control of emotional responses was needed.
+      This finding suggests that they have reduced coordination of rule-based behavior
+      with emotional information. \n\nSecond, connectivity between the aPFC and amygdala
+      also differed significantly between groups. Healthy control subjects showed
+      a negative aPFCamygdala coupling during the control of social emotional behavior,
+      whereas psychopathic individuals showed no significant coupling between these
+      regions. Evidence of anatomical connectivity alterations between these regions
+      in psychopathic individuals and the relation of that tract to social emotional
+      behavior modifications support these findings ( ). Although these results cannot
+      resolve the direction of these connectivity effects, a previous study ( ) using
+      this paradigm showed an effective connectivity modulation of emotional control
+      on the connection from aPFC to amygdala. Also, animal studies ( ) suggest strong
+      prefrontal inhibitory connections that control automatic amygdala responses.
+      The absence of this aPFCamygdala coupling in psychopathic offenders suggests
+      that in this group the aPFC has a reduced ability to inhibit amygdala-driven
+      responses. This study used subtle emotional provocations, but stronger emotional
+      events result in stronger amygdala responses, increasing the bias for automatic
+      emotional behavior ( ). A lack of prefrontal control likely reduces the ability
+      to inhibit these biases and lead to an increased expression of automatic emotional
+      actions even when they are not beneficial ( ;  ). \n\nTestosterone administration
+      studies also illustrated a decoupling between the prefrontal cortex and the
+      amygdala, suggesting that testosterone reduces the communication between the
+      PFC and amygdala ( ;  ;  ) and, within the AA task, reduces top-down control.
+      The association between testosterone levels and enhanced social aggression and
+      dominance seeking, and reduced impulse control in the general population ( ;  ;  )
+      supports the relevance of testosterone in this process. Even amygdala responses
+      to angry faces have recently been found to be enhanced after testosterone administration
+      and in psychopathic individuals ( ;  ;  ). There is a clear association between
+      testosterone and aggression after provocation, which has been related to reduced
+      activity in the orbital frontal cortex, a region just ventral of the aPFC (
+      ). Interestingly, psychopathic offenders with lower testosterone levels displayed
+      a pattern similar to that in healthy control subjects, while the psychopathic
+      individuals with high testosterone levels showed less aPFC activity and aPFCamygdala
+      coupling. This could provide a potential vulnerability factor explaining the
+      difference between the goal-directed successful psychopath and the unsuccessful
+      psychopath with reduced impulse control ( ;  ). We hypothesize that especially
+      psychopathic individuals with high testosterone levels fail to inhibit amygdala-driven
+      action tendencies using the aPFC during the control of emotional behavior.\n
+      \n\nEndogenous testosterone levels also modulated control-related activity in
+      the supramarginal gyrus and caudate nucleus of the psychopathy group. The supramarginal
+      gyrus was previously found to be involved during emotional control on the AA
+      task in a healthy student sample ( ). Previous work indicated that it plays
+      an important role in action organization ( ), and that psychopathic individuals
+      show reduced supramarginal gyrus activity compared with control subjects when
+      reasoning about other peoples emotional state ( ). The current findings, emphasizing
+      the role of supramarginal gyrus during emotional control in psychopathic offenders
+      with low testosterone levels, could indicate the facilitation of action preparation
+      in trials with affect-incongruent stimulusresponse mapping. The caudate nucleus
+      is important for incorporating predicted action outcome, when selecting the
+      most beneficial behavioral goal ( ), and has previously found to be larger in
+      psychopathy ( ). In light of these findings, our results suggest that psychopathic
+      offenders with low endogenous testosterone levels, as opposed to those with
+      high testosterone levels, have more interference of automatic action tendencies
+      and outcomes associated with the facial emotions (e.g., approachhappy) that
+      are opposite to the required actions during affect-incongruent trials ( ). \n\n\n###
+      Interpretational issues \n  \nIndividuals with psychopathy have been suggested
+      to have difficulty recognizing emotional expressions. However, this impairment
+      seems quite specific to fear, rather than the emotional expressions used here
+      (anger and happiness;  ;  ). Furthermore, the groups assessed in this study
+      made comparable numbers of errors, suggesting that psychopathic offenders had
+      no special difficulty in recognizing the clear emotional expressions used in
+      this study. \n\nThis study used a relatively subtle manipulation to target the
+      emotional control system. The rationale of this choice was to detect neural
+      vulnerability markers without affecting behavioral performance. Psychopathic
+      offenders performing a more salient behavioral version of the AA task showed
+      reduced avoidance of angry faces ( ). In this study, angry faces evoked numerically
+      similar behavioral effects ( ) and, additionally, aPFC effects (  post hoc   inspection
+      of extracted parameters). Although these observations could be interpreted as
+      a sign that psychopathic offenders have a tendency to approach angry faces,
+      those observations were not statistically significant between groups [behavioral
+      and aPFC group effects on angry faces:   p   > 0.2;   p   = 0.271;   z   = 2.54,
+      on the angrycongruency effect in healthy control subjects masked implicitly
+      by group (HC > PP)  angrycongruency interaction]. Future investigation is needed
+      to directly test whether more provocative paradigms induce specific effects
+      for angry faces. A previous study ( ) using this fMRI task in participants with
+      genetic susceptibility for developing aggressive disorders, also found no group-specific
+      behavioral effects. That study suggested that alterations of the aPFCamygdala
+      pathway might reflect a vulnerability factor for psychopathologies. \n\nPreviously,
+      endogenous testosterone modulated the aPFC and aPFCamygdala coupling in a sample
+      of healthy students ( ). In that study, a different demographic group of healthy
+      control subjects similarly showed a testosterone modulation of aPFCamygdala
+      coupling, but no testosterone modulation of aPFC activity. This difference in
+      the strength of testosterone-modulatory effects might be related to between-group
+      differences in age (mean healthy control subjects, 41; mean students, 22;  ),
+      educational level (staff of forensic psychiatric institute vs university students),
+      or general anxiety [STAI trait, lower in healthy control subjects of the current
+      study; mean (SD): 29 (4.4) and 34 (6.9), respectively;   t   = 2.605;   p   =
+      0.014]. A limitation of this study is the modest sample size. Our focus to exclude
+      moderating factors of comorbid disorders (except antisocial personality disorder)
+      and recent drug use has the advantage that the sample is relatively homogeneous,
+      but future studies using larger samples are needed for replication and to define
+      subsamples. \n\n\n### Conclusion \n  \nPsychopathic offenders showed reduced
+      aPFC activity and aPFCamygdala connectivity during control of emotional actions,
+      suggesting a decreased coordination of emotional information during rule-driven
+      behavior. Moreover, endogenous testosterone modulated the involvement of these
+      neural mechanisms. Psychopathic offenders with high testosterone levels showed
+      less involvement of the aPFC, aPFCamygdala connectivity, supramarginal gyrus,
+      and caudate nucleus, whereas psychopathic individuals with low testosterone
+      levels recruited the aPFC in a fashion similar to that of healthy control subjects.
+      These findings suggest that a lack of prefrontal control during emotional actions
+      may explain enhanced impulsivity in psychopathic offenders during emotionally
+      provoking situations. They outline a neuroendocrine model underlying impulsive
+      emotional behavior in psychopathy and support the relevance of assessing a potential
+      imbalance in testosterone function to guide treatment. It remains to be seen
+      whether these neuroendocrine alterations of emotional control are also present
+      in highly impulsive or antisocial individuals. \n\n\n \n\n Call the extractData
+      function to save the output."}], "model": "gpt-4o-2024-08-06", "response_format":
+      null, "temperature": 0, "tools": [{"type": "function", "function": {"name":
+      "extractData", "description": "Extract data from scientific text", "parameters":
+      {"$defs": {"GroupImaging": {"properties": {"count": {"description": "Number
+      of participants in this group", "title": "Count", "type": "integer"}, "diagnosis":
+      {"description": "Diagnosis of the group, if any", "title": "Diagnosis", "type":
+      "string"}, "group_name": {"description": "Group name, healthy or patients",
+      "enum": ["healthy", "patients"], "title": "Group Name", "type": "string"}, "subgroup_name":
+      {"description": "Subgroup name", "title": "Subgroup Name", "type": "string"},
+      "male_count": {"description": "Number of male participants in this group", "title":
+      "Male Count", "type": "integer"}, "female_count": {"description": "Number of
+      female participants in this group", "title": "Female Count", "type": "integer"},
+      "age_mean": {"description": "Mean age of participants in this group", "title":
+      "Age Mean", "type": "number"}, "age_range": {"description": "Age range of participants
+      in this group, separated by a dash", "title": "Age Range", "type": "string"},
+      "age_minimum": {"description": "Minimum age of participants in this group",
+      "title": "Age Minimum", "type": "integer"}, "age_maximum": {"description": "Maximum
+      age of participants in this group", "title": "Age Maximum", "type": "integer"},
+      "age_median": {"description": "Median age of participants in this group", "title":
+      "Age Median", "type": "integer"}, "imaging_sample": {"description": "Did this
+      subgroup undergo fMRI, MRI or neuroimaging, yes or no", "enum": ["yes", "no"],
+      "title": "Imaging Sample", "type": "string"}}, "required": ["count", "diagnosis",
+      "group_name", "subgroup_name", "male_count", "female_count", "age_mean", "age_range",
+      "age_minimum", "age_maximum", "age_median", "imaging_sample"], "title": "GroupImaging",
+      "type": "object"}}, "properties": {"groups": {"items": {"$ref": "#/$defs/GroupImaging"},
+      "title": "Groups", "type": "array"}}, "required": ["groups"], "title": "BaseDemographicsSchema",
+      "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '45702'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.37.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.37.1
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.8.10
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5xU226bQBB991es5hlXBF8S85YmvSpSGylKK4UIjZcBtll20e4S2bH87xVgA3ac
+        KqofLHTOzJnhMDObEWMgEggZ8BwdL0o5vry/WX1+ER+XV1+v1K3/6z7wMb359j27uJv/BK/O0Ms/
+        xN0+6wPXRSnJCa1amhtCR7Xq2fkk8CezRTBriEInJOu0rHTjqR4HfjAd+xdjf75LzLXgZCFkDyPG
+        GNs0/3WLKqEVhMz39khB1mJGEHZBjIHRskYArRXWoXLg9STXypGqu1aVlAPCaS1jjlL2hdvfZvDc
+        +4RSxvLpeXV5P7v9/fJlcZ2kn26eSVfy8segXiu9LpuG0krxzp8B3+HhUTHGQGHR5NLKGeTuGh0e
+        pTMGaLKqIOXq1mETQWZ0VdoIwodNBFxXykUQns28CBKBmdJW1GQEpV3zXJfocsEZN6IQCqWNwNtJ
+        xHX1NhKdqAs0nK2Wx/TbQgVKig96SOkA870IMKO4IFQRhM1naRGDKmv1g8l4Nm/kmkihRFEVEYTB
+        ZA/hagfN5p1eIoaKosBMqCy2WM9pI7smG8HWG5q0eGVSTihdvmb15Bgtma2auT9p0y72DZf+qXTo
+        0+J/fBpAvUVDsDNpCL7XpsctHMzddnTq+XGwUobSyqLc7doO33bLK3VWGr20R7sIqVDC5rEhtM1O
+        DFdztK/W1IHqYPuhNLooXez0E6ladhEspq0s9Nepp89mwY512qEc5E2nc++EZJyQQ9FciO4oceQ5
+        JX1uf5ywSoQeEKPB67/u55R2a0H9Nd4h3xOcU+koiUtDieCH79yHGaqH762wzuimYbBr66iIU6Ey
+        MqURzQWFtIzP0/mSJpQufRhtR38BAAD//wMAHJuMmkoGAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8e51c8f59b698f50-ORD
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Nov 2024 17:05:28 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=F4mY4QXGBcjotA3iBovyFBVRe3Ngh3Ne5kFp5hG5nG4-1732035928-1.0.1.1-Ga1lDpoRwCSCEcW05mMMxRET24NyLDVGuTrL7gXqNCZvvc4g_bEtp6SIeNjScJfSNGN3tukZ132HNUh0YQ.xTA;
+        path=/; expires=Tue, 19-Nov-24 17:35:28 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=aacJGoskncCVveVavy3aRRU5434Jj769ZRNH_gAQcXQ-1732035928689-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - university-of-texas-at-austin-8nppuy
+      openai-processing-ms:
+      - '3192'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '2000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '1989157'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 325ms
+      x-request-id:
+      - req_6f88a6359206a9dda8699903a9f9dbf5
+    status:
+      code: 200
+      message: OK
+version: 1
