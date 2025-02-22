@@ -198,6 +198,83 @@ class Pipeline(ABC):
             for db_id, study_inputs in dataset_inputs.items()
         }
 
+class BasePromptPipeline(Pipeline):
+    """ Pipeline that uses a prompt and a pydantic schema to extract information from text. """
+    
+    def __init__(
+        self,
+        extraction_model,
+        prompt_set,
+        prompt_config,
+        inputs=("text",),
+        input_sources=("pubget", "ace"),
+        env_variable=None,
+        env_file=None,
+        **kwargs
+    ):
+        super().__init__(inputs=inputs, input_sources=input_sources)
+        self.extraction_model = extraction_model
+        self.prompt_set = prompt_set
+        self.prompt_config = prompt_config
+        self.env_variable = env_variable
+        self.env_file = env_file
+        self.kwargs = kwargs
+
+
+    def _load_client(self):
+        """Load the client for the extraction model."""
+        api_key = self._get_api_key()
+        client = OpenAI(api_key=api_key)
+
+        return client
+    
+    def _get_api_key(self):
+        """Read the API key from the environment variable or file."""
+        if self.env_variable:
+            api_key = os.getenv(self.env_variable)
+            if api_key is not None:
+                return api_key
+        if self.env_file:
+            with open(self.env_file) as f:
+                return ''.join(f.read().strip().split("=")[1])
+        else:
+            raise ValueError("No API key provided")
+
+    def _run(self, study_inputs, n_cpus=1):
+        """Run the pipeline."""
+        extraction_client = self. _load_client(self.extraction_model)
+
+        if self.kwargs is not None:
+            self.prompt_config.update(self.kwargs)
+
+        with open(study_inputs["text"]) as f:
+            text = f.read()
+
+        self.prompt_config.pop('search_query', None)
+
+        # Extract
+        predictions = extract_from_text(
+            text,
+            model=extraction_model,
+            client=extraction_client,
+            **self.prompt_config
+        )
+
+        if not predictions:
+            logging.warning("No predictions found.")
+            return None, None
+
+        results = {
+            "predictions": predictions
+        }
+
+        if hasattr(self, "post_process"):
+            clean_preds = self.post_process(predictions)
+            results["clean_predictions"] = clean_preds
+
+        return results
+
+
 
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
