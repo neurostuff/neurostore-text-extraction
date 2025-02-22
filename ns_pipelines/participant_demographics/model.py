@@ -1,39 +1,59 @@
 """ Extract participant demographics from articles. """
 from . import prompts
-from .clean import clean_prediction
+import pandas as pd
+import numpy as np
 
 from ns_pipelines.pipeline import BasePromptPipeline
 
 
-class ParticipantDemographicsExtractor(IndependentPipeline):
+class ParticipantDemographicsExtractor(BasePromptPipeline):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
+    _prompts = prompts
 
-    def __init__(
-        self,
-        extraction_model,
-        prompt_set,
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        env_variable=None,
-        env_file=None,
-        **kwargs
-    ):
+    def post_process(self, prediction):
+        # Clean known issues with GPT demographics prediction
 
-        prompt_config = getattr(prompts, prompt_set)
+        meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
+        meta_keys = [k for k in meta_keys if k in prediction]
 
-        super().__init__(
-            inputs=inputs, 
-            input_sources=input_sources,
-            env_variable=env_variable,
-            env_file=env_file,
-            prompt_set=prompt_set,
-            extraction_model=extraction_model,
-            prompt_config=prompt_config,
-            kwargs=kwargs
+        # Convert JSON to DataFrame
+        prediction = pd.json_normalize(
+            prediction, record_path=["groups"],
+            meta=meta_keys
+            )
+        
+        prediction.columns = prediction.columns.str.replace(' ', '_')
+
+        prediction = prediction.fillna(value=np.nan)
+        prediction["group_name"] = prediction["group_name"].fillna("healthy")
+
+        # Drop rows where count is NA
+        prediction = prediction[~pd.isna(prediction["count"])]
+
+        # Set group_name to healthy if no diagnosis
+        prediction.loc[
+            (prediction["group_name"] != "healthy") & (pd.isna(prediction["diagnosis"])),
+            "group_name",
+        ] = "healthy"
+
+        # If no male count, substract count from female count columns
+        ix_male_miss = (pd.isna(prediction["male_count"])) & ~(
+            pd.isna(prediction["female_count"])
+        )
+        prediction.loc[ix_male_miss, "male_count"] = (
+            prediction.loc[ix_male_miss, "count"]
+            - prediction.loc[ix_male_miss, "female_count"]
         )
 
+        # Same for female count
+        ix_female_miss = (pd.isna(prediction["female_count"])) & ~(
+            pd.isna(prediction["male_count"])
+        )
+        prediction.loc[ix_female_miss, "female_count"] = (
+            prediction.loc[ix_female_miss, "count"]
+            - prediction.loc[ix_female_miss, "male_count"]
+        )
 
-    def post_process(self, predictions):
-        return clean_prediction(predictions)
+        return {"groups": prediction.to_dict(orient="records")}
