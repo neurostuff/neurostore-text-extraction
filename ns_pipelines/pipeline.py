@@ -73,21 +73,52 @@ class Pipeline(ABC):
     """Abstract pipeline class for processing data."""
 
     _version: str = None
+    _schema: Type[BaseModel] = None  # Required schema for validation
 
     def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace")):
+        if not self._schema:
+            raise ValueError("Subclass must define _schema class")
+            
         self.inputs = inputs
         self.input_sources = input_sources
         self._pipeline_type = inspect.getmro(self.__class__)[1].__name__.lower().rstrip("pipeline")
 
     @abstractmethod
-    def run(self, dataset: Any, output_directory: Path, **kwargs):
-        """Run the pipeline."""
+    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+        """Process a full dataset through the pipeline."""
         pass
 
+    def _process_inputs(self, study_inputs: Dict[str, Any], **kwargs) -> Dict:
+        """Process inputs and validate outputs."""
+        try:
+            results = self.run(study_inputs, **kwargs)
+            if results:
+                results = self.validate_predictions(results)
+            return results
+        except Exception as e:
+            logging.error(f"Pipeline execution failed: {e}")
+            return None
+            
     @abstractmethod
-    def _run(self, study_inputs: Dict[str, Any], **kwargs) -> Dict:
-        """Run the pipeline function."""
+    def run(self, study_inputs: Dict[str, Any], **kwargs) -> Dict:
+        """Run the core pipeline logic. To be implemented by subclasses."""
         pass
+
+    def validate_predictions(self, predictions: dict) -> Optional[dict]:
+        """Validate predictions against the schema.
+        
+        Args:
+            predictions: Raw predictions from pipeline
+            
+        Returns:
+            Validated predictions or None if validation fails
+        """
+        try:
+            validated = self._schema.model_validate(predictions)
+            return validated.model_dump()
+        except Exception as e:
+            logging.error(f"Validation error: {e}")
+            return None
 
     def create_directory_hash(self, dataset: Any) -> str:
         """Create a hash for the dataset."""
@@ -210,8 +241,8 @@ class Pipeline(ABC):
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
-    def run(self, dataset: Any, output_directory: Path, **kwargs):
-        """Run the pipeline for studies that are independent of eachother."""
+    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+        """Process individual studies through the pipeline independently."""
         hash_str = self.create_directory_hash(dataset)
         hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
 
@@ -228,10 +259,10 @@ class IndependentPipeline(Pipeline):
             study_outdir = hash_outdir / db_id
             study_outdir.mkdir(parents=True, exist_ok=True)
 
-            results = self._run(study_inputs, **kwargs)
-            FileManager.write_json(study_outdir / "results.json", results)
-
-            self.write_study_info(hash_outdir, db_id, study_inputs)
+            results = self._process_inputs(study_inputs, **kwargs)
+            if results is not None:  # Only save if validation succeeded
+                FileManager.write_json(study_outdir / "results.json", results)
+                self.write_study_info(hash_outdir, db_id, study_inputs)
 
 
 class DependentPipeline(Pipeline):
@@ -244,8 +275,8 @@ class DependentPipeline(Pipeline):
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
 
-    def run(self, dataset: Any, output_directory: Path, **kwargs):
-        """Run the pipeline for dependent studies."""
+    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+        """Process all studies through the pipeline as a group."""
         hash_str = self.create_directory_hash(dataset)
         hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
 
@@ -262,12 +293,13 @@ class DependentPipeline(Pipeline):
         self.write_pipeline_info(hash_outdir)
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
-        grouped_results = self._run(all_study_inputs, **kwargs)
-        for db_id, results in grouped_results.items():
-            study_outdir = hash_outdir / db_id
-            study_outdir.mkdir(parents=True, exist_ok=True)
-            FileManager.write_json(study_outdir / "results.json", results)
-            self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id])
+        grouped_results = self._process_inputs(all_study_inputs, **kwargs)
+        if grouped_results is not None:  # Only process if validation succeeded
+            for db_id, results in grouped_results.items():
+                study_outdir = hash_outdir / db_id
+                study_outdir.mkdir(parents=True, exist_ok=True)
+                FileManager.write_json(study_outdir / "results.json", results)
+                self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id])
 
 
 class BasePromptPipeline(IndependentPipeline):
@@ -298,8 +330,6 @@ class BasePromptPipeline(IndependentPipeline):
         """
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
-        if not self._schema:
-            raise ValueError("Subclass must define _schema class")
 
         super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model
@@ -367,31 +397,10 @@ class BasePromptPipeline(IndependentPipeline):
         Returns:
             Processed predictions or None if validation fails
         """
-        try:
-            validated = self._schema.model_validate(predictions)
-            return validated.model_dump()
-        except Exception as e:
-            logging.error(f"Validation error: {e}")
-            return None
-
-    def validate_predictions(self, predictions: dict) -> Optional[dict]:
-        """Validate predictions against the schema.
-        
-        Args:
-            predictions: Raw predictions from model
-            
-        Returns:
-            Validated predictions or None if validation fails
-        """
-        try:
-            validated = self._schema.model_validate(predictions)
-            return validated.model_dump()
-        except Exception as e:
-            logging.error(f"Validation error: {e}")
-            return None
-
-    def _run(self, study_inputs: Dict[str, Path], n_cpus: int = 1) -> Dict[str, Any]:
-        """Run the extraction pipeline.
+        return predictions
+    
+    def run(self, study_inputs: Dict[str, Path], n_cpus: int = 1) -> Dict[str, Any]:
+        """Run the core extraction pipeline logic.
         
         Args:
             study_inputs: Dictionary of input file paths
@@ -400,55 +409,43 @@ class BasePromptPipeline(IndependentPipeline):
         Returns:
             Dictionary containing predictions and clean_predictions
         """
-        try:
-            # Initialize client
-            client = self._load_client()
-            
-            # Read and pre-process text
-            with open(study_inputs["text"]) as f:
-                text = f.read()
-            text = self.pre_process(text)
+        # Initialize client
+        client = self._load_client()
+        
+        # Read and pre-process text
+        with open(study_inputs["text"]) as f:
+            text = f.read()
+        text = self.pre_process(text)
 
-            # Create prompt configuration
-            prompt_config = {
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": self._prompt.replace("${text}", text) + "\n Call the extractData function to save the output."
-                    }
-                ],
-                "output_schema": self._schema.model_json_schema()
-            }
-            if self.kwargs:
-                prompt_config.update(self.kwargs)
+        # Create prompt configuration
+        prompt_config = {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": self._prompt.replace("${text}", text) + "\n Call the extractData function to save the output."
+                }
+            ],
+            "output_schema": self._schema.model_json_schema()
+        }
+        if self.kwargs:
+            prompt_config.update(self.kwargs)
 
-            # Extract predictions
-            predictions = extract_from_text(
-                text,
-                model=self.extraction_model,
-                client=client,
-                **prompt_config
-            )
+        # Extract predictions
+        predictions = extract_from_text(
+            text,
+            model=self.extraction_model,
+            client=client,
+            **prompt_config
+        )
 
-            if not predictions:
-                logging.warning("No predictions found")
-                return {"predictions": None, "clean_predictions": None}
-
-            # Validate predictions
-            clean_predictions = self.validate_predictions(predictions)
-            
-            # Allow additional post-processing by subclasses
-            if hasattr(self, "post_process"):
-                clean_predictions = self.post_process(clean_predictions)
-            
-            return {
-                "predictions": predictions,
-                "clean_predictions": clean_predictions
-            }
-
-        except Exception as e:
-            logging.error(f"Pipeline execution failed: {e}")
-            return {
-                "predictions": None,
-                "clean_predictions": None
-            }
+        if not predictions:
+            logging.warning("No predictions found")
+            return {"predictions": None, "clean_predictions": None}
+        
+        # Allow additional post-processing by subclasses
+        clean_predictions = self.post_process(predictions)
+        
+        return {
+            "predictions": predictions,
+            "clean_predictions": clean_predictions
+        }

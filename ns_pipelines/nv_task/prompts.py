@@ -1,5 +1,3 @@
-from .schemas import StudyMetadataModel
-
 base_message = """
 You will be provided with a text sample from a scientific journal.
 The sample is delimited with triple backticks.
@@ -11,14 +9,3 @@ For any extracted text, maintain fidelity to the source. Avoid inferring informa
 
 Text sample: ${text}
 """
-
-
-ZERO_SHOT_TASK = {
-    "messages": [
-        {
-            "role": "user",
-            "content": base_message + "\n Call the extractData function to save the output."
-        }
-    ],
-    "output_schema": StudyMetadataModel.model_json_schema()
-}
