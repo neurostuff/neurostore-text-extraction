@@ -26,16 +26,6 @@ class BaseDemographicsSchema(BaseModel):
     groups: List[GroupImaging]
 
 
-class RelevantSentSchema(BaseDemographicsSchema):
-    relevant_sentences: str = Field(
-        description="Highlight the most relevant sentence from the text. Maximum 50 charachters.")
-
-
-class GroupAssesmentType(GroupBase):
-    assesment_type: str = Field(
-        description="Was the assesment for this group behavioral, imaging, or other? ",
-        enum=["behavioral", "imaging", "other"])
-
-
-class FewShot2Schema(BaseModel):
-    groups: List[GroupAssesmentType]
+class OutputSchema(BaseModel):
+    predictions: BaseDemographicsSchema
+    clean_predictions: BaseDemographicsSchema

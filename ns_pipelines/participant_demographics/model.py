@@ -12,7 +12,7 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
 
     _version = "1.0.0"
     _prompt = base_message
-    _schema = ParticipantDemographicsModel
+    _output_schema = ParticipantDemographicsModel
 
     def post_process(self, prediction):
         # Clean known issues with GPT demographics prediction

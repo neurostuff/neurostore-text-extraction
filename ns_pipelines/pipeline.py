@@ -73,11 +73,12 @@ class Pipeline(ABC):
     """Abstract pipeline class for processing data."""
 
     _version: str = None
-    _schema: Type[BaseModel] = None  # Required schema for validation
+    _output_schema: Type[BaseModel] = None  # Required schema for output validation
+    _post_output_schema: Type[BaseModel] = None  # Optional schema for cleaned output validation
 
     def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace")):
-        if not self._schema:
-            raise ValueError("Subclass must define _schema class")
+        if not self._output_schema:
+            raise ValueError("Subclass must define _output_schema class")
             
         self.inputs = inputs
         self.input_sources = input_sources
@@ -88,24 +89,54 @@ class Pipeline(ABC):
         """Process a full dataset through the pipeline."""
         pass
 
-    def _process_inputs(self, study_inputs: Dict[str, Any], **kwargs) -> Dict:
-        """Process inputs and validate outputs."""
+    def _process_inputs(self, study_inputs: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+        """Process inputs through the full pipeline flow: pre-process, execute, post-process, validate.
+        
+        Returns a dict with:
+            - predictions: Validated raw predictions
+            - post_predictions: Validated post-processed predictions (if any)
+        """
         try:
-            results = self.run(study_inputs, **kwargs)
-            if results:
-                results = self.validate_predictions(results)
-            return results
+            # Pre-process inputs
+            processed_inputs = self.pre_process(study_inputs)
+            if not processed_inputs:
+                logging.error("Pre-processing returned no inputs")
+                return None
+
+            # Execute core pipeline logic
+            raw_predictions = self.execute(processed_inputs, **kwargs)
+            if not raw_predictions:
+                return None
+
+            # Post-process predictions
+            try:
+                post_predictions = self.post_process(raw_predictions)
+            except Exception as e:
+                logging.error(f"Post-processing failed: {e}")
+                post_predictions = None
+
+            # Validate predictions
+            validated_predictions = self.validate_predictions(raw_predictions)
+            if validated_predictions is None:
+                return None
+
+            # Validate post-processed predictions if they exist
+            validated_post = None
+            if post_predictions is not None:
+                validated_post = self.validate_post_predictions(post_predictions)
+
+            # Return results
+            return {
+                'predictions': validated_predictions,
+                'post_predictions': validated_post
+            }
+
         except Exception as e:
             logging.error(f"Pipeline execution failed: {e}")
             return None
-            
-    @abstractmethod
-    def run(self, study_inputs: Dict[str, Any], **kwargs) -> Dict:
-        """Run the core pipeline logic. To be implemented by subclasses."""
-        pass
 
     def validate_predictions(self, predictions: dict) -> Optional[dict]:
-        """Validate predictions against the schema.
+        """Validate raw predictions against the output schema.
         
         Args:
             predictions: Raw predictions from pipeline
@@ -114,11 +145,63 @@ class Pipeline(ABC):
             Validated predictions or None if validation fails
         """
         try:
-            validated = self._schema.model_validate(predictions)
+            validated = self._output_schema.model_validate(predictions)
             return validated.model_dump()
         except Exception as e:
-            logging.error(f"Validation error: {e}")
+            logging.error(f"Raw prediction validation error: {e}")
             return None
+
+    def validate_post_predictions(self, post_predictions: dict) -> Optional[dict]:
+        """Validate post-processed predictions against the post-processing schema (if defined) or output schema.
+        
+        Args:
+            post_predictions: Post-processed predictions from pipeline
+            
+        Returns:
+            Validated post-processed predictions or None if validation fails
+        """
+        try:
+            schema = self._post_output_schema or self._output_schema
+            validated = schema.model_validate(post_predictions)
+            return validated.model_dump()
+        except Exception as e:
+            logging.error(f"Post-processed prediction validation error: {e}")
+            return None
+
+    def pre_process(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+        """Pre-process inputs before pipeline execution. Override in subclass if needed.
+        
+        Args:
+            inputs: Raw inputs to the pipeline
+            
+        Returns:
+            Processed inputs for pipeline execution
+        """
+        return inputs
+    
+    def post_process(self, predictions: dict) -> dict:
+        """Post-process predictions before validation. Override in subclass if needed.
+        
+        Args:
+            predictions: Raw predictions from pipeline
+            
+        Returns:
+            Processed predictions or None if processing fails
+        """
+        return predictions
+
+    @abstractmethod
+    def execute(self, processed_inputs: Dict[str, Any], **kwargs) -> Dict:
+        """Execute the core pipeline logic using pre-processed inputs.
+        
+        Args:
+            processed_inputs: Pre-processed inputs ready for pipeline execution
+            **kwargs: Additional arguments for pipeline execution
+            
+        Returns:
+            Raw predictions from pipeline execution
+        """
+        pass
 
     def create_directory_hash(self, dataset: Any) -> str:
         """Create a hash for the dataset."""
@@ -307,7 +390,7 @@ class BasePromptPipeline(IndependentPipeline):
     
     # Class attributes to be defined by subclasses
     _prompt: str = None  # Prompt template for extraction
-    _schema: Type[BaseModel] = None  # Pydantic schema for validation
+    _extraction_schema: Type[BaseModel] = None  # Schema used for LLM extraction (if not defined, uses _output_schema)
 
     def __init__(
         self,
@@ -330,6 +413,8 @@ class BasePromptPipeline(IndependentPipeline):
         """
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
+        if not self._extraction_schema:
+            raise ValueError("Subclass must define _extraction_schema class")
 
         super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model
@@ -377,45 +462,22 @@ class BasePromptPipeline(IndependentPipeline):
                 
         return None
 
-    def pre_process(self, text: str) -> str:
-        """Pre-process text before extraction. Override in subclass if needed.
+    def execute(self, inputs: Dict[str, Any], **kwargs) -> dict:
+        """Execute LLM-based extraction using processed inputs.
         
         Args:
-            text: Raw text to process
+            processed_inputs: Dictionary containing processed text and initialized client
+            **kwargs: Additional arguments (like n_cpus)
             
         Returns:
-            Processed text
-        """
-        return text
-
-    def post_process(self, predictions: dict) -> Optional[dict]:
-        """Post-process and validate predictions. Override in subclass if needed.
-        
-        Args:
-            predictions: Raw predictions from model
-            
-        Returns:
-            Processed predictions or None if validation fails
-        """
-        return predictions
-    
-    def run(self, study_inputs: Dict[str, Path], n_cpus: int = 1) -> Dict[str, Any]:
-        """Run the core extraction pipeline logic.
-        
-        Args:
-            study_inputs: Dictionary of input file paths
-            n_cpus: Number of CPUs to use
-            
-        Returns:
-            Dictionary containing predictions and clean_predictions
+            Raw predictions from LLM
         """
         # Initialize client
         client = self._load_client()
-        
-        # Read and pre-process text
-        with open(study_inputs["text"]) as f:
+
+        # Read 
+        with open(inputs['text'], 'r') as f:
             text = f.read()
-        text = self.pre_process(text)
 
         # Create prompt configuration
         prompt_config = {
@@ -425,7 +487,7 @@ class BasePromptPipeline(IndependentPipeline):
                     "content": self._prompt.replace("${text}", text) + "\n Call the extractData function to save the output."
                 }
             ],
-            "output_schema": self._schema.model_json_schema()
+            "output_schema": self._extraction_schema.model_json_schema()
         }
         if self.kwargs:
             prompt_config.update(self.kwargs)
@@ -440,12 +502,6 @@ class BasePromptPipeline(IndependentPipeline):
 
         if not predictions:
             logging.warning("No predictions found")
-            return {"predictions": None, "clean_predictions": None}
-        
-        # Allow additional post-processing by subclasses
-        clean_predictions = self.post_process(predictions)
-        
-        return {
-            "predictions": predictions,
-            "clean_predictions": clean_predictions
-        }
+            return None
+            
+        return predictions

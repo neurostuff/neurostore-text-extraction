@@ -53,3 +53,5 @@ class StudyMetadataModel(BaseModel):
     BehavioralTasks: List[TaskMetadataModel] = Field(
         description="List of behavioral tasks performed by the subjects outside the scanner and their metadata. If the study did not include behavioral tasks, leave this field empty."
         )
+
+# No wrapper schema needed - validation is handled by pipeline using individual schemas
