@@ -1,99 +1,32 @@
-""" Extract participant demographics from HTML files. """
-import os
+"""Extract task information from scientific papers."""
+from .schemas import StudyMetadataModel
+from ns_pipelines.pipeline import BasePromptPipeline
 
-from publang.extract import extract_from_text
-from openai import OpenAI
-import logging
-
-from . import prompts
-
-from ns_pipelines.pipeline import IndependentPipeline
-
-
-def extract(extraction_model, extraction_client, text, prompt_set='', **extract_kwargs):
-    extract_kwargs.pop('search_query', None)
-
-    # Extract
-    predictions = extract_from_text(
-        text,
-        model=extraction_model,
-        client=extraction_client,
-        **extract_kwargs
-    )
-
-    if not predictions:
-        logging.warning("No predictions found.")
-        return None, None
-
-    return predictions
-
-
-def _load_client(model_name, api_key):
-    if 'gpt' in model_name:
-        client = OpenAI(api_key=api_key)
-    else:
-        raise ValueError(f"Model {model_name} not supported")
-
-    return client
-
-
-def _load_prompt_config(prompt_set):
-    return getattr(prompts, prompt_set)
-
-
-class TaskExtractor(IndependentPipeline):
-    """Task information extraction pipeline."""
+class TaskExtractor(BasePromptPipeline):
+    """Task information extraction pipeline using LLM prompts."""
 
     _version = "1.0.0"
+    _schema = StudyMetadataModel  # Pydantic schema for validation
+    _prompt = """
+You will be provided with a text sample from a scientific journal.
+The sample is delimited with triple backticks.
 
-    def __init__(
-        self,
-        extraction_model,
-        prompt_set,
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        env_variable=None,
-        env_file=None,
-        **kwargs
-    ):
-        super().__init__(inputs=inputs, input_sources=input_sources)
-        self.extraction_model = extraction_model
-        self.prompt_set = prompt_set
-        self.env_variable = env_variable
-        self.env_file = env_file
-        self.kwargs = kwargs
+Your task is to identify information about the design of the fMRI task and analysis of the neuroimaging data.
+If any information is missing or not explicitly stated in the text, return `null` for that field.
 
-    def get_api_key(self):
-        """Read the API key from the environment variable or file."""
-        if self.env_variable:
-            api_key = os.getenv(self.env_variable)
-            if api_key is not None:
-                return api_key
-        if self.env_file:
-            with open(self.env_file) as f:
-                return ''.join(f.read().strip().split("=")[1])
-        else:
-            raise ValueError("No API key provided")
+For any extracted text, maintain fidelity to the source. Avoid inferring information not explicitly stated. If a field cannot be completed, return `null`.
 
-    def _run(self, study_inputs, n_cpus=1):
-        """Run the participant demographics extraction pipeline."""
-        api_key = self.get_api_key()
-        extraction_client = _load_client(self.extraction_model, api_key)
+Text sample: ${text}
+"""
 
-        prompt_config = _load_prompt_config(self.prompt_set)
-        if self.kwargs is not None:
-            prompt_config.update(self.kwargs)
-
-        with open(study_inputs["text"]) as f:
-            text = f.read()
-
-        predictions = extract(
-            self.extraction_model,
-            extraction_client,
-            text,
-            prompt_set=self.prompt_set,
-            **prompt_config
-        )
-
-        # Save predictions
-        return {"predictions": predictions}
+    def pre_process(self, text: str) -> str:
+        """Pre-process the text before extraction if needed.
+        
+        Args:
+            text: Raw text to process
+            
+        Returns:
+            Processed text
+        """
+        # Currently no pre-processing needed, but method available for future use
+        return text

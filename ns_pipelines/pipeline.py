@@ -2,10 +2,17 @@ from datetime import datetime
 import inspect
 import json
 import hashlib
+import os
+import logging
 from abc import ABC, abstractmethod
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Any, List, Union
+from typing import Dict, Any, List, Union, Optional, Type
+
+from pydantic import BaseModel
+from openai import OpenAI
+
+from publang.extract import extract_from_text
 
 
 INPUTS = [
@@ -264,76 +271,184 @@ class DependentPipeline(Pipeline):
 
 
 class BasePromptPipeline(IndependentPipeline):
-    """ Pipeline that uses a prompt and a pydantic schema to extract information from text. """
+    """Pipeline that uses a prompt and a pydantic schema to extract information from text."""
     
+    # Class attributes to be defined by subclasses
+    _prompt: str = None  # Prompt template for extraction
+    _schema: Type[BaseModel] = None  # Pydantic schema for validation
+
     def __init__(
         self,
-        extraction_model,
-        prompt_set,
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        env_variable=None,
-        env_file=None,
+        extraction_model: str,
+        inputs: tuple = ("text",),
+        input_sources: tuple = ("pubget", "ace"),
+        env_variable: Optional[str] = None,
+        env_file: Optional[str] = None,
         **kwargs
     ):
+        """Initialize the prompt-based pipeline.
+        
+        Args:
+            extraction_model: Model to use for extraction (e.g., 'gpt-4')
+            inputs: Input types required
+            input_sources: Valid input sources
+            env_variable: Environment variable containing API key
+            env_file: Path to file containing API key
+            **kwargs: Additional configuration parameters
+        """
+        if not self._prompt:
+            raise ValueError("Subclass must define _prompt template")
+        if not self._schema:
+            raise ValueError("Subclass must define _schema class")
+
         super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model
-        self.prompt_set = prompt_set
-        self.prompt_config = getattr(self._prompts, prompt_set)
         self.env_variable = env_variable
         self.env_file = env_file
         self.kwargs = kwargs
 
-
-    def _load_client(self):
-        """Load the client for the extraction model."""
+    def _load_client(self) -> OpenAI:
+        """Load the OpenAI client.
+        
+        Returns:
+            OpenAI client instance
+            
+        Raises:
+            ValueError: If no API key provided or unsupported model
+        """
         api_key = self._get_api_key()
-        client = OpenAI(api_key=api_key)
-
-        return client
+        if not api_key:
+            raise ValueError("No API key provided")
+        
+        if 'gpt' in self.extraction_model.lower():
+            return OpenAI(api_key=api_key)
+        raise ValueError(f"Model {self.extraction_model} not supported")
     
-    def _get_api_key(self):
-        """Read the API key from the environment variable or file."""
+    def _get_api_key(self) -> Optional[str]:
+        """Read the API key from environment variable or file.
+        
+        Returns:
+            API key if found, None otherwise
+        """
         if self.env_variable:
             api_key = os.getenv(self.env_variable)
-            if api_key is not None:
+            if api_key:
                 return api_key
+                
         if self.env_file:
-            with open(self.env_file) as f:
-                return ''.join(f.read().strip().split("=")[1])
-        else:
-            raise ValueError("No API key provided")
+            try:
+                with open(self.env_file) as f:
+                    key_parts = f.read().strip().split("=")
+                    if len(key_parts) == 2:
+                        return key_parts[1]
+                    logging.warning("Invalid format in API key file")
+            except FileNotFoundError:
+                logging.error(f"API key file not found: {self.env_file}")
+                
+        return None
 
-    def _run(self, study_inputs, n_cpus=1):
-        """Run the pipeline."""
-        extraction_client = self. _load_client(self.extraction_model)
+    def pre_process(self, text: str) -> str:
+        """Pre-process text before extraction. Override in subclass if needed.
+        
+        Args:
+            text: Raw text to process
+            
+        Returns:
+            Processed text
+        """
+        return text
 
-        if self.kwargs is not None:
-            self.prompt_config.update(self.kwargs)
+    def post_process(self, predictions: dict) -> Optional[dict]:
+        """Post-process and validate predictions. Override in subclass if needed.
+        
+        Args:
+            predictions: Raw predictions from model
+            
+        Returns:
+            Processed predictions or None if validation fails
+        """
+        try:
+            validated = self._schema.model_validate(predictions)
+            return validated.model_dump()
+        except Exception as e:
+            logging.error(f"Validation error: {e}")
+            return None
 
-        with open(study_inputs["text"]) as f:
-            text = f.read()
+    def validate_predictions(self, predictions: dict) -> Optional[dict]:
+        """Validate predictions against the schema.
+        
+        Args:
+            predictions: Raw predictions from model
+            
+        Returns:
+            Validated predictions or None if validation fails
+        """
+        try:
+            validated = self._schema.model_validate(predictions)
+            return validated.model_dump()
+        except Exception as e:
+            logging.error(f"Validation error: {e}")
+            return None
 
-        self.prompt_config.pop('search_query', None)
+    def _run(self, study_inputs: Dict[str, Path], n_cpus: int = 1) -> Dict[str, Any]:
+        """Run the extraction pipeline.
+        
+        Args:
+            study_inputs: Dictionary of input file paths
+            n_cpus: Number of CPUs to use
+            
+        Returns:
+            Dictionary containing predictions and clean_predictions
+        """
+        try:
+            # Initialize client
+            client = self._load_client()
+            
+            # Read and pre-process text
+            with open(study_inputs["text"]) as f:
+                text = f.read()
+            text = self.pre_process(text)
 
-        # Extract
-        predictions = extract_from_text(
-            text,
-            model=extraction_model,
-            client=extraction_client,
-            **self.prompt_config
-        )
+            # Create prompt configuration
+            prompt_config = {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": self._prompt.replace("${text}", text) + "\n Call the extractData function to save the output."
+                    }
+                ],
+                "output_schema": self._schema.model_json_schema()
+            }
+            if self.kwargs:
+                prompt_config.update(self.kwargs)
 
-        if not predictions:
-            logging.warning("No predictions found.")
-            return None, None
+            # Extract predictions
+            predictions = extract_from_text(
+                text,
+                model=self.extraction_model,
+                client=client,
+                **prompt_config
+            )
 
-        results = {
-            "predictions": predictions
-        }
+            if not predictions:
+                logging.warning("No predictions found")
+                return {"predictions": None, "clean_predictions": None}
 
-        if hasattr(self, "post_process"):
-            clean_preds = self.post_process(predictions)
-            results["clean_predictions"] = clean_preds
+            # Validate predictions
+            clean_predictions = self.validate_predictions(predictions)
+            
+            # Allow additional post-processing by subclasses
+            if hasattr(self, "post_process"):
+                clean_predictions = self.post_process(clean_predictions)
+            
+            return {
+                "predictions": predictions,
+                "clean_predictions": clean_predictions
+            }
 
-        return results
+        except Exception as e:
+            logging.error(f"Pipeline execution failed: {e}")
+            return {
+                "predictions": None,
+                "clean_predictions": None
+            }

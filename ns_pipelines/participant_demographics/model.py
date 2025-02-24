@@ -1,5 +1,6 @@
 """ Extract participant demographics from articles. """
-from . import prompts
+from .prompts import base_message
+from .schemas import ParticipantDemographicsModel
 import pandas as pd
 import numpy as np
 
@@ -10,7 +11,8 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
-    _prompts = prompts
+    _prompt = base_message
+    _schema = ParticipantDemographicsModel
 
     def post_process(self, prediction):
         # Clean known issues with GPT demographics prediction
