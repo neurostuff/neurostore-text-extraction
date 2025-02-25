@@ -1,10 +1,5 @@
 from pathlib import Path
 import pytest
-import os
-
-if not os.environ.get("OPENAI_API_KEY", None):
-    # This is a test key and should not be used for production
-    os.environ["OPENAI_API_KEY"] = "TEST_OPENAI_API_KEY"
 
 @pytest.fixture
 def sample_data():
