@@ -7,13 +7,13 @@ from ns_pipelines.dataset import Dataset
 from ns_pipelines.nv_task.schemas import StudyMetadataModel, fMRITaskMetadataModel, TaskMetadataModel
 
 
-@pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
+@pytest.mark.vcr(record_mode="once")
 def test_TaskExtractor(sample_data, tmp_path):
     """Test the task extraction pipeline."""
     # Initialize extractor
     task_extractor = TaskExtractor(
         extraction_model="gpt-4o-mini-2024-07-18",
-        env_variable="MYOPENAI_API_KEY",
+        env_variable="OPENAI_API_KEY",
     )
     dataset = Dataset(sample_data)
     output_dir = tmp_path / "task_extraction"
