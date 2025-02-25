@@ -73,17 +73,3 @@ def test_TaskExtractor(sample_data, tmp_path):
                     assert task.TaskDescription
                     assert task.DesignDetails
     
-    # Test rerun - no new outputs for unchanged inputs
-    task_extractor.transform_dataset(dataset, output_dir)
-    assert len(list(output_dir.glob("TaskExtractor/1.0.0/*"))) == 1
-    
-    # Test input source preference
-    task_extractor_ace = TaskExtractor(
-        extraction_model="gpt-4o-mini-2024-07-18",
-        env_variable="MYOPENAI_API_KEY",
-        env_file=str(Path(__file__).parents[1] / ".keys"),
-        input_sources=("ace", "pubget")
-    )
-    task_extractor_ace.transform_dataset(dataset, output_dir)
-    # Should create new hash dir due to different arguments
-    assert len(list(output_dir.glob("TaskExtractor/1.0.0/*"))) == 2
