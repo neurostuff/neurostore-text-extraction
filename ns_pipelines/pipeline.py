@@ -184,11 +184,13 @@ class Pipeline(ABC):
         """
         pass
 
-    def create_directory_hash(self, dataset: Any) -> str:
+    def create_directory_hash(self, dataset: Any, output_directory: Path) -> Tuple[Path, str]:
         """Create a hash for the dataset."""
         dataset_str = self._serialize_dataset_keys(dataset)
         arg_str = self._serialize_pipeline_args()
-        return hashlib.shake_256(f"{dataset_str}_{arg_str}".encode()).hexdigest(6)
+        hash_str = hashlib.shake_256(f"{dataset_str}_{arg_str}".encode()).hexdigest(6)
+        outdir = output_directory / self.__class__.__name__ / self._version / hash_str
+        return outdir, hash_str
 
     def filter_inputs(self, output_directory: Path, dataset: Any) -> bool:
         """Filter inputs based on the pipeline type."""
@@ -309,8 +311,7 @@ class IndependentPipeline(Pipeline):
 
     def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process individual studies through the pipeline independently."""
-        hash_str = self.create_directory_hash(dataset)
-        hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
+        hash_outdir, hash_str = self.create_directory_hash(dataset)
 
         if not hash_outdir.exists():
             hash_outdir.mkdir(parents=True)
@@ -348,8 +349,7 @@ class DependentPipeline(Pipeline):
 
     def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process all studies through the pipeline as a group."""
-        hash_str = self.create_directory_hash(dataset)
-        hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
+        hash_outdir, hash_str = self.create_directory_hash(dataset)
 
         # Check if there are any changes for dependent mode
         if not self.check_for_changes(output_directory, dataset):
@@ -360,8 +360,8 @@ class DependentPipeline(Pipeline):
         if hash_outdir.exists():
             hash_outdir = FileManager.get_next_available_dir(hash_outdir)
         hash_outdir.mkdir(parents=True, exist_ok=True)
-
         self.write_pipeline_info(hash_outdir)
+        
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
         grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
