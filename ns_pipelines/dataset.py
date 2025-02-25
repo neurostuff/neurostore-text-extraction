@@ -141,8 +141,8 @@ class Dataset:
             input_directory = Path(input_directory)
         
         if not input_directory.exists():
-            raise ValueError(f"Input directory {input_directory} does not
-            exist.")
+            raise ValueError(
+                f"Input directory {input_directory} does not exist.")
             
         pattern = re.compile(r'^[a-zA-Z0-9]{12}$')
         sub_directories = input_directory.glob("[0-9A-Za-z]*")

@@ -1,6 +1,6 @@
 """ Extract participant demographics from articles. """
 from .prompts import base_message
-from .schemas import ParticipantDemographicsModel
+from .schemas import BaseDemographicsSchema
 import pandas as pd
 import numpy as np
 
@@ -12,7 +12,7 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
 
     _version = "1.0.0"
     _prompt = base_message
-    _output_schema = ParticipantDemographicsModel
+    _output_schema = BaseDemographicsSchema
 
     def post_process(self, result):
         # Clean known issues with GPT demographics result

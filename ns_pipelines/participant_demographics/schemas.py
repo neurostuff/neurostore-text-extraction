@@ -24,8 +24,3 @@ class GroupImaging(GroupBase):
 
 class BaseDemographicsSchema(BaseModel):
     groups: List[GroupImaging]
-
-
-class OutputSchema(BaseModel):
-    results: BaseDemographicsSchema
-    clean_results: BaseDemographicsSchema

@@ -84,7 +84,7 @@ class Pipeline(ABC):
         self._pipeline_type = inspect.getmro(self.__class__)[1].__name__.lower().rstrip("pipeline")
 
     @abstractmethod
-    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process a full dataset through the pipeline."""
         pass
 
@@ -250,6 +250,8 @@ class Pipeline(ABC):
         current_args = {
                 arg: getattr(self, arg) for arg in inspect.signature(self.__init__).parameters.keys()
             }
+        
+        current_args = json.loads(json.dumps(current_args))
 
         for d in result_directory.glob(f"*"):
             if not d.is_dir():
@@ -305,29 +307,34 @@ class Pipeline(ABC):
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
-    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process individual studies through the pipeline independently."""
         hash_str = self.create_directory_hash(dataset)
         hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
 
-        # If the directory exists, find the next available directory with a suffix like "-1", "-2", etc.
-        if hash_outdir.exists():
-            hash_outdir = FileManager.get_next_available_dir(hash_outdir)
-        hash_outdir.mkdir(parents=True, exist_ok=True)
+        if not hash_outdir.exists():
+            hash_outdir.mkdir(parents=True)
+            self.write_pipeline_info(hash_outdir)
 
-        self.write_pipeline_info(hash_outdir)
         # Process each study individually
         filtered_dataset = self.filter_inputs(output_directory, dataset)
         for db_id, study in filtered_dataset.data.items():
             study_inputs = self.collect_study_inputs(study)
             study_outdir = hash_outdir / db_id
-            study_outdir.mkdir(parents=True, exist_ok=True)
 
-            results = self._process_inputs(study_inputs, **kwargs)
-            if results is not None:  # Only save if validation succeeded
-                FileManager.write_json(study_outdir / "results.json", results)
-                self.write_study_info(hash_outdir, db_id, study_inputs)
+            # If directory exists, this study has already been processed
+            if study_outdir.exists():
+                continue
 
+            study_outdir.mkdir(parents=True)
+
+            outputs = self._process_inputs(study_inputs, **kwargs)
+            if outputs:
+                for output_type, output in outputs.items():
+                    if output is not None:  # Only save if validation succeeded
+                        FileManager.write_json(study_outdir / f"{output_type}.json", output)
+                        if output_type == "results":
+                            self.write_study_info(hash_outdir, db_id, study_inputs)
 
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
@@ -339,7 +346,7 @@ class DependentPipeline(Pipeline):
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
 
-    def process_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process all studies through the pipeline as a group."""
         hash_str = self.create_directory_hash(dataset)
         hash_outdir = output_directory / self.__class__.__name__ / self._version / hash_str
@@ -357,13 +364,24 @@ class DependentPipeline(Pipeline):
         self.write_pipeline_info(hash_outdir)
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
-        grouped_results = self._process_inputs(all_study_inputs, **kwargs)
-        if grouped_results is not None:  # Only process if validation succeeded
-            for db_id, results in grouped_results.items():
-                study_outdir = hash_outdir / db_id
-                study_outdir.mkdir(parents=True, exist_ok=True)
-                FileManager.write_json(study_outdir / "results.json", results)
-                self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id])
+        grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
+        if grouped_outputs:
+            for output_type, output in grouped_outputs.items():
+                if output is not None:
+                    for db_id, _res in output.items():
+                        study_outdir = hash_outdir / db_id
+                        study_outdir.mkdir(parents=True, exist_ok=True)
+                        FileManager.write_json(study_outdir / f"{output_type}.json", _res)
+                        if output_type == "results":
+                            self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id])
+
+    def validate_results(self, results):
+        """ Apply validation to each study's results in the grouped pipeline."""
+        validated_results = {}
+        for db_id, study_results in results.items():
+            validated = self._output_schema.model_validate(study_results)
+            validated_results[db_id] = validated.model_dump()
+        return validated_results
 
 
 class BasePromptPipeline(IndependentPipeline):
@@ -395,7 +413,7 @@ class BasePromptPipeline(IndependentPipeline):
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
         if not self._extraction_schema:
-            raise ValueError("Subclass must define _extraction_schema class")
+            self._extraction_schema = self._output_schema
 
         super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model

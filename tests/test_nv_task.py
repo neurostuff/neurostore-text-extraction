@@ -16,5 +16,5 @@ def test_TaskExtractor(sample_data, tmp_path):
     )
     dataset = Dataset(sample_data)
     output_dir = tmp_path / "participant_demographics"
-    pde.run(dataset, output_dir)
+    pde.transform_dataset(dataset, output_dir)
     assert True
