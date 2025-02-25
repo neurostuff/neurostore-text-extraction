@@ -7,7 +7,7 @@ import logging
 from abc import ABC, abstractmethod
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Any, List, Union, Optional, Type
+from typing import Dict, Any, List, Union, Optional, Type, Tuple
 
 from pydantic import BaseModel
 from openai import OpenAI
@@ -311,7 +311,7 @@ class IndependentPipeline(Pipeline):
 
     def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process individual studies through the pipeline independently."""
-        hash_outdir, hash_str = self.create_directory_hash(dataset)
+        hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
         if not hash_outdir.exists():
             hash_outdir.mkdir(parents=True)
@@ -349,7 +349,7 @@ class DependentPipeline(Pipeline):
 
     def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process all studies through the pipeline as a group."""
-        hash_outdir, hash_str = self.create_directory_hash(dataset)
+        hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
         # Check if there are any changes for dependent mode
         if not self.check_for_changes(output_directory, dataset):
@@ -361,7 +361,7 @@ class DependentPipeline(Pipeline):
             hash_outdir = FileManager.get_next_available_dir(hash_outdir)
         hash_outdir.mkdir(parents=True, exist_ok=True)
         self.write_pipeline_info(hash_outdir)
-        
+
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
         grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
