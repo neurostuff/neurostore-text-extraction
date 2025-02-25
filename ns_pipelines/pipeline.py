@@ -92,8 +92,8 @@ class Pipeline(ABC):
         """Process inputs through the full pipeline flow: pre-process, execute, post-process, validate.
         
         Returns a dict with:
-            - predictions: Validated predictions
-            - raw_predictions: Raw predictions if post-processing was applied
+            - results: Validated results
+            - raw_results: Raw results if post-processing was applied
         """
         try:
             # Pre-process inputs
@@ -103,28 +103,28 @@ class Pipeline(ABC):
                 return None
 
             # Execute core pipeline logic
-            raw_predictions = self.execute(processed_inputs, **kwargs)
-            if not raw_predictions:
+            raw_results = self.execute(processed_inputs, **kwargs)
+            if not raw_results:
                 return None
 
-            # Post-process predictions
+            # Post-process results
             try:
-                post_predictions = self.post_process(raw_predictions)
+                post_results = self.post_process(raw_results)
             except Exception as e:
                 logging.error(f"Post-processing failed: {e}")
-                post_predictions = None
+                post_results = None
 
-            if post_predictions:
-                predictions = self.validate_predictions(post_predictions)
+            if post_results:
+                results = self.validate_results(post_results)
             else:
-                predictions = self.validate_predictions(raw_predictions)
+                results = self.validate_results(raw_results)
 
             output = {
-                "predictions": predictions,
+                "results": results,
             }
 
-            if post_predictions:
-                output["raw_predictions"] = raw_predictions
+            if post_results:
+                output["raw_results"] = raw_results
 
             return output
 
@@ -133,20 +133,20 @@ class Pipeline(ABC):
             logging.error(f"Pipeline execution failed: {e}")
             return None
 
-    def validate_predictions(self, predictions: dict) -> Optional[dict]:
-        """Validate predictions against the output schema.
+    def validate_results(self, results: dict) -> Optional[dict]:
+        """Validate results against the output schema.
         
         Args:
-            predictions: Raw or post predictions from pipeline
+            results: Raw or post-processed results from pipeline
             
         Returns:
-            Validated predictions or None if validation fails
+            Validated results or None if validation fails
         """
         try:
-            validated = self._output_schema.model_validate(predictions)
+            validated = self._output_schema.model_validate(results)
             return validated.model_dump()
         except Exception as e:
-            logging.error(f"Raw prediction validation error: {e}")
+            logging.error(f"Raw result validation error: {e}")
             return None
 
     def pre_process(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
@@ -160,14 +160,14 @@ class Pipeline(ABC):
         """
         return inputs
     
-    def post_process(self, predictions: dict) -> dict:
-        """Post-process predictions before validation. Override in subclass if needed.
+    def post_process(self, results: dict) -> dict:
+        """Post-process results before validation. Override in subclass if needed.
         
         Args:
-            predictions: Raw predictions from pipeline
+            results: Raw results from pipeline
             
         Returns:
-            Processed predictions or None if processing fails
+            Processed results or None if processing fails
         """
         pass
 
@@ -180,7 +180,7 @@ class Pipeline(ABC):
             **kwargs: Additional arguments for pipeline execution
             
         Returns:
-            Raw predictions from pipeline execution
+            Raw results from pipeline execution
         """
         pass
 
@@ -474,15 +474,15 @@ class BasePromptPipeline(IndependentPipeline):
             prompt_config.update(self.kwargs)
 
         # Extract predictions
-        predictions = extract_from_text(
+        results = extract_from_text(
             text,
             model=self.extraction_model,
             client=client,
             **prompt_config
         )
 
-        if not predictions:
-            logging.warning("No predictions found")
+        if not results:
+            logging.warning("No results found")
             return None
             
-        return predictions
+        return results

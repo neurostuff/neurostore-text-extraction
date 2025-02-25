@@ -27,5 +27,5 @@ class BaseDemographicsSchema(BaseModel):
 
 
 class OutputSchema(BaseModel):
-    predictions: BaseDemographicsSchema
-    clean_predictions: BaseDemographicsSchema
+    results: BaseDemographicsSchema
+    clean_results: BaseDemographicsSchema
