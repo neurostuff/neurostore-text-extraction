@@ -74,7 +74,6 @@ class Pipeline(ABC):
 
     _version: str = None
     _output_schema: Type[BaseModel] = None  # Required schema for output validation
-    _post_output_schema: Type[BaseModel] = None  # Optional schema for cleaned output validation
 
     def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace")):
         if not self._output_schema:
@@ -93,8 +92,8 @@ class Pipeline(ABC):
         """Process inputs through the full pipeline flow: pre-process, execute, post-process, validate.
         
         Returns a dict with:
-            - predictions: Validated raw predictions
-            - post_predictions: Validated post-processed predictions (if any)
+            - predictions: Validated predictions
+            - raw_predictions: Raw predictions if post-processing was applied
         """
         try:
             # Pre-process inputs
@@ -115,31 +114,30 @@ class Pipeline(ABC):
                 logging.error(f"Post-processing failed: {e}")
                 post_predictions = None
 
-            # Validate predictions
-            validated_predictions = self.validate_predictions(raw_predictions)
-            if validated_predictions is None:
-                return None
+            if post_predictions:
+                predictions = self.validate_predictions(post_predictions)
+            else:
+                predictions = self.validate_predictions(raw_predictions)
 
-            # Validate post-processed predictions if they exist
-            validated_post = None
-            if post_predictions is not None:
-                validated_post = self.validate_post_predictions(post_predictions)
-
-            # Return results
-            return {
-                'predictions': validated_predictions,
-                'post_predictions': validated_post
+            output = {
+                "predictions": predictions,
             }
+
+            if post_predictions:
+                output["raw_predictions"] = raw_predictions
+
+            return output
+
 
         except Exception as e:
             logging.error(f"Pipeline execution failed: {e}")
             return None
 
     def validate_predictions(self, predictions: dict) -> Optional[dict]:
-        """Validate raw predictions against the output schema.
+        """Validate predictions against the output schema.
         
         Args:
-            predictions: Raw predictions from pipeline
+            predictions: Raw or post predictions from pipeline
             
         Returns:
             Validated predictions or None if validation fails
@@ -149,23 +147,6 @@ class Pipeline(ABC):
             return validated.model_dump()
         except Exception as e:
             logging.error(f"Raw prediction validation error: {e}")
-            return None
-
-    def validate_post_predictions(self, post_predictions: dict) -> Optional[dict]:
-        """Validate post-processed predictions against the post-processing schema (if defined) or output schema.
-        
-        Args:
-            post_predictions: Post-processed predictions from pipeline
-            
-        Returns:
-            Validated post-processed predictions or None if validation fails
-        """
-        try:
-            schema = self._post_output_schema or self._output_schema
-            validated = schema.model_validate(post_predictions)
-            return validated.model_dump()
-        except Exception as e:
-            logging.error(f"Post-processed prediction validation error: {e}")
             return None
 
     def pre_process(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
@@ -188,7 +169,7 @@ class Pipeline(ABC):
         Returns:
             Processed predictions or None if processing fails
         """
-        return predictions
+        pass
 
     @abstractmethod
     def execute(self, processed_inputs: Dict[str, Any], **kwargs) -> Dict:
