@@ -20,7 +20,15 @@ class TaskMetadataModel(BaseModel):
     TaskMetrics: Optional[List[str]] = Field(
         description="Key metrics or outcomes measured during the task, e.g., 'response time', 'accuracy', 'fMRI BOLD signal'."
     )
-
+    Concepts: Optional[List[str]] = Field(
+        description="""List of mental concepts associated with the task, such as cognitive processes or representations it engages. 
+        Examples include 'working memory', 'response inhibition', 'visual perception'. Extract terms from the paper that describe 
+        the underlying mental constructs measured or manipulated by the task."""
+    )
+    Domain: Optional[List[Literal['Perception', 'Attention', 'Reasoning and decision making', 'Executive cognitive control', 'Learning and memory', 'Language', 'Action', 'Emotion', 'Social function', 'Motivation']]] \
+        = Field(
+        description="Cognitive domain(s) the concept(s) belong to"
+    )
 
 class fMRITaskMetadataModel(TaskMetadataModel):
     RestingState: bool = Field(
