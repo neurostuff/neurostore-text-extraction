@@ -1,20 +1,20 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
 class GroupBase(BaseModel):
     count: int = Field(description="Number of participants in this group")
-    diagnosis: str = Field(description="Diagnosis of the group, if any")
+    diagnosis: Optional[str] = Field(description="Diagnosis of the group, if any")
     group_name: str = Field(description="Group name, healthy or patients",
                             enum=["healthy", "patients"])
-    subgroup_name: str = Field(description="Subgroup name")
-    male_count: int = Field(description="Number of male participants in this group")
-    female_count: int = Field(description="Number of female participants in this group")
-    age_mean: float = Field(description="Mean age of participants in this group")
-    age_range: str = Field(description="Age range of participants in this group, separated by a dash")
-    age_minimum: int = Field(description="Minimum age of participants in this group")
-    age_maximum: int = Field(description="Maximum age of participants in this group")
-    age_median: int = Field(description="Median age of participants in this group")
+    subgroup_name: Optional[str] = Field(description="Subgroup name")
+    male_count: Optional[int] = Field(description="Number of male participants in this group")
+    female_count: Optional[int] = Field(description="Number of female participants in this group")
+    age_mean: Optional[float] = Field(default=None, description="Mean age of participants in this group")
+    age_range: Optional[str] = Field(default=None, description="Age range of participants in this group, separated by a dash")
+    age_minimum: Optional[int] = Field(default=None, description="Minimum age of participants in this group")
+    age_maximum: Optional[int] = Field(default=None, description="Maximum age of participants in this group")
+    age_median: Optional[int] = Field(default=None, description="Median age of participants in this group")
 
 
 class GroupImaging(GroupBase):

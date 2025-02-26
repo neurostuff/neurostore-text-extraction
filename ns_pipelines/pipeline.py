@@ -114,10 +114,9 @@ class Pipeline(ABC):
                 logging.error(f"Post-processing failed: {e}")
                 post_results = None
 
-            if post_results:
-                results = self.validate_results(post_results)
-            else:
-                results = self.validate_results(raw_results)
+            results = self.validate_results(
+                post_results or raw_results
+            )
 
             output = {
                 "results": results,
@@ -144,10 +143,10 @@ class Pipeline(ABC):
         """
         try:
             validated = self._output_schema.model_validate(results)
-            return validated.model_dump()
+            return True, validated.model_dump()
         except Exception as e:
             logging.error(f"Raw result validation error: {e}")
-            return None
+            return False, results
 
     def pre_process(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
         """Pre-process inputs before pipeline execution. Override in subclass if needed.
@@ -228,11 +227,12 @@ class Pipeline(ABC):
         }
         FileManager.write_json(hash_outdir / "pipeline_info.json", pipeline_info)
 
-    def write_study_info(self, hash_outdir: Path, db_id: str, study_inputs: Dict[str, Path]):
+    def write_study_info(self, hash_outdir: Path, db_id: str, study_inputs: Dict[str, Path], is_valid: bool):
         """Write information about the current run to an info.json file."""
         output_info = {
             "date": datetime.now().isoformat(),
-            "inputs": {str(input_file): FileManager.calculate_md5(input_file) for input_file in study_inputs.values()}
+            "inputs": {str(input_file): FileManager.calculate_md5(input_file) for input_file in study_inputs.values()},
+            "valid": is_valid,
         }
         FileManager.write_json(hash_outdir / db_id / "info.json", output_info)
 
@@ -332,10 +332,10 @@ class IndependentPipeline(Pipeline):
             outputs = self._process_inputs(study_inputs, **kwargs)
             if outputs:
                 for output_type, output in outputs.items():
-                    if output is not None:  # Only save if validation succeeded
-                        FileManager.write_json(study_outdir / f"{output_type}.json", output)
-                        if output_type == "results":
-                            self.write_study_info(hash_outdir, db_id, study_inputs)
+                    if output_type == "results":
+                        is_valid, output = output
+                        self.write_study_info(hash_outdir, db_id, study_inputs, is_valid)
+                    FileManager.write_json(study_outdir / f"{output_type}.json", output)
 
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
@@ -366,21 +366,23 @@ class DependentPipeline(Pipeline):
         all_study_inputs = self.gather_all_study_inputs(dataset)
         grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
         if grouped_outputs:
-            for output_type, output in grouped_outputs.items():
-                if output is not None:
-                    for db_id, _res in output.items():
+            for output_type, outputs in grouped_outputs.items():
+                if outputs is not None:
+                    for db_id, _output in outputs.items():
                         study_outdir = hash_outdir / db_id
                         study_outdir.mkdir(parents=True, exist_ok=True)
-                        FileManager.write_json(study_outdir / f"{output_type}.json", _res)
                         if output_type == "results":
-                            self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id])
+                            is_valid, _output = _output
+                            self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id], is_valid)
+                        FileManager.write_json(study_outdir / f"{output_type}.json", _output)
+
 
     def validate_results(self, results):
         """ Apply validation to each study's results in the grouped pipeline."""
         validated_results = {}
         for db_id, study_results in results.items():
-            validated = self._output_schema.model_validate(study_results)
-            validated_results[db_id] = validated.model_dump()
+            study_results = super().validate_results(study_results)
+            validated_results[db_id] = study_results
         return validated_results
 
 

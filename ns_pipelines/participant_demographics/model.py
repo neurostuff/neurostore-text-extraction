@@ -40,6 +40,9 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
             "group_name",
         ] = "healthy"
 
+        # Ensure minimum count is 0
+        df["count"] = df["count"].clip(lower=0)
+
         # If no male count, substract count from female count columns
         ix_male_miss = (pd.isna(df["male_count"])) & ~(
             pd.isna(df["female_count"])
@@ -49,6 +52,8 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
             - df.loc[ix_male_miss, "female_count"]
         )
 
+        df["male_count"] = df["male_count"].clip(lower=0)
+
         # Same for female count
         ix_female_miss = (pd.isna(df["female_count"])) & ~(
             pd.isna(df["male_count"])
@@ -57,5 +62,11 @@ class ParticipantDemographicsExtractor(BasePromptPipeline):
             df.loc[ix_female_miss, "count"]
             - df.loc[ix_female_miss, "male_count"]
         )
+
+        df["female_count"] = df["female_count"].clip(lower=0)
+
+        # Replace missing values with None
+        df = df.astype(object).where(pd.notna(df), None)
+        df = df.where(pd.notnull(df), None)
 
         return {"groups": df.to_dict(orient="records")}
