@@ -58,7 +58,7 @@ class StudyMetadataModel(BaseModel):
     fMRITasks: List[fMRITaskMetadataModel] = Field(
         description="List of fMRI tasks performed by the subjects inside the scanner and their metadata. If the study did not include fMRI tasks, leave this field empty."
         )
-    BehavioralTasks: List[TaskMetadataModel] = Field(
+    BehavioralTasks: Optional[List[TaskMetadataModel]] = Field(
         description="List of behavioral tasks performed by the subjects outside the scanner and their metadata. If the study did not include behavioral tasks, leave this field empty."
         )
 
