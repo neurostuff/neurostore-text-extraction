@@ -28,7 +28,7 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
     # Check pipeline info
     pipeline_info = json.loads((version_dir / "pipeline_info.json").read_text())
     assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["type"] == "baseprompt"
+    assert pipeline_info["type"] == "apipromptextractor"
     assert pipeline_info["arguments"]["extraction_model"] == "gpt-4o-mini-2024-07-18"
     
     # Verify study outputs and schema validation

@@ -4,10 +4,10 @@ from .schemas import BaseDemographicsSchema
 import pandas as pd
 import numpy as np
 
-from ns_pipelines.pipeline import BasePromptPipeline
+from ns_pipelines.base.api import APIPromptExtractor
 
 
-class ParticipantDemographicsExtractor(BasePromptPipeline):
+class ParticipantDemographicsExtractor(APIPromptExtractor):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"

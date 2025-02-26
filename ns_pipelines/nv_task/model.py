@@ -1,10 +1,10 @@
 """Extract task information from scientific papers."""
 from .schemas import StudyMetadataModel
 from .prompts import base_message
-from ns_pipelines.pipeline import BasePromptPipeline
+from ns_pipelines.base.api import APIPromptExtractor
 
 
-class TaskExtractor(BasePromptPipeline):
+class TaskExtractor(APIPromptExtractor):
     """Task information extraction pipeline using LLM prompts."""
 
     _version = "1.0.0"
