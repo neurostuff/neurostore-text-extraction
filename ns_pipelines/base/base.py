@@ -145,17 +145,6 @@ class Pipeline(ABC):
             logging.error(f"Raw result validation error: {e}")
             return False, results
 
-    def pre_process(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
-        """Pre-process inputs before pipeline execution. Override in subclass if needed.
-        
-        Args:
-            inputs: Raw inputs to the pipeline
-            
-        Returns:
-            Processed inputs for pipeline execution
-        """
-        return inputs
-    
     def post_process(self, results: dict) -> dict:
         """Post-process results before validation. Override in subclass if needed.
         
