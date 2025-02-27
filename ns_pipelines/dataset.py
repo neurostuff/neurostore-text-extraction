@@ -21,20 +21,30 @@ INPUTS = [
 
 @dataclass
 class AceRaw:
-    html: Path
+    html: Union[str, Path]
 
     def __post_init__(self):
+        # Convert string path to Path object
+        if isinstance(self.html, str):
+            self.html = Path(self.html)
+        
         # Preprocessing logic for AceRaw can be added here if needed
         if not self.html.exists():
             raise ValueError(f"HTML file {self.html} does not exist.")
 
 @dataclass
 class PubgetRaw:
-    xml: Path
+    xml: Union[str, Path]
     tables: dict = field(default_factory=dict)
-    tables_xml: Path = None
+    tables_xml: Union[str, Path] = None
 
     def __post_init__(self):
+        # Convert string paths to Path objects
+        if isinstance(self.xml, str):
+            self.xml = Path(self.xml)
+        if isinstance(self.tables_xml, str):
+            self.tables_xml = Path(self.tables_xml)
+
         # Load tables and assign file paths
         if not self.xml.exists():
             raise ValueError(f"XML file {self.xml} does not exist.")
@@ -59,12 +69,20 @@ class PubgetRaw:
 
 @dataclass
 class ProcessedData:
-    coordinates: Path = None
-    text: Path = None
-    metadata: Path = None
+    coordinates: Union[str, Path] = None
+    text: Union[str, Path] = None
+    metadata: Union[str, Path] = None
     raw: Optional[Union['PubgetRaw', 'AceRaw']] = field(default=None)
 
     def __post_init__(self):
+        # Convert string paths to Path objects
+        if isinstance(self.coordinates, str):
+            self.coordinates = Path(self.coordinates)
+        if isinstance(self.text, str):
+            self.text = Path(self.text)
+        if isinstance(self.metadata, str):
+            self.metadata = Path(self.metadata)
+
         # Ensure the processed data files exist
         if self.coordinates and not self.coordinates.exists():
             raise ValueError(f"Coordinates file {self.coordinates} does not exist.")
@@ -75,7 +93,7 @@ class ProcessedData:
 
 @dataclass
 class Study:
-    study_dir: Path
+    study_dir: Union[str, Path]
     dbid: str = None
     doi: str = None
     pmid: str = None
@@ -84,6 +102,8 @@ class Study:
     pubget: ProcessedData = None
 
     def __post_init__(self):
+        if isinstance(self.study_dir, str):
+            self.study_dir = Path(self.study_dir)
         self.dbid = self.study_dir.name
 
         # Load identifiers
@@ -179,13 +199,17 @@ class Dataset:
 class PipelineInputFilter:
     """Filter for pipeline inputs."""
 
-    def __init__(self, pipeline, output_directory, overwrite=False):
+    def __init__(self, pipeline, output_directory: Union[str, Path], overwrite=False):
         """Initialize the filter.
 
-        pipeline (Pipeline): The pipeline to filter.
-        output_directory (str): The output directory where the pipeline has been previously run.
-        overwrite (bool): Whether to overwrite the existing output
+        Args:
+            pipeline (Pipeline): The pipeline to filter.
+            output_directory (Union[str, Path]): The output directory where the pipeline has been previously run.
+            overwrite (bool): Whether to overwrite the existing output.
         """
+        self.output_directory = Path(output_directory) if isinstance(output_directory, str) else output_directory
+        self.pipeline = pipeline
+        self.overwrite = overwrite
 
     def filter(self, dataset):
         """Filter the dataset."""
