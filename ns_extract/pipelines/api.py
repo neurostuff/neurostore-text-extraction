@@ -21,6 +21,7 @@ class APIPromptExtractor(IndependentPipeline):
         input_sources: tuple = ("pubget", "ace"),
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
+        client_url: Optional[str] = None,
         **completions_kwargs
     ):
         """Initialize the prompt-based pipeline.
@@ -31,6 +32,7 @@ class APIPromptExtractor(IndependentPipeline):
             input_sources: Valid input sources
             env_variable: Environment variable containing API key
             env_file: Path to file containing API key
+            client_url: Optional URL for OpenAI client
             **completions_kwargs: Additional arguments for the completion function
         """
         if not self._prompt:
@@ -42,6 +44,7 @@ class APIPromptExtractor(IndependentPipeline):
         self.extraction_model = extraction_model
         self.env_variable = env_variable
         self.env_file = env_file
+        self.client_url = client_url
         self.kwargs = completions_kwargs
 
     def _load_client(self) -> OpenAI:
@@ -57,9 +60,7 @@ class APIPromptExtractor(IndependentPipeline):
         if not api_key:
             raise ValueError("No API key provided")
         
-        if 'gpt' in self.extraction_model.lower():
-            return OpenAI(api_key=api_key)
-        raise ValueError(f"Model {self.extraction_model} not supported")
+        return OpenAI(api_key, client_url=self.client_url)
     
     def _get_api_key(self) -> Optional[str]:
         """Read the API key from environment variable or file.
