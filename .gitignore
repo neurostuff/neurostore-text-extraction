@@ -1,6 +1,6 @@
 # Don't save processed outputs in this repo
 data/processed
-
+notebooks/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

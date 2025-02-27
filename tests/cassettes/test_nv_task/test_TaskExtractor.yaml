@@ -2,43 +2,38 @@ interactions:
 - request:
     body: "{\"messages\":[{\"role\":\"user\",\"content\":\"\\nYou will be provided
       with a text sample from a scientific journal.\\nThe sample is delimited with
-      triple backticks.\\n\\nYour task is to identify groups of participants that
-      participated in the study, and underwent MRI.\\nIf there is no mention of any
-      participant groups, return a null array.\\n\\nFor each group identify:\\n    -
-      the number of participants in each group, and the diagnosis.\\n    - the number
-      of male participants, and their mean age, median age, minimum and maximum age\\n
-      \   - the number of female participants, and their mean age, median age, minimum
-      and maximum age.\\n    - if this group of participants underwent MRI, fMRI or
-      neuroimaging procedure.\\n\\nBe as accurate as possible, and report information
-      (especially diagnosis) using the technical terms (and abbreviations) used in
-      the article.\\nIf any of the information is missing, return `null` for that
-      field.\\n\\nText sample:  \\n## Significance Statement \\n  \\nPsychopathic
-      criminals are commonly seen as instrumentally abusive and emotionally callous,
-      yet social challenges often trigger uncontrolled emotional behavior in those
-      individuals. This study shows how this paradoxical aspect of psychopathy relates
-      to altered neuroendocrine interactions between testosterone and the cerebral
-      circuit coordinating emotional action tendencies. The anterior prefrontal cortex,
-      a region necessary for controlling emotional behavior, showed blunted responses
-      and reduced connectivity with the amygdala in psychopathic criminals engaged
-      in controlling their emotional action tendencies. This cerebral pattern was
-      strongest in psychopathic individuals with high endogenous testosterone levels.
-      This neuroendocrine signature of altered emotional control highlights the relevance
-      of considering the testosterone level of individual psychopathic patients during
-      treatment of their impulsive behavior. \\n\\n\\n## Introduction \\n  \\nPsychopathy
-      is a disorder often associated with blunted emotional responding and increased
-      goal-directed behavior ( ;  ). On the other hand, offenders with psychopathy
-      also show a paradoxical increase in impulsive behavior and uncontrolled aggression
-      after emotional provocations ( ;  ;  ;  ;  ;  ), which may be related to heightened
-      testosterone levels ( ;  ). These two aspects of psychopathy are also distinguished
-      within the most commonly used psychopathy checklist, the Psychopathy Check List-Revised
-      (PCL-R), potentially reflecting differing traits among psychopathic individuals
-      ( ;  ). Importantly, enhanced difficulty in controlling emotional impulses,
-      a crucial component of criminal psychopathy associated with PCL-R factor 2,
-      has been largely neglected by cognitive neuroscience. Yet, the clinical relevance
-      of this cognitive trait is large: reduced behavioral control and increased impulsivity
-      predict recidivism in psychopathic offenders ( ), and behavioral control in
-      psychopathic offenders appears particularly fragile when dealing with emotionally
-      relevant behavior ( ;  , chapter 7;  ). Accordingly, understanding the neurobiological
+      triple backticks.\\n\\nYour task is to identify information about the design
+      of the fMRI task and analysis of the neuroimaging data.\\nIf any information
+      is missing or not explicitly stated in the text, return `null` for that field.\\n\\nFor
+      any extracted text, maintain fidelity to the source. Avoid inferring information
+      not explicitly stated. If a field cannot be completed, return `null`.\\n\\nText
+      sample:  \\n## Significance Statement \\n  \\nPsychopathic criminals are commonly
+      seen as instrumentally abusive and emotionally callous, yet social challenges
+      often trigger uncontrolled emotional behavior in those individuals. This study
+      shows how this paradoxical aspect of psychopathy relates to altered neuroendocrine
+      interactions between testosterone and the cerebral circuit coordinating emotional
+      action tendencies. The anterior prefrontal cortex, a region necessary for controlling
+      emotional behavior, showed blunted responses and reduced connectivity with the
+      amygdala in psychopathic criminals engaged in controlling their emotional action
+      tendencies. This cerebral pattern was strongest in psychopathic individuals
+      with high endogenous testosterone levels. This neuroendocrine signature of altered
+      emotional control highlights the relevance of considering the testosterone level
+      of individual psychopathic patients during treatment of their impulsive behavior.
+      \\n\\n\\n## Introduction \\n  \\nPsychopathy is a disorder often associated
+      with blunted emotional responding and increased goal-directed behavior ( ;  ).
+      On the other hand, offenders with psychopathy also show a paradoxical increase
+      in impulsive behavior and uncontrolled aggression after emotional provocations
+      ( ;  ;  ;  ;  ;  ), which may be related to heightened testosterone levels (
+      ;  ). These two aspects of psychopathy are also distinguished within the most
+      commonly used psychopathy checklist, the Psychopathy Check List-Revised (PCL-R),
+      potentially reflecting differing traits among psychopathic individuals ( ;  ).
+      Importantly, enhanced difficulty in controlling emotional impulses, a crucial
+      component of criminal psychopathy associated with PCL-R factor 2, has been largely
+      neglected by cognitive neuroscience. Yet, the clinical relevance of this cognitive
+      trait is large: reduced behavioral control and increased impulsivity predict
+      recidivism in psychopathic offenders ( ), and behavioral control in psychopathic
+      offenders appears particularly fragile when dealing with emotionally relevant
+      behavior ( ;  , chapter 7;  ). Accordingly, understanding the neurobiological
       systems underlying the altered control of social emotional behavior in psychopathic
       individuals is relevant for improving currently available interventions, which
       are plagued by low treatment response and high recidivism ( ). Here we study
@@ -555,21 +550,57 @@ interactions:
       treatment. It remains to be seen whether these neuroendocrine alterations of
       emotional control are also present in highly impulsive or antisocial individuals.
       \\n\\n\\n \\n\\n Call the extractData function to save the output.\"}],\"model\":\"gpt-4o-mini-2024-07-18\",\"response_format\":null,\"temperature\":0,\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"extractData\",\"description\":\"Extract
-      data from scientific text\",\"parameters\":{\"$defs\":{\"GroupImaging\":{\"properties\":{\"count\":{\"description\":\"Number
-      of participants in this group\",\"title\":\"Count\",\"type\":\"integer\"},\"diagnosis\":{\"description\":\"Diagnosis
-      of the group, if any\",\"title\":\"Diagnosis\",\"type\":\"string\"},\"group_name\":{\"description\":\"Group
-      name, healthy or patients\",\"enum\":[\"healthy\",\"patients\"],\"title\":\"Group
-      Name\",\"type\":\"string\"},\"subgroup_name\":{\"description\":\"Subgroup name\",\"title\":\"Subgroup
-      Name\",\"type\":\"string\"},\"male_count\":{\"description\":\"Number of male
-      participants in this group\",\"title\":\"Male Count\",\"type\":\"integer\"},\"female_count\":{\"description\":\"Number
-      of female participants in this group\",\"title\":\"Female Count\",\"type\":\"integer\"},\"age_mean\":{\"description\":\"Mean
-      age of participants in this group\",\"title\":\"Age Mean\",\"type\":\"number\"},\"age_range\":{\"description\":\"Age
-      range of participants in this group, separated by a dash\",\"title\":\"Age Range\",\"type\":\"string\"},\"age_minimum\":{\"description\":\"Minimum
-      age of participants in this group\",\"title\":\"Age Minimum\",\"type\":\"integer\"},\"age_maximum\":{\"description\":\"Maximum
-      age of participants in this group\",\"title\":\"Age Maximum\",\"type\":\"integer\"},\"age_median\":{\"description\":\"Median
-      age of participants in this group\",\"title\":\"Age Median\",\"type\":\"integer\"},\"imaging_sample\":{\"description\":\"Did
-      this subgroup undergo fMRI, MRI or neuroimaging, yes or no\",\"enum\":[\"yes\",\"no\"],\"title\":\"Imaging
-      Sample\",\"type\":\"string\"}},\"required\":[\"count\",\"diagnosis\",\"group_name\",\"subgroup_name\",\"male_count\",\"female_count\",\"age_mean\",\"age_range\",\"age_minimum\",\"age_maximum\",\"age_median\",\"imaging_sample\"],\"title\":\"GroupImaging\",\"type\":\"object\"}},\"properties\":{\"groups\":{\"items\":{\"$ref\":\"#/$defs/GroupImaging\"},\"title\":\"Groups\",\"type\":\"array\"}},\"required\":[\"groups\"],\"title\":\"BaseDemographicsSchema\",\"type\":\"object\"}}}]}"
+      data from scientific text\",\"parameters\":{\"$defs\":{\"TaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\"],\"title\":\"TaskMetadataModel\",\"type\":\"object\"},\"fMRITaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"},\"RestingState\":{\"description\":\"Was
+      this task a resting state task?\",\"title\":\"Restingstate\",\"type\":\"boolean\"},\"RestingStateMetadata\":{\"anyOf\":[{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},{\"type\":\"null\"}],\"description\":\"Additional
+      details about the resting-state task, such as duration and instructions provided
+      to participants, if applicable.\",\"title\":\"Restingstatemetadata\"},\"TaskDesign\":{\"description\":\"Design(s)
+      of the task\",\"items\":{\"enum\":[\"Blocked\",\"EventRelated\",\"Mixed\",\"Other\"],\"type\":\"string\"},\"title\":\"Taskdesign\",\"type\":\"array\"},\"TaskDuration\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Total
+      duration of the task, e.g., '10 minutes' or '600 seconds'.\",\"title\":\"Taskduration\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\",\"RestingState\",\"RestingStateMetadata\",\"TaskDesign\",\"TaskDuration\"],\"title\":\"fMRITaskMetadataModel\",\"type\":\"object\"}},\"properties\":{\"Modality\":{\"description\":\"Modality
+      of the neuroimaging data\",\"items\":{\"enum\":[\"fMRI-BOLD\",\"StructuralMRI\",\"DiffusionMRI\",\"PET
+      FDG\",\"PET [15O]-water\",\"fMRI-CBF\",\"fMRI-CBV\",\"MEG\",\"EEG\",\"Other\"],\"type\":\"string\"},\"title\":\"Modality\",\"type\":\"array\"},\"StudyObjective\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"A
+      brief summary of the primary research question or objective of the study.\",\"title\":\"Studyobjective\"},\"Exclude\":{\"anyOf\":[{\"enum\":[\"MetaAnalysis\",\"Review\"],\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Only
+      studies that conduct primary data collection are to be be included. Thus, if
+      a study is primarily either a meta-analysis or a review, note here.\",\"title\":\"Exclude\"},\"fMRITasks\":{\"description\":\"List
+      of fMRI tasks performed by the subjects inside the scanner and their metadata.
+      If the study did not include fMRI tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/fMRITaskMetadataModel\"},\"title\":\"Fmritasks\",\"type\":\"array\"},\"BehavioralTasks\":{\"description\":\"List
+      of behavioral tasks performed by the subjects outside the scanner and their
+      metadata. If the study did not include behavioral tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/TaskMetadataModel\"},\"title\":\"Behavioraltasks\",\"type\":\"array\"}},\"required\":[\"Modality\",\"StudyObjective\",\"Exclude\",\"fMRITasks\",\"BehavioralTasks\"],\"title\":\"StudyMetadataModel\",\"type\":\"object\"}}}]}"
     headers:
       accept:
       - application/json
@@ -578,7 +609,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '45872'
+      - '50077'
       content-type:
       - application/json
       host:
@@ -592,22 +623,31 @@ interactions:
   response:
     body:
       string: !!binary |
-        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
+        H4sIAAAAAAAAAwAAAP//dFbbbhw3DH33VxB6qQ3sGntLnPWb7XXboHVtxC6KNBssuBJnhrFGmkia
+        tTeGgf5D/7BfUkiavcRJ/GBoRPKQPCTFfToAEKzEKQhZYZB1o/vnr95WD3r6t5285dv3r29+uagm
+        n4cj8/7PL7+ei160sMtPJMPG6ljautEU2Joslo4wUEQdnkwGrwfj0atREtRWkY5mZRP6E9uv2XB/
+        NBhN+oOT/vBNZ11ZluTFKXw4AAB4Sv9jnEbRoziFQW9zU5P3WJI43SoBCGd1vBHoPfuAJojeTiit
+        CWRi6KbVek8QrNULiVrvHOe/p73zjizUevFw78PN+Pbzyaff/rpb3T5cn3+5xGu83vOXoddNCqho
+        jdyStCff3p++cAYgDNbJlh6DQxlmGPCFOYBAV7Y1mRBDF09zcWUVag7ruTj9MBfF1bu3/fPr32dz
+        8bE3F7ehVevrVEBe0VyczsWdBTYr8oFLDAShIjDUOrtkq23JEjX4tQ9Ue2iNIqfXbEpAHciRgkip
+        sxpsAd5KRg1U25gPalhShSu2DthA49eysg2GiiWwUbxi1aL2PWjQBZatRqfXUFjZ+ohvTYokljNi
+        B/LB+kDOGopwtVWtxpAiufn5AjDmw2ENaFS66WO9LhVqjBEa2ohV66LNLsZN/AH9vT+ei95cXD5K
+        3apITuqSzOFdlEdKn+Yinv/AOtN3m7M+axpnUVb//fPv2cqyQiMJDs/OjiBqJ9x4mJGXjpvoPFnf
+        pOS5QRM8OPKNNQqCBSyKXCIoUJKHwwqbZt0DNKVbH8EDhwqwc5lz3jqt7YpSP/TA0eeWU8LbMq3I
+        AbbB1hhY7vEQyCgykqkjYUaeSzOjgKx97pOK4OwsERXh4niRirUZTWCprbz3PaAYTgpuOILgOBX4
+        oSJHXZm7TCUGKq3jL6S6BNHDfoo9sC62YXCoj+EywiYfsKQSTXbBxgfXpuHx235JGZPquPQENTYN
+        m7KXWMq+HlI8jjyZmEJhHQwHA6h9xyuM89dSo7kHLx2RgSUV1uXx2EvlJ7/1dAyRITaBXD+lns8r
+        1PCAHhpPrbIOjbI1HA77Y/BHOSiEJXrSbAgacmwzqcP+aAI+hilJkcrUJg5ygS6sUZxyz4O+6YZ+
+        ojGppJ7oJz7z90alI3ZPaXvzsWvUKwqOZYftCBPNELgmOHx3d5RMyTnrwGEgnw0vrJHUhM7qmyFL
+        Rlw3rfZpGtP3D1+NDDmzNbLJgJePJNs0FNKWhrvTDvoyY2TDd/FFM+VtwBAHtUDt6cX1FQVUGHA3
+        6d2Ictl5PI98k9rRMmsdbod3PICaTZvSf44a513oqDfPRcR9Fl892c8H3zt/3NtGjorWo+7WVHf/
+        vN172paNs0v/Yo2Jgg37auEIfVon+1vtYOMt+RHtV4tTNM7WTVgEe08mwg4Hg+kk44rdet/JR9Np
+        Jw02oN43HE/Hve+ALlR+Sfa2nJAoK1I74+n0zWSbDLaK7U42ONjj4NuYvgefeWBT7qH8EH4nkLGD
+        SS0aR4rl13nv1BzFFfojtS3bKWDhya1Y0iIwuVgXRQW2Ov8yEXm3Lgo2JbnGcfp5IopmcTKYngwn
+        ajiaiIPng/8BAAD//wMAigNBV6wJAAA=
     headers:
       CF-RAY:
-      - 917b0ef7ddbaf082-DFW
+      - 9182d435bd85358d-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -615,14 +655,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Feb 2025 22:16:15 GMT
+      - Wed, 26 Feb 2025 20:54:16 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=01HTaFNfMiP71EMQGj8Tt3xp5r2pu_YmZYyf0ct98O0-1740521775-1.0.1.1-67dIM870BgC8w5IEWW_kWXE9Wrz7IT7_BWCqd3HVlb_1m6Eibkddnwq0pOl9SNJ5v_z.dFRW7HpbZq_Hzg3wdg;
-        path=/; expires=Tue, 25-Feb-25 22:46:15 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=GVon8QJtByXUdNst5aLFhr3L3jtazxt_Ba30Fg_7wTc-1740603256-1.0.1.1-M7Blf0pwYx3sTblWHl91vi2._BOthfeu3UX1j74.3WEXk5LZXCqX45.cZ02ic276833HavQBgfhdsG2Gpta7ow;
+        path=/; expires=Wed, 26-Feb-25 21:24:16 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=5mH95OsOlq7I0kZU8x9J1ARIcIlOn.aeaeGZ7Gg.OZ4-1740521775433-0.0.1.1-604800000;
+      - _cfuvid=r6U6q9hDswlc5woTPjR49rup6u0229cT0n4591.ep8E-1740603256048-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -637,7 +677,7 @@ interactions:
       openai-organization:
       - university-of-texas-at-austin-8nppuy
       openai-processing-ms:
-      - '2542'
+      - '3825'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -649,36 +689,31 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '9989081'
+      - '9989177'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 65ms
+      - 64ms
       x-request-id:
-      - req_2e8ab4ab7b6dad2a3577ed37bec5bc62
+      - req_a8977f6a496b4e3cdec13b1d5d7a3ead
     status:
       code: 200
       message: OK
 - request:
     body: "{\"messages\":[{\"role\":\"user\",\"content\":\"\\nYou will be provided
       with a text sample from a scientific journal.\\nThe sample is delimited with
-      triple backticks.\\n\\nYour task is to identify groups of participants that
-      participated in the study, and underwent MRI.\\nIf there is no mention of any
-      participant groups, return a null array.\\n\\nFor each group identify:\\n    -
-      the number of participants in each group, and the diagnosis.\\n    - the number
-      of male participants, and their mean age, median age, minimum and maximum age\\n
-      \   - the number of female participants, and their mean age, median age, minimum
-      and maximum age.\\n    - if this group of participants underwent MRI, fMRI or
-      neuroimaging procedure.\\n\\nBe as accurate as possible, and report information
-      (especially diagnosis) using the technical terms (and abbreviations) used in
-      the article.\\nIf any of the information is missing, return `null` for that
-      field.\\n\\nText sample:  \\n## Introduction \\n  \\nWith more than 25% of high
-      school seniors reporting recent use and 6.5% of 12th graders being daily users
-      ( ), marijuana (MJ) is the most frequently used illicit substance among adolescents.
-      Across all age groups over 70% of new drug initiates start with using MJ at
-      an average age of 18 years ( ). Indeed, the scope of MJ use prevalence is of
-      great public interest, as MJ use in early adolescence is associated with increased
-      risk of greater substance use, legal problems, disrupting education, injuries/medical
+      triple backticks.\\n\\nYour task is to identify information about the design
+      of the fMRI task and analysis of the neuroimaging data.\\nIf any information
+      is missing or not explicitly stated in the text, return `null` for that field.\\n\\nFor
+      any extracted text, maintain fidelity to the source. Avoid inferring information
+      not explicitly stated. If a field cannot be completed, return `null`.\\n\\nText
+      sample:  \\n## Introduction \\n  \\nWith more than 25% of high school seniors
+      reporting recent use and 6.5% of 12th graders being daily users ( ), marijuana
+      (MJ) is the most frequently used illicit substance among adolescents. Across
+      all age groups over 70% of new drug initiates start with using MJ at an average
+      age of 18 years ( ). Indeed, the scope of MJ use prevalence is of great public
+      interest, as MJ use in early adolescence is associated with increased risk of
+      greater substance use, legal problems, disrupting education, injuries/medical
       problems, developing psychopathology, cognitive changes and chronic psychosocial
       struggles ( ,  ,  ,  ). Taken together, rates of MJ use are suggestive of an
       epidemic based in adolescence, which is concerning not just due to societal
@@ -1034,21 +1069,57 @@ interactions:
       MJ use to levels that are less likely to cause long-term developmental changes.
       \\n\\n\\n## Conflict of interest \\n  \\nThe authors report no conflicts of
       interest. \\n\\n \\n\\n Call the extractData function to save the output.\"}],\"model\":\"gpt-4o-mini-2024-07-18\",\"response_format\":null,\"temperature\":0,\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"extractData\",\"description\":\"Extract
-      data from scientific text\",\"parameters\":{\"$defs\":{\"GroupImaging\":{\"properties\":{\"count\":{\"description\":\"Number
-      of participants in this group\",\"title\":\"Count\",\"type\":\"integer\"},\"diagnosis\":{\"description\":\"Diagnosis
-      of the group, if any\",\"title\":\"Diagnosis\",\"type\":\"string\"},\"group_name\":{\"description\":\"Group
-      name, healthy or patients\",\"enum\":[\"healthy\",\"patients\"],\"title\":\"Group
-      Name\",\"type\":\"string\"},\"subgroup_name\":{\"description\":\"Subgroup name\",\"title\":\"Subgroup
-      Name\",\"type\":\"string\"},\"male_count\":{\"description\":\"Number of male
-      participants in this group\",\"title\":\"Male Count\",\"type\":\"integer\"},\"female_count\":{\"description\":\"Number
-      of female participants in this group\",\"title\":\"Female Count\",\"type\":\"integer\"},\"age_mean\":{\"description\":\"Mean
-      age of participants in this group\",\"title\":\"Age Mean\",\"type\":\"number\"},\"age_range\":{\"description\":\"Age
-      range of participants in this group, separated by a dash\",\"title\":\"Age Range\",\"type\":\"string\"},\"age_minimum\":{\"description\":\"Minimum
-      age of participants in this group\",\"title\":\"Age Minimum\",\"type\":\"integer\"},\"age_maximum\":{\"description\":\"Maximum
-      age of participants in this group\",\"title\":\"Age Maximum\",\"type\":\"integer\"},\"age_median\":{\"description\":\"Median
-      age of participants in this group\",\"title\":\"Age Median\",\"type\":\"integer\"},\"imaging_sample\":{\"description\":\"Did
-      this subgroup undergo fMRI, MRI or neuroimaging, yes or no\",\"enum\":[\"yes\",\"no\"],\"title\":\"Imaging
-      Sample\",\"type\":\"string\"}},\"required\":[\"count\",\"diagnosis\",\"group_name\",\"subgroup_name\",\"male_count\",\"female_count\",\"age_mean\",\"age_range\",\"age_minimum\",\"age_maximum\",\"age_median\",\"imaging_sample\"],\"title\":\"GroupImaging\",\"type\":\"object\"}},\"properties\":{\"groups\":{\"items\":{\"$ref\":\"#/$defs/GroupImaging\"},\"title\":\"Groups\",\"type\":\"array\"}},\"required\":[\"groups\"],\"title\":\"BaseDemographicsSchema\",\"type\":\"object\"}}}]}"
+      data from scientific text\",\"parameters\":{\"$defs\":{\"TaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\"],\"title\":\"TaskMetadataModel\",\"type\":\"object\"},\"fMRITaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"},\"RestingState\":{\"description\":\"Was
+      this task a resting state task?\",\"title\":\"Restingstate\",\"type\":\"boolean\"},\"RestingStateMetadata\":{\"anyOf\":[{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},{\"type\":\"null\"}],\"description\":\"Additional
+      details about the resting-state task, such as duration and instructions provided
+      to participants, if applicable.\",\"title\":\"Restingstatemetadata\"},\"TaskDesign\":{\"description\":\"Design(s)
+      of the task\",\"items\":{\"enum\":[\"Blocked\",\"EventRelated\",\"Mixed\",\"Other\"],\"type\":\"string\"},\"title\":\"Taskdesign\",\"type\":\"array\"},\"TaskDuration\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Total
+      duration of the task, e.g., '10 minutes' or '600 seconds'.\",\"title\":\"Taskduration\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\",\"RestingState\",\"RestingStateMetadata\",\"TaskDesign\",\"TaskDuration\"],\"title\":\"fMRITaskMetadataModel\",\"type\":\"object\"}},\"properties\":{\"Modality\":{\"description\":\"Modality
+      of the neuroimaging data\",\"items\":{\"enum\":[\"fMRI-BOLD\",\"StructuralMRI\",\"DiffusionMRI\",\"PET
+      FDG\",\"PET [15O]-water\",\"fMRI-CBF\",\"fMRI-CBV\",\"MEG\",\"EEG\",\"Other\"],\"type\":\"string\"},\"title\":\"Modality\",\"type\":\"array\"},\"StudyObjective\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"A
+      brief summary of the primary research question or objective of the study.\",\"title\":\"Studyobjective\"},\"Exclude\":{\"anyOf\":[{\"enum\":[\"MetaAnalysis\",\"Review\"],\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Only
+      studies that conduct primary data collection are to be be included. Thus, if
+      a study is primarily either a meta-analysis or a review, note here.\",\"title\":\"Exclude\"},\"fMRITasks\":{\"description\":\"List
+      of fMRI tasks performed by the subjects inside the scanner and their metadata.
+      If the study did not include fMRI tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/fMRITaskMetadataModel\"},\"title\":\"Fmritasks\",\"type\":\"array\"},\"BehavioralTasks\":{\"description\":\"List
+      of behavioral tasks performed by the subjects outside the scanner and their
+      metadata. If the study did not include behavioral tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/TaskMetadataModel\"},\"title\":\"Behavioraltasks\",\"type\":\"array\"}},\"required\":[\"Modality\",\"StudyObjective\",\"Exclude\",\"fMRITasks\",\"BehavioralTasks\"],\"title\":\"StudyMetadataModel\",\"type\":\"object\"}}}]}"
     headers:
       accept:
       - application/json
@@ -1057,7 +1128,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '31564'
+      - '35769'
       content-type:
       - application/json
       host:
@@ -1071,23 +1142,24 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAwAAAP//1FTBbtswDL3nKwSek8E2kmXNbV0HrNiw9TBsQ+vCYCTGUStLqiS3CYL8
-        eyE7iZ0sA3bZYT4YwnvkI/0scjNgDKSAGQO+xMArq0aX49UP/SQebq7LX++vvr58co/2260IYXxz
-        KWAYM8z8gXjYZ73hprKKgjS6pbkjDBRV0+k4mWTpdDppiMoIUjGttGE0NqNKajnKkmw8Sqaj9N0u
-        e2kkJw8zdjdgjLFN8459akErmLFkuEcq8h5LgtkhiDFwRkUE0HvpA+oAw47kRgfSsXVdK9UjgjGq
-        4KhUV7h9Nr1zZxYqVfzEefnh2d8ur3X62covH5++v8zrh6RXr5Ve26ahRa35waQef8BnJ8UYA41V
-        k0ur4JCHKwx4ks4YoCvrinSIrcMmh9KZ2vocZnebHLipdchhlmXDHITEUhsvI5kDR61xLj2rPTEh
-        vXGCXA7DnUIRizeBFoOM+g3n6/kJTejUmhntKUQp18ZVqKjYV2/czmFB51AsqagI9THiUJd0EiS1
-        rOrqBMTVGZCE7AvKCkupy8JjvKpN12vyOWyHfYuSf2aRwkD/qUP3Wzi6cNvBufN9b5YcLWqPajdk
-        O3x7mFplSuvM3J8MISykln5ZOELfDEN/Jgf7ak0dqI/GHqwzlQ1FMI+ko+zkYpK1stDtpo5OJ5Md
-        G0xA1RFv02Q6PCNZCAoom9Vw2EYc+ZJEl9ttJayFND1i0Pv83/s5p91aEP/GX8h3BOdkA4nCOhKS
-        H39zF+YoLu8/hR2MbhoGT+5ZciqCJBd/iaAF1qpdqeDXPlBVLKQuyVknm70KC1tMk4tpOhZpNobB
-        dvAKAAD//wMAEcvy4mUGAAA=
+        H4sIAAAAAAAAA3RU227TQBB9z1eM9gmkpHJCbkQ8cZEooiDaAgKMrOnu2F5Y71q747Ru1Q/gQ/gx
+        vgStkyZOKX6wrDlzztx9MwAQWokVCFkiy6o2o+ezY51Mv7x99eLJzLTnZ7M3c3L15Pjj9Wu+FMPI
+        cBc/SPId60i6qjbE2tkNLD0hU1QdL6bJPHkymc07oHKKTKQVNY+mblRpq0eTZDIdJYvReLlll05L
+        CmIF3wYAADfdO+ZpFV2JFSTDO0tFIWBBYrVzAhDemWgRGIIOjJbFcA9KZ5lsTN02xvQAds5kEo3Z
+        B948N73vfbPQmIxPv/LH60/Nh9fvvPvSJp9xfXV9IZe9eBvptu4Syhsrd03q4Tv76l4wAGGx6rh0
+        xR4lv0TGe3QAgb5oKrIcUxc3qThxCo3mNhWrb6k4Y99Ibjyak9PjVHwfRlOj2vfdEPWaUrFKxbmD
+        OEb0BAq1aaFCr380aBGaQD7AZengkjwBoTctOBuIt9CjZ+M5tIQ+gDPqMazJhyaAQaZDvz+/fh96
+        OgsVYWg8BXA5SOdZSzRQOV+XzriiBS6RIaYVyAYd8wV2oGhNxtWxajQgS7QFhaNUDFPx6kqaRsWq
+        uhGnIj85PT7H8DPEfsTyn1OJa+08mgPzKQXWtjhj5MjO0QS6Zz4hRoWMW/FbcTCK28FD3997W+Yp
+        bwKa7fpt7be7fTauqL27CPfWU+Ta6lBmnjB0a9Lf1sFdtC6OaA4OQtTeVTVn7H6SjbLz+WKykRX7
+        q93Dy/kWZMdoerTFbDl8QDFTxKi7m9mdqURZkupxZ5PlrhJslHZ7LBn0GvBvRg/Jb5qgbdFT+a/8
+        HpCSaiaV1Z6UlodV7908xZv4n9uu1V3CIpBfa0kZa/JxKIpybMzmdyNCG5iqLNe2IF973f1zRF5n
+        i+TpYjxV48lUDG4HfwEAAP//AwCWddxVgQUAAA==
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 917b0f08fba5462c-DFW
+      - 9182d44ececb462f-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1095,14 +1167,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Feb 2025 22:16:17 GMT
+      - Wed, 26 Feb 2025 20:54:17 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=G86pYKix8qOoTVWFhqFI.zOI1jAedsJPrqanUxvbZ4s-1740521777-1.0.1.1-qquJyE8dVfLcrm03hFfv.vu8qs3tbzarBaCgoU7dRdjXYNLPjk7cxr6E220Wy1FYuAH0P25NDq92unonh1_q8w;
-        path=/; expires=Tue, 25-Feb-25 22:46:17 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=Y7pacnOOgNMfhVPV0wcecKG46NSojGTBsennu9Ee8IU-1740603257-1.0.1.1-G0nphDAL7UXV53PQT8cho3bZvZx4puSV3Bm0cuOWG_Js1e9Hn9Xm4BHN5VqsUu_GNy2aPO94LObICmpoVBq84Q;
+        path=/; expires=Wed, 26-Feb-25 21:24:17 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=g0PQL5026Q0HDO8Y0JO.hm.5MxOZEVgQY1FJpE.sXwk-1740521777659-0.0.1.1-604800000;
+      - _cfuvid=Jwm2LOkL6xqDA8D1j4puDn1NDSOqKVEb91jOnbT_Uao-1740603257499-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -1115,7 +1187,7 @@ interactions:
       openai-organization:
       - university-of-texas-at-austin-8nppuy
       openai-processing-ms:
-      - '2023'
+      - '1270'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -1127,32 +1199,27 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '9992635'
+      - '9992732'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 44ms
+      - 43ms
       x-request-id:
-      - req_a7d3d78c69e397e08b7e623946abc393
+      - req_a3c74d6cde37317901f7690f16f3c6a6
     status:
       code: 200
       message: OK
 - request:
     body: "{\"messages\":[{\"role\":\"user\",\"content\":\"\\nYou will be provided
       with a text sample from a scientific journal.\\nThe sample is delimited with
-      triple backticks.\\n\\nYour task is to identify groups of participants that
-      participated in the study, and underwent MRI.\\nIf there is no mention of any
-      participant groups, return a null array.\\n\\nFor each group identify:\\n    -
-      the number of participants in each group, and the diagnosis.\\n    - the number
-      of male participants, and their mean age, median age, minimum and maximum age\\n
-      \   - the number of female participants, and their mean age, median age, minimum
-      and maximum age.\\n    - if this group of participants underwent MRI, fMRI or
-      neuroimaging procedure.\\n\\nBe as accurate as possible, and report information
-      (especially diagnosis) using the technical terms (and abbreviations) used in
-      the article.\\nIf any of the information is missing, return `null` for that
-      field.\\n\\nText sample: \\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\nHippocampal
-      spatial mechanisms relate to the development of arithmetic symbol processing
-      in children - PMC\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n
+      triple backticks.\\n\\nYour task is to identify information about the design
+      of the fMRI task and analysis of the neuroimaging data.\\nIf any information
+      is missing or not explicitly stated in the text, return `null` for that field.\\n\\nFor
+      any extracted text, maintain fidelity to the source. Avoid inferring information
+      not explicitly stated. If a field cannot be completed, return `null`.\\n\\nText
+      sample: \\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\nHippocampal spatial
+      mechanisms relate to the development of arithmetic symbol processing in children
+      - PMC\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n
       \         Back to Top\\n        \\nSkip to main content\\n\\n\\n\\n\\n\\n\\nAn
       official website of the United States government\\n\\nHere's how you know\\n\\n\\n\\n\\n\\n\\n\\n\\nThe
       .gov means it\u2019s official.\\n\\n            Federal government websites
@@ -1993,21 +2060,57 @@ interactions:
       Library of Medicine\\n8600 Rockville Pike\\n                  Bethesda, MD 20894\\n\\n\\nWeb
       Policies\\nFOIA\\nHHS Vulnerability Disclosure\\n\\n\\nHelp\\nAccessibility\\nCareers\\n\\n\\n\\n\\n\\n\\n\\nNLM\\n\\n\\nNIH\\n\\n\\nHHS\\n\\n\\nUSA.gov\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n
       Call the extractData function to save the output.\"}],\"model\":\"gpt-4o-mini-2024-07-18\",\"response_format\":null,\"temperature\":0,\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"extractData\",\"description\":\"Extract
-      data from scientific text\",\"parameters\":{\"$defs\":{\"GroupImaging\":{\"properties\":{\"count\":{\"description\":\"Number
-      of participants in this group\",\"title\":\"Count\",\"type\":\"integer\"},\"diagnosis\":{\"description\":\"Diagnosis
-      of the group, if any\",\"title\":\"Diagnosis\",\"type\":\"string\"},\"group_name\":{\"description\":\"Group
-      name, healthy or patients\",\"enum\":[\"healthy\",\"patients\"],\"title\":\"Group
-      Name\",\"type\":\"string\"},\"subgroup_name\":{\"description\":\"Subgroup name\",\"title\":\"Subgroup
-      Name\",\"type\":\"string\"},\"male_count\":{\"description\":\"Number of male
-      participants in this group\",\"title\":\"Male Count\",\"type\":\"integer\"},\"female_count\":{\"description\":\"Number
-      of female participants in this group\",\"title\":\"Female Count\",\"type\":\"integer\"},\"age_mean\":{\"description\":\"Mean
-      age of participants in this group\",\"title\":\"Age Mean\",\"type\":\"number\"},\"age_range\":{\"description\":\"Age
-      range of participants in this group, separated by a dash\",\"title\":\"Age Range\",\"type\":\"string\"},\"age_minimum\":{\"description\":\"Minimum
-      age of participants in this group\",\"title\":\"Age Minimum\",\"type\":\"integer\"},\"age_maximum\":{\"description\":\"Maximum
-      age of participants in this group\",\"title\":\"Age Maximum\",\"type\":\"integer\"},\"age_median\":{\"description\":\"Median
-      age of participants in this group\",\"title\":\"Age Median\",\"type\":\"integer\"},\"imaging_sample\":{\"description\":\"Did
-      this subgroup undergo fMRI, MRI or neuroimaging, yes or no\",\"enum\":[\"yes\",\"no\"],\"title\":\"Imaging
-      Sample\",\"type\":\"string\"}},\"required\":[\"count\",\"diagnosis\",\"group_name\",\"subgroup_name\",\"male_count\",\"female_count\",\"age_mean\",\"age_range\",\"age_minimum\",\"age_maximum\",\"age_median\",\"imaging_sample\"],\"title\":\"GroupImaging\",\"type\":\"object\"}},\"properties\":{\"groups\":{\"items\":{\"$ref\":\"#/$defs/GroupImaging\"},\"title\":\"Groups\",\"type\":\"array\"}},\"required\":[\"groups\"],\"title\":\"BaseDemographicsSchema\",\"type\":\"object\"}}}]}"
+      data from scientific text\",\"parameters\":{\"$defs\":{\"TaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\"],\"title\":\"TaskMetadataModel\",\"type\":\"object\"},\"fMRITaskMetadataModel\":{\"properties\":{\"TaskName\":{\"description\":\"Name
+      of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. Provide the name as it
+      appears in the paper or a descriptive name if unspecified.\",\"title\":\"Taskname\",\"type\":\"string\"},\"TaskDescription\":{\"description\":\"In
+      1-2 sentences, describe the key features of the task, such as its purpose or
+      what it measures.\",\"title\":\"Taskdescription\",\"type\":\"string\"},\"DesignDetails\":{\"description\":\"Provide
+      a detailed description of the task design in up to 1 paragraph. Include \\n
+      \       information on the number of conditions, the number of trials per condition,
+      the length of trials, \\n        and the length of inter-trial intervals. Quote
+      directly from the paper where possible.\",\"title\":\"Designdetails\",\"type\":\"string\"},\"Conditions\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Conditions
+      of task performed by the subjects.\",\"title\":\"Conditions\"},\"TaskMetrics\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Key
+      metrics or outcomes measured during the task, e.g., 'response time', 'accuracy',
+      'fMRI BOLD signal'.\",\"title\":\"Taskmetrics\"},\"Concepts\":{\"anyOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"List
+      of mental concepts associated with the task, such as cognitive processes or
+      representations it engages. \\n        Examples include 'working memory', 'response
+      inhibition', 'visual perception'. Extract terms from the paper that describe
+      \\n        the underlying mental constructs measured or manipulated by the task.\",\"title\":\"Concepts\"},\"Domain\":{\"anyOf\":[{\"items\":{\"enum\":[\"Perception\",\"Attention\",\"Reasoning
+      and decision making\",\"Executive cognitive control\",\"Learning and memory\",\"Language\",\"Action\",\"Emotion\",\"Social
+      function\",\"Motivation\"],\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"null\"}],\"description\":\"Cognitive
+      domain(s) the concept(s) belong to\",\"title\":\"Domain\"},\"RestingState\":{\"description\":\"Was
+      this task a resting state task?\",\"title\":\"Restingstate\",\"type\":\"boolean\"},\"RestingStateMetadata\":{\"anyOf\":[{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},{\"type\":\"null\"}],\"description\":\"Additional
+      details about the resting-state task, such as duration and instructions provided
+      to participants, if applicable.\",\"title\":\"Restingstatemetadata\"},\"TaskDesign\":{\"description\":\"Design(s)
+      of the task\",\"items\":{\"enum\":[\"Blocked\",\"EventRelated\",\"Mixed\",\"Other\"],\"type\":\"string\"},\"title\":\"Taskdesign\",\"type\":\"array\"},\"TaskDuration\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Total
+      duration of the task, e.g., '10 minutes' or '600 seconds'.\",\"title\":\"Taskduration\"}},\"required\":[\"TaskName\",\"TaskDescription\",\"DesignDetails\",\"Conditions\",\"TaskMetrics\",\"Concepts\",\"Domain\",\"RestingState\",\"RestingStateMetadata\",\"TaskDesign\",\"TaskDuration\"],\"title\":\"fMRITaskMetadataModel\",\"type\":\"object\"}},\"properties\":{\"Modality\":{\"description\":\"Modality
+      of the neuroimaging data\",\"items\":{\"enum\":[\"fMRI-BOLD\",\"StructuralMRI\",\"DiffusionMRI\",\"PET
+      FDG\",\"PET [15O]-water\",\"fMRI-CBF\",\"fMRI-CBV\",\"MEG\",\"EEG\",\"Other\"],\"type\":\"string\"},\"title\":\"Modality\",\"type\":\"array\"},\"StudyObjective\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"A
+      brief summary of the primary research question or objective of the study.\",\"title\":\"Studyobjective\"},\"Exclude\":{\"anyOf\":[{\"enum\":[\"MetaAnalysis\",\"Review\"],\"type\":\"string\"},{\"type\":\"null\"}],\"description\":\"Only
+      studies that conduct primary data collection are to be be included. Thus, if
+      a study is primarily either a meta-analysis or a review, note here.\",\"title\":\"Exclude\"},\"fMRITasks\":{\"description\":\"List
+      of fMRI tasks performed by the subjects inside the scanner and their metadata.
+      If the study did not include fMRI tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/fMRITaskMetadataModel\"},\"title\":\"Fmritasks\",\"type\":\"array\"},\"BehavioralTasks\":{\"description\":\"List
+      of behavioral tasks performed by the subjects outside the scanner and their
+      metadata. If the study did not include behavioral tasks, leave this field empty.\",\"items\":{\"$ref\":\"#/$defs/TaskMetadataModel\"},\"title\":\"Behavioraltasks\",\"type\":\"array\"}},\"required\":[\"Modality\",\"StudyObjective\",\"Exclude\",\"fMRITasks\",\"BehavioralTasks\"],\"title\":\"StudyMetadataModel\",\"type\":\"object\"}}}]}"
     headers:
       accept:
       - application/json
@@ -2016,7 +2119,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '69963'
+      - '74168'
       content-type:
       - application/json
       host:
@@ -2030,21 +2133,31 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAwAAAP//jFRRa9swEH73rxD3nBQ7TerUj1sLhcHYCmvL6mIu8sXRKkuaJIeEkP8+
-        5Dixk3UwPxj7vvu+O50+aRcxBqKEjAFfoee1keNP083T73sdf0Z/8+zN9vHpa/MY65f14iG+g1Fg
-        6MUv4v7IuuK6NpK80OoAc0voKagm6TSeTZI0nbdArUuSgVYZP57qcS2UGE/iyXQcp+Nk3rFXWnBy
-        kLHXiDHGdu079KlK2kDG4tExUpNzWBFkpyTGwGoZIoDOCedReRj1INfKkwqtq0bKAeC1lgVHKfvC
-        h2c3+O6HhVIWDy/qp1nff5klj2by49k3k2/V9/X7alDvIL01bUPLRvHTkAb4KZ5dFGMMFNYtlzbe
-        Ivd36PGCzhigrZqalA+twy6HyurGuByy110OXDfK55BdT0c5lAIrpZ0IYDuALrkIdXLIcjDoRZDK
-        YZSDaxYX8LUtmdcsif2KVRZLavNqlFQcC03iUQ5LOosloThWVNSEKvwnV9dpF7KoqoP4fJzMWr02
-        UyhRN3UO2fwYwU0XSWYnuVK0gt1iRI2VUFXhMDiyFd2Sy2H/toezqe2jj77fBoawtGwcys4pXXx/
-        sp7UlbF64S6cBEuhhFsVltC1Ozo0VnSs1taB5sy7YKyujS+8ficVZJPZbdpZHfoT1uPz2w702qMc
-        8G7i2RE60yxK8ihag5/OFEe+orIn92cLm1LoARAN1v93Px9pH2YQtuM/5HuAczKeysJYKgU/X3Of
-        ZilcQf9KO026bRgc2bXgVHhBNuxJSUts5OFiALd1nupiKVRF1ljR3g6wNEUa36bJtEwmU4j20R8A
-        AAD//wMAKritzSsFAAA=
+        H4sIAAAAAAAAAwAAAP//fFbhbts2EP6fpzjw7+zAdtxk8b+2LpBsSwsk3VagLowzeZKuoUiNpOw4
+        QYC+xbbn2Zv0SQZSsiV77fzDkHi8777vjrzT0wmAYCVmIGSBQZaVHr56cc3jd9Wlvfv8eDUif/dh
+        Ml/h+duz1YSuxCB62NVnkmHndSptWWkKbE1jlo4wUEQdX0xH56OzyYuLZCitIh3d8ioMp3ZYsuHh
+        ZDSZDkcXw/GPrXdhWZIXM/h4AgDwlP4jT6PoQcxgNNitlOQ95iRm+00AwlkdVwR6zz6gCWLQGaU1
+        gUykbmqte4ZgrV5K1LoL3Pyees9dslDr5erx6ie5tr+urs3P59Mr/P384sPZ453pxWugt1UilNVG
+        7pPUs+/XZ0fBAITBMvnSQ3AowxwDHrkDCHR5XZIJkbp4Wogbq1Bz2C7E7ONCZDe318NX736ZL8Sn
+        wULchVpt36UC8poWYrYQ7y2wWZMPnGMgKOwG0CjYFGQAvbeSMfLzsKKwobjoOBQlBZZgK3IYrPPJ
+        ZeWQDTjK0/bKWUnes8nBVxgYNbDJrCsTHFBJLidgA7JgrRwZyJwt4cwpCBbGo1BA7lDR6UIMFuLN
+        g9S1ioxT6Rph79Hf+6jzaSHi81ssG00vO4pxPSHEhzl56biKBNK+17vQG3IElSNPJpCCDYcCPOdm
+        aI3eJnHprdK1HybRRnlYk/NJqs0AleKkK+4tax240iwbqcExat/omFMEmlNA1j5xeIOyaLaAD+j2
+        4UOxZ9TA2AyIQ0EOEL5++euHr1/+Btu+/PNnfIvQgCG5yqjERaf45qWLpcusg/GLEZT+FK5NT2FD
+        cZD2NlzIqP9jkkBTuHhW0IPnstJbyKzWdkMKVtu0hyOLYQNZkWOronfGDwmpY3GY2T6dntRDoTEq
+        lyUpxkBHoRHiwdM0VJxz6Kpj3XFxKmdXmsrj4mNU5jfkTuF9QZBb1K1sT5Cx1uRalolHsHBPVHVn
+        mUyOOamUHgyx6/A6nfamGmjMDrp3nQL6+wSnKHZV60nFBFqYwq5NoAZXGz9ogLXek4gHOCW75Ic2
+        rq0Cl/xIKtU93vDd3csylkxGbqFOF9RWwdMfk+aIvramyZZvWsjLNnnJeHOQvaapxJt1Q8Gx9F3T
+        gdh0UqFQN9teWyOpCjvUTnbXKVKIu7ZbtGnbRZnbEtk0zreE3prIPOpUJDleRCjxfgfy8tD5Nqo3
+        +V3AEDtEhtrT0fINBVQYsGsxbcfgvI36Zk0m3JKO461TPq8d7hvKb+gYV5oGoKgio1Jym6Kbuly1
+        F3LXD54jxisqcM3Wod61sxj+WRz0+eeTbz1/6o0wR1ntUbezrV1/3g9LbfN40v3R7BMZG/bF0qWE
+        xgnSG4Unu2gpjqgPpq2onC2rsAz2nkyEHZ+fX7bDWXTfBJ39bHTWWoMNqPuOl5c70wHoUjVtsjca
+        hURZkDqIOu0+CbBWbDvj6KSXhP+S+ha+252sHsp34TuDjCeb1LJypFgeCu+2OYqD93vb9ulOhIUn
+        t2ZJy8DkYmEUZVjr5ntG+K0PVC4zNjm5ynH6qBFZtbwYXV6Mp2o8mYqT55N/AQAA//8DAF1SIhji
+        CQAA
     headers:
       CF-RAY:
-      - 917b0f16fc692ccf-DFW
+      - 9182d457bbdef09c-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -2052,14 +2165,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Feb 2025 22:16:19 GMT
+      - Wed, 26 Feb 2025 20:54:21 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=b9lXQaBJElZZmJT6HO_GFzJmi8DMCXSfx8JlkE6csY4-1740521779-1.0.1.1-xpdkgfnwD9qwHZSQPF58Ma0R.ZDpf0NqPhHXGODG3.7sO6CsFFc0O920z9Li4DosckPr0mrAhEpjXz7LAJtFDg;
-        path=/; expires=Tue, 25-Feb-25 22:46:19 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=LivO_aCuHYHc3Q7xcqXB2nRZfj3AMzor7SYvKlAKoMA-1740603261-1.0.1.1-Z7IpGtl01unTgkLtM._MpP9qzdgw3_0QbXD9xJOJr4Jjk7aXFV59tthv7YGP75aqT7kZOdU2DXe.ud6YnKhpXw;
+        path=/; expires=Wed, 26-Feb-25 21:24:21 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=t3FydTmQ9zk.U.daOE4Jx_8RYqHOd3l1WhjWNPTYiks-1740521779499-0.0.1.1-604800000;
+      - _cfuvid=tE_oT1ctUKTkufka0P0HcnJzqwfZI9522xAufMA7UWg-1740603261911-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -2074,7 +2187,7 @@ interactions:
       openai-organization:
       - university-of-texas-at-austin-8nppuy
       openai-processing-ms:
-      - '1610'
+      - '4233'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -2086,13 +2199,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '9983201'
+      - '9983298'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 100ms
       x-request-id:
-      - req_31830d3e9bd9a1c1719b7120c48295e6
+      - req_7c171649e972919d6da919638a6993aa
     status:
       code: 200
       message: OK

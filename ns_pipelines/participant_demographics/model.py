@@ -1,102 +1,72 @@
-""" Extract participant demographics from HTML files. """
-import os
+""" Extract participant demographics from articles. """
+from .prompts import base_message
+from .schemas import BaseDemographicsSchema
+import pandas as pd
+import numpy as np
 
-from publang.extract import extract_from_text
-from openai import OpenAI
-import logging
-
-from . import prompts
-from .clean import clean_prediction
-
-from ns_pipelines.pipeline import IndependentPipeline
+from ns_pipelines.base.api import APIPromptExtractor
 
 
-def extract(extraction_model, extraction_client, text, prompt_set='', **extract_kwargs):
-    extract_kwargs.pop('search_query', None)
-
-    # Extract
-    predictions = extract_from_text(
-        text,
-        model=extraction_model,
-        client=extraction_client,
-        **extract_kwargs
-    )
-
-    if not predictions:
-        logging.warning("No predictions found.")
-        return None, None
-
-    clean_preds = clean_prediction(predictions)
-
-    return predictions, clean_preds
-
-
-def _load_client(model_name, api_key):
-    if 'gpt' in model_name:
-        client = OpenAI(api_key=api_key)
-    else:
-        raise ValueError(f"Model {model_name} not supported")
-
-    return client
-
-
-def _load_prompt_config(prompt_set):
-    return getattr(prompts, prompt_set)
-
-
-class ParticipantDemographicsExtractor(IndependentPipeline):
+class ParticipantDemographicsExtractor(APIPromptExtractor):
     """Participant demographics extraction pipeline."""
 
     _version = "1.0.0"
+    _prompt = base_message
+    _output_schema = BaseDemographicsSchema
 
-    def __init__(
-        self,
-        extraction_model,
-        prompt_set,
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        env_variable=None,
-        env_file=None,
-        **kwargs
-    ):
-        super().__init__(inputs=inputs, input_sources=input_sources)
-        self.extraction_model = extraction_model
-        self.prompt_set = prompt_set
-        self.env_variable = env_variable
-        self.env_file = env_file
-        self.kwargs = kwargs
+    def post_process(self, result):
+        # Clean known issues with GPT demographics result
 
-    def get_api_key(self):
-        """Read the API key from the environment variable or file."""
-        if self.env_variable:
-            api_key = os.getenv(self.env_variable)
-            if api_key is not None:
-                return api_key
-        if self.env_file:
-            with open(self.env_file) as f:
-                return ''.join(f.read().strip().split("=")[1])
-        else:
-            raise ValueError("No API key provided")
+        meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
+        meta_keys = [k for k in meta_keys if k in result]
 
-    def _run(self, study_inputs, n_cpus=1):
-        """Run the participant demographics extraction pipeline."""
-        api_key = self.get_api_key()
-        extraction_client = _load_client(self.extraction_model, api_key)
+        # Convert JSON to DataFrame
+        df = pd.json_normalize(
+            result, record_path=["groups"],
+            meta=meta_keys
+            )
+        
+        df.columns = df.columns.str.replace(' ', '_')
 
-        prompt_config = _load_prompt_config(self.prompt_set)
-        if self.kwargs is not None:
-            prompt_config.update(self.kwargs)
+        df = df.fillna(value=np.nan)
+        df["group_name"] = df["group_name"].fillna("healthy")
 
-        with open(study_inputs["text"]) as f:
-            text = f.read()
+        # Drop rows where count is NA
+        df = df[~pd.isna(df["count"])]
 
-        predictions, clean_preds = extract(
-            self.extraction_model,
-            extraction_client,
-            text,
-            prompt_set=self.prompt_set,
-            **prompt_config
+        # Set group_name to healthy if no diagnosis
+        df.loc[
+            (df["group_name"] != "healthy") & (pd.isna(df["diagnosis"])),
+            "group_name",
+        ] = "healthy"
+
+        # Ensure minimum count is 0
+        df["count"] = df["count"].clip(lower=0)
+
+        # If no male count, substract count from female count columns
+        ix_male_miss = (pd.isna(df["male_count"])) & ~(
+            pd.isna(df["female_count"])
+        )
+        df.loc[ix_male_miss, "male_count"] = (
+            df.loc[ix_male_miss, "count"]
+            - df.loc[ix_male_miss, "female_count"]
         )
 
-        # Save predictions
-        return {"predictions": predictions, "clean_predictions": clean_preds}
+        df["male_count"] = df["male_count"].clip(lower=0)
+
+        # Same for female count
+        ix_female_miss = (pd.isna(df["female_count"])) & ~(
+            pd.isna(df["male_count"])
+        )
+        df.loc[ix_female_miss, "female_count"] = (
+            df.loc[ix_female_miss, "count"]
+            - df.loc[ix_female_miss, "male_count"]
+        )
+
+        df["female_count"] = df["female_count"].clip(lower=0)
+
+        # Replace missing values with None
+        df = df.astype(object).where(pd.notna(df), None)
+        df = df.where(pd.notnull(df), None)
+
+        return {"groups": df.to_dict(orient="records")}
