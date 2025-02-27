@@ -1,4 +1,4 @@
-from ns_pipelines.dataset import Dataset
+from ns_extract.dataset import Dataset
 
 
 def test_dataset(sample_data):

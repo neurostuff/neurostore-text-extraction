@@ -4,7 +4,7 @@ from .schemas import BaseDemographicsSchema
 import pandas as pd
 import numpy as np
 
-from ns_pipelines.base.api import APIPromptExtractor
+from ns_extract.pipelines.api import APIPromptExtractor
 
 
 class ParticipantDemographicsExtractor(APIPromptExtractor):

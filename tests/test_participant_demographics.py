@@ -1,10 +1,9 @@
 import json
 import pytest
-from pathlib import Path
 
-from ns_pipelines import ParticipantDemographicsExtractor
-from ns_pipelines.dataset import Dataset
-from ns_pipelines.participant_demographics.schemas import BaseDemographicsSchema, GroupImaging
+from ns_extract.pipelines import ParticipantDemographicsExtractor
+from ns_extract.dataset import Dataset
+from ns_extract.pipelines.participant_demographics.schemas import BaseDemographicsSchema, GroupImaging
 
 
 @pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
