@@ -5,6 +5,9 @@ from pathlib import Path
 import re
 import json
 from typing import Union, Optional
+import logging
+
+logger = logging.getLogger(__name__)    
 
 INPUTS = [
     "text",
@@ -112,12 +115,16 @@ class Study:
         for t in ["ace", "pubget"]:
             processed_dir = self.study_dir / "processed" / t
             if processed_dir.exists():
-                processed = ProcessedData(
-                    coordinates=processed_dir / "coordinates.csv",
-                    text=processed_dir / "text.txt",
-                    metadata=processed_dir / "metadata.json",
-                    raw = ace_raw if t == "ace" else pubget_raw
-                )
+                try:
+                    processed = ProcessedData(
+                        coordinates=processed_dir / "coordinates.csv",
+                        text=processed_dir / "text.txt",
+                        metadata=processed_dir / "metadata.json",
+                        raw = ace_raw if t == "ace" else pubget_raw
+                    )
+                except ValueError as e:
+                    logger.error(f"Error loading processed data for {self.dbid}: {e}")
+                    continue
 
                 setattr(self, t, processed)
 
