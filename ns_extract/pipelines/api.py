@@ -22,7 +22,7 @@ class APIPromptExtractor(IndependentPipeline):
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
         client_url: Optional[str] = None,
-        **completions_kwargs
+        **kwargs
     ):
         """Initialize the prompt-based pipeline.
         
@@ -33,7 +33,7 @@ class APIPromptExtractor(IndependentPipeline):
             env_variable: Environment variable containing API key
             env_file: Path to file containing API key
             client_url: Optional URL for OpenAI client
-            **completions_kwargs: Additional arguments for the completion function
+            **kwargs: Additional arguments for the completion function
         """
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
@@ -45,7 +45,7 @@ class APIPromptExtractor(IndependentPipeline):
         self.env_variable = env_variable
         self.env_file = env_file
         self.client_url = client_url
-        self.kwargs = completions_kwargs
+        self.kwargs = kwargs
 
     def _load_client(self) -> OpenAI:
         """Load the OpenAI client.
@@ -60,7 +60,10 @@ class APIPromptExtractor(IndependentPipeline):
         if not api_key:
             raise ValueError("No API key provided")
         
-        return OpenAI(api_key, client_url=self.client_url)
+        if self.client_url:
+            return OpenAI(api_key, client_url=self.client_url)
+        else:
+            return OpenAI(api_key)
     
     def _get_api_key(self) -> Optional[str]:
         """Read the API key from environment variable or file.
