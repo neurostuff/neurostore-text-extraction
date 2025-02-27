@@ -93,23 +93,13 @@ class Pipeline(ABC):
             - raw_results: Raw results if post-processing was applied
         """
         try:
-            # Pre-process inputs
-            processed_inputs = self.pre_process(study_inputs)
-            if not processed_inputs:
-                logging.error("Pre-processing returned no inputs")
-                return None
-
             # Execute core pipeline logic
-            raw_results = self.execute(processed_inputs, **kwargs)
+            raw_results = self.execute(study_inputs, **kwargs)
             if not raw_results:
                 return None
 
             # Post-process results
-            try:
-                post_results = self.post_process(raw_results)
-            except Exception as e:
-                logging.error(f"Post-processing failed: {e}")
-                post_results = None
+            post_results = self.post_process(raw_results)
 
             results = self.validate_results(
                 post_results or raw_results
@@ -314,7 +304,6 @@ class IndependentPipeline(Pipeline):
                 continue
 
             study_outdir.mkdir(parents=True)
-
             outputs = self._process_inputs(study_inputs, **kwargs)
             if outputs:
                 for output_type, output in outputs.items():
