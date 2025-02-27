@@ -60,10 +60,7 @@ class APIPromptExtractor(IndependentPipeline):
         if not api_key:
             raise ValueError("No API key provided")
         
-        if self.client_url:
-            return OpenAI(api_key, client_url=self.client_url)
-        else:
-            return OpenAI(api_key)
+        return OpenAI(api_key=api_key, base_url=self.client_url)
     
     def _get_api_key(self) -> Optional[str]:
         """Read the API key from environment variable or file.
