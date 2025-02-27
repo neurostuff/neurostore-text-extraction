@@ -21,30 +21,20 @@ INPUTS = [
 
 @dataclass
 class AceRaw:
-    html: Union[str, Path]
-
+    html: Path
     def __post_init__(self):
         # Convert string path to Path object
-        if isinstance(self.html, str):
-            self.html = Path(self.html)
-        
         # Preprocessing logic for AceRaw can be added here if needed
         if not self.html.exists():
             raise ValueError(f"HTML file {self.html} does not exist.")
 
 @dataclass
 class PubgetRaw:
-    xml: Union[str, Path]
+    xml: Path
     tables: dict = field(default_factory=dict)
-    tables_xml: Union[str, Path] = None
+    tables_xml: Path = None
 
     def __post_init__(self):
-        # Convert string paths to Path objects
-        if isinstance(self.xml, str):
-            self.xml = Path(self.xml)
-        if isinstance(self.tables_xml, str):
-            self.tables_xml = Path(self.tables_xml)
-
         # Load tables and assign file paths
         if not self.xml.exists():
             raise ValueError(f"XML file {self.xml} does not exist.")
@@ -69,20 +59,12 @@ class PubgetRaw:
 
 @dataclass
 class ProcessedData:
-    coordinates: Union[str, Path] = None
-    text: Union[str, Path] = None
-    metadata: Union[str, Path] = None
+    coordinates: Path = None
+    text: Path = None
+    metadata: Path = None
     raw: Optional[Union['PubgetRaw', 'AceRaw']] = field(default=None)
 
     def __post_init__(self):
-        # Convert string paths to Path objects
-        if isinstance(self.coordinates, str):
-            self.coordinates = Path(self.coordinates)
-        if isinstance(self.text, str):
-            self.text = Path(self.text)
-        if isinstance(self.metadata, str):
-            self.metadata = Path(self.metadata)
-
         # Ensure the processed data files exist
         if self.coordinates and not self.coordinates.exists():
             raise ValueError(f"Coordinates file {self.coordinates} does not exist.")
@@ -93,7 +75,7 @@ class ProcessedData:
 
 @dataclass
 class Study:
-    study_dir: Union[str, Path]
+    study_dir: Path
     dbid: str = None
     doi: str = None
     pmid: str = None
@@ -102,8 +84,6 @@ class Study:
     pubget: ProcessedData = None
 
     def __post_init__(self):
-        if isinstance(self.study_dir, str):
-            self.study_dir = Path(self.study_dir)
         self.dbid = self.study_dir.name
 
         # Load identifiers
