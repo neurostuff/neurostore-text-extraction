@@ -21,7 +21,7 @@ class APIPromptExtractor(IndependentPipeline):
         input_sources: tuple = ("pubget", "ace"),
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
-        **kwargs
+        **completions_kwargs
     ):
         """Initialize the prompt-based pipeline.
         
@@ -31,7 +31,7 @@ class APIPromptExtractor(IndependentPipeline):
             input_sources: Valid input sources
             env_variable: Environment variable containing API key
             env_file: Path to file containing API key
-            **kwargs: Additional configuration parameters
+            **completions_kwargs: Additional arguments for the completion function
         """
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
@@ -42,7 +42,7 @@ class APIPromptExtractor(IndependentPipeline):
         self.extraction_model = extraction_model
         self.env_variable = env_variable
         self.env_file = env_file
-        self.kwargs = kwargs
+        self.kwargs = completions_kwargs
 
     def _load_client(self) -> OpenAI:
         """Load the OpenAI client.
@@ -101,8 +101,8 @@ class APIPromptExtractor(IndependentPipeline):
         with open(inputs['text'], 'r') as f:
             text = f.read()
 
-        # Create prompt configuration
-        prompt_config = {
+        # Create chat completion configuration
+        completion_config = {
             "messages": [
                 {
                     "role": "user",
@@ -112,14 +112,14 @@ class APIPromptExtractor(IndependentPipeline):
             "output_schema": self._extraction_schema.model_json_schema()
         }
         if self.kwargs:
-            prompt_config.update(self.kwargs)
+            completion_config.update(self.kwargs)
 
         # Extract predictions
         results = extract_from_text(
             text,
             model=self.extraction_model,
             client=client,
-            **prompt_config
+            **completion_config
         )
 
         if not results:
