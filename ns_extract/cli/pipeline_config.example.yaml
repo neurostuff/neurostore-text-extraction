@@ -5,19 +5,10 @@ pipelines:
   # Pipeline with configuration arguments
   - name: participant_demographics
     args:
-      model_name: "gpt-4"
-      temperature: 0.7
-      max_tokens: 1000
+      model_name: "gpt-4o-mini"
+
 
   # Another pipeline with different arguments
   - name: task
     args:
-      extraction_method: "hybrid"
-      confidence_threshold: 0.8
-
-  # Word count pipeline with custom settings
-  - name: word_deviance
-    args:
-      min_word_length: 3
-      max_word_length: 15
-      ignore_case: true
+      model_name: "gpt-4o-mini"
