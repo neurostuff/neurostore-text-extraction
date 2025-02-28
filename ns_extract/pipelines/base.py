@@ -1,15 +1,52 @@
 from datetime import datetime
+import concurrent.futures
 import inspect
 import json
 import hashlib
 import os
 import logging
 from abc import ABC, abstractmethod
-from functools import reduce
+from functools import reduce, wraps
 from pathlib import Path
-from typing import Dict, Any, List, Union, Optional, Type, Tuple
+from typing import Dict, Any, List, Union, Optional, Type, Tuple, Callable
 
+import tqdm
 from pydantic import BaseModel
+
+def parallelize_inputs(func: Callable) -> Callable:
+    """Decorator to parallelize the extraction process over texts."""
+    @wraps(func)
+    def wrapper(inputs: Union[Dict, List], *args, **kwargs):
+        # Get the number of workers (pop from kwargs)
+        num_workers = kwargs.pop("num_workers", 1)
+
+        from pdb import set_trace; set_trace()
+
+        # Run in parallel mode
+        if num_workers > 1:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as exc:
+                futures = [
+                    exc.submit(func, i, *args, **kwargs) for i in inputs
+                ]
+                results = [
+                    r.result() for r in tqdm.tqdm(
+                        futures,
+                        total=len(futures),
+                        desc="Processing studies"
+                    )
+                ]
+        else:
+            # Serial mode with progress bar
+            results = [
+                func(i, *args, **kwargs)
+                for i in tqdm.tqdm(
+                    inputs,
+                    desc="Processing studies"
+                )
+            ]
+        return results
+
+    return wrapper
 
 
 INPUTS = [
@@ -72,12 +109,13 @@ class Pipeline(ABC):
     _version: str = None
     _output_schema: Type[BaseModel] = None  # Required schema for output validation
 
-    def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace")):
+    def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace"), num_workers: int = 1):
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class")
             
         self.inputs = inputs
         self.input_sources = input_sources
+        self.num_workers = num_workers
         self._pipeline_type = inspect.getmro(self.__class__)[1].__name__.lower().rstrip("pipeline")
 
     @abstractmethod
@@ -285,6 +323,33 @@ class Pipeline(ABC):
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
+    def _process_and_write_study(self, study_data: Tuple[str, Dict[str, Any], Path], hash_outdir: Path, **kwargs) -> bool:
+        """Process a single study and write its results.
+        
+        Args:
+            study_data: Tuple of (db_id, study_inputs, study_outdir)
+            hash_outdir: Base output directory
+            **kwargs: Additional arguments for processing
+            
+        Returns:
+            bool: True if processing was successful
+        """
+        db_id, study_inputs, study_outdir = study_data
+        study_outdir.mkdir(parents=True, exist_ok=True)
+        
+        # Process the inputs
+        outputs = self._process_inputs(study_inputs, **kwargs)
+        
+        if outputs:
+            # Write results immediately
+            for output_type, output in outputs.items():
+                if output_type == "results":
+                    is_valid, output = output
+                    self.write_study_info(hash_outdir, db_id, study_inputs, is_valid)
+                FileManager.write_json(study_outdir / f"{output_type}.json", output)
+            return True
+        return False
+
     def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
         """Process individual studies through the pipeline independently."""
         hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
@@ -293,24 +358,51 @@ class IndependentPipeline(Pipeline):
             hash_outdir.mkdir(parents=True)
             self.write_pipeline_info(hash_outdir)
 
-        # Process each study individually
+        # Filter and prepare studies that need processing
         filtered_dataset = self.filter_inputs(output_directory, dataset)
-        for db_id, study in filtered_dataset.data.items():
+        studies_to_process = []
+        
+        print("Preparing studies for processing...")
+        for db_id, study in tqdm.tqdm(filtered_dataset.data.items(), desc="Filtering studies"):
             study_inputs = self.collect_study_inputs(study)
             study_outdir = hash_outdir / db_id
-
-            # If directory exists, this study has already been processed
+            
+            # Skip if already processed
             if study_outdir.exists():
                 continue
+                
+            studies_to_process.append((db_id, study_inputs, study_outdir))
 
-            study_outdir.mkdir(parents=True)
-            outputs = self._process_inputs(study_inputs, **kwargs)
-            if outputs:
-                for output_type, output in outputs.items():
-                    if output_type == "results":
-                        is_valid, output = output
-                        self.write_study_info(hash_outdir, db_id, study_inputs, is_valid)
-                    FileManager.write_json(study_outdir / f"{output_type}.json", output)
+        if not studies_to_process:
+            print("No studies need processing")
+            return
+
+        # Process and write results as they complete
+        print(f"Processing {len(studies_to_process)} studies...")
+        success_count = 0
+        
+        with tqdm.tqdm(total=len(studies_to_process), desc="Processing studies") as pbar:
+            if self.num_workers > 1:
+                # Parallel processing
+                with concurrent.futures.ThreadPoolExecutor(max_workers=self.num_workers) as exc:
+                    futures = []
+                    for study_data in studies_to_process:
+                        future = exc.submit(self._process_and_write_study, study_data, hash_outdir, **kwargs)
+                        future.add_done_callback(lambda _: pbar.update(1))
+                        futures.append(future)
+                        
+                    # Wait for completion and count successes
+                    for future in concurrent.futures.as_completed(futures):
+                        if future.result():
+                            success_count += 1
+            else:
+                # Serial processing
+                for study_data in studies_to_process:
+                    if self._process_and_write_study(study_data, hash_outdir, **kwargs):
+                        success_count += 1
+                    pbar.update(1)
+        
+        print(f"Completed processing {success_count} of {len(studies_to_process)} studies successfully")
 
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
