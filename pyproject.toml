@@ -3,7 +3,7 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "neurostore-text-extractor"
+name = "ns-extract"
 authors = [{name = "James Kent", email = "jamesdkent21@gmail.com"}]
 description = "A package for extracting text features from the NeuroStore database."
 readme = "README.md"
@@ -47,7 +47,7 @@ tests = [
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "ns_pipelines/_version.py"
+version-file = "ns_extract/_version.py"
 
 [tool.hatch.metadata]
 allow-direct-references = true

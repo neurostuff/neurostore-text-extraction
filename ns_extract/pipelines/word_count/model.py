@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from ns_pipelines.base import IndependentPipeline, DependentPipeline
+from ns_extract.pipelines.base import IndependentPipeline, DependentPipeline
 
 
 class WordCountSchema(BaseModel):

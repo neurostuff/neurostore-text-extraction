@@ -4,7 +4,7 @@ from .schemas import BaseDemographicsSchema
 import pandas as pd
 import numpy as np
 
-from ns_pipelines.base.api import APIPromptExtractor
+from ns_extract.pipelines.api import APIPromptExtractor
 
 
 class ParticipantDemographicsExtractor(APIPromptExtractor):
@@ -28,7 +28,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         
         df.columns = df.columns.str.replace(' ', '_')
 
-        df = df.fillna(value=np.nan)
+        # Fill NA values and infer proper types
+        with pd.option_context("future.no_silent_downcasting", True):
+            df = df.fillna(value=np.nan).infer_objects(copy=False)
         df["group_name"] = df["group_name"].fillna("healthy")
 
         # Drop rows where count is NA

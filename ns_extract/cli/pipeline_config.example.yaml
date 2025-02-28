@@ -1,0 +1,12 @@
+pipelines:
+  # Pipeline with configuration arguments
+  - name: participant_demographics
+    args:
+      extraction_model: "gpt-4o-mini-2024-07-18"
+      env_variable: "OPENAI_API_KEY"
+
+
+  # Another pipeline with different arguments
+  # - name: task
+  #   args:
+  #     extraction_model: "gpt-4o-mini-2024-07-18"

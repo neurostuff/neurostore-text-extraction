@@ -8,7 +8,7 @@ from tqdm import tqdm
 import json
 from pathlib import Path
 
-from ns_pipelines.pipeline import IndependentPipeline
+from ns_extract.pipeline import IndependentPipeline
 
 from spacy.language import Language
 @Language.component("serialize_abbreviation")

@@ -2,9 +2,9 @@ import json
 import pytest
 from pathlib import Path
 
-from ns_pipelines import TaskExtractor
-from ns_pipelines.dataset import Dataset
-from ns_pipelines.nv_task.schemas import StudyMetadataModel, fMRITaskMetadataModel, TaskMetadataModel
+from ns_extract.pipelines import TaskExtractor
+from ns_extract.dataset import Dataset
+from ns_extract.pipelines.nv_task.schemas import StudyMetadataModel, fMRITaskMetadataModel, TaskMetadataModel
 
 
 @pytest.mark.vcr(record_mode="once")

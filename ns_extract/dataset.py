@@ -5,6 +5,9 @@ from pathlib import Path
 import re
 import json
 from typing import Union, Optional
+import logging
+
+logger = logging.getLogger(__name__)    
 
 INPUTS = [
     "text",
@@ -19,8 +22,8 @@ INPUTS = [
 @dataclass
 class AceRaw:
     html: Path
-
     def __post_init__(self):
+        # Convert string path to Path object
         # Preprocessing logic for AceRaw can be added here if needed
         if not self.html.exists():
             raise ValueError(f"HTML file {self.html} does not exist.")
@@ -112,12 +115,16 @@ class Study:
         for t in ["ace", "pubget"]:
             processed_dir = self.study_dir / "processed" / t
             if processed_dir.exists():
-                processed = ProcessedData(
-                    coordinates=processed_dir / "coordinates.csv",
-                    text=processed_dir / "text.txt",
-                    metadata=processed_dir / "metadata.json",
-                    raw = ace_raw if t == "ace" else pubget_raw
-                )
+                try:
+                    processed = ProcessedData(
+                        coordinates=processed_dir / "coordinates.csv",
+                        text=processed_dir / "text.txt",
+                        metadata=processed_dir / "metadata.json",
+                        raw = ace_raw if t == "ace" else pubget_raw
+                    )
+                except ValueError as e:
+                    logger.error(f"Error loading processed data for {self.dbid}: {e}")
+                    continue
 
                 setattr(self, t, processed)
 
@@ -158,6 +165,11 @@ class Dataset:
 
             dset_data[study_obj.dbid] = study_obj
 
+        if not dset_data:
+            raise ValueError(
+                f"No valid studies found in {input_directory}"
+            )
+                                                          
         return dset_data
     def __len__(self):
         """Return the length of the dataset."""
@@ -172,13 +184,17 @@ class Dataset:
 class PipelineInputFilter:
     """Filter for pipeline inputs."""
 
-    def __init__(self, pipeline, output_directory, overwrite=False):
+    def __init__(self, pipeline, output_directory: Union[str, Path], overwrite=False):
         """Initialize the filter.
 
-        pipeline (Pipeline): The pipeline to filter.
-        output_directory (str): The output directory where the pipeline has been previously run.
-        overwrite (bool): Whether to overwrite the existing output
+        Args:
+            pipeline (Pipeline): The pipeline to filter.
+            output_directory (Union[str, Path]): The output directory where the pipeline has been previously run.
+            overwrite (bool): Whether to overwrite the existing output.
         """
+        self.output_directory = Path(output_directory) if isinstance(output_directory, str) else output_directory
+        self.pipeline = pipeline
+        self.overwrite = overwrite
 
     def filter(self, dataset):
         """Filter the dataset."""
