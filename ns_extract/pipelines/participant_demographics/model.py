@@ -28,7 +28,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         
         df.columns = df.columns.str.replace(' ', '_')
 
-        df = df.fillna(value=np.nan)
+        # Fill NA values and infer proper types
+        with pd.option_context("future.no_silent_downcasting", True):
+            df = df.fillna(value=np.nan).infer_objects(copy=False)
         df["group_name"] = df["group_name"].fillna("healthy")
 
         # Drop rows where count is NA
