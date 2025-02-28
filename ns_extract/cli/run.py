@@ -100,6 +100,7 @@ def run_pipelines(dataset_path: Path, output_path: Path, pipeline_configs: list,
     except Exception as e:
         print(f"Error loading dataset from {dataset_path}: {e}", file=sys.stderr)
         sys.exit(1)
+        
 
     # Create output directory
     output_path.mkdir(parents=True, exist_ok=True)

@@ -165,6 +165,11 @@ class Dataset:
 
             dset_data[study_obj.dbid] = study_obj
 
+        if not dset_data:
+            raise ValueError(
+                f"No valid studies found in {input_directory}"
+            )
+                                                          
         return dset_data
     def __len__(self):
         """Return the length of the dataset."""
