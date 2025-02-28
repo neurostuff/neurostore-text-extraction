@@ -161,7 +161,8 @@ def main():
         pipeline_configs = [(name, {}) for name in args.pipelines]
 
     # Run pipelines
-    run_pipelines(args.dataset_path, args.output_path, pipeline_configs, pipeline_map, num_workers=args.num_workers)
+    run_pipelines(args.dataset_path, args.output_path, pipeline_configs, pipeline_map,
+                 num_workers=args.num_workers)
 
 if __name__ == "__main__":
     main()
