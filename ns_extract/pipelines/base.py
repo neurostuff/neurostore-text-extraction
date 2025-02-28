@@ -137,6 +137,8 @@ class Pipeline(ABC):
             
         Returns:
             Tuple of (is_valid, results)
+
+        """
         study_id = kwargs.get('study_id')
         try:
             validated = self._output_schema.model_validate(results)
@@ -423,7 +425,7 @@ class DependentPipeline(Pipeline):
 
 
     def validate_results(self, results, **kwargs):
-        """ Apply validation to each study's results in the grouped pipeline."""
+        """ Apply validation to each studys results in the grouped pipeline."""
         validated_results = {}
         for db_id, study_results in results.items():
             study_results = super().validate_results(study_results, **kwargs)
