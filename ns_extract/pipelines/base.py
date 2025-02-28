@@ -73,17 +73,16 @@ class Pipeline(ABC):
     _version: str = None
     _output_schema: Type[BaseModel] = None  # Required schema for output validation
 
-    def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace"), num_workers: int = 1):
+    def __init__(self, inputs: Union[tuple, list] = ("text",), input_sources: tuple = ("pubget", "ace")):
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class")
             
         self.inputs = inputs
         self.input_sources = input_sources
-        self.num_workers = num_workers
         self._pipeline_type = inspect.getmro(self.__class__)[1].__name__.lower().rstrip("pipeline")
 
     @abstractmethod
-    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Union[str, Path], **kwargs):
         """Process a full dataset through the pipeline."""
         pass
 
@@ -314,8 +313,11 @@ class IndependentPipeline(Pipeline):
             return True
         return False
 
-    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Union[str, Path], num_workers=1, **kwargs):
         """Process individual studies through the pipeline independently."""
+        if isinstance(output_directory, str):
+            output_directory = Path(output_directory)
+
         hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
         if not hash_outdir.exists():
@@ -326,8 +328,7 @@ class IndependentPipeline(Pipeline):
         filtered_dataset = self.filter_inputs(output_directory, dataset)
         studies_to_process = []
         
-        print("Preparing studies for processing...")
-        for db_id, study in tqdm.tqdm(filtered_dataset.data.items(), desc="Filtering studies"):
+        for db_id, study in filtered_dataset.data.items():
             study_inputs = self.collect_study_inputs(study)
             study_outdir = hash_outdir / db_id
             
@@ -346,9 +347,9 @@ class IndependentPipeline(Pipeline):
         success_count = 0
         
         with tqdm.tqdm(total=len(studies_to_process), desc="Processing studies") as pbar:
-            if self.num_workers > 1:
+            if num_workers > 1:
                 # Parallel processing
-                with concurrent.futures.ThreadPoolExecutor(max_workers=self.num_workers) as exc:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as exc:
                     futures = []
                     for study_data in studies_to_process:
                         future = exc.submit(self._process_and_write_study, study_data, hash_outdir, **kwargs)
@@ -378,8 +379,11 @@ class DependentPipeline(Pipeline):
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
 
-    def transform_dataset(self, dataset: Any, output_directory: Path, **kwargs):
+    def transform_dataset(self, dataset: Any, output_directory: Union[str, Path], **kwargs):
         """Process all studies through the pipeline as a group."""
+        if isinstance(output_directory, str):
+            output_directory = Path(output_directory)
+
         hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
         # Check if there are any changes for dependent mode

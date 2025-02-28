@@ -84,7 +84,7 @@ def load_yaml_config(config_path: Path, available_pipelines: set) -> list:
     except yaml.YAMLError as e:
         raise ValueError(f"Error parsing YAML file: {e}")
 
-def run_pipelines(dataset_path: Path, output_path: Path, pipeline_configs: list, pipeline_map: dict) -> None:
+def run_pipelines(dataset_path: Path, output_path: Path, pipeline_configs: list, pipeline_map: dict, num_workers: int = 1) -> None:
     """Run specified pipelines on dataset.
     
     Args:
@@ -92,6 +92,7 @@ def run_pipelines(dataset_path: Path, output_path: Path, pipeline_configs: list,
         output_path: Path to save pipeline outputs
         pipeline_configs: List of tuples (pipeline_name, pipeline_args) to execute
         pipeline_map: Mapping of pipeline names to pipeline classes
+        num_workers: Number of worker threads for parallel processing (default: 1)
     """
     # Initialize dataset
     try:
@@ -114,7 +115,7 @@ def run_pipelines(dataset_path: Path, output_path: Path, pipeline_configs: list,
             
             # Run pipeline
             pipeline_output_dir = output_path / pipeline_name
-            pipeline.transform_dataset(dataset, pipeline_output_dir)
+            pipeline.transform_dataset(dataset, pipeline_output_dir, num_workers=num_workers)
             
             print(f"Completed {pipeline_name} pipeline")
             
@@ -130,6 +131,8 @@ def main():
     parser = argparse.ArgumentParser(description="Run pipelines on ns-pond dataset")
     parser.add_argument("dataset_path", type=Path, help="Path to ns-pond dataset")
     parser.add_argument("output_path", type=Path, help="Path to save pipeline outputs")
+    parser.add_argument("--num-workers", type=int, default=1,
+                      help="Number of worker threads for parallel processing (default: 1)")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--pipelines",
@@ -157,7 +160,7 @@ def main():
         pipeline_configs = [(name, {}) for name in args.pipelines]
 
     # Run pipelines
-    run_pipelines(args.dataset_path, args.output_path, pipeline_configs, pipeline_map)
+    run_pipelines(args.dataset_path, args.output_path, pipeline_configs, pipeline_map, num_workers=args.num_workers)
 
 if __name__ == "__main__":
     main()
