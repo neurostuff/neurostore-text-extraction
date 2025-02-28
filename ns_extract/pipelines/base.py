@@ -13,42 +13,6 @@ from typing import Dict, Any, List, Union, Optional, Type, Tuple, Callable
 import tqdm
 from pydantic import BaseModel
 
-def parallelize_inputs(func: Callable) -> Callable:
-    """Decorator to parallelize the extraction process over texts."""
-    @wraps(func)
-    def wrapper(inputs: Union[Dict, List], *args, **kwargs):
-        # Get the number of workers (pop from kwargs)
-        num_workers = kwargs.pop("num_workers", 1)
-
-        from pdb import set_trace; set_trace()
-
-        # Run in parallel mode
-        if num_workers > 1:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as exc:
-                futures = [
-                    exc.submit(func, i, *args, **kwargs) for i in inputs
-                ]
-                results = [
-                    r.result() for r in tqdm.tqdm(
-                        futures,
-                        total=len(futures),
-                        desc="Processing studies"
-                    )
-                ]
-        else:
-            # Serial mode with progress bar
-            results = [
-                func(i, *args, **kwargs)
-                for i in tqdm.tqdm(
-                    inputs,
-                    desc="Processing studies"
-                )
-            ]
-        return results
-
-    return wrapper
-
-
 INPUTS = [
     "text",
     "coordinates",
