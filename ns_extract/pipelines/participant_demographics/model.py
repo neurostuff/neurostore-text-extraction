@@ -1,4 +1,6 @@
 """ Extract participant demographics from articles. """
+import logging
+
 from .prompts import base_message
 from .schemas import BaseDemographicsSchema
 import pandas as pd
@@ -25,7 +27,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
             result, record_path=["groups"],
             meta=meta_keys
             )
-        
+        if df.empty:
+            logging.warning("No groups found in result")
+            return {"groups": []}
         df.columns = df.columns.str.replace(' ', '_')
 
         # Fill NA values and infer proper types
