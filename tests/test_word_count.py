@@ -25,7 +25,7 @@ def test_WordCountExtractor(sample_data, tmp_path):
     # Verify study outputs
     # Glob for dirs
     study_dirs = list([x for x in version_dir.glob("*") if x.is_dir()])
-    assert len(study_dirs) == 3
+    assert len(study_dirs) == 4
     for study_dir in study_dirs:
         results_file = study_dir / "results.json"
         info_file = study_dir / "info.json"
@@ -105,7 +105,8 @@ def test_WordDevianceExtractor(sample_data, tmp_path):
     
     # Verify study outputs
     study_dirs = list([x for x in version_dir.glob("*") if x.is_dir()])
-    assert len(study_dirs) == 3
+    expected_len = len([d for d in sample_data.iterdir() if d.is_dir()])
+    assert len(study_dirs) == expected_len
     for study_dir in study_dirs:
         results_file = study_dir / "results.json"
         info_file = study_dir / "info.json"
