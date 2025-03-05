@@ -14,7 +14,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dynamic = ["version"]
-# dependencies = ["pandas"]
+dependencies = [
+    "pyyaml",
+]
 
 
 [project.optional-dependencies]
