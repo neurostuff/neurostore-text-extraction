@@ -16,9 +16,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
     _prompt = base_message
     _output_schema = BaseDemographicsSchema
 
-    def post_process(self, result):
+    def post_process(self, result, **kwargs):
         # Clean known issues with GPT demographics result
-
+        study_id = kwargs.get("study_id", "")
         meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
         meta_keys = [k for k in meta_keys if k in result]
 
@@ -28,8 +28,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
             meta=meta_keys
             )
         if df.empty:
-            logging.warning("No groups found in result")
-            return {"groups": []}
+            logging.warning(f"No groups found for study {study_id}")
+            return result
+
         df.columns = df.columns.str.replace(' ', '_')
 
         # Fill NA values and infer proper types
