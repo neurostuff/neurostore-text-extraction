@@ -107,7 +107,7 @@ class Pipeline(ABC):
                 return None
 
             # Post-process results
-            post_results = self.post_process(raw_results)
+            post_results = self.post_process(raw_results, **kwargs)
 
             results = self.validate_results(
                 post_results or raw_results,
@@ -150,12 +150,13 @@ class Pipeline(ABC):
             logging.error(f"Raw result validation error{study_info}: {e}")
             return False, results
 
-    def post_process(self, results: dict) -> dict:
+    def post_process(self, results: dict, **kwargs) -> dict:
         """Post-process results before validation. Override in subclass if needed.
         
         Args:
             results: Raw results from pipeline
-            
+            **kwargs: Additional arguments including:
+                - study_id: Optional ID of the study being validated (for logging)
         Returns:
             Processed results or None if processing fails
         """
