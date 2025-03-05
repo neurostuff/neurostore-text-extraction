@@ -5,6 +5,7 @@ import json
 import hashlib
 import os
 import logging
+import traceback
 from abc import ABC, abstractmethod
 from functools import reduce, wraps
 from pathlib import Path
@@ -125,6 +126,7 @@ class Pipeline(ABC):
         except Exception as e:
             study_info = f" for study {study_id}" if study_id else ""
             logging.error(f"Pipeline execution failed{study_info}: {e}")
+            logging.error(f"Full Traceback: {traceback.format_exc()}")
             return None
 
     def validate_results(self, results: dict, **kwargs) -> Optional[dict]:

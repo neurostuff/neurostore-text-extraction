@@ -29,7 +29,19 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         df.columns = df.columns.str.replace(' ', '_')
 
         # Fill NA values and infer proper types
-        with pd.option_context("future.no_silent_downcasting", True):
+        from contextlib import nullcontext
+
+        # Check if the option exists in pandas
+        has_no_silent_downcast = (
+            hasattr(pd.options, "future")
+            and hasattr(pd.options.future, "no_silent_downcasting")
+        )
+
+        ctx = (
+            pd.option_context("future.no_silent_downcasting", True)
+            if has_no_silent_downcast else nullcontext()
+        )
+        with ctx:
             df = df.fillna(value=np.nan).infer_objects(copy=False)
         df["group_name"] = df["group_name"].fillna("healthy")
 

@@ -107,7 +107,7 @@ class APIPromptExtractor(IndependentPipeline):
             "messages": [
                 {
                     "role": "user",
-                    "content": self._prompt.replace("${text}", text) + "\n Call the extractData function to save the output."
+                    "content": self._prompt + "\n Call the extractData function to save the output."
                 }
             ],
             "output_schema": self._extraction_schema.model_json_schema()
@@ -115,6 +115,9 @@ class APIPromptExtractor(IndependentPipeline):
         if self.kwargs:
             completion_config.update(self.kwargs)
 
+        # Replace $ with $$ to escape $ signs in the prompt
+        # (otherwise interpreted as a special character by Template())
+        text = text.replace("$", "$$")
         # Extract predictions
         results = extract_from_text(
             text,
