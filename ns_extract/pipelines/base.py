@@ -86,13 +86,19 @@ class Pipeline(ABC):
         """Process a full dataset through the pipeline."""
         pass
 
-    def _process_inputs(self, study_inputs: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+    def _process_inputs(self, study_inputs: Dict[str, Any], study_id: str = None, **kwargs) -> Dict[str, Any]:
         """Process inputs through the full pipeline flow: pre-process, execute, post-process, validate.
         
-        Returns a dict with:
-            - results: Validated results
-            - raw_results: Raw results if post-processing was applied
-        """
+        Args:
+            study_inputs: Dictionary of input data
+            study_id: Optional ID of the study being processed (for logging)
+            **kwargs: Additional arguments including:
+        
+        Returns:
+            Dict with:
+                - results: Validated results
+                - raw_results: Raw results if post-processing was applied
+        """        
         try:
             # Execute core pipeline logic
             raw_results = self.execute(study_inputs, **kwargs)
@@ -103,7 +109,8 @@ class Pipeline(ABC):
             post_results = self.post_process(raw_results)
 
             results = self.validate_results(
-                post_results or raw_results
+                post_results or raw_results,
+                study_id=study_id,
             )
 
             output = {
@@ -115,25 +122,30 @@ class Pipeline(ABC):
 
             return output
 
-
         except Exception as e:
-            logging.error(f"Pipeline execution failed: {e}")
+            study_info = f" for study {study_id}" if study_id else ""
+            logging.error(f"Pipeline execution failed{study_info}: {e}")
             return None
 
-    def validate_results(self, results: dict) -> Optional[dict]:
+    def validate_results(self, results: dict, **kwargs) -> Optional[dict]:
         """Validate results against the output schema.
         
         Args:
             results: Raw or post-processed results from pipeline
+            **kwargs: Additional arguments including:
+                - study_id: Optional ID of the study being validated (for logging)
             
         Returns:
-            Validated results or None if validation fails
+            Tuple of (is_valid, results)
+
         """
+        study_id = kwargs.get('study_id')
         try:
             validated = self._output_schema.model_validate(results)
             return True, validated.model_dump()
         except Exception as e:
-            logging.error(f"Raw result validation error: {e}")
+            study_info = f" for study {study_id}" if study_id else ""
+            logging.error(f"Raw result validation error{study_info}: {e}")
             return False, results
 
     def post_process(self, results: dict) -> dict:
@@ -300,8 +312,8 @@ class IndependentPipeline(Pipeline):
         db_id, study_inputs, study_outdir = study_data
         study_outdir.mkdir(parents=True, exist_ok=True)
         
-        # Process the inputs
-        outputs = self._process_inputs(study_inputs, **kwargs)
+        # Process the inputs with study ID for error tracking
+        outputs = self._process_inputs(study_inputs, study_id=db_id, **kwargs)
         
         if outputs:
             # Write results immediately
@@ -399,7 +411,7 @@ class DependentPipeline(Pipeline):
 
         # Collect all inputs and run the group function at once
         all_study_inputs = self.gather_all_study_inputs(dataset)
-        grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
+        grouped_outputs = self._process_inputs(all_study_inputs, study_id="grouped", **kwargs)
         if grouped_outputs:
             for output_type, outputs in grouped_outputs.items():
                 if outputs is not None:
@@ -412,10 +424,10 @@ class DependentPipeline(Pipeline):
                         FileManager.write_json(study_outdir / f"{output_type}.json", _output)
 
 
-    def validate_results(self, results):
-        """ Apply validation to each study's results in the grouped pipeline."""
+    def validate_results(self, results, **kwargs):
+        """ Apply validation to each studys results in the grouped pipeline."""
         validated_results = {}
         for db_id, study_results in results.items():
-            study_results = super().validate_results(study_results)
+            study_results = super().validate_results(study_results, **kwargs)
             validated_results[db_id] = study_results
         return validated_results
