@@ -1,6 +1,6 @@
 # ns-extract
 
-NeuroStore extraction pipelines for analyzing scientific papers.
+NeuroStore extraction pipelines for extracting information from scientific articles. 
 
 ## Installation
 
@@ -15,7 +15,7 @@ You can run pipelines in two ways:
 1. Using command line arguments:
 
 ```bash 
-python scripts /path/to/dataset /path/to/output --pipelines word_count task participant_demographics
+ns-extract /path/to/dataset /path/to/output --pipelines word_count task participant_demographics
 ```
 
 2. Using a YAML configuration file:
