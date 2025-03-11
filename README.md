@@ -10,7 +10,7 @@ pip install -e .
 
 ## Usage
 
-You can run pipelines in two ways:
+Pipelines are applied to the neurostore-data-pond (on-disk represenation of NeuroStore's database index of fMRI articles)
 
 1. Using command line arguments:
 
