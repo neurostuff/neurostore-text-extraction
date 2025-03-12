@@ -16,6 +16,9 @@ classifiers = [
 dynamic = ["version"]
 # dependencies = ["pandas"]
 
+[project.scripts]
+ns-extract = "ns_extract.cli:main"
+
 
 [project.optional-dependencies]
 participant_demographics = [
