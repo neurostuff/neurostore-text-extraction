@@ -216,14 +216,14 @@ class Pipeline(ABC):
         }
         FileManager.write_json(hash_outdir / "pipeline_info.json", pipeline_info)
 
-    def write_study_info(self, hash_outdir: Path, db_id: str, study_inputs: Dict[str, Path], is_valid: bool):
+    def write_study_info(self, study_outdir: Path, study_inputs: Dict[str, Path], is_valid: bool):
         """Write information about the current run to an info.json file."""
         output_info = {
             "date": datetime.now().isoformat(),
             "inputs": {str(input_file): FileManager.calculate_md5(input_file) for input_file in study_inputs.values()},
             "valid": is_valid,
         }
-        FileManager.write_json(hash_outdir / db_id / "info.json", output_info)
+        FileManager.write_json(study_outdir / "info.json", output_info)
 
     def _serialize_dataset_keys(self, dataset: Any) -> str:
         """Return a hashable string of the input dataset."""
@@ -320,7 +320,7 @@ class IndependentPipeline(Pipeline):
             for output_type, output in outputs.items():
                 if output_type == "results":
                     is_valid, output = output
-                    self.write_study_info(hash_outdir, db_id, study_inputs, is_valid)
+                    self.write_study_info(study_outdir, study_inputs, is_valid)
                 FileManager.write_json(study_outdir / f"{output_type}.json", output)
             return True
         return False
@@ -420,7 +420,7 @@ class DependentPipeline(Pipeline):
                         study_outdir.mkdir(parents=True, exist_ok=True)
                         if output_type == "results":
                             is_valid, _output = _output
-                            self.write_study_info(hash_outdir, db_id, all_study_inputs[db_id], is_valid)
+                            self.write_study_info(study_outdir, all_study_inputs[db_id], is_valid)
                         FileManager.write_json(study_outdir / f"{output_type}.json", _output)
 
 
