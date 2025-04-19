@@ -84,6 +84,54 @@ def test_text_type_options(sample_data, tmp_path):
     assert len(abs_results["terms"]) > 0
     assert len(both_results["terms"]) > 0
 
+    # Full text and abstract should have different terms
+    full_terms = set(full_results["terms"])
+    abs_terms = set(abs_results["terms"])
+    both_terms = set(both_results["terms"])
+
+    # Both should contain some terms from full text and abstract
+    assert len(full_terms - abs_terms) > 0  # Some unique full text terms
+    assert len(abs_terms - full_terms) > 0  # Some unique abstract terms
+    assert both_terms & full_terms  # Some overlap with full text
+    assert both_terms & abs_terms  # Some overlap with abstract
+
+
+def test_custom_vocabulary(sample_data, tmp_path):
+    """Test custom vocabulary functionality."""
+    dataset = Dataset(sample_data)
+    base_dir = tmp_path / "custom_vocab"
+
+    # Test with vocabulary dictionary
+    vocab_dict = {"brain": 0, "study": 1, "analysis": 2, "results": 3}
+    dict_tfidf = TFIDFExtractor(vocabulary=vocab_dict)
+    dict_dir = base_dir / "vocab_dict"
+    dict_tfidf.transform_dataset(dataset, dict_dir)
+
+    # Test with custom terms list
+    terms_list = ["brain", "study", "analysis", "results"]
+    list_tfidf = TFIDFExtractor(custom_terms=terms_list)
+    list_dir = base_dir / "vocab_list"
+    list_tfidf.transform_dataset(dataset, list_dir)
+
+    # Get first study results from each
+    study_id = next(s.name for s in sample_data.iterdir() if s.is_dir())
+
+    dict_path = next(dict_dir.glob("TFIDFExtractor/1.0.0/*"))
+    list_path = next(list_dir.glob("TFIDFExtractor/1.0.0/*"))
+
+    dict_results = json.loads((dict_path / study_id / "results.json").read_text())
+    list_results = json.loads((list_path / study_id / "results.json").read_text())
+
+    # Verify results only contain terms from custom vocabulary
+    dict_terms = set(dict_results["terms"])
+    list_terms = set(list_results["terms"])
+
+    assert dict_terms.issubset(set(vocab_dict.keys()))
+    assert list_terms.issubset(set(terms_list))
+
+    # Verify both methods produce same results
+    assert dict_results == list_results
+
 
 def test_parallel_processing(sample_data, tmp_path):
     """Test that parallel processing works correctly with TFIDFExtractor."""

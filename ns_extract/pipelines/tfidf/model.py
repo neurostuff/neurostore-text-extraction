@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Dict, List, Literal
+from typing import Dict, List, Literal, Optional
 from ns_extract.pipelines.base import DependentPipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
@@ -29,6 +29,8 @@ class TFIDFExtractor(DependentPipeline):
         input_sources=("pubget", "ace"),
         min_df=2,
         text_type: Literal["full_text", "abstract", "both"] = "full_text",
+        vocabulary: Optional[Dict[str, int]] = None,
+        custom_terms: Optional[List[str]] = None,
     ):
         """Initialize the TFIDF extractor.
 
@@ -40,10 +42,20 @@ class TFIDFExtractor(DependentPipeline):
                       'full_text' - use only the full text
                       'abstract' - use only the abstract
                       'both' - concatenate abstract and full text
+            vocabulary: Custom vocabulary dict mapping terms to indices
+            custom_terms: List of terms to include in vocabulary
+                        (alternative to vocabulary dict)
         """
         self.min_df = min_df
         self.text_type = text_type
-        self.vectorizer = TfidfVectorizer(min_df=min_df)
+        self.vocabulary = vocabulary
+        self.custom_terms = custom_terms
+
+        # Convert custom_terms list to vocabulary dict if provided
+        if custom_terms is not None:
+            self.vocabulary = {term: idx for idx, term in enumerate(custom_terms)}
+
+        self.vectorizer = TfidfVectorizer(min_df=min_df, vocabulary=self.vocabulary)
         super().__init__(inputs=inputs, input_sources=input_sources)
 
     def get_text_content(self, text_file: str, metadata_file: str) -> str:
