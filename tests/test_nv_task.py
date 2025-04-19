@@ -1,6 +1,5 @@
 import json
 import pytest
-from pathlib import Path
 
 from ns_extract.pipelines import TaskExtractor
 from ns_extract.dataset import Dataset

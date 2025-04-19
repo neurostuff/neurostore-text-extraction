@@ -2,13 +2,10 @@
 
 import pytest
 import yaml
-import sys
-from pathlib import Path
 from io import StringIO
 from unittest.mock import patch
 
 from ns_extract.cli.run import main, get_pipeline_map, load_yaml_config
-from ns_extract.dataset import Dataset
 from ns_extract.pipelines import (
     WordCountExtractor,
     ParticipantDemographicsExtractor,

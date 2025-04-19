@@ -8,7 +8,7 @@ import traceback
 from abc import ABC, abstractmethod
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Any, Union, Optional, Type, Tuple, Callable
+from typing import Dict, Any, Union, Optional, Type, Tuple
 
 import tqdm
 from pydantic import BaseModel
@@ -97,7 +97,8 @@ class Pipeline(ABC):
     def _process_inputs(
         self, study_inputs: Dict[str, Any], study_id: str = None, **kwargs
     ) -> Dict[str, Any]:
-        """Process inputs through the full pipeline flow: pre-process, execute, post-process, validate.
+        """Process inputs through the full pipeline flow: pre-process, execute, post-process,
+        validate.
 
         Args:
             study_inputs: Dictionary of input data
@@ -276,7 +277,7 @@ class Pipeline(ABC):
 
         current_args = json.loads(json.dumps(current_args))
 
-        for d in result_directory.glob(f"*"):
+        for d in result_directory.glob("*"):
             if not d.is_dir():
                 continue
 
@@ -430,7 +431,8 @@ class IndependentPipeline(Pipeline):
                     pbar.update(1)
 
         print(
-            f"Completed processing {success_count} of {len(studies_to_process)} studies successfully"
+            f"Completed processing {success_count} "
+            f"of {len(studies_to_process)} studies successfully"
         )
 
 
@@ -458,7 +460,8 @@ class DependentPipeline(Pipeline):
             print("No changes detected, skipping pipeline execution.")
             return  # No changes, so we skip the pipeline
 
-        # If the directory exists, find the next available directory with a suffix like "-1", "-2", etc.
+        # If the directory exists, find the next available directory
+        # with a suffix like "-1", "-2", etc.
         if hash_outdir.exists():
             hash_outdir = FileManager.get_next_available_dir(hash_outdir)
         hash_outdir.mkdir(parents=True, exist_ok=True)

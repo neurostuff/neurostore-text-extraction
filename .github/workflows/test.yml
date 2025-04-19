@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: pip install -e .[tests,participant_demographics,word_count]
 
+      - name: Lint with flake8
+        run: flake8 ns_extract/ tests/
+
       - name: Test with pytest
         env:
           OPENAI_API_KEY: "fake_key"

@@ -1,4 +1,3 @@
-from pathlib import Path
 import json
 from ns_extract.pipelines import WordCountExtractor, WordDevianceExtractor
 from ns_extract.dataset import Dataset
@@ -39,7 +38,6 @@ def test_WordCountExtractor(sample_data, tmp_path):
         assert isinstance(results["word_count"], int)
 
     # Rerun - no changes, no new outputs
-    initial_hash_dir = version_dir
     wce.transform_dataset(dataset, output_dir)
     assert len(list(output_dir.glob("WordCountExtractor/1.0.0/*"))) == 1
 

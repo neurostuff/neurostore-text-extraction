@@ -78,8 +78,10 @@ def load_yaml_config(config_path: Path, available_pipelines: set) -> list:
                 raise ValueError(f"Invalid pipeline configuration: {p}")
 
             if name not in available_pipelines:
+                available = sorted(available_pipelines)
                 raise ValueError(
-                    f"Invalid pipeline name: {name}. Available pipelines: {sorted(available_pipelines)}"
+                    f"Invalid pipeline name: {name}.\n"
+                    f"Available pipelines: {available}"
                 )
 
             pipeline_configs.append((name, args))

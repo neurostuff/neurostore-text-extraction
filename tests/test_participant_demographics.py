@@ -40,6 +40,7 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
             raw_results_file = study_dir / "raw_results.json"
             info_file = study_dir / "info.json"
             assert results_file.exists()
+            assert raw_results_file.exists()
             assert info_file.exists()
 
             info = json.loads(info_file.read_text())
@@ -49,7 +50,6 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
 
             # Load and validate results
             results = json.loads(results_file.read_text())
-            raw_results = json.loads(raw_results_file.read_text())
 
             # Validate against BaseDemographicsSchema
             validated = BaseDemographicsSchema.model_validate(results)

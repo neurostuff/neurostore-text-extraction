@@ -43,6 +43,7 @@ tests = [
     "pytest",
     "pytest-recording",
     "vcrpy",
+    "flake8",
 ]
 
 [tool.hatch.version]

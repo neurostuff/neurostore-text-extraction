@@ -2,13 +2,10 @@ __REQUIRES__ = "participant_demographics"
 
 import spacy
 from scispacy.candidate_generation import CandidateGenerator
-from scispacy.abbreviation import AbbreviationDetector
 import pandas as pd
 from tqdm import tqdm
 import json
 from pathlib import Path
-
-from ns_extract.pipeline import IndependentPipeline
 
 from spacy.language import Language
 
@@ -115,7 +112,7 @@ def run_umls_extraction(preds, abbreviations=None):
             # Get the UMLS entities that match the targettarg
             start_char = pred["start_char"] if "start_char" in pred else None
             end_char = pred["end_char"] if "end_char" in pred else None
-            if pred["group_name"] == "patients" and pd.isna(pred["diagnosis"]) == False:
+            if pred["group_name"] == "patients" and pd.isna(pred["diagnosis"]) is False:
                 abrvs = abbreviations[ix] if abbreviations is not None else None
                 resolved_target, target_ents = get_candidates(
                     generator,
@@ -148,7 +145,7 @@ def _load_abbreviations(docs, n_workers=1, batch_size=20):
     abbreviations = []
     print("Processing abbreviations")
     for i in tqdm(range(0, len(docs), batch_size)):
-        batch_docs = docs[i : i + batch_size]
+        batch_docs = docs[i:i + batch_size]
         batch_abbreviations = nlp.pipe(batch_docs, n_process=n_workers)
         for processed_doc in batch_abbreviations:
             abbreviations.append(processed_doc._.abbreviations)
@@ -164,7 +161,8 @@ def _load_preds(preds_path, docs_path=None, load_abbreviations=True, n_workers=1
     if load_abbreviations:
         if docs_path is None:
             raise ValueError(
-                "Abbreviations require the documents to be loaded. provide the path to the documents CSV."
+                "Abbreviations require the documents to be loaded. "
+                "Provide the path to the documents CSV."
             )
         texts = pd.read_csv(docs_path)
     else:
@@ -201,8 +199,10 @@ def __main__(
 
     Args:
         docs_path (str): The path to the csv file containing the documents.
-        preds_path (str): The path to the csv file containing the participant demographics predictions.
-        replace_appreviations (bool): Whether to replace abbreviations in the text before running the extraction.
+        preds_path (str): The path to the csv file containing the participant
+            demographics predictions.
+        replace_appreviations (bool): Whether to replace abbreviations in the text before running
+            the extraction.
         output_dir (str): The directory to save the output files.
         **kwargs: Additional keyword arguments to pass to the extraction function.
     """

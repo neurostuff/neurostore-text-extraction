@@ -97,7 +97,7 @@ class Study:
 
         # Load identifiers
         with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
-            ids = json.load(ident_fp)
+            json.load(ident_fp)  # Load but don't use identifiers right now
 
         # Setup the processed data objects
         # Load AceRaw if available
@@ -193,7 +193,8 @@ class PipelineInputFilter:
 
         Args:
             pipeline (Pipeline): The pipeline to filter.
-            output_directory (Union[str, Path]): The output directory where the pipeline has been previously run.
+            output_directory (Union[str, Path]): The output directory where the pipeline
+                has been previously run.
             overwrite (bool): Whether to overwrite the existing output.
         """
         self.output_directory = (
