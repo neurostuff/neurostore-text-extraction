@@ -1,4 +1,5 @@
 """Extract task information from scientific papers."""
+
 from .schemas import StudyMetadataModel
 from .prompts import base_message
 from ns_extract.pipelines.api import APIPromptExtractor

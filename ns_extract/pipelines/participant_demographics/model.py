@@ -1,4 +1,5 @@
 """ Extract participant demographics from articles. """
+
 import logging
 
 from .prompts import base_message
@@ -23,28 +24,25 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         meta_keys = [k for k in meta_keys if k in result]
 
         # Convert JSON to DataFrame
-        df = pd.json_normalize(
-            result, record_path=["groups"],
-            meta=meta_keys
-            )
+        df = pd.json_normalize(result, record_path=["groups"], meta=meta_keys)
         if df.empty:
             logging.warning(f"No groups found for study {study_id}")
             return result
 
-        df.columns = df.columns.str.replace(' ', '_')
+        df.columns = df.columns.str.replace(" ", "_")
 
         # Fill NA values and infer proper types
         from contextlib import nullcontext
 
         # Check if the option exists in pandas
-        has_no_silent_downcast = (
-            hasattr(pd.options, "future")
-            and hasattr(pd.options.future, "no_silent_downcasting")
+        has_no_silent_downcast = hasattr(pd.options, "future") and hasattr(
+            pd.options.future, "no_silent_downcasting"
         )
 
         ctx = (
             pd.option_context("future.no_silent_downcasting", True)
-            if has_no_silent_downcast else nullcontext()
+            if has_no_silent_downcast
+            else nullcontext()
         )
         with ctx:
             df = df.fillna(value=np.nan).infer_objects(copy=False)
@@ -63,23 +61,17 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         df["count"] = df["count"].clip(lower=0)
 
         # If no male count, substract count from female count columns
-        ix_male_miss = (pd.isna(df["male_count"])) & ~(
-            pd.isna(df["female_count"])
-        )
+        ix_male_miss = (pd.isna(df["male_count"])) & ~(pd.isna(df["female_count"]))
         df.loc[ix_male_miss, "male_count"] = (
-            df.loc[ix_male_miss, "count"]
-            - df.loc[ix_male_miss, "female_count"]
+            df.loc[ix_male_miss, "count"] - df.loc[ix_male_miss, "female_count"]
         )
 
         df["male_count"] = df["male_count"].clip(lower=0)
 
         # Same for female count
-        ix_female_miss = (pd.isna(df["female_count"])) & ~(
-            pd.isna(df["male_count"])
-        )
+        ix_female_miss = (pd.isna(df["female_count"])) & ~(pd.isna(df["male_count"]))
         df.loc[ix_female_miss, "female_count"] = (
-            df.loc[ix_female_miss, "count"]
-            - df.loc[ix_female_miss, "male_count"]
+            df.loc[ix_female_miss, "count"] - df.loc[ix_female_miss, "male_count"]
         )
 
         df["female_count"] = df["female_count"].clip(lower=0)
