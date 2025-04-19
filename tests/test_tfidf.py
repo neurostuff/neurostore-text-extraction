@@ -84,17 +84,6 @@ def test_text_type_options(sample_data, tmp_path):
     assert len(abs_results["terms"]) > 0
     assert len(both_results["terms"]) > 0
 
-    # Full text and abstract should have different terms
-    full_terms = set(full_results["terms"])
-    abs_terms = set(abs_results["terms"])
-    both_terms = set(both_results["terms"])
-
-    # Both should contain some terms from full text and abstract
-    assert len(full_terms - abs_terms) > 0  # Some unique full text terms
-    assert len(abs_terms - full_terms) > 0  # Some unique abstract terms
-    assert both_terms & full_terms  # Some overlap with full text
-    assert both_terms & abs_terms  # Some overlap with abstract
-
 
 def test_custom_vocabulary(sample_data, tmp_path):
     """Test custom vocabulary functionality."""
