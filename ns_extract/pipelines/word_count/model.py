@@ -7,7 +7,9 @@ class WordCountSchema(BaseModel):
 
 
 class WordDevianceSchema(BaseModel):
-    word_deviance: int = Field(description="Absolute difference from average word count")
+    word_deviance: int = Field(
+        description="Absolute difference from average word count"
+    )
 
 
 class WordCountExtractor(IndependentPipeline):
@@ -16,18 +18,20 @@ class WordCountExtractor(IndependentPipeline):
     _version = "1.0.0"
     _output_schema = WordCountSchema
 
-    def __init__(self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False):
+    def __init__(
+        self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False
+    ):
         """Add any pipeline configuration here (as opposed to runtime arguments)"""
         self.square_root = square_root
         super().__init__(inputs=inputs, input_sources=input_sources)
 
     def execute(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word count extraction pipeline.
-        
+
         Args:
             processed_inputs: Dictionary containing processed text
             **kwargs: Additional arguments
-            
+
         Returns:
             Dictionary containing word count
         """
@@ -48,17 +52,19 @@ class WordDevianceExtractor(DependentPipeline):
     _version = "1.0.0"
     _output_schema = WordDevianceSchema
 
-    def __init__(self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False):
+    def __init__(
+        self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False
+    ):
         self.square_root = square_root
         super().__init__(inputs=inputs, input_sources=input_sources)
 
     def execute(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word deviance extraction pipeline.
-        
+
         Args:
             processed_inputs: Dictionary containing all study inputs
             **kwargs: Additional arguments
-            
+
         Returns:
             Dictionary mapping study IDs to their word count deviances
         """

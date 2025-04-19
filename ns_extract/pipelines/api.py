@@ -9,10 +9,12 @@ from publang.extract import extract_from_text
 
 class APIPromptExtractor(IndependentPipeline):
     """Pipeline that uses a prompt and a pydantic schema to extract information from text."""
-    
+
     # Class attributes to be defined by subclasses
     _prompt: str = None  # Prompt template for extraction
-    _extraction_schema: Type[BaseModel] = None  # Schema used for LLM extraction (if not defined, uses _output_schema)
+    _extraction_schema: Type[BaseModel] = (
+        None  # Schema used for LLM extraction (if not defined, uses _output_schema)
+    )
 
     def __init__(
         self,
@@ -22,10 +24,10 @@ class APIPromptExtractor(IndependentPipeline):
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
         client_url: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the prompt-based pipeline.
-        
+
         Args:
             extraction_model: Model to use for extraction (e.g., 'gpt-4')
             inputs: Input types required
@@ -49,22 +51,22 @@ class APIPromptExtractor(IndependentPipeline):
 
     def _load_client(self) -> OpenAI:
         """Load the OpenAI client.
-        
+
         Returns:
             OpenAI client instance
-            
+
         Raises:
             ValueError: If no API key provided or unsupported model
         """
         api_key = self._get_api_key()
         if not api_key:
             raise ValueError("No API key provided")
-        
+
         return OpenAI(api_key=api_key, base_url=self.client_url)
-    
+
     def _get_api_key(self) -> Optional[str]:
         """Read the API key from environment variable or file.
-        
+
         Returns:
             API key if found, None otherwise
         """
@@ -72,7 +74,7 @@ class APIPromptExtractor(IndependentPipeline):
             api_key = os.getenv(self.env_variable)
             if api_key:
                 return api_key
-                
+
         if self.env_file:
             try:
                 with open(self.env_file) as f:
@@ -82,24 +84,24 @@ class APIPromptExtractor(IndependentPipeline):
                     logging.warning("Invalid format in API key file")
             except FileNotFoundError:
                 logging.error(f"API key file not found: {self.env_file}")
-                
+
         return None
 
     def execute(self, inputs: Dict[str, Any], **kwargs) -> dict:
         """Execute LLM-based extraction using processed inputs.
-        
+
         Args:
             processed_inputs: Dictionary containing processed text and initialized client
             **kwargs: Additional arguments (like n_cpus)
-            
+
         Returns:
             Raw predictions from LLM
         """
         # Initialize client
         client = self._load_client()
 
-        # Read 
-        with open(inputs['text'], 'r') as f:
+        # Read
+        with open(inputs["text"], "r") as f:
             text = f.read()
 
         # Create chat completion configuration
@@ -107,10 +109,11 @@ class APIPromptExtractor(IndependentPipeline):
             "messages": [
                 {
                     "role": "user",
-                    "content": self._prompt + "\n Call the extractData function to save the output."
+                    "content": self._prompt
+                    + "\n Call the extractData function to save the output.",
                 }
             ],
-            "output_schema": self._extraction_schema.model_json_schema()
+            "output_schema": self._extraction_schema.model_json_schema(),
         }
         if self.kwargs:
             completion_config.update(self.kwargs)
@@ -120,14 +123,11 @@ class APIPromptExtractor(IndependentPipeline):
         text = text.replace("$", "$$")
         # Extract predictions
         results = extract_from_text(
-            text,
-            model=self.extraction_model,
-            client=client,
-            **completion_config
+            text, model=self.extraction_model, client=client, **completion_config
         )
 
         if not results:
             logging.warning("No results found")
             return None
-            
+
         return results
