@@ -1,9 +1,11 @@
 """Pipeline implementations for extracting information from papers."""
+
 from .participant_demographics import ParticipantDemographicsExtractor
 from .word_count import WordCountExtractor, WordDevianceExtractor
 from .nv_task import TaskExtractor
 from .base import Pipeline, IndependentPipeline, DependentPipeline
 from .api import APIPromptExtractor
+from .tfidf import TFIDFExtractor
 
 __all__ = [
     "ParticipantDemographicsExtractor",
@@ -14,4 +16,5 @@ __all__ = [
     "IndependentPipeline",
     "DependentPipeline",
     "APIPromptExtractor",
+    "TFIDFExtractor",
 ]
