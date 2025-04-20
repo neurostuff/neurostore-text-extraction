@@ -8,22 +8,34 @@ import traceback
 from abc import ABC, abstractmethod
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Any, Union, Optional, Type, Tuple
+from typing import Dict, Any, Union, Optional, Type, Tuple, List
+from packaging.version import parse as parse_version
 
 import tqdm
 from pydantic import BaseModel
 
+logger = logging.getLogger(__name__)
+
+# Standard file inputs that come from processed data
 INPUTS = [
     "text",
     "coordinates",
     "metadata",
 ]
 
+# Raw file inputs
 RAW_INPUTS = [
     "raw.html",
     "raw.xml",
     "raw.tables",
     "raw.tables_xml",
+]
+
+# Pipeline result file types
+PIPELINE_INPUTS = [
+    "results",
+    "raw_results",
+    "info",
 ]
 
 
@@ -77,21 +89,143 @@ class Pipeline(ABC):
         self,
         inputs: Union[tuple, list] = ("text",),
         input_sources: tuple = ("pubget", "ace"),
+        pipeline_inputs: Optional[Dict[str, List[str]]] = None,
     ):
+        """Initialize pipeline.
+
+        Args:
+            inputs: File inputs from ProcessedData to use
+            input_sources: Sources to accept file inputs from
+            pipeline_inputs: Dict mapping pipeline names to lists of inputs to use.
+                Example: {"participant_demographics": ["results", "info"]}
+        """
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class")
 
         self.inputs = inputs
         self.input_sources = input_sources
+        self.pipeline_inputs = pipeline_inputs or {}
         self._pipeline_type = (
             inspect.getmro(self.__class__)[1].__name__.lower().rstrip("pipeline")
         )
 
+    def _get_pipeline_version(
+        self, pipeline_dir: Path, version_str: str = "latest"
+    ) -> Tuple[str, Path]:
+        """Get pipeline version directory.
+
+        Args:
+            pipeline_dir: Base pipeline directory
+            version_str: Version to use or "latest" for highest semver version
+
+        Returns:
+            Tuple of (version string, version directory Path)
+        """
+        if version_str == "latest":
+            # Find highest semver version
+            version_dirs = [d for d in pipeline_dir.glob("*/") if d.is_dir()]
+            if not version_dirs:
+                raise ValueError(f"No version directories found in {pipeline_dir}")
+
+            versions = []
+            for d in version_dirs:
+                try:
+                    versions.append(parse_version(d.name))
+                except ValueError:
+                    logger.warning(f"Invalid version directory name: {d.name}")
+                    continue
+
+            if not versions:
+                raise ValueError("No valid version directories found")
+
+            version_str = str(max(versions))
+            version_dir = pipeline_dir / version_str
+        else:
+            version_dir = pipeline_dir / version_str
+            if not version_dir.exists():
+                raise ValueError(f"Version directory not found: {version_dir}")
+
+        return version_str, version_dir
+
+    def _get_pipeline_config(
+        self, version_dir: Path, config: str = "latest"
+    ) -> Tuple[str, Path, Path]:
+        """Get pipeline config directory and info.
+
+        Args:
+            version_dir: Pipeline version directory
+            config: Config hash to use or "latest" for most recent by date
+
+        Returns:
+            Tuple of (config hash, config directory Path, pipeline info Path)
+        """
+        if config == "latest":
+            # Find most recent by pipeline_info.json date
+            config_dirs = [d for d in version_dir.glob("*/") if d.is_dir()]
+            if not config_dirs:
+                raise ValueError(f"No config directories found in {version_dir}")
+
+            latest_date = None
+            latest_config = None
+            latest_info = None
+
+            for d in config_dirs:
+                info_file = d / "pipeline_info.json"
+                if not info_file.exists():
+                    logger.warning(f"No pipeline_info.json found in {d}")
+                    continue
+
+                try:
+                    with open(info_file) as f:
+                        info = json.load(f)
+                    date = datetime.fromisoformat(info["date"])
+                    if latest_date is None or date > latest_date:
+                        latest_date = date
+                        latest_config = d
+                        latest_info = info_file
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Error reading pipeline_info.json from {d}: {e}")
+                    continue
+
+            if latest_config is None:
+                raise ValueError("No valid config directories found")
+
+            config_dir = latest_config
+            config_hash = latest_config.name
+            pipeline_info = latest_info
+        else:
+            config_dir = version_dir / config
+            if not config_dir.exists():
+                raise ValueError(f"Config directory not found: {config_dir}")
+            config_hash = config
+            pipeline_info = config_dir / "pipeline_info.json"
+            if not pipeline_info.exists():
+                raise ValueError(f"No pipeline_info.json found in {config_dir}")
+
+        return config_hash, config_dir, pipeline_info
+
     @abstractmethod
     def transform_dataset(
-        self, dataset: Any, output_directory: Union[str, Path], **kwargs
+        self,
+        dataset: Any,
+        output_directory: Union[str, Path],
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        **kwargs,
     ):
-        """Process a full dataset through the pipeline."""
+        """Process a full dataset through the pipeline.
+
+        Args:
+            dataset: Dataset to process
+            output_directory: Directory to write outputs
+            input_pipeline_kwargs: Pipeline version/config selection args. Dict mapping:
+                pipeline_name -> {
+                    "version": version_str,
+                    "config": config_hash,
+                    "pipeline_directory": pipeline_dir
+                }
+                Version and config default to "latest" if not specified.
+            **kwargs: Additional arguments
+        """
         pass
 
     def _process_inputs(
@@ -149,7 +283,6 @@ class Pipeline(ABC):
 
         Returns:
             Tuple of (is_valid, results)
-
         """
         study_id = kwargs.get("study_id")
         try:
@@ -212,16 +345,80 @@ class Pipeline(ABC):
             for db_id, study in dataset.data.items()
         }
 
-    def collect_study_inputs(self, study: Any) -> Dict[str, Path]:
-        """Collect inputs for a study."""
+    def collect_study_inputs(
+        self,
+        study: Any,
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+    ) -> Dict[str, Path]:
+        """Collect inputs for a study.
+
+        Args:
+            study: Study object to get inputs from
+            input_pipeline_kwargs: Pipeline version/config selection args
+
+        Returns:
+            Dict mapping input names to file paths
+        """
         study_inputs = {}
+        input_pipeline_kwargs = input_pipeline_kwargs or {}
+
+        # Collect file inputs from sources
         for source in self.input_sources:
+            # Skip pipeline sources - handled below
+            if source in self.pipeline_inputs:
+                continue
+
             source_obj = getattr(study, source, None)
             if source_obj:
                 for input_type in self.inputs:
+                    # Skip if not a regular file input
+                    if input_type in PIPELINE_INPUTS:
+                        continue
                     input_obj = deep_getattr(source_obj, input_type, None)
                     if input_obj and study_inputs.get(input_type) is None:
                         study_inputs[input_type] = input_obj
+
+        # Get required pipeline inputs
+        for pipeline_name, required_inputs in self.pipeline_inputs.items():
+            pipeline_kwargs = input_pipeline_kwargs.get(pipeline_name, {})
+            pipeline_dir = pipeline_kwargs.get("pipeline_directory")
+            if not pipeline_dir:
+                raise ValueError(f"Missing pipeline_directory for {pipeline_name}")
+
+            version_str = pipeline_kwargs.get("version", "latest")
+            version_str, version_dir = self._get_pipeline_version(
+                pipeline_dir, version_str
+            )
+
+            config = pipeline_kwargs.get("config", "latest")
+            config_hash, config_dir, pipeline_info = self._get_pipeline_config(
+                version_dir, config
+            )
+
+            # Add pipeline result files for this pipeline
+            study_dir = config_dir / study.dbid
+
+            for input_type in required_inputs:
+                if input_type not in PIPELINE_INPUTS:
+                    raise ValueError(
+                        f"Invalid pipeline input type: {input_type}. "
+                        f"Must be one of {PIPELINE_INPUTS}"
+                    )
+
+                input_path = study_dir / f"{input_type}.json"
+                if input_type in ["results", "info"] and not input_path.exists():
+                    # results and info are required
+                    raise ValueError(
+                        f"Missing {input_type}.json for {pipeline_name} pipeline "
+                        f"(study {study.dbid})"
+                    )
+                if input_type == "raw_results" and not input_path.exists():
+                    # raw_results is optional
+                    continue
+
+                # Store with pipeline name prefix to avoid collisions
+                study_inputs[f"{pipeline_name}.{input_type}"] = input_path
+
         return study_inputs
 
     def write_pipeline_info(self, hash_outdir: Path):
@@ -366,7 +563,12 @@ class IndependentPipeline(Pipeline):
         return False
 
     def transform_dataset(
-        self, dataset: Any, output_directory: Union[str, Path], num_workers=1, **kwargs
+        self,
+        dataset: Any,
+        output_directory: Union[str, Path],
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        num_workers=1,
+        **kwargs,
     ):
         """Process individual studies through the pipeline independently."""
         if isinstance(output_directory, str):
@@ -383,7 +585,7 @@ class IndependentPipeline(Pipeline):
         studies_to_process = []
 
         for db_id, study in filtered_dataset.data.items():
-            study_inputs = self.collect_study_inputs(study)
+            study_inputs = self.collect_study_inputs(study, input_pipeline_kwargs)
             study_outdir = hash_outdir / db_id
 
             # Skip if already processed
@@ -447,7 +649,11 @@ class DependentPipeline(Pipeline):
         return any(not match for match in matching_results.values())
 
     def transform_dataset(
-        self, dataset: Any, output_directory: Union[str, Path], **kwargs
+        self,
+        dataset: Any,
+        output_directory: Union[str, Path],
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        **kwargs,
     ):
         """Process all studies through the pipeline as a group."""
         if isinstance(output_directory, str):
@@ -468,7 +674,11 @@ class DependentPipeline(Pipeline):
         self.write_pipeline_info(hash_outdir)
 
         # Collect all inputs and run the group function at once
-        all_study_inputs = self.gather_all_study_inputs(dataset)
+        all_study_inputs = {
+            db_id: self.collect_study_inputs(study, input_pipeline_kwargs)
+            for db_id, study in dataset.data.items()
+        }
+
         grouped_outputs = self._process_inputs(
             all_study_inputs, study_id="grouped", **kwargs
         )
