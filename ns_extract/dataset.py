@@ -39,8 +39,8 @@ class PipelineRunResult:
 
     pipeline: Pipeline
     result: Path
-    raw_result: Optional[Path] = None
     info: Path
+    raw_result: Optional[Path] = None
 
     def __post_init__(self):
         # Validate paths exist
@@ -360,8 +360,8 @@ class Dataset:
             result = PipelineRunResult(
                 pipeline=pipeline,
                 result=result_path,
-                raw_result=raw_path if raw_path.exists() else None,
                 info=info_path,
+                raw_result=raw_path if raw_path.exists() else None,
             )
             study.add_pipeline_result(result)
 

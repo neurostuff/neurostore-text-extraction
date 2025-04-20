@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional, Union, Any
+from typing import List, Dict, Optional, Union, Any, Tuple
 import pandas as pd
 import json
 from tqdm import tqdm
@@ -158,7 +158,7 @@ class UMLSDiseaseExtractor(DependentPipeline):
         abbreviations: Optional[List[Dict]] = None,
         start_char: Optional[int] = None,
         end_char: Optional[int] = None,
-    ) -> tuple[str, list]:
+    ) -> Tuple[str, list]:
         """Get UMLS candidates for target text"""
         if abbreviations is not None:
             target = self._resolve_abbreviations(
@@ -202,7 +202,7 @@ class UMLSDiseaseExtractor(DependentPipeline):
         Args:
             study_inputs: Dictionary containing:
                 - text: Path to article full text file
-                - results: Path to participant_demographics results file
+                - participant_demographics.results: Path to demographics results file
             **kwargs: Additional arguments
 
         Returns:
@@ -213,7 +213,7 @@ class UMLSDiseaseExtractor(DependentPipeline):
             text = f.read()
 
         # Load demographics results
-        with open(study_inputs["results"]) as f:
+        with open(study_inputs["participant_demographics.results"]) as f:
             demographics = json.load(f)
 
         if not demographics or "groups" not in demographics:
@@ -226,25 +226,19 @@ class UMLSDiseaseExtractor(DependentPipeline):
         study_results = []
         for group_ix, group in enumerate(demographics["groups"]):
             if not pd.isna(group.get("diagnosis")):
-                start_char = group.get("start_char")
-                end_char = group.get("end_char")
-
                 resolved_target, target_ents = self.get_candidates(
-                    group["diagnosis"],
-                    abbreviations=abbreviations,
-                    start_char=start_char,
-                    end_char=end_char,
+                    group["diagnosis"], abbreviations=abbreviations
                 )
 
                 if target_ents:  # Only add results if entities were found
                     result = UMLSDiseaseSchema(
-                        pmid=group["pmid"],
+                        pmid=0,  # PMID not critical for UMLS extraction
                         diagnosis=resolved_target,
                         umls_entities=target_ents,
-                        count=group.get("count", 1),
+                        count=group["count"],
                         group_ix=group_ix,
-                        start_char=start_char,
-                        end_char=end_char,
+                        start_char=None,
+                        end_char=None,
                     ).model_dump()
                     study_results.append(result)
 
