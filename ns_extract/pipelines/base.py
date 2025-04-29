@@ -449,8 +449,27 @@ class Pipeline(ABC):
 
         return study_inputs
 
-    def write_pipeline_info(self, hash_outdir: Path):
-        """Write information about the pipeline to a pipeline_info.json file."""
+    def write_pipeline_info(
+        self,
+        hash_outdir: Path,
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        transform_kwargs: Optional[Dict[str, Any]] = None
+    ):
+        """Write information about the pipeline to a pipeline_info.json file.
+        
+        Args:
+            hash_outdir: Directory to write pipeline info
+            input_pipeline_kwargs: Pipeline kwargs passed to transform_dataset
+            transform_kwargs: Additional kwargs passed to transform_dataset
+        """
+        # Get output schema fields and their types
+        output_schema = {}
+        if self._output_schema:
+            output_schema = {
+                field: str(field_info.annotation)
+                for field, field_info in self._output_schema.model_fields.items()
+            }
+
         pipeline_info = {
             "date": datetime.now().isoformat(),
             "version": self._version,
@@ -459,6 +478,9 @@ class Pipeline(ABC):
                 arg: getattr(self, arg)
                 for arg in inspect.signature(self.__init__).parameters.keys()
             },
+            "output_schema": output_schema,
+            "input_pipeline_kwargs": input_pipeline_kwargs or {},
+            "transform_kwargs": transform_kwargs or {},
         }
         FileManager.write_json(hash_outdir / "pipeline_info.json", pipeline_info)
 
@@ -646,7 +668,13 @@ class IndependentPipeline(Pipeline):
 
         if not hash_outdir.exists():
             hash_outdir.mkdir(parents=True)
-            self.write_pipeline_info(hash_outdir)
+            # Include transform arguments in pipeline info
+            transform_kwargs = {"num_workers": num_workers, **kwargs}
+            self.write_pipeline_info(
+                hash_outdir,
+                input_pipeline_kwargs=input_pipeline_kwargs,
+                transform_kwargs=transform_kwargs
+            )
 
         # Filter and prepare studies that need processing
         filtered_dataset = self.filter_inputs(output_directory, dataset)
@@ -758,7 +786,11 @@ class DependentPipeline(Pipeline):
         if hash_outdir.exists():
             hash_outdir = FileManager.get_next_available_dir(hash_outdir)
         hash_outdir.mkdir(parents=True, exist_ok=True)
-        self.write_pipeline_info(hash_outdir)
+        self.write_pipeline_info(
+            hash_outdir,
+            input_pipeline_kwargs=input_pipeline_kwargs,
+            transform_kwargs=kwargs
+        )
 
         # Collect all inputs and run the group function at once
         all_study_inputs = {

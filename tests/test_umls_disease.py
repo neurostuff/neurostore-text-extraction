@@ -125,7 +125,7 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
     pipeline_kwargs = {
         "participant_demographics": {
             "version": "1.0.0",
-            "config": "abc123",
+            "config_hash": "abc123",
             "pipeline_directory": demographics_dir,
         }
     }
@@ -179,7 +179,7 @@ def test_missing_demographics_pipeline(sample_data, mock_demographics, tmp_path)
     pipeline_kwargs = {
         "participant_demographics": {
             "version": "1.0.0",
-            "config": "abc123",
+            "config_hash": "abc123",
             "pipeline_directory": tmp_path / "wrong_dir",
         }
     }
@@ -219,7 +219,7 @@ def test_missing_demographics_results(sample_data, mock_demographics, tmp_path):
     pipeline_kwargs = {
         "participant_demographics": {
             "version": "1.0.0",
-            "config": "abc123",
+            "config_hash": "abc123",
             "pipeline_directory": tmp_path / "participant_demographics",
         }
     }
