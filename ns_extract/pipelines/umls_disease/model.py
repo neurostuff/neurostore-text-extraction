@@ -1,14 +1,17 @@
-from pydantic import BaseModel, Field
-from typing import List, Dict, Optional, Union, Any, Tuple
-import pandas as pd
 import json
-from tqdm import tqdm
+from typing import List, Dict, Optional, Union, Any, Tuple
 
+import pandas as pd
 import spacy
+from pydantic import BaseModel, Field
 from scispacy.candidate_generation import CandidateGenerator
 from spacy.language import Language
+from tqdm import tqdm
 
-from ns_extract.pipelines.base import DependentPipeline
+from ns_extract.pipelines.base import IndependentPipeline
+
+# Import and register the scispacy abbreviation detector
+import scispacy.abbreviation  # noqa: F401
 
 
 class UMLSDiseaseSchema(BaseModel):
@@ -58,7 +61,7 @@ def replace_abbrev_with_json(spacy_doc):
     return spacy_doc
 
 
-class UMLSDiseaseExtractor(DependentPipeline):
+class UMLSDiseaseExtractor(IndependentPipeline):
     """Extracts UMLS disease concepts from text.
 
     Required Input Sources:
@@ -116,9 +119,15 @@ class UMLSDiseaseExtractor(DependentPipeline):
         )
 
     def _load_spacy_model(self):
-        nlp = spacy.load("en_core_sci_sm", enable=["tokenizer"])
-        nlp.add_pipe("abbreviation_detector")
-        nlp.add_pipe("serialize_abbreviation", after="abbreviation_detector")
+        """Load spaCy model with abbreviation detection pipeline"""
+        nlp = spacy.load("en_core_sci_sm", disable=["parser", "ner"])
+
+        # Add registered components in correct order
+        if "abbreviation_detector" not in nlp.pipe_names:
+            nlp.add_pipe("abbreviation_detector")
+        if "serialize_abbreviation" not in nlp.pipe_names:
+            nlp.add_pipe("serialize_abbreviation", after="abbreviation_detector")
+
         return nlp
 
     def _load_abbreviations(self, texts: List[str]) -> List[List[Dict]]:

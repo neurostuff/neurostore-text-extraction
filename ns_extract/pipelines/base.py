@@ -14,6 +14,9 @@ from packaging.version import parse as parse_version
 import tqdm
 from pydantic import BaseModel
 
+from ns_extract.dataset import Study, Dataset
+
+
 logger = logging.getLogger(__name__)
 
 # Standard file inputs that come from processed data
@@ -207,7 +210,7 @@ class Pipeline(ABC):
     @abstractmethod
     def transform_dataset(
         self,
-        dataset: Any,
+        dataset: Dataset,
         output_directory: Union[str, Path],
         input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
         **kwargs,
@@ -219,9 +222,9 @@ class Pipeline(ABC):
             output_directory: Directory to write outputs
             input_pipeline_kwargs: Pipeline version/config selection args. Dict mapping:
                 pipeline_name -> {
-                    "version": version_str,
-                    "config": config_hash,
-                    "pipeline_directory": pipeline_dir
+                    "version_str": version_str or "latest",
+                    "config_hash": config_hash or "latest",
+                    "pipeline_dir": pipeline_dir
                 }
                 Version and config default to "latest" if not specified.
             **kwargs: Additional arguments
@@ -319,16 +322,23 @@ class Pipeline(ABC):
         pass
 
     def create_directory_hash(
-        self, dataset: Any, output_directory: Path
+        self, dataset: Dataset, output_directory: Path
     ) -> Tuple[Path, str]:
         """Create a hash for the dataset."""
         dataset_str = self._serialize_dataset_keys(dataset)
         arg_str = self._serialize_pipeline_args()
-        hash_str = hashlib.shake_256(f"{dataset_str}_{arg_str}".encode()).hexdigest(6)
+        if dataset.pipelines:
+            input_pipelines_str = '_'.join([
+                f"{pipeline.name}_{pipeline.version}_{pipeline.config_hash}"
+                for pipeline in dataset.pipelines.values()])
+            full_str = f"{dataset_str}_{input_pipelines_str}_{arg_str}"
+        else:
+            full_str = f"{dataset_str}_{arg_str}"
+        hash_str = hashlib.shake_256(full_str.encode()).hexdigest(6)
         outdir = output_directory / self.__class__.__name__ / self._version / hash_str
         return outdir, hash_str
 
-    def filter_inputs(self, output_directory: Path, dataset: Any) -> bool:
+    def filter_inputs(self, output_directory: Path, dataset: Dataset) -> bool:
         """Filter inputs based on the pipeline type."""
         existing_results = self._filter_existing_results(output_directory, dataset)
         matching_results = self._identify_matching_results(dataset, existing_results)
@@ -338,29 +348,37 @@ class Pipeline(ABC):
         }
         return dataset.slice(keep_ids)
 
-    def gather_all_study_inputs(self, dataset: Any) -> Dict[str, Dict[str, Path]]:
-        """Collect all inputs for the dataset."""
+    def gather_all_study_inputs(
+        self,
+        dataset: Dataset,
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+    ) -> Dict[str, Dict[str, Path]]:
+        """Collect all inputs for the dataset.
+
+        Args:
+            dataset: Dataset to collect inputs from
+            input_pipeline_kwargs: Optional pipeline version/config selection arguments
+        """
         return {
-            db_id: self.collect_study_inputs(study)
+            db_id: self.collect_study_inputs(study, input_pipeline_kwargs)
             for db_id, study in dataset.data.items()
         }
 
     def collect_study_inputs(
         self,
-        study: Any,
+        study: Study,
         input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
     ) -> Dict[str, Path]:
         """Collect inputs for a study.
 
         Args:
             study: Study object to get inputs from
-            input_pipeline_kwargs: Pipeline version/config selection args
+            input_pipeline_kwargs: Optional pipeline arguments
 
         Returns:
             Dict mapping input names to file paths
         """
         study_inputs = {}
-        input_pipeline_kwargs = input_pipeline_kwargs or {}
 
         # Collect file inputs from sources
         for source in self.input_sources:
@@ -378,46 +396,56 @@ class Pipeline(ABC):
                     if input_obj and study_inputs.get(input_type) is None:
                         study_inputs[input_type] = input_obj
 
-        # Get required pipeline inputs
+        # Get required pipeline inputs using pipeline_results
         for pipeline_name, required_inputs in self.pipeline_inputs.items():
-            pipeline_kwargs = input_pipeline_kwargs.get(pipeline_name, {})
-            pipeline_dir = pipeline_kwargs.get("pipeline_directory")
-            if not pipeline_dir:
-                raise ValueError(f"Missing pipeline_directory for {pipeline_name}")
+            if input_pipeline_kwargs and pipeline_name in input_pipeline_kwargs:
+                pipeline_kwargs = input_pipeline_kwargs[pipeline_name]
+                pipeline_dir = Path(pipeline_kwargs["pipeline_directory"])
+                version = pipeline_kwargs["version"]
+                config_hash = pipeline_kwargs["config_hash"]
 
-            version_str = pipeline_kwargs.get("version", "latest")
-            version_str, version_dir = self._get_pipeline_version(
-                pipeline_dir, version_str
-            )
+                # Validate pipeline directory structure
+                if not pipeline_dir.exists():
+                    raise ValueError(
+                        f"Pipeline directory does not exist: {pipeline_dir}"
+                    )
 
-            config = pipeline_kwargs.get("config", "latest")
-            config_hash, config_dir, pipeline_info = self._get_pipeline_config(
-                version_dir, config
-            )
+                has_version_dirs = any(d.is_dir() for d in pipeline_dir.glob("*"))
+                if not has_version_dirs:
+                    raise ValueError("No version directories found in pipeline directory")
 
-            # Add pipeline result files for this pipeline
-            study_dir = config_dir / study.dbid
+                # Validate version and config dirs
+                version_dir = pipeline_dir / version
+                if not version_dir.exists():
+                    raise ValueError(f"Version directory does not exist: {version}")
 
+                config_dir = version_dir / config_hash
+                if not config_dir.exists():
+                    raise ValueError(f"Config directory does not exist: {config_hash}")
+
+                # Check for study results
+                results_file = config_dir / study.dbid / "results.json"
+                if not results_file.exists():
+                    raise ValueError("Missing results.json file")
+
+                study_inputs[pipeline_name] = results_file
+            else:
+                # Get pipeline results if no kwargs provided
+                pipeline_result = study.get_pipeline_result(pipeline_name)
+                if not pipeline_result:
+                    raise ValueError(
+                        f"Missing pipeline results for {pipeline_name} pipeline "
+                        f"(study {study.dbid})"
+                    )
+                study_inputs[pipeline_name] = pipeline_result.result
+
+            # Validate required input types against allowed types
             for input_type in required_inputs:
                 if input_type not in PIPELINE_INPUTS:
                     raise ValueError(
                         f"Invalid pipeline input type: {input_type}. "
                         f"Must be one of {PIPELINE_INPUTS}"
                     )
-
-                input_path = study_dir / f"{input_type}.json"
-                if input_type in ["results", "info"] and not input_path.exists():
-                    # results and info are required
-                    raise ValueError(
-                        f"Missing {input_type}.json for {pipeline_name} pipeline "
-                        f"(study {study.dbid})"
-                    )
-                if input_type == "raw_results" and not input_path.exists():
-                    # raw_results is optional
-                    continue
-
-                # Store with pipeline name prefix to avoid collisions
-                study_inputs[f"{pipeline_name}.{input_type}"] = input_path
 
         return study_inputs
 
@@ -452,7 +480,7 @@ class Pipeline(ABC):
         }
         FileManager.write_json(hash_outdir / db_id / "info.json", output_info)
 
-    def _serialize_dataset_keys(self, dataset: Any) -> str:
+    def _serialize_dataset_keys(self, dataset: Dataset) -> str:
         """Return a hashable string of the input dataset."""
         return "_".join(list(dataset.data.keys()))
 
@@ -462,7 +490,7 @@ class Pipeline(ABC):
         return "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
 
     def _filter_existing_results(
-        self, output_dir: Path, dataset: Any
+        self, output_dir: Path, dataset: Dataset
     ) -> Dict[str, Dict]:
         """Find the most recent result for an existing study."""
         existing_results = {}
@@ -518,10 +546,16 @@ class Pipeline(ABC):
         return True
 
     def _identify_matching_results(
-        self, dataset: Any, existing_results: Dict[str, Dict]
+        self,
+        dataset: Dataset,
+        existing_results: Dict[str, Dict],
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None
     ) -> Dict[str, bool]:
         """Compare dataset inputs with existing results."""
-        dataset_inputs = self.gather_all_study_inputs(dataset)
+        dataset_inputs = self.gather_all_study_inputs(
+            dataset=dataset,
+            input_pipeline_kwargs=input_pipeline_kwargs
+        )
         return {
             db_id: self._are_file_hashes_identical(
                 study_inputs, existing_results.get(db_id, {}).get("inputs", {})
@@ -532,6 +566,30 @@ class Pipeline(ABC):
 
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
+
+    def create_directory_hash(
+        self, dataset: Dataset, output_directory: Path
+    ) -> Tuple[Path, str]:
+        """Create a hash for independent pipeline execution.
+
+        For independent pipelines, the hash is based only on:
+        1. Pipeline arguments
+        2. Input pipeline versions/configs (if any)
+
+        The dataset study IDs are not included since each study is processed independently.
+        """
+        arg_str = self._serialize_pipeline_args()
+        if dataset.pipelines:
+            input_pipelines_str = '_'.join([
+                f"{pipeline.name}_{pipeline.version}_{pipeline.config_hash}"
+                for pipeline in dataset.pipelines.values()])
+            full_str = f"{input_pipelines_str}_{arg_str}"
+        else:
+            full_str = arg_str
+
+        hash_str = hashlib.shake_256(full_str.encode()).hexdigest(6)
+        outdir = output_directory / self.__class__.__name__ / self._version / hash_str
+        return outdir, hash_str
 
     def _process_and_write_study(
         self, study_data: Tuple[str, Dict[str, Any], Path], hash_outdir: Path, **kwargs
@@ -564,7 +622,7 @@ class IndependentPipeline(Pipeline):
 
     def transform_dataset(
         self,
-        dataset: Any,
+        dataset: Dataset,
         output_directory: Union[str, Path],
         input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
         num_workers=1,
@@ -573,6 +631,16 @@ class IndependentPipeline(Pipeline):
         """Process individual studies through the pipeline independently."""
         if isinstance(output_directory, str):
             output_directory = Path(output_directory)
+
+        if input_pipeline_kwargs:
+            for pipeline_name, pipeline_kwargs in input_pipeline_kwargs.items():
+                # Add pipeline with standardized argument names
+                dataset.add_pipeline(
+                    name=pipeline_name,
+                    version=pipeline_kwargs["version"],
+                    config_hash=pipeline_kwargs["config_hash"],
+                    pipeline_directory=pipeline_kwargs["pipeline_directory"]
+                )
 
         hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
@@ -641,16 +709,25 @@ class IndependentPipeline(Pipeline):
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
 
-    def check_for_changes(self, output_directory: Path, dataset: Any) -> bool:
+    def check_for_changes(
+        self,
+        output_directory: Path,
+        dataset: Dataset,
+        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None
+    ) -> bool:
         """Check if any study inputs have changed or if there are new studies."""
         existing_results = self._filter_existing_results(output_directory, dataset)
-        matching_results = self._identify_matching_results(dataset, existing_results)
+        matching_results = self._identify_matching_results(
+            dataset,
+            existing_results,
+            input_pipeline_kwargs=input_pipeline_kwargs
+        )
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
 
     def transform_dataset(
         self,
-        dataset: Any,
+        dataset: Dataset,
         output_directory: Union[str, Path],
         input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
         **kwargs,
@@ -659,10 +736,20 @@ class DependentPipeline(Pipeline):
         if isinstance(output_directory, str):
             output_directory = Path(output_directory)
 
+        if input_pipeline_kwargs:
+            for pipeline_name, pipeline_kwargs in input_pipeline_kwargs.items():
+                # Add pipeline with standardized argument names
+                dataset.add_pipeline(
+                    name=pipeline_name,
+                    version=pipeline_kwargs["version"],
+                    config_hash=pipeline_kwargs["config_hash"],
+                    pipeline_directory=pipeline_kwargs["pipeline_directory"]
+                )
+
         hash_outdir, hash_str = self.create_directory_hash(dataset, output_directory)
 
         # Check if there are any changes for dependent mode
-        if not self.check_for_changes(output_directory, dataset):
+        if not self.check_for_changes(output_directory, dataset, input_pipeline_kwargs):
             print("No changes detected, skipping pipeline execution.")
             return  # No changes, so we skip the pipeline
 

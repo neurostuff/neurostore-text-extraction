@@ -192,6 +192,7 @@ class Dataset:
     def __init__(self, input_directory):
         """Initialize the dataset."""
         self.data = self.load_directory(input_directory)
+        self.pipelines = {}
 
     def slice(self, ids):
         """Slice the dataset."""
@@ -230,8 +231,8 @@ class Dataset:
     def add_pipeline(
         self,
         pipeline_dir: Union[str, Path],
-        version_str: str = "latest",
-        config: str = "latest",
+        version: str = "latest",
+        config_hash: str = "latest",
     ):
         """Add pipeline results to studies in the dataset.
 
@@ -256,7 +257,7 @@ class Dataset:
         pipeline_name = pipeline_dir.name
 
         # Get version directory
-        if version_str == "latest":
+        if version == "latest":
             # Find highest semver version
             version_dirs = [d for d in pipeline_dir.glob("*/") if d.is_dir()]
             if not version_dirs:
@@ -273,15 +274,15 @@ class Dataset:
             if not versions:
                 raise ValueError("No valid version directories found")
 
-            version_str = str(max(versions))
-            version_dir = pipeline_dir / version_str
+            version = str(max(versions))
+            version_dir = pipeline_dir / version
         else:
-            version_dir = pipeline_dir / version_str
+            version_dir = pipeline_dir / version
             if not version_dir.exists():
                 raise ValueError(f"Version directory not found: {version_dir}")
 
         # Get config directory
-        if config == "latest":
+        if config_hash == "latest":
             # Find most recent by pipeline_info.json date
             config_dirs = [d for d in version_dir.glob("*/") if d.is_dir()]
             if not config_dirs:
@@ -315,10 +316,9 @@ class Dataset:
             config_hash = latest_config.name
             pipeline_info = latest_info
         else:
-            config_dir = version_dir / config
+            config_dir = version_dir / config_hash
             if not config_dir.exists():
                 raise ValueError(f"Config directory not found: {config_dir}")
-            config_hash = config
             pipeline_info = config_dir / "pipeline_info.json"
             if not pipeline_info.exists():
                 raise ValueError(f"No pipeline_info.json found in {config_dir}")
@@ -326,10 +326,11 @@ class Dataset:
         # Create pipeline metadata
         pipeline = Pipeline(
             name=pipeline_name,
-            version=version_str,
+            version=version,
             config_hash=config_hash,
             pipeline_info=pipeline_info,
         )
+        self.pipelines[pipeline_name] = {"info": pipeline, "results": {}}
 
         # Add results to studies
         for study_dir in config_dir.glob("*/"):
@@ -364,6 +365,7 @@ class Dataset:
                 raw_result=raw_path if raw_path.exists() else None,
             )
             study.add_pipeline_result(result)
+            self.pipelines[pipeline_name]["results"][study_id] = result
 
     def __len__(self):
         """Return the length of the dataset."""
