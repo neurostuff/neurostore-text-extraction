@@ -84,6 +84,40 @@ def mock_demographics(sample_data) -> dict:
     return results
 
 
+@pytest.fixture
+def mock_text_content():
+    """Sample medical text for testing."""
+    return """
+    The patient group consisted of individuals with Alzheimer's disease (AD)
+    and major depressive disorder (MDD). The control group was healthy.
+    """
+
+
+@pytest.fixture
+def mock_study_inputs(mock_text_content, mock_demographics):
+    """Mock study inputs for testing."""
+    return {
+        "text": mock_text_content,
+        "participant_demographics.results": mock_demographics["study1"],
+    }
+
+
+def test_umls_disease_execute(mock_study_inputs):
+    """Test UMLSDiseaseExtractor.execute() with preprocessed inputs."""
+    extractor = UMLSDiseaseExtractor()
+    results = extractor.execute(mock_study_inputs, study_id="test_study")
+
+    # Should find entities for each diagnosis
+    assert len(results["test_study"]) > 0
+    for result in results["test_study"]:
+        assert "diagnosis" in result
+        assert "umls_entities" in result
+        assert len(result["umls_entities"]) > 0
+        assert "umls_cui" in result["umls_entities"][0]
+        assert "umls_name" in result["umls_entities"][0]
+        assert "umls_prob" in result["umls_entities"][0]
+
+
 def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
     # Create demographics pipeline outputs
     demographics_dir = tmp_path / "participant_demographics"
@@ -126,7 +160,7 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
         "participant_demographics": {
             "version": "1.0.0",
             "config_hash": "abc123",
-            "pipeline_directory": demographics_dir,
+            "pipeline_dir": demographics_dir,
         }
     }
 
@@ -180,7 +214,7 @@ def test_missing_demographics_pipeline(sample_data, mock_demographics, tmp_path)
         "participant_demographics": {
             "version": "1.0.0",
             "config_hash": "abc123",
-            "pipeline_directory": tmp_path / "wrong_dir",
+            "pipeline_dir": tmp_path / "wrong_dir",
         }
     }
 
@@ -220,7 +254,7 @@ def test_missing_demographics_results(sample_data, mock_demographics, tmp_path):
         "participant_demographics": {
             "version": "1.0.0",
             "config_hash": "abc123",
-            "pipeline_directory": tmp_path / "participant_demographics",
+            "pipeline_dir": tmp_path / "participant_demographics",
         }
     }
 

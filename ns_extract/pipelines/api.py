@@ -91,8 +91,9 @@ class APIPromptExtractor(IndependentPipeline):
         """Execute LLM-based extraction using processed inputs.
 
         Args:
-            processed_inputs: Dictionary containing processed text and initialized client
-            **kwargs: Additional arguments (like n_cpus)
+            inputs: Dictionary containing:
+                   - text: Full text content (already loaded)
+            **kwargs: Additional arguments (like study_id)
 
         Returns:
             Raw predictions from LLM
@@ -100,9 +101,8 @@ class APIPromptExtractor(IndependentPipeline):
         # Initialize client
         client = self._load_client()
 
-        # Read
-        with open(inputs["text"], "r") as f:
-            text = f.read()
+        # Get text content - already loaded by InputManager
+        text = inputs["text"]
 
         # Create chat completion configuration
         completion_config = {
@@ -127,7 +127,9 @@ class APIPromptExtractor(IndependentPipeline):
         )
 
         if not results:
-            logging.warning("No results found")
+            logging.warning(
+                f"No results found for study {kwargs.get('study_id', 'unknown')}"
+            )
             return None
 
         return results

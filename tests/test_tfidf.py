@@ -5,7 +5,10 @@ from ns_extract.dataset import Dataset
 
 def test_TFIDFExtractor(sample_data, tmp_path):
     """Test the TFIDF extraction pipeline."""
-    tfidf = TFIDFExtractor()
+    tfidf = TFIDFExtractor(
+        inputs=("text", "metadata"),  # Explicitly specify required inputs
+        input_sources=("pubget", "ace"),
+    )
     dataset = Dataset(sample_data)
     output_dir = tmp_path / "tfidf"
 

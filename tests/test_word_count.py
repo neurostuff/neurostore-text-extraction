@@ -1,6 +1,41 @@
 import json
+import pytest
 from ns_extract.pipelines import WordCountExtractor, WordDevianceExtractor
 from ns_extract.dataset import Dataset
+
+
+@pytest.fixture
+def text_content():
+    """Sample text content for testing."""
+    return "This is a test document with exactly ten words, wow."
+
+
+@pytest.fixture
+def mock_inputs(text_content):
+    """Mock study inputs for testing."""
+    return {
+        "study1": {"text": text_content},
+        "study2": {"text": text_content * 2},  # Double length
+    }
+
+
+def test_word_count_transform(text_content):
+    """Test WordCountExtractor.execute() with preprocessed inputs."""
+    extractor = WordCountExtractor()
+    cleaned_result, result, valid = extractor.transform({"text": text_content})
+    assert result["word_count"] == 10
+    assert valid is True
+
+
+def test_word_deviance_execute(mock_inputs):
+    """Test WordDevianceExtractor.execute() with preprocessed inputs."""
+    extractor = WordDevianceExtractor()
+    results = extractor.execute(mock_inputs)
+
+    # First document has 10 words, second has 20
+    # Average is 15, so deviances should be 5
+    assert results["study1"]["word_deviance"] == 5
+    assert results["study2"]["word_deviance"] == 5
 
 
 def test_WordCountExtractor(sample_data, tmp_path):

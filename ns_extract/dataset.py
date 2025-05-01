@@ -24,7 +24,7 @@ INPUTS = [
 
 
 @dataclass
-class Pipeline:
+class PipelineInfo:
     """Pipeline metadata."""
 
     name: str
@@ -35,9 +35,9 @@ class Pipeline:
 
 @dataclass
 class PipelineRunResult:
-    """Result from a pipeline run."""
+    """Result from an pipeline run."""
 
-    pipeline: Pipeline
+    pipeline: PipelineInfo
     result: Path
     info: Path
     raw_result: Optional[Path] = None
@@ -167,7 +167,7 @@ class Study:
                 setattr(self, t, processed)
 
     def add_pipeline_result(self, result: PipelineRunResult):
-        """Add a pipeline result to the study.
+        """Add an pipeline result to the study.
 
         Args:
             result: PipelineRunResult containing paths to results and metadata
@@ -175,7 +175,7 @@ class Study:
         self.pipeline_results[result.pipeline.name] = result
 
     def get_pipeline_result(self, pipeline_name: str) -> Optional[PipelineRunResult]:
-        """Get a pipeline result by pipeline name.
+        """Get am pipeline result by pipeline name.
 
         Args:
             pipeline_name: Name of the pipeline
@@ -230,6 +230,7 @@ class Dataset:
 
     def add_pipeline(
         self,
+        pipeline_name: str,
         pipeline_dir: Union[str, Path],
         version: str = "latest",
         config_hash: str = "latest",
@@ -237,6 +238,7 @@ class Dataset:
         """Add pipeline results to studies in the dataset.
 
         Args:
+            pipeline_name: Name of the pipeline (e.g., "UMLSDiseasePipeline")
             pipeline_dir: Base directory containing all pipeline results in structure:
                 <pipeline_dir>/<pipeline_name>/<version>/<config_hash>/
             version_str: Version to use, or "latest" to use highest semver version
@@ -324,7 +326,7 @@ class Dataset:
                 raise ValueError(f"No pipeline_info.json found in {config_dir}")
 
         # Create pipeline metadata
-        pipeline = Pipeline(
+        pipeline = PipelineInfo(
             name=pipeline_name,
             version=version,
             config_hash=config_hash,
