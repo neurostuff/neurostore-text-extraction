@@ -13,27 +13,23 @@ import concurrent.futures
 from datetime import datetime
 from functools import reduce
 import hashlib
+import inspect
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, Optional, Tuple, Type, TypeVar, Union
 
 from pydantic import BaseModel, Field
 from tqdm.auto import tqdm
 
 from ns_extract.dataset import Dataset, Study
 
-# Type variables for generic classes
-T = TypeVar("T")  # Generic type
-ExtractorT = TypeVar("ExtractorT", bound="Extractor")  # Extractor types
-PipelineT = TypeVar("PipelineT", bound="Pipeline")  # Pipeline types
-
 # Type aliases
-FilePath = Union[str, Path]  # Path inputs
 PipelineConfig = Dict[str, Dict[str, str]]  # Pipeline configuration
 StudyResults = Dict[str, Any]  # Single study results
 PipelineResults = Dict[str, StudyResults]  # Multiple study results
 ValidationResult = Tuple[bool, StudyResults]  # Validation result format
+PipelineInputs = Dict[Tuple[str], Tuple[str]]  # Pipeline input types
 
 # Constants
 PIPELINE_VERSION = "latest"  # Default pipeline version
@@ -45,6 +41,42 @@ PIPELINE_INPUTS = ["results", "raw_results", "info"]
 
 
 logger = logging.getLogger(__name__)
+
+
+class InputPipelineInfo(BaseModel):
+    """Information about the input pipeline.
+    """
+
+    pipeline_dir: Path = Field(description="Path to the pipeline directory")
+    version: str = Field(description="Version of the pipeline")
+    config_hash: str = Field(description="Hash of the pipeline configuration")
+
+
+class PipelineOutputInfo(BaseModel):
+    """Information about the pipeline output."""
+
+    date: str = Field(description="Date of the output")
+    version: str = Field(description="Version of the pipeline")
+    config_hash: str = Field(description="Hash of the pipeline configuration")
+    extractor: str = Field(description="Name of the extractor used")
+    extractor_kwargs: Dict[str, Any] = Field(
+        description="Arguments passed to the extractor"
+    )
+    transform_kwargs: Dict[str, Any] = Field(
+        description="Arguments passed to the transform function"
+    )
+    input_pipelines: Dict[str, InputPipelineInfo] = Field(
+        description="Pipelines used as inputs to this pipeline"
+    )
+    schema: Dict[str, Any] = Field(description="Schema of the output data")
+
+
+class StudyOutputJson(BaseModel):
+    """Information about a study's processing results."""
+
+    date: str = Field(description="When the study was processed")
+    inputs: Dict[str, str] = Field(description="Input file paths and their MD5 hashes")
+    valid: bool = Field(description="Whether outputs passed validation")
 
 
 def deep_getattr(obj: Any, attr_path: str, default: Any = None) -> Any:
@@ -87,172 +119,54 @@ class FileManager:
         return new_path
 
 
-class InputManager:
-    """Handles input file operations and data loading for pipelines."""
+class StudyInputsManager:
+    """Static methods for handling study input file operations."""
 
-    def __init__(
-        self,
-        pipeline_directory: Path,
-        input_sources: tuple = ("pubget", "ace"),
-        pipeline_inputs: Optional[Dict[str, List[str]]] = None,
-    ):
-        """Initialize input manager.
-
-        Args:
-            pipeline_directory: Base directory for pipeline data
-            input_sources: Sources to accept file inputs from
-            pipeline_inputs: Dict mapping pipeline names to lists of inputs to use
-        """
-        self.pipeline_directory = pipeline_directory
-        self.input_sources = input_sources
-        self.pipeline_inputs = pipeline_inputs or {}
-
-    def get_source_text(
-        self, study_inputs: Dict[str, str], source_type: str = "text"
-    ) -> str:
-        """Get text content from source file.
-
-        Args:
-            study_inputs: Dict containing input file paths
-            source_type: Type of source file to read (text, coordinates, metadata)
-
-        Returns:
-            Content of the requested file
-
-        Raises:
-            KeyError: If source_type not found in inputs
-            FileNotFoundError: If file doesn't exist
-            IOError: If file can't be read
-        """
-        if source_type not in study_inputs:
-            raise KeyError(
-                f"Required input '{source_type}' not found in study inputs. "
-                f"Available inputs: {list(study_inputs.keys())}"
-            )
-
+    @staticmethod
+    def load_text_file(file_path: Path) -> str:
+        """Read text file with error handling."""
         try:
-            with open(study_inputs[source_type], "r") as f:
+            with file_path.open('r') as f:
                 return f.read()
-        except FileNotFoundError:
-            raise FileNotFoundError(
-                f"Input file not found: {study_inputs[source_type]}. "
-                f"Required for input type: {source_type}"
-            )
-        except IOError as e:
-            raise IOError(f"Error reading file {study_inputs[source_type]}: {str(e)}")
+        except Exception as e:
+            raise IOError(f"Failed to read text file {file_path}: {str(e)}")
 
-    def get_source_json(
-        self, study_inputs: Dict[str, str], source_type: str = "metadata"
-    ) -> Dict:
-        """Get JSON content from source file.
+    @staticmethod
+    def load_study_inputs(study_inputs: Dict[str, Union[str, Path]]) -> Dict[str, Any]:
+        """Load study input files based on their file extensions.
 
         Args:
-            study_inputs: Dict containing input file paths
-            source_type: Type of source file to read (metadata, coordinates)
+            study_inputs: Dictionary mapping input names to file paths
 
         Returns:
-            Parsed JSON content
-
+            Dictionary with loaded file contents
+        
         Raises:
-            KeyError: If source_type not found in inputs
-            FileNotFoundError: If file doesn't exist
-            json.JSONDecodeError: If file contains invalid JSON
-            IOError: If file can't be read
+            IOError: If file reading fails
+            ValueError: If file extension not supported
         """
-        if source_type not in study_inputs:
-            raise KeyError(
-                f"Required input '{source_type}' not found in study inputs. "
-                f"Available inputs: {list(study_inputs.keys())}"
-            )
+        loaded_inputs = {}
+        for input_name, file_path in study_inputs.items():
+            path = Path(file_path)
+            suffix = path.suffix.lower()
 
-        try:
-            with open(study_inputs[source_type], "r") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(
-                f"Input file not found: {study_inputs[source_type]}. "
-                f"Required for input type: {source_type}"
-            )
-        except json.JSONDecodeError as e:
-            raise json.JSONDecodeError(
-                f"Invalid JSON in {study_inputs[source_type]}: {str(e)}", e.doc, e.pos
-            )
-        except IOError as e:
-            raise IOError(f"Error reading file {study_inputs[source_type]}: {str(e)}")
+            try:
+                if suffix == '.txt':
+                    loaded_inputs[input_name] = StudyInputsManager.load_text_file(path)
+                elif suffix == '.json':
+                    loaded_inputs[input_name] = FileManager.load_json(path)
+                elif suffix == '.csv':
+                    import pandas as pd
+                    loaded_inputs[input_name] = pd.read_csv(path).to_dict('records')
+                else:
+                    raise ValueError(f"Unsupported file type for {input_name}: {suffix}")
+            except Exception as e:
+                raise IOError(f"Failed to load study input {input_name} from {path}: {str(e)}")
 
-    def get_pipeline_result(
-        self, study_id: str, pipeline_name: str, version: str, config_hash: str
-    ) -> Dict:
-        """Get results from another pipeline.
-
-        Args:
-            study_id: Study ID to get results for
-            pipeline_name: Name of pipeline to get results from
-            version: Pipeline version
-            config_hash: Pipeline config hash
-
-        Returns:
-            Pipeline results for the specified study
-
-        Raises:
-            ValueError: If results not found
-        """
-        result_path = (
-            self.pipeline_directory
-            / pipeline_name
-            / version
-            / config_hash
-            / study_id
-            / "results.json"
-        )
-
-        if not result_path.exists():
-            raise ValueError(f"Missing results for pipeline {pipeline_name}")
-
-        return FileManager.load_json(result_path)
-
-    def get_all_inputs(
-        self,
-        study_id: str,
-        source_inputs: Dict[str, str],
-        pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
-    ) -> Dict[str, Any]:
-        """Get all inputs needed for a study.
-
-        Args:
-            study_id: Study ID
-            source_inputs: Dict mapping input types to file paths
-            pipeline_kwargs: Optional kwargs for getting pipeline results
-
-        Returns:
-            Dict containing all required inputs
-        """
-        inputs = {}
-
-        # Get source file inputs
-        for input_type, path in source_inputs.items():
-            if input_type in ("text", "coordinates"):
-                inputs[input_type] = self.get_source_text(source_inputs, input_type)
-            elif input_type == "metadata":
-                inputs[input_type] = self.get_source_json(source_inputs, input_type)
-
-        # Get pipeline inputs if needed
-        if pipeline_kwargs:
-            for name, kwargs in pipeline_kwargs.items():
-                result = self.get_pipeline_result(
-                    study_id=study_id,
-                    pipeline_name=name,
-                    version=kwargs["version"],
-                    config_hash=kwargs["config_hash"],
-                )
-                # Add with pipeline name prefix to avoid collisions
-                for result_type in self.pipeline_inputs.get(name, []):
-                    inputs[f"{name}.{result_type}"] = result.get(result_type)
-
-        return inputs
+        return loaded_inputs
 
     def collect_dataset_inputs(
-        self, dataset: Dataset, input_pipeline_kwargs: Optional[PipelineConfig] = None
+        self, dataset: Dataset, input_pipeline_info: Optional[PipelineInputs] = None
     ) -> Dict[str, Dict[str, Any]]:
         """Collect all required inputs for dataset processing.
 
@@ -261,7 +175,7 @@ class InputManager:
 
         Args:
             dataset: Dataset to collect inputs for
-            input_pipeline_kwargs: Optional pipeline configuration arguments
+            input_pipeline_info: Optional pipeline configuration arguments
                 Example:
                     {
                         "pipeline_name":
@@ -276,18 +190,18 @@ class InputManager:
             Dict mapping study IDs to their collected inputs
         """
         return {
-            study_id: self._collect_study_inputs(study, input_pipeline_kwargs)
+            study_id: self._collect_study_inputs(study, input_pipeline_info)
             for study_id, study in dataset.data.items()
         }
 
     def _collect_study_inputs(
-        self, study: Study, input_pipeline_kwargs: Optional[PipelineConfig] = None
+        self, study: Study, input_pipeline_info: Optional[PipelineConfig] = None
     ) -> Dict[str, Any]:
         """Collect all required inputs for a single study.
 
         Args:
             study: Study to collect inputs for
-            input_pipeline_kwargs: Optional pipeline configuration arguments
+            input_pipeline_info: Optional pipeline configuration arguments
 
         Returns:
             Dict of collected study inputs
@@ -300,48 +214,70 @@ class InputManager:
                 inputs[source_type] = getattr(study, source_type)
 
         # Get pipeline dependency inputs
-        if input_pipeline_kwargs:
-            for name in input_pipeline_kwargs:
+        if input_pipeline_info:
+            for name in input_pipeline_info:
                 result_path = study.pipeline_results[name].result
                 inputs[name] = result_path
 
         return inputs
 
 
-class OutputManager:
-    """Handles output file operations and results writing for pipelines.
+class PipelineOutputsManager:
+    """Static methods for managing pipeline output files."""
 
-    Responsible for:
-    - Writing pipeline results and metadata
-    - Managing output directory structure
-    - Handling file I/O operations
-    """
+    @staticmethod
+    def convert_pipeline_info(
+        info: Dict[str, Dict[str, str]]
+    ) -> Dict[str, InputPipelineInfo]:
+        """Convert pipeline info dict to InputPipelineInfo objects."""
+        if info is None:
+            return {}
+            
+        return {
+            name: InputPipelineInfo(**kwargs)
+            for name, kwargs in info.items()
+        }
 
-    def __init__(self, extractor_name: str, version: str, config_hash: str) -> None:
-        """Initialize output manager.
-
+    @staticmethod
+    def create_pipeline_info(
+        extractor_name: str,
+        extractor_kwargs: Dict[str, Any],
+        version: str,
+        config_hash: str,
+        output_schema: Type[BaseModel],
+        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
+        transform_kwargs: Dict[str, Any] = None,
+    ) -> PipelineOutputInfo:
+        """Create PipelineOutputInfo instance with provided data.
+        
         Args:
-            extractor_name: Name of the extractor class
+            extractor_name: Name of the extractor
+            extractor_kwargs: Keyword arguments used to initialize extractor
             version: Pipeline version
-            config_hash: Configuration hash
-        """
-        self.extractor_name = extractor_name
-        self.version = version
-        self.config_hash = config_hash
-
-    def _validate_results(self, results: Dict[str, Any]) -> bool:
-        """Validate that results have the expected structure.
-
-        Valid results must be either:
-        1. A direct results dict
-        2. A dict with 'results' key and optional 'raw_results' key
-
-        Args:
-            results: Results dict to validate
+            config_hash: Hash of the pipeline configuration
+            output_schema: Schema for output validation
+            input_pipeline_info: Optional dict of input pipeline configurations
+            transform_kwargs: Optional transform function arguments
 
         Returns:
-            True if valid, False otherwise
+            PipelineOutputInfo instance with normalized data
         """
+        return PipelineOutputInfo(
+            date=datetime.now().isoformat(),
+            version=version,
+            config_hash=config_hash,
+            extractor=extractor_name,
+            extractor_kwargs=extractor_kwargs or {},
+            transform_kwargs=transform_kwargs or {},
+            input_pipelines=PipelineOutputsManager.convert_pipeline_info(
+                input_pipeline_info
+            ),
+            schema=output_schema.model_json_schema(),
+        )
+
+    @staticmethod
+    def validate_results(results: Dict[str, Any]) -> bool:
+        """Validate that results have the expected structure."""
         if not isinstance(results, dict):
             return False
 
@@ -363,60 +299,32 @@ class OutputManager:
 
         return False
 
-    def write_pipeline_info(self, output_dir: Path) -> "OutputManager":
-        """Write pipeline metadata to pipeline_info.json.
-
-        Args:
-            output_dir: Directory to write pipeline info
-
-        Returns:
-            Self for method chaining
-
-        Raises:
-            ValueError: If output_dir is not a Path
-            IOError: If writing fails
-        """
-        if not isinstance(output_dir, Path):
+    @staticmethod
+    def write_pipeline_info(
+        hash_outdir: Path,
+        info: PipelineOutputInfo,
+    ) -> None:
+        """Write pipeline metadata to pipeline_info.json."""
+        if not isinstance(hash_outdir, Path):
             raise ValueError("output_dir must be a Path object")
 
-        info = {
-            "date": datetime.now().isoformat(),
-            "version": self.version,
-            "config_hash": self.config_hash,
-            "extractor": self.extractor_name,
-        }
-
         try:
-            info_path = output_dir / "pipeline_info.json"
-            FileManager.write_json(info_path, info)
+            info_path = hash_outdir / "pipeline_info.json"
+            FileManager.write_json(info_path, info.model_dump())
         except IOError as e:
-            raise IOError(f"Failed to write pipeline info: {str(e)}")
+            logger.error(f"Failed to write pipeline info: {str(e)}")
+            raise
 
-        return self
-
+    @staticmethod
     def write_study_results(
-        self, study_dir: Path, study_id: str, results: Dict[str, Any]
-    ) -> "OutputManager":
-        """Write study results to directory.
-
-        Args:
-            study_dir: Directory for study files
-            study_id: ID of the study
-            results: Study results to write
-
-        Returns:
-            Self for method chaining
-
-        Raises:
-            IOError: If writing fails
-            ValueError: If inputs are invalid
-        """
-        # Validate inputs
+        study_dir: Path, study_id: str, results: Dict[str, Any]
+    ) -> None:
+        """Write study results to directory."""
         if not isinstance(study_dir, Path):
             raise ValueError("study_dir must be a Path object")
         if not study_id:
             raise ValueError("study_id cannot be empty")
-        if not self._validate_results(results):
+        if not PipelineOutputsManager.validate_results(results):
             raise ValueError(
                 "Invalid results structure. Must be either a results dict "
                 "or contain 'results' key with optional 'raw_results'"
@@ -438,8 +346,6 @@ class OutputManager:
         except IOError as e:
             raise IOError(f"Failed to write results for study {study_id}: {str(e)}")
 
-        return self
-
 
 class Pipeline:
     """Base pipeline class for handling I/O operations.
@@ -450,12 +356,12 @@ class Pipeline:
         the first element will be prioritized over the second.
         If a pubget source is not available, the second element will be used.
         the values are the input types that will be used for the extractor.
-    pipeline_inputs: Inputs for the pipeline structured like this:
+    input_pipelines: Inputs for the pipeline structured like this:
         {("participant_info"): ("results", "raw_results")}
     """
 
-    _data_pond_inputs: Dict[str, str] = Field(default_factory=dict)
-    _pipeline_inputs: Dict[str, str] = Field(default_factory=dict)
+    _data_pond_inputs: PipelineInputs = Field(default_factory=dict)
+    _input_pipelines: PipelineInputs = Field(default_factory=dict)
 
     def __init__(
         self,
@@ -482,51 +388,24 @@ class Pipeline:
         dataset_str = "_".join(sorted(dataset.data.keys()))
 
         # Extractor config - exclude private attrs
-        transform_str = "_".join(
-            [
-                f"{key}_{val}"
-                for key, val in self.extractor.__dict__.items()
-                if not key.startswith("_")
-            ]
-        )
+        args = list(inspect.signature(self.__init__).parameters.keys())
+        args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
+        version_str = self.extractor._version
 
-        # Pipeline config
-        pipeline_str = f"{self.extractor._version}_{self._config_hash}"
-
-        return f"{dataset_str}_{transform_str}_{pipeline_str}"
-
-    def _create_output_directory(self, dataset: Dataset, base_dir: Path) -> Path:
-        """Create uniquely hashed output directory.
-
-        Directory structure:
-        base_dir/
-          extractor_name/
-            version/
-              hash/
-        """
-        # Create hash from configuration
-        hash_str = hashlib.shake_256(
-            self._create_hash_string(dataset).encode()
-        ).hexdigest(6)
-
-        # Create directory path
-        outdir = base_dir / self.extractor.__class__.__name__ / self.extractor._version / hash_str
-
-        outdir.mkdir(parents=True, exist_ok=True)
-        return outdir
+        return f"{dataset_str}_{version_str}_{args_str}"
 
     def _prepare_pipeline(
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
-    ) -> Tuple[Path, Path]:
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
+    ) -> Path:
         """Prepare pipeline execution by setting up dependencies and creating output directory.
 
         Args:
             dataset: Dataset to process
             output_directory: Directory to write outputs
-            input_pipeline_kwargs: Optional kwargs for input pipelines
+            input_pipeline_info: Optional kwargs for input pipelines
 
         Returns:
             hash_output_directory as Path
@@ -534,8 +413,8 @@ class Pipeline:
         output_directory = Path(output_directory)
 
         # Set up dependencies from other pipeline outputs
-        if input_pipeline_kwargs:
-            for name, dependency_info in input_pipeline_kwargs.items():
+        if input_pipeline_info:
+            for name, dependency_info in input_pipeline_info.items():
                 dataset.add_pipeline(
                     pipeline_name=name,
                     pipeline_dir=dependency_info["pipeline_dir"],
@@ -543,8 +422,22 @@ class Pipeline:
                     config_hash=dependency_info.get("config_hash", CONFIG_VERSION),
                 )
 
-        # Create output directory with hash
-        hash_outdir = self._create_output_directory(dataset, output_directory)
+        # Create hashed output directory path
+        # Create hash from configuration
+        hash_str = hashlib.shake_256(
+            self._create_hash_string(dataset).encode()
+        ).hexdigest(6)
+
+        # Create full directory path
+        hash_outdir = (
+            Path(output_directory)
+            / self.extractor.__class__.__name__
+            / self.extractor._version
+            / hash_str
+        )
+
+        # Create directory if needed
+        hash_outdir.mkdir(parents=True, exist_ok=True)
 
         return hash_outdir
 
@@ -553,7 +446,7 @@ class Pipeline:
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
         **kwargs,
     ):
         """Process a dataset through the pipeline.
@@ -561,20 +454,145 @@ class Pipeline:
         Args:
             dataset: Dataset to process
             output_directory: Directory to write outputs
-            input_pipeline_kwargs: Optional kwargs for input pipelines
+            input_pipeline_info: Optional kwargs for input pipelines
             **kwargs: Additional arguments passed to extractor
         """
         pass
 
-    def _create_directory_hash(self, dataset: Dataset) -> str:
-        """Create hash string for output directory."""
-        # Hash based on dataset study IDs and extractor args
-        dataset_str = "_".join(sorted(dataset.data.keys()))
-        extractor_str = self.extractor.get_config_string()
-        full_str = f"{dataset_str}_{extractor_str}"
-        return hashlib.shake_256(full_str.encode()).hexdigest(6)
+    def _filter_existing_results(
+        self, hash_outdir: Path, dataset: Any
+    ) -> Dict[str, Dict]:
+        """Find the most recent result for an existing study."""
+        existing_results = {}
+        result_directory = hash_outdir.parent
+        current_args = {
+            arg: getattr(self, arg)
+            for arg in inspect.signature(self.__init__).parameters.keys()
+        }
 
-    def _write_results(self, output_dir: Path, results: Dict[str, Any]) -> None:
+        current_args = json.loads(json.dumps(current_args))
+
+        for d in result_directory.glob("*"):
+            if not d.is_dir():
+                continue
+
+            pipeline_info = FileManager.load_json(d / "pipeline_info.json")
+            pipeline_args = pipeline_info.get("extractor_kwargs", {})
+
+            if pipeline_args != current_args:
+                continue
+
+            for sub_d in d.glob("*"):
+                if not sub_d.is_dir():
+                    continue
+
+                info_file = sub_d / "info.json"
+                if info_file.exists():
+                    info = FileManager.load_json(info_file)
+                    found_info = {
+                        "date": info["date"],
+                        "inputs": info["inputs"],
+                        "hash": sub_d.name,
+                    }
+                    if existing_results.get(sub_d.name) is None or datetime.strptime(
+                        info["date"], "%Y-%m-%d"
+                    ) > datetime.strptime(
+                        existing_results[sub_d.name]["date"], "%Y-%m-%d"
+                    ):
+                        existing_results[sub_d.name] = found_info
+        return existing_results
+
+    def _are_file_hashes_identical(
+        self, study_inputs: Dict[str, Path], existing_inputs: Dict[str, str]
+    ) -> bool:
+        """Compare file hashes to determine if the inputs have changed."""
+        if set(str(p) for p in study_inputs.values()) != set(existing_inputs.keys()):
+            return False
+
+        for existing_file, hash_val in existing_inputs.items():
+            if FileManager.calculate_md5(Path(existing_file)) != hash_val:
+                return False
+
+        return True
+
+    def gather_all_study_inputs(self, dataset: Any) -> Dict[str, Dict[str, Path]]:
+        """Collect all inputs for the dataset."""
+        return {
+            db_id: self.collect_study_inputs(study)
+            for db_id, study in dataset.data.items()
+        }
+
+    def _identify_matching_results(
+        self, dataset: Any, existing_results: Dict[str, Dict]
+    ) -> Dict[str, bool]:
+        """Compare dataset inputs with existing results."""
+        dataset_inputs = self.gather_all_study_inputs(dataset)
+        return {
+            db_id: self._are_file_hashes_identical(
+                study_inputs, existing_results.get(db_id, {}).get("inputs", {})
+            )
+            for db_id, study_inputs in dataset_inputs.items()
+        }
+
+    def filter_inputs(self, hash_outdir: Path, dataset: Any) -> bool:
+        """Filter inputs based on the pipeline type."""
+        existing_results = self._filter_existing_results(hash_outdir, dataset)
+        matching_results = self._identify_matching_results(dataset, existing_results)
+        # Return True if any of the studies' inputs have changed or if new studies exist
+        keep_ids = set(dataset.data.keys()) - {
+            db_id for db_id, match in matching_results.items() if match
+        }
+        return dataset.slice(keep_ids)
+
+    def collect_study_inputs(
+        self,
+        study: Any,
+        input_pipeline_info: Optional[InputPipelineInfo] = None
+    ) -> Dict[str, Path]:
+        """Collect inputs for a study."""
+        study_inputs = {}
+
+        # Iterate through sources in priority order
+        for sources, input_types in self._data_pond_inputs.items():
+            for source in sources:
+                source_obj = getattr(study, source, None)
+                if source_obj:
+                    for input_type in input_types:
+                        input_obj = deep_getattr(source_obj, input_type, None)
+                        if input_obj and input_type not in study_inputs:
+                            study_inputs[input_type] = input_obj
+                    break  # Stop after finding first valid source
+
+        # Add pipeline inputs if needed
+        if input_pipeline_info:
+            for name in input_pipeline_info:
+                result_path = study.pipeline_results[name].result
+                study_inputs[name] = result_path
+
+        return study_inputs
+
+    def write_study_info(
+        self,
+        hash_outdir: Path,
+        db_id: str,
+        study_inputs: Dict[str, Path],
+        is_valid: bool,
+    ):
+        """Write information about the study run to info.json file."""
+        info = StudyOutputJson(
+            date=datetime.now().isoformat(),
+            inputs={
+                str(input_file): FileManager.calculate_md5(input_file)
+                for input_file in study_inputs.values()
+            },
+            valid=is_valid,
+        )
+        FileManager.write_json(
+            hash_outdir / db_id / "info.json",
+            info.model_dump()
+        )
+
+    def _write_results(self, hash_outdir: Path, results: Dict[str, Any]) -> None:
         """Write pipeline results and metadata.
 
         Handles writing both raw and processed results when available.
@@ -583,38 +601,32 @@ class Pipeline:
         - results.json: Post-processed output
 
         Args:
-            output_dir: Directory to write results to
+            hash_outdir: Directory to write results to
             results: Results from extractor to write
 
         Raises:
             IOError: If writing any file fails
-            ValueError: If output_dir is not a Path
+            ValueError: If hash_outdir is not a Path
         """
-        if not isinstance(output_dir, Path):
-            raise ValueError("output_dir must be a Path object")
-
-        # Create manager and write pipeline info
-        manager = OutputManager(
-            extractor_name=self.extractor.__class__.__name__,
-            version=self._version,
-            config_hash=self._config_hash,
-        )
-
-        # Write pipeline info first
-        manager.write_pipeline_info(output_dir)
+        if not isinstance(hash_outdir, Path):
+            raise ValueError("hash_outdir must be a Path object")
 
         # Write each study's results
         for study_id, study_results in results.items():
-            study_dir = output_dir / study_id
+            study_dir = hash_outdir / study_id
             study_dir.mkdir(exist_ok=True, parents=True)
-            manager.write_study_results(study_dir, study_id, study_results)
+            PipelineOutputsManager.write_study_results(study_dir, study_id, study_results)
 
 
 class IndependentPipeline(Pipeline):
     """Pipeline that processes each study independently."""
 
     def _process_and_write_study(
-        self, study_data: Tuple[str, Dict[str, Any], Path], hash_outdir: Path, **kwargs
+        self,
+        study_data: Tuple[str, Dict[str, Any], Path],
+        hash_outdir: Path,
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
+        **kwargs
     ) -> bool:
         """Process a single study and write its results.
 
@@ -629,55 +641,88 @@ class IndependentPipeline(Pipeline):
         db_id, study_inputs, study_outdir = study_data
         study_outdir.mkdir(parents=True, exist_ok=True)
 
-        # Process the inputs with study ID for error tracking
-        outputs = self._process_inputs(study_inputs, study_id=db_id, **kwargs)
+        # Process inputs with StudyInputsManager
+        loaded_study_inputs = StudyInputsManager.load_study_inputs(
+            study_inputs=study_inputs,
+        )
 
-        if outputs:
+        # Process the inputs with study ID for error tracking
+        try:
+            results, raw_results, is_valid = self.transform(loaded_study_inputs, **kwargs)
+        except Exception as e:
+            logger.error(
+                f"Error processing study {db_id}: {e}. "
+                f"Inputs: {loaded_study_inputs}"
+            )
+            return False
+
+        if results:
             # Write results immediately
-            for output_type, output in outputs.items():
-                if output_type == "results":
-                    is_valid, output = output
-                    self.write_study_info(hash_outdir, db_id, study_inputs, is_valid)
-                FileManager.write_json(study_outdir / f"{output_type}.json", output)
-            return True
-        return False
+            self.write_study_info(
+                hash_outdir=hash_outdir,
+                db_id=db_id,
+                study_inputs=study_inputs,
+                is_valid=is_valid
+            )
+            FileManager.write_json(study_outdir / "results.json", results)
+
+        if raw_results is not results:
+            # Write raw results if they differ from cleaned results
+            FileManager.write_json(study_outdir / "raw_results.json", results)
+
+        return True
 
     def transform_dataset(
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
         num_workers=1,
         **kwargs,
     ):
         """Process individual studies through the pipeline independently."""
+        # TODO: make sure input_pipeline_info are handled with the hashing
+        # should either need to find the latest hash, or just use the existing
+        # name/version/hash. There could be additional studies that are added
+        # but for independent pipelines, we don't need to worry about that,
+        # it will come into play when we need to filter the inputs for which studies
+        # need to be processed. With dependent pipelines, if there were new studies,
+        # then there would be a new hash created with all the study results.
         hash_outdir = self._prepare_pipeline(
-            dataset, output_directory, input_pipeline_kwargs
+            dataset, output_directory, input_pipeline_info
         )
 
-        if not hash_outdir.exists():
-            hash_outdir.mkdir(parents=True)
-            # Include transform arguments in pipeline info
-            transform_kwargs = {"num_workers": num_workers, **kwargs}
-            self.write_pipeline_info(
-                hash_outdir,
-                input_pipeline_kwargs=input_pipeline_kwargs,
-                transform_kwargs=transform_kwargs,
+        if not (hash_outdir / "pipeline_info.json").exists():
+            hash_outdir.mkdir(parents=True, exist_ok=True)
+            # Create pipeline info object
+            pipeline_info = PipelineOutputsManager.create_pipeline_info(
+                extractor_name=self.extractor.__class__.__name__,
+                extractor_kwargs={
+                    arg: getattr(self, arg)
+                    for arg in inspect.signature(self.__init__).parameters.keys()
+                },
+                version=self.extractor._version,
+                config_hash=hash_outdir.name,
+                output_schema=self.extractor._output_schema,
+                input_pipeline_info=input_pipeline_info,
+                transform_kwargs=kwargs,
             )
+            PipelineOutputsManager.write_pipeline_info(hash_outdir, pipeline_info)
 
         # Filter and prepare studies that need processing
-        filtered_dataset = self.filter_inputs(output_directory, dataset)
+        filtered_dataset = self.filter_inputs(hash_outdir, dataset)
         studies_to_process = []
 
         for db_id, study in filtered_dataset.data.items():
-            study_inputs = self.collect_study_inputs(study, input_pipeline_kwargs)
-            study_outdir = hash_outdir / db_id
+            study_inputs = self.collect_study_inputs(study, input_pipeline_info)
+            # Create study directory directly under hash directory
+            study_dir = hash_outdir / db_id
 
             # Skip if already processed
-            if study_outdir.exists():
+            if study_dir.exists():
                 continue
 
-            studies_to_process.append((db_id, study_inputs, study_outdir))
+            studies_to_process.append((db_id, study_inputs, study_dir))
 
         if not studies_to_process:
             print("No studies need processing")
@@ -736,14 +781,14 @@ class DependentPipeline(Pipeline):
 
     def check_for_changes(
         self,
-        output_directory: Path,
+        hash_outdir: Path,
         dataset: Dataset,
-        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
     ) -> bool:
         """Check if any study inputs have changed or if there are new studies."""
-        existing_results = self._filter_existing_results(output_directory, dataset)
+        existing_results = self._filter_existing_results(hash_outdir, dataset)
         matching_results = self._identify_matching_results(
-            dataset, existing_results, input_pipeline_kwargs=input_pipeline_kwargs
+            dataset, existing_results, input_pipeline_info=input_pipeline_info
         )
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
@@ -752,33 +797,43 @@ class DependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_kwargs: Optional[Dict[str, Dict[str, str]]] = None,
+        input_pipeline_info: Optional[InputPipelineInfo] = None,
         **kwargs,
     ):
         """Process all studies through the pipeline as a group."""
         hash_outdir = self._prepare_pipeline(
-            dataset, output_directory, input_pipeline_kwargs
+            dataset, output_directory, input_pipeline_info
         )
 
-        # Check if there are any changes for dependent mode
-        if not self.check_for_changes(output_directory, dataset, input_pipeline_kwargs):
-            logger.info("No changes detected, skipping pipeline execution.")
-            return  # No changes, so we skip the pipeline
-
-        # If the directory exists, find the next available directory
-        # with a suffix like "-1", "-2", etc.
-        if hash_outdir.exists():
-            hash_outdir = FileManager.get_next_available_dir(hash_outdir)
+        # Create and write pipeline info at start
         hash_outdir.mkdir(parents=True, exist_ok=True)
-        self.write_pipeline_info(
-            hash_outdir,
-            input_pipeline_kwargs=input_pipeline_kwargs,
+        pipeline_info = PipelineOutputsManager.create_pipeline_info(
+            extractor_name=self.extractor.__class__.__name__,
+            extractor_kwargs={
+                arg: getattr(self, arg)
+                for arg in inspect.signature(self.__init__).parameters.keys()
+            },
+            version=self.extractor._version,
+            config_hash=hash_outdir.name,
+            output_schema=self.extractor._output_schema,
+            input_pipeline_info=input_pipeline_info,
             transform_kwargs=kwargs,
         )
+        PipelineOutputsManager.write_pipeline_info(hash_outdir, pipeline_info)
+
+        # Check if there are any changes for dependent mode
+        if not self.check_for_changes(hash_outdir, dataset, input_pipeline_info):
+            logger.info("No changes detected, skipping pipeline execution.")
+            return
+
+        # If the directory exists, find the next available directory
+        if hash_outdir.exists():
+            hash_outdir = FileManager.get_next_available_dir(hash_outdir)
+            hash_outdir.mkdir(parents=True, exist_ok=True)
 
         # Collect all inputs and run the group function at once
         all_study_inputs = {
-            db_id: self.collect_study_inputs(study, input_pipeline_kwargs)
+            db_id: self.collect_study_inputs(study, input_pipeline_info)
             for db_id, study in dataset.data.items()
         }
 
@@ -794,7 +849,10 @@ class DependentPipeline(Pipeline):
                         if output_type == "results":
                             is_valid, _output = _output
                             self.write_study_info(
-                                hash_outdir, db_id, all_study_inputs[db_id], is_valid
+                                hash_outdir=hash_outdir,
+                                db_id=db_id,
+                                study_inputs=all_study_inputs[db_id],
+                                is_valid=is_valid
                             )
                         FileManager.write_json(
                             study_outdir / f"{output_type}.json", _output
@@ -862,8 +920,6 @@ class Extractor(ABC):
         """
         results = self._transform(inputs, **kwargs)
         cleaned_results = self.post_process(results)
-        if cleaned_results is None:
-            cleaned_results = results
         valid = self.validate_output(cleaned_results)
 
         return (cleaned_results, results, valid)
@@ -895,4 +951,4 @@ class Extractor(ABC):
         Returns:
             Post-processed results, or None if no changes are made
         """
-        return None
+        return results

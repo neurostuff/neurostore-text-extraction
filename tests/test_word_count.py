@@ -54,7 +54,6 @@ def test_WordCountExtractor(sample_data, tmp_path):
     # Check pipeline info
     pipeline_info = json.loads((version_dir / "pipeline_info.json").read_text())
     assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["type"] == "independent"
 
     # Verify study outputs
     # Glob for dirs
@@ -75,12 +74,6 @@ def test_WordCountExtractor(sample_data, tmp_path):
     # Rerun - no changes, no new outputs
     wce.transform_dataset(dataset, output_dir)
     assert len(list(output_dir.glob("WordCountExtractor/1.0.0/*"))) == 1
-
-    # Test input source preference
-    wce_ace = WordCountExtractor(input_sources=("ace", "pubget"))
-    wce_ace.transform_dataset(dataset, output_dir)
-    # Should create new hash dir due to different arguments
-    assert len(list(output_dir.glob("WordCountExtractor/1.0.0/*"))) == 2
 
 
 def test_parallel_processing(sample_data, tmp_path):
