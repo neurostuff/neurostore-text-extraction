@@ -44,8 +44,7 @@ logger = logging.getLogger(__name__)
 
 
 class InputPipelineInfo(BaseModel):
-    """Information about the input pipeline.
-    """
+    """Information about the input pipeline."""
 
     pipeline_dir: Path = Field(description="Path to the pipeline directory")
     version: str = Field(description="Version of the pipeline")
@@ -126,7 +125,7 @@ class StudyInputsManager:
     def load_text_file(file_path: Path) -> str:
         """Read text file with error handling."""
         try:
-            with file_path.open('r') as f:
+            with file_path.open("r") as f:
                 return f.read()
         except Exception as e:
             raise IOError(f"Failed to read text file {file_path}: {str(e)}")
@@ -140,7 +139,7 @@ class StudyInputsManager:
 
         Returns:
             Dictionary with loaded file contents
-        
+
         Raises:
             IOError: If file reading fails
             ValueError: If file extension not supported
@@ -151,17 +150,22 @@ class StudyInputsManager:
             suffix = path.suffix.lower()
 
             try:
-                if suffix == '.txt':
+                if suffix == ".txt":
                     loaded_inputs[input_name] = StudyInputsManager.load_text_file(path)
-                elif suffix == '.json':
+                elif suffix == ".json":
                     loaded_inputs[input_name] = FileManager.load_json(path)
-                elif suffix == '.csv':
+                elif suffix == ".csv":
                     import pandas as pd
-                    loaded_inputs[input_name] = pd.read_csv(path).to_dict('records')
+
+                    loaded_inputs[input_name] = pd.read_csv(path).to_dict("records")
                 else:
-                    raise ValueError(f"Unsupported file type for {input_name}: {suffix}")
+                    raise ValueError(
+                        f"Unsupported file type for {input_name}: {suffix}"
+                    )
             except Exception as e:
-                raise IOError(f"Failed to load study input {input_name} from {path}: {str(e)}")
+                raise IOError(
+                    f"Failed to load study input {input_name} from {path}: {str(e)}"
+                )
 
         return loaded_inputs
 
@@ -232,11 +236,8 @@ class PipelineOutputsManager:
         """Convert pipeline info dict to InputPipelineInfo objects."""
         if info is None:
             return {}
-            
-        return {
-            name: InputPipelineInfo(**kwargs)
-            for name, kwargs in info.items()
-        }
+
+        return {name: InputPipelineInfo(**kwargs) for name, kwargs in info.items()}
 
     @staticmethod
     def create_pipeline_info(
@@ -249,7 +250,7 @@ class PipelineOutputsManager:
         transform_kwargs: Dict[str, Any] = None,
     ) -> PipelineOutputInfo:
         """Create PipelineOutputInfo instance with provided data.
-        
+
         Args:
             extractor_name: Name of the extractor
             extractor_kwargs: Keyword arguments used to initialize extractor
@@ -545,9 +546,7 @@ class Pipeline:
         return dataset.slice(keep_ids)
 
     def collect_study_inputs(
-        self,
-        study: Any,
-        input_pipeline_info: Optional[InputPipelineInfo] = None
+        self, study: Any, input_pipeline_info: Optional[InputPipelineInfo] = None
     ) -> Dict[str, Path]:
         """Collect inputs for a study."""
         study_inputs = {}
@@ -587,10 +586,7 @@ class Pipeline:
             },
             valid=is_valid,
         )
-        FileManager.write_json(
-            hash_outdir / db_id / "info.json",
-            info.model_dump()
-        )
+        FileManager.write_json(hash_outdir / db_id / "info.json", info.model_dump())
 
     def _write_results(self, hash_outdir: Path, results: Dict[str, Any]) -> None:
         """Write pipeline results and metadata.
@@ -615,7 +611,9 @@ class Pipeline:
         for study_id, study_results in results.items():
             study_dir = hash_outdir / study_id
             study_dir.mkdir(exist_ok=True, parents=True)
-            PipelineOutputsManager.write_study_results(study_dir, study_id, study_results)
+            PipelineOutputsManager.write_study_results(
+                study_dir, study_id, study_results
+            )
 
 
 class IndependentPipeline(Pipeline):
@@ -626,7 +624,7 @@ class IndependentPipeline(Pipeline):
         study_data: Tuple[str, Dict[str, Any], Path],
         hash_outdir: Path,
         input_pipeline_info: Optional[InputPipelineInfo] = None,
-        **kwargs
+        **kwargs,
     ) -> bool:
         """Process a single study and write its results.
 
@@ -648,7 +646,9 @@ class IndependentPipeline(Pipeline):
 
         # Process the inputs with study ID for error tracking
         try:
-            results, raw_results, is_valid = self.transform(loaded_study_inputs, **kwargs)
+            results, raw_results, is_valid = self.transform(
+                loaded_study_inputs, **kwargs
+            )
         except Exception as e:
             logger.error(
                 f"Error processing study {db_id}: {e}. "
@@ -662,7 +662,7 @@ class IndependentPipeline(Pipeline):
                 hash_outdir=hash_outdir,
                 db_id=db_id,
                 study_inputs=study_inputs,
-                is_valid=is_valid
+                is_valid=is_valid,
             )
             FileManager.write_json(study_outdir / "results.json", results)
 
@@ -852,7 +852,7 @@ class DependentPipeline(Pipeline):
                                 hash_outdir=hash_outdir,
                                 db_id=db_id,
                                 study_inputs=all_study_inputs[db_id],
-                                is_valid=is_valid
+                                is_valid=is_valid,
                             )
                         FileManager.write_json(
                             study_outdir / f"{output_type}.json", _output
