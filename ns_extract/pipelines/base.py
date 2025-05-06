@@ -17,12 +17,23 @@ import inspect
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, Optional, Tuple, Type, Union
 
 from pydantic import BaseModel, Field
 from tqdm.auto import tqdm
 
-from ns_extract.dataset import Dataset, Study
+from ns_extract.dataset import Dataset
+from ns_extract.pipelines.utils import (
+    FileOperationsMixin,
+    StudyInputsMixin,
+    PipelineOutputsMixin,
+)
+from ns_extract.pipelines.exceptions import (
+    FileOperationError,
+    InputError,
+    ProcessingError,
+    ValidationError,
+)
 
 # Type aliases
 PipelineConfig = Dict[str, Dict[str, str]]  # Pipeline configuration
@@ -85,270 +96,7 @@ def deep_getattr(obj: Any, attr_path: str, default: Any = None) -> Any:
         return default
 
 
-class FileManager:
-    """Utility class for file handling operations."""
-
-    @staticmethod
-    def calculate_md5(file_path: Path) -> str:
-        """Calculate MD5 hash of a file."""
-        with file_path.open("r") as f:
-            file_contents = f.read()
-        return hashlib.md5(file_contents.encode()).hexdigest()
-
-    @staticmethod
-    def load_json(file_path: Path) -> Dict:
-        """Load JSON from a file."""
-        with file_path.open("r") as f:
-            return json.load(f)
-
-    @staticmethod
-    def write_json(file_path: Path, data: Dict):
-        """Write JSON to a file."""
-        with file_path.open("w") as f:
-            json.dump(data, f)
-
-    @staticmethod
-    def get_next_available_dir(base_path: Path) -> Path:
-        """Find the next available directory by appending numbers (-1, -2, etc.) if necessary."""
-        counter = 1
-        new_path = base_path
-        while new_path.exists():
-            new_path = base_path.with_name(f"{base_path.name}-{counter}")
-            counter += 1
-        return new_path
-
-
-class StudyInputsManager:
-    """Static methods for handling study input file operations."""
-
-    @staticmethod
-    def load_text_file(file_path: Path) -> str:
-        """Read text file with error handling."""
-        try:
-            with file_path.open("r") as f:
-                return f.read()
-        except Exception as e:
-            raise IOError(f"Failed to read text file {file_path}: {str(e)}")
-
-    @staticmethod
-    def load_study_inputs(study_inputs: Dict[str, Union[str, Path]]) -> Dict[str, Any]:
-        """Load study input files based on their file extensions.
-
-        Args:
-            study_inputs: Dictionary mapping input names to file paths
-
-        Returns:
-            Dictionary with loaded file contents
-
-        Raises:
-            IOError: If file reading fails
-            ValueError: If file extension not supported
-        """
-        loaded_inputs = {}
-        for input_name, file_path in study_inputs.items():
-            path = Path(file_path)
-            suffix = path.suffix.lower()
-
-            try:
-                if suffix == ".txt":
-                    loaded_inputs[input_name] = StudyInputsManager.load_text_file(path)
-                elif suffix == ".json":
-                    loaded_inputs[input_name] = FileManager.load_json(path)
-                elif suffix == ".csv":
-                    import pandas as pd
-
-                    loaded_inputs[input_name] = pd.read_csv(path).to_dict("records")
-                else:
-                    raise ValueError(
-                        f"Unsupported file type for {input_name}: {suffix}"
-                    )
-            except Exception as e:
-                raise IOError(
-                    f"Failed to load study input {input_name} from {path}: {str(e)}"
-                )
-
-        return loaded_inputs
-
-    def collect_dataset_inputs(
-        self, dataset: Dataset, input_pipeline_info: Optional[PipelineInputs] = None
-    ) -> Dict[str, Dict[str, Any]]:
-        """Collect all required inputs for dataset processing.
-
-        This method coordinates input collection across all studies,
-        gathering both source file inputs and pipeline dependencies.
-
-        Args:
-            dataset: Dataset to collect inputs for
-            input_pipeline_info: Optional pipeline configuration arguments
-                Example:
-                    {
-                        "pipeline_name":
-                            {
-                                "pipeline_dir": "/some/path",
-                                "version": "1.0.0",
-                                "config_hash": "abc123"
-                            }
-                    }
-
-        Returns:
-            Dict mapping study IDs to their collected inputs
-        """
-        return {
-            study_id: self._collect_study_inputs(study, input_pipeline_info)
-            for study_id, study in dataset.data.items()
-        }
-
-    def _collect_study_inputs(
-        self, study: Study, input_pipeline_info: Optional[PipelineConfig] = None
-    ) -> Dict[str, Any]:
-        """Collect all required inputs for a single study.
-
-        Args:
-            study: Study to collect inputs for
-            input_pipeline_info: Optional pipeline configuration arguments
-
-        Returns:
-            Dict of collected study inputs
-        """
-        inputs = {}
-
-        # Get source file inputs
-        for source_type in SOURCE_INPUTS:
-            if hasattr(study, source_type):
-                inputs[source_type] = getattr(study, source_type)
-
-        # Get pipeline dependency inputs
-        if input_pipeline_info:
-            for name in input_pipeline_info:
-                result_path = study.pipeline_results[name].result
-                inputs[name] = result_path
-
-        return inputs
-
-
-class PipelineOutputsManager:
-    """Static methods for managing pipeline output files."""
-
-    @staticmethod
-    def convert_pipeline_info(
-        info: Dict[str, Dict[str, str]]
-    ) -> Dict[str, InputPipelineInfo]:
-        """Convert pipeline info dict to InputPipelineInfo objects."""
-        if info is None:
-            return {}
-
-        return {name: InputPipelineInfo(**kwargs) for name, kwargs in info.items()}
-
-    @staticmethod
-    def create_pipeline_info(
-        extractor_name: str,
-        extractor_kwargs: Dict[str, Any],
-        version: str,
-        config_hash: str,
-        output_schema: Type[BaseModel],
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
-        transform_kwargs: Dict[str, Any] = None,
-    ) -> PipelineOutputInfo:
-        """Create PipelineOutputInfo instance with provided data.
-
-        Args:
-            extractor_name: Name of the extractor
-            extractor_kwargs: Keyword arguments used to initialize extractor
-            version: Pipeline version
-            config_hash: Hash of the pipeline configuration
-            output_schema: Schema for output validation
-            input_pipeline_info: Optional dict of input pipeline configurations
-            transform_kwargs: Optional transform function arguments
-
-        Returns:
-            PipelineOutputInfo instance with normalized data
-        """
-        return PipelineOutputInfo(
-            date=datetime.now().isoformat(),
-            version=version,
-            config_hash=config_hash,
-            extractor=extractor_name,
-            extractor_kwargs=extractor_kwargs or {},
-            transform_kwargs=transform_kwargs or {},
-            input_pipelines=PipelineOutputsManager.convert_pipeline_info(
-                input_pipeline_info
-            ),
-            schema=output_schema.model_json_schema(),
-        )
-
-    @staticmethod
-    def validate_results(results: Dict[str, Any]) -> bool:
-        """Validate that results have the expected structure."""
-        if not isinstance(results, dict):
-            return False
-
-        # Case 1: Direct results dict
-        if all(
-            isinstance(v, (dict, list, str, int, float, bool)) for v in results.values()
-        ):
-            return True
-
-        # Case 2: Results with optional raw_results
-        if "results" in results:
-            if not isinstance(results["results"], dict):
-                return False
-            if "raw_results" in results and not isinstance(
-                results["raw_results"], dict
-            ):
-                return False
-            return True
-
-        return False
-
-    @staticmethod
-    def write_pipeline_info(
-        hash_outdir: Path,
-        info: PipelineOutputInfo,
-    ) -> None:
-        """Write pipeline metadata to pipeline_info.json."""
-        if not isinstance(hash_outdir, Path):
-            raise ValueError("output_dir must be a Path object")
-
-        try:
-            info_path = hash_outdir / "pipeline_info.json"
-            FileManager.write_json(info_path, info.model_dump())
-        except IOError as e:
-            logger.error(f"Failed to write pipeline info: {str(e)}")
-            raise
-
-    @staticmethod
-    def write_study_results(
-        study_dir: Path, study_id: str, results: Dict[str, Any]
-    ) -> None:
-        """Write study results to directory."""
-        if not isinstance(study_dir, Path):
-            raise ValueError("study_dir must be a Path object")
-        if not study_id:
-            raise ValueError("study_id cannot be empty")
-        if not PipelineOutputsManager.validate_results(results):
-            raise ValueError(
-                "Invalid results structure. Must be either a results dict "
-                "or contain 'results' key with optional 'raw_results'"
-            )
-
-        try:
-            study_dir.mkdir(exist_ok=True)
-
-            # Write raw results if provided
-            if "raw_results" in results:
-                raw_path = study_dir / "raw_results.json"
-                FileManager.write_json(raw_path, results["raw_results"])
-
-            # Write final results
-            results_path = study_dir / "results.json"
-            final_results = results.get("results", results)
-            FileManager.write_json(results_path, final_results)
-
-        except IOError as e:
-            raise IOError(f"Failed to write results for study {study_id}: {str(e)}")
-
-
-class Pipeline:
+class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
     """Base pipeline class for handling I/O operations.
 
     data_pond_inputs: Inputs for the data pond structured like this:
@@ -374,8 +122,6 @@ class Pipeline:
             extractor: Extractor instance that defines the data transformation
         """
         self.extractor = extractor
-        self.input_manager = None
-        self.output_manager = None
 
     def _create_hash_string(self, dataset: Dataset) -> str:
         """Create string for hashing pipeline configuration.
@@ -477,7 +223,7 @@ class Pipeline:
             if not d.is_dir():
                 continue
 
-            pipeline_info = FileManager.load_json(d / "pipeline_info.json")
+            pipeline_info = self.load_json(d / "pipeline_info.json")
             pipeline_args = pipeline_info.get("extractor_kwargs", {})
 
             if pipeline_args != current_args:
@@ -489,7 +235,7 @@ class Pipeline:
 
                 info_file = sub_d / "info.json"
                 if info_file.exists():
-                    info = FileManager.load_json(info_file)
+                    info = self.load_json(info_file)
                     found_info = {
                         "date": info["date"],
                         "inputs": info["inputs"],
@@ -511,7 +257,7 @@ class Pipeline:
             return False
 
         for existing_file, hash_val in existing_inputs.items():
-            if FileManager.calculate_md5(Path(existing_file)) != hash_val:
+            if self.calculate_md5(Path(existing_file)) != hash_val:
                 return False
 
         return True
@@ -581,12 +327,12 @@ class Pipeline:
         info = StudyOutputJson(
             date=datetime.now().isoformat(),
             inputs={
-                str(input_file): FileManager.calculate_md5(input_file)
+                str(input_file): self.calculate_md5(input_file)
                 for input_file in study_inputs.values()
             },
             valid=is_valid,
         )
-        FileManager.write_json(hash_outdir / db_id / "info.json", info.model_dump())
+        self.write_json(hash_outdir / db_id / "info.json", info.model_dump())
 
     def _write_results(self, hash_outdir: Path, results: Dict[str, Any]) -> None:
         """Write pipeline results and metadata.
@@ -611,7 +357,7 @@ class Pipeline:
         for study_id, study_results in results.items():
             study_dir = hash_outdir / study_id
             study_dir.mkdir(exist_ok=True, parents=True)
-            PipelineOutputsManager.write_study_results(
+            self.write_study_results(
                 study_dir, study_id, study_results
             )
 
@@ -623,7 +369,6 @@ class IndependentPipeline(Pipeline):
         self,
         study_data: Tuple[str, Dict[str, Any], Path],
         hash_outdir: Path,
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
         **kwargs,
     ) -> bool:
         """Process a single study and write its results.
@@ -635,42 +380,66 @@ class IndependentPipeline(Pipeline):
 
         Returns:
             bool: True if processing was successful
+
+        Raises:
+            ProcessingError: If study processing fails
+            FileOperationError: If writing results fails
+            ValidationError: If results fail validation
         """
         db_id, study_inputs, study_outdir = study_data
-        study_outdir.mkdir(parents=True, exist_ok=True)
 
-        # Process inputs with StudyInputsManager
-        loaded_study_inputs = StudyInputsManager.load_study_inputs(
-            study_inputs=study_inputs,
-        )
-
-        # Process the inputs with study ID for error tracking
         try:
-            results, raw_results, is_valid = self.transform(
-                loaded_study_inputs, **kwargs
-            )
-        except Exception as e:
-            logger.error(
-                f"Error processing study {db_id}: {e}. "
-                f"Inputs: {loaded_study_inputs}"
-            )
+            study_outdir.mkdir(parents=True, exist_ok=True)
+
+            # Process inputs with StudyInputsManager
+            try:
+                loaded_study_inputs = self.load_study_inputs(
+                    study_inputs=study_inputs,
+                )
+            except (IOError, ValueError) as e:
+                raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
+
+            # Process the inputs
+            try:
+                results, raw_results, is_valid = self.transform(
+                    loaded_study_inputs, **kwargs
+                )
+            except Exception as e:
+                raise ProcessingError(db_id, str(e))
+
+            if not is_valid:
+                raise ValidationError(f"Results validation failed for study {db_id}")
+
+            if results:
+                # Write results immediately
+                try:
+                    self.write_study_info(
+                        hash_outdir=hash_outdir,
+                        db_id=db_id,
+                        study_inputs=study_inputs,
+                        is_valid=is_valid,
+                    )
+                    self.write_json(study_outdir / "results.json", results)
+
+                    if raw_results is not results:
+                        self.write_json(study_outdir / "raw_results.json", raw_results)
+                except IOError as e:
+                    msg = f"Failed to write results for study {db_id}: {str(e)}"
+                    raise FileOperationError(msg)
+
+            return True
+
+        except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
+            logger.error(str(e))
+            if isinstance(e, FileOperationError):
+                # Attempt cleanup on file operation failures
+                try:
+                    import shutil
+                    if study_outdir.exists():
+                        shutil.rmtree(study_outdir)
+                except Exception as cleanup_error:
+                    logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
             return False
-
-        if results:
-            # Write results immediately
-            self.write_study_info(
-                hash_outdir=hash_outdir,
-                db_id=db_id,
-                study_inputs=study_inputs,
-                is_valid=is_valid,
-            )
-            FileManager.write_json(study_outdir / "results.json", results)
-
-        if raw_results is not results:
-            # Write raw results if they differ from cleaned results
-            FileManager.write_json(study_outdir / "raw_results.json", results)
-
-        return True
 
     def transform_dataset(
         self,
@@ -695,19 +464,20 @@ class IndependentPipeline(Pipeline):
         if not (hash_outdir / "pipeline_info.json").exists():
             hash_outdir.mkdir(parents=True, exist_ok=True)
             # Create pipeline info object
-            pipeline_info = PipelineOutputsManager.create_pipeline_info(
-                extractor_name=self.extractor.__class__.__name__,
+            pipeline_info = PipelineOutputInfo(
+                date=datetime.now().isoformat(),
+                version=self.extractor._version,
+                config_hash=hash_outdir.name,
+                extractor=self.extractor.__class__.__name__,
                 extractor_kwargs={
                     arg: getattr(self, arg)
                     for arg in inspect.signature(self.__init__).parameters.keys()
                 },
-                version=self.extractor._version,
-                config_hash=hash_outdir.name,
-                output_schema=self.extractor._output_schema,
-                input_pipeline_info=input_pipeline_info,
                 transform_kwargs=kwargs,
+                input_pipelines=self.convert_pipeline_info(input_pipeline_info),
+                schema=self.extractor._output_schema.model_json_schema()
             )
-            PipelineOutputsManager.write_pipeline_info(hash_outdir, pipeline_info)
+            self.write_pipeline_info(hash_outdir, pipeline_info)
 
         # Filter and prepare studies that need processing
         filtered_dataset = self.filter_inputs(hash_outdir, dataset)
@@ -807,19 +577,20 @@ class DependentPipeline(Pipeline):
 
         # Create and write pipeline info at start
         hash_outdir.mkdir(parents=True, exist_ok=True)
-        pipeline_info = PipelineOutputsManager.create_pipeline_info(
-            extractor_name=self.extractor.__class__.__name__,
+        pipeline_info = PipelineOutputInfo(
+            date=datetime.now().isoformat(),
+            version=self.extractor._version,
+            config_hash=hash_outdir.name,
+            extractor=self.extractor.__class__.__name__,
             extractor_kwargs={
                 arg: getattr(self, arg)
                 for arg in inspect.signature(self.__init__).parameters.keys()
             },
-            version=self.extractor._version,
-            config_hash=hash_outdir.name,
-            output_schema=self.extractor._output_schema,
-            input_pipeline_info=input_pipeline_info,
             transform_kwargs=kwargs,
+            input_pipelines=self.convert_pipeline_info(input_pipeline_info),
+            schema=self.extractor._output_schema.model_json_schema()
         )
-        PipelineOutputsManager.write_pipeline_info(hash_outdir, pipeline_info)
+        self.write_pipeline_info(hash_outdir, pipeline_info)
 
         # Check if there are any changes for dependent mode
         if not self.check_for_changes(hash_outdir, dataset, input_pipeline_info):
@@ -828,35 +599,57 @@ class DependentPipeline(Pipeline):
 
         # If the directory exists, find the next available directory
         if hash_outdir.exists():
-            hash_outdir = FileManager.get_next_available_dir(hash_outdir)
+            hash_outdir = self.get_next_available_dir(hash_outdir)
             hash_outdir.mkdir(parents=True, exist_ok=True)
 
         # Collect all inputs and run the group function at once
-        all_study_inputs = {
-            db_id: self.collect_study_inputs(study, input_pipeline_info)
-            for db_id, study in dataset.data.items()
-        }
+        try:
+            all_study_inputs = {
+                db_id: self.collect_study_inputs(study, input_pipeline_info)
+                for db_id, study in dataset.data.items()
+            }
 
-        grouped_outputs = self._process_inputs(
-            all_study_inputs, study_id="grouped", **kwargs
-        )
-        if grouped_outputs:
-            for output_type, outputs in grouped_outputs.items():
-                if outputs is not None:
-                    for db_id, _output in outputs.items():
-                        study_outdir = hash_outdir / db_id
-                        study_outdir.mkdir(parents=True, exist_ok=True)
-                        if output_type == "results":
-                            is_valid, _output = _output
-                            self.write_study_info(
-                                hash_outdir=hash_outdir,
-                                db_id=db_id,
-                                study_inputs=all_study_inputs[db_id],
-                                is_valid=is_valid,
-                            )
-                        FileManager.write_json(
-                            study_outdir / f"{output_type}.json", _output
-                        )
+            grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
+            if grouped_outputs:
+                for output_type, outputs in grouped_outputs.items():
+                    if outputs is not None:
+                        for db_id, _output in outputs.items():
+                            try:
+                                study_outdir = hash_outdir / db_id
+                                study_outdir.mkdir(parents=True, exist_ok=True)
+                                if output_type == "results":
+                                    is_valid, _output = _output
+                                    if not is_valid:
+                                        msg = f"Results validation failed for study {db_id}"
+                                        raise ValidationError(msg)
+                                    self.write_study_info(
+                                        hash_outdir=hash_outdir,
+                                        db_id=db_id,
+                                        study_inputs=all_study_inputs[db_id],
+                                        is_valid=is_valid,
+                                    )
+                                self.write_json(
+                                    study_outdir / f"{output_type}.json", _output
+                                )
+                            except (IOError, OSError) as e:
+                                msg = f"Failed to write results for study {db_id}: {str(e)}"
+                                raise FileOperationError(msg)
+                            except Exception as e:
+                                raise ProcessingError(db_id, str(e))
+
+        except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
+            logger.error(str(e))
+            # Attempt cleanup on file operation failures
+            if isinstance(e, FileOperationError):
+                try:
+                    import shutil
+                    for study_id in all_study_inputs.keys():
+                        study_dir = hash_outdir / study_id
+                        if study_dir.exists():
+                            shutil.rmtree(study_dir)
+                except Exception as cleanup_error:
+                    logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
+            raise
 
     def validate_results(self, results, **kwargs):
         """Apply validation to each studys results in the grouped pipeline."""
