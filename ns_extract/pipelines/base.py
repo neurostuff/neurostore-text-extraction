@@ -1,9 +1,20 @@
 """Base pipeline and extraction functionality.
 
-Provides core abstractions for pipeline execution and data extraction:
-- Type definitions for pipeline data and configuration
+This module provides core abstractions for pipeline execution and data extraction:
+- Type definitions and protocols for pipeline data and configuration
 - Base classes for extractors and pipelines
 - Infrastructure for I/O and execution flow
+- Validation and error handling
+
+The module implements a flexible pipeline architecture that supports both:
+- Independent processing (each study processed separately)
+- Dependent processing (studies processed as a group)
+
+Key Components:
+- Pipeline: Abstract base for handling I/O operations
+- Extractor: Base class for implementing data transformation logic
+- Validation: Schema-based validation of pipeline outputs
+- Error Handling: Structured exception handling and recovery
 """
 
 from __future__ import annotations
@@ -17,7 +28,15 @@ import inspect
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple, Type, Union
+from typing import (
+    Any,
+    Dict,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from pydantic import BaseModel, Field
 from tqdm.auto import tqdm
@@ -35,12 +54,16 @@ from ns_extract.pipelines.exceptions import (
     ValidationError,
 )
 
-# Type aliases
-PipelineConfig = Dict[str, Dict[str, str]]  # Pipeline configuration
-StudyResults = Dict[str, Any]  # Single study results
-PipelineResults = Dict[str, StudyResults]  # Multiple study results
-ValidationResult = Tuple[bool, StudyResults]  # Validation result format
-PipelineInputs = Dict[Tuple[str], Tuple[str]]  # Pipeline input types
+# Type variables for generics
+T = TypeVar("T")  # Generic type for pipeline data
+S = TypeVar("S", bound="BaseModel")  # Schema type variable bounded to BaseModel
+
+# Type aliases with documentation
+PipelineConfig = Dict[str, Dict[str, str]]  # Pipeline configuration mapping
+StudyResults = Dict[str, Any]  # Results for a single study
+PipelineResults = Dict[str, StudyResults]  # Results across multiple studies
+ValidationResult = Tuple[bool, StudyResults]  # Validation result with data
+PipelineInputs = Dict[Tuple[str, ...], Tuple[str, ...]]  # Input source -> type mapping
 
 # Constants
 PIPELINE_VERSION = "latest"  # Default pipeline version
@@ -193,23 +216,44 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
-        **kwargs,
-    ):
+        input_pipeline_info: Optional[Dict[str, InputPipelineInfo]] = None,
+        **kwargs: Any,
+    ) -> None:
         """Process a dataset through the pipeline.
 
         Args:
             dataset: Dataset to process
             output_directory: Directory to write outputs
-            input_pipeline_info: Optional kwargs for input pipelines
-            **kwargs: Additional arguments passed to extractor
+            input_pipeline_info: Optional configuration for input pipelines. Maps pipeline
+                names to their configuration info.
+            **kwargs: Additional arguments passed to extractor for data transformation
+
+        Raises:
+            FileOperationError: If directory creation or file operations fail
+            ProcessingError: If pipeline processing fails
+            ValidationError: If results fail schema validation
         """
         pass
 
     def _filter_existing_results(
-        self, hash_outdir: Path, dataset: Any
-    ) -> Dict[str, Dict]:
-        """Find the most recent result for an existing study."""
+        self, hash_outdir: Path, dataset: Dataset
+    ) -> Dict[str, Dict[str, Dict[str, str]]]:
+        """Find the most recent result for an existing study.
+
+        Args:
+            hash_outdir: Output directory containing study results
+            dataset: Dataset to check for existing results
+
+        Returns:
+            Dict mapping study IDs to their most recent result info
+            Format: {
+                "study_id": {
+                    "date": "YYYY-MM-DD",
+                    "inputs": {"file_path": "hash_value"},
+                    "hash": "result_hash"
+                }
+            }
+        """
         existing_results = {}
         result_directory = hash_outdir.parent
         current_args = {
@@ -262,17 +306,39 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
 
         return True
 
-    def gather_all_study_inputs(self, dataset: Any) -> Dict[str, Dict[str, Path]]:
-        """Collect all inputs for the dataset."""
+    def gather_all_study_inputs(self, dataset: Dataset) -> Dict[str, Dict[str, Path]]:
+        """Collect all input file paths for each study in the dataset.
+
+        Args:
+            dataset: Dataset containing study data
+
+        Returns:
+            Dict mapping study IDs to their input files.
+            Format: {
+                "study_id": {
+                    "input_type": Path("path/to/input/file")
+                }
+            }
+        """
         return {
             db_id: self.collect_study_inputs(study)
             for db_id, study in dataset.data.items()
         }
 
     def _identify_matching_results(
-        self, dataset: Any, existing_results: Dict[str, Dict]
+        self, dataset: Dataset, existing_results: Dict[str, Dict[str, Dict[str, str]]]
     ) -> Dict[str, bool]:
-        """Compare dataset inputs with existing results."""
+        """Compare dataset inputs with existing results to identify changes.
+
+        Args:
+            dataset: Dataset to check for changes
+            existing_results: Previously processed results to compare against
+                Format matches return type of _filter_existing_results
+
+        Returns:
+            Dict mapping study IDs to boolean indicating if inputs match
+            existing results (True = no changes, False = changes detected)
+        """
         dataset_inputs = self.gather_all_study_inputs(dataset)
         return {
             db_id: self._are_file_hashes_identical(
@@ -281,8 +347,21 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
             for db_id, study_inputs in dataset_inputs.items()
         }
 
-    def filter_inputs(self, hash_outdir: Path, dataset: Any) -> bool:
-        """Filter inputs based on the pipeline type."""
+    def filter_inputs(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
+        """Filter dataset to only include studies needing processing.
+
+        A study needs processing if:
+        - It has no existing results
+        - Its input files have changed since last processing
+        - It's new to the dataset
+
+        Args:
+            hash_outdir: Output directory containing previous results
+            dataset: Dataset to filter
+
+        Returns:
+            New Dataset containing only studies needing processing
+        """
         existing_results = self._filter_existing_results(hash_outdir, dataset)
         matching_results = self._identify_matching_results(dataset, existing_results)
         # Return True if any of the studies' inputs have changed or if new studies exist
@@ -357,9 +436,7 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         for study_id, study_results in results.items():
             study_dir = hash_outdir / study_id
             study_dir.mkdir(exist_ok=True, parents=True)
-            self.write_study_results(
-                study_dir, study_id, study_results
-            )
+            self.write_study_results(study_dir, study_id, study_results)
 
 
 class IndependentPipeline(Pipeline):
@@ -435,6 +512,7 @@ class IndependentPipeline(Pipeline):
                 # Attempt cleanup on file operation failures
                 try:
                     import shutil
+
                     if study_outdir.exists():
                         shutil.rmtree(study_outdir)
                 except Exception as cleanup_error:
@@ -475,7 +553,7 @@ class IndependentPipeline(Pipeline):
                 },
                 transform_kwargs=kwargs,
                 input_pipelines=self.convert_pipeline_info(input_pipeline_info),
-                schema=self.extractor._output_schema.model_json_schema()
+                schema=self.extractor._output_schema.model_json_schema(),
             )
             self.write_pipeline_info(hash_outdir, pipeline_info)
 
@@ -588,7 +666,7 @@ class DependentPipeline(Pipeline):
             },
             transform_kwargs=kwargs,
             input_pipelines=self.convert_pipeline_info(input_pipeline_info),
-            schema=self.extractor._output_schema.model_json_schema()
+            schema=self.extractor._output_schema.model_json_schema(),
         )
         self.write_pipeline_info(hash_outdir, pipeline_info)
 
@@ -643,6 +721,7 @@ class DependentPipeline(Pipeline):
             if isinstance(e, FileOperationError):
                 try:
                     import shutil
+
                     for study_id in all_study_inputs.keys():
                         study_dir = hash_outdir / study_id
                         if study_dir.exists():
@@ -663,21 +742,42 @@ class DependentPipeline(Pipeline):
 class Extractor(ABC):
     """Base class for data transformation logic.
 
-    Handles only the transformation of input data to output data.
-    All I/O operations and pipeline coordination are handled by the Pipeline class.
+    This class defines the core interface for transforming input study data into
+    structured outputs validated against a schema. It separates the transformation
+    logic from I/O operations (handled by Pipeline classes).
 
-    Required Methods:
-        transform: Implement the core data transformation logic
+    Required Class Variables:
+        _version: str - Version identifier for the extractor implementation
+        _output_schema: Type[BaseModel] - Pydantic model defining expected output format
 
-    Optional Methods:
-        post_process: Override to modify results before validation
+    Key Methods:
+        _transform: Core transformation logic (must be implemented by subclasses)
+        transform: Main entry point that coordinates transformation and validation
+        validate_output: Validates outputs against the schema
+        post_process: Optional hook for modifying results before validation
+
+    Example:
+        >>> class MyExtractor(Extractor[MyOutputSchema]):
+        ...     _version = "1.0.0"
+        ...     _output_schema = MyOutputSchema
+        ...
+        ...     def _transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
+        ...         # Transform input data
+        ...         return transformed_data
     """
 
-    _version = None
+    _version: str = None
     _output_schema: Type[BaseModel] = None
 
-    def __init__(self, **kwargs):
-        """Initialize extractor and verify schema exists."""
+    def __init__(self, **kwargs: Any) -> None:
+        """Initialize extractor and verify required configuration.
+
+        Args:
+            **kwargs: Configuration parameters for the extractor
+
+        Raises:
+            ValueError: If _output_schema or _version not defined by subclass
+        """
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class variable")
         if not self._version:
@@ -689,42 +789,75 @@ class Extractor(ABC):
             DependentPipeline.__init__(self, extractor=self)
 
     @abstractmethod
-    def _transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs) -> Dict[str, Any]:
+    def _transform(
+        self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
+    ) -> Dict[str, Any]:
         """Transform input data into output format.
+
+        This is the core transformation method that must be implemented by subclasses.
+        It should convert raw study data into the expected output format defined by T.
 
         Args:
             inputs: Dict mapping study IDs to their input data
+                Format: {
+                    "study_id": {
+                        "input_type": input_data,
+                        ...
+                    }
+                }
             **kwargs: Additional transformation arguments
 
         Returns:
             Dict mapping study IDs to their transformed outputs
+            Format: {
+                "study_id": transformed_data # type T
+            }
+
+        Raises:
+            ProcessingError: If transformation fails for any study
         """
         pass
 
-    def transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs) -> Dict[str, Any]:
-        """Transform input data into output format.
+    def transform(
+        self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
+    ) -> Tuple[Dict[str, Any], Dict[str, Any], bool]:
+        """Transform and validate input data.
+
+        This method orchestrates the complete transformation process:
+        1. Calls _transform for core data processing
+        2. Applies optional post-processing
+        3. Validates results against schema
 
         Args:
             inputs: Dict mapping study IDs to their input data
             **kwargs: Additional transformation arguments
 
         Returns:
-            Dict mapping study IDs to their transformed outputs
+            Tuple containing:
+            - Post-processed results (Dict[str, T])
+            - Raw results before post-processing (Dict[str, T])
+            - Validation status (bool)
+
+        Raises:
+            ProcessingError: If transformation fails
         """
         results = self._transform(inputs, **kwargs)
         cleaned_results = self.post_process(results)
         valid = self.validate_output(cleaned_results)
-
         return (cleaned_results, results, valid)
 
-    def validate_output(self, output: Dict) -> Tuple[bool, Dict]:
-        """Validate output against schema.
+    def validate_output(self, output: Dict[str, Any]) -> bool:
+        """Validate transformed data against schema.
 
         Args:
-            output: Data to validate against schema
+            output: Dict mapping study IDs to transformed data
 
         Returns:
-            Tuple of (is_valid, validated_output)
+            bool: True if validation passes, False otherwise
+
+        Note:
+            Validation failures are logged but don't raise exceptions
+            to allow graceful handling of invalid results
         """
         try:
             self._output_schema.model_validate(output)
@@ -733,15 +866,16 @@ class Extractor(ABC):
             logging.error(f"Output validation error: {str(e)}")
             return False
 
-    def post_process(self, results: Dict) -> Dict:
+    def post_process(self, results: Dict[str, Any]) -> Dict[str, Any]:
         """Optional hook for post-processing transform results.
 
-        Override in subclasses to modify results before validation.
+        This can be overridden by subclasses to modify results before validation,
+        for example to clean or normalize data.
 
         Args:
-            results: Raw transform results
+            results: Dict mapping study IDs to their raw transformed data
 
         Returns:
-            Post-processed results, or None if no changes are made
+            Dict with same structure as input, potentially modified
         """
         return results
