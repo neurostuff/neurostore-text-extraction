@@ -650,6 +650,21 @@ class DependentPipeline(Pipeline):
         dataset_str = self._serialize_dataset_keys(dataset)
         return f"{dataset_str}_{base_hash}"
 
+    def _serialize_dataset_keys(self, dataset: Dataset) -> str:
+        """Serialize dataset keys for hashing.
+
+        For dependent pipelines, we need to include all study IDs in the hash
+        since processing depends on the entire dataset.
+
+        Args:
+            dataset: Dataset object containing study data
+
+        Returns:
+            Comma-separated string of sorted study IDs
+        """
+        study_keys = sorted(dataset.data.keys())
+        return '_'.join(study_keys)
+
     def check_for_changes(
         self,
         hash_outdir: Path,

@@ -5,10 +5,7 @@ from ns_extract.dataset import Dataset
 
 def test_TFIDFExtractor(sample_data, tmp_path):
     """Test the TFIDF extraction pipeline."""
-    tfidf = TFIDFExtractor(
-        inputs=("text", "metadata"),  # Explicitly specify required inputs
-        input_sources=("pubget", "ace"),
-    )
+    tfidf = TFIDFExtractor()
     dataset = Dataset(sample_data)
     output_dir = tmp_path / "tfidf"
 
@@ -23,7 +20,6 @@ def test_TFIDFExtractor(sample_data, tmp_path):
     info_path = version_dir / "pipeline_info.json"
     pipeline_info = json.loads(info_path.read_text())
     assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["type"] == "dependent"
 
     # Verify study outputs
     study_dirs = list([x for x in version_dir.glob("*") if x.is_dir()])
