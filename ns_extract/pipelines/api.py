@@ -1,26 +1,23 @@
-from typing import Any, Dict, Optional, Type
+from typing import Optional, Type
 import logging
 import os
 from pydantic import BaseModel
 from openai import OpenAI
-from .base import IndependentPipeline
+from .base import IndependentPipeline, Extractor
 from publang.extract import extract_from_text
 
 
-class APIPromptExtractor(IndependentPipeline):
+class APIPromptExtractor(Extractor, IndependentPipeline):
     """Pipeline that uses a prompt and a pydantic schema to extract information from text."""
 
-    # Class attributes to be defined by subclasses
     _prompt: str = None  # Prompt template for extraction
-    _extraction_schema: Type[BaseModel] = (
-        None  # Schema used for LLM extraction (if not defined, uses _output_schema)
-    )
+    _extraction_schema: Type[BaseModel] = None  # Schema used for LLM extraction 
+    _data_pond_inputs = {("pubget", "ace"): ("text",)}
+    _pipeline_inputs = {}
 
     def __init__(
         self,
         extraction_model: str,
-        inputs: tuple = ("text",),
-        input_sources: tuple = ("pubget", "ace"),
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
         client_url: Optional[str] = None,
@@ -30,8 +27,6 @@ class APIPromptExtractor(IndependentPipeline):
 
         Args:
             extraction_model: Model to use for extraction (e.g., 'gpt-4')
-            inputs: Input types required
-            input_sources: Valid input sources
             env_variable: Environment variable containing API key
             env_file: Path to file containing API key
             client_url: Optional URL for OpenAI client
@@ -42,12 +37,16 @@ class APIPromptExtractor(IndependentPipeline):
         if not self._extraction_schema:
             self._extraction_schema = self._output_schema
 
-        super().__init__(inputs=inputs, input_sources=input_sources)
         self.extraction_model = extraction_model
         self.env_variable = env_variable
         self.env_file = env_file
         self.client_url = client_url
         self.kwargs = kwargs
+
+        # Initialize OpenAI client
+        self.client = self._load_client()
+
+        super().__init__()
 
     def _load_client(self) -> OpenAI:
         """Load the OpenAI client.
@@ -87,22 +86,19 @@ class APIPromptExtractor(IndependentPipeline):
 
         return None
 
-    def execute(self, inputs: Dict[str, Any], **kwargs) -> dict:
+    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Execute LLM-based extraction using processed inputs.
 
         Args:
-            inputs: Dictionary containing:
+            processed_inputs: Dictionary containing:
                    - text: Full text content (already loaded)
             **kwargs: Additional arguments (like study_id)
 
         Returns:
             Raw predictions from LLM
         """
-        # Initialize client
-        client = self._load_client()
-
         # Get text content - already loaded by InputManager
-        text = inputs["text"]
+        text = processed_inputs["text"]
 
         # Create chat completion configuration
         completion_config = {
@@ -121,9 +117,10 @@ class APIPromptExtractor(IndependentPipeline):
         # Replace $ with $$ to escape $ signs in the prompt
         # (otherwise interpreted as a special character by Template())
         text = text.replace("$", "$$")
+
         # Extract predictions
         results = extract_from_text(
-            text, model=self.extraction_model, client=client, **completion_config
+            text, model=self.extraction_model, client=self.client, **completion_config
         )
 
         if not results:
