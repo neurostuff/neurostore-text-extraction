@@ -206,9 +206,6 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
             / hash_str
         )
 
-        # Create directory if needed
-        hash_outdir.mkdir(parents=True, exist_ok=True)
-
         return hash_outdir
 
     @abstractmethod
@@ -326,7 +323,10 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         }
 
     def _identify_matching_results(
-        self, dataset: Dataset, existing_results: Dict[str, Dict[str, Dict[str, str]]]
+        self,
+        dataset: Dataset,
+        existing_results: Dict[str, Dict[str, Dict[str, str]]],
+        input_pipeline_info: Optional[dict] = None,
     ) -> Dict[str, bool]:
         """Compare dataset inputs with existing results to identify changes.
 
@@ -334,18 +334,41 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
             dataset: Dataset to check for changes
             existing_results: Previously processed results to compare against
                 Format matches return type of _filter_existing_results
+            input_pipeline_info: Optional information about input pipelines
 
         Returns:
             Dict mapping study IDs to boolean indicating if inputs match
             existing results (True = no changes, False = changes detected)
         """
-        dataset_inputs = self.gather_all_study_inputs(dataset)
-        return {
-            db_id: self._are_file_hashes_identical(
-                study_inputs, existing_results.get(db_id, {}).get("inputs", {})
-            )
-            for db_id, study_inputs in dataset_inputs.items()
-        }
+        result_matches = {}
+        for db_id, study in dataset.data.items():
+            # Get existing input file hashes for this study
+            existing = existing_results.get(db_id, {}).get("inputs", {})
+
+            # Collect all input files and their current hashes
+            current_inputs = {}
+
+            # Add data pond input files and their hashes
+            study_inputs = self.gather_all_study_inputs(dataset)
+            for input_path in study_inputs.get(db_id, {}).values():
+                current_inputs[str(input_path)] = self.calculate_md5(input_path)
+
+            # Add pipeline input files and their hashes
+            if input_pipeline_info:
+                for pipeline_name in input_pipeline_info:
+                    if pipeline_name not in study.pipeline_results:
+                        result_matches[db_id] = False
+                        break
+                    result_path = study.pipeline_results[pipeline_name].result
+                    current_inputs[str(result_path)] = self.calculate_md5(result_path)
+
+            # Compare all input hashes
+            if db_id not in result_matches:  # Skip if already marked as not matching
+                result_matches[db_id] = set(current_inputs.items()) == set(
+                    existing.items()
+                )
+
+        return result_matches
 
     def filter_inputs(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
         """Filter dataset to only include studies needing processing.
@@ -649,12 +672,12 @@ class DependentPipeline(Pipeline):
         **kwargs,
     ):
         """Process all studies through the pipeline as a group."""
+        # Get initial hash directory
         hash_outdir = self._prepare_pipeline(
             dataset, output_directory, input_pipeline_info
         )
 
-        # Create and write pipeline info at start
-        hash_outdir.mkdir(parents=True, exist_ok=True)
+        # Create pipeline info for checking changes
         pipeline_info = PipelineOutputInfo(
             date=datetime.now().isoformat(),
             version=self.extractor._version,
@@ -668,17 +691,22 @@ class DependentPipeline(Pipeline):
             input_pipelines=self.convert_pipeline_info(input_pipeline_info),
             schema=self.extractor._output_schema.model_json_schema(),
         )
-        self.write_pipeline_info(hash_outdir, pipeline_info)
 
-        # Check if there are any changes for dependent mode
-        if not self.check_for_changes(hash_outdir, dataset, input_pipeline_info):
-            logger.info("No changes detected, skipping pipeline execution.")
-            return
-
-        # If the directory exists, find the next available directory
+        # If directory exists and has no changes, we're done
         if hash_outdir.exists():
+            if not (hash_outdir / "pipeline_info.json").exists():
+                self.write_pipeline_info(hash_outdir, pipeline_info)
+            if not self.check_for_changes(hash_outdir, dataset, input_pipeline_info):
+                logger.info("No changes detected, skipping pipeline execution.")
+                return
+            # Changes detected, create new directory
             hash_outdir = self.get_next_available_dir(hash_outdir)
-            hash_outdir.mkdir(parents=True, exist_ok=True)
+            hash_outdir.mkdir(parents=True)
+            self.write_pipeline_info(hash_outdir, pipeline_info)
+        else:
+            # First run, create directory and write info
+            hash_outdir.mkdir(parents=True)
+            self.write_pipeline_info(hash_outdir, pipeline_info)
 
         # Collect all inputs and run the group function at once
         try:
@@ -687,33 +715,50 @@ class DependentPipeline(Pipeline):
                 for db_id, study in dataset.data.items()
             }
 
-            grouped_outputs = self._process_inputs(all_study_inputs, **kwargs)
-            if grouped_outputs:
-                for output_type, outputs in grouped_outputs.items():
-                    if outputs is not None:
-                        for db_id, _output in outputs.items():
-                            try:
-                                study_outdir = hash_outdir / db_id
-                                study_outdir.mkdir(parents=True, exist_ok=True)
-                                if output_type == "results":
-                                    is_valid, _output = _output
-                                    if not is_valid:
-                                        msg = f"Results validation failed for study {db_id}"
-                                        raise ValidationError(msg)
-                                    self.write_study_info(
-                                        hash_outdir=hash_outdir,
-                                        db_id=db_id,
-                                        study_inputs=all_study_inputs[db_id],
-                                        is_valid=is_valid,
-                                    )
-                                self.write_json(
-                                    study_outdir / f"{output_type}.json", _output
-                                )
-                            except (IOError, OSError) as e:
-                                msg = f"Failed to write results for study {db_id}: {str(e)}"
-                                raise FileOperationError(msg)
-                            except Exception as e:
-                                raise ProcessingError(db_id, str(e))
+            # Load all study inputs
+            loaded_study_inputs = {}
+            for db_id, study_inputs in all_study_inputs.items():
+                try:
+                    loaded_study_inputs[db_id] = self.load_study_inputs(study_inputs)
+                except (IOError, ValueError) as e:
+                    raise InputError(
+                        f"Failed to load inputs for study {db_id}: {str(e)}"
+                    )
+
+            # Process loaded inputs and get results
+            transform_outputs = self.transform(loaded_study_inputs, **kwargs)
+            cleaned_results, raw_results, validation_status = transform_outputs
+
+            if cleaned_results:
+                for db_id in cleaned_results:
+                    try:
+                        study_outdir = hash_outdir / db_id
+                        study_outdir.mkdir(parents=True, exist_ok=True)
+
+                        # Write cleaned results
+                        self.write_json(
+                            study_outdir / "results.json", cleaned_results[db_id]
+                        )
+
+                        # Write raw results if different
+                        if raw_results[db_id] != cleaned_results[db_id]:
+                            self.write_json(
+                                study_outdir / "raw_results.json", raw_results[db_id]
+                            )
+
+                        # Write study info including validation status
+                        self.write_study_info(
+                            hash_outdir=hash_outdir,
+                            db_id=db_id,
+                            study_inputs=all_study_inputs[db_id],
+                            is_valid=validation_status[db_id],
+                        )
+
+                    except (IOError, OSError) as e:
+                        msg = f"Failed to write results for study {db_id}: {str(e)}"
+                        raise FileOperationError(msg)
+                    except Exception as e:
+                        raise ProcessingError(db_id, str(e))
 
         except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
             logger.error(str(e))
@@ -731,12 +776,32 @@ class DependentPipeline(Pipeline):
             raise
 
     def validate_results(self, results, **kwargs):
-        """Apply validation to each studys results in the grouped pipeline."""
+        """Apply validation to each study's results individually.
+
+        Args:
+            results: Dict mapping study IDs to their results
+            **kwargs: Additional validation arguments
+
+        Returns:
+            Tuple of:
+            - Dict mapping study IDs to their validated results
+            - Dict mapping study IDs to validation status (True/False)
+        """
         validated_results = {}
+        validation_status = {}
+
         for db_id, study_results in results.items():
-            study_results = super().validate_results(study_results, **kwargs)
-            validated_results[db_id] = study_results
-        return validated_results
+            try:
+                # Validate each study's results against the schema
+                self._output_schema.model_validate(study_results)
+                validated_results[db_id] = study_results
+                validation_status[db_id] = True
+            except Exception as e:
+                logging.error(f"Output validation error for study {db_id}: {str(e)}")
+                validated_results[db_id] = study_results
+                validation_status[db_id] = False
+
+        return validated_results, validation_status
 
 
 class Extractor(ABC):
@@ -820,7 +885,7 @@ class Extractor(ABC):
 
     def transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
-    ) -> Tuple[Dict[str, Any], Dict[str, Any], bool]:
+    ) -> Tuple[Dict[str, Any], Dict[str, Any], Union[bool, Dict[str, bool]]]:
         """Transform and validate input data.
 
         This method orchestrates the complete transformation process:
@@ -836,15 +901,28 @@ class Extractor(ABC):
             Tuple containing:
             - Post-processed results (Dict[str, T])
             - Raw results before post-processing (Dict[str, T])
-            - Validation status (bool)
+            - Validation status:
+                - bool for IndependentPipeline (single result)
+                - Dict[str, bool] for DependentPipeline (per-study validation)
 
         Raises:
             ProcessingError: If transformation fails
         """
-        results = self._transform(inputs, **kwargs)
-        cleaned_results = self.post_process(results)
-        valid = self.validate_output(cleaned_results)
-        return (cleaned_results, results, valid)
+        # Get raw results from transform
+        raw_results = self._transform(inputs, **kwargs)
+
+        # Post-process results
+        cleaned_results = self.post_process(raw_results)
+
+        # Validate results based on pipeline type
+        if isinstance(self, DependentPipeline):
+            # For dependent pipelines, validate each study individually
+            _, validation_status = self.validate_results(cleaned_results)
+        else:
+            # For independent pipelines, validate single study
+            validation_status = self.validate_output(cleaned_results)
+
+        return (cleaned_results, raw_results, validation_status)
 
     def validate_output(self, output: Dict[str, Any]) -> bool:
         """Validate transformed data against schema.

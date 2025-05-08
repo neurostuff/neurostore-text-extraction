@@ -26,7 +26,7 @@ class WordCountExtractor(Extractor, IndependentPipeline):
     ):
         """Add any pipeline configuration here (as opposed to runtime arguments)"""
         self.square_root = square_root
-        IndependentPipeline.__init__(self, extractor=self)
+        super().__init__()
 
     def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word count extraction pipeline.
@@ -43,7 +43,7 @@ class WordCountExtractor(Extractor, IndependentPipeline):
         return {"word_count": len(text.split())}
 
 
-class WordDevianceExtractor(DependentPipeline):
+class WordDevianceExtractor(Extractor, DependentPipeline):
     """Word deviance pipeline.
 
     Count the deviance of each study from the average word count.
@@ -51,20 +51,31 @@ class WordDevianceExtractor(DependentPipeline):
 
     _version = "1.0.0"
     _output_schema = WordDevianceSchema
+    _data_pond_inputs = {("pubget", "ace"): ("text",)}
+    _pipeline_inputs = {}
 
-    def __init__(
-        self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False
-    ):
+    def __init__(self, square_root=False):
+        """Add any pipeline configuration here (as opposed to runtime arguments)"""
         self.square_root = square_root
-        super().__init__(inputs=inputs, input_sources=input_sources)
+        super().__init__()
 
-    def execute(self, processed_inputs: dict, **kwargs) -> dict:
+    def _serialize_dataset_keys(self, dataset):
+        """Create a string representation of dataset keys for hashing.
+
+        Args:
+            dataset: Dataset object containing study data
+
+        Returns:
+            String of sorted study IDs joined with underscores
+        """
+        return "_".join(sorted(dataset.data.keys()))
+
+    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word deviance extraction pipeline.
 
         Args:
-            processed_inputs: Dictionary containing all study inputs
-                            Each study's data includes:
-                            - text: Full text content (already loaded)
+            processed_inputs: Dictionary mapping study IDs to their loaded inputs, where each has:
+                - text: Text content string (already loaded)
             **kwargs: Additional arguments including study_id
 
         Returns:
@@ -72,18 +83,16 @@ class WordDevianceExtractor(DependentPipeline):
         """
         # Calculate word counts for all studies
         study_word_counts = {
-            study_id: len(study_inputs["text"].split())
-            for study_id, study_inputs in processed_inputs.items()
+            study_id: len(inputs["text"].split())
+            for study_id, inputs in processed_inputs.items()
         }
 
         # Calculate average
         total_word_count = sum(study_word_counts.values())
         average_word_count = total_word_count // len(study_word_counts)
 
-        # Calculate deviances
-        study_word_deviances = {
-            study_id: {"word_deviance": abs(num_words - average_word_count)}
-            for study_id, num_words in study_word_counts.items()
+        # Calculate and return deviances
+        return {
+            study_id: {"word_deviance": abs(word_count - average_word_count)}
+            for study_id, word_count in study_word_counts.items()
         }
-
-        return study_word_deviances
