@@ -55,7 +55,7 @@ class TFIDFExtractor(Extractor, DependentPipeline):
             self.vocabulary = {term: idx for idx, term in enumerate(custom_terms)}
 
         self.vectorizer = TfidfVectorizer(min_df=min_df, vocabulary=self.vocabulary)
-        super().__init__(extractor=self)
+        super().__init__()
 
     def get_text_content(self, text: str, metadata: dict) -> str:
         """Get text content based on text_type setting.

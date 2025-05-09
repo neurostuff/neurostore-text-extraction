@@ -34,7 +34,6 @@ from typing import (
     Optional,
     Tuple,
     Type,
-    TypeVar,
     Union,
 )
 
@@ -53,10 +52,6 @@ from ns_extract.pipelines.exceptions import (
     ProcessingError,
     ValidationError,
 )
-
-# Type variables for generics
-T = TypeVar("T")  # Generic type for pipeline data
-S = TypeVar("S", bound="BaseModel")  # Schema type variable bounded to BaseModel
 
 # Type aliases with documentation
 PipelineConfig = Dict[str, Dict[str, str]]  # Pipeline configuration mapping
@@ -132,8 +127,8 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         {("participant_info"): ("results", "raw_results")}
     """
 
-    _data_pond_inputs: PipelineInputs = Field(default_factory=dict)
-    _input_pipelines: PipelineInputs = Field(default_factory=dict)
+    _data_pond_inputs = {}
+    _input_pipelines = {}
 
     def __init__(
         self,
@@ -168,7 +163,7 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
+        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
     ) -> Path:
         """Prepare pipeline execution by setting up dependencies and creating output directory.
 
@@ -326,7 +321,6 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         existing_results: Dict[str, Dict[str, Dict[str, str]]],
-        input_pipeline_info: Optional[dict] = None,
     ) -> Dict[str, bool]:
         """Compare dataset inputs with existing results to identify changes.
 
@@ -353,20 +347,11 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
             for input_path in study_inputs.get(db_id, {}).values():
                 current_inputs[str(input_path)] = self.calculate_md5(input_path)
 
-            # Add pipeline input files and their hashes
-            if input_pipeline_info:
-                for pipeline_name in input_pipeline_info:
-                    if pipeline_name not in study.pipeline_results:
-                        result_matches[db_id] = False
-                        break
-                    result_path = study.pipeline_results[pipeline_name].result
-                    current_inputs[str(result_path)] = self.calculate_md5(result_path)
-
             # Compare all input hashes
             if db_id not in result_matches:  # Skip if already marked as not matching
                 result_matches[db_id] = set(current_inputs.items()) == set(
                     existing.items()
-                )
+                ) and existing != {}
 
         return result_matches
 
@@ -546,18 +531,11 @@ class IndependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
+        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
         num_workers=1,
         **kwargs,
     ):
         """Process individual studies through the pipeline independently."""
-        # TODO: make sure input_pipeline_info are handled with the hashing
-        # should either need to find the latest hash, or just use the existing
-        # name/version/hash. There could be additional studies that are added
-        # but for independent pipelines, we don't need to worry about that,
-        # it will come into play when we need to filter the inputs for which studies
-        # need to be processed. With dependent pipelines, if there were new studies,
-        # then there would be a new hash created with all the study results.
         hash_outdir = self._prepare_pipeline(
             dataset, output_directory, input_pipeline_info
         )
@@ -575,7 +553,7 @@ class IndependentPipeline(Pipeline):
                     for arg in inspect.signature(self.__init__).parameters.keys()
                 },
                 transform_kwargs=kwargs,
-                input_pipelines=self.convert_pipeline_info(input_pipeline_info),
+                input_pipelines=input_pipeline_info or {},
                 schema=self.extractor._output_schema.model_json_schema(),
             )
             self.write_pipeline_info(hash_outdir, pipeline_info)
@@ -669,12 +647,12 @@ class DependentPipeline(Pipeline):
         self,
         hash_outdir: Path,
         dataset: Dataset,
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
+        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
     ) -> bool:
         """Check if any study inputs have changed or if there are new studies."""
         existing_results = self._filter_existing_results(hash_outdir, dataset)
         matching_results = self._identify_matching_results(
-            dataset, existing_results, input_pipeline_info=input_pipeline_info
+            dataset, existing_results,
         )
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())
@@ -683,7 +661,7 @@ class DependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
-        input_pipeline_info: Optional[InputPipelineInfo] = None,
+        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
         **kwargs,
     ):
         """Process all studies through the pipeline as a group."""
@@ -802,21 +780,18 @@ class DependentPipeline(Pipeline):
             - Dict mapping study IDs to their validated results
             - Dict mapping study IDs to validation status (True/False)
         """
-        validated_results = {}
         validation_status = {}
 
         for db_id, study_results in results.items():
             try:
                 # Validate each study's results against the schema
                 self._output_schema.model_validate(study_results)
-                validated_results[db_id] = study_results
                 validation_status[db_id] = True
             except Exception as e:
                 logging.error(f"Output validation error for study {db_id}: {str(e)}")
-                validated_results[db_id] = study_results
                 validation_status[db_id] = False
 
-        return validated_results, validation_status
+        return validation_status
 
 
 class Extractor(ABC):
@@ -932,7 +907,7 @@ class Extractor(ABC):
         # Validate results based on pipeline type
         if isinstance(self, DependentPipeline):
             # For dependent pipelines, validate each study individually
-            _, validation_status = self.validate_results(cleaned_results)
+            validation_status = self.validate_results(cleaned_results)
         else:
             # For independent pipelines, validate single study
             validation_status = self.validate_output(cleaned_results)

@@ -11,7 +11,7 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
     """Pipeline that uses a prompt and a pydantic schema to extract information from text."""
 
     _prompt: str = None  # Prompt template for extraction
-    _extraction_schema: Type[BaseModel] = None  # Schema used for LLM extraction 
+    _extraction_schema: Type[BaseModel] = None  # Schema used for LLM extraction
     _data_pond_inputs = {("pubget", "ace"): ("text",)}
     _pipeline_inputs = {}
 

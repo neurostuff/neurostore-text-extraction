@@ -81,7 +81,7 @@ class FileOperationsMixin:
             TypeError: If data contains non-serializable types
         """
         with file_path.open("w") as f:
-            json.dump(data, f)
+            json.dump(data, f, default=str, indent=4)
 
     def get_next_available_dir(self, base_path: Path) -> Path:
         """Find next available directory name by appending incrementing numbers.
@@ -203,19 +203,14 @@ class PipelineOutputsMixin:
     """
 
     def convert_pipeline_info(
-        self, info: Optional[Dict[str, Dict[str, str]]]
+        self, info: Optional[Union[Dict[str, Dict[str, str]], Dict[str, "InputPipelineInfo"]]]
     ) -> Dict[str, "InputPipelineInfo"]:
-        """Convert pipeline info dictionary to strongly-typed objects.
+        """Convert pipeline info to strongly-typed objects.
 
         Args:
-            info: Dict mapping pipeline names to their configuration parameters
-                Format: {
-                    "pipeline_name": {
-                        "pipeline_dir": "path/to/dir",
-                        "version": "1.0.0",
-                        "config_hash": "abc123"
-                    }
-                }
+            info: Dict mapping pipeline names to either:
+                - Configuration parameters as dict
+                - InputPipelineInfo instances directly
 
         Returns:
             Dict mapping names to InputPipelineInfo instances
@@ -228,7 +223,13 @@ class PipelineOutputsMixin:
         if info is None:
             return {}
 
-        return {name: InputPipelineInfo(**kwargs) for name, kwargs in info.items()}
+        result = {}
+        for name, value in info.items():
+            if isinstance(value, InputPipelineInfo):
+                result[name] = value
+            else:
+                result[name] = InputPipelineInfo(**value)
+        return result
 
     def create_pipeline_info(
         self,
@@ -342,47 +343,3 @@ class PipelineOutputsMixin:
 
         except IOError as e:
             raise IOError(f"Failed to write results for study {study_id}: {str(e)}")
-
-    def validate_results(self, results: Dict[str, Any]) -> bool:
-        """Validate structural correctness of study results.
-
-        Checks for two valid result formats:
-        1. Direct results dict with basic JSON-compatible values
-        2. Dict with 'results' and optional 'raw_results' keys
-
-        Args:
-            results: Study results to validate
-
-        Returns:
-            True if results match expected structure, False otherwise
-
-        Example:
-            Valid formats:
-            >>> validate_results({"key": "value"})  # Direct format
-            True
-            >>> validate_results({  # With raw results
-            ...     "results": {"key": "value"},
-            ...     "raw_results": {"raw": "data"}
-            ... })
-            True
-        """
-        if not isinstance(results, dict):
-            return False
-
-        # Case 1: Direct results dict with JSON-compatible values
-        if all(
-            isinstance(v, (dict, list, str, int, float, bool)) for v in results.values()
-        ):
-            return True
-
-        # Case 2: Results with optional raw_results
-        if "results" in results:
-            if not isinstance(results["results"], dict):
-                return False
-            if "raw_results" in results and not isinstance(
-                results["raw_results"], dict
-            ):
-                return False
-            return True
-
-        return False
