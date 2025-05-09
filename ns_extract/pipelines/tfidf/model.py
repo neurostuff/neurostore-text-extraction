@@ -1,8 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Dict, List, Literal, Optional
-from ns_extract.pipelines.base import DependentPipeline
+from ns_extract.pipelines.base import DependentPipeline, Extractor
 from sklearn.feature_extraction.text import TfidfVectorizer
-import json
 
 
 class TFIDFSchema(BaseModel):
@@ -14,7 +13,7 @@ class TFIDFSchema(BaseModel):
     )
 
 
-class TFIDFExtractor(DependentPipeline):
+class TFIDFExtractor(Extractor, DependentPipeline):
     """TFIDF extraction pipeline.
 
     Calculates TF-IDF scores for each document's terms.
@@ -22,11 +21,11 @@ class TFIDFExtractor(DependentPipeline):
 
     _version = "1.0.0"
     _output_schema = TFIDFSchema
+    _data_pond_inputs = {("pubget", "ace"): ("text", "metadata")}
+    _pipeline_inputs = {}
 
     def __init__(
         self,
-        inputs=("text", "metadata"),
-        input_sources=("pubget", "ace"),
         min_df=2,
         text_type: Literal["full_text", "abstract", "both"] = "full_text",
         vocabulary: Optional[Dict[str, int]] = None,
@@ -56,33 +55,28 @@ class TFIDFExtractor(DependentPipeline):
             self.vocabulary = {term: idx for idx, term in enumerate(custom_terms)}
 
         self.vectorizer = TfidfVectorizer(min_df=min_df, vocabulary=self.vocabulary)
-        super().__init__(inputs=inputs, input_sources=input_sources)
+        super().__init__()
 
-    def get_text_content(self, text_file: str, metadata_file: str) -> str:
+    def get_text_content(self, text: str, metadata: dict) -> str:
         """Get text content based on text_type setting.
 
         Args:
-            text_file: Path to text file containing full text
-            metadata_file: Path to metadata file containing abstract
+            text: Full text content
+            metadata: Metadata dictionary containing abstract
 
         Returns:
             Text content to use for TF-IDF calculation
         """
-        with open(text_file, "r") as f:
-            full_text = f.read()
-
-        with open(metadata_file, "r") as f:
-            metadata = json.load(f)
-            abstract = metadata.get("abstract", "")
+        abstract = metadata.get("abstract", "")
 
         if self.text_type == "full_text":
-            return full_text
+            return text
         elif self.text_type == "abstract":
             return abstract
         else:  # both
-            return f"{abstract}\n{full_text}"
+            return f"{abstract}\n{text}"
 
-    def execute(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the TFIDF extraction pipeline.
 
         Args:
@@ -92,12 +86,12 @@ class TFIDFExtractor(DependentPipeline):
         Returns:
             Dictionary mapping study IDs to their TFIDF scores
         """
-        # Load all texts
+        # Process all texts
         study_texts = {}
         for study_id, study_inputs in processed_inputs.items():
-            text_file = study_inputs["text"]
-            metadata_file = study_inputs["metadata"]
-            content = self.get_text_content(text_file, metadata_file)
+            text = study_inputs["text"]
+            metadata = study_inputs["metadata"]
+            content = self.get_text_content(text, metadata)
             study_texts[study_id] = content
 
         # Get list of all texts in same order as study IDs
@@ -108,7 +102,7 @@ class TFIDFExtractor(DependentPipeline):
         tfidf_matrix = self.vectorizer.fit_transform(texts)
         feature_names = self.vectorizer.get_feature_names_out()
 
-        # Create output dictionary
+        # Create output dictionary matching schema format
         study_tfidf_scores = {}
         for idx, study_id in enumerate(study_ids):
             # Get scores for this document
@@ -116,7 +110,7 @@ class TFIDFExtractor(DependentPipeline):
 
             # Create dictionary of term -> score for non-zero entries
             term_scores = {
-                term: score
+                term: float(score)  # Convert numpy float to Python float
                 for term, score in zip(feature_names, doc_scores)
                 if score > 0
             }

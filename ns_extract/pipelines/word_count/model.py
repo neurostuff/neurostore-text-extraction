@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from ns_extract.pipelines.base import IndependentPipeline, DependentPipeline
+from ns_extract.pipelines.base import IndependentPipeline, DependentPipeline, Extractor
 
 
 class WordCountSchema(BaseModel):
@@ -12,38 +12,38 @@ class WordDevianceSchema(BaseModel):
     )
 
 
-class WordCountExtractor(IndependentPipeline):
+class WordCountExtractor(Extractor, IndependentPipeline):
     """Word count extraction pipeline."""
 
     _version = "1.0.0"
     _output_schema = WordCountSchema
+    _data_pond_inputs = {("pubget", "ace"): ("text",)}
+    _pipeline_inputs = {}
 
     def __init__(
-        self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False
+        self,
+        square_root=False,
     ):
         """Add any pipeline configuration here (as opposed to runtime arguments)"""
         self.square_root = square_root
-        super().__init__(inputs=inputs, input_sources=input_sources)
+        super().__init__()
 
-    def execute(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word count extraction pipeline.
 
         Args:
-            processed_inputs: Dictionary containing processed text
-            **kwargs: Additional arguments
+            processed_inputs: Dictionary containing:
+                - text: Full text content (already loaded)
+            **kwargs: Additional arguments including study_id
 
         Returns:
             Dictionary containing word count
         """
-        text_file = processed_inputs["text"]
-
-        with open(text_file, "r") as f:
-            text = f.read()
-
+        text = processed_inputs["text"]  # Already loaded by InputManager
         return {"word_count": len(text.split())}
 
 
-class WordDevianceExtractor(DependentPipeline):
+class WordDevianceExtractor(Extractor, DependentPipeline):
     """Word deviance pipeline.
 
     Count the deviance of each study from the average word count.
@@ -51,42 +51,48 @@ class WordDevianceExtractor(DependentPipeline):
 
     _version = "1.0.0"
     _output_schema = WordDevianceSchema
+    _data_pond_inputs = {("pubget", "ace"): ("text",)}
+    _pipeline_inputs = {}
 
-    def __init__(
-        self, inputs=("text",), input_sources=("pubget", "ace"), square_root=False
-    ):
+    def __init__(self, square_root=False):
+        """Add any pipeline configuration here (as opposed to runtime arguments)"""
         self.square_root = square_root
-        super().__init__(inputs=inputs, input_sources=input_sources)
+        super().__init__()
 
-    def execute(self, processed_inputs: dict, **kwargs) -> dict:
+    def _serialize_dataset_keys(self, dataset):
+        """Create a string representation of dataset keys for hashing.
+
+        Args:
+            dataset: Dataset object containing study data
+
+        Returns:
+            String of sorted study IDs joined with underscores
+        """
+        return "_".join(sorted(dataset.data.keys()))
+
+    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
         """Run the word deviance extraction pipeline.
 
         Args:
-            processed_inputs: Dictionary containing all study inputs
-            **kwargs: Additional arguments
+            processed_inputs: Dictionary mapping study IDs to their loaded inputs, where each has:
+                - text: Text content string (already loaded)
+            **kwargs: Additional arguments including study_id
 
         Returns:
             Dictionary mapping study IDs to their word count deviances
         """
-        # Calculate the average word count
-        total_word_count = 0
-        total_studies = len(processed_inputs)
-        study_word_counts = {}
-
-        for study_id, study_inputs in processed_inputs.items():
-            text_file = study_inputs["text"]
-
-            with open(text_file, "r") as f:
-                text = f.read()
-
-            num_words = len(text.split())
-            total_word_count += num_words
-            study_word_counts[study_id] = num_words
-
-        average_word_count = total_word_count // total_studies
-        study_word_deviances = {
-            study_id: {"word_deviance": abs(num_words - average_word_count)}
-            for study_id, num_words in study_word_counts.items()
+        # Calculate word counts for all studies
+        study_word_counts = {
+            study_id: len(inputs["text"].split())
+            for study_id, inputs in processed_inputs.items()
         }
 
-        return study_word_deviances
+        # Calculate average
+        total_word_count = sum(study_word_counts.values())
+        average_word_count = total_word_count // len(study_word_counts)
+
+        # Calculate and return deviances
+        return {
+            study_id: {"word_deviance": abs(word_count - average_word_count)}
+            for study_id, word_count in study_word_counts.items()
+        }
