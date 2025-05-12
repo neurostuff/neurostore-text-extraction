@@ -1,11 +1,11 @@
-"""Tests for the PatientStudyExtractor."""
+"""Tests for the ExampleExtractor."""
 
 import json
 from pathlib import Path
 
 import pytest
 
-from .example_pipelines.patient_study.model import PatientStudyExtractor
+from .example_pipelines.example_extractor.model import ExampleExtractor
 from ns_extract.dataset import Dataset
 
 
@@ -18,35 +18,23 @@ def sample_data(request) -> Dataset:
 
 @pytest.fixture
 def mock_demographics():
-    """Create mock demographics data with different group types."""
+    """Create mock demographics data."""
     sample_path = Path("tests/data/sample_inputs")
-    # Get sorted list of study IDs to ensure consistent ordering
     study_ids = sorted([d.name for d in sample_path.iterdir() if d.is_dir()])
 
-    # Create alternating patterns of patient/non-patient studies
     mock_data = {}
     for i, study_id in enumerate(study_ids):
-        if i % 2 == 0:
-            # Patient study
-            mock_data[study_id] = {
-                "groups": [
-                    {"name": "patient", "age_mean": 45.0 + i},
-                    {"name": "control", "age_mean": 44.0 + i},
-                ]
-            }
-        else:
-            # Non-patient study
-            mock_data[study_id] = {
-                "groups": [
-                    {"name": "healthy", "age_mean": 40.0 + i},
-                    {"name": "control", "age_mean": 39.0 + i},
-                ]
-            }
+        mock_data[study_id] = {
+            "groups": [
+                {"name": f"group_{i}_a", "age_mean": 45.0 + i},
+                {"name": f"group_{i}_b", "age_mean": 44.0 + i},
+            ]
+        }
     return mock_data
 
 
-def test_patient_study_extractor(sample_data, mock_demographics, tmp_path):
-    """Test patient study extraction."""
+def test_example_extractor(sample_data, mock_demographics, tmp_path):
+    """Test example extraction."""
     # Create demographics pipeline outputs
     demographics_dir = tmp_path / "participant_demographics"
     version_dir = demographics_dir / "1.0.0"
@@ -64,7 +52,7 @@ def test_patient_study_extractor(sample_data, mock_demographics, tmp_path):
             f,
         )
 
-    # Write results for each study
+    # Write demographics results for each study
     for study_id, results in mock_demographics.items():
         study_dir = config_dir / study_id
         study_dir.mkdir(parents=True)
@@ -77,9 +65,9 @@ def test_patient_study_extractor(sample_data, mock_demographics, tmp_path):
             json.dump({"date": "2025-04-19", "valid": True}, f)
 
     # Initialize extractor
-    extractor = PatientStudyExtractor()
+    extractor = ExampleExtractor()
 
-    # Set up pipeline info for demographics dependency
+    # Set up pipeline info for dependencies
     input_pipeline_info = {
         "participant_demographics": {
             "version": "1.0.0",
@@ -95,30 +83,39 @@ def test_patient_study_extractor(sample_data, mock_demographics, tmp_path):
     )
 
     # Check results for each study
-    output_version_dir = output_dir / "PatientStudyExtractor" / extractor._version
+    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
     assert output_version_dir.exists()
 
     # Get the hash directory
     hash_dir = next(output_version_dir.iterdir())
+    assert hash_dir.is_dir()
 
     # Get list of study IDs
     sample_path = Path("tests/data/sample_inputs")
     study_ids = sorted([d.name for d in sample_path.iterdir() if d.is_dir()])
 
-    # Verify each study's results
-    for i, study_id in enumerate(study_ids):
+    # Verify each study's results exist and are properly formatted
+    for study_id in study_ids:
         study_dir = hash_dir / study_id
+        assert study_dir.exists()
+
+        # Check for required files
+        assert (study_dir / "results.json").exists()
+        assert (study_dir / "info.json").exists()
+
+        # Verify content can be loaded
         results = json.loads((study_dir / "results.json").read_text())
         info = json.loads((study_dir / "info.json").read_text())
 
-        # Every even-numbered study should be a patient study
-        assert results["patient_study"] is (i % 2 == 0)
+        # Verify info file structure
+        assert "date" in info
+        assert "valid" in info
         assert info["valid"] is True
 
     # Verify pipeline info was written with correct configuration
     pipeline_info = json.loads((hash_dir / "pipeline_info.json").read_text())
-    assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["extractor"] == "PatientStudyExtractor"
+    assert pipeline_info["version"] == extractor._version
+    assert pipeline_info["extractor"] == "ExampleExtractor"
     assert pipeline_info["input_pipelines"] == {
         "participant_demographics": {
             "pipeline_dir": str(demographics_dir),

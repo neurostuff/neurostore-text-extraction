@@ -1,4 +1,3 @@
-import json
 from typing import List, Dict, Optional, Union, Any, Tuple
 
 import pandas as pd
@@ -8,7 +7,7 @@ from scispacy.candidate_generation import CandidateGenerator
 from spacy.language import Language
 from tqdm import tqdm
 
-from ns_extract.pipelines.base import IndependentPipeline
+from ns_extract.pipelines.base import IndependentPipeline, Extractor
 
 # Import and register the scispacy abbreviation detector
 import scispacy.abbreviation  # noqa: F401
@@ -33,6 +32,10 @@ class UMLSDiseaseSchema(BaseModel):
     group_ix: int = Field(description="Group index from demographics")
     start_char: Optional[int] = Field(description="Start character position in text")
     end_char: Optional[int] = Field(description="End character position in text")
+
+
+class BaseUMLSDiseaseSchema(BaseModel):
+    groups: List[UMLSDiseaseSchema]
 
 
 @Language.component("serialize_abbreviation")
@@ -61,8 +64,12 @@ def replace_abbrev_with_json(spacy_doc):
     return spacy_doc
 
 
-class UMLSDiseaseExtractor(IndependentPipeline):
-    """Extracts UMLS disease concepts from text.
+class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
+    """Extracts UMLS disease concepts from text using configurable spaCy language models.
+
+    The extractor uses spaCy with scispacy components to identify and link disease mentions
+    to UMLS concepts. It supports configurable language models and customizable pipeline
+    components.
 
     Required Input Sources:
         - pubget or ace: For accessing text files
@@ -73,35 +80,56 @@ class UMLSDiseaseExtractor(IndependentPipeline):
 
     Required Pipeline Inputs:
         - participant_demographics: ["results"]
+
+    Model Configuration:
+        The extractor can be configured with different spaCy models through the model_name
+        parameter. By default, it uses 'en_core_sci_sm', but other models like
+        'en_core_sci_md' or 'en_core_sci_lg' can be used for potentially better accuracy
+        at the cost of increased memory usage.
+
+    Examples:
+        # Using default small model
+        extractor = UMLSDiseaseExtractor()
+
+        # Using medium model for better accuracy
+        extractor = UMLSDiseaseExtractor(model_name='en_core_sci_md')
+
+    Pipeline Components:
+        The extractor disables the 'parser' and 'ner' components by default for better
+        performance. It automatically adds the 'abbreviation_detector' and
+        'serialize_abbreviation' components if not already present.
+
+    Backward Compatibility:
+        The addition of the model_name parameter maintains backward compatibility with
+        previous versions. Existing code using the default configuration will continue
+        to work without modifications.
     """
 
     _version = "1.0.0"
-    _output_schema = UMLSDiseaseSchema
+    _output_schema = BaseUMLSDiseaseSchema
+    _data_pond_inputs = {("pubget", "ace"): ("text",)}
+    _input_pipelines = {("participant_demographics",): ("results",)}
 
     def __init__(
         self,
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        pipeline_inputs={"participant_demographics": ["results"]},
         k: int = 30,
         threshold: float = 0.5,
         no_definition_threshold: float = 0.95,
         filter_for_definitions: bool = True,
         max_entities_per_mention: int = 5,
         n_workers: int = 1,
+        model_name: str = "en_core_sci_sm",
     ):
         """Initialize the UMLS Disease extractor.
 
         Args:
-            inputs: Input file types to process
-            input_sources: Sources to accept inputs from
-            pipeline_inputs: Dict mapping pipeline names to lists of required inputs
             k: Number of candidates to consider
             threshold: Minimum similarity threshold for matches
             no_definition_threshold: Higher threshold for concepts without definitions
             filter_for_definitions: Whether to apply stricter threshold for undefined concepts
             max_entities_per_mention: Maximum number of UMLS entities per mention
             n_workers: Number of workers for parallel processing
+            model_name: Name of the spaCy model to load (default: en_core_sci_sm)
         """
         self.k = k
         self.threshold = threshold
@@ -109,18 +137,17 @@ class UMLSDiseaseExtractor(IndependentPipeline):
         self.filter_for_definitions = filter_for_definitions
         self.max_entities_per_mention = max_entities_per_mention
         self.n_workers = n_workers
+        self.model_name = model_name
 
         # Initialize spaCy and UMLS
         self.nlp = self._load_spacy_model()
         self.umls_generator = CandidateGenerator(name="umls")
 
-        super().__init__(
-            inputs=inputs, input_sources=input_sources, pipeline_inputs=pipeline_inputs
-        )
+        super().__init__()
 
     def _load_spacy_model(self):
         """Load spaCy model with abbreviation detection pipeline"""
-        nlp = spacy.load("en_core_sci_sm", disable=["parser", "ner"])
+        nlp = spacy.load(self.model_name, disable=["parser", "ner"])
 
         # Add registered components in correct order
         if "abbreviation_detector" not in nlp.pipe_names:
@@ -136,7 +163,7 @@ class UMLSDiseaseExtractor(IndependentPipeline):
         print("Processing abbreviations")
         batch_size = 20
         for i in tqdm(range(0, len(texts), batch_size)):
-            batch_docs = texts[i : i + batch_size]
+            batch_docs = texts[i:i + batch_size]
             batch_abbreviations = self.nlp.pipe(batch_docs, n_process=self.n_workers)
             for processed_doc in batch_abbreviations:
                 abbreviations.append(processed_doc._.abbreviations)
@@ -203,27 +230,20 @@ class UMLSDiseaseExtractor(IndependentPipeline):
         sorted_predicted = sorted(predicted, reverse=True, key=lambda x: x["umls_prob"])
         return target, sorted_predicted[: self.max_entities_per_mention]
 
-    def execute(
-        self, study_inputs: Dict[str, Any], **kwargs
-    ) -> Dict[str, List[UMLSDiseaseSchema]]:
-        """Run UMLS disease extraction pipeline for a study.
+    def _transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs) -> Dict[str, Any]:
+        """Transform input data into UMLS disease entities.
 
         Args:
-            study_inputs: Dictionary containing:
-                - text: Path to article full text file
-                - participant_demographics.results: Path to demographics results file
+            inputs: Dictionary containing study data with:
+                - text: Article full text content
+                - participant_demographics: Demographics results data
             **kwargs: Additional arguments
 
         Returns:
-            Dictionary mapping study IDs to lists of UMLS disease results
+            List of UMLS disease entities found in the text
         """
-        # Get text from file
-        with open(study_inputs["text"]) as f:
-            text = f.read()
-
-        # Load demographics results
-        with open(study_inputs["participant_demographics.results"]) as f:
-            demographics = json.load(f)
+        text = inputs["text"]
+        demographics = inputs["participant_demographics"]
 
         if not demographics or "groups" not in demographics:
             return {}
@@ -251,4 +271,4 @@ class UMLSDiseaseExtractor(IndependentPipeline):
                     ).model_dump()
                     study_results.append(result)
 
-        return {kwargs["study_id"]: study_results} if study_results else {}
+        return {"groups": study_results}

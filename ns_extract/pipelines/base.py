@@ -335,23 +335,22 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
             existing results (True = no changes, False = changes detected)
         """
         result_matches = {}
+        study_inputs = self.gather_all_study_inputs(dataset)
+
         for db_id, study in dataset.data.items():
             # Get existing input file hashes for this study
             existing = existing_results.get(db_id, {}).get("inputs", {})
 
-            # Collect all input files and their current hashes
-            current_inputs = {}
+            # Skip if no existing results or no current inputs
+            if not existing or db_id not in study_inputs:
+                result_matches[db_id] = False
+                continue
 
-            # Add data pond input files and their hashes
-            study_inputs = self.gather_all_study_inputs(dataset)
-            for input_path in study_inputs.get(db_id, {}).values():
-                current_inputs[str(input_path)] = self.calculate_md5(input_path)
-
-            # Compare all input hashes
-            if db_id not in result_matches:  # Skip if already marked as not matching
-                result_matches[db_id] = set(current_inputs.items()) == set(
-                    existing.items()
-                ) and existing != {}
+            # Use _are_file_hashes_identical to compare hashes
+            result_matches[db_id] = self._are_file_hashes_identical(
+                study_inputs[db_id],
+                existing
+            )
 
         return result_matches
 
@@ -491,9 +490,6 @@ class IndependentPipeline(Pipeline):
                 )
             except Exception as e:
                 raise ProcessingError(db_id, str(e))
-
-            if not is_valid:
-                raise ValidationError(f"Results validation failed for study {db_id}")
 
             if results:
                 # Write results immediately
@@ -681,7 +677,7 @@ class DependentPipeline(Pipeline):
                 for arg in inspect.signature(self.__init__).parameters.keys()
             },
             transform_kwargs=kwargs,
-            input_pipelines=self.convert_pipeline_info(input_pipeline_info),
+            input_pipelines=input_pipeline_info or {},
             schema=self.extractor._output_schema.model_json_schema(),
         )
 

@@ -7,10 +7,20 @@ from unittest.mock import patch
 
 from ns_extract.cli.run import main, get_pipeline_map, load_yaml_config
 from ns_extract.pipelines import (
-    WordCountExtractor,
     ParticipantDemographicsExtractor,
     TaskExtractor,
 )
+
+from .example_pipelines.word_count.model import WordCountExtractor, WordDevianceExtractor
+import ns_extract.pipelines
+
+# Make WordCountExtractor and WordDevianceExtractor available in pipelines module for testing
+setattr(ns_extract.pipelines, "WordCountExtractor", WordCountExtractor)
+setattr(ns_extract.pipelines, "WordDevianceExtractor", WordDevianceExtractor)
+if "WordCountExtractor" not in ns_extract.pipelines.__all__:
+    ns_extract.pipelines.__all__.append("WordCountExtractor")
+if "WordDevianceExtractor" not in ns_extract.pipelines.__all__:
+    ns_extract.pipelines.__all__.append("WordDevianceExtractor")
 
 
 def run_cli(args):

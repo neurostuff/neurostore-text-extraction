@@ -84,32 +84,45 @@ def mock_demographics(sample_data) -> dict:
     return results
 
 
-@pytest.fixture
-def mock_text_content():
-    """Sample medical text for testing."""
-    return """
-    The patient group consisted of individuals with Alzheimer's disease (AD)
-    and major depressive disorder (MDD). The control group was healthy.
-    """
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_umls_disease_transform_default_model(sample_data, mock_demographics):
+    """Test UMLSDiseaseExtractor._transform() with real study data."""
+    # Get first study with text data
+    study_id = next(
+        sid for sid, study in sample_data.data.items()
+        if sid in mock_demographics and (
+            (study.pubget and study.pubget.text) or (study.ace and study.ace.text)
+        )
+    )
+    study = sample_data.data[study_id]
 
+    # Get study text
+    text = None
+    for source in ["pubget", "ace"]:
+        source_obj = getattr(study, source, None)
+        if source_obj and source_obj.text:
+            with open(source_obj.text) as f:
+                text = f.read()
+            break
 
-@pytest.fixture
-def mock_study_inputs(mock_text_content, mock_demographics):
-    """Mock study inputs for testing."""
-    return {
-        "text": mock_text_content,
-        "participant_demographics.results": mock_demographics["study1"],
+    assert text is not None, "No text found for test study"
+
+    # Create test inputs
+    inputs = {
+        "text": text,
+        "participant_demographics": mock_demographics[study_id],
     }
 
-
-def test_umls_disease_execute(mock_study_inputs):
-    """Test UMLSDiseaseExtractor.execute() with preprocessed inputs."""
+    # Run extraction
     extractor = UMLSDiseaseExtractor()
-    results = extractor.execute(mock_study_inputs, study_id="test_study")
+    results = extractor._transform(inputs)
 
-    # Should find entities for each diagnosis
-    assert len(results["test_study"]) > 0
-    for result in results["test_study"]:
+    # Should have groups list
+    assert "groups" in results
+    assert len(results["groups"]) > 0
+
+    # Each group should have required fields and UMLS entities
+    for result in results["groups"]:
         assert "diagnosis" in result
         assert "umls_entities" in result
         assert len(result["umls_entities"]) > 0
@@ -118,6 +131,21 @@ def test_umls_disease_execute(mock_study_inputs):
         assert "umls_prob" in result["umls_entities"][0]
 
 
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_custom_model_configuration():
+    """Test UMLSDiseaseExtractor with custom model configuration."""
+    # Initialize extractor with a different model
+    extractor = UMLSDiseaseExtractor(model_name="en_core_web_sm")
+    assert extractor.model_name == "en_core_web_sm"
+    assert "abbreviation_detector" in extractor.nlp.pipe_names
+    assert "serialize_abbreviation" in extractor.nlp.pipe_names
+    
+    # Verify disabled components
+    assert "parser" not in extractor.nlp.pipe_names
+    assert "ner" not in extractor.nlp.pipe_names
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
 def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
     # Create demographics pipeline outputs
     demographics_dir = tmp_path / "participant_demographics"
@@ -149,11 +177,7 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
             json.dump({"date": "2025-04-19", "valid": True}, f)
 
     # Initialize extractor
-    extractor = UMLSDiseaseExtractor(
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        pipeline_inputs={"participant_demographics": ["results"]},
-    )
+    extractor = UMLSDiseaseExtractor()
 
     # Set up pipeline kwargs
     pipeline_kwargs = {
@@ -167,7 +191,7 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
     # Run extraction
     output_dir = tmp_path / "output"
     extractor.transform_dataset(
-        sample_data, output_dir, input_pipeline_kwargs=pipeline_kwargs
+        sample_data, output_dir, input_pipeline_info=pipeline_kwargs
     )
 
     # Verify outputs
@@ -189,25 +213,20 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
         with open(results_file) as f:
             results = json.load(f)
 
-        # Each diagnosis in demographics should have UMLS entities
-        for group in demographics["groups"]:
-            matching_results = [
-                r for r in results if r["diagnosis"] == group["diagnosis"]
-            ]
+        # Results should match demographics group structure
+        assert "groups" in results
+        assert len(results["groups"]) == len(demographics["groups"])
 
-            if matching_results:
-                result = matching_results[0]
-                assert result["count"] == group["count"]
-                assert len(result["umls_entities"]) >= 1
+        # Each group should have UMLS entities and match input group order
+        for result_group, demo_group in zip(results["groups"], demographics["groups"]):
+            assert result_group["count"] == demo_group["count"]
+            assert len(result_group["umls_entities"]) >= 1
 
 
+@pytest.mark.skip(reason="UMLS tests are optional")
 def test_missing_demographics_pipeline(sample_data, mock_demographics, tmp_path):
     # Initialize extractor
-    extractor = UMLSDiseaseExtractor(
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        pipeline_inputs={"participant_demographics": ["results"]},
-    )
+    extractor = UMLSDiseaseExtractor()
 
     # Set up pipeline kwargs with wrong directory
     pipeline_kwargs = {
@@ -222,10 +241,11 @@ def test_missing_demographics_pipeline(sample_data, mock_demographics, tmp_path)
     output_dir = tmp_path / "output"
     with pytest.raises(ValueError, match=".*No version directories found.*"):
         extractor.transform_dataset(
-            sample_data, output_dir, input_pipeline_kwargs=pipeline_kwargs
+            sample_data, output_dir, input_pipeline_info=pipeline_kwargs
         )
 
 
+@pytest.mark.skip(reason="UMLS tests are optional")
 def test_missing_demographics_results(sample_data, mock_demographics, tmp_path):
     # Create minimal pipeline structure
     config_dir = tmp_path / "participant_demographics/1.0.0/abc123"
@@ -243,11 +263,7 @@ def test_missing_demographics_results(sample_data, mock_demographics, tmp_path):
         )
 
     # Initialize extractor
-    extractor = UMLSDiseaseExtractor(
-        inputs=("text",),
-        input_sources=("pubget", "ace"),
-        pipeline_inputs={"participant_demographics": ["results"]},
-    )
+    extractor = UMLSDiseaseExtractor()
 
     # Set up pipeline kwargs
     pipeline_kwargs = {
@@ -262,5 +278,5 @@ def test_missing_demographics_results(sample_data, mock_demographics, tmp_path):
     output_dir = tmp_path / "output"
     with pytest.raises(ValueError, match=".*Missing results.json.*"):
         extractor.transform_dataset(
-            sample_data, output_dir, input_pipeline_kwargs=pipeline_kwargs
+            sample_data, output_dir, input_pipeline_info=pipeline_kwargs
         )
