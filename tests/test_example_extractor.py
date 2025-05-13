@@ -120,6 +120,6 @@ def test_example_extractor(sample_data, mock_demographics, tmp_path):
         "participant_demographics": {
             "pipeline_dir": str(demographics_dir),
             "version": "1.0.0",
-            "config_hash": "abc123"
+            "config_hash": "abc123",
         }
     }

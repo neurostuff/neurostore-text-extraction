@@ -203,7 +203,10 @@ class PipelineOutputsMixin:
     """
 
     def convert_pipeline_info(
-        self, info: Optional[Union[Dict[str, Dict[str, str]], Dict[str, "InputPipelineInfo"]]]
+        self,
+        info: Optional[
+            Union[Dict[str, Dict[str, str]], Dict[str, "InputPipelineInfo"]]
+        ],
     ) -> Dict[str, "InputPipelineInfo"]:
         """Convert pipeline info to strongly-typed objects.
 

@@ -348,8 +348,7 @@ class Pipeline(FileOperationsMixin, StudyInputsMixin, PipelineOutputsMixin):
 
             # Use _are_file_hashes_identical to compare hashes
             result_matches[db_id] = self._are_file_hashes_identical(
-                study_inputs[db_id],
-                existing
+                study_inputs[db_id], existing
             )
 
         return result_matches
@@ -637,7 +636,7 @@ class DependentPipeline(Pipeline):
             Comma-separated string of sorted study IDs
         """
         study_keys = sorted(dataset.data.keys())
-        return '_'.join(study_keys)
+        return "_".join(study_keys)
 
     def check_for_changes(
         self,
@@ -648,7 +647,8 @@ class DependentPipeline(Pipeline):
         """Check if any study inputs have changed or if there are new studies."""
         existing_results = self._filter_existing_results(hash_outdir, dataset)
         matching_results = self._identify_matching_results(
-            dataset, existing_results,
+            dataset,
+            existing_results,
         )
         # Return True if any of the studies' inputs have changed or if new studies exist
         return any(not match for match in matching_results.values())

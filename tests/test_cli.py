@@ -11,7 +11,10 @@ from ns_extract.pipelines import (
     TaskExtractor,
 )
 
-from .example_pipelines.word_count.model import WordCountExtractor, WordDevianceExtractor
+from .example_pipelines.word_count.model import (
+    WordCountExtractor,
+    WordDevianceExtractor,
+)
 import ns_extract.pipelines
 
 # Make WordCountExtractor and WordDevianceExtractor available in pipelines module for testing

@@ -13,21 +13,15 @@ from ns_extract.pipelines.base import (
 class ExampleOutput(BaseModel):
     """Schema for example extractor output."""
 
-    value: str = Field(
-        ..., 
-        description="Example extracted value from input data"
-    )
+    value: str = Field(..., description="Example extracted value from input data")
     confidence: float = Field(
-        ...,
-        description="Confidence score of the extraction",
-        ge=0.0,
-        le=1.0
+        ..., description="Confidence score of the extraction", ge=0.0, le=1.0
     )
 
 
 class ExampleExtractor(Extractor, DependentPipeline):
     """Extractor demonstrating pipeline and datapond input handling.
-    
+
     This extractor shows how to:
     - Process pipeline inputs (from participant_demographics)
     - Handle datapond data
@@ -46,9 +40,7 @@ class ExampleExtractor(Extractor, DependentPipeline):
         super().__init__()
 
     def _transform(
-        self,
-        inputs: Dict[str, Dict[str, Any]],
-        **kwargs
+        self, inputs: Dict[str, Dict[str, Any]], **kwargs
     ) -> Dict[str, Dict[str, Any]]:
         """Transform input data into output format.
 
@@ -65,7 +57,7 @@ class ExampleExtractor(Extractor, DependentPipeline):
             - confidence: Confidence score of extraction
         """
         results = {}
-        
+
         # Process each study
         for study_id, study_data in inputs.items():
             # Get pipeline inputs
@@ -92,9 +84,6 @@ class ExampleExtractor(Extractor, DependentPipeline):
                 value = "no_data"
                 confidence = 0.0
 
-            results[study_id] = {
-                "value": value,
-                "confidence": confidence
-            }
+            results[study_id] = {"value": value, "confidence": confidence}
 
         return results

@@ -89,10 +89,10 @@ def test_umls_disease_transform_default_model(sample_data, mock_demographics):
     """Test UMLSDiseaseExtractor._transform() with real study data."""
     # Get first study with text data
     study_id = next(
-        sid for sid, study in sample_data.data.items()
-        if sid in mock_demographics and (
-            (study.pubget and study.pubget.text) or (study.ace and study.ace.text)
-        )
+        sid
+        for sid, study in sample_data.data.items()
+        if sid in mock_demographics
+        and ((study.pubget and study.pubget.text) or (study.ace and study.ace.text))
     )
     study = sample_data.data[study_id]
 
@@ -139,7 +139,7 @@ def test_custom_model_configuration():
     assert extractor.model_name == "en_core_web_sm"
     assert "abbreviation_detector" in extractor.nlp.pipe_names
     assert "serialize_abbreviation" in extractor.nlp.pipe_names
-    
+
     # Verify disabled components
     assert "parser" not in extractor.nlp.pipe_names
     assert "ner" not in extractor.nlp.pipe_names

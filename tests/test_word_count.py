@@ -1,6 +1,9 @@
 import json
 import pytest
-from .example_pipelines.word_count.model import WordCountExtractor, WordDevianceExtractor
+from .example_pipelines.word_count.model import (
+    WordCountExtractor,
+    WordDevianceExtractor,
+)
 from ns_extract.dataset import Dataset
 
 
