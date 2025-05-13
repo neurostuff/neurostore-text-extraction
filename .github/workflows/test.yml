@@ -13,9 +13,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -e .[tests]
+
+      - name: Lint with flake8
+        run: flake8 ns_extract/ tests/
+
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,9 +43,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -e .[tests,participant_demographics,word_count]
-
-      - name: Lint with flake8
-        run: flake8 ns_extract/ tests/
 
       - name: Test with pytest
         env:
