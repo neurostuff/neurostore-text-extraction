@@ -44,7 +44,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -e .[tests,participant_demographics,word_count]
+        run: pip install -e .[tests,participant_demographics,word_count,umls_disease]
 
       - name: Test with pytest
         env:
