@@ -32,7 +32,6 @@ umls_disease = [
     "numpy",
     "spacy",
     "scispacy",
-    "en-core-sci-scibert @ https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.3/en_core_sci_scibert-0.5.3.tar.gz",
     "tqdm",
 ]
 word_count = [

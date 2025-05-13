@@ -146,16 +146,60 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
         super().__init__()
 
     def _load_spacy_model(self):
-        """Load spaCy model with abbreviation detection pipeline"""
-        nlp = spacy.load(self.model_name, disable=["parser", "ner"])
+        """Load spaCy model with abbreviation detection pipeline.
 
-        # Add registered components in correct order
-        if "abbreviation_detector" not in nlp.pipe_names:
-            nlp.add_pipe("abbreviation_detector")
-        if "serialize_abbreviation" not in nlp.pipe_names:
-            nlp.add_pipe("serialize_abbreviation", after="abbreviation_detector")
+        This function handles downloading of the model if it's not already installed
+        and verifies model compatibility. It also sets up required pipeline components.
 
-        return nlp
+        Returns:
+            spacy.language.Language: Loaded spaCy model with configured pipeline
+
+        Raises:
+            ImportError: If there are issues downloading or loading the model
+            ValueError: If the model is not compatible with required components
+        """
+        try:
+            try:
+                nlp = spacy.load(self.model_name, disable=["parser", "ner"])
+            except OSError:
+                print(f"Downloading {self.model_name} model...")
+                spacy.cli.download(self.model_name)
+                nlp = spacy.load(self.model_name, disable=["parser", "ner"])
+
+            # Verify model compatibility with required components
+            if "transformer" in nlp.pipe_names:
+                raise ValueError(
+                    f"Model {self.model_name} is a transformer model. "
+                    "Please use a standard spaCy model like en_core_sci_sm/md/lg."
+                )
+
+            # Add registered components in correct order
+            if "abbreviation_detector" not in nlp.pipe_names:
+                try:
+                    nlp.add_pipe("abbreviation_detector")
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to add abbreviation_detector to pipeline: {str(e)}"
+                    )
+
+            if "serialize_abbreviation" not in nlp.pipe_names:
+                try:
+                    nlp.add_pipe(
+                        "serialize_abbreviation", after="abbreviation_detector"
+                    )
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to add serialize_abbreviation to pipeline: {str(e)}"
+                    )
+
+            return nlp
+
+        except Exception as e:
+            raise ImportError(
+                f"Error loading spaCy model {self.model_name}: {str(e)}. "
+                "Please ensure you have an internet connection and "
+                "sufficient permissions to download models."
+            ) from e
 
     def _load_abbreviations(self, texts: List[str]) -> List[List[Dict]]:
         """Process texts to extract abbreviations"""

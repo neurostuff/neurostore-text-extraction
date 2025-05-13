@@ -2,6 +2,7 @@ import json
 import random
 from pathlib import Path
 import pytest
+import spacy
 
 from ns_extract.dataset import Dataset
 from ns_extract.pipelines.umls_disease.model import UMLSDiseaseExtractor
@@ -143,6 +144,60 @@ def test_custom_model_configuration():
     # Verify disabled components
     assert "parser" not in extractor.nlp.pipe_names
     assert "ner" not in extractor.nlp.pipe_names
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_invalid_model_name():
+    """Test error handling for invalid model names."""
+    with pytest.raises(ImportError, match="Error loading spaCy model invalid_model:"):
+        UMLSDiseaseExtractor(model_name="invalid_model")
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_transformer_model_rejection():
+    """Test rejection of transformer-based models."""
+    with pytest.raises(ValueError, match=".*is a transformer model.*"):
+        # Using a transformer model should raise an error
+        UMLSDiseaseExtractor(model_name="en_core_web_trf")
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_pipeline_component_errors(monkeypatch):
+    """Test error handling for pipeline component failures."""
+
+    def mock_add_pipe(*args, **kwargs):
+        raise Exception("Mock pipeline error")
+
+    # Test failure to add abbreviation_detector
+    with pytest.raises(
+        ValueError, match="Failed to add abbreviation_detector to pipeline"
+    ):
+        with monkeypatch.context() as m:
+            m.setattr("spacy.language.Language.add_pipe", mock_add_pipe)
+            UMLSDiseaseExtractor()
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_model_download_simulation(monkeypatch):
+    """Test model download behavior."""
+    download_called = False
+
+    def mock_download(model_name):
+        nonlocal download_called
+        download_called = True
+
+    def mock_load(model_name, **kwargs):
+        if not download_called:
+            raise OSError("Model not found")
+        return spacy.load("en_core_web_sm", **kwargs)
+
+    with monkeypatch.context() as m:
+        m.setattr("spacy.cli.download", mock_download)
+        m.setattr("spacy.load", mock_load)
+
+        extractor = UMLSDiseaseExtractor(model_name="en_core_web_sm")
+        assert download_called, "Model download should have been triggered"
+        assert extractor.nlp is not None, "Model should be loaded after download"
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
