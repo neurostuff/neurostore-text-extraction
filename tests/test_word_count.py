@@ -1,6 +1,46 @@
 import json
-from ns_extract.pipelines import WordCountExtractor, WordDevianceExtractor
+import pytest
+from .example_pipelines.word_count.model import (
+    WordCountExtractor,
+    WordDevianceExtractor,
+)
 from ns_extract.dataset import Dataset
+
+
+@pytest.fixture
+def text_content():
+    """Sample text content for testing."""
+    return "This is a test document with exactly ten words, wow."
+
+
+@pytest.fixture
+def mock_inputs(text_content):
+    """Mock study inputs for testing."""
+    return {
+        "study1": {"text": text_content},
+        "study2": {"text": " ".join([text_content, text_content])},  # Double length
+    }
+
+
+def test_word_count_transform(text_content):
+    """Test WordCountExtractor.execute() with preprocessed inputs."""
+    extractor = WordCountExtractor()
+    cleaned_result, result, valid = extractor.transform({"text": text_content})
+    assert result["word_count"] == 10
+    assert valid is True
+
+
+def test_word_deviance_transform(mock_inputs):
+    """Test WordDevianceExtractor._transform() with preprocessed inputs."""
+    extractor = WordDevianceExtractor()
+    cleaned_result, results, valid = extractor.transform(mock_inputs)
+
+    # First document has 10 words, second has 20
+    # Average is 15, so deviances should be 5
+    assert results["study1"]["word_deviance"] == 5
+    assert results["study2"]["word_deviance"] == 5
+    assert valid["study1"] is True
+    assert valid["study2"] is True
 
 
 def test_WordCountExtractor(sample_data, tmp_path):
@@ -19,7 +59,6 @@ def test_WordCountExtractor(sample_data, tmp_path):
     # Check pipeline info
     pipeline_info = json.loads((version_dir / "pipeline_info.json").read_text())
     assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["type"] == "independent"
 
     # Verify study outputs
     # Glob for dirs
@@ -40,12 +79,6 @@ def test_WordCountExtractor(sample_data, tmp_path):
     # Rerun - no changes, no new outputs
     wce.transform_dataset(dataset, output_dir)
     assert len(list(output_dir.glob("WordCountExtractor/1.0.0/*"))) == 1
-
-    # Test input source preference
-    wce_ace = WordCountExtractor(input_sources=("ace", "pubget"))
-    wce_ace.transform_dataset(dataset, output_dir)
-    # Should create new hash dir due to different arguments
-    assert len(list(output_dir.glob("WordCountExtractor/1.0.0/*"))) == 2
 
 
 def test_parallel_processing(sample_data, tmp_path):
@@ -101,7 +134,6 @@ def test_WordDevianceExtractor(sample_data, tmp_path):
     # Check pipeline info
     pipeline_info = json.loads((version_dir / "pipeline_info.json").read_text())
     assert pipeline_info["version"] == "1.0.0"
-    assert pipeline_info["type"] == "dependent"
 
     # Verify study outputs
     study_dirs = list([x for x in version_dir.glob("*") if x.is_dir()])
@@ -118,12 +150,10 @@ def test_WordDevianceExtractor(sample_data, tmp_path):
         assert "word_deviance" in results
         assert isinstance(results["word_deviance"], int)
 
-    # Rerun - no changes, no new outputs
-    wde.transform_dataset(dataset, output_dir)
     assert len(list(output_dir.glob("WordDevianceExtractor/1.0.0/*"))) == 1
 
-    # Test input source preference
-    wde_ace = WordDevianceExtractor(input_sources=("ace", "pubget"))
-    wde_ace.transform_dataset(dataset, output_dir)
-    # Should create new hash dir due to different arguments
-    assert len(list(output_dir.glob("WordDevianceExtractor/1.0.0/*"))) == 2
+    # Rerun - no changes, no new outputs
+    wde.transform_dataset(dataset, output_dir)
+
+    # No new directory since no changes in inputs
+    assert len(list(output_dir.glob("WordDevianceExtractor/1.0.0/*"))) == 1

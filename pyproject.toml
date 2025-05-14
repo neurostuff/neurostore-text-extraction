@@ -30,7 +30,6 @@ participant_demographics = [
 umls_disease = [
     "pandas",
     "numpy",
-    "labelrepo",
     "spacy",
     "scispacy",
     "tqdm",

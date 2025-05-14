@@ -4,9 +4,11 @@ from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
 import re
-import json
-from typing import Union, Optional
+from typing import Union, Optional, Dict
 import logging
+from datetime import datetime
+import json
+from packaging.version import parse as parse_version
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +21,35 @@ INPUTS = [
     "tables",
     "tables_xml",
 ]
+
+
+@dataclass
+class PipelineInfo:
+    """Pipeline metadata."""
+
+    name: str
+    version: str
+    config_hash: str
+    pipeline_info: Path
+
+
+@dataclass
+class PipelineRunResult:
+    """Result from an pipeline run."""
+
+    pipeline: PipelineInfo
+    result: Path
+    info: Path
+    raw_result: Optional[Path] = None
+
+    def __post_init__(self):
+        # Validate paths exist
+        if not self.result.exists():
+            raise ValueError(f"Result file does not exist: {self.result}")
+        if self.raw_result and not self.raw_result.exists():
+            raise ValueError(f"Raw result file does not exist: {self.raw_result}")
+        if not self.info.exists():
+            raise ValueError(f"Info file does not exist: {self.info}")
 
 
 @dataclass
@@ -91,13 +122,14 @@ class Study:
     pmcid: str = None
     ace: ProcessedData = None
     pubget: ProcessedData = None
+    pipeline_results: Dict[str, PipelineRunResult] = field(default_factory=dict)
 
     def __post_init__(self):
         self.dbid = self.study_dir.name
 
         # Load identifiers
-        with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
-            json.load(ident_fp)  # Load but don't use identifiers right now
+        # with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
+        #     json.load(ident_fp)  # Load but don't use identifiers right now
 
         # Setup the processed data objects
         # Load AceRaw if available
@@ -134,6 +166,25 @@ class Study:
 
                 setattr(self, t, processed)
 
+    def add_pipeline_result(self, result: PipelineRunResult):
+        """Add an pipeline result to the study.
+
+        Args:
+            result: PipelineRunResult containing paths to results and metadata
+        """
+        self.pipeline_results[result.pipeline.name] = result
+
+    def get_pipeline_result(self, pipeline_name: str) -> Optional[PipelineRunResult]:
+        """Get am pipeline result by pipeline name.
+
+        Args:
+            pipeline_name: Name of the pipeline
+
+        Returns:
+            PipelineRunResult if found, None otherwise
+        """
+        return self.pipeline_results.get(pipeline_name)
+
 
 class Dataset:
     """Dataset class for processing inputs."""
@@ -141,6 +192,7 @@ class Dataset:
     def __init__(self, input_directory):
         """Initialize the dataset."""
         self.data = self.load_directory(input_directory)
+        self.pipelines = {}
 
     def slice(self, ids):
         """Slice the dataset."""
@@ -175,6 +227,147 @@ class Dataset:
             raise ValueError(f"No valid studies found in {input_directory}")
 
         return dset_data
+
+    def add_pipeline(
+        self,
+        pipeline_name: str,
+        pipeline_dir: Union[str, Path],
+        version: str = "latest",
+        config_hash: str = "latest",
+    ):
+        """Add pipeline results to studies in the dataset.
+
+        Args:
+            pipeline_name: Name of the pipeline (e.g., "UMLSDiseasePipeline")
+            pipeline_dir: Base directory containing all pipeline results in structure:
+                <pipeline_dir>/<pipeline_name>/<version>/<config_hash>/
+            version_str: Version to use, or "latest" to use highest semver version
+            config: Config hash to use, or "latest" to use most recent by pipeline_info.json date
+
+        The pipeline directory should contain:
+            <study_id>/
+                results.json  # Required
+                raw_results.json  # Optional
+                info.json  # Required
+            pipeline_info.json  # Required for config selection
+        """
+        pipeline_dir = Path(pipeline_dir)
+        if not pipeline_dir.exists():
+            raise ValueError(f"Pipeline directory does not exist: {pipeline_dir}")
+
+        # Get pipeline name from directory name
+        pipeline_name = pipeline_dir.name
+
+        # Get version directory
+        if version == "latest":
+            # Find highest semver version
+            version_dirs = [d for d in pipeline_dir.glob("*/") if d.is_dir()]
+            if not version_dirs:
+                raise ValueError(f"No version directories found in {pipeline_dir}")
+
+            versions = []
+            for d in version_dirs:
+                try:
+                    versions.append(parse_version(d.name))
+                except ValueError:
+                    logger.warning(f"Invalid version directory name: {d.name}")
+                    continue
+
+            if not versions:
+                raise ValueError("No valid version directories found")
+
+            version = str(max(versions))
+            version_dir = pipeline_dir / version
+        else:
+            version_dir = pipeline_dir / version
+            if not version_dir.exists():
+                raise ValueError(f"Version directory not found: {version_dir}")
+
+        # Get config directory
+        if config_hash == "latest":
+            # Find most recent by pipeline_info.json date
+            config_dirs = [d for d in version_dir.glob("*/") if d.is_dir()]
+            if not config_dirs:
+                raise ValueError(f"No config directories found in {version_dir}")
+
+            latest_date = None
+            latest_config = None
+
+            for d in config_dirs:
+                info_file = d / "pipeline_info.json"
+                if not info_file.exists():
+                    logger.warning(f"No pipeline_info.json found in {d}")
+                    continue
+
+                try:
+                    with open(info_file) as f:
+                        info = json.load(f)
+                    date = datetime.fromisoformat(info["date"])
+                    if latest_date is None or date > latest_date:
+                        latest_date = date
+                        latest_config = d
+                        latest_info = info_file
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Error reading pipeline_info.json from {d}: {e}")
+                    continue
+
+            if latest_config is None:
+                raise ValueError("No valid config directories found")
+
+            config_dir = latest_config
+            config_hash = latest_config.name
+            pipeline_info = latest_info
+        else:
+            config_dir = version_dir / config_hash
+            if not config_dir.exists():
+                raise ValueError(f"Config directory not found: {config_dir}")
+            pipeline_info = config_dir / "pipeline_info.json"
+            if not pipeline_info.exists():
+                raise ValueError(f"No pipeline_info.json found in {config_dir}")
+
+        # Create pipeline metadata
+        pipeline = PipelineInfo(
+            name=pipeline_name,
+            version=version,
+            config_hash=config_hash,
+            pipeline_info=pipeline_info,
+        )
+        self.pipelines[pipeline_name] = {"info": pipeline, "results": {}}
+
+        # Add results to studies
+        for study_dir in config_dir.glob("*/"):
+            if not study_dir.is_dir():
+                continue
+
+            study_id = study_dir.name
+            study = self.data.get(study_id)
+            if not study:
+                logger.warning(f"Found results for unknown study: {study_id}")
+                continue
+
+            # Get paths to result files
+            result_path = study_dir / "results.json"
+            raw_path = study_dir / "raw_results.json"
+            info_path = study_dir / "info.json"
+
+            # Check required files exist
+            if not result_path.exists():
+                logger.warning(f"No results.json found for study {study_id}")
+                continue
+
+            if not info_path.exists():
+                logger.warning(f"No info.json found for study {study_id}")
+                continue
+
+            # Create and add PipelineRunResult
+            result = PipelineRunResult(
+                pipeline=pipeline,
+                result=result_path,
+                info=info_path,
+                raw_result=raw_path if raw_path.exists() else None,
+            )
+            study.add_pipeline_result(result)
+            self.pipelines[pipeline_name]["results"][study_id] = result
 
     def __len__(self):
         """Return the length of the dataset."""
