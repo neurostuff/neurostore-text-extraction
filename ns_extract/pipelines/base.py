@@ -21,6 +21,11 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 import concurrent.futures
+from ns_extract.pipelines.normalize import (
+    normalize_string,
+    load_abbreviations,
+    resolve_abbreviations,
+)
 from datetime import datetime
 from functools import reduce
 import hashlib
@@ -31,6 +36,7 @@ from pathlib import Path
 from typing import (
     Any,
     Dict,
+    List,
     Optional,
     Tuple,
     Type,
@@ -756,16 +762,16 @@ class Extractor(ABC):
         validate: Validate outputs against the schema
         post_process: Optional hook for modifying results before validation
 
+    The interface handles both independent and dependent pipeline processing:
+    - Independent: processes individual studies (single dict input)
+    - Dependent: processes all studies together (dict of dicts input)
+
     Example:
         >>> class MyExtractor(Extractor[MyOutputSchema]):
         ...     _version = "1.0.0"
         ...     _output_schema = MyOutputSchema
         ...
-        ...     def fit(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
-        ...         # Train the model
-        ...         return self
-        ...
-        ...     def transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
+        ...     def _transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
         ...         # Transform input data
         ...         return transformed_data
     """
@@ -773,10 +779,15 @@ class Extractor(ABC):
     _version: str = None
     _output_schema: Type[BaseModel] = None
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+            self,
+            expand_abbreviations_fields: List = [],
+            normalizable_string_fields: List = [],
+            **kwargs: Any) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
+            expand_abbreviations_fields: List of fields to apply normalization to
             **kwargs: Configuration parameters for the extractor
 
         Raises:
@@ -787,19 +798,34 @@ class Extractor(ABC):
         if not self._version:
             raise ValueError("Subclass must define _version class variable")
 
+        self.normalizable_string_fields = normalizable_string_fields
+        self.expand_abbreviations_fields = expand_abbreviations_fields
+        self._nlp = None
+
+        # Pre-load NLP model if we'll need it
+        if expand_abbreviations_fields:
+            import spacy
+            try:
+                self._nlp = spacy.load("en_core_sci_sm", disable=["parser", "ner"])
+                if "abbreviation_detector" not in self._nlp.pipe_names:
+                    import scispacy  # noqa: F401
+                    self._nlp.add_pipe("abbreviation_detector")
+            except Exception as e:
+                print(f"Warning: Failed to load NLP model: {e}")
+
         if isinstance(self, IndependentPipeline):
             IndependentPipeline.__init__(self, extractor=self)
         if isinstance(self, DependentPipeline):
             DependentPipeline.__init__(self, extractor=self)
 
     @abstractmethod
-    def fit(
+    def _transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
-    ) -> "Extractor":
-        """Train the extractor on input data.
+    ) -> None:
+        """Implementation of model training logic.
 
-        This method must be implemented by subclasses that require training.
-        For pre-trained models, it can be a no-op that returns self.
+        This is the core transformation method that must be implemented by subclasses.
+        It should convert raw study data into the expected output format defined by T.
 
         Args:
             inputs: Dict mapping study IDs to their input data
@@ -809,75 +835,81 @@ class Extractor(ABC):
                         ...
                     }
                 }
+                For independent pipelines, will contain single study.
+                For dependent pipelines, will contain all studies.
             **kwargs: Additional training arguments
-
-        Returns:
-            self: The fitted extractor instance
 
         Raises:
             ProcessingError: If training fails
         """
         pass
 
-    @abstractmethod
-    def transform(
-        self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
-    ) -> Dict[str, Any]:
-        """Transform input data into output format.
+    def _process_text_field(
+        self,
+        text: str,
+        field_name: str,
+        abbreviations: Optional[List[Dict]] = None
+    ) -> str:
+        """Process a text field with abbreviation expansion and/or normalization."""
+        if not isinstance(text, str):
+            return text
 
-        This method must be implemented by subclasses to transform input data
-        into the expected output format defined by the schema.
+        # First expand abbreviations if needed
+        if field_name in self.expand_abbreviations_fields and abbreviations:
+            text = resolve_abbreviations(text, abbreviations)
+
+        # Then normalize if needed
+        if field_name in self.normalizable_string_fields:
+            text = normalize_string(text)
+            
+        return text
+
+    def _normalize_nested_fields(
+        self,
+        data: Any,
+        abbreviations: Optional[List[Dict]] = None
+    ) -> Any:
+        """Recursively process fields in nested data structures."""
+        if isinstance(data, dict):
+            normalized = {}
+            for key, value in data.items():
+                if isinstance(value, str):
+                    normalized[key] = self._process_text_field(value, key, abbreviations)
+                else:
+                    normalized[key] = self._normalize_nested_fields(value, abbreviations)
+            return normalized
+        elif isinstance(data, list):
+            return [self._normalize_nested_fields(item, abbreviations) for item in data]
+        return data
+
+    def post_process(self, results: Dict[str, Any]) -> Dict[str, Any]:
+        """Optional hook for post-processing transform results.
+
+        This can be overridden by subclasses to modify results before validation,
+        for example to clean or normalize data.
 
         Args:
-            inputs: Dict mapping study IDs to their input data
-                Format: {
-                    "study_id": {
-                        "input_type": input_data,
-                        ...
-                    }
-                }
-            **kwargs: Additional transformation arguments
+            results: Dict mapping study IDs to their raw transformed data
 
         Returns:
-            Dict mapping study IDs to their transformed outputs
-            Format: {
-                "study_id": transformed_data # type T
-            }
-
-        Raises:
-            ProcessingError: If transformation fails for any study
+            Dict with same structure as input, potentially modified
         """
-        pass
-
-    def fit_transform(
-        self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
-    ) -> Tuple[Dict[str, Any], Dict[str, Any], Union[bool, Dict[str, bool]]]:
-        """Fit the extractor to the data, then transform it.
-
-        This method provides a convenient way to fit and transform in one step:
-        1. Calls fit() to train the model if needed
-        2. Calls transform() for core data processing
-        3. Applies optional post-processing
-        4. Validates results against schema
-
-        Args:
-            inputs: Dict mapping study IDs to their input data
-            **kwargs: Additional arguments passed to both fit and transform
-
-        Returns:
-            Tuple containing:
-            - Post-processed results (Dict[str, T])
-            - Raw results before post-processing (Dict[str, T])
-            - Validation status (bool or Dict[str, bool])
-
-        Raises:
-            ProcessingError: If processing fails
-        """
-        self.fit(inputs, **kwargs)
-        raw_results = self.transform(inputs, **kwargs)
-        cleaned_results = self.post_process(raw_results)
-        validation_status = self.validate(cleaned_results)
-        return (cleaned_results, raw_results, validation_status)
+        if isinstance(self, DependentPipeline):
+            # Process each study with its own abbreviations
+            processed_results = {}
+            for study_id, study_data in results.items():
+                # Extract abbreviations from this study's source text
+                source_inputs = next(s for s in study_data.values() if isinstance(s, dict))
+                abbreviations = self._extract_source_abbreviations(source_inputs)
+                # Process this study's data with its abbreviations
+                processed_results[study_id] = self._normalize_nested_fields(
+                    study_data, abbreviations
+                )
+            return processed_results
+        else:
+            # Process single study with its abbreviations
+            abbreviations = self._extract_source_abbreviations(results)
+            return self._normalize_nested_fields(results, abbreviations)
 
     def validate(self, output: Dict[str, Any]) -> Union[bool, Dict[str, bool]]:
         """Validate transformed data against schema.
@@ -916,16 +948,35 @@ class Extractor(ABC):
                 logging.error(f"Output validation error: {str(e)}")
                 return False
 
-    def post_process(self, results: Dict[str, Any]) -> Dict[str, Any]:
-        """Optional hook for post-processing transform results.
-
-        This can be overridden by subclasses to modify results before validation,
-        for example to clean or normalize data.
+    def _extract_source_abbreviations(self, inputs: Dict[str, Dict[str, Any]]) -> List[Dict]:
+        """Extract abbreviations from the source text (ace or pubget).
 
         Args:
-            results: Dict mapping study IDs to their raw transformed data
+            inputs: Dict containing input data with source text
 
         Returns:
-            Dict with same structure as input, potentially modified
+            List of abbreviation dictionaries from the source text
         """
-        return results
+        if not self._nlp or not self.expand_abbreviations_fields:
+            return []
+
+        # Look for text in data pond inputs with priority order
+        for sources, input_types in self._data_pond_inputs.items():
+            if "text" not in input_types:
+                continue
+                
+            for source in sources:  # e.g., try pubget first, then ace
+                if source not in inputs:
+                    continue
+                    
+                if "text" not in inputs[source]:
+                    continue
+                    
+                source_text = inputs[source]["text"]
+                if not isinstance(source_text, str):
+                    continue
+                    
+                # Found valid source text, extract abbreviations
+                return load_abbreviations(source_text, model=self._nlp)
+                
+        return []
