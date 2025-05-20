@@ -685,8 +685,8 @@ class DependentPipeline(Pipeline):
                         f"Failed to load inputs for study {db_id}: {str(e)}"
                     )
 
-            # Process loaded inputs and get results
-            transform_outputs = self.transform(loaded_study_inputs, **kwargs)
+            # Process loaded inputs with fit_transform
+            transform_outputs = self.fit_transform(loaded_study_inputs, **kwargs)
             cleaned_results, raw_results, validation_status = transform_outputs
 
             if cleaned_results:
@@ -735,47 +735,25 @@ class DependentPipeline(Pipeline):
                     logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
             raise
 
-    def validate_results(self, results, **kwargs):
-        """Apply validation to each study's results individually.
-
-        Args:
-            results: Dict mapping study IDs to their results
-            **kwargs: Additional validation arguments
-
-        Returns:
-            Tuple of:
-            - Dict mapping study IDs to their validated results
-            - Dict mapping study IDs to validation status (True/False)
-        """
-        validation_status = {}
-
-        for db_id, study_results in results.items():
-            try:
-                # Validate each study's results against the schema
-                self._output_schema.model_validate(study_results)
-                validation_status[db_id] = True
-            except Exception as e:
-                logging.error(f"Output validation error for study {db_id}: {str(e)}")
-                validation_status[db_id] = False
-
-        return validation_status
+    # Removed validate_results method - now using unified validate() method
 
 
 class Extractor(ABC):
     """Base class for data transformation logic.
 
     This class defines the core interface for transforming input study data into
-    structured outputs validated against a schema. It separates the transformation
-    logic from I/O operations (handled by Pipeline classes).
+    structured outputs validated against a schema. It follows the scikit-learn
+    fit/transform pattern while supporting both pre-trained and trainable models.
 
     Required Class Variables:
         _version: str - Version identifier for the extractor implementation
         _output_schema: Type[BaseModel] - Pydantic model defining expected output format
 
     Key Methods:
-        _transform: Core transformation logic (must be implemented by subclasses)
-        transform: Main entry point that coordinates transformation and validation
-        validate_output: Validates outputs against the schema
+        fit: Train the extractor on input data (must be implemented by subclasses)
+        transform: Transform input data (must be implemented by subclasses)
+        fit_transform: Convenience method to fit and transform in one step
+        validate: Validate outputs against the schema
         post_process: Optional hook for modifying results before validation
 
     Example:
@@ -783,7 +761,11 @@ class Extractor(ABC):
         ...     _version = "1.0.0"
         ...     _output_schema = MyOutputSchema
         ...
-        ...     def _transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
+        ...     def fit(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
+        ...         # Train the model
+        ...         return self
+        ...
+        ...     def transform(self, inputs: Dict[str, Dict[str, Any]], **kwargs):
         ...         # Transform input data
         ...         return transformed_data
     """
@@ -811,13 +793,40 @@ class Extractor(ABC):
             DependentPipeline.__init__(self, extractor=self)
 
     @abstractmethod
-    def _transform(
+    def fit(
+        self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
+    ) -> "Extractor":
+        """Train the extractor on input data.
+
+        This method must be implemented by subclasses that require training.
+        For pre-trained models, it can be a no-op that returns self.
+
+        Args:
+            inputs: Dict mapping study IDs to their input data
+                Format: {
+                    "study_id": {
+                        "input_type": input_data,
+                        ...
+                    }
+                }
+            **kwargs: Additional training arguments
+
+        Returns:
+            self: The fitted extractor instance
+
+        Raises:
+            ProcessingError: If training fails
+        """
+        pass
+
+    @abstractmethod
+    def transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
     ) -> Dict[str, Any]:
         """Transform input data into output format.
 
-        This is the core transformation method that must be implemented by subclasses.
-        It should convert raw study data into the expected output format defined by T.
+        This method must be implemented by subclasses to transform input data
+        into the expected output format defined by the schema.
 
         Args:
             inputs: Dict mapping study IDs to their input data
@@ -840,66 +849,72 @@ class Extractor(ABC):
         """
         pass
 
-    def transform(
+    def fit_transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
     ) -> Tuple[Dict[str, Any], Dict[str, Any], Union[bool, Dict[str, bool]]]:
-        """Transform and validate input data.
+        """Fit the extractor to the data, then transform it.
 
-        This method orchestrates the complete transformation process:
-        1. Calls _transform for core data processing
-        2. Applies optional post-processing
-        3. Validates results against schema
+        This method provides a convenient way to fit and transform in one step:
+        1. Calls fit() to train the model if needed
+        2. Calls transform() for core data processing
+        3. Applies optional post-processing
+        4. Validates results against schema
 
         Args:
             inputs: Dict mapping study IDs to their input data
-            **kwargs: Additional transformation arguments
+            **kwargs: Additional arguments passed to both fit and transform
 
         Returns:
             Tuple containing:
             - Post-processed results (Dict[str, T])
             - Raw results before post-processing (Dict[str, T])
-            - Validation status:
-                - bool for IndependentPipeline (single result)
-                - Dict[str, bool] for DependentPipeline (per-study validation)
+            - Validation status (bool or Dict[str, bool])
 
         Raises:
-            ProcessingError: If transformation fails
+            ProcessingError: If processing fails
         """
-        # Get raw results from transform
-        raw_results = self._transform(inputs, **kwargs)
-
-        # Post-process results
+        self.fit(inputs, **kwargs)
+        raw_results = self.transform(inputs, **kwargs)
         cleaned_results = self.post_process(raw_results)
-
-        # Validate results based on pipeline type
-        if isinstance(self, DependentPipeline):
-            # For dependent pipelines, validate each study individually
-            validation_status = self.validate_results(cleaned_results)
-        else:
-            # For independent pipelines, validate single study
-            validation_status = self.validate_output(cleaned_results)
-
+        validation_status = self.validate(cleaned_results)
         return (cleaned_results, raw_results, validation_status)
 
-    def validate_output(self, output: Dict[str, Any]) -> bool:
+    def validate(self, output: Dict[str, Any]) -> Union[bool, Dict[str, bool]]:
         """Validate transformed data against schema.
+
+        Unified validation method that handles both independent and dependent
+        pipeline cases.
 
         Args:
             output: Dict mapping study IDs to transformed data
 
         Returns:
-            bool: True if validation passes, False otherwise
+            For independent pipelines: bool indicating if validation passed
+            For dependent pipelines: Dict mapping study IDs to validation status
 
         Note:
             Validation failures are logged but don't raise exceptions
             to allow graceful handling of invalid results
         """
-        try:
-            self._output_schema.model_validate(output)
-            return True
-        except Exception as e:
-            logging.error(f"Output validation error: {str(e)}")
-            return False
+        if isinstance(self, DependentPipeline):
+            # Validate each study individually
+            validation_status = {}
+            for study_id, study_output in output.items():
+                try:
+                    self._output_schema.model_validate(study_output)
+                    validation_status[study_id] = True
+                except Exception as e:
+                    logging.error(f"Output validation error for study {study_id}: {str(e)}")
+                    validation_status[study_id] = False
+            return validation_status
+        else:
+            # Validate single output
+            try:
+                self._output_schema.model_validate(output)
+                return True
+            except Exception as e:
+                logging.error(f"Output validation error: {str(e)}")
+                return False
 
     def post_process(self, results: Dict[str, Any]) -> Dict[str, Any]:
         """Optional hook for post-processing transform results.
