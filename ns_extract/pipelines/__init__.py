@@ -9,8 +9,6 @@ from .tfidf import TFIDFExtractor
 
 __all__ = [
     "ParticipantDemographicsExtractor",
-    "WordCountExtractor",
-    "WordDevianceExtractor",
     "TaskExtractor",
     "Pipeline",
     "IndependentPipeline",

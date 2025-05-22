@@ -10,20 +10,19 @@ pipeline implementations.
 """
 
 import hashlib
+import inspect
 from pathlib import Path
 import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, Union, Optional, Type, TYPE_CHECKING, List
+from typing import Dict, Any, Union, Optional, List
 
-from pydantic import BaseModel
-
-# Import type hints only during type checking to avoid circular imports
-if TYPE_CHECKING:
-    from ns_extract.pipelines.data_structures import (
-        InputPipelineInfo,
-        PipelineOutputInfo,
-    )
+from ns_extract.pipelines.exceptions import FileOperationError
+from ns_extract.pipelines.data_structures import (
+    InputPipelineInfo,
+    PipelineOutputInfo,
+    StudyOutputJson,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +36,7 @@ class FileOperationsMixin:
     - Directory management
     """
 
-    def calculate_md5(self, file_path: Path) -> str:
+    def _calculate_md5(self, file_path: Path) -> str:
         """Calculate MD5 hash of a file's contents.
 
         Args:
@@ -53,7 +52,7 @@ class FileOperationsMixin:
             file_contents = f.read()
         return hashlib.md5(file_contents.encode()).hexdigest()
 
-    def load_json(self, file_path: Path) -> Dict[str, Any]:
+    def _load_json(self, file_path: Path) -> Dict[str, Any]:
         """Load and parse JSON from a file.
 
         Args:
@@ -69,7 +68,7 @@ class FileOperationsMixin:
         with file_path.open("r") as f:
             return json.load(f)
 
-    def write_json(self, file_path: Path, data: Dict[str, Any]) -> None:
+    def _write_json(self, file_path: Path, data: Dict[str, Any]) -> None:
         """Write data to a JSON file.
 
         Args:
@@ -83,7 +82,7 @@ class FileOperationsMixin:
         with file_path.open("w") as f:
             json.dump(data, f, default=str, indent=4)
 
-    def get_next_available_dir(self, base_path: Path) -> Path:
+    def _get_next_available_dir(self, base_path: Path) -> Path:
         """Find next available directory name by appending incrementing numbers.
 
         Used to create uniquely named directories when a target directory
@@ -121,7 +120,7 @@ class StudyInputsMixin:
     different file formats.
     """
 
-    def load_text_file(self, file_path: Path) -> str:
+    def _load_text_file(self, file_path: Path) -> str:
         """Read text file contents with robust error handling.
 
         Args:
@@ -139,7 +138,7 @@ class StudyInputsMixin:
         except Exception as e:
             raise IOError(f"Failed to read text file {file_path}: {str(e)}")
 
-    def load_study_inputs(
+    def _load_study_inputs(
         self, study_inputs: Dict[str, Union[str, Path]]
     ) -> Dict[str, Union[str, Dict[str, Any], List[Dict[str, Any]]]]:
         """Load and parse study input files based on their extensions.
@@ -171,9 +170,9 @@ class StudyInputsMixin:
 
             try:
                 if suffix == ".txt":
-                    loaded_inputs[input_name] = self.load_text_file(path)
+                    loaded_inputs[input_name] = self._load_text_file(path)
                 elif suffix == ".json":
-                    loaded_inputs[input_name] = self.load_json(path)
+                    loaded_inputs[input_name] = self._load_json(path)
                 elif suffix == ".csv":
                     import pandas as pd
 
@@ -202,7 +201,7 @@ class PipelineOutputsMixin(FileOperationsMixin):
     for all file operations.
     """
 
-    def convert_pipeline_info(
+    def _convert_pipeline_info(
         self,
         info: Optional[
             Union[Dict[str, Dict[str, str]], Dict[str, "InputPipelineInfo"]]
@@ -234,64 +233,28 @@ class PipelineOutputsMixin(FileOperationsMixin):
                 result[name] = InputPipelineInfo(**value)
         return result
 
-    def create_pipeline_info(
+    def _create_pipeline_info(
         self,
-        extractor_name: str,
-        extractor_kwargs: Dict[str, Any],
-        version: str,
-        config_hash: str,
-        output_schema: Type[BaseModel],
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
-        transform_kwargs: Optional[Dict[str, Any]] = None,
-    ) -> "PipelineOutputInfo":
-        """Create pipeline metadata object with configuration details.
-
-        Args:
-            extractor_name: Name of the extractor class used
-            extractor_kwargs: Configuration passed to extractor
-            version: Pipeline version identifier
-            config_hash: Hash of pipeline configuration
-            output_schema: Pydantic model defining output format
-            input_pipeline_info: Optional info about input pipeline dependencies
-            transform_kwargs: Optional arguments for transform function
-
-        Returns:
-            PipelineOutputInfo instance containing all metadata
-
-        Example:
-            >>> create_pipeline_info(
-            ...     extractor_name="MyExtractor",
-            ...     extractor_kwargs={"param": "value"},
-            ...     version="1.0.0",
-            ...     config_hash="abc123",
-            ...     output_schema=MySchema,
-            ... )
-        """
-        from ns_extract.pipelines.data_structures import (
-            PipelineOutputInfo,
-            InputPipelineInfo,
-        )
-
-        if input_pipeline_info is None:
-            input_pipelines = {}
-        else:
-            input_pipelines = {
-                name: InputPipelineInfo(**kwargs)
-                for name, kwargs in input_pipeline_info.items()
-            }
-
+        hash_outdir: Path,
+        transform_kwargs: Dict[str, Any],
+        input_pipelines: Optional[Dict[str, Dict[str, str]]] = None,
+    ) -> PipelineOutputInfo:
+        """Create pipeline metadata object with configuration details."""
         return PipelineOutputInfo(
             date=datetime.now().isoformat(),
-            version=version,
-            config_hash=config_hash,
-            extractor=extractor_name,
-            extractor_kwargs=extractor_kwargs or {},
-            transform_kwargs=transform_kwargs or {},
-            input_pipelines=input_pipelines,
-            schema=output_schema.model_json_schema(),
+            version=self.extractor._version,
+            config_hash=hash_outdir.name,
+            extractor=self.extractor.__class__.__name__,
+            extractor_kwargs={
+                arg: getattr(self, arg)
+                for arg in inspect.signature(self.__init__).parameters.keys()
+            },
+            transform_kwargs=transform_kwargs,
+            input_pipelines=input_pipelines or {},
+            schema=self.extractor._output_schema.model_json_schema(),
         )
 
-    def write_pipeline_info(
+    def _write_pipeline_info(
         self, hash_outdir: Path, info: "PipelineOutputInfo"
     ) -> None:
         """Write pipeline metadata to pipeline_info.json.
@@ -309,40 +272,58 @@ class PipelineOutputsMixin(FileOperationsMixin):
 
         try:
             info_path = hash_outdir / "pipeline_info.json"
-            self.write_json(info_path, info.model_dump())
+            self._write_json(info_path, info.model_dump())
         except IOError as e:
             logger.error(f"Failed to write pipeline info: {str(e)}")
             raise
 
-    def write_study_results(
-        self, study_dir: Path, study_id: str, results: Dict[str, Any]
+    def _write_study_info(
+        self,
+        hash_outdir: Path,
+        db_id: str,
+        study_inputs: Dict[str, Path],
+        is_valid: bool,
+    ):
+        """Write information about the study run to info.json file."""
+        info = StudyOutputJson(
+            date=datetime.now().isoformat(),
+            inputs={
+                str(input_file): self._calculate_md5(input_file)
+                for input_file in study_inputs.values()
+            },
+            valid=is_valid,
+        )
+        self._write_json(hash_outdir / db_id / "info.json", info.model_dump())
+
+    def _write_study_results(
+        self,
+        study_dir: Path,
+        study_id: str,
+        cleaned_results: Dict[str, Any],
+        raw_results: Dict[str, Any],
     ) -> None:
         """Write study results to output directory.
 
-        Creates two potential output files:
+        Writes two potential output files:
         - results.json: Final processed results
-        - raw_results.json: Optional pre-processing results
+        - raw_results.json: Only written when different from cleaned_results
 
         Args:
-            study_dir: Directory to write results into
+            study_dir: Directory to write results into (assumed to exist)
             study_id: Identifier of the study being processed
-            results: Dict containing results and optional raw_results
+            cleaned_results: Final processed results to write
+            raw_results: Raw results to write if different from cleaned
 
         Raises:
-            IOError: If directory creation or file writing fails
+            FileOperationError: If file writing fails
         """
         try:
-            study_dir.mkdir(exist_ok=True)
+            # Write raw results if different from cleaned
+            if raw_results != cleaned_results:
+                self._write_json(study_dir / "raw_results.json", raw_results)
 
-            # Write raw results if provided
-            if "raw_results" in results:
-                raw_path = study_dir / "raw_results.json"
-                self.write_json(raw_path, results["raw_results"])
-
-            # Write final results
-            results_path = study_dir / "results.json"
-            final_results = results.get("results", results)
-            self.write_json(results_path, final_results)
+            # Write cleaned results
+            self._write_json(study_dir / "results.json", cleaned_results)
 
         except IOError as e:
-            raise IOError(f"Failed to write results for study {study_id}: {str(e)}")
+            raise FileOperationError(f"Failed to write results for study {study_id}: {str(e)}")

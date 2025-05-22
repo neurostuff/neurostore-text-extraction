@@ -39,7 +39,6 @@ from typing import (
 
 from pydantic import BaseModel
 from tqdm.auto import tqdm
-
 from ns_extract.dataset import Dataset
 from ns_extract.pipelines.utils import (
     StudyInputsMixin,
@@ -53,8 +52,6 @@ from ns_extract.pipelines.exceptions import (
 )
 from ns_extract.pipelines.data_structures import (
     InputPipelineInfo,
-    PipelineOutputInfo,
-    StudyOutputJson,
 )
 
 
@@ -65,7 +62,7 @@ PipelineResults = Dict[str, StudyResults]  # Results across multiple studies
 ValidationResult = Tuple[bool, StudyResults]  # Validation result with data
 PipelineInputs = Dict[Tuple[str, ...], Tuple[str, ...]]  # Input source -> type mapping
 
-# Constants
+# Input pipeline constants
 PIPELINE_VERSION = "latest"  # Default pipeline version
 CONFIG_VERSION = "latest"  # Default config version
 
@@ -111,22 +108,72 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         """
         self.extractor = extractor
 
-    def _create_hash_string(self, dataset: Dataset) -> str:
-        """Create string for hashing pipeline configuration.
+    def transform_dataset(
+        self,
+        dataset: Dataset,
+        output_directory: Union[str, Path],
+        input_pipeline_info: Optional[Dict[str, InputPipelineInfo]] = None,
+        num_workers: int = 1,
+        **kwargs: Any,
+    ) -> None:
+        """Process a dataset through the pipeline.
 
-        The hash combines:
-        - Extractor configuration
-        - Pipeline version and config
+        Args:
+            dataset: Dataset to process
+            output_directory: Directory to write outputs
+            input_pipeline_info: Optional configuration for input pipelines
+            num_workers: Number of parallel workers (only used by IndependentPipeline)
+            **kwargs: Additional arguments passed to extractor
+
+        Raises:
+            FileOperationError: If directory creation or file operations fail
+            ProcessingError: If pipeline processing fails
+            ValidationError: If results fail schema validation
         """
+        # Get initial output directory path without creating it
+        hash_outdir = self.__prepare_pipeline(
+            dataset, output_directory, input_pipeline_info
+        )
 
-        # Extractor config - exclude private attrs
-        args = list(inspect.signature(self.__init__).parameters.keys())
-        args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
-        version_str = self.extractor._version
+        # Create pipeline info object
+        pipeline_info = self._create_pipeline_info(
+            hash_outdir,
+            kwargs,
+            input_pipelines=input_pipeline_info,
+        )
 
-        return f"{version_str}_{args_str}"
+        # If directory exists, check for changes
+        if hash_outdir.exists():
+            if not self.check_for_changes(hash_outdir, dataset):
+                print("No studies need processing")
+                return
+            # Get next available directory for new results if a DependentPipeline
+            # For IndependentPipeline, we overwrite the existing directory
+            if isinstance(self, DependentPipeline):
+                hash_outdir = self._get_next_available_dir(hash_outdir)
 
-    def _prepare_pipeline(
+        # Create directory and write pipeline info
+        hash_outdir.mkdir(parents=True, exist_ok=True)
+        self._write_pipeline_info(hash_outdir, pipeline_info)
+
+        # Collect and process study inputs
+        try:
+            self._process_dataset(
+                dataset,
+                hash_outdir,
+                num_workers=num_workers,
+                **kwargs,
+            )
+        except (
+            InputError,
+            ProcessingError,
+            ValidationError,
+            FileOperationError,
+        ) as e:
+            self.__handle_processing_error(e, hash_outdir)
+            raise
+
+    def __prepare_pipeline(
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
@@ -170,133 +217,38 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return hash_outdir
 
-    def transform_dataset(
-        self,
-        dataset: Dataset,
-        output_directory: Union[str, Path],
-        input_pipeline_info: Optional[Dict[str, InputPipelineInfo]] = None,
-        num_workers: int = 1,
-        **kwargs: Any,
-    ) -> None:
-        """Process a dataset through the pipeline.
+    def _create_hash_string(self, dataset: Dataset) -> str:
+        """Create string for hashing pipeline configuration.
 
-        Args:
-            dataset: Dataset to process
-            output_directory: Directory to write outputs
-            input_pipeline_info: Optional configuration for input pipelines
-            num_workers: Number of parallel workers (only used by IndependentPipeline)
-            **kwargs: Additional arguments passed to extractor
+        The hash combines:
+        - Extractor configuration
+        - Pipeline version and config
 
-        Raises:
-            FileOperationError: If directory creation or file operations fail
-            ProcessingError: If pipeline processing fails
-            ValidationError: If results fail schema validation
+        Note: Dependent pipelines include dataset keys in the hash
         """
-        # Get initial output directory path without creating it
-        hash_outdir = self._prepare_pipeline(
-            dataset, output_directory, input_pipeline_info
-        )
 
-        # Create pipeline info object
-        pipeline_info = self._create_pipeline_info(
-            hash_outdir,
-            kwargs,
-            input_pipelines=input_pipeline_info,
-        )
+        # Extractor config - exclude private attrs
+        args = list(inspect.signature(self.__init__).parameters.keys())
+        args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
+        version_str = self.extractor._version
 
-        # If directory exists, check for changes
-        if hash_outdir.exists():
-            if not self.check_for_changes(hash_outdir, dataset):
-                print("No studies need processing")
-                return
-            # Get next available directory for new results if a DependentPipeline
-            # For IndependentPipeline, we overwrite the existing directory
-            if isinstance(self, DependentPipeline):
-                hash_outdir = self.get_next_available_dir(hash_outdir)
+        return f"{version_str}_{args_str}"
 
-        # Create directory and write pipeline info
-        hash_outdir.mkdir(parents=True, exist_ok=True)
-        self.write_pipeline_info(hash_outdir, pipeline_info)
-
-        # Collect and process study inputs
-        try:
-            self._process_dataset(
-                dataset,
-                hash_outdir,
-                num_workers=num_workers,
-                **kwargs,
-            )
-        except (
-            InputError,
-            ProcessingError,
-            ValidationError,
-            FileOperationError,
-        ) as e:
-            self._handle_processing_error(e, hash_outdir)
-            raise
-
-    def _create_pipeline_info(
-        self,
-        hash_outdir: Path,
-        transform_kwargs: Dict[str, Any],
-        input_pipelines: Optional[Dict[str, Dict[str, str]]] = None,
-    ) -> PipelineOutputInfo:
-        """Create pipeline metadata object with configuration details."""
-        return PipelineOutputInfo(
-            date=datetime.now().isoformat(),
-            version=self.extractor._version,
-            config_hash=hash_outdir.name,
-            extractor=self.extractor.__class__.__name__,
-            extractor_kwargs={
-                arg: getattr(self, arg)
-                for arg in inspect.signature(self.__init__).parameters.keys()
-            },
-            transform_kwargs=transform_kwargs,
-            input_pipelines=input_pipelines or {},
-            schema=self.extractor._output_schema.model_json_schema(),
-        )
-
-    @abstractmethod
     def check_for_changes(
         self,
         hash_outdir: Path,
         dataset: Dataset,
     ) -> bool:
-        """Check if dataset needs processing.
+        """Check if any study inputs have changed or if there are new studies."""
+        existing_results = self.__filter_existing_results(hash_outdir, dataset)
+        matching_results = self.__identify_matching_results(
+            dataset,
+            existing_results,
+        )
+        # Return True if any of the studies' inputs have changed or if new studies exist
+        return any(not match for match in matching_results.values())
 
-        This method should be implemented by subclasses to determine if
-        the dataset needs to be processed based on their specific requirements.
-        """
-        pass
-
-    @abstractmethod
-    def _process_dataset(
-        self,
-        dataset: Dataset,
-        hash_outdir: Path,
-        **kwargs: Any,
-    ) -> None:
-        """Process the dataset.
-
-        This method should be implemented by subclasses to handle the actual
-        processing of studies according to their specific requirements
-        (independent vs dependent processing).
-        """
-        pass
-
-    def _handle_processing_error(self, error: Exception, hash_outdir: Path) -> None:
-        """Handle errors during processing."""
-        logger.error(str(error))
-        if isinstance(error, FileOperationError):
-            try:
-                import shutil
-
-                if hash_outdir.exists():
-                    shutil.rmtree(hash_outdir)
-            except Exception as cleanup_error:
-                logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
-
-    def _filter_existing_results(
+    def __filter_existing_results(
         self, hash_outdir: Path, dataset: Dataset
     ) -> Dict[str, Dict[str, Dict[str, str]]]:
         """Find the most recent result for an existing study.
@@ -328,7 +280,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             if not d.is_dir():
                 continue
 
-            pipeline_info = self.load_json(d / "pipeline_info.json")
+            pipeline_info = self._load_json(d / "pipeline_info.json")
             pipeline_args = pipeline_info.get("extractor_kwargs", {})
 
             if pipeline_args != current_args:
@@ -340,7 +292,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
                 info_file = sub_d / "info.json"
                 if info_file.exists():
-                    info = self.load_json(info_file)
+                    info = self._load_json(info_file)
                     found_info = {
                         "date": info["date"],
                         "inputs": info["inputs"],
@@ -354,39 +306,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                         existing_results[sub_d.name] = found_info
         return existing_results
 
-    def _are_file_hashes_identical(
-        self, study_inputs: Dict[str, Path], existing_inputs: Dict[str, str]
-    ) -> bool:
-        """Compare file hashes to determine if the inputs have changed."""
-        if set(str(p) for p in study_inputs.values()) != set(existing_inputs.keys()):
-            return False
-
-        for existing_file, hash_val in existing_inputs.items():
-            if self.calculate_md5(Path(existing_file)) != hash_val:
-                return False
-
-        return True
-
-    def gather_all_study_inputs(self, dataset: Dataset) -> Dict[str, Dict[str, Path]]:
-        """Collect all input file paths for each study in the dataset.
-
-        Args:
-            dataset: Dataset containing study data
-
-        Returns:
-            Dict mapping study IDs to their input files.
-            Format: {
-                "study_id": {
-                    "input_type": Path("path/to/input/file")
-                }
-            }
-        """
-        return {
-            db_id: self.collect_study_inputs(study)
-            for db_id, study in dataset.data.items()
-        }
-
-    def _identify_matching_results(
+    def __identify_matching_results(
         self,
         dataset: Dataset,
         existing_results: Dict[str, Dict[str, Dict[str, str]]],
@@ -403,7 +323,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             existing results (True = no changes, False = changes detected)
         """
         result_matches = {}
-        study_inputs = self.gather_all_study_inputs(dataset)
+        study_inputs = self._gather_all_study_inputs(dataset)
 
         for db_id, study in dataset.data.items():
             # Get existing input file hashes for this study
@@ -414,37 +334,33 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                 result_matches[db_id] = False
                 continue
 
-            # Use _are_file_hashes_identical to compare hashes
-            result_matches[db_id] = self._are_file_hashes_identical(
+            # Use __are_file_hashes_identical to compare hashes
+            result_matches[db_id] = self.__are_file_hashes_identical(
                 study_inputs[db_id], existing
             )
 
         return result_matches
 
-    def filter_inputs(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
-        """Filter dataset to only include studies needing processing.
-
-        A study needs processing if:
-        - It has no existing results
-        - Its input files have changed since last processing
-        - It's new to the dataset
+    def _gather_all_study_inputs(self, dataset: Dataset) -> Dict[str, Dict[str, Path]]:
+        """Collect all input file paths for each study in the dataset.
 
         Args:
-            hash_outdir: Output directory containing previous results
-            dataset: Dataset to filter
+            dataset: Dataset containing study data
 
         Returns:
-            New Dataset containing only studies needing processing
+            Dict mapping study IDs to their input files.
+            Format: {
+                "study_id": {
+                    "input_type": Path("path/to/input/file")
+                }
+            }
         """
-        existing_results = self._filter_existing_results(hash_outdir, dataset)
-        matching_results = self._identify_matching_results(dataset, existing_results)
-        # Return True if any of the studies' inputs have changed or if new studies exist
-        keep_ids = set(dataset.data.keys()) - {
-            db_id for db_id, match in matching_results.items() if match
+        return {
+            db_id: self._collect_study_inputs(study)
+            for db_id, study in dataset.data.items()
         }
-        return dataset.slice(keep_ids)
 
-    def collect_study_inputs(self, study: Any) -> Dict[str, Path]:
+    def _collect_study_inputs(self, study: Any) -> Dict[str, Path]:
         """Collect inputs for a study."""
         study_inputs = {}
 
@@ -477,186 +393,71 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return study_inputs
 
-    def write_study_info(
-        self,
-        hash_outdir: Path,
-        db_id: str,
-        study_inputs: Dict[str, Path],
-        is_valid: bool,
-    ):
-        """Write information about the study run to info.json file."""
-        info = StudyOutputJson(
-            date=datetime.now().isoformat(),
-            inputs={
-                str(input_file): self.calculate_md5(input_file)
-                for input_file in study_inputs.values()
-            },
-            valid=is_valid,
-        )
-        self.write_json(hash_outdir / db_id / "info.json", info.model_dump())
-
-    def _write_results(self, hash_outdir: Path, results: Dict[str, Any]) -> None:
-        """Write pipeline results and metadata.
-
-        Handles writing both raw and processed results when available.
-        If extractor's post_process modifies results, both versions are written:
-        - raw_results.json: Original transform output
-        - results.json: Post-processed output
-
-        Args:
-            hash_outdir: Directory to write results to
-            results: Results from extractor to write
-
-        Raises:
-            IOError: If writing any file fails
-            ValueError: If hash_outdir is not a Path
-        """
-        if not isinstance(hash_outdir, Path):
-            raise ValueError("hash_outdir must be a Path object")
-
-        # Write each study's results
-        for study_id, study_results in results.items():
-            study_dir = hash_outdir / study_id
-            study_dir.mkdir(exist_ok=True, parents=True)
-            self.write_study_results(study_dir, study_id, study_results)
-
-
-class IndependentPipeline(Pipeline):
-    """Pipeline that processes each study independently."""
-
-    def _process_and_write_study(
-        self,
-        study_data: Tuple[str, Dict[str, Any], Path],
-        hash_outdir: Path,
-        **kwargs,
+    def __are_file_hashes_identical(
+        self, study_inputs: Dict[str, Path], existing_inputs: Dict[str, str]
     ) -> bool:
-        """Process a single study and write its results."""
-        db_id, study_inputs, study_outdir = study_data
-
-        try:
-            study_outdir.mkdir(
-                parents=True,
-                exist_ok=True,
-            )
-
-            # Load and process inputs
-            try:
-                loaded_inputs = {db_id: self.load_study_inputs(study_inputs)}
-            except (IOError, ValueError) as e:
-                raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
-
-            try:
-                transform_results = self.transform(loaded_inputs, **kwargs)
-                cleaned_results, raw_results, validation_status = transform_results
-            except Exception as e:
-                raise ProcessingError(db_id, str(e))
-
-            if cleaned_results:
-                try:
-                    # Write study results
-                    if raw_results[db_id] != cleaned_results[db_id]:
-                        self.write_json(
-                            study_outdir / "raw_results.json", raw_results[db_id]
-                        )
-                    self.write_json(
-                        study_outdir / "results.json", cleaned_results[db_id]
-                    )
-
-                    # Write study info with validation status
-                    self.write_study_info(
-                        hash_outdir=hash_outdir,
-                        db_id=db_id,
-                        study_inputs=study_inputs,
-                        is_valid=validation_status[db_id],
-                    )
-                except IOError as e:
-                    msg = f"Failed to write results for study {db_id}: {str(e)}"
-                    raise FileOperationError(msg)
-
-            return True
-
-        except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
-            logger.error(str(e))
-            if isinstance(e, FileOperationError):
-                try:
-                    if study_outdir.exists():
-                        import shutil
-
-                        shutil.rmtree(study_outdir)
-                except Exception as cleanup_error:
-                    logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
+        """Compare file hashes to determine if the inputs have changed."""
+        if set(str(p) for p in study_inputs.values()) != set(existing_inputs.keys()):
             return False
 
-    def check_for_changes(
-        self,
-        hash_outdir: Path,
-        dataset: Dataset,
-    ) -> bool:
-        """Check if any study inputs have changed."""
-        existing_results = self._filter_existing_results(hash_outdir, dataset)
-        matching_results = self._identify_matching_results(
-            dataset,
-            existing_results,
-        )
-        return any(not match for match in matching_results.values())
+        for existing_file, hash_val in existing_inputs.items():
+            if self._calculate_md5(Path(existing_file)) != hash_val:
+                return False
 
+        return True
+
+    @abstractmethod
     def _process_dataset(
         self,
         dataset: Dataset,
         hash_outdir: Path,
-        num_workers: int = 1,
         **kwargs: Any,
     ) -> None:
-        """Process studies independently with optional parallelization."""
-        # Filter and prepare studies that need processing
-        filtered_dataset = self.filter_inputs(hash_outdir, dataset)
-        studies_to_process = []
+        """Process the dataset.
 
-        for db_id, study in filtered_dataset.data.items():
-            study_inputs = self.collect_study_inputs(study)
-            study_dir = hash_outdir / db_id
+        This method should be implemented by subclasses to handle the actual
+        processing of studies according to their specific requirements
+        (independent vs dependent processing).
+        """
+        pass
 
-            studies_to_process.append((db_id, study_inputs, study_dir))
+    def __handle_processing_error(self, error: Exception, hash_outdir: Path) -> None:
+        """Handle errors during processing."""
+        logger.error(str(error))
+        if isinstance(error, FileOperationError):
+            try:
+                import shutil
 
-        if not studies_to_process:
-            print("No studies need processing")
-            return
+                if hash_outdir.exists():
+                    shutil.rmtree(hash_outdir)
+            except Exception as cleanup_error:
+                logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
 
-        # Process and write results as they complete
-        print(f"Processing {len(studies_to_process)} studies...")
-        success_count = 0
+    def _filter_inputs(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
+        """Filter dataset to only include studies needing processing.
 
-        with tqdm(total=len(studies_to_process), desc="Processing studies") as pbar:
-            if num_workers > 1:
-                with concurrent.futures.ThreadPoolExecutor(
-                    max_workers=num_workers
-                ) as exc:
-                    futures = []
-                    for study_data in studies_to_process:
-                        future = exc.submit(
-                            self._process_and_write_study,
-                            study_data,
-                            hash_outdir,
-                            **kwargs,
-                        )
-                        future.add_done_callback(lambda _: pbar.update(1))
-                        futures.append(future)
+        A study needs processing if:
+        - It has no existing results
+        - Its input files have changed since last processing
+        - It's new to the dataset
 
-                    for future in concurrent.futures.as_completed(futures):
-                        if future.result():
-                            success_count += 1
-            else:
-                for study_data in studies_to_process:
-                    if self._process_and_write_study(study_data, hash_outdir, **kwargs):
-                        success_count += 1
-                    pbar.update(1)
+        Args:
+            hash_outdir: Output directory containing previous results
+            dataset: Dataset to filter
 
-        print(
-            f"Completed processing {success_count} "
-            f"of {len(studies_to_process)} studies successfully"
-        )
+        Returns:
+            New Dataset containing only studies needing processing
+        """
+        existing_results = self.__filter_existing_results(hash_outdir, dataset)
+        matching_results = self.__identify_matching_results(dataset, existing_results)
+        # Return True if any of the studies' inputs have changed or if new studies exist
+        keep_ids = set(dataset.data.keys()) - {
+            db_id for db_id, match in matching_results.items() if match
+        }
+        return dataset.slice(keep_ids)
 
 
+# Concrete Pipeline implementations
 class DependentPipeline(Pipeline):
     """Pipeline that processes all studies as a group."""
 
@@ -682,7 +483,7 @@ class DependentPipeline(Pipeline):
         try:
             # Collect all study inputs
             all_study_inputs = {
-                db_id: self.collect_study_inputs(study)
+                db_id: self._collect_study_inputs(study)
                 for db_id, study in dataset.data.items()
             }
 
@@ -690,7 +491,7 @@ class DependentPipeline(Pipeline):
             loaded_study_inputs = {}
             for db_id, study_inputs in all_study_inputs.items():
                 try:
-                    loaded_study_inputs[db_id] = self.load_study_inputs(study_inputs)
+                    loaded_study_inputs[db_id] = self._load_study_inputs(study_inputs)
                 except (IOError, ValueError) as e:
                     raise InputError(
                         f"Failed to load inputs for study {db_id}: {str(e)}"
@@ -706,19 +507,16 @@ class DependentPipeline(Pipeline):
                         study_outdir = hash_outdir / db_id
                         study_outdir.mkdir(parents=True, exist_ok=True)
 
-                        # Write cleaned results
-                        self.write_json(
-                            study_outdir / "results.json", cleaned_results[db_id]
+                        # Write study results using PipelineOutputsMixin method
+                        self._write_study_results(
+                            study_outdir,
+                            db_id,
+                            cleaned_results[db_id],
+                            raw_results[db_id]
                         )
 
-                        # Write raw results if different
-                        if raw_results[db_id] != cleaned_results[db_id]:
-                            self.write_json(
-                                study_outdir / "raw_results.json", raw_results[db_id]
-                            )
-
                         # Write study info including validation status
-                        self.write_study_info(
+                        self._write_study_info(
                             hash_outdir=hash_outdir,
                             db_id=db_id,
                             study_inputs=all_study_inputs[db_id],
@@ -753,10 +551,10 @@ class DependentPipeline(Pipeline):
         processed together. This extends the base pipeline hash with dataset keys.
         """
         base_hash = super()._create_hash_string(dataset)
-        dataset_str = self._serialize_dataset_keys(dataset)
+        dataset_str = self.__serialize_dataset_keys(dataset)
         return f"{dataset_str}_{base_hash}"
 
-    def _serialize_dataset_keys(self, dataset: Dataset) -> str:
+    def __serialize_dataset_keys(self, dataset: Dataset) -> str:
         """Serialize dataset keys for hashing.
 
         For dependent pipelines, we need to include all study IDs in the hash
@@ -771,19 +569,127 @@ class DependentPipeline(Pipeline):
         study_keys = sorted(dataset.data.keys())
         return "_".join(study_keys)
 
-    def check_for_changes(
+
+class IndependentPipeline(Pipeline):
+    """Pipeline that processes each study independently."""
+
+    def __process_and_write_study(
         self,
+        study_data: Tuple[str, Dict[str, Any], Path],
         hash_outdir: Path,
-        dataset: Dataset,
+        **kwargs,
     ) -> bool:
-        """Check if any study inputs have changed or if there are new studies."""
-        existing_results = self._filter_existing_results(hash_outdir, dataset)
-        matching_results = self._identify_matching_results(
-            dataset,
-            existing_results,
+        """Process a single study and write its results."""
+        db_id, study_inputs, study_outdir = study_data
+
+        try:
+            study_outdir.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
+
+            # Load and process inputs
+            try:
+                loaded_inputs = {db_id: self._load_study_inputs(study_inputs)}
+            except (IOError, ValueError) as e:
+                raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
+
+            try:
+                transform_results = self.transform(loaded_inputs, **kwargs)
+                cleaned_results, raw_results, validation_status = transform_results
+            except Exception as e:
+                raise ProcessingError(db_id, str(e))
+
+            if cleaned_results:
+                try:
+                    # Write study results using PipelineOutputsMixin method
+                    self._write_study_results(
+                        study_outdir,
+                        db_id,
+                        cleaned_results[db_id],
+                        raw_results[db_id]
+                    )
+
+                    # Write study info with validation status
+                    self._write_study_info(
+                        hash_outdir=hash_outdir,
+                        db_id=db_id,
+                        study_inputs=study_inputs,
+                        is_valid=validation_status[db_id],
+                    )
+                except IOError as e:
+                    msg = f"Failed to write results for study {db_id}: {str(e)}"
+                    raise FileOperationError(msg)
+
+            return True
+
+        except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
+            logger.error(str(e))
+            if isinstance(e, FileOperationError):
+                try:
+                    if study_outdir.exists():
+                        import shutil
+
+                        shutil.rmtree(study_outdir)
+                except Exception as cleanup_error:
+                    logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
+            return False
+
+    def _process_dataset(
+        self,
+        dataset: Dataset,
+        hash_outdir: Path,
+        num_workers: int = 1,
+        **kwargs: Any,
+    ) -> None:
+        """Process studies independently with optional parallelization."""
+        # Filter and prepare studies that need processing
+        filtered_dataset = self._filter_inputs(hash_outdir, dataset)
+        studies_to_process = []
+
+        for db_id, study in filtered_dataset.data.items():
+            study_inputs = self._collect_study_inputs(study)
+            study_dir = hash_outdir / db_id
+
+            studies_to_process.append((db_id, study_inputs, study_dir))
+
+        if not studies_to_process:
+            print("No studies need processing")
+            return
+
+        # Process and write results as they complete
+        print(f"Processing {len(studies_to_process)} studies...")
+        success_count = 0
+
+        with tqdm(total=len(studies_to_process), desc="Processing studies") as pbar:
+            if num_workers > 1:
+                with concurrent.futures.ThreadPoolExecutor(
+                    max_workers=num_workers
+                ) as exc:
+                    futures = []
+                    for study_data in studies_to_process:
+                        future = exc.submit(
+                            self.__process_and_write_study,
+                            study_data,
+                            hash_outdir,
+                            **kwargs,
+                        )
+                        future.add_done_callback(lambda _: pbar.update(1))
+                        futures.append(future)
+
+                    for future in concurrent.futures.as_completed(futures):
+                        if future.result():
+                            success_count += 1
+            else:
+                for study_data in studies_to_process:
+                    if self.__process_and_write_study(study_data, hash_outdir, **kwargs):
+                        success_count += 1
+                    pbar.update(1)
+
+        print(
+            f"Completed processing {success_count} "
+            f"of {len(studies_to_process)} studies successfully"
         )
-        # Return True if any of the studies' inputs have changed or if new studies exist
-        return any(not match for match in matching_results.values())
 
 
 class Extractor(ABC):
@@ -890,7 +796,6 @@ class Extractor(ABC):
             - Dict[str, Dict[str, Any]]: Post-processed results keyed by study ID
             - Dict[str, Dict[str, Any]]: Raw results keyed by study ID
             - Validation status:
-                - bool for IndependentPipeline (single result)
                 - Dict[str, bool] for DependentPipeline (per-study validation)
 
         Raises:
