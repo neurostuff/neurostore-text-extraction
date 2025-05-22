@@ -23,7 +23,10 @@ class PatientStudyExtractor(Extractor, IndependentPipeline):
 
     _version = "1.0.0"
     _output_schema = PatientStudyOutput
-    _input_pipelines = {("participant_demographics",): ("results",)}
+    _data_pond_inputs = {
+        ("pubget", "ace"): ("text",),
+    }
+    _input_pipelines = {("participant_demographics",): ("result",)}
 
     def __init__(self):
         """Initialize extractor."""

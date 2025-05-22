@@ -26,48 +26,49 @@ def mock_demographics():
     for i, study_id in enumerate(study_ids):
         mock_data[study_id] = {
             "groups": [
-                {"name": f"group_{i}_a", "age_mean": 45.0 + i},
-                {"name": f"group_{i}_b", "age_mean": 44.0 + i},
+                {"name": f"group{i}", "age_mean": 45.0 + i},
+                {"name": "control", "age_mean": 44.0 + i},
             ]
         }
     return mock_data
 
 
-def test_example_extractor(sample_data, mock_demographics, tmp_path):
-    """Test example extraction."""
-    # Create demographics pipeline outputs
+def setup_demographics_dir(tmp_path, mock_demographics):
+    """Helper to set up demographics pipeline directory."""
     demographics_dir = tmp_path / "participant_demographics"
     version_dir = demographics_dir / "1.0.0"
     config_dir = version_dir / "abc123"
     config_dir.mkdir(parents=True)
 
-    # Write pipeline info
     with open(config_dir / "pipeline_info.json", "w") as f:
-        json.dump(
-            {
-                "date": "2025-04-19",
-                "version": "1.0.0",
-                "type": "participant_demographics",
-            },
-            f,
-        )
+        pipeline_info = {
+            "date": "2025-04-19",
+            "version": "1.0.0",
+            "config_hash": "abc123",
+            "extractor": "DemographicsExtractor",
+            "extractor_kwargs": {},
+            "transform_kwargs": {},
+            "input_pipelines": {},
+            "schema": {},
+        }
+        json.dump(pipeline_info, f)
 
-    # Write demographics results for each study
     for study_id, results in mock_demographics.items():
         study_dir = config_dir / study_id
         study_dir.mkdir(parents=True)
-
-        # Write results and info files
         with open(study_dir / "results.json", "w") as f:
             json.dump(results, f)
-
         with open(study_dir / "info.json", "w") as f:
             json.dump({"date": "2025-04-19", "valid": True}, f)
 
-    # Initialize extractor
-    extractor = ExampleExtractor()
+    return demographics_dir
 
-    # Set up pipeline info for dependencies
+
+def test_idempotency(sample_data, mock_demographics, tmp_path):
+    """Test that running transform_dataset twice produces identical results."""
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
+
+    extractor = ExampleExtractor()
     input_pipeline_info = {
         "participant_demographics": {
             "version": "1.0.0",
@@ -76,50 +77,207 @@ def test_example_extractor(sample_data, mock_demographics, tmp_path):
         }
     }
 
-    # Run extraction
+    # First transformation
     output_dir = tmp_path / "output"
     extractor.transform_dataset(
         sample_data, output_dir, input_pipeline_info=input_pipeline_info
     )
 
-    # Check results for each study
+    # Store first run results
+    first_run_results = {}
     output_version_dir = output_dir / "ExampleExtractor" / extractor._version
-    assert output_version_dir.exists()
-
-    # Get the hash directory
     hash_dir = next(output_version_dir.iterdir())
-    assert hash_dir.is_dir()
+    for study_dir in hash_dir.iterdir():
+        if study_dir.is_dir():
+            first_run_results[study_dir.name] = json.loads(
+                (study_dir / "results.json").read_text()
+            )
+
+    # Second transformation
+    extractor.transform_dataset(
+        sample_data, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Compare results
+    hash_dir = next(output_version_dir.iterdir())
+    for study_dir in hash_dir.iterdir():
+        if study_dir.is_dir():
+            second_run_results = json.loads((study_dir / "results.json").read_text())
+            assert second_run_results == first_run_results[study_dir.name]
+
+
+def test_remove_and_readd_study(sample_data, mock_demographics, tmp_path):
+    """Test that removing and re-adding a study works correctly."""
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
 
     # Get list of study IDs
-    sample_path = Path("tests/data/sample_inputs")
-    study_ids = sorted([d.name for d in sample_path.iterdir() if d.is_dir()])
+    study_ids = list(mock_demographics.keys())
+    removed_study_id = study_ids[0]  # Take first study to remove and add back
+    remaining_study_ids = study_ids[1:]
 
-    # Verify each study's results exist and are properly formatted
-    for study_id in study_ids:
-        study_dir = hash_dir / study_id
-        assert study_dir.exists()
+    # Create reduced dataset without the first study
+    reduced_dataset = sample_data.slice(remaining_study_ids)
 
-        # Check for required files
-        assert (study_dir / "results.json").exists()
-        assert (study_dir / "info.json").exists()
-
-        # Verify content can be loaded
-        results = json.loads((study_dir / "results.json").read_text())
-        info = json.loads((study_dir / "info.json").read_text())
-
-        # Verify info file structure
-        assert "date" in info
-        assert "valid" in info
-        assert info["valid"] is True
-
-    # Verify pipeline info was written with correct configuration
-    pipeline_info = json.loads((hash_dir / "pipeline_info.json").read_text())
-    assert pipeline_info["version"] == extractor._version
-    assert pipeline_info["extractor"] == "ExampleExtractor"
-    assert pipeline_info["input_pipelines"] == {
+    extractor = ExampleExtractor()
+    input_pipeline_info = {
         "participant_demographics": {
-            "pipeline_dir": str(demographics_dir),
             "version": "1.0.0",
             "config_hash": "abc123",
+            "pipeline_dir": Path(demographics_dir),
         }
     }
+
+    # First transformation with reduced dataset
+    output_dir = tmp_path / "output"
+    extractor.transform_dataset(
+        reduced_dataset, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Second transformation with full dataset
+    extractor.transform_dataset(
+        sample_data, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Verify added study results exist and are valid
+    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
+    hash_dir = next(output_version_dir.iterdir())
+
+    # Check results.json exists and contains expected fields
+    results = json.loads((hash_dir / removed_study_id / "results.json").read_text())
+    assert "value" in results
+    assert "confidence" in results
+    assert isinstance(results["confidence"], float)
+    assert 0 <= results["confidence"] <= 1
+
+
+def test_demographics_update(sample_data, mock_demographics, tmp_path):
+    """Test that demographics updates are reflected correctly."""
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
+
+    study_ids = list(mock_demographics.keys())
+    test_study_id = study_ids[0]
+
+    extractor = ExampleExtractor()
+    input_pipeline_info = {
+        "participant_demographics": {
+            "version": "1.0.0",
+            "config_hash": "abc123",
+            "pipeline_dir": Path(demographics_dir),
+        }
+    }
+
+    # First transformation
+    output_dir = tmp_path / "output"
+    extractor.transform_dataset(
+        sample_data, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Get first run info and hash directory
+    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
+    first_hash_dir = next(output_version_dir.iterdir())
+    first_run_info = json.loads(
+        (first_hash_dir / test_study_id / "info.json").read_text()
+    )
+
+    # Store first hash directory path for comparison
+    first_hash_path = first_hash_dir
+
+    # Update demographics for test study
+    updated_demographics = {
+        "groups": [
+            {"name": "updated_group", "age_mean": 50.0},
+            {"name": "control", "age_mean": 49.0},
+        ]
+    }
+
+    config_dir = demographics_dir / "1.0.0" / "abc123"
+    with open(config_dir / test_study_id / "results.json", "w") as f:
+        json.dump(updated_demographics, f)
+
+    # Second transformation
+    extractor.transform_dataset(
+        sample_data, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Get second run hash directory
+    second_hash_dir = next(
+        d for d in output_version_dir.iterdir() if d != first_hash_path
+    )
+    second_run_info = json.loads(
+        (second_hash_dir / test_study_id / "info.json").read_text()
+    )
+
+    # Verify info.json differences and separate hash directories
+    assert first_run_info != second_run_info
+    assert first_hash_dir != second_hash_dir
+
+
+def test_text_and_demographics_update(sample_data, mock_demographics, tmp_path):
+    """Test both text content and demographics updates are reflected correctly."""
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
+
+    study_ids = list(mock_demographics.keys())
+    test_study_id = study_ids[0]
+
+    extractor = ExampleExtractor()
+    input_pipeline_info = {
+        "participant_demographics": {
+            "version": "1.0.0",
+            "config_hash": "abc123",
+            "pipeline_dir": Path(demographics_dir),
+        }
+    }
+
+    # First transformation
+    output_dir = tmp_path / "output"
+    extractor.transform_dataset(
+        sample_data, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Get first run info and hash directory
+    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
+    first_hash_dir = next(output_version_dir.iterdir())
+    first_run_info = json.loads(
+        (first_hash_dir / test_study_id / "info.json").read_text()
+    )
+
+    # Store first hash directory path for comparison
+    first_hash_path = first_hash_dir
+
+    # Create modified dataset with updated text content
+    modified_dataset = sample_data.slice([test_study_id])
+    modified_dataset.data[test_study_id].pubget.text = Path(
+        tmp_path / "modified_text.txt"
+    )
+    with open(modified_dataset.data[test_study_id].pubget.text, "w") as f:
+        f.write("Modified example text content")
+
+    # Update demographics
+    updated_demographics = {
+        "groups": [
+            {"name": "updated_group", "age_mean": 50.0},
+            {"name": "new_group", "age_mean": 48.0},
+        ]
+    }
+
+    config_dir = demographics_dir / "1.0.0" / "abc123"
+    with open(config_dir / test_study_id / "results.json", "w") as f:
+        json.dump(updated_demographics, f)
+
+    # Second transformation
+    extractor.transform_dataset(
+        modified_dataset, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Get second run hash directory and info
+    second_hash_dir = next(
+        d for d in output_version_dir.iterdir() if d != first_hash_path
+    )
+    second_run_info = json.loads(
+        (second_hash_dir / test_study_id / "info.json").read_text()
+    )
+
+    # Verify info.json differences and separate hash directories
+    assert first_run_info != second_run_info
+    assert first_hash_dir != second_hash_dir
+    assert "modified_text.txt" in str(second_run_info["inputs"])

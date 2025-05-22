@@ -115,19 +115,16 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         """Create string for hashing pipeline configuration.
 
         The hash combines:
-        - Dataset study IDs (sorted)
         - Extractor configuration
         - Pipeline version and config
         """
-        # Dataset study IDs in sorted order
-        dataset_str = "_".join(sorted(dataset.data.keys()))
 
         # Extractor config - exclude private attrs
         args = list(inspect.signature(self.__init__).parameters.keys())
         args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
         version_str = self.extractor._version
 
-        return f"{dataset_str}_{version_str}_{args_str}"
+        return f"{version_str}_{args_str}"
 
     def _prepare_pipeline(
         self,
@@ -209,14 +206,16 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         # If directory exists, check for changes
         if hash_outdir.exists():
-            if not self.check_for_changes(hash_outdir, dataset, input_pipeline_info):
+            if not self.check_for_changes(hash_outdir, dataset):
                 print("No studies need processing")
                 return
-            # Get next available directory for new results
-            hash_outdir = self.get_next_available_dir(hash_outdir)
+            # Get next available directory for new results if a DependentPipeline
+            # For IndependentPipeline, we overwrite the existing directory
+            if isinstance(self, DependentPipeline):
+                hash_outdir = self.get_next_available_dir(hash_outdir)
 
-        # Create directory and write pipeline info only once
-        hash_outdir.mkdir(parents=True)
+        # Create directory and write pipeline info
+        hash_outdir.mkdir(parents=True, exist_ok=True)
         self.write_pipeline_info(hash_outdir, pipeline_info)
 
         # Collect and process study inputs
@@ -224,7 +223,6 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             self._process_dataset(
                 dataset,
                 hash_outdir,
-                input_pipeline_info,
                 num_workers=num_workers,
                 **kwargs,
             )
@@ -263,7 +261,6 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         self,
         hash_outdir: Path,
         dataset: Dataset,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]],
     ) -> bool:
         """Check if dataset needs processing.
 
@@ -277,7 +274,6 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         hash_outdir: Path,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]],
         **kwargs: Any,
     ) -> None:
         """Process the dataset.
@@ -401,7 +397,6 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             dataset: Dataset to check for changes
             existing_results: Previously processed results to compare against
                 Format matches return type of _filter_existing_results
-            input_pipeline_info: Optional information about input pipelines
 
         Returns:
             Dict mapping study IDs to boolean indicating if inputs match
@@ -449,9 +444,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         }
         return dataset.slice(keep_ids)
 
-    def collect_study_inputs(
-        self, study: Any, input_pipeline_info: Optional[InputPipelineInfo] = None
-    ) -> Dict[str, Path]:
+    def collect_study_inputs(self, study: Any) -> Dict[str, Path]:
         """Collect inputs for a study."""
         study_inputs = {}
 
@@ -467,10 +460,20 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                     break  # Stop after finding first valid source
 
         # Add pipeline inputs if needed
-        if input_pipeline_info:
-            for name in input_pipeline_info:
-                result_path = study.pipeline_results[name].result
-                study_inputs[name] = result_path
+        if self._input_pipelines:
+            for sources, input_types in self._input_pipelines.items():
+                for source in sources:
+                    source_obj = study.pipeline_results.get(source, None)
+                    if source_obj:
+                        for input_type in input_types:
+                            input_obj = deep_getattr(source_obj, input_type, None)
+                            if input_obj and input_type not in study_inputs:
+                                # use source instead of input_type
+                                # because input_type from a pipeline
+                                # will always be "results"
+                                # will revisit this assumption later
+                                study_inputs[source] = input_obj
+                        break  # Stop after finding first valid source
 
         return study_inputs
 
@@ -588,7 +591,6 @@ class IndependentPipeline(Pipeline):
         self,
         hash_outdir: Path,
         dataset: Dataset,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
     ) -> bool:
         """Check if any study inputs have changed."""
         existing_results = self._filter_existing_results(hash_outdir, dataset)
@@ -602,7 +604,6 @@ class IndependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         hash_outdir: Path,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]],
         num_workers: int = 1,
         **kwargs: Any,
     ) -> None:
@@ -612,11 +613,10 @@ class IndependentPipeline(Pipeline):
         studies_to_process = []
 
         for db_id, study in filtered_dataset.data.items():
-            study_inputs = self.collect_study_inputs(study, input_pipeline_info)
+            study_inputs = self.collect_study_inputs(study)
             study_dir = hash_outdir / db_id
 
-            if not study_dir.exists():
-                studies_to_process.append((db_id, study_inputs, study_dir))
+            studies_to_process.append((db_id, study_inputs, study_dir))
 
         if not studies_to_process:
             print("No studies need processing")
@@ -664,7 +664,6 @@ class DependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         hash_outdir: Path,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]],
         **kwargs: Any,
     ) -> None:
         """Process all studies in the dataset as a group.
@@ -672,7 +671,6 @@ class DependentPipeline(Pipeline):
         Args:
             dataset: Dataset to process
             hash_outdir: Output directory for results
-            input_pipeline_info: Optional configuration for input pipelines
             **kwargs: Additional arguments passed to extractor
 
         Raises:
@@ -684,7 +682,7 @@ class DependentPipeline(Pipeline):
         try:
             # Collect all study inputs
             all_study_inputs = {
-                db_id: self.collect_study_inputs(study, input_pipeline_info)
+                db_id: self.collect_study_inputs(study)
                 for db_id, study in dataset.data.items()
             }
 
@@ -777,7 +775,6 @@ class DependentPipeline(Pipeline):
         self,
         hash_outdir: Path,
         dataset: Dataset,
-        input_pipeline_info: Optional[Dict[str, Dict[str, str]]] = None,
     ) -> bool:
         """Check if any study inputs have changed or if there are new studies."""
         existing_results = self._filter_existing_results(hash_outdir, dataset)

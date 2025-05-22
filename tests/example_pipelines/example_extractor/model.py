@@ -30,7 +30,7 @@ class ExampleExtractor(Extractor, DependentPipeline):
 
     _version = "1.0.0"
     _output_schema = ExampleOutput
-    _input_pipelines = {("participant_demographics",): ("results",)}
+    _input_pipelines = {("participant_demographics",): ("result",)}
     _data_pond_inputs = {
         ("pubget", "ace"): ("text",),
     }
