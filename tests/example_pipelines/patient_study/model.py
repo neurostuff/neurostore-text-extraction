@@ -23,7 +23,10 @@ class PatientStudyExtractor(Extractor, IndependentPipeline):
 
     _version = "1.0.0"
     _output_schema = PatientStudyOutput
-    _input_pipelines = {("participant_demographics",): ("results",)}
+    _data_pond_inputs = {
+        ("pubget", "ace"): ("text",),
+    }
+    _input_pipelines = {("participant_demographics",): ("result",)}
 
     def __init__(self):
         """Initialize extractor."""
@@ -41,12 +44,15 @@ class PatientStudyExtractor(Extractor, IndependentPipeline):
         Returns:
             Dict mapping study IDs to their patient_study results
         """
-        demographics = inputs.get("participant_demographics", {})
+        results = {}
+        for study_id, study_inputs in inputs.items():
+            demographics = study_inputs.get("participant_demographics", {})
 
-        # Check each group name for "patient"
-        has_patient_group = any(
-            group.get("name", "").lower() == "patient"
-            for group in demographics.get("groups", [])
-        )
+            # Check each group name for "patient"
+            has_patient_group = any(
+                group.get("name", "").lower() == "patient"
+                for group in demographics.get("groups", [])
+            )
 
-        return {"patient_study": has_patient_group}
+            results[study_id] = {"patient_study": has_patient_group}
+        return results

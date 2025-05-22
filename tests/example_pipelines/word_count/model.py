@@ -28,19 +28,23 @@ class WordCountExtractor(Extractor, IndependentPipeline):
         self.square_root = square_root
         super().__init__()
 
-    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, inputs: dict, **kwargs) -> dict:
         """Run the word count extraction pipeline.
 
         Args:
             processed_inputs: Dictionary containing:
-                - text: Full text content (already loaded)
+                - study_id: Unique identifier for the study
+                    - text: Full text content (already loaded)
             **kwargs: Additional arguments including study_id
 
         Returns:
             Dictionary containing word count
         """
-        text = processed_inputs["text"]  # Already loaded by InputManager
-        return {"word_count": len(text.split())}
+        word_counts = {
+            study_id: {"word_count": len(inputs["text"].split())}
+            for study_id, inputs in inputs.items()
+        }  # Already loaded by InputManager
+        return word_counts
 
 
 class WordDevianceExtractor(Extractor, DependentPipeline):
@@ -70,7 +74,7 @@ class WordDevianceExtractor(Extractor, DependentPipeline):
         """
         return "_".join(sorted(dataset.data.keys()))
 
-    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, inputs: dict, **kwargs) -> dict:
         """Run the word deviance extraction pipeline.
 
         Args:
@@ -83,8 +87,7 @@ class WordDevianceExtractor(Extractor, DependentPipeline):
         """
         # Calculate word counts for all studies
         study_word_counts = {
-            study_id: len(inputs["text"].split())
-            for study_id, inputs in processed_inputs.items()
+            study_id: len(inputs["text"].split()) for study_id, inputs in inputs.items()
         }
 
         # Calculate average

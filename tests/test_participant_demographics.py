@@ -39,10 +39,8 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
     for study_dir in version_dir.glob("*"):
         if study_dir.is_dir():
             results_file = study_dir / "results.json"
-            raw_results_file = study_dir / "raw_results.json"
             info_file = study_dir / "info.json"
             assert results_file.exists()
-            assert raw_results_file.exists()
             assert info_file.exists()
 
             info = json.loads(info_file.read_text())

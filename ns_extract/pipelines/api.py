@@ -86,7 +86,7 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
 
         return None
 
-    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, inputs: dict, **kwargs) -> dict:
         """Execute LLM-based extraction using processed inputs.
 
         Args:
@@ -97,36 +97,42 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
         Returns:
             Raw predictions from LLM
         """
-        # Get text content - already loaded by InputManager
-        text = processed_inputs["text"]
+        results = {}
+        for study_id, study_inputs in inputs.items():
+            # Get text content - already loaded by InputManager
+            text = study_inputs["text"]
 
-        # Create chat completion configuration
-        completion_config = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": self._prompt
-                    + "\n Call the extractData function to save the output.",
-                }
-            ],
-            "output_schema": self._extraction_schema.model_json_schema(),
-        }
-        if self.kwargs:
-            completion_config.update(self.kwargs)
+            # Create chat completion configuration
+            completion_config = {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": self._prompt
+                        + "\n Call the extractData function to save the output.",
+                    }
+                ],
+                "output_schema": self._extraction_schema.model_json_schema(),
+            }
+            if self.kwargs:
+                completion_config.update(self.kwargs)
 
-        # Replace $ with $$ to escape $ signs in the prompt
-        # (otherwise interpreted as a special character by Template())
-        text = text.replace("$", "$$")
+            # Replace $ with $$ to escape $ signs in the prompt
+            # (otherwise interpreted as a special character by Template())
+            text = text.replace("$", "$$")
 
-        # Extract predictions
-        results = extract_from_text(
-            text, model=self.extraction_model, client=self.client, **completion_config
-        )
-
-        if not results:
-            logging.warning(
-                f"No results found for study {kwargs.get('study_id', 'unknown')}"
+            # Extract predictions
+            study_results = extract_from_text(
+                text,
+                model=self.extraction_model,
+                client=self.client,
+                **completion_config,
             )
-            return None
+
+            if not study_results:
+                logging.warning(
+                    f"No results found for study {study_id} with model {self.extraction_model}"
+                )
+
+            results[study_id] = study_results
 
         return results

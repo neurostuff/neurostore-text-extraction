@@ -76,7 +76,7 @@ class TFIDFExtractor(Extractor, DependentPipeline):
         else:  # both
             return f"{abstract}\n{text}"
 
-    def _transform(self, processed_inputs: dict, **kwargs) -> dict:
+    def _transform(self, inputs: dict, **kwargs) -> dict:
         """Run the TFIDF extraction pipeline.
 
         Args:
@@ -88,7 +88,7 @@ class TFIDFExtractor(Extractor, DependentPipeline):
         """
         # Process all texts
         study_texts = {}
-        for study_id, study_inputs in processed_inputs.items():
+        for study_id, study_inputs in inputs.items():
             text = study_inputs["text"]
             metadata = study_inputs["metadata"]
             content = self.get_text_content(text, metadata)
