@@ -737,16 +737,25 @@ class Extractor(ABC):
     _expand_abbrev_fields: set[str] = set()
     _nlp = None
 
-    def __init__(self, nlp_model: str = "en_core_sci_sm", **kwargs: Any) -> None:
+    def __init__(
+            self,
+            nlp_model: str = "en_core_sci_sm",
+            disable_abbreviation_expansion: bool = False,
+            **kwargs: Any) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
             nlp_model: SpaCy model name for text processing. Defaults to "en_core_sci_sm"
+            disable_abbreviation_expansion:
+                If True, disables abbreviation expansion
+                even for fields with EXPAND_ABBREVIATIONS metadata.
+                Defaults to False.
             **kwargs: Configuration parameters for the extractor
 
         Raises:
             ValueError: If _output_schema or _version not defined by subclass
         """
+        self.disable_abbreviation_expansion = disable_abbreviation_expansion
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class variable")
         if not self._version:
@@ -759,7 +768,7 @@ class Extractor(ABC):
 
         # Get fields needing processing
         # Get text processing fields
-        fields = self._check_needs_abbreviations(self._output_schema)
+        fields = self._read_schema_metadata(self._output_schema)
         self._normalize_fields, self._expand_abbrev_fields = fields
 
         # Initialize NLP model if we have any fields needing abbreviation expansion
@@ -773,7 +782,7 @@ class Extractor(ABC):
                 spacy.cli.download(nlp_model)
                 self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
 
-    def _check_needs_abbreviations(
+    def _read_schema_metadata(
         self, model: Type[BaseModel], prefix: str = ""
     ) -> Tuple[set[str], set[str]]:
         """Collect fields needing text normalization or abbreviation expansion.
@@ -830,7 +839,7 @@ class Extractor(ABC):
 
             # Recurse with proper path if we found a nested type
             if nested_type and iterable_path:
-                nested_fields = self._check_needs_abbreviations(nested_type, iterable_path)
+                nested_fields = self._read_schema_metadata(nested_type, iterable_path)
                 normalize_fields.update(nested_fields[0])
                 expand_abbrev_fields.update(nested_fields[1])
 
@@ -997,8 +1006,11 @@ class Extractor(ABC):
 
             # Find which transformations each path needs
             field_transforms = {
-                path: (path in self._normalize_fields, path in self._expand_abbrev_fields)
-                for path in self._normalize_fields.union(self._expand_abbrev_fields)
+                path: (
+                    path in self._normalize_fields,
+                    path in self._expand_abbrev_fields
+                    and not self.disable_abbreviation_expansion
+                ) for path in self._normalize_fields.union(self._expand_abbrev_fields)
             }
 
             # Process each path

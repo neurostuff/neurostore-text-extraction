@@ -45,9 +45,15 @@ class ExampleExtractor(Extractor, DependentPipeline):
         ("pubget", "ace"): ("text",),
     }
 
-    def __init__(self):
-        """Initialize extractor."""
-        super().__init__()
+    def __init__(self, disable_abbreviation_expansion: bool = False):
+        """Initialize extractor.
+
+        Args:
+            disable_abbreviation_expansion: If True, disables abbreviation expansion even for
+                fields with EXPAND_ABBREVIATIONS metadata. Defaults to False.
+        """
+        self.disable_abbreviation_expansion = disable_abbreviation_expansion
+        super().__init__(disable_abbreviation_expansion=disable_abbreviation_expansion)
 
     def _transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs
