@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Union
 import spacy
 from spacy.language import Language
 
@@ -97,17 +97,11 @@ def load_abbreviations(
 def resolve_abbreviations(
     target: str,
     abbreviations: List[Dict],
-    start_char: Optional[int] = None,
-    end_char: Optional[int] = None,
 ) -> str:
     """Resolve abbreviations in target text using a list of known abbreviations.
     Args:
         target (str): The text string that may contain abbreviations
         abbreviations (List[Dict]): List of abbreviation dictionaries from load_abbreviations()
-        start_char (Optional[int], optional): Start position to consider in source text.
-            Defaults to None.
-        end_char (Optional[int], optional): End position to consider in source text.
-            Defaults to None.
     Returns:
         str: Text with abbreviations expanded to their full forms
     Example:
@@ -120,17 +114,10 @@ def resolve_abbreviations(
     if not target or not abbreviations:
         return target
 
-    result = target
-    for abrv in abbreviations:
-        # Skip if abbreviation is outside specified character range
-        if start_char is not None and end_char is not None:
-            if not (
-                abrv["short_start"] >= start_char and abrv["short_end"] <= end_char
-            ):
-                continue
+    target_abrv = next((abrv for abrv in abbreviations if abrv["short_text"] in target), None)
+    if not target_abrv:
+        return target
 
-        # Replace abbreviation with its long form
-        if abrv["short_text"] in result:
-            result = result.replace(abrv["short_text"], abrv["long_text"])
+    result = target.replace(target_abrv["short_text"], target_abrv["long_text"])
 
     return result

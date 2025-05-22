@@ -946,10 +946,12 @@ class Extractor(ABC):
             return value
 
         result = value
-        if normalize:
-            result = normalize_string(result)
+
         if expand:
             result = resolve_abbreviations(result, abbreviations)
+        if normalize:
+            result = normalize_string(result)
+
         return result
 
     def _get_base_path_and_remainder(self, path: str) -> Tuple[str, str]:
