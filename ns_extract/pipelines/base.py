@@ -741,14 +741,14 @@ class Extractor(ABC):
 
     def __init__(
         self,
-        nlp_model: str = "en_core_sci_sm",
+        nlp_model: str = "en_core_web_sm",
         disable_abbreviation_expansion: bool = False,
         **kwargs: Any,
     ) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
-            nlp_model: SpaCy model name for text processing. Defaults to "en_core_sci_sm"
+            nlp_model: SpaCy model name for text processing. Defaults to "en_core_web_sm"
             disable_abbreviation_expansion:
                 If True, disables abbreviation expansion
                 even for fields with EXPAND_ABBREVIATIONS metadata.
