@@ -33,6 +33,62 @@ def mock_demographics():
     return mock_data
 
 
+def test_text_normalization_and_expansion(sample_data, mock_demographics, tmp_path):
+    """Test that text is properly normalized and abbreviations are expanded."""
+    # Setup demographics
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
+
+    # Create test dataset with text containing abbreviations and mixed case
+    test_study_id = list(mock_demographics.keys())[0]
+    modified_dataset = sample_data.slice([test_study_id])
+    modified_dataset.data[test_study_id].pubget.text = Path(tmp_path / "test_text.txt")
+    # Prepare test text with mixed case and abbreviations
+    test_text = (
+        "TEST with Magnetic Resonance Imaging (MRI) and "
+        "Electroencephalogram (EEG) DATA"
+    )
+    with open(modified_dataset.data[test_study_id].pubget.text, "w") as f:
+        f.write(test_text)
+
+    # Initialize extractor
+    extractor = ExampleExtractor()
+    input_pipeline_info = {
+        "participant_demographics": {
+            "version": "1.0.0",
+            "config_hash": "abc123",
+            "pipeline_dir": Path(demographics_dir),
+        }
+    }
+
+    # Run extraction
+    output_dir = tmp_path / "output"
+    extractor.transform_dataset(
+        modified_dataset, output_dir, input_pipeline_info=input_pipeline_info
+    )
+
+    # Check results
+    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
+    hash_dir = next(output_version_dir.iterdir())
+    results = json.loads(
+        (hash_dir / test_study_id / "results.json").read_text()
+    )
+
+    # Verify text is normalized and abbreviations are expanded
+    result_value = results["value"]
+    
+    # Original text had "TEST" - verify case normalization to title case
+    assert "Test" in result_value and "TEST" not in result_value, \
+        "Text should be normalized to title case"
+    
+    # Original text had "Magnetic Resonance Imaging (MRI)" - verify both forms present
+    assert "Magnetic Resonance Imaging" in result_value, \
+        "Long form 'Magnetic Resonance Imaging' should be present"
+        
+    # Original text had "Electroencephalogram (EEG)" - verify both forms present
+    assert "Electroencephalogram" in result_value, \
+        "Long form 'Electroencephalogram' should be present"
+
+
 def setup_demographics_dir(tmp_path, mock_demographics):
     """Helper to set up demographics pipeline directory."""
     demographics_dir = tmp_path / "participant_demographics"

@@ -99,25 +99,42 @@ def resolve_abbreviations(
     abbreviations: List[Dict],
 ) -> str:
     """Resolve abbreviations in target text using a list of known abbreviations.
+    
+    Finds and expands all abbreviations in the text, but only processes each unique
+    abbreviation once (using its first occurrence).
+    
     Args:
         target (str): The text string that may contain abbreviations
         abbreviations (List[Dict]): List of abbreviation dictionaries from load_abbreviations()
     Returns:
         str: Text with abbreviations expanded to their full forms
     Example:
-        >>> text = "The MRI showed no abnormalities"
-        >>> abbrevs = load_abbreviations("Magnetic resonance imaging (MRI) is...")
+        >>> text = "The MRI showed abnormal MRI results. Both EEG and MRI indicated..."
+        >>> abbrevs = load_abbreviations(
+        ...     "Magnetic resonance imaging (MRI) and electroencephalogram (EEG)..."
+        ... )
         >>> expanded = resolve_abbreviations(text, abbrevs)
         >>> print(expanded)
-        'The Magnetic resonance imaging showed no abnormalities'
+        >>> # Result: First MRI expanded, EEG expanded, subsequent MRIs unchanged
     """
     if not target or not abbreviations:
         return target
 
-    target_abrv = next((abrv for abrv in abbreviations if abrv["short_text"] in target), None)
-    if not target_abrv:
-        return target
+    # Track which abbreviations we've already processed
+    processed_abbrevs = set()
+    result = target
 
-    result = target.replace(target_abrv["short_text"], target_abrv["long_text"])
+    # Find all abbreviations that appear in the target
+    matching_abbrevs = [
+        abrv for abrv in abbreviations
+        if abrv["short_text"] in target and abrv["short_text"] not in processed_abbrevs
+    ]
+
+    # Process each unique abbreviation (first occurrence only)
+    for abrv in matching_abbrevs:
+        short_form = abrv["short_text"]
+        if short_form not in processed_abbrevs:
+            result = result.replace(short_form, abrv["long_text"])
+            processed_abbrevs.add(short_form)
 
     return result

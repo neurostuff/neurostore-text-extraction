@@ -13,9 +13,19 @@ from ns_extract.pipelines.base import (
 class ExampleOutput(BaseModel):
     """Schema for example extractor output."""
 
-    value: str = Field(..., description="Example extracted value from input data")
+    value: str = Field(
+        ...,
+        description="Example extracted value from input data",
+        json_schema_extra={
+            "normalize_text": True,
+            "expand_abbreviations": True
+        }
+    )
     confidence: float = Field(
-        ..., description="Confidence score of the extraction", ge=0.0, le=1.0
+        ...,
+        description="Confidence score of the extraction",
+        ge=0.0,
+        le=1.0
     )
 
 
@@ -70,7 +80,7 @@ class ExampleExtractor(Extractor, DependentPipeline):
             # Example processing logic
             if groups and text_data:
                 # Combine demographics and text data
-                value = f"{groups[0].get('name', '')}-{text_data[:50]}"  # Take first 50 chars
+                value = f"{groups[0].get('name', '')}-{text_data[:150]}"  # Take first 50 chars
                 confidence = 1.0
             elif groups:
                 # Use only demographics data
@@ -78,7 +88,7 @@ class ExampleExtractor(Extractor, DependentPipeline):
                 confidence = 0.7
             elif text_data:
                 # Use only text data
-                value = text_data[:50]  # Take first 50 chars
+                value = text_data[:150]  # Take first 50 chars
                 confidence = 0.5
             else:
                 value = "no_data"
