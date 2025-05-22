@@ -190,7 +190,7 @@ class StudyInputsMixin:
         return loaded_inputs
 
 
-class PipelineOutputsMixin:
+class PipelineOutputsMixin(FileOperationsMixin):
     """Mixin providing pipeline output handling methods.
 
     This mixin handles the management of pipeline outputs including:

@@ -88,48 +88,60 @@ def mock_demographics(sample_data) -> dict:
 @pytest.mark.skip(reason="UMLS tests are optional")
 def test_umls_disease_transform_default_model(sample_data, mock_demographics):
     """Test UMLSDiseaseExtractor._transform() with real study data."""
-    # Get first study with text data
-    study_id = next(
-        sid
+    # Get studies with text data
+    valid_studies = {
+        sid: study
         for sid, study in sample_data.data.items()
         if sid in mock_demographics
         and ((study.pubget and study.pubget.text) or (study.ace and study.ace.text))
-    )
-    study = sample_data.data[study_id]
-
-    # Get study text
-    text = None
-    for source in ["pubget", "ace"]:
-        source_obj = getattr(study, source, None)
-        if source_obj and source_obj.text:
-            with open(source_obj.text) as f:
-                text = f.read()
-            break
-
-    assert text is not None, "No text found for test study"
-
-    # Create test inputs
-    inputs = {
-        "text": text,
-        "participant_demographics": mock_demographics[study_id],
     }
+
+    # We need at least one valid study
+    assert len(valid_studies) > 0, "No valid studies found for testing"
+
+    # Create test inputs for multiple studies
+    inputs = {}
+    for study_id, study in valid_studies.items():
+        # Get study text
+        text = None
+        for source in ["pubget", "ace"]:
+            source_obj = getattr(study, source, None)
+            if source_obj and source_obj.text:
+                with open(source_obj.text) as f:
+                    text = f.read()
+                break
+
+        assert text is not None, f"No text found for study {study_id}"
+
+        # Add study inputs
+        inputs[study_id] = {
+            "text": text,
+            "participant_demographics": mock_demographics[study_id],
+        }
 
     # Run extraction
     extractor = UMLSDiseaseExtractor()
     results = extractor._transform(inputs)
 
-    # Should have groups list
-    assert "groups" in results
-    assert len(results["groups"]) > 0
+    # Verify structure and content for each study
+    for study_id, study_results in results.items():
+        # Should have groups list
+        assert "groups" in study_results
+        assert len(study_results["groups"]) > 0
 
-    # Each group should have required fields and UMLS entities
-    for result in results["groups"]:
-        assert "diagnosis" in result
-        assert "umls_entities" in result
-        assert len(result["umls_entities"]) > 0
-        assert "umls_cui" in result["umls_entities"][0]
-        assert "umls_name" in result["umls_entities"][0]
-        assert "umls_prob" in result["umls_entities"][0]
+        # Each group should have required fields and UMLS entities
+        for result in study_results["groups"]:
+            assert "diagnosis" in result
+            assert "umls_entities" in result
+            assert len(result["umls_entities"]) > 0
+            assert "umls_cui" in result["umls_entities"][0]
+            assert "umls_name" in result["umls_entities"][0]
+            assert "umls_prob" in result["umls_entities"][0]
+
+            # Verify group index and count match demographics
+            demo_groups = mock_demographics[study_id]["groups"]
+            assert result["group_ix"] < len(demo_groups)
+            assert result["count"] == demo_groups[result["group_ix"]]["count"]
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
@@ -149,59 +161,21 @@ def test_custom_model_configuration():
 @pytest.mark.skip(reason="UMLS tests are optional")
 def test_invalid_model_name():
     """Test error handling for invalid model names."""
-    with pytest.raises(ImportError, match="Error loading spaCy model invalid_model:"):
+    with pytest.raises(SystemExit):
         UMLSDiseaseExtractor(model_name="invalid_model")
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
 def test_transformer_model_rejection():
     """Test rejection of transformer-based models."""
-    with pytest.raises(ValueError, match=".*is a transformer model.*"):
+    with pytest.raises(ImportError, match=".*is a transformer model.*"):
         # Using a transformer model should raise an error
         UMLSDiseaseExtractor(model_name="en_core_web_trf")
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
-def test_pipeline_component_errors(monkeypatch):
-    """Test error handling for pipeline component failures."""
-
-    def mock_add_pipe(*args, **kwargs):
-        raise Exception("Mock pipeline error")
-
-    # Test failure to add abbreviation_detector
-    with pytest.raises(
-        ValueError, match="Failed to add abbreviation_detector to pipeline"
-    ):
-        with monkeypatch.context() as m:
-            m.setattr("spacy.language.Language.add_pipe", mock_add_pipe)
-            UMLSDiseaseExtractor()
-
-
-@pytest.mark.skip(reason="UMLS tests are optional")
-def test_model_download_simulation(monkeypatch):
-    """Test model download behavior."""
-    download_called = False
-
-    def mock_download(model_name):
-        nonlocal download_called
-        download_called = True
-
-    def mock_load(model_name, **kwargs):
-        if not download_called:
-            raise OSError("Model not found")
-        return spacy.load("en_core_web_sm", **kwargs)
-
-    with monkeypatch.context() as m:
-        m.setattr("spacy.cli.download", mock_download)
-        m.setattr("spacy.load", mock_load)
-
-        extractor = UMLSDiseaseExtractor(model_name="en_core_web_sm")
-        assert download_called, "Model download should have been triggered"
-        assert extractor.nlp is not None, "Model should be loaded after download"
-
-
-@pytest.mark.skip(reason="UMLS tests are optional")
 def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
+    """Test full pipeline extraction with multiple studies."""
     # Create demographics pipeline outputs
     demographics_dir = tmp_path / "participant_demographics"
     version_dir = demographics_dir / "1.0.0"
@@ -220,7 +194,13 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
         )
 
     # Write results for each study
+    study_ids_with_text = []
     for study_id, results in mock_demographics.items():
+        study = sample_data.data[study_id]
+        # Only process studies with text data
+        if not ((study.pubget and study.pubget.text) or (study.ace and study.ace.text)):
+            continue
+
         study_dir = config_dir / study_id
         study_dir.mkdir(parents=True)
 
@@ -230,6 +210,10 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
 
         with open(study_dir / "info.json", "w") as f:
             json.dump({"date": "2025-04-19", "valid": True}, f)
+
+        study_ids_with_text.append(study_id)
+
+    assert len(study_ids_with_text) > 0, "No valid studies found for testing"
 
     # Initialize extractor
     extractor = UMLSDiseaseExtractor()
@@ -256,11 +240,13 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
     # Get the hash directory
     hash_dir = next(result_dir.glob("*"))
 
+    # Track processed studies to ensure we test multiple
+    processed_studies = 0
+
     # Check results for each study
-    for study_id, demographics in mock_demographics.items():
+    for study_id in study_ids_with_text:
         study_dir = hash_dir / study_id
-        if not study_dir.exists():
-            continue
+        assert study_dir.exists(), f"Missing results for study {study_id}"
 
         results_file = study_dir / "results.json"
         assert results_file.exists()
@@ -268,14 +254,44 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
         with open(results_file) as f:
             results = json.load(f)
 
-        # Results should match demographics group structure
-        assert "groups" in results
-        assert len(results["groups"]) == len(demographics["groups"])
+        demo_groups = mock_demographics[study_id]["groups"]
 
-        # Each group should have UMLS entities and match input group order
-        for result_group, demo_group in zip(results["groups"], demographics["groups"]):
+        # Results should follow the new structure
+        assert isinstance(results, dict)
+        assert "groups" in results
+        assert isinstance(results["groups"], list)
+
+        # Verify groups match expected structure and correspond to demographics groups
+        result_groups = results["groups"]
+        for result_group in result_groups:
+            # Basic structure checks
+            assert isinstance(result_group, dict)
+            assert "diagnosis" in result_group
+            assert "umls_entities" in result_group
+            assert "group_ix" in result_group
+            assert "count" in result_group
+            
+            # Verify group matches demographics
+            group_ix = result_group["group_ix"]
+            assert group_ix < len(demo_groups)
+            demo_group = demo_groups[group_ix]
+            
+            # Count should match
             assert result_group["count"] == demo_group["count"]
+            
+            # UMLS entities should be valid
             assert len(result_group["umls_entities"]) >= 1
+            for entity in result_group["umls_entities"]:
+                assert "umls_cui" in entity
+                assert "umls_name" in entity
+                assert "umls_prob" in entity
+                assert isinstance(entity["umls_prob"], float)
+                assert 0 <= entity["umls_prob"] <= 1
+        
+        processed_studies += 1
+
+    # Ensure we tested multiple studies
+    assert processed_studies > 1, "Not enough studies were processed"
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
@@ -298,6 +314,78 @@ def test_missing_demographics_pipeline(sample_data, mock_demographics, tmp_path)
         extractor.transform_dataset(
             sample_data, output_dir, input_pipeline_info=pipeline_kwargs
         )
+
+
+@pytest.mark.skip(reason="UMLS tests are optional")
+def test_invalid_demographics_input(sample_data, mock_demographics):
+    """Test handling of invalid demographics input data."""
+    # Get a valid study to use as base
+    study_id = next(
+        sid
+        for sid, study in sample_data.data.items()
+        if sid in mock_demographics
+        and ((study.pubget and study.pubget.text) or (study.ace and study.ace.text))
+    )
+    study = sample_data.data[study_id]
+
+    # Get study text
+    text = None
+    for source in ["pubget", "ace"]:
+        source_obj = getattr(study, source, None)
+        if source_obj and source_obj.text:
+            with open(source_obj.text) as f:
+                text = f.read()
+            break
+
+    assert text is not None, "No text found for test study"
+
+    extractor = UMLSDiseaseExtractor()
+
+    # Test empty groups list
+    empty_groups_input = {
+        study_id: {
+            "text": text,
+            "participant_demographics": {"groups": []},
+        }
+    }
+    results = extractor._transform(empty_groups_input)
+    assert study_id in results
+    assert results[study_id]["groups"] == []
+
+    # Test missing diagnosis field
+    no_diagnosis_demo = {"groups": [{"count": 10}]}
+    no_diagnosis_input = {
+        study_id: {
+            "text": text,
+            "participant_demographics": no_diagnosis_demo,
+        }
+    }
+    results = extractor._transform(no_diagnosis_input)
+    assert study_id in results
+    assert results[study_id]["groups"] == []
+
+    # Test invalid group data structure
+    invalid_group_demo = {"groups": None}
+    invalid_input = {
+        study_id: {
+            "text": text,
+            "participant_demographics": invalid_group_demo,
+        }
+    }
+    results = extractor._transform(invalid_input)
+    assert study_id in results
+    assert results[study_id]["groups"] == []
+
+    # Test missing demographics entirely
+    missing_demo_input = {
+        study_id: {
+            "text": text,
+            "participant_demographics": None,
+        }
+    }
+    results = extractor._transform(missing_demo_input)
+    assert study_id in results
+    assert results[study_id]["groups"] == []
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")

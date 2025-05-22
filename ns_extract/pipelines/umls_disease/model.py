@@ -279,40 +279,44 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
 
         Args:
             inputs: Dictionary containing study data with:
-                - text: Article full text content
-                - participant_demographics: Demographics results data
+                - study_id: Unique identifier for the study
+                    - text: Article full text content
+                    - participant_demographics: Demographics results data
             **kwargs: Additional arguments
 
         Returns:
             List of UMLS disease entities found in the text
         """
-        text = inputs["text"]
-        demographics = inputs["participant_demographics"]
+        results = {}
+        for study_id, study_inputs in inputs.items():
+            text = study_inputs["text"]
+            demographics = study_inputs["participant_demographics"]
 
-        if not demographics or "groups" not in demographics:
-            return {}
+            if not demographics or "groups" not in demographics:
+                continue
 
-        # Process text for abbreviations
-        abbreviations = self._load_abbreviations([text])[0]
+            # Process text for abbreviations
+            abbreviations = self._load_abbreviations([text])[0]
 
-        # Extract UMLS entities
-        study_results = []
-        for group_ix, group in enumerate(demographics["groups"]):
-            if not pd.isna(group.get("diagnosis")):
-                resolved_target, target_ents = self.get_candidates(
-                    group["diagnosis"], abbreviations=abbreviations
-                )
+            # Extract UMLS entities
+            study_results = []
+            for group_ix, group in enumerate(demographics["groups"]):
+                if not pd.isna(group.get("diagnosis")):
+                    resolved_target, target_ents = self.get_candidates(
+                        group["diagnosis"], abbreviations=abbreviations
+                    )
 
-                if target_ents:  # Only add results if entities were found
-                    result = UMLSDiseaseSchema(
-                        pmid=0,  # PMID not critical for UMLS extraction
-                        diagnosis=resolved_target,
-                        umls_entities=target_ents,
-                        count=group["count"],
-                        group_ix=group_ix,
-                        start_char=None,
-                        end_char=None,
-                    ).model_dump()
-                    study_results.append(result)
+                    if target_ents:  # Only add results if entities were found
+                        result = UMLSDiseaseSchema(
+                            pmid=0,  # PMID not critical for UMLS extraction
+                            diagnosis=resolved_target,
+                            umls_entities=target_ents,
+                            count=group["count"],
+                            group_ix=group_ix,
+                            start_char=None,
+                            end_char=None,
+                        ).model_dump()
+                        study_results.append(result)
+            results[study_id] = {"groups": study_results}
 
-        return {"groups": study_results}
+        return results
