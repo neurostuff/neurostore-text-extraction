@@ -82,7 +82,7 @@ class FileOperationsMixin:
         with file_path.open("w") as f:
             json.dump(data, f, default=str, indent=4)
 
-    def _get_next_available_dir(self, base_path: Path) -> Path:
+    def _find_unique_directory(self, base_path: Path) -> Path:
         """Find next available directory name by appending incrementing numbers.
 
         Used to create uniquely named directories when a target directory
@@ -201,7 +201,7 @@ class PipelineOutputsMixin(FileOperationsMixin):
     for all file operations.
     """
 
-    def _convert_pipeline_info(
+    def _normalize_pipeline_info(
         self,
         info: Optional[
             Union[Dict[str, Dict[str, str]], Dict[str, "InputPipelineInfo"]]

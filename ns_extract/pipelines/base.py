@@ -74,7 +74,7 @@ PIPELINE_INPUTS = ["results", "raw_results", "info"]
 logger = logging.getLogger(__name__)
 
 
-def deep_getattr(obj: Any, attr_path: str, default: Any = None) -> Any:
+def get_nested_attribute(obj: Any, attr_path: str, default: Any = None) -> Any:
     try:
         return reduce(getattr, attr_path.split("."), obj)
     except AttributeError:
@@ -144,13 +144,13 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         # If directory exists, check for changes
         if hash_outdir.exists():
-            if not self.check_for_changes(hash_outdir, dataset):
+            if not self._has_study_changes(hash_outdir, dataset):
                 print("No studies need processing")
                 return
             # Get next available directory for new results if a DependentPipeline
             # For IndependentPipeline, we overwrite the existing directory
             if isinstance(self, DependentPipeline):
-                hash_outdir = self._get_next_available_dir(hash_outdir)
+                hash_outdir = self._find_unique_directory(hash_outdir)
 
         # Create directory and write pipeline info
         hash_outdir.mkdir(parents=True, exist_ok=True)
@@ -204,7 +204,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         # Create hashed output directory path
         # Create hash from configuration
         hash_str = hashlib.shake_256(
-            self._create_hash_string(dataset).encode()
+            self._generate_config_hash_string(dataset).encode()
         ).hexdigest(6)
 
         # Create full directory path
@@ -217,7 +217,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return hash_outdir
 
-    def _create_hash_string(self, dataset: Dataset) -> str:
+    def _generate_config_hash_string(self, dataset: Dataset) -> str:
         """Create string for hashing pipeline configuration.
 
         The hash combines:
@@ -234,7 +234,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return f"{version_str}_{args_str}"
 
-    def check_for_changes(
+    def _has_study_changes(
         self,
         hash_outdir: Path,
         dataset: Dataset,
@@ -323,7 +323,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             existing results (True = no changes, False = changes detected)
         """
         result_matches = {}
-        study_inputs = self._gather_all_study_inputs(dataset)
+        study_inputs = self._collect_all_study_inputs(dataset)
 
         for db_id, study in dataset.data.items():
             # Get existing input file hashes for this study
@@ -335,13 +335,13 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                 continue
 
             # Use __are_file_hashes_identical to compare hashes
-            result_matches[db_id] = self.__are_file_hashes_identical(
+            result_matches[db_id] = self.__do_file_hashes_match(
                 study_inputs[db_id], existing
             )
 
         return result_matches
 
-    def _gather_all_study_inputs(self, dataset: Dataset) -> Dict[str, Dict[str, Path]]:
+    def _collect_all_study_inputs(self, dataset: Dataset) -> Dict[str, Dict[str, Path]]:
         """Collect all input file paths for each study in the dataset.
 
         Args:
@@ -370,7 +370,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                 source_obj = getattr(study, source, None)
                 if source_obj:
                     for input_type in input_types:
-                        input_obj = deep_getattr(source_obj, input_type, None)
+                        input_obj = get_nested_attribute(source_obj, input_type, None)
                         if input_obj and input_type not in study_inputs:
                             study_inputs[input_type] = input_obj
                     break  # Stop after finding first valid source
@@ -382,7 +382,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                     source_obj = study.pipeline_results.get(source, None)
                     if source_obj:
                         for input_type in input_types:
-                            input_obj = deep_getattr(source_obj, input_type, None)
+                            input_obj = get_nested_attribute(source_obj, input_type, None)
                             if input_obj and input_type not in study_inputs:
                                 # use source instead of input_type
                                 # because input_type from a pipeline
@@ -393,7 +393,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return study_inputs
 
-    def __are_file_hashes_identical(
+    def __do_file_hashes_match(
         self, study_inputs: Dict[str, Path], existing_inputs: Dict[str, str]
     ) -> bool:
         """Compare file hashes to determine if the inputs have changed."""
@@ -433,7 +433,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             except Exception as cleanup_error:
                 logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
 
-    def _filter_inputs(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
+    def _filter_unprocessed_studies(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
         """Filter dataset to only include studies needing processing.
 
         A study needs processing if:
@@ -544,13 +544,13 @@ class DependentPipeline(Pipeline):
                     logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
             raise
 
-    def _create_hash_string(self, dataset: Dataset) -> str:
+    def _generate_config_hash_string(self, dataset: Dataset) -> str:
         """Create hash string including dataset keys for group processing.
 
         For dependent pipelines, we include dataset keys since all studies are
         processed together. This extends the base pipeline hash with dataset keys.
         """
-        base_hash = super()._create_hash_string(dataset)
+        base_hash = super()._generate_config_hash_string(dataset)
         dataset_str = self.__serialize_dataset_keys(dataset)
         return f"{dataset_str}_{base_hash}"
 
@@ -644,7 +644,7 @@ class IndependentPipeline(Pipeline):
     ) -> None:
         """Process studies independently with optional parallelization."""
         # Filter and prepare studies that need processing
-        filtered_dataset = self._filter_inputs(hash_outdir, dataset)
+        filtered_dataset = self._filter_unprocessed_studies(hash_outdir, dataset)
         studies_to_process = []
 
         for db_id, study in filtered_dataset.data.items():
