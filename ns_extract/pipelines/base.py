@@ -775,7 +775,7 @@ class Extractor(ABC):
         self._normalize_fields, self._expand_abbrev_fields = fields
 
         # Initialize NLP model if we have any fields needing abbreviation expansion
-        if self._expand_abbrev_fields:
+        if self._expand_abbrev_fields and not disable_abbreviation_expansion:
             import spacy
 
             try:
