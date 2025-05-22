@@ -99,10 +99,10 @@ def resolve_abbreviations(
     abbreviations: List[Dict],
 ) -> str:
     """Resolve abbreviations in target text using a list of known abbreviations.
-    
+
     Finds and expands all abbreviations in the text, but only processes each unique
     abbreviation once (using its first occurrence).
-    
+
     Args:
         target (str): The text string that may contain abbreviations
         abbreviations (List[Dict]): List of abbreviation dictionaries from load_abbreviations()
@@ -126,7 +126,8 @@ def resolve_abbreviations(
 
     # Find all abbreviations that appear in the target
     matching_abbrevs = [
-        abrv for abrv in abbreviations
+        abrv
+        for abrv in abbreviations
         if abrv["short_text"] in target and abrv["short_text"] not in processed_abbrevs
     ]
 

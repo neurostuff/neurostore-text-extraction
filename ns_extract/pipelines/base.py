@@ -738,10 +738,11 @@ class Extractor(ABC):
     _nlp = None
 
     def __init__(
-            self,
-            nlp_model: str = "en_core_sci_sm",
-            disable_abbreviation_expansion: bool = False,
-            **kwargs: Any) -> None:
+        self,
+        nlp_model: str = "en_core_sci_sm",
+        disable_abbreviation_expansion: bool = False,
+        **kwargs: Any,
+    ) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
@@ -793,7 +794,7 @@ class Extractor(ABC):
         Args:
             model: Pydantic model class to check
             prefix: Prefix for nested field names
-            
+
         Returns:
             Tuple of:
             - set[str]: Field paths needing text normalization
@@ -801,12 +802,12 @@ class Extractor(ABC):
         """
         normalize_fields = set()
         expand_abbrev_fields = set()
-        
+
         for name, field in model.model_fields.items():
             # Build field path
             field_path = f"{prefix}.{name}" if prefix else name
             field_type = field.annotation
-            
+
             # Check direct field metadata
             if field.json_schema_extra:
                 if field.json_schema_extra.get(NORMALIZE_TEXT, False):
@@ -823,11 +824,13 @@ class Extractor(ABC):
                 nested_type = field_type.__args__[0]
                 if hasattr(nested_type, "model_fields"):
                     iterable_path = f"{field_path}[]"
-            
+
             # Handle Dict[str, Model]
-            elif (hasattr(field_type, "__origin__") and
-                  field_type.__origin__ is dict and
-                  len(field_type.__args__) == 2):
+            elif (
+                hasattr(field_type, "__origin__")
+                and field_type.__origin__ is dict
+                and len(field_type.__args__) == 2
+            ):
                 nested_type = field_type.__args__[1]
                 if hasattr(nested_type, "model_fields"):
                     iterable_path = f"{field_path}[]"
@@ -965,11 +968,11 @@ class Extractor(ABC):
 
     def _get_base_path_and_remainder(self, path: str) -> Tuple[str, str]:
         """Split a path at the first [] marker."""
-        if '[]' in path:
-            base, remainder = path.split('[]', 1)
-            remainder = remainder.lstrip('.')
+        if "[]" in path:
+            base, remainder = path.split("[]", 1)
+            remainder = remainder.lstrip(".")
             return base, remainder
-        return path, ''
+        return path, ""
 
     def post_process(
         self, results: Dict[str, Any], study_inputs: Dict[str, Dict[str, Any]]
@@ -1002,15 +1005,18 @@ class Extractor(ABC):
                 if "text" in study_inputs[study_id]:
                     source_text = study_inputs[study_id].get("text", None)
                     if isinstance(source_text, str) and self._nlp is not None:
-                        study_abbreviations = load_abbreviations(source_text, model=self._nlp)
+                        study_abbreviations = load_abbreviations(
+                            source_text, model=self._nlp
+                        )
 
             # Find which transformations each path needs
             field_transforms = {
                 path: (
                     path in self._normalize_fields,
                     path in self._expand_abbrev_fields
-                    and not self.disable_abbreviation_expansion
-                ) for path in self._normalize_fields.union(self._expand_abbrev_fields)
+                    and not self.disable_abbreviation_expansion,
+                )
+                for path in self._normalize_fields.union(self._expand_abbrev_fields)
             }
 
             # Process each path
@@ -1021,8 +1027,8 @@ class Extractor(ABC):
                 # Get base value
                 base_value = reduce(
                     lambda d, k: d.get(k, {}) if isinstance(d, dict) else d,
-                    base_path.split('.'),
-                    processed_study
+                    base_path.split("."),
+                    processed_study,
                 )
 
                 # Handle iterables
@@ -1030,13 +1036,14 @@ class Extractor(ABC):
                     if isinstance(base_value, (list, dict)):
                         # Recursively process each item
                         items = (
-                            base_value.values() if isinstance(base_value, dict)
+                            base_value.values()
+                            if isinstance(base_value, dict)
                             else base_value
                         )
                         for item in items:
                             # Process and update nested field
                             current = item
-                            parts = remainder.split('.')
+                            parts = remainder.split(".")
                             for i, part in enumerate(parts):
                                 # Last part is the field to process
                                 if i == len(parts) - 1:
@@ -1045,7 +1052,7 @@ class Extractor(ABC):
                                             current[part],
                                             do_normalize,
                                             do_expand,
-                                            study_abbreviations
+                                            study_abbreviations,
                                         )
                                 # Navigate through intermediate parts
                                 else:
@@ -1058,7 +1065,7 @@ class Extractor(ABC):
                         )
                         # Set the processed value
                         current = processed_study
-                        parts = base_path.split('.')
+                        parts = base_path.split(".")
                         for part in parts[:-1]:
                             current = current[part]
                         current[parts[-1]] = new_value

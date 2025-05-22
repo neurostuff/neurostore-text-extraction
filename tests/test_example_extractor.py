@@ -69,24 +69,25 @@ def test_text_normalization_and_expansion(sample_data, mock_demographics, tmp_pa
     # Check results
     output_version_dir = output_dir / "ExampleExtractor" / extractor._version
     hash_dir = next(output_version_dir.iterdir())
-    results = json.loads(
-        (hash_dir / test_study_id / "results.json").read_text()
-    )
+    results = json.loads((hash_dir / test_study_id / "results.json").read_text())
 
     # Verify text is normalized and abbreviations are expanded
     result_value = results["value"]
-    
+
     # Original text had "TEST" - verify case normalization to title case
-    assert "Test" in result_value and "TEST" not in result_value, \
-        "Text should be normalized to title case"
-    
+    assert (
+        "Test" in result_value and "TEST" not in result_value
+    ), "Text should be normalized to title case"
+
     # Original text had "Magnetic Resonance Imaging (MRI)" - verify both forms present
-    assert "Magnetic Resonance Imaging" in result_value, \
-        "Long form 'Magnetic Resonance Imaging' should be present"
-        
+    assert (
+        "Magnetic Resonance Imaging" in result_value
+    ), "Long form 'Magnetic Resonance Imaging' should be present"
+
     # Original text had "Electroencephalogram (EEG)" - verify both forms present
-    assert "Electroencephalogram" in result_value, \
-        "Long form 'Electroencephalogram' should be present"
+    assert (
+        "Electroencephalogram" in result_value
+    ), "Long form 'Electroencephalogram' should be present"
 
 
 def setup_demographics_dir(tmp_path, mock_demographics):
@@ -129,7 +130,7 @@ def test_disabled_abbreviation_expansion(sample_data, mock_demographics, tmp_pat
     test_study_id = list(mock_demographics.keys())[0]
     modified_dataset = sample_data.slice([test_study_id])
     modified_dataset.data[test_study_id].pubget.text = Path(tmp_path / "test_text.txt")
-    
+
     # Prepare test text with mixed case and abbreviations
     test_text = (
         "TEST with Magnetic Resonance Imaging (MRI) and "
@@ -157,23 +158,23 @@ def test_disabled_abbreviation_expansion(sample_data, mock_demographics, tmp_pat
     # Check results
     output_version_dir = output_dir / "ExampleExtractor" / extractor._version
     hash_dir = next(output_version_dir.iterdir())
-    results = json.loads(
-        (hash_dir / test_study_id / "results.json").read_text()
-    )
+    results = json.loads((hash_dir / test_study_id / "results.json").read_text())
 
     result_value = results["value"]
-    
+
     # Text should still be normalized to title case
-    assert "Test" in result_value and "TEST" not in result_value, \
-        "Text should still be normalized even when abbreviation expansion is disabled"
-    
+    assert (
+        "Test" in result_value and "TEST" not in result_value
+    ), "Text should still be normalized even when abbreviation expansion is disabled"
+
     # Abbreviations should not be expanded
-    assert "Magnetic Resonance Imaging (Mri)" in result_value, \
-        "Original abbreviation form should be preserved when expansion is disabled"
+    assert (
+        "Magnetic Resonance Imaging (Mri)" in result_value
+    ), "Original abbreviation form should be preserved when expansion is disabled"
 
-    assert "Electroencephalogram (Eeg)" in result_value, \
-        "Original abbreviation form should be preserved when expansion is disabled"
-
+    assert (
+        "Electroencephalogram (Eeg)" in result_value
+    ), "Original abbreviation form should be preserved when expansion is disabled"
 
 
 def test_idempotency(sample_data, mock_demographics, tmp_path):

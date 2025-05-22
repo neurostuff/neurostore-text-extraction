@@ -16,16 +16,10 @@ class ExampleOutput(BaseModel):
     value: str = Field(
         ...,
         description="Example extracted value from input data",
-        json_schema_extra={
-            "normalize_text": True,
-            "expand_abbreviations": True
-        }
+        json_schema_extra={"normalize_text": True, "expand_abbreviations": True},
     )
     confidence: float = Field(
-        ...,
-        description="Confidence score of the extraction",
-        ge=0.0,
-        le=1.0
+        ..., description="Confidence score of the extraction", ge=0.0, le=1.0
     )
 
 
