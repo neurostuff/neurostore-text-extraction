@@ -725,10 +725,13 @@ class Extractor(ABC):
     _version: str = None
     _output_schema: Type[BaseModel] = None
 
-    def __init__(self, **kwargs: Any) -> None:
+    _nlp = None
+
+    def __init__(self, nlp_model: str = "en_core_sci_sm", **kwargs: Any) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
+            nlp_model: SpaCy model name for text processing. Defaults to "en_core_sci_sm"
             **kwargs: Configuration parameters for the extractor
 
         Raises:
@@ -743,6 +746,20 @@ class Extractor(ABC):
             IndependentPipeline.__init__(self, extractor=self)
         if isinstance(self, DependentPipeline):
             DependentPipeline.__init__(self, extractor=self)
+
+        # Initialize NLP model if abbreviation expansion is needed
+        needs_abbreviations = any(
+            field.json_schema_extra and field.json_schema_extra.get("expand_abbreviations", False)
+            for field in self._output_schema.model_fields.values()
+        )
+        if needs_abbreviations:
+            import spacy
+            try:
+                self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
+            except OSError:
+                print(f"Downloading {nlp_model} model...")
+                spacy.cli.download(nlp_model)
+                self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
 
     @abstractmethod
     def _transform(
@@ -775,7 +792,9 @@ class Extractor(ABC):
         pass
 
     def transform(
-        self, study_inputs: Dict[str, Dict[str, Any]], **kwargs: Any
+        self,
+        study_inputs: Dict[str, Dict[str, Any]],
+        **kwargs: Any
     ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, bool]]:
         """Transform and validate input data.
 
@@ -813,8 +832,8 @@ class Extractor(ABC):
                 None, "Transform must return dict with study IDs as keys"
             )
 
-        # Post-process results while maintaining study ID structure
-        cleaned_results = self.post_process(raw_results)
+        # Post-process results with original inputs for abbreviation expansion
+        cleaned_results = self.post_process(raw_results, study_inputs)
 
         # Validate each study's results individually
         validation_status = self.validate_results(cleaned_results)
@@ -846,16 +865,66 @@ class Extractor(ABC):
 
         return validation_status
 
-    def post_process(self, results: Dict[str, Any]) -> Dict[str, Any]:
-        """Optional hook for post-processing transform results.
+    def post_process(
+        self,
+        results: Dict[str, Any],
+        study_inputs: Dict[str, Dict[str, Any]]
+    ) -> Dict[str, Any]:
+        """Post-process transform results according to field metadata.
 
-        This can be overridden by subclasses to modify results before validation,
-        for example to clean or normalize data.
+        Applies text normalization and abbreviation expansion to fields based on
+        their metadata configuration:
+        - NORMALIZE_TEXT: Normalize text using normalize_string()
+        - EXPAND_ABBREVIATIONS: Expand abbreviations using resolve_abbreviations()
 
         Args:
             results: Dict mapping study IDs to their raw transformed data
+            study_inputs: Dict containing input data with source text
 
         Returns:
-            Dict with same structure as input, potentially modified
+            Dict with same structure as input, with processed text fields
         """
-        return results
+        from ns_extract.pipelines.data_structures import NORMALIZE_TEXT, EXPAND_ABBREVIATIONS
+        from ns_extract.pipelines.normalize import (
+            normalize_string,
+            load_abbreviations,
+            resolve_abbreviations,
+        )
+
+        processed_results = {}
+
+        for study_id, study_data in results.items():
+            # Deep copy to avoid modifying original
+            processed_study = dict(study_data)
+            
+            # Extract abbreviations from source text
+            study_abbreviations = []
+            if study_id in study_inputs and "text" in study_inputs[study_id]:
+                source_text = study_inputs[study_id].get("text", None)
+                if isinstance(source_text, str) and self._nlp is not None:
+                    study_abbreviations = load_abbreviations(source_text, model=self._nlp)
+
+            for field_name, field_value in study_data.items():
+                if not isinstance(field_value, str):
+                    continue
+
+                field_schema = self._output_schema.model_fields.get(field_name)
+                if not field_schema:
+                    continue
+
+                field_metadata = field_schema.json_schema_extra or {}
+
+                # Apply text normalization if specified
+                if field_metadata.get(NORMALIZE_TEXT, False):
+                    processed_study[field_name] = normalize_string(field_value)
+
+                # Expand abbreviations if specified
+                if field_metadata.get(EXPAND_ABBREVIATIONS, False):
+                    processed_study[field_name] = resolve_abbreviations(
+                        field_value,
+                        study_abbreviations
+                    )
+
+            processed_results[study_id] = processed_study
+
+        return processed_results

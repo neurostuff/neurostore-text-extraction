@@ -18,10 +18,10 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
     _prompt = base_message
     _output_schema = BaseDemographicsSchema
 
-    def post_process(self, result, **kwargs):
+    def post_process(self, results, study_inputs, **kwargs):
         # Clean known issues with GPT demographics result
-        cleaned_results = {}
-        for study_id, study_result in result.items():
+        cleaned_results = super().post_process(results, study_inputs, **kwargs)
+        for study_id, study_result in cleaned_results.items():
             meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
             meta_keys = [k for k in meta_keys if k in study_result]
 
