@@ -326,4 +326,6 @@ class PipelineOutputsMixin(FileOperationsMixin):
             self._write_json(study_dir / "results.json", cleaned_results)
 
         except IOError as e:
-            raise FileOperationError(f"Failed to write results for study {study_id}: {str(e)}")
+            raise FileOperationError(
+                f"Failed to write results for study {study_id}: {str(e)}"
+            )

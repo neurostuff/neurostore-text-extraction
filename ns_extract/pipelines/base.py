@@ -382,7 +382,9 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                     source_obj = study.pipeline_results.get(source, None)
                     if source_obj:
                         for input_type in input_types:
-                            input_obj = get_nested_attribute(source_obj, input_type, None)
+                            input_obj = get_nested_attribute(
+                                source_obj, input_type, None
+                            )
                             if input_obj and input_type not in study_inputs:
                                 # use source instead of input_type
                                 # because input_type from a pipeline
@@ -433,7 +435,9 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             except Exception as cleanup_error:
                 logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
 
-    def _filter_unprocessed_studies(self, hash_outdir: Path, dataset: Dataset) -> Dataset:
+    def _filter_unprocessed_studies(
+        self, hash_outdir: Path, dataset: Dataset
+    ) -> Dataset:
         """Filter dataset to only include studies needing processing.
 
         A study needs processing if:
@@ -512,7 +516,7 @@ class DependentPipeline(Pipeline):
                             study_outdir,
                             db_id,
                             cleaned_results[db_id],
-                            raw_results[db_id]
+                            raw_results[db_id],
                         )
 
                         # Write study info including validation status
@@ -604,10 +608,7 @@ class IndependentPipeline(Pipeline):
                 try:
                     # Write study results using PipelineOutputsMixin method
                     self._write_study_results(
-                        study_outdir,
-                        db_id,
-                        cleaned_results[db_id],
-                        raw_results[db_id]
+                        study_outdir, db_id, cleaned_results[db_id], raw_results[db_id]
                     )
 
                     # Write study info with validation status
@@ -682,7 +683,9 @@ class IndependentPipeline(Pipeline):
                             success_count += 1
             else:
                 for study_data in studies_to_process:
-                    if self.__process_and_write_study(study_data, hash_outdir, **kwargs):
+                    if self.__process_and_write_study(
+                        study_data, hash_outdir, **kwargs
+                    ):
                         success_count += 1
                     pbar.update(1)
 
