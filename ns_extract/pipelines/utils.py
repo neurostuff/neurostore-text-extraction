@@ -165,7 +165,7 @@ class StudyInputsMixin:
         """
         loaded_inputs: Dict[str, Union[str, Dict[str, Any], List[Dict[str, Any]]]] = {}
         for input_name, file_path in study_inputs.items():
-            path = Path(file_path)
+            path = Path(file_path).resolve()
             suffix = path.suffix.lower()
 
             try:
@@ -287,6 +287,7 @@ class PipelineOutputsMixin(FileOperationsMixin):
         """Write information about the study run to info.json file."""
         info = StudyOutputJson(
             date=datetime.now().isoformat(),
+            study_id=db_id,
             inputs={
                 str(input_file): self._calculate_md5(input_file)
                 for input_file in study_inputs.values()

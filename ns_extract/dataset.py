@@ -205,6 +205,8 @@ class Dataset:
         if isinstance(input_directory, str):
             input_directory = Path(input_directory)
 
+        # always resolve to absolute path
+        input_directory = input_directory.resolve()
         if not input_directory.exists():
             raise ValueError(f"Input directory {input_directory} does not exist.")
 
@@ -251,7 +253,7 @@ class Dataset:
                 info.json  # Required
             pipeline_info.json  # Required for config selection
         """
-        pipeline_dir = Path(pipeline_dir)
+        pipeline_dir = Path(pipeline_dir).resolve()
         if not pipeline_dir.exists():
             raise ValueError(f"Pipeline directory does not exist: {pipeline_dir}")
 
@@ -391,9 +393,9 @@ class PipelineInputFilter:
             overwrite (bool): Whether to overwrite the existing output.
         """
         self.output_directory = (
-            Path(output_directory)
+            Path(output_directory).resolve()
             if isinstance(output_directory, str)
-            else output_directory
+            else output_directory.resolve()
         )
         self.pipeline = pipeline
         self.overwrite = overwrite
