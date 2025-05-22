@@ -182,6 +182,8 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             self.__handle_processing_error(e, hash_outdir)
             raise
 
+        return hash_outdir
+
     def __prepare_pipeline(
         self,
         dataset: Dataset,
@@ -1001,7 +1003,11 @@ class Extractor(ABC):
 
             # Extract abbreviations once per study if needed
             study_abbreviations = []
-            if self._expand_abbrev_fields and study_id in study_inputs:
+            if (
+                not self.disable_abbreviation_expansion
+                and self._expand_abbrev_fields
+                and study_id in study_inputs
+            ):
                 if "text" in study_inputs[study_id]:
                     source_text = study_inputs[study_id].get("text", None)
                     if isinstance(source_text, str) and self._nlp is not None:

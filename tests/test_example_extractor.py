@@ -247,13 +247,9 @@ def test_remove_and_readd_study(sample_data, mock_demographics, tmp_path):
     )
 
     # Second transformation with full dataset
-    extractor.transform_dataset(
+    hash_dir = extractor.transform_dataset(
         sample_data, output_dir, input_pipeline_info=input_pipeline_info
     )
-
-    # Verify added study results exist and are valid
-    output_version_dir = output_dir / "ExampleExtractor" / extractor._version
-    hash_dir = next(output_version_dir.iterdir())
 
     # Check results.json exists and contains expected fields
     results = json.loads((hash_dir / removed_study_id / "results.json").read_text())
