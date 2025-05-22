@@ -49,3 +49,7 @@ Available pipelines:
 - word_deviance
 - task
 - participant_demographics
+
+## Documentation
+
+- [Schema Metadata System](docs/schema_metadata.md) - Documentation for the schema metadata system that controls text processing operations (normalization, abbreviation expansion) while maintaining clean schema definitions.

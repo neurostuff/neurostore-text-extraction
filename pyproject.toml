@@ -16,6 +16,8 @@ classifiers = [
 dynamic = ["version"]
 dependencies = [
     "pyyaml",
+    "scispacy",
+    "spacy",
 ]
 
 

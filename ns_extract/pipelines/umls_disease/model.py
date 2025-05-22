@@ -207,7 +207,7 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
         print("Processing abbreviations")
         batch_size = 20
         for i in tqdm(range(0, len(texts), batch_size)):
-            batch_docs = texts[i: i + batch_size]
+            batch_docs = texts[i : i + batch_size]  # noqa: E203
             batch_abbreviations = self.nlp.pipe(batch_docs, n_process=self.n_workers)
             for processed_doc in batch_abbreviations:
                 abbreviations.append(processed_doc._.abbreviations)
