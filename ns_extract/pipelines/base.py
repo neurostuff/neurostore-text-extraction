@@ -196,7 +196,9 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             ValidationError: If results fail schema validation
         """
         # Get initial output directory path without creating it
-        hash_outdir = self._prepare_pipeline(dataset, output_directory, input_pipeline_info)
+        hash_outdir = self._prepare_pipeline(
+            dataset, output_directory, input_pipeline_info
+        )
 
         # Create pipeline info object
         pipeline_info = self._create_pipeline_info(
@@ -224,7 +226,8 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                 hash_outdir,
                 input_pipeline_info,
                 num_workers=num_workers,
-                **kwargs)
+                **kwargs,
+            )
         except (
             InputError,
             ProcessingError,
@@ -291,6 +294,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         if isinstance(error, FileOperationError):
             try:
                 import shutil
+
                 if hash_outdir.exists():
                     shutil.rmtree(hash_outdir)
             except Exception as cleanup_error:
@@ -539,10 +543,7 @@ class IndependentPipeline(Pipeline):
                 raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
 
             try:
-                transform_results = self.transform(
-                    loaded_inputs,
-                    **kwargs
-                )
+                transform_results = self.transform(loaded_inputs, **kwargs)
                 cleaned_results, raw_results, validation_status = transform_results
             except Exception as e:
                 raise ProcessingError(db_id, str(e))
@@ -551,8 +552,12 @@ class IndependentPipeline(Pipeline):
                 try:
                     # Write study results
                     if raw_results[db_id] != cleaned_results[db_id]:
-                        self.write_json(study_outdir / "raw_results.json", raw_results[db_id])
-                    self.write_json(study_outdir / "results.json", cleaned_results[db_id])
+                        self.write_json(
+                            study_outdir / "raw_results.json", raw_results[db_id]
+                        )
+                    self.write_json(
+                        study_outdir / "results.json", cleaned_results[db_id]
+                    )
 
                     # Write study info with validation status
                     self.write_study_info(
@@ -573,6 +578,7 @@ class IndependentPipeline(Pipeline):
                 try:
                     if study_outdir.exists():
                         import shutil
+
                         shutil.rmtree(study_outdir)
                 except Exception as cleanup_error:
                     logger.error(f"Failed to cleanup after error: {str(cleanup_error)}")
@@ -622,7 +628,9 @@ class IndependentPipeline(Pipeline):
 
         with tqdm(total=len(studies_to_process), desc="Processing studies") as pbar:
             if num_workers > 1:
-                with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as exc:
+                with concurrent.futures.ThreadPoolExecutor(
+                    max_workers=num_workers
+                ) as exc:
                     futures = []
                     for study_data in studies_to_process:
                         future = exc.submit(
@@ -686,7 +694,9 @@ class DependentPipeline(Pipeline):
                 try:
                     loaded_study_inputs[db_id] = self.load_study_inputs(study_inputs)
                 except (IOError, ValueError) as e:
-                    raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
+                    raise InputError(
+                        f"Failed to load inputs for study {db_id}: {str(e)}"
+                    )
 
             # Process loaded inputs and get results
             transform_outputs = self.transform(loaded_study_inputs, **kwargs)
@@ -699,11 +709,15 @@ class DependentPipeline(Pipeline):
                         study_outdir.mkdir(parents=True, exist_ok=True)
 
                         # Write cleaned results
-                        self.write_json(study_outdir / "results.json", cleaned_results[db_id])
+                        self.write_json(
+                            study_outdir / "results.json", cleaned_results[db_id]
+                        )
 
                         # Write raw results if different
                         if raw_results[db_id] != cleaned_results[db_id]:
-                            self.write_json(study_outdir / "raw_results.json", raw_results[db_id])
+                            self.write_json(
+                                study_outdir / "raw_results.json", raw_results[db_id]
+                            )
 
                         # Write study info including validation status
                         self.write_study_info(
@@ -725,6 +739,7 @@ class DependentPipeline(Pipeline):
             if isinstance(e, FileOperationError):
                 try:
                     import shutil
+
                     for study_id in all_study_inputs.keys():
                         study_dir = hash_outdir / study_id
                         if study_dir.exists():
@@ -889,7 +904,9 @@ class Extractor(ABC):
 
         # Ensure raw results maintain study ID structure
         if not isinstance(raw_results, dict):
-            raise ProcessingError(None, "Transform must return dict with study IDs as keys")
+            raise ProcessingError(
+                None, "Transform must return dict with study IDs as keys"
+            )
 
         # Post-process results while maintaining study ID structure
         cleaned_results = self.post_process(raw_results)

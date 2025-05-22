@@ -1,4 +1,5 @@
 """ Extract participant demographics from articles. """
+
 from contextlib import nullcontext
 import logging
 
@@ -68,7 +69,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
             df["male_count"] = df["male_count"].clip(lower=0)
 
             # Same for female count
-            ix_female_miss = (pd.isna(df["female_count"])) & ~(pd.isna(df["male_count"]))
+            ix_female_miss = (pd.isna(df["female_count"])) & ~(
+                pd.isna(df["male_count"])
+            )
             df.loc[ix_female_miss, "female_count"] = (
                 df.loc[ix_female_miss, "count"] - df.loc[ix_female_miss, "male_count"]
             )

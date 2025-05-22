@@ -122,14 +122,17 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
 
             # Extract predictions
             study_results = extract_from_text(
-                text, model=self.extraction_model, client=self.client, **completion_config
+                text,
+                model=self.extraction_model,
+                client=self.client,
+                **completion_config,
             )
 
             if not study_results:
                 logging.warning(
                     f"No results found for study {study_id} with model {self.extraction_model}"
                 )
-            
+
             results[study_id] = study_results
 
         return results

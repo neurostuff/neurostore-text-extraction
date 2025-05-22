@@ -25,9 +25,11 @@ def mock_inputs(text_content):
 def test_word_count_transform(text_content):
     """Test WordCountExtractor.execute() with preprocessed inputs."""
     extractor = WordCountExtractor()
-    cleaned_result, result, valid = extractor.transform({"dummy_study_id": {"text": text_content}})
-    assert result['dummy_study_id']["word_count"] == 10
-    assert valid['dummy_study_id'] is True
+    cleaned_result, result, valid = extractor.transform(
+        {"dummy_study_id": {"text": text_content}}
+    )
+    assert result["dummy_study_id"]["word_count"] == 10
+    assert valid["dummy_study_id"] is True
 
 
 def test_word_deviance_transform(mock_inputs):

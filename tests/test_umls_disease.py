@@ -2,7 +2,6 @@ import json
 import random
 from pathlib import Path
 import pytest
-import spacy
 
 from ns_extract.dataset import Dataset
 from ns_extract.pipelines.umls_disease.model import UMLSDiseaseExtractor
@@ -270,15 +269,15 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
             assert "umls_entities" in result_group
             assert "group_ix" in result_group
             assert "count" in result_group
-            
+
             # Verify group matches demographics
             group_ix = result_group["group_ix"]
             assert group_ix < len(demo_groups)
             demo_group = demo_groups[group_ix]
-            
+
             # Count should match
             assert result_group["count"] == demo_group["count"]
-            
+
             # UMLS entities should be valid
             assert len(result_group["umls_entities"]) >= 1
             for entity in result_group["umls_entities"]:
@@ -287,7 +286,7 @@ def test_umls_disease_extractor(sample_data, mock_demographics, tmp_path):
                 assert "umls_prob" in entity
                 assert isinstance(entity["umls_prob"], float)
                 assert 0 <= entity["umls_prob"] <= 1
-        
+
         processed_studies += 1
 
     # Ensure we tested multiple studies
