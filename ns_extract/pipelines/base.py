@@ -52,6 +52,15 @@ from ns_extract.pipelines.exceptions import (
 )
 from ns_extract.pipelines.data_structures import (
     InputPipelineInfo,
+    NORMALIZE_TEXT,
+    EXPAND_ABBREVIATIONS,
+)
+
+
+from ns_extract.pipelines.normalize import (
+    normalize_string,
+    load_abbreviations,
+    resolve_abbreviations,
 )
 
 
@@ -724,7 +733,8 @@ class Extractor(ABC):
 
     _version: str = None
     _output_schema: Type[BaseModel] = None
-
+    _normalize_fields: set[str] = set()
+    _expand_abbrev_fields: set[str] = set()
     _nlp = None
 
     def __init__(self, nlp_model: str = "en_core_sci_sm", **kwargs: Any) -> None:
@@ -747,19 +757,84 @@ class Extractor(ABC):
         if isinstance(self, DependentPipeline):
             DependentPipeline.__init__(self, extractor=self)
 
-        # Initialize NLP model if abbreviation expansion is needed
-        needs_abbreviations = any(
-            field.json_schema_extra and field.json_schema_extra.get("expand_abbreviations", False)
-            for field in self._output_schema.model_fields.values()
-        )
-        if needs_abbreviations:
+        # Get fields needing processing
+        # Get text processing fields
+        fields = self._check_needs_abbreviations(self._output_schema)
+        self._normalize_fields, self._expand_abbrev_fields = fields
+
+        # Initialize NLP model if we have any fields needing abbreviation expansion
+        if self._expand_abbrev_fields:
             import spacy
+
             try:
                 self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
             except OSError:
                 print(f"Downloading {nlp_model} model...")
                 spacy.cli.download(nlp_model)
                 self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
+
+    def _check_needs_abbreviations(
+        self, model: Type[BaseModel], prefix: str = ""
+    ) -> Tuple[set[str], set[str]]:
+        """Collect fields needing text normalization or abbreviation expansion.
+
+        Recursively checks fields, tracking full path names (with dots):
+        e.g., "groups.0.diagnosis" for a field in a list item
+
+        Args:
+            model: Pydantic model class to check
+            prefix: Prefix for nested field names
+            
+        Returns:
+            Tuple of:
+            - set[str]: Field paths needing text normalization
+            - set[str]: Field paths needing abbreviation expansion
+        """
+        normalize_fields = set()
+        expand_abbrev_fields = set()
+        
+        for name, field in model.model_fields.items():
+            # Build field path
+            field_path = f"{prefix}.{name}" if prefix else name
+            field_type = field.annotation
+            
+            # Check direct field metadata
+            if field.json_schema_extra:
+                if field.json_schema_extra.get(NORMALIZE_TEXT, False):
+                    normalize_fields.add(field_path)
+                if field.json_schema_extra.get(EXPAND_ABBREVIATIONS, False):
+                    expand_abbrev_fields.add(field_path)
+
+            # For iterable fields, append [] to path before recursing
+            iterable_path = None
+            nested_type = None
+
+            # Handle List[Model]
+            if hasattr(field_type, "__origin__") and field_type.__origin__ is list:
+                nested_type = field_type.__args__[0]
+                if hasattr(nested_type, "model_fields"):
+                    iterable_path = f"{field_path}[]"
+            
+            # Handle Dict[str, Model]
+            elif (hasattr(field_type, "__origin__") and
+                  field_type.__origin__ is dict and
+                  len(field_type.__args__) == 2):
+                nested_type = field_type.__args__[1]
+                if hasattr(nested_type, "model_fields"):
+                    iterable_path = f"{field_path}[]"
+
+            # Handle regular nested model
+            elif hasattr(field_type, "model_fields"):
+                nested_type = field_type
+                iterable_path = field_path
+
+            # Recurse with proper path if we found a nested type
+            if nested_type and iterable_path:
+                nested_fields = self._check_needs_abbreviations(nested_type, iterable_path)
+                normalize_fields.update(nested_fields[0])
+                expand_abbrev_fields.update(nested_fields[1])
+
+        return normalize_fields, expand_abbrev_fields
 
     @abstractmethod
     def _transform(
@@ -792,9 +867,7 @@ class Extractor(ABC):
         pass
 
     def transform(
-        self,
-        study_inputs: Dict[str, Dict[str, Any]],
-        **kwargs: Any
+        self, study_inputs: Dict[str, Dict[str, Any]], **kwargs: Any
     ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, bool]]:
         """Transform and validate input data.
 
@@ -865,17 +938,39 @@ class Extractor(ABC):
 
         return validation_status
 
+    def _process_field_value(
+        self, value: str, normalize: bool, expand: bool, abbreviations: list
+    ) -> str:
+        """Process a single field value with the specified transformations."""
+        if not isinstance(value, str):
+            return value
+
+        result = value
+        if normalize:
+            result = normalize_string(result)
+        if expand:
+            result = resolve_abbreviations(result, abbreviations)
+        return result
+
+    def _get_base_path_and_remainder(self, path: str) -> Tuple[str, str]:
+        """Split a path at the first [] marker."""
+        if '[]' in path:
+            base, remainder = path.split('[]', 1)
+            remainder = remainder.lstrip('.')
+            return base, remainder
+        return path, ''
+
     def post_process(
-        self,
-        results: Dict[str, Any],
-        study_inputs: Dict[str, Dict[str, Any]]
+        self, results: Dict[str, Any], study_inputs: Dict[str, Dict[str, Any]]
     ) -> Dict[str, Any]:
         """Post-process transform results according to field metadata.
 
-        Applies text normalization and abbreviation expansion to fields based on
-        their metadata configuration:
-        - NORMALIZE_TEXT: Normalize text using normalize_string()
-        - EXPAND_ABBREVIATIONS: Expand abbreviations using resolve_abbreviations()
+        Uses collected field paths to apply text processing to fields,
+        handling iterable fields marked with [].
+
+        Example paths:
+            - groups[].diagnosis - Process diagnosis in each group
+            - metadata.diagnosis - Process single diagnosis field
 
         Args:
             results: Dict mapping study IDs to their raw transformed data
@@ -884,46 +979,75 @@ class Extractor(ABC):
         Returns:
             Dict with same structure as input, with processed text fields
         """
-        from ns_extract.pipelines.data_structures import NORMALIZE_TEXT, EXPAND_ABBREVIATIONS
-        from ns_extract.pipelines.normalize import (
-            normalize_string,
-            load_abbreviations,
-            resolve_abbreviations,
-        )
-
         processed_results = {}
 
         for study_id, study_data in results.items():
-            # Deep copy to avoid modifying original
-            processed_study = dict(study_data)
-            
-            # Extract abbreviations from source text
+            # Deep copy the data to avoid modifying original
+            processed_study = json.loads(json.dumps(study_data))
+
+            # Extract abbreviations once per study if needed
             study_abbreviations = []
-            if study_id in study_inputs and "text" in study_inputs[study_id]:
-                source_text = study_inputs[study_id].get("text", None)
-                if isinstance(source_text, str) and self._nlp is not None:
-                    study_abbreviations = load_abbreviations(source_text, model=self._nlp)
+            if self._expand_abbrev_fields and study_id in study_inputs:
+                if "text" in study_inputs[study_id]:
+                    source_text = study_inputs[study_id].get("text", None)
+                    if isinstance(source_text, str) and self._nlp is not None:
+                        study_abbreviations = load_abbreviations(source_text, model=self._nlp)
 
-            for field_name, field_value in study_data.items():
-                if not isinstance(field_value, str):
-                    continue
+            # Find which transformations each path needs
+            field_transforms = {
+                path: (path in self._normalize_fields, path in self._expand_abbrev_fields)
+                for path in self._normalize_fields.union(self._expand_abbrev_fields)
+            }
 
-                field_schema = self._output_schema.model_fields.get(field_name)
-                if not field_schema:
-                    continue
+            # Process each path
+            for path, (do_normalize, do_expand) in field_transforms.items():
+                # Split path at first [] if present
+                base_path, remainder = self._get_base_path_and_remainder(path)
 
-                field_metadata = field_schema.json_schema_extra or {}
+                # Get base value
+                base_value = reduce(
+                    lambda d, k: d.get(k, {}) if isinstance(d, dict) else d,
+                    base_path.split('.'),
+                    processed_study
+                )
 
-                # Apply text normalization if specified
-                if field_metadata.get(NORMALIZE_TEXT, False):
-                    processed_study[field_name] = normalize_string(field_value)
-
-                # Expand abbreviations if specified
-                if field_metadata.get(EXPAND_ABBREVIATIONS, False):
-                    processed_study[field_name] = resolve_abbreviations(
-                        field_value,
-                        study_abbreviations
-                    )
+                # Handle iterables
+                if remainder:
+                    if isinstance(base_value, (list, dict)):
+                        # Recursively process each item
+                        items = (
+                            base_value.values() if isinstance(base_value, dict)
+                            else base_value
+                        )
+                        for item in items:
+                            # Process and update nested field
+                            current = item
+                            parts = remainder.split('.')
+                            for i, part in enumerate(parts):
+                                # Last part is the field to process
+                                if i == len(parts) - 1:
+                                    if isinstance(current.get(part), str):
+                                        current[part] = self._process_field_value(
+                                            current[part],
+                                            do_normalize,
+                                            do_expand,
+                                            study_abbreviations
+                                        )
+                                # Navigate through intermediate parts
+                                else:
+                                    current = current.get(part, {})
+                else:
+                    # Direct field processing
+                    if isinstance(base_value, str):
+                        new_value = self._process_field_value(
+                            base_value, do_normalize, do_expand, study_abbreviations
+                        )
+                        # Set the processed value
+                        current = processed_study
+                        parts = base_path.split('.')
+                        for part in parts[:-1]:
+                            current = current[part]
+                        current[parts[-1]] = new_value
 
             processed_results[study_id] = processed_study
 

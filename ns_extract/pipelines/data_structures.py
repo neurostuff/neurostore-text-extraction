@@ -5,6 +5,7 @@ This module defines Pydantic models for:
 - Study processing results
 - Configuration schemas
 """
+
 from pathlib import Path
 from typing import Dict, Any
 
@@ -12,7 +13,9 @@ from pydantic import BaseModel, Field
 
 # Field metadata constants for text processing
 NORMALIZE_TEXT = "normalize_text"  # Flag to normalize text fields
-EXPAND_ABBREVIATIONS = "expand_abbreviations"  # Flag to expand abbreviations in text fields
+EXPAND_ABBREVIATIONS = (
+    "expand_abbreviations"  # Flag to expand abbreviations in text fields
+)
 
 
 class InputPipelineInfo(BaseModel):

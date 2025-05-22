@@ -1,14 +1,22 @@
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
+from ..data_structures import NORMALIZE_TEXT, EXPAND_ABBREVIATIONS
+
 
 class GroupBase(BaseModel):
     count: int = Field(description="Number of participants in this group")
-    diagnosis: Optional[str] = Field(description="Diagnosis of the group, if any")
+    diagnosis: Optional[str] = Field(
+        description="Diagnosis of the group, if any",
+        json_schema_extra={NORMALIZE_TEXT: True, EXPAND_ABBREVIATIONS: True},
+    )
     group_name: str = Field(
         description="Group name, healthy or patients", enum=["healthy", "patients"]
     )
-    subgroup_name: Optional[str] = Field(description="Subgroup name")
+    subgroup_name: Optional[str] = Field(
+        description="Subgroup name",
+        json_schema_extra={NORMALIZE_TEXT: True, EXPAND_ABBREVIATIONS: True},
+    )
     male_count: Optional[int] = Field(
         description="Number of male participants in this group"
     )
