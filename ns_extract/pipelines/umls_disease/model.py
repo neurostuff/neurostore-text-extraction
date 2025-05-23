@@ -118,7 +118,7 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
         filter_for_definitions: bool = True,
         max_entities_per_mention: int = 5,
         n_workers: int = 1,
-        model_name: str = "en_core_sci_sm",
+        nlp_model: str = "en_core_sci_sm",
     ):
         """Initialize the UMLS Disease extractor.
 
@@ -129,7 +129,7 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
             filter_for_definitions: Whether to apply stricter threshold for undefined concepts
             max_entities_per_mention: Maximum number of UMLS entities per mention
             n_workers: Number of workers for parallel processing
-            model_name: Name of the spaCy model to load (default: en_core_sci_sm)
+            nlp_model: Name of the spaCy model to load (default: en_core_sci_sm)
         """
         self.k = k
         self.threshold = threshold
@@ -137,15 +137,14 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
         self.filter_for_definitions = filter_for_definitions
         self.max_entities_per_mention = max_entities_per_mention
         self.n_workers = n_workers
-        self.model_name = model_name
 
         # Initialize spaCy and UMLS
-        self.nlp = self._load_spacy_model()
+        self._load_spacy_model(nlp_model=nlp_model)
         self.umls_generator = CandidateGenerator(name="umls")
 
         super().__init__()
 
-    def _load_spacy_model(self):
+    def _load_spacy_model(self, nlp_model: str) -> Language:
         """Load spaCy model with abbreviation detection pipeline.
 
         This function handles downloading of the model if it's not already installed
@@ -159,32 +158,33 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
             ValueError: If the model is not compatible with required components
         """
         try:
-            try:
-                nlp = spacy.load(self.model_name, disable=["parser", "ner"])
-            except OSError:
-                print(f"Downloading {self.model_name} model...")
-                spacy.cli.download(self.model_name)
-                nlp = spacy.load(self.model_name, disable=["parser", "ner"])
+            if not self._nlp:
+                try:
+                    self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
+                except OSError:
+                    print(f"Downloading {nlp_model} model...")
+                    spacy.cli.download(nlp_model)
+                    self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
 
             # Verify model compatibility with required components
-            if "transformer" in nlp.pipe_names:
+            if "transformer" in self._nlp.pipe_names:
                 raise ValueError(
-                    f"Model {self.model_name} is a transformer model. "
+                    f"Model {nlp_model} is a transformer model. "
                     "Please use a standard spaCy model like en_core_sci_sm/md/lg."
                 )
 
             # Add registered components in correct order
-            if "abbreviation_detector" not in nlp.pipe_names:
+            if "abbreviation_detector" not in self._nlp.pipe_names:
                 try:
-                    nlp.add_pipe("abbreviation_detector")
+                    self._nlp.add_pipe("abbreviation_detector")
                 except Exception as e:
                     raise ValueError(
                         f"Failed to add abbreviation_detector to pipeline: {str(e)}"
                     )
 
-            if "serialize_abbreviation" not in nlp.pipe_names:
+            if "serialize_abbreviation" not in self._nlp.pipe_names:
                 try:
-                    nlp.add_pipe(
+                    self._nlp.add_pipe(
                         "serialize_abbreviation", after="abbreviation_detector"
                     )
                 except Exception as e:
@@ -192,11 +192,9 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
                         f"Failed to add serialize_abbreviation to pipeline: {str(e)}"
                     )
 
-            return nlp
-
         except Exception as e:
             raise ImportError(
-                f"Error loading spaCy model {self.model_name}: {str(e)}. "
+                f"Error loading spaCy model {nlp_model}: {str(e)}. "
                 "Please ensure you have an internet connection and "
                 "sufficient permissions to download models."
             ) from e
@@ -208,7 +206,7 @@ class UMLSDiseaseExtractor(Extractor, IndependentPipeline):
         batch_size = 20
         for i in tqdm(range(0, len(texts), batch_size)):
             batch_docs = texts[i : i + batch_size]  # noqa: E203
-            batch_abbreviations = self.nlp.pipe(batch_docs, n_process=self.n_workers)
+            batch_abbreviations = self._nlp.pipe(batch_docs, n_process=self.n_workers)
             for processed_doc in batch_abbreviations:
                 abbreviations.append(processed_doc._.abbreviations)
         return abbreviations

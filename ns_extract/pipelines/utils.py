@@ -165,7 +165,7 @@ class StudyInputsMixin:
         """
         loaded_inputs: Dict[str, Union[str, Dict[str, Any], List[Dict[str, Any]]]] = {}
         for input_name, file_path in study_inputs.items():
-            path = Path(file_path)
+            path = Path(file_path).resolve()
             suffix = path.suffix.lower()
 
             try:
@@ -280,20 +280,25 @@ class PipelineOutputsMixin(FileOperationsMixin):
     def _write_study_info(
         self,
         hash_outdir: Path,
-        db_id: str,
+        identifiers: Dict[str, str],
         study_inputs: Dict[str, Path],
         is_valid: bool,
     ):
         """Write information about the study run to info.json file."""
+        dbid = identifiers.get("dbid", "unknown")
+        if dbid == "unknown":
+            logger.warning("No dbid found in identifiers, using 'unknown'")
+
         info = StudyOutputJson(
             date=datetime.now().isoformat(),
+            identifiers=identifiers,
             inputs={
                 str(input_file): self._calculate_md5(input_file)
                 for input_file in study_inputs.values()
             },
             valid=is_valid,
         )
-        self._write_json(hash_outdir / db_id / "info.json", info.model_dump())
+        self._write_json(hash_outdir / dbid / "info.json", info.model_dump())
 
     def _write_study_results(
         self,

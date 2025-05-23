@@ -200,7 +200,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         Returns:
             hash_output_directory as Path
         """
-        output_directory = Path(output_directory)
+        output_directory = Path(output_directory).resolve()
 
         # Set up dependencies from other pipeline outputs
         if input_pipeline_info:
@@ -336,18 +336,18 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         result_matches = {}
         study_inputs = self._collect_all_study_inputs(dataset)
 
-        for db_id, study in dataset.data.items():
+        for dbid, study in dataset.data.items():
             # Get existing input file hashes for this study
-            existing = existing_results.get(db_id, {}).get("inputs", {})
+            existing = existing_results.get(dbid, {}).get("inputs", {})
 
             # Skip if no existing results or no current inputs
-            if not existing or db_id not in study_inputs:
-                result_matches[db_id] = False
+            if not existing or dbid not in study_inputs:
+                result_matches[dbid] = False
                 continue
 
             # Use __are_file_hashes_identical to compare hashes
-            result_matches[db_id] = self.__do_file_hashes_match(
-                study_inputs[db_id], existing
+            result_matches[dbid] = self.__do_file_hashes_match(
+                study_inputs[dbid], existing
             )
 
         return result_matches
@@ -367,8 +367,8 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
             }
         """
         return {
-            db_id: self._collect_study_inputs(study)
-            for db_id, study in dataset.data.items()
+            dbid: self._collect_study_inputs(study)
+            for dbid, study in dataset.data.items()
         }
 
     def _collect_study_inputs(self, study: Any) -> Dict[str, Path]:
@@ -467,7 +467,7 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         matching_results = self.__identify_matching_results(dataset, existing_results)
         # Return True if any of the studies' inputs have changed or if new studies exist
         keep_ids = set(dataset.data.keys()) - {
-            db_id for db_id, match in matching_results.items() if match
+            dbid for dbid, match in matching_results.items() if match
         }
         return dataset.slice(keep_ids)
 
@@ -498,18 +498,28 @@ class DependentPipeline(Pipeline):
         try:
             # Collect all study inputs
             all_study_inputs = {
-                db_id: self._collect_study_inputs(study)
-                for db_id, study in dataset.data.items()
+                dbid: self._collect_study_inputs(study)
+                for dbid, study in dataset.data.items()
+            }
+
+            all_study_identifiers = {
+                dbid: {
+                    "dbid": study.dbid,
+                    "pmid": study.pmid,
+                    "pmcid": study.pmcid,
+                    "doi": study.doi,
+                }
+                for dbid, study in dataset.data.items()
             }
 
             # Load all study inputs
             loaded_study_inputs = {}
-            for db_id, study_inputs in all_study_inputs.items():
+            for dbid, study_inputs in all_study_inputs.items():
                 try:
-                    loaded_study_inputs[db_id] = self._load_study_inputs(study_inputs)
+                    loaded_study_inputs[dbid] = self._load_study_inputs(study_inputs)
                 except (IOError, ValueError) as e:
                     raise InputError(
-                        f"Failed to load inputs for study {db_id}: {str(e)}"
+                        f"Failed to load inputs for study {dbid}: {str(e)}"
                     )
 
             # Process loaded inputs and get results
@@ -517,32 +527,32 @@ class DependentPipeline(Pipeline):
             cleaned_results, raw_results, validation_status = transform_outputs
 
             if cleaned_results:
-                for db_id in cleaned_results:
+                for dbid in cleaned_results:
                     try:
-                        study_outdir = hash_outdir / db_id
+                        study_outdir = hash_outdir / dbid
                         study_outdir.mkdir(parents=True, exist_ok=True)
 
                         # Write study results using PipelineOutputsMixin method
                         self._write_study_results(
                             study_outdir,
-                            db_id,
-                            cleaned_results[db_id],
-                            raw_results[db_id],
+                            dbid,
+                            cleaned_results[dbid],
+                            raw_results[dbid],
                         )
 
                         # Write study info including validation status
                         self._write_study_info(
                             hash_outdir=hash_outdir,
-                            db_id=db_id,
-                            study_inputs=all_study_inputs[db_id],
-                            is_valid=validation_status[db_id],
+                            identifiers=all_study_identifiers[dbid],
+                            study_inputs=all_study_inputs[dbid],
+                            is_valid=validation_status[dbid],
                         )
 
                     except (IOError, OSError) as e:
-                        msg = f"Failed to write results for study {db_id}: {str(e)}"
+                        msg = f"Failed to write results for study {dbid}: {str(e)}"
                         raise FileOperationError(msg)
                     except Exception as e:
-                        raise ProcessingError(db_id, str(e))
+                        raise ProcessingError(dbid, str(e))
 
         except (InputError, ProcessingError, ValidationError, FileOperationError) as e:
             logger.error(str(e))
@@ -595,8 +605,8 @@ class IndependentPipeline(Pipeline):
         **kwargs,
     ) -> bool:
         """Process a single study and write its results."""
-        db_id, study_inputs, study_outdir = study_data
-
+        study_identifiers, study_inputs, study_outdir = study_data
+        dbid = study_identifiers["dbid"]
         try:
             study_outdir.mkdir(
                 parents=True,
@@ -605,32 +615,32 @@ class IndependentPipeline(Pipeline):
 
             # Load and process inputs
             try:
-                loaded_inputs = {db_id: self._load_study_inputs(study_inputs)}
+                loaded_inputs = {dbid: self._load_study_inputs(study_inputs)}
             except (IOError, ValueError) as e:
-                raise InputError(f"Failed to load inputs for study {db_id}: {str(e)}")
+                raise InputError(f"Failed to load inputs for study {dbid}: {str(e)}")
 
             try:
                 transform_results = self.transform(loaded_inputs, **kwargs)
                 cleaned_results, raw_results, validation_status = transform_results
             except Exception as e:
-                raise ProcessingError(db_id, str(e))
+                raise ProcessingError(dbid, str(e))
 
             if cleaned_results:
                 try:
                     # Write study results using PipelineOutputsMixin method
                     self._write_study_results(
-                        study_outdir, db_id, cleaned_results[db_id], raw_results[db_id]
+                        study_outdir, dbid, cleaned_results[dbid], raw_results[dbid]
                     )
 
                     # Write study info with validation status
                     self._write_study_info(
                         hash_outdir=hash_outdir,
-                        db_id=db_id,
+                        identifiers=study_identifiers,
                         study_inputs=study_inputs,
-                        is_valid=validation_status[db_id],
+                        is_valid=validation_status[dbid],
                     )
                 except IOError as e:
-                    msg = f"Failed to write results for study {db_id}: {str(e)}"
+                    msg = f"Failed to write results for study {dbid}: {str(e)}"
                     raise FileOperationError(msg)
 
             return True
@@ -659,11 +669,17 @@ class IndependentPipeline(Pipeline):
         filtered_dataset = self._filter_unprocessed_studies(hash_outdir, dataset)
         studies_to_process = []
 
-        for db_id, study in filtered_dataset.data.items():
+        for dbid, study in filtered_dataset.data.items():
             study_inputs = self._collect_study_inputs(study)
-            study_dir = hash_outdir / db_id
+            study_dir = hash_outdir / dbid
+            study_identifiers = {
+                "dbid": study.dbid,
+                "pmid": study.pmid,
+                "pmcid": study.pmcid,
+                "doi": study.doi,
+            }
 
-            studies_to_process.append((db_id, study_inputs, study_dir))
+            studies_to_process.append((study_identifiers, study_inputs, study_dir))
 
         if not studies_to_process:
             print("No studies need processing")
@@ -741,14 +757,14 @@ class Extractor(ABC):
 
     def __init__(
         self,
-        nlp_model: str = "en_core_web_sm",
+        nlp_model: str = "en_core_sci_sm",
         disable_abbreviation_expansion: bool = False,
         **kwargs: Any,
     ) -> None:
         """Initialize extractor and verify required configuration.
 
         Args:
-            nlp_model: SpaCy model name for text processing. Defaults to "en_core_web_sm"
+            nlp_model: SpaCy model name for text processing. Defaults to "en_core_sci_sm"
             disable_abbreviation_expansion:
                 If True, disables abbreviation expansion
                 even for fields with EXPAND_ABBREVIATIONS metadata.
@@ -941,14 +957,14 @@ class Extractor(ABC):
         """
         validation_status = {}
 
-        for db_id, study_results in results.items():
+        for dbid, study_results in results.items():
             try:
                 # Validate each study's results against the schema
                 self._output_schema.model_validate(study_results)
-                validation_status[db_id] = True
+                validation_status[dbid] = True
             except Exception as e:
-                logging.error(f"Output validation error for study {db_id}: {str(e)}")
-                validation_status[db_id] = False
+                logging.error(f"Output validation error for study {dbid}: {str(e)}")
+                validation_status[dbid] = False
 
         return validation_status
 
