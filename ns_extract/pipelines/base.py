@@ -507,7 +507,7 @@ class DependentPipeline(Pipeline):
                     "dbid": study.dbid,
                     "pmid": study.pmid,
                     "pmcid": study.pmcid,
-                    "doi": study.doi
+                    "doi": study.doi,
                 }
                 for dbid, study in dataset.data.items()
             }
@@ -676,7 +676,7 @@ class IndependentPipeline(Pipeline):
                 "dbid": study.dbid,
                 "pmid": study.pmid,
                 "pmcid": study.pmcid,
-                "doi": study.doi
+                "doi": study.doi,
             }
 
             studies_to_process.append((study_identifiers, study_inputs, study_dir))

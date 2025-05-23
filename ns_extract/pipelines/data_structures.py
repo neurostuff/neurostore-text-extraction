@@ -49,6 +49,8 @@ class StudyOutputJson(BaseModel):
     """Information about a study's processing results."""
 
     date: str = Field(description="When the study was processed")
-    identifiers: Dict[str, Optional[str]] = Field(description="Identifiers for the study")
+    identifiers: Dict[str, Optional[str]] = Field(
+        description="Identifiers for the study"
+    )
     inputs: Dict[str, str] = Field(description="Input file paths and their MD5 hashes")
     valid: bool = Field(description="Whether outputs passed validation")
