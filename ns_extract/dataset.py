@@ -128,8 +128,12 @@ class Study:
         self.dbid = self.study_dir.name
 
         # Load identifiers
-        # with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
-        #     json.load(ident_fp)  # Load but don't use identifiers right now
+        with open((self.study_dir / "identifiers.json"), "r") as ident_fp:
+            identifiers = json.load(ident_fp)
+
+        self.pmid = identifiers.get("pmid")
+        self.pmcid = identifiers.get("pmcid")
+        self.doi = identifiers.get("doi")
 
         # Setup the processed data objects
         # Load AceRaw if available

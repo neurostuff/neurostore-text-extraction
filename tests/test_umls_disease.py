@@ -147,21 +147,20 @@ def test_umls_disease_transform_default_model(sample_data, mock_demographics):
 def test_custom_model_configuration():
     """Test UMLSDiseaseExtractor with custom model configuration."""
     # Initialize extractor with a different model
-    extractor = UMLSDiseaseExtractor(model_name="en_core_web_sm")
-    assert extractor.model_name == "en_core_web_sm"
-    assert "abbreviation_detector" in extractor.nlp.pipe_names
-    assert "serialize_abbreviation" in extractor.nlp.pipe_names
+    extractor = UMLSDiseaseExtractor(nlp_model="en_core_web_sm")
+    assert "abbreviation_detector" in extractor._nlp.pipe_names
+    assert "serialize_abbreviation" in extractor._nlp.pipe_names
 
     # Verify disabled components
-    assert "parser" not in extractor.nlp.pipe_names
-    assert "ner" not in extractor.nlp.pipe_names
+    assert "parser" not in extractor._nlp.pipe_names
+    assert "ner" not in extractor._nlp.pipe_names
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
 def test_invalid_model_name():
     """Test error handling for invalid model names."""
     with pytest.raises(SystemExit):
-        UMLSDiseaseExtractor(model_name="invalid_model")
+        UMLSDiseaseExtractor(nlp_model="invalid_model")
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
@@ -169,7 +168,7 @@ def test_transformer_model_rejection():
     """Test rejection of transformer-based models."""
     with pytest.raises(ImportError, match=".*is a transformer model.*"):
         # Using a transformer model should raise an error
-        UMLSDiseaseExtractor(model_name="en_core_web_trf")
+        UMLSDiseaseExtractor(nlp_model="en_core_web_trf")
 
 
 @pytest.mark.skip(reason="UMLS tests are optional")
