@@ -10,7 +10,8 @@ def normalize_string(input_string: str) -> str:
     Returns:
         str: The normalized string.
     """
-    clean_string = input_string.strip().title()
+    clean_string = string.capwords(input_string.strip())
+    clean_string = clean_string.replace("’", "'")
     if clean_string == "":
         return None
     if clean_string == "None":
@@ -99,13 +100,13 @@ def resolve_abbreviations(
     abbreviations: List[Dict],
 ) -> str:
     """Resolve abbreviations in target text using a list of known abbreviations.
-
     Finds and expands all abbreviations in the text, but only processes each unique
     abbreviation once (using its first occurrence).
-
     Args:
         target (str): The text string that may contain abbreviations
         abbreviations (List[Dict]): List of abbreviation dictionaries from load_abbreviations()
+        remove_parenthetical (bool): Removes parenthetical abbreviations from the text.
+            Defaults to True.
     Returns:
         str: Text with abbreviations expanded to their full forms
     Example:
@@ -139,3 +140,48 @@ def resolve_abbreviations(
             processed_abbrevs.add(short_form)
 
     return result
+
+def find_and_remove_definitions(s, abbreviations):
+    """
+    Find and remove definitions from the input string.
+    Args:
+        s (str): The input string to process.
+        abbreviations (List[Dict]): List of abbreviation dictionaries.
+    Returns:
+        str: The modified string with definitions removed.
+    """
+    words = s.split()
+    modified_words = []
+
+    # Iterate through the words
+    for i, word in enumerate(words):
+        # Assume the word will be kept unless it's a definition to be removed
+        is_definition_to_remove = False
+
+        # Check if the word starts with '(' and ends with ')'
+        if word.startswith('(') and word.endswith(')'):
+            clause = word[1:-1]
+
+            # Check if the clause is a known abbreviation
+            for abbreviation in abbreviations:
+                if abbreviation["short_text"] == clause:
+                    is_definition_to_remove = True
+                    break
+
+            # Also check if the clause is a recently defined abbreviation
+            clause_len = len(clause)
+            if i >= clause_len:
+                if not clause:  # Handles the case of "()"
+                    is_definition_to_remove = True
+                else:
+                    # Form the potential abbreviation from the first letters of preceding words
+                    # s.split() ensures words in `words` are non-empty, so `prev_word[0]` is safe.
+                    preceding_abbr = "".join(prev_word[0] for prev_word in words[i-clause_len : i])
+                    if preceding_abbr.lower() == clause.lower():
+                        is_definition_to_remove = True
+
+        if not is_definition_to_remove:
+            modified_words.append(word)
+
+    # Join the modified words back into a single string
+    return ' '.join(modified_words)
