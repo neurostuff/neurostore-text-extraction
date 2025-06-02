@@ -7,14 +7,18 @@ from ..data_structures import NORMALIZE_TEXT, EXPAND_ABBREVIATIONS
 class GroupBase(BaseModel):
     count: int = Field(description="Number of participants in this group")
     diagnosis: Optional[str] = Field(
-        description="Diagnosis of the group, if any",
+        description="Clinical/Medical diagnosis of the group, if any",
         json_schema_extra={NORMALIZE_TEXT: True, EXPAND_ABBREVIATIONS: True},
     )
     group_name: str = Field(
         description="Group name, healthy or patients", enum=["healthy", "patients"]
     )
     subgroup_name: Optional[str] = Field(
-        description="Subgroup name",
+        description="The population characteristics of the group",
+        examples=[
+            "Professional Collision Sport Athletes",
+            "Young Hispanic Females",
+            "Depressed Patients Without Psychotic Symptoms"],
         json_schema_extra={NORMALIZE_TEXT: True, EXPAND_ABBREVIATIONS: True},
     )
     male_count: Optional[int] = Field(
