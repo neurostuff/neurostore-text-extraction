@@ -20,7 +20,7 @@ def normalize_string(input_string: str) -> str:
         return None
     if clean_string == "Nan":
         return None
-    if clean_string == "N/A":
+    if clean_string == "N/a":
         return None
     if clean_string == "Null":
         return None
@@ -180,7 +180,8 @@ def find_and_remove_definitions(s, abbreviations):
                     # Form the potential abbreviation from the first letters of preceding words
                     # s.split() ensures words in `words` are non-empty, so `prev_word[0]` is safe.
                     preceding_abbr = "".join(
-                        prev_word[0] for prev_word in words[i - clause_len : i]
+                        prev_word[0]
+                        for prev_word in words[i - clause_len : i]  # noqa: E203
                     )
                     if preceding_abbr.lower() == clause.lower():
                         is_definition_to_remove = True

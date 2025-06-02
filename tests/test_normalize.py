@@ -44,24 +44,9 @@ def test_sentences():
             "The MRI was conducted. After reviewing the MRI results, "
             "another MRI was scheduled."
         ),
-    }
-
-
-@pytest.fixture
-def test_words():
-    """Individual words for testing normalize_string function."""
-    return {
-        "empty": "",
-        "whitespace": "   ",
-        "none_str": "None",
-        "na_upper": "N/A",
-        "na_lower": "n/a",
-        "null": "NULL",
-        "nan": "nan",
         "upper": "HELLO",
         "lower": "world",
         "mixed": "HeLLo",
-        "apostrophe": "patient's",
     }
 
 
@@ -71,19 +56,22 @@ def test_words():
         ("empty", None),
         ("whitespace", None),
         ("none_str", None),
-        ("na_upper", "N/a"),
-        ("na_lower", "N/a"),
+        ("na_upper", None),
+        ("na_lower", None),
         ("null", None),
         ("nan", None),
         ("upper", "Hello"),
         ("lower", "World"),
         ("mixed", "Hello"),
-        ("apostrophe", "Patient's"),
+        (
+            "apostrophe",
+            "Patient's Functional Magnetic Resonance Imaging (fmri) Results",
+        ),
     ],
 )
-def test_normalize_string(test_words, key, expected):
+def test_normalize_string(test_sentences, key, expected):
     """Test string normalization with various inputs."""
-    assert normalize_string(test_words[key]) == expected
+    assert normalize_string(test_sentences[key]) == expected
 
 
 @pytest.mark.parametrize(
