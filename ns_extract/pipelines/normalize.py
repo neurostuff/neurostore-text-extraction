@@ -1,4 +1,6 @@
+import string
 from typing import List, Dict, Union
+
 import spacy
 from spacy.language import Language
 
@@ -141,6 +143,7 @@ def resolve_abbreviations(
 
     return result
 
+
 def find_and_remove_definitions(s, abbreviations):
     """
     Find and remove definitions from the input string.
@@ -159,7 +162,7 @@ def find_and_remove_definitions(s, abbreviations):
         is_definition_to_remove = False
 
         # Check if the word starts with '(' and ends with ')'
-        if word.startswith('(') and word.endswith(')'):
+        if word.startswith("(") and word.endswith(")"):
             clause = word[1:-1]
 
             # Check if the clause is a known abbreviation
@@ -176,7 +179,9 @@ def find_and_remove_definitions(s, abbreviations):
                 else:
                     # Form the potential abbreviation from the first letters of preceding words
                     # s.split() ensures words in `words` are non-empty, so `prev_word[0]` is safe.
-                    preceding_abbr = "".join(prev_word[0] for prev_word in words[i-clause_len : i])
+                    preceding_abbr = "".join(
+                        prev_word[0] for prev_word in words[i - clause_len : i]
+                    )
                     if preceding_abbr.lower() == clause.lower():
                         is_definition_to_remove = True
 
@@ -184,4 +189,4 @@ def find_and_remove_definitions(s, abbreviations):
             modified_words.append(word)
 
     # Join the modified words back into a single string
-    return ' '.join(modified_words)
+    return " ".join(modified_words)
