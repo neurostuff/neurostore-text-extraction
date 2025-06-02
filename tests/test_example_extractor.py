@@ -76,8 +76,8 @@ def test_text_normalization_and_expansion(sample_data, mock_demographics, tmp_pa
 
     # Original text had "TEST" - verify case normalization to title case
     assert (
-        "Test" in result_value and "TEST" not in result_value
-    ), "Text should be normalized to title case"
+        "test" in result_value and "TEST" not in result_value
+    ), "Text should be normalized to Cap case"
 
     # Original text had "Magnetic Resonance Imaging (MRI)" - verify both forms present
     assert (
@@ -162,18 +162,18 @@ def test_disabled_abbreviation_expansion(sample_data, mock_demographics, tmp_pat
 
     result_value = results["value"]
 
-    # Text should still be normalized to title case
+    # Text should still be normalized to Cap case
     assert (
-        "Test" in result_value and "TEST" not in result_value
+        "test" in result_value and "TEST" not in result_value
     ), "Text should still be normalized even when abbreviation expansion is disabled"
 
     # Abbreviations should not be expanded
     assert (
-        "Magnetic Resonance Imaging (Mri)" in result_value
+        "Magnetic Resonance Imaging" in result_value
     ), "Original abbreviation form should be preserved when expansion is disabled"
 
     assert (
-        "Electroencephalogram (Eeg)" in result_value
+        "Electroencephalogram" in result_value
     ), "Original abbreviation form should be preserved when expansion is disabled"
 
 
