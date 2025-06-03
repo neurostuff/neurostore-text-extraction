@@ -1,0 +1,40 @@
+Region,Laterality,BA,X,Y,Z,t‐value
+2‐back > 0‐back,,,,,,
+SMA,Left,6,−4,16,48,12.78
+Dorsal premotor cortex,Left,6,−36,0,58,10.57
+,Right,6,30,−2,54,9.66
+DLPFC,Right,9,38,34,30,9.32
+,Left,9/46,−38,32,28,9.3
+,Left,10,−34,60,10,8.07
+,Left,46,−46,20,26,9.74
+Dorsal ACC,Right,32,14,22,30,7.64
+Anterior insula,Left,13,−28,28,−2,8.73
+Angular gyrus,Left,39,−30,−64,36,9.82
+Superior parietal gyrus,Left,7,−30,−64,52,8.81
+Inferior parietal lobule,Left,40,−50,−44,44,9.42
+Precuneus,Left,7,−6,−60,48,9.39
+,Right,7,8,−62,52,8.68
+Cerebellum,Right,,30,−64,−30,10.22
+Medial globus pallidus,Left,,−14,−4,2,8.67
+Thalamus,Left,,−8,−24,14,7.77
+Dorsal brainstem,,,2,−36,−16,7.86
+2‐back < 0‐back,,,,,,
+VMPFC,Medial,11,0,44,−12,9.93
+Ventral ACC,Left,10/32,−8,40,−8,9.79
+DMPFC,Left,9,−16,54,32,8.63
+,Right,8,12,40,56,7.39
+Ventral premotor cortex,Left,6,−50,−4,6,7.55
+Anterior parietal cortex,Right,40,54,−26,20,9.37
+Parahippocampal gyrus,Right,28/35,24,−14,−16,9.52
+,Left,35,−24,−22,−18,9.42
+Superior temporal gyrus,Right,22,60,0,−2,8.21
+Middle temporal gyrus,Left,21,−62,−10,−14,8.19
+,Right,21,54,0,−28,7.02
+,Left,38,−54,0,−22,6.85
+,Left,38,−48,0,−32,6.72
+Angular gyrus,Left,39,−50,−66,32,5.94
+Amygdala,Right,,26,−4,−20,8.22
+Posterior insula,Left,13,−40,−10,0,8.47
+,Right,13,40,−14,−6,7.47
+Dorsal ACC,Medial,24,−4,−6,46,8.73
+Dorsal PCC,Medial,23,−4,−50,28,8.21

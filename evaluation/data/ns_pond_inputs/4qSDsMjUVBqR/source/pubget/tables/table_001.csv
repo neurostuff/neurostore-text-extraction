@@ -1,0 +1,12 @@
+Unnamed: 0_level_0,% recalled,% recalled,Emotion,Emotion,Vividness,Vividness,Reaction time,Reaction time
+Unnamed: 0_level_1,Avg.,SD,Avg.,SD,Avg.,SD,Avg.,SD
+Paired sounds,,,,,,,,
+Control,56.19% (30.00 trials modeled),24.24% (12.89),4.09,1.20,4.55,1.4,689.22,231.53
+PTSD,68.84% (36.95 trials modeled),22.52% (12.11),4.24,0.68,5.32,1.3,713.16,138.59
+Unpaired sounds,,,,,,,,
+Control,4.08% (36.43 trials modeled),5.18% (4.34),2.51,1.18,1.10,0.40,751.06,223.20
+PTSD,6.66% (31.67 trials modeled),5.41% (9.60),2.47,0.77,1.06,0.22,765.60,157.02
+ANOVA,F,p,F,p,F,p,F,p
+Main effect of group,4.23,<0.05???,0.05,>0.05,2.79,>0.05,0.32,>0.05
+Main effect of pairing,238.29,<0.001???,60.23,<0.001???,309.54,<0.001???,0.68,>0.05
+Interaction,1.85,>0.05,0.20,>0.05,3.41,>0.05,0.25,>0.05

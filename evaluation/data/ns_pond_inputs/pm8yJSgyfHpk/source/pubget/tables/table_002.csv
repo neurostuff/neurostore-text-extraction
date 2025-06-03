@@ -1,0 +1,20 @@
+Anatomical location,"Peak voxel x, y, z",t-values,Cluster size,Cohen's d at the peak voxel
+UNIVARIATE (FEMALE > MALE),UNIVARIATE (FEMALE > MALE),UNIVARIATE (FEMALE > MALE),UNIVARIATE (FEMALE > MALE),UNIVARIATE (FEMALE > MALE)
+Left hemisphere,Left hemisphere,Left hemisphere,Left hemisphere,Left hemisphere
+"STG, posterior","−48, −34, 16",4.02,4,0.48
+Right hemisphere,Right hemisphere,Right hemisphere,Right hemisphere,Right hemisphere
+Insula,"48, 2, −5",4.04,1,0.49
+MVPA (FEMALE > MALE),MVPA (FEMALE > MALE),MVPA (FEMALE > MALE),MVPA (FEMALE > MALE),MVPA (FEMALE > MALE)
+Left hemisphere,Left hemisphere,Left hemisphere,Left hemisphere,Left hemisphere
+"STG, middle","−69, −19, −8",5.22,84,0.35
+"STG, middle","−66, −1, −8",5.02,,
+"STG, middle","−51, −22, 13",5.19,156,0.35
+"STG, middle","−48, −31, 4",4.77,,
+"STG, posterior","−42, −43, 7",4.66,,
+"MTG, middle","−57, −55, 16",3.82,2,
+"MTG, middle","−69, −40, 1",3.80,2,
+"STG, middle","−69, −10, 10",3.79,2,
+Right hemisphere,Right hemisphere,Right hemisphere,Right hemisphere,Right hemisphere
+"STG, middle","69, −7, −11",4.48,52,0.24
+"MTG, middle","66, −22, −11",4.42,,
+"MTG, middle","69, −34, 1",3.70,1,

@@ -1,0 +1,14 @@
+Region,Lateralization,Talairach coordinates of peak voxel,Talairach coordinates of peak voxel,Talairach coordinates of peak voxel,mm3,Maximum t-value
+Region,Lateralization,x,y,z,mm3,Maximum t-value
+PD > HC,PD > HC,PD > HC,PD > HC,PD > HC,PD > HC,PD > HC
+Amygdala,R,24,−3,19,144,3.37
+Brainstem*,R,3,−20,−18,16,3.00
+HC > PD,HC > PD,HC > PD,HC > PD,HC > PD,HC > PD,HC > PD
+vmPFC,R,14,61,−4,408,−4.13
+vlPFC,L,−27,40,3,1184,−4.45
+vlPFC,R,22,55,5,448,−3.69
+dmPFC,L,−4,62,11,208,−3.55
+dlPFC,R,31,10,33,168,−3.28
+dPCC,R,14,−44,38,72,−3.33
+rACC,L,−11,32,−7,168,−3.03
+rACC,R,7,31,−6,592,−3.47

@@ -1,0 +1,3 @@
+[submodule "evaluation/data/labelbuddy-annotations"]
+	path = evaluation/data/labelbuddy-annotations
+	url = https://github.com/litmining/labelbuddy-annotations.git

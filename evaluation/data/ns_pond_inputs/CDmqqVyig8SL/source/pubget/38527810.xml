@@ -1,0 +1,1225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.3" xml:lang="en" article-type="research-article">
+  <?properties open_access?>
+  <processing-meta base-tagset="archiving" mathml-version="3.0" table-model="xhtml" tagset-family="jats">
+    <restricted-by>pmc</restricted-by>
+  </processing-meta>
+  <front><journal-meta><journal-id journal-id-type="nlm-ta">J Neurosci</journal-id><journal-id journal-id-type="iso-abbrev">J Neurosci</journal-id><journal-id journal-id-type="hwp">jneuro</journal-id><journal-id journal-id-type="publisher-id">J. Neurosci</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type="ppub">0270-6474</issn><issn pub-type="epub">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta>
+<article-meta><article-id pub-id-type="pmid">38527810</article-id><article-id pub-id-type="pmc">11063816</article-id>
+<article-id pub-id-type="publisher-id">jneuro-44-e1740232024</article-id><article-id pub-id-type="doi">10.1523/JNEUROSCI.1740-23.2024</article-id><article-categories><subj-group subj-group-type="heading"><subject>Research Articles</subject><subj-group><subject>Behavioral/Cognitive</subject></subj-group></subj-group></article-categories><title-group><article-title>An Enduring Role for Hippocampal Pattern Completion in Addition to an Emergent Nonhippocampal Contribution to Holistic Episodic Retrieval after a 24 h Delay</article-title></title-group><contrib-group><contrib contrib-type="author" corresp="yes"><name><surname>Joensen</surname><given-names>Bárður H.</given-names></name><xref rid="aff1" ref-type="aff">
+<sup>1</sup>
+</xref><xref rid="aff2" ref-type="aff">
+<sup>2</sup>
+</xref><xref rid="fn1" ref-type="author-notes">*</xref></contrib><contrib contrib-type="author"><name><surname>Ashton</surname><given-names>Jennifer E.</given-names></name><xref rid="aff2" ref-type="aff">
+<sup>2</sup>
+</xref><xref rid="fn1" ref-type="author-notes">*</xref></contrib><contrib contrib-type="author"><contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0001-8197-8745</contrib-id><name><surname>Berens</surname><given-names>Sam C.</given-names></name><xref rid="aff3" ref-type="aff">
+<sup>3</sup>
+</xref></contrib><contrib contrib-type="author"><name><surname>Gaskell</surname><given-names>M. Gareth</given-names></name><xref rid="aff2" ref-type="aff">
+<sup>2</sup>
+</xref><xref rid="aff4" ref-type="aff">
+<sup>4</sup>
+</xref></contrib><contrib contrib-type="author" corresp="yes"><contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0003-0882-9756</contrib-id><name><surname>Horner</surname><given-names>Aidan J.</given-names></name><xref rid="aff2" ref-type="aff">
+<sup>2</sup>
+</xref><xref rid="aff4" ref-type="aff">
+<sup>4</sup>
+</xref></contrib></contrib-group><aff id="aff1"><sup>1</sup><institution>Department of Psychology, Lund University</institution>, Lund 221 00, <country>Sweden</country></aff><aff id="aff2"><sup>2</sup><institution>Department of Psychology, University of York</institution>, York YO10 5DD, <country>United Kingdom</country></aff><aff id="aff3"><sup>3</sup><institution>School of Psychology, University of Sussex</institution>, Falmer BN1 9QH, <country>United Kingdom</country></aff><aff id="aff4"><sup>4</sup><institution>York Biomedical Research Institute, University of York</institution>, York YO10 5NG, <country>United Kingdom</country></aff><author-notes><fn fn-type="con"><p>Author contributions: B.H.J., S.C.B., M.G.G., and A.J.H. designed research; B.H.J. and J.E.A. performed research; B.H.J., J.E.A., S.C.B., and A.J.H. analyzed data; B.H.J., J.E.A., and A.J.H. wrote the paper.</p></fn><fn fn-type="other"><p>This work was supported by the Economic and Social Research Council (grant awarded to A.J.H., ES/R007454/1). For the purpose of open access, the authors have applied a Creative Commons Attribution (CC-BY) license to any author accepted manuscripts version arising henceforth. We thank the support staff at the York Neuroimaging Centre for their assistance with MRI scanning. We also thank Dr. Matt Davis for an insightful observation and question during an Experimental Psychology Society meeting.</p></fn><fn fn-type="other" id="fn1"><p>*B.H.J. and J.E.A. contributed equally to this work.</p></fn><fn fn-type="COI-statement"><p>The authors declare no competing financial interests.</p></fn><corresp>Correspondence should be addressed to Bárður H. Joensen at <email>bardur.hofgaard_joensen@psy.lu.se</email> or Aidan J. Horner at <email>aidan.horner@york.ac.uk</email>.
+</corresp></author-notes><pub-date pub-type="epreprint"><day>25</day><month>3</month><year>2024</year></pub-date><pub-date pub-type="ppub"><day>1</day><month>5</month><year>2024</year></pub-date><pub-date pub-type="pmc-release"><day>1</day><month>5</month><year>2024</year></pub-date><!--PMC Release delay is 0 months and 0 days and was based on the <pub-date pub-type="ppub"/>.--><volume>44</volume><issue>18</issue><elocation-id>e1740232024</elocation-id><history><date date-type="received"><day>15</day><month>9</month><year>2023</year></date><date date-type="rev-recd"><day>5</day><month>3</month><year>2024</year></date><date date-type="accepted"><day>8</day><month>3</month><year>2024</year></date></history><permissions><copyright-statement>Copyright © 2024 Joensen et al.</copyright-statement><copyright-year>2024</copyright-year><license><ali:license_ref xmlns:ali="http://www.niso.org/schemas/ali/1.0/" specific-use="textmining" content-type="ccbylicense">https://creativecommons.org/licenses/by/4.0/</ali:license_ref><license-p>This is an open-access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</ext-link>, which permits unrestricted use, distribution and reproduction in any medium provided that the original work is properly attributed.</license-p></license></permissions><self-uri content-type="pdf" xlink:href="JN-RM-1740-23.pdf"/><abstract><p>Episodic memory retrieval is associated with the holistic neocortical reinstatement of all event information, an effect driven by hippocampal pattern completion. However, whether holistic reinstatement occurs, and whether hippocampal pattern completion continues to drive reinstatement, after a period of consolidation is unclear. Theories of systems consolidation predict either a time-variant or time-invariant role of the hippocampus in the holistic retrieval of episodic events. Here, we assessed whether episodic events continue to be reinstated holistically and whether hippocampal pattern completion continues to facilitate holistic reinstatement following a period of consolidation. Female and male human participants learned “events” that comprised multiple overlapping pairs of event elements (e.g., person–location, object–location, location–person). Importantly, encoding occurred either immediately before or 24 h before retrieval. Using fMRI during the retrieval of events, we show evidence for holistic reinstatement, as well as a correlation between reinstatement and hippocampal pattern completion, regardless of whether retrieval occurred immediately or 24 h after encoding. Thus, hippocampal pattern completion continues to contribute to holistic reinstatement after a delay. However, our results also revealed that some holistic reinstatement can occur without evidence for a corresponding signature of hippocampal pattern completion after a delay (but not immediately after encoding). We therefore show that hippocampal pattern completion, in addition to a nonhippocampal process, has a role in holistic reinstatement following a period of consolidation. Our results point to a consolidation process where the hippocampus and neocortex may work in an additive, rather than compensatory, manner to support episodic memory retrieval.</p></abstract><kwd-group><kwd>episodic memory</kwd><kwd>fMRI</kwd><kwd>hippocampus</kwd><kwd>systems consolidation</kwd></kwd-group><funding-group><award-group><funding-source>UKRI | Economic and Social Research Council (ESRC)</funding-source><award-id>ES/R007454/1</award-id></award-group></funding-group></article-meta></front>
+  <body>
+    <sec>
+      <title>Significance Statement</title>
+      <p>The hippocampus plays a critical role in the recollection of episodic events. However, its role in episodic memory retrieval over time is still debated with theories of systems consolidation predicting both time-limited and time-invariant roles. We used fMRI and an experimental assay of holistic episodic memory retrieval to assess hippocampal pattern completion and its relationship to neocortical reinstatement across delay. We provide evidence that hippocampal pattern completion is associated with neocortical reinstatement following delay but that some reinstatement can occur without a corresponding signature of hippocampal pattern completion. Our results suggest that hippocampal pattern completion, in addition to an emergent nonhippocampal process, may play an additive role in the recollection of episodic memories following a period of consolidation.</p>
+    </sec>
+    <sec sec-type="intro" id="s1">
+      <title>Introduction</title>
+      <p>The recollection of episodic events is holistic in nature (<xref rid="B49" ref-type="bibr">Tulving, 1983</xref>; <xref rid="B55" ref-type="bibr">Yonelinas, 1994</xref>), underpinned by a hippocampal pattern completion process (<xref rid="B25" ref-type="bibr">Marr, 1971</xref>; <xref rid="B13" ref-type="bibr">Hopfield, 1982</xref>; <xref rid="B47" ref-type="bibr">Treves and Rolls, 1992</xref>; <xref rid="B26" ref-type="bibr">McClelland et al., 1995</xref>; <xref rid="B30" ref-type="bibr">Norman and O’Reilly, 2003</xref>) that drives the reinstatement of event information in the neocortex (<xref rid="B52" ref-type="bibr">Wheeler et al., 2000</xref>; <xref rid="B54" ref-type="bibr">Woodruff et al., 2005</xref>; <xref rid="B20" ref-type="bibr">Johnson et al., 2009</xref>).</p>
+      <p>Evidence for hippocampal pattern completion and holistic neocortical reinstatement has been shown immediately following encoding (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>; <xref rid="B9" ref-type="bibr">Grande et al., 2019</xref>). However, we do not yet know whether this relationship changes following a delay. This is a critical question as standard theories of consolidation predict a time-limited role for the hippocampus (<xref rid="B26" ref-type="bibr">McClelland et al., 1995</xref>; <xref rid="B43" ref-type="bibr">Squire and Alvarez, 1995</xref>), while others argue that the hippocampus is always required for episodic retrieval (<xref rid="B27" ref-type="bibr">Nadel and Moscovitch, 1997</xref>; <xref rid="B53" ref-type="bibr">Winocur and Moscovitch, 2011</xref>; <xref rid="B40" ref-type="bibr">Sekeres et al., 2018</xref>).</p>
+      <p>There is evidence for decreases in (<xref rid="B28" ref-type="bibr">Niki and Luo, 2002</xref>; <xref rid="B46" ref-type="bibr">Takashima et al., 2006</xref>; <xref rid="B45" ref-type="bibr">Takashima et al., 2009</xref>) and sustained (<xref rid="B23" ref-type="bibr">Maguire et al., 2001</xref>; <xref rid="B34" ref-type="bibr">Ryan et al., 2001</xref>; <xref rid="B1" ref-type="bibr">Addis et al., 2004</xref>; <xref rid="B8" ref-type="bibr">Gilboa et al., 2004</xref>; <xref rid="B4" ref-type="bibr">Bonnici et al., 2012</xref>) hippocampal activity during retrieval following a delay (see also <xref rid="B32" ref-type="bibr">Ritchey et al., 2015</xref>). Critically, most previous studies have compared hippocampal activity (or multivariate patterns) at immediate and delayed retrieval and therefore have not directly assessed whether hippocampal pattern completion continues to mediate the reinstatement of episodic events in the neocortex. Importantly, changes in univariate activity over time could be driven by different mechanisms not related to systems consolidation, such as differential rates of forgetting for independent neocortical and hippocampal representations formed at encoding (<xref rid="B39" ref-type="bibr">Sekeres et al., 2016</xref>; <xref rid="B7" ref-type="bibr">Fisher and Radvansky, 2018</xref>; <xref rid="B2" ref-type="bibr">Andermane et al., 2021</xref>). Thus, by directly assessing the relationship between hippocampal pattern completion and neocortical reinstatement across delay, we can more directly assess the mechanistic predictions of systems consolidation theories.</p>
+      <p>Here, we used an experimental assay of episodic memory (<xref rid="B15" ref-type="bibr">Horner and Burgess, 2014</xref>; <xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>) that allowed us to assess the delay-(in)variant role of hippocampal pattern completion in neocortical reinstatement. Across two encoding sessions, separated for ∼24 h, participants learned three-element events. Events were learned over two or three separate encoding trials, with each trial presenting one of three possible pairs for an event. Events had different associative structures: “closed-loops” where all three pairs were encoded and “open-loops” where only two of the three pairs were encoded. At retrieval, we tested each of the learned pairs from each event, with half of the events learned ∼24 h before retrieval and the other half learned immediately before retrieval.</p>
+      <p>We identified neocortical regions that showed differences in the BOLD activity between elements that were the cue or target of retrieval and those that were nontargets. Greater activity for closed- versus open-loops in nontarget regions was then used as a marker of holistic neocortical reinstatement (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>). Next, we correlated nontarget neocortical reinstatement with a signature of hippocampal pattern completion (closed- vs open-loop hippocampal activity), for events encoded immediately and ∼24 h earlier. We used a general linear mixed-effects model to assess both the slope and the intercept of the relationship between the hippocampal contrast and neocortical reinstatement.</p>
+      <p>A slope greater than zero would indicate a positive correlation, consistent with hippocampal pattern completion contributing to holistic neocortical reinstatement. If the steepness of the slope is consistent across delay, this would indicate a continued role for hippocampal pattern completion, while a shallower (or zero) slope in the delay relative to immediate condition would suggest a time-limited role. Critically, in the presence of a positive slope, a zero intercept would suggest that holistic reinstatement only occurs in the presence of hippocampal pattern completion. An intercept greater than zero would indicate that some holistic reinstatement can occur without a corresponding signature of pattern completion. This would point to an emergent nonhippocampal contribution that is additive (rather than compensatory) to the role of hippocampal pattern completion in holistic reinstatement.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="s2">
+      <title>Materials and Methods</title>
+      <sec id="s2A1">
+        <title>Participants</title>
+        <p>An effect size <italic toggle="yes">d</italic> = 0.67 for detecting a significant nontarget reinstatement effect was calculated from previous work (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>) with <italic toggle="yes">n</italic> = 26. Cohen’s <italic toggle="yes">d</italic> was calculated from the reported <italic toggle="yes">t</italic>-statistic divided by the square root of the within-subject sample size (<xref rid="B22" ref-type="bibr">Lakens, 2013</xref>). As forgetting is expected to occur when retrieval follows a ∼24 h delay, retrieval accuracy is expected to be lower than the finding reported in <xref rid="B14" ref-type="bibr">Horner et al. (2015)</xref>. Pilot data collected with <italic toggle="yes">n</italic> = 12 revealed ∼14% decrease in retrieval accuracy following a 24 h delay, leading to an adjusted effect size <italic toggle="yes">d</italic> = 0.62. Using G*Power (<xref rid="B6" ref-type="bibr">Faul et al., 2009</xref>) and the adjusted effect size <italic toggle="yes">d</italic> = 0.62, we estimated that a sample size of <italic toggle="yes">n</italic> = 30 would be required to detect a significant nontarget reinstatement effect, if one is present, at a power of 0.90 and <italic toggle="yes">α</italic> = 0.05.</p>
+        <p>Given that previously reported effect sizes are likely to be overestimates of the true effect size, and because we wanted to compare neocortical reinstatement as well as hippocampal–neocortical correlations between two conditions, we aimed to obtain 50 useable datasets (upper limit set by resource constraints). An initial sample of <italic toggle="yes">n</italic> = 30 was collected and analyzed (due to time constraints in relation to submitting a PhD thesis; reported in <xref rid="B18" ref-type="bibr">Joensen, 2019</xref>) before the final sample was collected.</p>
+        <p>Fifty-seven right-handed participants were recruited from the University of York student population. All participants gave written informed consent and took part in exchange for course credit or monetary compensation. Participants had either normal or correct-to-normal vision and reported no history of neurological or psychiatric illness. Data from seven participants could not be included in the final sample due to motion-related artifacts in the imaging data (<italic toggle="yes">n</italic> = 1), scanner faults resulting in no acquired imaging data (<italic toggle="yes">n</italic> = 2), or below chance memory performance (accuracy &lt;∼16.7%; <italic toggle="yes">n</italic> = 4). Accordingly, the analyses included 50 participants (39 female, 11 male) with a mean age of 21.6 years ± 4.43 SD. The experiment was approved by the York Neuroimaging Centre ethics committee, University of York, United Kingdom.</p>
+      </sec>
+      <sec id="s2A2">
+        <title>Materials</title>
+        <p>The stimuli consisted of 72 locations (e.g., kitchen), 72 famous people (e.g., Barack Obama), and 72 common objects (e.g., hammer). From these, 72 random location–person–object events were generated for each participant. Note that we used the term “event” to refer to the three elements (location, person, object) that were assigned to the same associative structure (closed- or open-loop), leaving aside any considerations as to how these relate to real-world events (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>).</p>
+        <p>Each of the 72 events was assigned to the within-subject conditions of loop (open-loop or closed-loop) and delay (delay or no-delay). Thus, 18 different events were randomly assigned to either (1) open-loop, delay; (2) closed-loop, delay; (3) open-loop, no-delay; or (4) closed-loop, no-delay. For closed-loops, all three possible pairwise associations for each event were encoded, while for open-loops, only two out of the three possible pairwise associations were learnt. Events were never presented together at encoding or retrieval; only specific pairwise associations were encoded and retrieved for each event, depending on whether they were open- or closed-loop. Note that open-loops are equated to closed-loops in the number of elements, but not in the number of pairs. We have previously shown (<xref rid="B15" ref-type="bibr">Horner and Burgess, 2014</xref>; <xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>) that dependency is not seen for open-loops when three overlapping pairs are encoded as an associated chain (e.g., kitchen–hammer, kitchen–Barack Obama, Barack Obama–dog), controlling for the number of associations (but not the number of elements). Any differences in retrieval between the two conditions in the current experiment are therefore unlikely to be driven by differences in the number of associations.</p>
+      </sec>
+      <sec id="s2A3">
+        <title>Procedure</title>
+        <p>The experiment consisted of two encoding sessions and a single retrieval session. Both encoding sessions took place outside the scanner and were separated by ∼24 h (M ± SD<italic toggle="yes"> </italic>= 23 h, 54 min ± 130 min), including overnight sleep. The retrieval session took place inside the scanner immediately after the second encoding session.</p>
+        <sec id="s2A3A">
+          <title>Encoding</title>
+          <p>During encoding, participants were presented with specific pairwise associations from each of the 72 events. Participants learned one pairwise association per encoding trial. All pairwise associations were presented on a computer screen as words, with one item to the left and one item to the right of fixation (<xref rid="JN-RM-1740-23F1" ref-type="fig">Fig. 1<italic toggle="yes">A</italic></xref>). The left/right assignment was randomly chosen on each trial. The words remained on screen for 6 s. Participants were instructed to imagine, as vividly as possible, the elements interacting in a meaningful way for the full 6 s. Each word-pair presentation was preceded by a 500 ms fixation and followed by a 500 ms blank screen. For 36 out of the 72 events, participants encoded all three possible pairwise associations; forming closed-loops (<xref rid="JN-RM-1740-23F1" ref-type="fig">Fig. 1<italic toggle="yes">C</italic></xref>). For the remaining 36 triplets, participants encoded two out of the three possible pairwise associations; forming open-loops (<xref rid="JN-RM-1740-23F1" ref-type="fig">Fig. 1<italic toggle="yes">D</italic></xref>). Eighteen closed- and 18 open-loops were randomly assigned to each of the encoding sessions, resulting in a total of 90 encoding trials per encoding session (i.e., 54 closed-loop and 36 open-loop trials per session). Participants were not told that any pairwise associations would overlap with each other at encoding nor were they told about the open- and closed-loop structures.</p>
+          <fig position="float" id="JN-RM-1740-23F1">
+            <label>Figure 1.</label>
+            <caption>
+              <p>Experimental design. <bold><italic toggle="yes">A</italic></bold>, Encoding. Participants saw multiple pairwise associations. They imagined each association “interacting in a meaningful way as vividly as possible” for 6 s. Each association was preceded by a 500 ms fixation and followed by a 500 ms blank screen. Participants encoded open- and closed-loop pairwise associations in an intermixed manner. In the open-loop condition, participants did not encode the third and final association (e.g., wallet–Beckham; see <bold><italic toggle="yes">D</italic></bold>). Solid and dotted lines were not presented but highlighted closed- (solid lines) and open-loops (dotted lines). <bold><italic toggle="yes">B</italic></bold>, Retrieval. Participants were presented with a single cue and required to retrieve one of the other elements from the same event from among the five foils (elements of the same type from other events) in 6 s. Each cued-recognition trial was preceded by a 1 s fixation and followed by a 1 s blank screen. <bold><italic toggle="yes">C</italic></bold>, The associative structures of closed-loops with example encoding order for three pairwise associations (numbers 1–3). <bold><italic toggle="yes">D</italic></bold>, The associative structure of open-loops with example encoding order for the two pairwise associations (numbers 1–2). The third and final association (i.e., person–object in this example) was not shown to the participants.</p>
+            </caption>
+            <graphic xlink:href="jneuro-44-e1740232024-g001" position="float"/>
+          </fig>
+          <p>Each encoding session consisted of three blocks of 18, 36, and 36 trials, respectively, with one pairwise association from each event presented during each block. Each encoding session contained novel events for the open- and closed-loop conditions that were not presented in the other encoding session. During the first encoding block, only pairwise associations for closed-loops were presented. This ensured that the duration between encoding the last pairwise association and retrieval was consistent for closed- and open-loops from each encoding session. In blocks 2 and 3, the open- and closed-loop associations were randomly presented in an intermixed manner. The presentation order was randomized for each block. A break of 10 s followed every 18 encoding trials.</p>
+          <p>Each open-loop consisted of a common element (e.g., if participants encoded location–person, and location–object pairs, then location would be the common element). For each encoding session, 6 out of the total 18 open-loops were pseudorandomly assigned to one of the three possible common elements (i.e., location, people, or objects). The presentation order for the open-loops across encoding blocks 2 and 3 was (1) person–location, location–object; (2) location–object, object–person; and (3) object–person, person–location. The presentation order for the closed-loops across the three encoding blocks was (1) person–location, location–object, object–person; (2) location–object, object–person, person–location; and (3) object–person, person–location, location–object. These counterbalanced orders ensured that the first two encoding trials for open-loops and closed-loops were identical in structure, such that closed-loops only differed in relation to the presentation of a third encoding trial.</p>
+        </sec>
+        <sec id="s2A3B">
+          <title>Retrieval</title>
+          <p>During retrieval, participants performed a six-alternative forced-choice cued-recognition task. On each trial, a cue and six potential targets were presented simultaneously on the screen. The cue was presented in the middle of the screen with the six possible targets; one target and five foils form the same category (e.g., if the target was hammer, the five foils would be other randomly selected objects from the other events, regardless of closed- vs open-loop or delay vs no-delay status) presented in two rows of three below the cue (<xref rid="JN-RM-1740-23F1" ref-type="fig">Fig. 1<italic toggle="yes">B</italic></xref>). Participants had a maximum of 6 s to respond with a button response that corresponded to the target position on the screen and were instructed to be as accurate as possible in the time given. The position of the correct target was randomly selected on each retrieval trial. The cue and six targets were presented until a response was made or when the maximum 6 s limit was reached (M response times<italic toggle="yes"> ± </italic>SD = 2.86 s ± 0.42 s). Missing responses (i.e., responses that fell outside the 6 s response window) were treated as incorrect trials for both accuracy and dependency (M percentage of missing responses<italic toggle="yes"> ± </italic>SD = 3.54% ± 3.22%). A 2 × 2 (loop × delay) ANOVA, where the dependent variable was the proportion of missing responses, showed no significant effects (<italic toggle="yes">F</italic>s &lt; 0.37). Thus, any differences in dependency across conditions are unlikely to be caused by assuming missing responses would have been incorrect. Note also that due to the six-alternative forced-choice recognition test, the chance of guessing correctly was relatively low (∼16.7%).</p>
+          <p>Each encoded pairwise association (regardless of delay or loop status) was tested in both directions (e.g., cue, location; target, person; cue, person; target, location) across two scanning runs (total retrieval trials, 360; 180 trials per run). For the open-loops, we only tested the pairwise associations that were directly encoded—and not those that could potentially be inferred from overlapping nature of pairwise associations (<xref rid="B41" ref-type="bibr">Shohamy and Wagner, 2008</xref>; <xref rid="B56" ref-type="bibr">Zeithamova et al., 2012</xref>)—resulting in four retrieval trials per open-loop compared with six retrieval trials per closed-loop. The presentation order was optimized to measure the univariate BOLD activity in each of the four within-subject experimental conditions (i.e., open-loop, delay; open-loop, no-delay; closed-loop, delay; closed-loop, no-delay; optimization algorithm available at <ext-link xlink:href="https://osf.io/eh78w/" ext-link-type="uri">https://osf.io/eh78w/</ext-link>). To avoid adaptation effects, cue–target associations from the same closed- or open-loop were never presented on successive trials, and each block contained 18 null trials that each lasted 6 s. In each retrieval block (or scan run), cue–target associations belonging to nine closed- and open-loops encoded during the first encoding session and nine closed- and nine open-loops encoded immediately before retrieval were tested in a random order, making a total of 180 retrieval trials, in addition to the 18 null trials. Each trial was preceded by a 1 s fixation and followed by a 1 s blank screen.</p>
+        </sec>
+      </sec>
+      <sec id="s2A4">
+        <title>Modeling retrieval dependency</title>
+        <p>To model retrieval dependency, we created 2 × 2 contingency tables for the observed data for each participant to assess the proportion of joint retrieval and joint nonretrieval between the retrieval of two elements (e.g., person, object) when cued by a common element (e.g., location; A<sub>B</sub>A<sub>C</sub>) and between the retrieval of a common element (e.g., location) when cued by the other two elements from the same (e.g., person, object; B<sub>A</sub>C<sub>A</sub>). For the closed-loops, six contingency tables were constructed (as we test all three pairwise associations in both directions), and for the open-loops, four contingency tables were constructed (as we only tested the two directly encoded pairwise associations in both directions).</p>
+        <p>We also constructed contingency tables that estimate the number of trials that would fall into each of the four cells if the retrieval of pairwise associations within an open- or closed-loop was independent. This independent model assumes that pairwise associations from a given event are retrieved independently of one another—that is, if a participant retrieved one pairwise association from an event (un)successfully, this does not predict the participants ability to (un)successfully retrieve another pairwise association from the same event.</p>
+        <p>The 2 × 2 contingency tables for the data show the number of events that fall within the four cells (i.e., for the A<sub>B</sub>A<sub>C</sub> analysis, both A<sub>B</sub> and A<sub>C</sub> correct, A<sub>B</sub> incorrect and A<sub>C</sub> correct; A<sub>B</sub> correct and A<sub>C</sub> incorrect; and both A<sub>B</sub> and A<sub>C</sub> incorrect, where A<sub>B</sub> = cue with location (A) and retrieve person (B) and similarly for A<sub>C</sub>, where C refers to object). The table for the independent model (<xref rid="T1" ref-type="table">Table 1</xref>) shows the predicted number of events that fall in the four cells, given a participant’s overall level of accuracy, when the retrieval of within-event associations is assumed to be independent.</p>
+        <table-wrap position="float" id="T1">
+          <label>Table 1.</label>
+          <caption>
+            <p>Contingency table for the independent model for correct and incorrect retrieval, over <italic toggle="yes">N</italic> events (<italic toggle="yes">i</italic> = 1 to <italic toggle="yes">N</italic>), for elements B and C when cued by A</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <colgroup span="1">
+              <col align="left" span="1"/>
+              <col align="left" span="1"/>
+              <col align="left" span="1"/>
+            </colgroup>
+            <thead valign="bottom">
+              <tr>
+                <th align="left" rowspan="2" colspan="1">Retrieval of element C</th>
+                <th align="left" colspan="2" rowspan="1">Retrieval of element B</th>
+              </tr>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">Correct <inline-formula><mml:math id="mml-inline1" display="inline" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula></th>
+                <th align="left" rowspan="1" colspan="1">Incorrect <inline-formula><mml:math id="mml-inline2" display="inline" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mspace width="0.25em"/></mml:mrow><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula></th>
+              </tr>
+            </thead>
+            <tbody valign="top">
+              <tr>
+                <td rowspan="1" colspan="1">Correct <inline-formula><mml:math id="mml-inline3" display="inline" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula></td>
+                <td rowspan="1" colspan="1">
+<inline-formula>
+<mml:math id="mml-inline4" display="inline" overflow="scroll"><mml:munderover><mml:mrow><mml:mo movablelimits="false">∑</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow><mml:mspace width=".1em"/><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="normal">N</mml:mi></mml:mrow></mml:munderover><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="normal">P</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">B</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">P</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">C</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:math>
+</inline-formula>
+</td>
+                <td rowspan="1" colspan="1">
+<inline-formula>
+<mml:math id="mml-inline5" display="inline" overflow="scroll"><mml:munderover><mml:mrow><mml:mo movablelimits="false">∑</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mspace width=".1em"/><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mo>=</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">C</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mrow><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">B</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math>
+</inline-formula>
+</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Incorrect <inline-formula><mml:math id="mml-inline6" display="inline" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mo>−</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula></td>
+                <td rowspan="1" colspan="1">
+<inline-formula>
+<mml:math id="mml-inline7" display="inline" overflow="scroll"><mml:munderover><mml:mrow><mml:mo movablelimits="false">∑</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mrow><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mo>=</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">B</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mspace width="0.25em"/></mml:mrow><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">C</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="false">)</mml:mo></mml:math>
+</inline-formula>
+</td>
+                <td rowspan="1" colspan="1">
+<inline-formula>
+<mml:math id="mml-inline8" display="inline" overflow="scroll"><mml:munderover><mml:mrow><mml:mo movablelimits="false">∑</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mspace width=".1em"/><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">B</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="false">)</mml:mo><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="normal">C</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="false">)</mml:mo></mml:math>
+</inline-formula>
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <p>For a given participant, the proportion of correct retrievals of, for instance, element B when cued by A is denoted by <inline-formula><mml:math id="mml-inline9" display="inline" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="normal">P</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mspace width="0.25em"/></mml:math></inline-formula> (i.e., the mean performance for B when cued by A across all events). For the independent model, when cued by A, the probability of (1) correctly retrieving B and C (across all events) is equal to <inline-formula><mml:math id="mml-inline10" display="inline" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mrow><mml:mspace width="0.25em"/></mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub></mml:math></inline-formula>; (2) correctly retrieving B but not C is equal to <inline-formula><mml:math id="mml-inline11" display="inline" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula>; (3) correctly retrieving C but not B is equal to <inline-formula><mml:math id="mml-inline12" display="inline" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="false">)</mml:mo><mml:mrow><mml:mspace width="0.25em"/></mml:mrow></mml:math></inline-formula>; and (4) incorrectly retrieving both B and C is equal to <inline-formula><mml:math id="mml-inline13" display="inline" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mspace width="0.25em"/></mml:mrow><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AB</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mrow><mml:mo stretchy="false">)</mml:mo><mml:mspace width="0.25em"/><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mspace width=".1em"/><mml:mo>−</mml:mo><mml:mspace width=".1em"/><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">AC</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula>.</p>
+        <p>Once the contingency tables for the data and the independent model were constructed, the proportion of joint retrieval and joint nonretrieval were calculated for each contingency table separately, by summing the leading diagonal cells and dividing by the total number of events (i.e., the proportion of events where two overlapping pairwise associations within an event are both retrieved either correctly or incorrectly). This measure was then averaged across the six or four contingency tables (dependent on whether the tables related to open- or closed-loops) to provide a single measure of the proportion of joint retrieval and nonretrieval for the data and independent model separately. For brevity, we refer to this measure as the “proportion of joint retrieval,” but note that it includes the proportion of both joint retrieval and joint nonretrieval.</p>
+        <p>This proportion of joint retrieval measure scales with accuracy. We therefore compare this measure in the data relative to the independent model. As such, the independent model serves as a lower bound that can be compared with the proportion of joint retrieval in the data. We therefore have a single measure of “retrieval dependency” (i.e., the difference between the proportion of joint retrieval in the data relative to the independent model) for each participant and condition.</p>
+      </sec>
+      <sec id="s2A5">
+        <title>Behavioral analyses</title>
+        <p>A 2 × 2 (loop × delay) ANOVA was used for the behavioral analysis of retrieval accuracy and retrieval dependency, with the within-subject factor loop referring to whether the events formed closed- or open-loops and delay referring to whether closed- or open-loops were encoded immediately (no-delay) or 24 h prior to retrieval (delay). For the analysis of retrieval dependency, we also report one sample <italic toggle="yes">t</italic> tests comparing retrieval dependency in each condition with zero. Retrieval dependency significantly greater than zero provides evidence for the presence of dependency. Alpha was set to 0.05 (two-tailed) for all statistical tests. For each ANOVA, a <inline-formula><mml:math id="mml-inline14" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula> effect size is reported, and for <italic toggle="yes">t</italic> tests we report a Cohen’s <italic toggle="yes">d</italic> effect size reflecting the mean difference between conditions divided by the standard deviation of the difference scores. All analyses were conducted using JASP (<xref rid="B17" ref-type="bibr">JASP Team, 2021</xref>).</p>
+      </sec>
+      <sec id="s2A6">
+        <title>fMRI acquisition</title>
+        <p>All functional and structural volumes were acquired on a 3 T Siemens MAGNETOM Prisma scanner equipped with a 64-channel phase array head coil. T2*-weighted slices were acquired with echo-planar imaging (EPI). Forty-eight axial slices (∼0° tilt to the AC–PC lines) per volume were acquired in an interleaved order with the following parameters: acquisition matrix, 64 × 64; repetition time, 1,200 ms; echo time, 26 ms; flip angle, 75°; slice thickness, 3 mm; in-plane resolution, 3 × 3 mm; and multiband acceleration factor, 2. To allow for T1 equilibrium, we acquired the first three EPI volumes prior to the task and then discarded them. As the retrieval phase varied in length across participants (as each cued-recognition trial was self-paced, up to a maximum of 6 s per trial), the number of acquired volumes differed across participants. Note that the two retrieval blocks corresponded to two separate functional scanning runs. The mean number of volumes acquired during retrieval was 796.80 (range, 621–955) and 774.04 (range, 616–942) for the first and second retrieval blocks, respectively. A field map was acquired to allow for the correction of geometric distortions due to field inhomogeneities. For the purpose of coregistration and image normalization, a whole-brain T1-weighted structural scan was acquired with a 1 mm<sup>3</sup> resolution using a magnetization-prepared rapid gradient echo pulse sequence.</p>
+      </sec>
+      <sec id="s2A7">
+        <title>fMRI analyses</title>
+        <sec id="s2A7A">
+          <title>Preprocessing</title>
+          <p>Image preprocessing was performed in SPM12. EPI images were corrected for field inhomogeneity based on geometric distortions and spatially realigned to the first image of the time series. EPI images were spatially normalized to MNI space with transformation parameters derived from warping each participant’s structural image to a T1-weighted average template image (using the DARTEL toolbox; <xref rid="B3" ref-type="bibr">Ashburner, 2007</xref>). EPI images were spatially smoothed with an isotropic 8 mm FWHM Gaussian kernel prior to analysis.</p>
+        </sec>
+        <sec id="s2A7B">
+          <title>General analysis</title>
+          <p>At the first level, BOLD activity was modeled by a boxcar function from cue/target onset to the time a response was made (up to a maximum of 6 s). The predicted BOLD response was then convolved with a canonical hemodynamic response function to produce regressors of interest. In addition to the main regressors of interest, all first-level models included a set of nuisance regressors: six movement parameters, their first-order derivatives, and volume exclusion regressors censoring periods of excessive motion. The volume exclusion regressors were defined as volumes where the movement derivatives exceeded 1.5 mm translation (i.e., 0.5 × slice thickness) or 1° rotation (M number of excluded volumes ± SD = 0.79 ± 3.60). Parameter estimates for each regressor of interest were included in the second-level analysis to identify consistent effects across participants. Unless otherwise stated, all second-level models explicitly modeled subject effects. All effects reported outside the hippocampus are <italic toggle="yes">p</italic><sub>FWE</sub> &lt; 0.05 family-wise error (FWE) whole-brain corrected (cluster size &gt;30 voxels). We also performed small-volume corrected (SVC) analyses in the hippocampus given the a priori predictions related to this brain region. This mask for SVC was created using the WFU PickAtlas toolbox (<xref rid="B24" ref-type="bibr">Maldjian et al., 2003</xref>) with the hippocampus defined from the Automated Anatomical Labeling atlas (<xref rid="B50" ref-type="bibr">Tzourio-Mazoyer et al., 2002</xref>).</p>
+        </sec>
+        <sec id="s2A7C">
+          <title>Neocortical reinstatement</title>
+          <p>The first-level model included 24 regressors that related to all cue–target pairs (i.e., person–location, person–object, location–person, location–object, object–person, and object–location) for each of the four experimental conditions (open vs closed and delay vs no-delay). At the second level, regions that showed greater BOLD response to cueing and retrieving each element type (i.e., cue/target), relative to when an element type was not cued or required to be retrieved (i.e., nontarget), collapsed across the four experimental conditions were identified. This revealed three separate regions of interest across the three element types (<xref rid="T3" ref-type="table">Table 3</xref>). For each region of interest—defined as a 9-mm-radius sphere centered on the peak coordinate—BOLD responses for each individual across all 24 regressors were extracted. The BOLD response when the element associated with a given region was either the cue, target, or nontarget across the four experimental conditions was then calculated. As such, estimates of the BOLD response across 12 conditions (i.e., cue, target, and nontarget × closed- and open-loop × delay and no-delay) were obtained for each of the three regions of interest.</p>
+        </sec>
+        <sec id="s2A7D">
+          <title>Nontarget reinstatement and correlated activity</title>
+          <p>The first-level model included four regressors corresponding to trials from each of the four experimental conditions (i.e., open-loop, delay; closed-loop, delay; open-loop, no-delay; and closed-loop, no-delay). At the second level, two separate random-effects models were created, one for the delay and one for the no-delay condition. Each model included a single regressor corresponding to the contrast between closed- and open-loops (i.e., open-loop vs closed-loops for the respective delay or no-delay condition). This was calculated by taking the mean difference in BOLD response between the closed- and open-loop conditions for the nontarget element across the three regions of interest. Given the prior hypothesis regarding the hippocampus, statistical effects in the bilateral hippocampus are <italic toggle="yes">p</italic> &lt; 0.05 FWE SVC within a bilateral hippocampal mask.</p>
+        </sec>
+      </sec>
+      <sec sec-type="data-availability" id="s2A8">
+        <title>Data availability</title>
+        <p>Second-level data and analyses are available on the Open Science Framework (<ext-link xlink:href="https://osf.io/hk79v/" ext-link-type="uri">https://osf.io/hk79v/</ext-link>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="s3">
+      <title>Results</title>
+      <sec id="s3A">
+        <title>Behavior</title>
+        <sec id="s3A1">
+          <title>Retrieval accuracy</title>
+          <p>Memory performance (proportion correct) across each of the four experimental conditions is presented in <xref rid="T2" ref-type="table">Table 2</xref>.</p>
+          <table-wrap position="float" id="T2">
+            <label>Table 2.</label>
+            <caption>
+              <p>Mean proportion correct (and standard deviations) and mean proportion of joint retrieval (and standard deviations) for the data and independent model at no-delay (i.e., encoded immediately prior to retrieval delay) and delay (i.e., encoded 24 h prior to retrieval) for closed- and open-loops</p>
+            </caption>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" span="1"/>
+                <col align="left" span="1"/>
+                <col align="char" char="(" span="1"/>
+                <col align="char" char="(" span="1"/>
+                <col align="char" char="(" span="1"/>
+              </colgroup>
+              <thead valign="bottom">
+                <tr>
+                  <th align="left" rowspan="2" colspan="1">Delay</th>
+                  <th align="left" rowspan="2" colspan="1">Loop</th>
+                  <th align="left" rowspan="2" colspan="1">Proportion correct</th>
+                  <th align="left" colspan="2" rowspan="1">Proportion of joint retrieval</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Data</th>
+                  <th align="left" rowspan="1" colspan="1">Independent model</th>
+                </tr>
+              </thead>
+              <tbody valign="top">
+                <tr>
+                  <td rowspan="2" colspan="1">No-delay</td>
+                  <td rowspan="1" colspan="1">Open</td>
+                  <td rowspan="1" colspan="1">0.62 (0.19)</td>
+                  <td rowspan="1" colspan="1">0.61 (0.14)</td>
+                  <td rowspan="1" colspan="1">0.59 (0.12)</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Closed</td>
+                  <td rowspan="1" colspan="1">0.68 (0.21)</td>
+                  <td rowspan="1" colspan="1">0.69 (0.14)</td>
+                  <td rowspan="1" colspan="1">0.65 (0.14)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" colspan="1">Delay</td>
+                  <td rowspan="1" colspan="1">Open</td>
+                  <td rowspan="1" colspan="1">0.50 (0.19)</td>
+                  <td rowspan="1" colspan="1">0.56 (0.13)</td>
+                  <td rowspan="1" colspan="1">0.55 (0.11)</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Closed</td>
+                  <td rowspan="1" colspan="1">0.61 (0.21)</td>
+                  <td rowspan="1" colspan="1">0.67 (0.12)</td>
+                  <td rowspan="1" colspan="1">0.61 (0.13)</td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+          <p>A 2 × 2 (loop × delay) ANOVA revealed a significant effect of loop (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 37.72; <italic toggle="yes">p</italic> &lt; 0.001; <inline-formula><mml:math id="mml-inline15" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula><italic toggle="yes"><sup> </sup></italic>= 0.44) and delay (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 45.74; <italic toggle="yes">p</italic> &lt; 0.001; <inline-formula><mml:math id="mml-inline16" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula><italic toggle="yes"><sup> </sup></italic>= 0.48), with greater memory for closed-loops, relative to open-loops, and for pairs retrieved immediately after encoding, compared with those retrieved following a 24 h delay. The ANOVA also revealed a significant interaction between these factors (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 10.78; <italic toggle="yes">p</italic> = 0.002; <inline-formula><mml:math id="mml-inline17" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula> = 0.18), with a greater difference in memory between closed- and open-loops at delay relative to no-delay. This is consistent with the finding reported in <xref rid="B19" ref-type="bibr">Joensen et al. (2020)</xref>.</p>
+        </sec>
+        <sec id="s3A2">
+          <title>Retrieval dependency</title>
+          <p>The mean proportion of joint retrieval in the data and independent model, for closed- and open-loops at delay and no-delay, are presented in <xref rid="T2" ref-type="table">Table 2</xref>. <xref rid="JN-RM-1740-23F2" ref-type="fig">Figure 2</xref> shows mean retrieval dependency (i.e., data–independent model) for each condition. Evidence for dependency was seen for closed-loops at both delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 7.83; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 1.11) and no-delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 5.03; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.71). No evidence for dependency was observed for open-loops at delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 0.63; <italic toggle="yes">p</italic> = 0.533; <italic toggle="yes">d</italic> = 0.10); however, we did find evidence for dependency for open-loops at no-delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 2.19; <italic toggle="yes">p</italic> = 0.033; <italic toggle="yes">d</italic> = 0.31; but this effect did not survive corrections for multiple comparisons; adjusted <italic toggle="yes">α</italic> for four comparisons = 0.013; <xref rid="JN-RM-1740-23F2" ref-type="fig">Fig. 2)</xref>, though we note the smaller effect size estimate (0.31) relative to the two closed-loop conditions (1.11 and 0.71).</p>
+          <fig position="float" id="JN-RM-1740-23F2">
+            <label>Figure 2.</label>
+            <caption>
+              <p>Dependency for closed- and open-loops at no-delay (i.e., encoded immediately prior to retrieval) and delay (i.e., encoded 24 h prior to retrieval). Lines in boxes represent mean dependency in each condition. Bottom and top edges of boxes indicate the 25th and 75th percentiles, respectively. Whiskers represent the minimum and maximum data points. ns, not significant, ***<italic toggle="yes">p</italic> &lt; 0.001, *<italic toggle="yes">p</italic> &lt; 0.05.</p>
+            </caption>
+            <graphic xlink:href="jneuro-44-e1740232024-g002" position="float"/>
+          </fig>
+          <p>A 2 × 2 (loop × delay) ANOVA revealed a significant main effect of loop (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 12.33; <italic toggle="yes">p</italic> &lt; 0.001; <inline-formula><mml:math id="mml-inline18" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula> = 0.20), where dependency was greater for closed- compared with that for open-loops. However, this analysis also revealed a significant interaction (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 5.21; <italic toggle="yes">p</italic> = 0.027; <inline-formula><mml:math id="mml-inline19" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula> = 0.10), driven by a greater difference between closed- and open-loops at delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 5.03; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.71) relative to no-delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 1.13; <italic toggle="yes">p</italic> = 0.265; <italic toggle="yes">d</italic> = 0.16). Thus, we replicate previous findings showing greater dependency in the closed-loop delay than that in the open-loop delay condition but unexpectedly did not see the same pattern in the no-delay condition. Despite this, a direct comparison between the delay and no-delay open-loop conditions was not significant (<italic toggle="yes">t</italic><sub>(49)</sub> = 1.49; <italic toggle="yes">p</italic> = 0.142; <italic toggle="yes">d</italic> = 0.21) or between the delay and no-delay closed-loop condition (<italic toggle="yes">t</italic><sub>(49)</sub> = 1.91; <italic toggle="yes">p</italic> = 0.062; <italic toggle="yes">d</italic> = 0.27). There was no main effect of delay in this analysis (<italic toggle="yes">F</italic><sub>(1,49)</sub> = 0.04; <italic toggle="yes">p</italic> = 0.842; <inline-formula><mml:math id="mml-inline20" display="inline" overflow="scroll"><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:math></inline-formula> &lt; 0.01).</p>
+          <p>The finding of dependency in the open-loop delay condition was unexpected given the previous studies have not found evidence for dependency for open-loops in an immediate test condition (<xref rid="B15" ref-type="bibr">Horner and Burgess, 2014</xref>; <xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>; <xref rid="B19" ref-type="bibr">Joensen et al., 2020</xref>). One possibility is that the two encoding sessions in the present study [cf. <xref rid="B19" ref-type="bibr">Joensen et al. (2020)</xref> who had a single encoding session and two separate retrieval sessions] allowed participants to infer the associative nature of the overlapping pairs in the first encoding session (i.e., delay), leading to increases in dependency for open-loops encoded during the second encoding session (i.e., no-delay). However, it is important to note that dependency is seen for closed-loops at both delay and no-delay (i.e., it is the open-loop, no-delay condition that appears to diverge from previous findings).</p>
+        </sec>
+      </sec>
+      <sec id="s3B">
+        <title>fMRI</title>
+        <sec id="s3B1">
+          <title>Neocortical reinstatement</title>
+          <p>To look for differences in reinstatement as a function of loop or delay, we first identified regions where BOLD activity differed between the retrieval of different element types (i.e., people, locations, and objects), collapsed across the closed- versus open-loop and delay versus no-delay conditions. For example, to identify regions associated with the retrieval of people, we compared retrieval trials where a person was either a cue or target with trials where a person was neither the cue nor the target (i.e., the nontarget). The largest difference in the BOLD activity for people was seen in the precuneus, for locations in the left parahippocampal gyrus, and for objects in the left middle temporal gyrus (<xref rid="T3" ref-type="table">Table 3</xref>, <xref rid="JN-RM-1740-23F3" ref-type="fig">Fig. 3<italic toggle="yes">A</italic></xref>). Thus, as in <xref rid="B14" ref-type="bibr">Horner et al. (2015)</xref>, people, locations, and objects produced different levels of activation in specific neocortical regions. Unthresholded statistical maps of these effects are available at <ext-link xlink:href="https://neurovault.org/collections/IFZTMWIU/" ext-link-type="uri">https://neurovault.org/collections/IFZTMWIU/</ext-link>.</p>
+          <fig position="float" id="JN-RM-1740-23F3">
+            <label>Figure 3.</label>
+            <caption>
+              <p><bold><italic toggle="yes">A</italic></bold>, Cortical regions showing activation differences for people, locations, and objects. <bold><italic toggle="yes">B</italic></bold>, Mean difference (collapsed across the precuneus, left parahippocampal gyrus, and left middle temporal gyrus) in the BOLD activity for closed- versus open-loops for cue (dark gray), target (light gray), and nontarget (white) trials at no-delay, no delay (when using the open-loop condition at delay as baseline; highlighted with gray, transparent box), and delay. Lines in boxes represent mean difference in each condition. Bottom and top edges of boxes indicate the 25th and 75th percentiles, respectively. Whiskers represent the minimum and maximum data points. ***<italic toggle="yes">p</italic> &lt; 0.001, corrected for multiple comparisons.</p>
+            </caption>
+            <graphic xlink:href="jneuro-44-e1740232024-g003" position="float"/>
+          </fig>
+          <table-wrap position="float" id="T3">
+            <label>Table 3.</label>
+            <caption>
+              <p>Clusters and peaks showing element-specific whole-brain activity for people, locations, and objects (<italic toggle="yes">p</italic><sub>FWE</sub> &lt; 0.05; cluster size &gt;30)</p>
+            </caption>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+              </colgroup>
+              <thead valign="bottom">
+                <tr>
+                  <th align="left" rowspan="2" colspan="1">Region</th>
+                  <th align="left" rowspan="2" colspan="1">Voxels</th>
+                  <th align="left" colspan="3" rowspan="1">MNI coordinates</th>
+                  <th align="left" rowspan="2" colspan="1"><italic toggle="yes">Z</italic> score</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">X</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Y</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Z</italic>
+</th>
+                </tr>
+              </thead>
+              <tbody valign="top">
+                <tr>
+                  <td colspan="6" rowspan="1">People</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> Precuneus cortex</td>
+                  <td rowspan="1" colspan="1">450</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">−57</td>
+                  <td rowspan="1" colspan="1">27</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L lingual gyrus</td>
+                  <td rowspan="1" colspan="1">1,163</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">−90</td>
+                  <td rowspan="1" colspan="1">−3</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> Frontal medial cortex</td>
+                  <td rowspan="1" colspan="1">368</td>
+                  <td rowspan="1" colspan="1">−3</td>
+                  <td rowspan="1" colspan="1">48</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L middle temporal gyrus</td>
+                  <td rowspan="1" colspan="1">158</td>
+                  <td rowspan="1" colspan="1">−63</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R middle temporal gyrus</td>
+                  <td rowspan="1" colspan="1">56</td>
+                  <td rowspan="1" colspan="1">63</td>
+                  <td rowspan="1" colspan="1">−3</td>
+                  <td rowspan="1" colspan="1">−18</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> Superior frontal gyrus</td>
+                  <td rowspan="1" colspan="1">61</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">57</td>
+                  <td rowspan="1" colspan="1">30</td>
+                  <td rowspan="1" colspan="1">7.80</td>
+                </tr>
+                <tr>
+                  <td colspan="6" rowspan="1">Locations</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L parahippocampal gyrus</td>
+                  <td rowspan="1" colspan="1">270</td>
+                  <td rowspan="1" colspan="1">−27</td>
+                  <td rowspan="1" colspan="1">−36</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L lateral occipital cortex</td>
+                  <td rowspan="1" colspan="1">276</td>
+                  <td rowspan="1" colspan="1">−39</td>
+                  <td rowspan="1" colspan="1">−81</td>
+                  <td rowspan="1" colspan="1">33</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R precuneus</td>
+                  <td rowspan="1" colspan="1">423</td>
+                  <td rowspan="1" colspan="1">15</td>
+                  <td rowspan="1" colspan="1">−48</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R parahippocampal gyrus</td>
+                  <td rowspan="1" colspan="1">159</td>
+                  <td rowspan="1" colspan="1">27</td>
+                  <td rowspan="1" colspan="1">−30</td>
+                  <td rowspan="1" colspan="1">−18</td>
+                  <td rowspan="1" colspan="1">&gt;8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R lateral occipital cortex</td>
+                  <td rowspan="1" colspan="1">71</td>
+                  <td rowspan="1" colspan="1">48</td>
+                  <td rowspan="1" colspan="1">−72</td>
+                  <td rowspan="1" colspan="1">30</td>
+                  <td rowspan="1" colspan="1">7.67</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R cingulate gyrus</td>
+                  <td rowspan="1" colspan="1">41</td>
+                  <td rowspan="1" colspan="1">−3</td>
+                  <td rowspan="1" colspan="1">−36</td>
+                  <td rowspan="1" colspan="1">42</td>
+                  <td rowspan="1" colspan="1">5.97</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L middle temporal gyrus</td>
+                  <td rowspan="1" colspan="1">48</td>
+                  <td rowspan="1" colspan="1">−57</td>
+                  <td rowspan="1" colspan="1">−51</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">5.97</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L superior frontal gyrus</td>
+                  <td rowspan="1" colspan="1">40</td>
+                  <td rowspan="1" colspan="1">−24</td>
+                  <td rowspan="1" colspan="1">12</td>
+                  <td rowspan="1" colspan="1">54</td>
+                  <td rowspan="1" colspan="1">5.65</td>
+                </tr>
+                <tr>
+                  <td colspan="6" rowspan="1">Objects</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L middle temporal gyrus</td>
+                  <td rowspan="1" colspan="1">195</td>
+                  <td rowspan="1" colspan="1">−51</td>
+                  <td rowspan="1" colspan="1">−54</td>
+                  <td rowspan="1" colspan="1">0</td>
+                  <td rowspan="1" colspan="1">7.80</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L frontal pole</td>
+                  <td rowspan="1" colspan="1">30</td>
+                  <td rowspan="1" colspan="1">−48</td>
+                  <td rowspan="1" colspan="1">39</td>
+                  <td rowspan="1" colspan="1">12</td>
+                  <td rowspan="1" colspan="1">5.63</td>
+                </tr>
+              </tbody>
+            </table>
+            <table-wrap-foot>
+              <fn id="tblfn1">
+                <p>L, left hemisphere; R, right hemisphere.</p>
+              </fn>
+            </table-wrap-foot>
+          </table-wrap>
+          <p>BOLD responses from these regions were then extracted and assessed in terms of how they differed depending on whether the element associated with that region was either a cue, target, or nontarget (e.g., a trial where an object was the cue and a location was the target would be a nontarget trial for people). If closed-loops are reinstated holistically (regardless of delay), the region associated with the nontarget (e.g., the precuneus for people) should show greater activity for closed- relative to open-loops (as nontarget reinstatement is not expected to occur for open-loops).</p>
+          <p>We first tested whether we saw a nontarget reinstatement effect, collapsing across the delay and no-delay condition and all three ROIs. This revealed significantly greater BOLD activity for closed- than open-loops in the nontarget region (<italic toggle="yes">t</italic><sub>(49)</sub> = 6.02; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.85). We also saw significantly greater BOLD response for closed- than that for open-loops in the cue region (<italic toggle="yes">t</italic><sub>(49)</sub> = 2.92; <italic toggle="yes">p</italic> = 0.005; <italic toggle="yes">d</italic> = 0.41) but not the target region (<italic toggle="yes">t</italic><sub>(49)</sub> = 0.61; <italic toggle="yes">p</italic> = 0.542; <italic toggle="yes">d</italic> = 0.09; adjusted <italic toggle="yes">α</italic> for three comparisons = 0.017). We therefore provide evidence for nontarget reinstatement as seen in the previous studies (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>; <xref rid="B9" ref-type="bibr">Grande et al., 2019</xref>).</p>
+          <p>We next tested whether the nontarget reinstatement effect differed between the delay and no-delay conditions (<xref rid="JN-RM-1740-23F3" ref-type="fig">Fig. 3<italic toggle="yes">B</italic></xref>). This revealed that the BOLD activity for closed- relative to open-loops in the nontarget region was significantly greater in the delay than that in the no-delay condition (<italic toggle="yes">t</italic><sub>(49)</sub> = 4.65; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.66). Interestingly, although we saw significantly greater BOLD activity for closed- than that for open-loops in the nontarget region at delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 8.60; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 1.22; adjusted <italic toggle="yes">α</italic> for two comparisons = 0.025), no difference was seen in the no-delay condition (<italic toggle="yes">t</italic><sub>(49)</sub> = 1.89; <italic toggle="yes">p</italic> = 0.064; <italic toggle="yes">d</italic> = 0.27), even though we note that the numerical difference is in the same direction.</p>
+          <p>For completeness, we also tested for differences between closed- and open-loops in the cue and target regions in the delay and no-delay conditions. No differences between closed- and open-loops were seen in the cue region, delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 2.42; <italic toggle="yes">p</italic> = 0.020; <italic toggle="yes">d</italic> = 0.34) and no-delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 2.01; <italic toggle="yes">p</italic> = 0.050; <italic toggle="yes">d</italic> = 0.29), or the target region, delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 1.76; <italic toggle="yes">p</italic> = 0.084; <italic toggle="yes">d</italic> = 0.25) and no-delay (<italic toggle="yes">t</italic><sub>(49)</sub> = 0.84; <italic toggle="yes">p</italic> = 0.405; <italic toggle="yes">d</italic> = 0.12; adjusted <italic toggle="yes">α</italic> for four comparisons = 0.013).</p>
+          <p> Previous studies (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>; <xref rid="B9" ref-type="bibr">Grande et al., 2019</xref>) have observed a nontarget reinstatement effect for closed-loops retrieved immediately after encoding, and as such the failure to replicate this effect was unexpected. However, the absence of a difference between closed- and open-loops at no-delay is perhaps consistent with the lack of a significant behavioral difference in dependency between closed- and open-loops at no-delay. Given that we observed evidence of dependency for open-loops at no-delay, it is possible that this open-loop condition is obscuring a possible nontarget reinstatement effect in the closed-loop condition. To assess this possibility, we first directly compared the BOLD response in the delay and no-delay conditions for the open-loop and closed-loop conditions separately. This revealed significantly greater BOLD activity in the open-loop, no-delay than that in the delay condition in the nontarget region (<italic toggle="yes">t</italic><sub>(49)</sub> = 4.55; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.64; adjusted <italic toggle="yes">α</italic> for six comparisons = 0.008), consistent with the possibility that participants are reinstating nontarget elements more often in the open-loop, no delay than delay condition. Apart from significantly greater BOLD activity in the closed-loop, no-delay than that in the delay condition in the target region (<italic toggle="yes">t</italic><sub>(49)</sub> = 3.24; <italic toggle="yes">p</italic> = 0.002; <italic toggle="yes">d</italic> = 0.46), no further comparisons were significant (<italic toggle="yes">t</italic>s &lt; 1.65; <italic toggle="yes">p</italic>s &gt; 0.0105).</p>
+          <p>Given evidence that the BOLD activity in the open-loop, no-delay condition differed from the open-loop, delay condition in the nontarget region, alongside the behavioral evidence for dependency in the open-loop, no-delay condition, it is possible that this condition is not serving as an appropriate baseline for comparison with the closed-loop, no-delay condition. Given the lack of dependency in the open-loop, delay condition, we reasoned this might be a more appropriate baseline for assessing nontarget reinstatement in the no-delay condition.</p>
+          <p>The comparisons between the closed-loop, no-delay and open-loop, delay conditions revealed that the BOLD activity was significantly greater for nontarget closed-loops relative to open-loops (<italic toggle="yes">t</italic><sub>(49)</sub> = 5.33; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.76; adjusted <italic toggle="yes">α</italic> for three comparisons = 0.017; <xref rid="JN-RM-1740-23F3" ref-type="fig">Fig. 3<italic toggle="yes">B</italic></xref>). There was also a significant difference for cue (<italic toggle="yes">t</italic><sub>(49)</sub> = 3.74; <italic toggle="yes">p</italic> &lt; 0.001; <italic toggle="yes">d</italic> = 0.53), but not target trials when corrected for multiple comparisons (<italic toggle="yes">t</italic><sub>(49)</sub> = 2.19; <italic toggle="yes">p</italic> = 0.034; <italic toggle="yes">d</italic> = 0.31). Thus, when we use a baseline in which we did not find evidence of behavioral dependency for open-loops (i.e., the open-loop delay condition), we see evidence for nontarget reinstatement for closed-loops in both the delay and no-delay conditions.</p>
+          <p>We therefore provide evidence for nontarget reinstatement in the closed-loop delay and no-delay condition, although the effect at no-delay is only seen in a post hoc analysis using the open-loop delay condition as a baseline measure. Critically, this post hoc analysis does not affect the clear finding of nontarget reinstatement following a 24 h delay (including a night of sleep).</p>
+        </sec>
+        <sec id="s3B2">
+          <title>Nontarget reinstatement and correlated activity</title>
+          <p>The above analyses provided evidence for nontarget neocortical reinstatement in the closed-loop relative to open-loop condition after a 24 h delay. This is consistent with behavioral evidence showing that closed-loops retain their coherence, as measured by retrieval dependency, following a delay (<xref rid="B19" ref-type="bibr">Joensen et al., 2020</xref>).</p>
+          <p>Previous work has shown that the strength of nontarget reinstatement correlated with the hippocampal closed- versus open-loop contrast across participants (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>). This is consistent with the proposal that hippocampal pattern completion drives the reinstatement of all associated elements in the neocortex. To assess whether the role of hippocampal pattern completion differs over time, we correlated the nontarget reinstatement effect (closed- vs open-loops) with the difference in the BOLD activity between the closed- and open-loop condition across participants (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>), separately for the no-delay and delay conditions. Note, for this analysis, we used the open-loop, no-delay condition as the baseline measure for the closed-loop, no-delay condition, despite this contrast not providing clear evidence for nontarget reinstatement in the primary analysis.</p>
+          <p>At both delay and no-delay, multiple brain regions that have previously been associated with recollection, including the hippocampus (see <xref rid="B42" ref-type="bibr">Spaniol et al., 2009</xref>; <xref rid="B20a" ref-type="bibr">Kim, 2010</xref>; <xref rid="B33" ref-type="bibr">Rugg and Vilberg, 2013</xref> for reviews), correlated with the difference in nontarget reinstatement between closed- and open-loops on a whole-brain level (<xref rid="T4" ref-type="table">Table 4</xref>). Within the bilateral hippocampal mask (<italic toggle="yes">p</italic><sub>FWE<italic toggle="yes">/</italic>SVC</sub><italic toggle="yes"> </italic>&lt; 0.05), we observed differences in BOLD activity for nontarget trials that correlated with the closed- versus open-loop contrast at both the delay and no-delay conditions (<xref rid="T5" ref-type="table">Table 5</xref>). We therefore provide evidence that nontarget reinstatement correlates with the hippocampal closed- versus open-loop contrast in both the no-delay and delay conditions. Unthresholded statistical maps of these effects are available at <ext-link xlink:href="https://neurovault.org/collections/IFZTMWIU/" ext-link-type="uri">https://neurovault.org/collections/IFZTMWIU/</ext-link>.</p>
+          <table-wrap position="float" id="T4">
+            <label>Table 4.</label>
+            <caption>
+              <p>Clusters and peaks showing whole-brain regions and clusters within a bilateral hippocampal mask, correlating with differences in the cortical activity for nontarget trials between closed- and open-loops at delay and no-delay (<italic toggle="yes">p</italic><sub>FW<italic toggle="yes">E</italic></sub> &lt; 0.05; cluster size &gt;5)</p>
+            </caption>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+              </colgroup>
+              <thead valign="bottom">
+                <tr>
+                  <th align="left" rowspan="2" colspan="1">Region</th>
+                  <th align="left" rowspan="2" colspan="1">Voxels</th>
+                  <th align="left" colspan="3" rowspan="1">MNI coordinates</th>
+                  <th align="left" rowspan="2" colspan="1"><italic toggle="yes">Z</italic> score</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">X</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Y</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Z</italic>
+</th>
+                </tr>
+              </thead>
+              <tbody valign="top">
+                <tr>
+                  <td colspan="6" rowspan="1">Delay</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R inferior temporal Gyrus</td>
+                  <td rowspan="1" colspan="1">57</td>
+                  <td rowspan="1" colspan="1">57</td>
+                  <td rowspan="1" colspan="1">−51</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">5.73</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L middle temporal Gyrus</td>
+                  <td rowspan="1" colspan="1">45</td>
+                  <td rowspan="1" colspan="1">−60</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">6</td>
+                  <td rowspan="1" colspan="1">5.54</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L amygdala</td>
+                  <td rowspan="1" colspan="1">65</td>
+                  <td rowspan="1" colspan="1">−18</td>
+                  <td rowspan="1" colspan="1">−3</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">5.37</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R insular</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">36</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">5.08</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R putamen</td>
+                  <td rowspan="1" colspan="1">14</td>
+                  <td rowspan="1" colspan="1">21</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">5.04</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R hippocampus</td>
+                  <td rowspan="1" colspan="1">12</td>
+                  <td rowspan="1" colspan="1">18</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">4.99</td>
+                </tr>
+                <tr>
+                  <td colspan="6" rowspan="1">No-delay</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L hippocampus</td>
+                  <td rowspan="1" colspan="1">39</td>
+                  <td rowspan="1" colspan="1">−27</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">5.84</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L superior temporal gyrus</td>
+                  <td rowspan="1" colspan="1">299</td>
+                  <td rowspan="1" colspan="1">−60</td>
+                  <td rowspan="1" colspan="1">−36</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">5.80</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L cerebellum</td>
+                  <td rowspan="1" colspan="1">94</td>
+                  <td rowspan="1" colspan="1">−15</td>
+                  <td rowspan="1" colspan="1">−63</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">5.60</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R cingulate gyrus</td>
+                  <td rowspan="1" colspan="1">35</td>
+                  <td rowspan="1" colspan="1">6</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">30</td>
+                  <td rowspan="1" colspan="1">5.46</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L putamen</td>
+                  <td rowspan="1" colspan="1">64</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">5.45</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L temporal pole</td>
+                  <td rowspan="1" colspan="1">52</td>
+                  <td rowspan="1" colspan="1">−48</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">5.41</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L putamen</td>
+                  <td rowspan="1" colspan="1">110</td>
+                  <td rowspan="1" colspan="1">−24</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">5.39</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R superior temporal sulcus</td>
+                  <td rowspan="1" colspan="1">82</td>
+                  <td rowspan="1" colspan="1">57</td>
+                  <td rowspan="1" colspan="1">−30</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">5.39</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R cingulate gyrus</td>
+                  <td rowspan="1" colspan="1">33</td>
+                  <td rowspan="1" colspan="1">9</td>
+                  <td rowspan="1" colspan="1">45</td>
+                  <td rowspan="1" colspan="1">15</td>
+                  <td rowspan="1" colspan="1">5.28</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L medial frontal gyrus</td>
+                  <td rowspan="1" colspan="1">38</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">−21</td>
+                  <td rowspan="1" colspan="1">48</td>
+                  <td rowspan="1" colspan="1">5.20</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R frontal orbital Cortex</td>
+                  <td rowspan="1" colspan="1">17</td>
+                  <td rowspan="1" colspan="1">33</td>
+                  <td rowspan="1" colspan="1">30</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">5.18</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R cerebral white Matter</td>
+                  <td rowspan="1" colspan="1">24</td>
+                  <td rowspan="1" colspan="1">18</td>
+                  <td rowspan="1" colspan="1">12</td>
+                  <td rowspan="1" colspan="1">6</td>
+                  <td rowspan="1" colspan="1">5.16</td>
+                </tr>
+              </tbody>
+            </table>
+            <table-wrap-foot>
+              <fn id="tblfn2">
+                <p>L, left hemisphere; R, right hemisphere.</p>
+              </fn>
+            </table-wrap-foot>
+          </table-wrap>
+          <table-wrap position="float" id="T5">
+            <label>Table 5.</label>
+            <caption>
+              <p>Clusters and peaks showing regions within the bilateral hippocampal mask correlating with differences in the cortical activity for nontarget trials between closed- and open-loops at delay and no-delay (<italic toggle="yes">p</italic><sub>FWE/SVC</sub> &lt; 0.05; cluster defining threshold at the whole-brain level <italic toggle="yes">p</italic> &lt; 0.001; cluster extent threshold &gt;5 voxels)</p>
+            </caption>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+                <col align="char" char="." span="1"/>
+              </colgroup>
+              <thead valign="bottom">
+                <tr>
+                  <th align="left" rowspan="2" colspan="1">Region</th>
+                  <th align="left" rowspan="2" colspan="1">Voxels</th>
+                  <th align="left" colspan="3" rowspan="1">MNI coordinates</th>
+                  <th align="left" rowspan="2" colspan="1"><italic toggle="yes">Z</italic> score</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">X</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Y</italic>
+</th>
+                  <th align="left" rowspan="1" colspan="1">
+<italic toggle="yes">Z</italic>
+</th>
+                </tr>
+              </thead>
+              <tbody valign="top">
+                <tr>
+                  <td colspan="6" rowspan="1">Delay</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> R hippocampus</td>
+                  <td rowspan="1" colspan="1">2</td>
+                  <td rowspan="1" colspan="1">18</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">4.99</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L hippocampus</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">−18</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">4.79</td>
+                </tr>
+                <tr>
+                  <td colspan="6" rowspan="1">No-delay</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L hippocampus</td>
+                  <td rowspan="1" colspan="1">26</td>
+                  <td rowspan="1" colspan="1">−27</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">−6</td>
+                  <td rowspan="1" colspan="1">5.84</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L hippocampus</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">−33</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">4.80</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"> L hippocampus</td>
+                  <td rowspan="1" colspan="1">4</td>
+                  <td rowspan="1" colspan="1">−21</td>
+                  <td rowspan="1" colspan="1">−9</td>
+                  <td rowspan="1" colspan="1">−12</td>
+                  <td rowspan="1" colspan="1">4.74</td>
+                </tr>
+              </tbody>
+            </table>
+            <table-wrap-foot>
+              <fn id="tblfn3">
+                <p>L, left hemisphere; R, right hemisphere.</p>
+              </fn>
+            </table-wrap-foot>
+          </table-wrap>
+          <p>We also performed a second analysis to assess the relationship between nontarget reinstatement and the hippocampal closed- versus open-loop contrast. We first identified regions within the hippocampal mask that showed greater BOLD activity for closed- relative to open-loops (collapsed across delay and no-delay and all retrieval trials). This revealed a region in the left hippocampus (peak, −21, −36, 3) at an uncorrected threshold (<italic toggle="yes">p</italic> &lt; 0.001) (unthresholded statistical map of this effect is available at <ext-link xlink:href="https://neurovault.org/collections/IFZTMWIU/" ext-link-type="uri">https://neurovault.org/collections/IFZTMWIU/</ext-link>). We then extracted the difference between closed- and open-loops in this functionally defined region for each participant and correlated this difference with the difference in the neocortical nontarget activity between closed- and open-loops. Consistent with the whole-brain and SVC analyses reported above, we saw that the activity from the closed- versus open-loop contrast in the hippocampus correlated with participants’ nontarget reinstatement at both no-delay [<italic toggle="yes">r</italic> = 0.68; <italic toggle="yes">p</italic> &lt; 0.001; and when using the open-loop delay condition as baseline for the closed-loop condition at no-delay (<italic toggle="yes">r</italic> = 0.66; <italic toggle="yes">p </italic>&lt; 0.001)] and delay (<italic toggle="yes">r</italic> = 0.43; <italic toggle="yes">p</italic> = 0.002) conditions.</p>
+          <p>As a next step, to assess whether the relationship between the hippocampal closed- versus open-loop contrast and nontarget reinstatement differed at no-delay and delay, we again extracted the difference between closed- and open-loops (collapsed across all retrieval trials) in the functionally defined hippocampal region identified above for each participant, as well as the mean difference in neocortical nontarget activity between closed- and open-loops. We then used a generalized linear mixed-effects model (GLMM) to estimate the strength of neocortical reinstatement (i.e., differences in neocortical nontarget activity between closed- and open-loops), incorporating fixed effects of delay (i.e., no-delay vs delay), the hippocampal closed- versus open-loop contrast (i.e., difference in hippocampal activity between closed- and open-loops), and their interaction, along with random effects of participant and delay for each participant. Note that the fixed effects specify predictors of interest, while the random effects account for statistical dependency between within-participant observations.</p>
+          <p>Consistent with the correlation analyses, the GLMM revealed significant effects of the hippocampal closed- versus open-loop contrast on the strength of nontarget reinstatement in both the no-delay (<italic toggle="yes">t</italic><sub>(96)</sub> = 6.49; <italic toggle="yes">p</italic> &lt; 0.001) and delay (<italic toggle="yes">t</italic><sub>(96)</sub> = 3.43; <italic toggle="yes">p</italic> &lt; 0.001; adjusted <italic toggle="yes">α</italic> for six comparisons = 0.008) conditions. We also saw that the slope of this effect of the hippocampal contrast on nontarget reinstatement did not differ significantly between delay and no-delay conditions (<italic toggle="yes">t</italic><sub>(96)</sub> = 1.62; <italic toggle="yes">p</italic> = 0.11). As such, the hippocampal closed- versus open-loop contrast is predictive of nontarget reinstatement in both the no-delay and delay conditions, and we see no evidence for a difference across delay.</p>
+          <p>Critically, the GLMM revealed that the intercepts differed significantly across delay (<italic toggle="yes">t</italic><sub>(96)</sub> = 4.78; <italic toggle="yes">p</italic> &lt; 0.001). While the intercept at no-delay did not differ from zero (<italic toggle="yes">t</italic><sub>(96)</sub> = 1.32; <italic toggle="yes">p</italic> = 0.189), the intercept for the delay condition was significantly greater than zero (<italic toggle="yes">t</italic><sub>(96)</sub> = 6.82; <italic toggle="yes">p</italic> &lt; 0.001; <xref rid="JN-RM-1740-23F4" ref-type="fig">Fig. 4)</xref>. This is critical as it demonstrates that, although the hippocampal closed- versus open-loop contrast correlated with nontarget reinstatement at both time points, the reinstatement effect can occur without evidence for a corresponding difference between closed- and open-loops in the hippocampus at delay. Given that this hippocampal contrast is likely a marker of hippocampal pattern completion (<xref rid="B14" ref-type="bibr">Horner et al., 2015</xref>), this suggests that nontarget reinstatement can be driven, in an additive manner, by both hippocampal pattern completion and a nonhippocampal process following a 24 h delay between encoding and retrieval.</p>
+          <fig position="float" id="JN-RM-1740-23F4">
+            <label>Figure 4.</label>
+            <caption>
+              <p><bold><italic toggle="yes">A</italic></bold>, Correlation between the difference in the hippocampal activity during the retrieval of closed- versus open-loops (hippocampal ROI defined as a 9-mm-radius sphere centered on the peak coordinate from the closed- vs open-loop contrast peak, −21, −36, and 3) and the mean difference (collapsed across the precuneus, left parahippocampal gyrus, and left middle temporal gyrus for people, locations, and objects, respectively) in the BOLD activity during nontarget retrieval for closed- versus open-loops, separately for events retrieved after no-delay (left) and delay (right). <bold><italic toggle="yes">B</italic></bold>, Mean GLMM estimates (and 95% confidence intervals) for intercept (left) and slope (right) for the no-delay (dark gray) and delay (light gray) conditions. ***<italic toggle="yes">p</italic> &lt; 0.001; ns, not significant.</p>
+            </caption>
+            <graphic xlink:href="jneuro-44-e1740232024-g004" position="float"/>
+          </fig>
+          <p>To assess the robustness of these effects, we reran the GLMM analysis while removing a randomly selected subset of participants at each analysis point from <italic toggle="yes">n</italic> = 1 to <italic toggle="yes">n</italic> = 20. For each of these analyses, we iteratively repeated the analysis 50 times and removed a randomly selected subset of participants for each iteration. The robustness analysis showed that the significant intercept difference from zero in the delay condition was present in every iteration, as well as the significant difference in the intercept between the no-delay and delay condition being present in every iteration. The nonsignificant differences in the slope between the no-delay and delay conditions were more variable, decreasing below 90% consistency with the main analysis at <italic toggle="yes">n</italic> = 9, with a mean consistency of 83% between <italic toggle="yes">n</italic> = 9 and <italic toggle="yes">n</italic> = 20 and a minimum consistency of 70% at <italic toggle="yes">n</italic> = 20. Thus, the results of our novel GLMM approach to assessing the relationship between hippocampal pattern completion and nontarget neocortical reinstatement are robust to the random removal of data points to at least <italic toggle="yes">n</italic> = 9 (i.e., a total <italic toggle="yes">N</italic> of ∼40).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="discussion" id="s4">
+      <title>Discussion</title>
+      <p>We show that events, composed of three overlapping pairs (i.e., closed-loops), continue to be reinstated holistically following a 24 h period of forgetting and consolidation. Although memory performance decreased over time (indicating that forgetting had occurred), we continued to observe the BOLD activity related to the reinstatement of elements incidental to retrieval (i.e., nontargets). For example, when participants were cued with a location (e.g., kitchen) and asked to retrieve the overlapping object (e.g., hammer), retrieval also led to the activity in the cortical regions associated with the overlapping person (e.g., Barack Obama), despite no explicit demand to retrieve this element (i.e., the element was neither the cue nor the retrieval target). Importantly, the level of this nontarget reinstatement effect at delay was equivalent to that seen for closed-loops retrieved immediately after encoding (when using the open-loop condition at delay as baseline). This is consistent with behavioral evidence for “holistic forgetting” where events retain their coherence over periods of forgetting (<xref rid="B19" ref-type="bibr">Joensen et al., 2020</xref>).</p>
+      <p>The reinstatement of nontarget elements is thought to be a direct consequence of pattern completion in the hippocampus (<xref rid="B16" ref-type="bibr">Horner and Doeller, 2017</xref>), whereby a partial input can result in the retrieval of the complete memory. We show that the strength of the nontarget reinstatement effect correlates with a signature of hippocampal pattern completion (hippocampal closed- vs open-loop contrast) before and after a 24 h delay. However, although the slope of this relationship did not statistically differ across delay, the intercept significantly increased and was statistically greater than zero at delay. Although this novel analysis and finding appears to be robust to the removal of random participants (at least to <italic toggle="yes">N</italic> = 9 participants), it is nonetheless important that they should be replicated in an independent data set in the future. Our results suggest that hippocampal pattern completion still contributes to the strength of this effect after delay; however, some nontarget reinstatement can occur without a corresponding signature of hippocampal pattern completion following a 24 h delay. This latter finding points to an emergent nonhippocampal contribution to holistic reinstatement.</p>
+      <p>It has long been proposed that the role of the hippocampus in long-term memory retrieval changes over time (<xref rid="B26" ref-type="bibr">McClelland et al., 1995</xref>; <xref rid="B43" ref-type="bibr">Squire and Alvarez, 1995</xref>). This proposal is motivated by observations that although patients with hippocampal damage present with amnesia (<xref rid="B38" ref-type="bibr">Scoville and Milner, 1957</xref>; <xref rid="B51" ref-type="bibr">Vargha-Khadem et al., 1997</xref>), they often show a temporal gradient to their deficit, with memory for remote events being relatively spared compared with the more recent ones (<xref rid="B37" ref-type="bibr">Schnider et al., 1995</xref>; <xref rid="B36" ref-type="bibr">Sanders and Warrington, 1971</xref>).</p>
+      <p>Standard theories of consolidation have argued that the sparse activity patterns and high neural density of the hippocampus provide the ideal mechanisms for the initial encoding and retrieval of event-based representations (<xref rid="B48" ref-type="bibr">Treves and Rolls, 1994</xref>; <xref rid="B26" ref-type="bibr">McClelland et al., 1995</xref>; <xref rid="B30" ref-type="bibr">Norman and O’Reilly, 2003</xref>). However, over periods of consolidation, gradual adjustments to cortical connections are thought to allow for the formation of neocortical representations that can be retrieved independent of the hippocampus (<xref rid="B26" ref-type="bibr">McClelland et al., 1995</xref>). Although standard theories of consolidation have noted that this process can be relatively protracted occurring over days, weeks, or months, there is evidence that differences in the hippocampal activity at retrieval already emerge after a 1 d interval (<xref rid="B46" ref-type="bibr">Takashima et al., 2006</xref>, <xref rid="B45" ref-type="bibr">2009</xref>).</p>
+      <p>Consistent with these findings, we found a difference in the intercept between the no-delay and delay conditions when estimating the relationship between neocortical reinstatement and hippocampal pattern completion. While the intercept did not differ from zero in the no-delay condition, it was significantly greater than zero in the delay condition (and the intercepts significantly differed between conditions). The nonzero intercept suggests that neocortical reinstatement can occur without evidence for a corresponding signature of hippocampal pattern completion following a 24 h period of consolidation. However, our results also show that while the neocortical reinstatement of nontarget elements can be achieved without a corresponding increment in hippocampal pattern completion, the hippocampus still contributes to the strength of this reinstatement effect. As such, while consolidation may allow for the strengthening of related neocortical representations that can be holistically reinstated independently of hippocampal pattern completion—consistent with standard theories of consolidation—pattern completion continues to mediate the strength to which events are holistically reinstated after a 24 h delay.</p>
+      <p>Critically, these two contributions to holistic neocortical reinstatement appear to be additive in nature; the total amount of reinstatement is the sum of the linear relationship between hippocampal pattern completion and reinstatement and the additional nonhippocampal contribution (at least after 24 h). This suggests that the relationship is not compensatory in nature—it is not the case that as one contribution increases, the other decreases.</p>
+      <p>One critical question is whether this pattern is consistent across further delays. It is possible that the hippocampal contribution decreases over longer timescales, which would be reflected in a decrease in the slope of the estimated relationship over time. Such a result would support standard consolidation theories; however, it would point to a more additive relationship during the consolidation process, with hippocampal pattern completion continuing to contribute to the reinstatement of past events even in the presence of a nonhippocampal contribution to retrieval. Indeed, our approach potentially allows for the tracking of independent time courses, where the contribution of hippocampal pattern completion might decrease over time at a different rate relative to the emergence of the nonhippocampal process and that these different time courses might be driven by different mechanisms. For example, the increase in the nonhippocampal process might be driven by active systems consolidation processes during sleep (<xref rid="B5" ref-type="bibr">Diekelmann and Born, 2010</xref>), whereas the decreased contribution of hippocampal pattern completion might be a function of forgetting via decay mechanisms (<xref rid="B10" ref-type="bibr">Hardt et al., 2013</xref>; <xref rid="B35" ref-type="bibr">Sadeh et al., 2014</xref>). Tracking the time course of changes to the slope and intercept of the hippocampal pattern completion–neocortical reinstatement relationship over different delays (from one day to several weeks) could assess this possibility.</p>
+      <p>Alternative accounts of consolidation, such as the multiple trace theory (<xref rid="B27" ref-type="bibr">Nadel and Moscovitch, 1997</xref>) and trace transformation theory (<xref rid="B53" ref-type="bibr">Winocur and Moscovitch, 2011</xref>; <xref rid="B40" ref-type="bibr">Sekeres et al., 2018</xref>), make a distinction between the maintenance and retrieval of fine-grained, or context-rich, information and more gist-like information surrounding a memory. These distinct representations have been proposed to be represented independently, with the former being more dependent on the hippocampus and the latter on the neocortex. Support for this distinction has come from evidence showing that peripheral details are forgotten more rapidly than gist-like information from an event (<xref rid="B39" ref-type="bibr">Sekeres et al., 2016</xref>) and evidence showing that memory for context-rich information of an event (but not gist-like information) tends to be impaired following hippocampal damage (<xref rid="B44" ref-type="bibr">St-Laurent et al., 2009</xref>).</p>
+      <p>Our findings may represent an intermediate between standard theories of consolidation and these alternative accounts, where the direct involvement of hippocampal pattern completion in recollection endures, insofar as hippocampal pattern completion still contributes to the strength or precision of reinstatement, despite the emergence of a nonhippocampal contribution to retrieval. Harlow and colleagues (<xref rid="B11" ref-type="bibr">Harlow and Donaldson, 2013</xref>: <xref rid="B12" ref-type="bibr">Harlow and Yonelinas, 2016</xref>) have argued that recollection may be characterized by two potentially separable memory components: “accessibility” (i.e., the probability of successful retrieval) and “precision” (i.e., the precision/fidelity of the successfully retrieved information). As such, it is possible that the strength (or precision) of reinstatement is reflective of a more continuous retrieval process, such that even in instances where an entire event is successfully reinstated in the neocortex, the fidelity of reinstatement may differ across events, and this may depend on the involvement of the hippocampus (<xref rid="B29" ref-type="bibr">Nilakantan et al., 2018</xref>; <xref rid="B21" ref-type="bibr">Korkki et al., 2021</xref>; <xref rid="B31" ref-type="bibr">Richter et al., 2016</xref>). Whereas some initial (less precise) neocortical reinstatement could occur without hippocampal pattern completion following a delay, further (more precise, detailed) reinstatement could still require pattern completion. This would predict that when retrieving context-rich information, the hippocampal–neocortical relationship should be maintained over delay; however, when retrieving more gist-like information, the relationship should decrease over delay. Assessing memory for the perceptual versus semantic features of multiple event elements across delay could address this possibility.</p>
+      <p>In sum, we provide evidence for holistic reinstatement following a period of forgetting and consolidation. This is consistent with previous behavioral evidence suggesting that event-based memories undergo a holistic form of forgetting where events that are retained continue to be retrieved in their entirety and events that are forgotten are forgotten in their entirety. Critically, we found evidence that holistic reinstatement in the neocortex is driven by both hippocampal pattern completion and a nonhippocampal process after 24 h. Further, our novel experimental approach allows us to independently assess both hippocampal and nonhippocampal contributions to reinstatement, allowing future research to track the time courses of these potentially independent contributions. Finally, our results show that holistic retrieval is driven by both a nonhippocampal process and hippocampal pattern completion after 24 h, suggesting that the hippocampus and neocortex work in an additive, rather than compensatory, manner to support episodic memory retrieval.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Addis</surname>
+<given-names>DR</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Crawley</surname>
+<given-names>AP</given-names></string-name>, <string-name><surname>McAndrews</surname>
+<given-names>MP</given-names></string-name></person-group> (<year>2004</year>) <article-title>Recollective qualities modulate hippocampal activation during autobiographical memory retrieval</article-title>. <source>Hippocampus</source>
+<volume>14</volume>:<fpage>752</fpage>–<lpage>762</lpage>. <pub-id pub-id-type="doi">10.1002/hipo.10215</pub-id><pub-id pub-id-type="pmid">15318333</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B2">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Andermane</surname>
+<given-names>N</given-names></string-name>, <string-name><surname>Joensen</surname>
+<given-names>BH</given-names></string-name>, <string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name></person-group> (<year>2021</year>) <article-title>Forgetting across a hierarchy of episodic representations</article-title>. <source>Curr Opin Neurobiol</source>
+<volume>67</volume>:<fpage>50</fpage>–<lpage>57</lpage>. <pub-id pub-id-type="doi">10.1016/j.conb.2020.08.004</pub-id><pub-id pub-id-type="pmid">32882596</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Ashburner</surname>
+<given-names>J</given-names></string-name></person-group> (<year>2007</year>) <article-title>A fast diffeomorphic image registration algorithm</article-title>. <source>NeuroImage</source>
+<volume>38</volume>:<fpage>95</fpage>–<lpage>113</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2007.07.007</pub-id><pub-id pub-id-type="pmid">17761438</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Bonnici</surname>
+<given-names>HM</given-names></string-name>, <string-name><surname>Chadwick</surname>
+<given-names>MJ</given-names></string-name>, <string-name><surname>Lutti</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Hassabis</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Weiskopf</surname>
+<given-names>N</given-names></string-name>, <string-name><surname>Maguire</surname>
+<given-names>EA</given-names></string-name></person-group> (<year>2012</year>) <article-title>Detecting representations of recent and remote autobiographical memories in vmPFC and hippocampus</article-title>. <source>J Neurosci</source>
+<volume>32</volume>:<fpage>16982</fpage>–<lpage>16991</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.2475-12.2012</pub-id><pub-id pub-id-type="pmid">23175849</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Diekelmann</surname>
+<given-names>S</given-names></string-name>, <string-name><surname>Born</surname>
+<given-names>J</given-names></string-name></person-group> (<year>2010</year>) <article-title>The memory function of sleep</article-title>. <source>Nat Rev Neurosci</source>
+<volume>11</volume>:<fpage>114</fpage>–<lpage>126</lpage>. <pub-id pub-id-type="doi">10.1038/nrn2762</pub-id><pub-id pub-id-type="pmid">20046194</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Faul</surname>
+<given-names>F</given-names></string-name>, <string-name><surname>Erdfelder</surname>
+<given-names>E</given-names></string-name>, <string-name><surname>Buchner</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Lang</surname>
+<given-names>AG</given-names></string-name></person-group> (<year>2009</year>) <article-title>Statistical power analyses using G*Power 3.1: tests for correlation and regression analyses</article-title>. <source>Behav Res Methods</source>
+<volume>41</volume>:<fpage>1149</fpage>–<lpage>1160</lpage>. <pub-id pub-id-type="doi">10.3758/BRM.41.4.1149</pub-id><pub-id pub-id-type="pmid">19897823</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Fisher</surname>
+<given-names>JS</given-names></string-name>, <string-name><surname>Radvansky</surname>
+<given-names>GA</given-names></string-name></person-group> (<year>2018</year>) <article-title>Patterns of forgetting</article-title>. <source>J Mem Lang</source>
+<volume>102</volume>:<fpage>130</fpage>–<lpage>141</lpage>. <pub-id pub-id-type="doi">10.1016/j.jml.2018.05.008</pub-id></mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Gilboa</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Winocur</surname>
+<given-names>G</given-names></string-name>, <string-name><surname>Grady</surname>
+<given-names>CL</given-names></string-name>, <string-name><surname>Hevenor</surname>
+<given-names>SJ</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2004</year>) <article-title>Remembering our past: functional neuroanatomy of recollection of recent and very remote personal events</article-title>. <source>Cereb Cortex</source>
+<volume>14</volume>:<fpage>1214</fpage>–<lpage>1225</lpage>. <pub-id pub-id-type="doi">10.1093/cercor/bhh082</pub-id><pub-id pub-id-type="pmid">15166099</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Grande</surname>
+<given-names>X</given-names></string-name>, <string-name><surname>Berron</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name>, <string-name><surname>Bisby</surname>
+<given-names>JA</given-names></string-name>, <string-name><surname>Düzel</surname>
+<given-names>E</given-names></string-name>, <string-name><surname>Burgess</surname>
+<given-names>N</given-names></string-name></person-group> (<year>2019</year>) <article-title>Holistic recollection via pattern completion involves hippocampal subfield CA3</article-title>. <source>J Neurosci</source>
+<volume>39</volume>:<fpage>8100</fpage>–<lpage>8111</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.0722-19.2019</pub-id><pub-id pub-id-type="pmid">31405925</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B10">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Hardt</surname>
+<given-names>O</given-names></string-name>, <string-name><surname>Nader</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>Nadel</surname>
+<given-names>L</given-names></string-name></person-group> (<year>2013</year>) <article-title>Decay happens: the role of active forgetting in memory</article-title>. <source>Trends Neurosci</source>
+<volume>17</volume>:<fpage>111</fpage>–<lpage>120</lpage>. <pub-id pub-id-type="doi">10.1016/j.tics.2013.01.001</pub-id></mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Harlow</surname>
+<given-names>IM</given-names></string-name>, <string-name><surname>Donaldson</surname>
+<given-names>DI</given-names></string-name></person-group> (<year>2013</year>) <article-title>Source accuracy data reveal the thresholded nature of human episodic memory</article-title>. <source>Psychon Bull Rev</source>
+<volume>20</volume>:<fpage>318</fpage>–<lpage>325</lpage>. <pub-id pub-id-type="doi">10.3758/s13423-012-0340-9</pub-id><pub-id pub-id-type="pmid">23192370</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Harlow</surname>
+<given-names>IM</given-names></string-name>, <string-name><surname>Yonelinas</surname>
+<given-names>AP</given-names></string-name></person-group> (<year>2016</year>) <article-title>Distinguishing between the success and precision of recollection</article-title>. <source>Memory</source>
+<volume>24</volume>:<fpage>114</fpage>–<lpage>127</lpage>. <pub-id pub-id-type="doi">10.1080/09658211.2014.988162</pub-id><pub-id pub-id-type="pmid">25494616</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Hopfield</surname>
+<given-names>JJ</given-names></string-name></person-group> (<year>1982</year>) <article-title>Neural networks and physical systems with emergent collective computational abilities</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>79</volume>:<fpage>2554</fpage>–<lpage>2558</lpage>. <pub-id pub-id-type="doi">10.1073/pnas.79.8.2554</pub-id><pub-id pub-id-type="pmid">6953413</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name>, <string-name><surname>Bisby</surname>
+<given-names>JA</given-names></string-name>, <string-name><surname>Bush</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Lin</surname>
+<given-names>WJ</given-names></string-name>, <string-name><surname>Burgess</surname>
+<given-names>N</given-names></string-name></person-group> (<year>2015</year>) <article-title>Evidence for holistic episodic recollection via hippocampal pattern completion</article-title>. <source>Nat Commun</source>
+<volume>6</volume>:<fpage>7462</fpage>. <pub-id pub-id-type="doi">10.1038/ncomms8462</pub-id><pub-id pub-id-type="pmid">26136141</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name>, <string-name><surname>Burgess</surname>
+<given-names>N</given-names></string-name></person-group> (<year>2014</year>) <article-title>Pattern completion in multielement event engrams</article-title>. <source>Curr Biol</source>
+<volume>24</volume>:<fpage>988</fpage>–<lpage>992</lpage>. <pub-id pub-id-type="doi">10.1016/j.cub.2014.03.012</pub-id><pub-id pub-id-type="pmid">24746796</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name>, <string-name><surname>Doeller</surname>
+<given-names>CF</given-names></string-name></person-group> (<year>2017</year>) <article-title>Plasticity of hippocampal memories in humans</article-title>. <source>Curr Opin Neurobiol</source>
+<volume>43</volume>:<fpage>102</fpage>–<lpage>109</lpage>. <pub-id pub-id-type="doi">10.1016/j.conb.2017.02.004</pub-id><pub-id pub-id-type="pmid">28260633</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation publication-type="standard"><person-group person-group-type="author"><collab>JASP Team</collab></person-group> (<year>2021</year>) <comment>JASP (Version 0.15) [Computer software]. Retrieved from</comment>
+<ext-link xlink:href="https://jasp-stats.org/" ext-link-type="uri">https://jasp-stats.org/</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="B18">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><string-name><surname>Joensen</surname>
+<given-names>B</given-names></string-name></person-group> (<year>2019</year>) <article-title>How event-based memories change as a function of forgetting and consolidation</article-title>, <source>Doctoral dissertation</source>, <publisher-name>University of York</publisher-name>. <comment>Retrieved from <ext-link xlink:href="https://etheses.whiterose.ac.uk/25903/1/JoensenBH_Thesis.pdf" ext-link-type="uri">https://etheses.whiterose.ac.uk/25903/1/JoensenBH_Thesis.pdf</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Joensen</surname>
+<given-names>BH</given-names></string-name>, <string-name><surname>Gaskell</surname>
+<given-names>MG</given-names></string-name>, <string-name><surname>Horner</surname>
+<given-names>AJ</given-names></string-name></person-group> (<year>2020</year>) <article-title>United we fall: all-or-none forgetting of complex episodic events</article-title>. <source>J Exp Psychol Gen</source>
+<volume>149</volume>:<fpage>230</fpage>–<lpage>248</lpage>. <pub-id pub-id-type="doi">10.1037/xge0000648</pub-id><pub-id pub-id-type="pmid">31305093</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Johnson</surname>
+<given-names>JD</given-names></string-name>, <string-name><surname>McDuff</surname>
+<given-names>SGR</given-names></string-name>, <string-name><surname>Rugg</surname>
+<given-names>MD</given-names></string-name>, <string-name><surname>Norman</surname>
+<given-names>K</given-names></string-name></person-group> (<year>2009</year>) <article-title>Recollection, familiarity, and cortical reinstatement: a multivoxel pattern analysis</article-title>. <source>Neuron</source>
+<volume>63</volume>:<fpage>670</fpage>–<lpage>708</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuron.2009.08.011</pub-id></mixed-citation>
+      </ref>
+      <ref id="B20a">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Kim</surname>
+<given-names>H</given-names></string-name></person-group> (<year>2010</year>) <article-title>Dissociating the roles of the default-mode, dorsal, and ventral networks in episodic memory retrieval</article-title>. <source>Neuroimage</source>
+<volume>50</volume>:<fpage>1648</fpage>–<lpage>1657</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2010.01.051</pub-id><pub-id pub-id-type="pmid">20097295</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Korkki</surname>
+<given-names>SM</given-names></string-name>, <string-name><surname>Richter</surname>
+<given-names>FR</given-names></string-name>, <string-name><surname>Simons</surname>
+<given-names>JS</given-names></string-name></person-group> (<year>2021</year>) <article-title>Hippocampal-cortical encoding activity predicts the precision of episodic memory</article-title>. <source>J Cogn Neurosci</source>
+<volume>33</volume>:<fpage>2328</fpage>–<lpage>2341</lpage>. <pub-id pub-id-type="doi">10.1162/jocn_a_01770</pub-id><pub-id pub-id-type="pmid">34407192</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Lakens</surname>
+<given-names>D</given-names></string-name></person-group> (<year>2013</year>) <article-title>Calculating and reporting effect sizes to facilitate cumulative science: a practical primer for t-tests and ANOVAs</article-title>. <source>Front Psychol</source>
+<volume>4</volume>:<fpage>863</fpage>. <pub-id pub-id-type="doi">10.3389/fpsyg.2013.00863</pub-id><pub-id pub-id-type="pmid">24324449</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Maguire</surname>
+<given-names>EA</given-names></string-name>, <string-name><surname>Henson</surname>
+<given-names>RN</given-names></string-name>, <string-name><surname>Mummery</surname>
+<given-names>CJ</given-names></string-name>, <string-name><surname>Frith</surname>
+<given-names>CD</given-names></string-name></person-group> (<year>2001</year>) <article-title>Activity in prefrontal cortex, not hippocampus, varies parametrically with the increasing remoteness of memories</article-title>. <source>NeuroReport</source>
+<volume>12</volume>:<fpage>441</fpage>–<lpage>444</lpage>. <pub-id pub-id-type="doi">10.1097/00001756-200103050-00004</pub-id><pub-id pub-id-type="pmid">11234742</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B24">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Maldjian</surname>
+<given-names>JA</given-names></string-name>, <string-name><surname>Laurienti</surname>
+<given-names>PJ</given-names></string-name>, <string-name><surname>Kraft</surname>
+<given-names>RA</given-names></string-name>, <string-name><surname>Burdette</surname>
+<given-names>JH</given-names></string-name></person-group> (<year>2003</year>) <article-title>An automated method for neuroanatomic and cytoarchitectonic atlas-based interrogation of fMRI data sets</article-title>. <source>NeuroImage</source>
+<volume>19</volume>:<fpage>1233</fpage>–<lpage>1239</lpage>. <pub-id pub-id-type="doi">10.1016/S1053-8119(03)00169-1</pub-id><pub-id pub-id-type="pmid">12880848</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B25">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Marr</surname>
+<given-names>D</given-names></string-name></person-group> (<year>1971</year>) <article-title>Simple memory: a theory for archicortex</article-title>. <source>Philos Trans R Soc Lond B Biol Sci</source>
+<volume>262</volume>:<fpage>23</fpage>–<lpage>81</lpage>. <pub-id pub-id-type="doi">10.1098/rstb.1971.0078</pub-id><pub-id pub-id-type="pmid">4399412</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B26">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>McClelland</surname>
+<given-names>JL</given-names></string-name>, <string-name><surname>McNaughton</surname>
+<given-names>BL</given-names></string-name>, <string-name><surname>O’Reilly</surname>
+<given-names>RC</given-names></string-name></person-group> (<year>1995</year>) <article-title>Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory</article-title>. <source>Psychol Rev</source>
+<volume>102</volume>:<fpage>419</fpage>–<lpage>457</lpage>. <pub-id pub-id-type="doi">10.1037/0033-295X.102.3.419</pub-id><pub-id pub-id-type="pmid">7624455</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B27">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Nadel</surname>
+<given-names>L</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>1997</year>) <article-title>Memory consolidation, retrograde amnesia and the hippocampal complex</article-title>. <source>Curr Opin Neurobiol</source>
+<volume>7</volume>:<fpage>217</fpage>–<lpage>227</lpage>. <pub-id pub-id-type="doi">10.1016/S0959-4388(97)80010-4</pub-id><pub-id pub-id-type="pmid">9142752</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B28">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Niki</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>Luo</surname>
+<given-names>J</given-names></string-name></person-group> (<year>2002</year>) <article-title>An fMRI study on the time-limited role of the medial temporal lobe in long-term topographical autobiographic memory</article-title>. <source>J Cogn Neurosci</source>
+<volume>14</volume>:<fpage>500</fpage>–<lpage>507</lpage>. <pub-id pub-id-type="doi">10.1162/089892902317362010</pub-id><pub-id pub-id-type="pmid">11970809</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B29">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Nilakantan</surname>
+<given-names>AS</given-names></string-name>, <string-name><surname>Bridge</surname>
+<given-names>DJ</given-names></string-name>, <string-name><surname>VanHaerents</surname>
+<given-names>S</given-names></string-name>, <string-name><surname>Voss</surname>
+<given-names>JL</given-names></string-name></person-group> (<year>2018</year>) <article-title>Distinguishing the precision of spatial recollection from its success: evidence from healthy aging and unilateral mesial temporal lobe resection</article-title>. <source>Neuropsychologia</source>
+<volume>119</volume>:<fpage>101</fpage>–<lpage>106</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuropsychologia.2018.07.035</pub-id><pub-id pub-id-type="pmid">30086364</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B30">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Norman</surname>
+<given-names>KA</given-names></string-name>, <string-name><surname>O’Reilly</surname>
+<given-names>RC</given-names></string-name></person-group> (<year>2003</year>) <article-title>Modelling hippocampal and neocortical contributions to recognition memory: a complementary-learning-systems approach</article-title>. <source>Psychol Rev</source>
+<volume>110</volume>:<fpage>611</fpage>–<lpage>646</lpage>. <pub-id pub-id-type="doi">10.1037/0033-295X.110.4.611</pub-id><pub-id pub-id-type="pmid">14599236</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B31">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Richter</surname>
+<given-names>FR</given-names></string-name>, <string-name><surname>Cooper</surname>
+<given-names>RA</given-names></string-name>, <string-name><surname>Bays</surname>
+<given-names>PM</given-names></string-name>, <string-name><surname>Simons</surname>
+<given-names>JS</given-names></string-name></person-group> (<year>2016</year>) <article-title>Distinct neural mechanisms underlie the success, precision, and vividness of episodic memory</article-title>. <source>Elife</source>
+<volume>5</volume>:<fpage>e18260</fpage>. <pub-id pub-id-type="doi">10.7554/eLife.18260</pub-id><pub-id pub-id-type="pmid">27776631</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B32">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Ritchey</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Montchal</surname>
+<given-names>ME</given-names></string-name>, <string-name><surname>Yonelinas</surname>
+<given-names>AP</given-names></string-name>, <string-name><surname>Ranganath</surname>
+<given-names>C</given-names></string-name></person-group> (<year>2015</year>) <article-title>Delay-dependent contributions of medial temporal lobe regions to episodic memory retrieval</article-title>. <source>Elife</source>
+<volume>4</volume>:<fpage>e05025</fpage>. <pub-id pub-id-type="doi">10.7554/eLife.05025</pub-id><pub-id pub-id-type="pmid">25584461</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B33">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Rugg</surname>
+<given-names>MD</given-names></string-name>, <string-name><surname>Vilberg</surname>
+<given-names>KL</given-names></string-name></person-group> (<year>2013</year>) <article-title>Brain networks underlying episodic memory retrieval</article-title>. <source>Curr Opin Neurobiol</source>
+<volume>23</volume>:<fpage>255</fpage>–<lpage>260</lpage>. <pub-id pub-id-type="doi">10.1016/j.conb.2012.11.005</pub-id><pub-id pub-id-type="pmid">23206590</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B34">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Ryan</surname>
+<given-names>L</given-names></string-name>, <string-name><surname>Nadel</surname>
+<given-names>L</given-names></string-name>, <string-name><surname>Keil</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>Putnam</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>Schnyer</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Trouard</surname>
+<given-names>T</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2001</year>) <article-title>Hippocampal complex and retrieval of recent and very remote autobiographical memories: evidence from functional magnetic resonance imaging in neurologically intact people</article-title>. <source>Hippocampus</source>
+<volume>11</volume>:<fpage>707</fpage>–<lpage>714</lpage>. <pub-id pub-id-type="doi">10.1002/hipo.1086</pub-id><pub-id pub-id-type="pmid">11811665</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B35">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Sadeh</surname>
+<given-names>T</given-names></string-name>, <string-name><surname>Ozubko</surname>
+<given-names>JD</given-names></string-name>, <string-name><surname>Winocur</surname>
+<given-names>G</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2014</year>) <article-title>How we forget may depend on how we remember</article-title>. <source>Trends Cogn Sci</source>
+<volume>18</volume>:<fpage>26</fpage>–<lpage>36</lpage>. <pub-id pub-id-type="doi">10.1016/j.tics.2013.10.008</pub-id><pub-id pub-id-type="pmid">24246135</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B36">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Sanders</surname>
+<given-names>HI</given-names></string-name>, <string-name><surname>Warrington</surname>
+<given-names>EK</given-names></string-name></person-group> (<year>1971</year>) <article-title>Memory for remote events in amnesic patients</article-title>. <source>Brain</source>
+<volume>94</volume>:<fpage>661</fpage>–<lpage>668</lpage>. <pub-id pub-id-type="doi">10.1093/brain/94.4.661</pub-id><pub-id pub-id-type="pmid">5132964</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B37">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Schnider</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Bassetti</surname>
+<given-names>C</given-names></string-name>, <string-name><surname>Gutbrod</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>Ozdoba</surname>
+<given-names>C</given-names></string-name></person-group> (<year>1995</year>) <article-title>Very severe amnesia with acute onset after isolated hippocampal damage due to systemic lupus erythematosus</article-title>. <source>J Neurol Neurosurg Psychiatry</source>
+<volume>59</volume>:<fpage>644</fpage>–<lpage>646</lpage>. <pub-id pub-id-type="doi">10.1136/jnnp.59.6.644-a</pub-id></mixed-citation>
+      </ref>
+      <ref id="B38">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Scoville</surname>
+<given-names>WB</given-names></string-name>, <string-name><surname>Milner</surname>
+<given-names>B</given-names></string-name></person-group> (<year>1957</year>) <article-title>Loss of recent memory after bilateral hippocampal lesions</article-title>. <source>J Neurol Neurosurg Psychiatry</source>
+<volume>20</volume>:<fpage>11</fpage>–<lpage>21</lpage>. <pub-id pub-id-type="doi">10.1136/jnnp.20.1.11</pub-id><pub-id pub-id-type="pmid">13406589</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B39">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Sekeres</surname>
+<given-names>MJ</given-names></string-name>, <string-name><surname>Bonasia</surname>
+<given-names>K</given-names></string-name>, <string-name><surname>St-Laurent</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Pishdadian</surname>
+<given-names>S</given-names></string-name>, <string-name><surname>Winocur</surname>
+<given-names>G</given-names></string-name>, <string-name><surname>Grady</surname>
+<given-names>C</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2016</year>) <article-title>Recovering and preventing loss of detailed memory: differential rates of forgetting for detail types in episodic memory</article-title>. <source>Learn Mem</source>
+<volume>23</volume>:<fpage>72</fpage>–<lpage>82</lpage>. <pub-id pub-id-type="doi">10.1101/lm.039057.115</pub-id><pub-id pub-id-type="pmid">26773100</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B40">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Sekeres</surname>
+<given-names>MJ</given-names></string-name>, <string-name><surname>Winocur</surname>
+<given-names>G</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2018</year>) <article-title>The hippocampus and related neocortical structures in memory transformation</article-title>. <source>Neurosci Lett</source>
+<volume>680</volume>:<fpage>39</fpage>–<lpage>53</lpage>. <pub-id pub-id-type="doi">10.1016/j.neulet.2018.05.006</pub-id><pub-id pub-id-type="pmid">29733974</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B41">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Shohamy</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Wagner</surname>
+<given-names>AD</given-names></string-name></person-group> (<year>2008</year>) <article-title>Integrating memories in the human brain: hippocampal-midbrain encoding of overlapping events</article-title>. <source>Neuron</source>
+<volume>60</volume>:<fpage>378</fpage>–<lpage>389</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuron.2008.09.023</pub-id><pub-id pub-id-type="pmid">18957228</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B42">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Spaniol</surname>
+<given-names>J</given-names></string-name>, <string-name><surname>Davidson</surname>
+<given-names>PS</given-names></string-name>, <string-name><surname>Kim</surname>
+<given-names>AS</given-names></string-name>, <string-name><surname>Han</surname>
+<given-names>H</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Grady</surname>
+<given-names>CL</given-names></string-name></person-group> (<year>2009</year>) <article-title>Event-related fMRI studies of episodic encoding and retrieval: meta-analyses using activation likelihood estimation</article-title>. <source>Neuropsychologia</source>
+<volume>47</volume>:<fpage>1765</fpage>–<lpage>1779</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuropsychologia.2009.02.028</pub-id><pub-id pub-id-type="pmid">19428409</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B43">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Squire</surname>
+<given-names>LR</given-names></string-name>, <string-name><surname>Alvarez</surname>
+<given-names>P</given-names></string-name></person-group> (<year>1995</year>) <article-title>Retrograde amnesia and memory consolidation: a neurobiological perspective</article-title>. <source>Curr Opin Neurobiol</source>
+<volume>5</volume>:<fpage>169</fpage>–<lpage>177</lpage>. <pub-id pub-id-type="doi">10.1016/0959-4388(95)80023-9</pub-id><pub-id pub-id-type="pmid">7620304</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B44">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>St-Laurent</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Levine</surname>
+<given-names>B</given-names></string-name>, <string-name><surname>McAndrews</surname>
+<given-names>MP</given-names></string-name></person-group> (<year>2009</year>) <article-title>Determinants of autobiographical memory in patients with unilateral temporal lobe epilepsy or excisions</article-title>. <source>Neuropsychologia</source>
+<volume>47</volume>:<fpage>2211</fpage>–<lpage>2221</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuropsychologia.2009.01.032</pub-id><pub-id pub-id-type="pmid">19524089</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B45">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Takashima</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Nieuwenhuis</surname>
+<given-names>IL</given-names></string-name>, <string-name><surname>Jensen</surname>
+<given-names>O</given-names></string-name>, <string-name><surname>Talamini</surname>
+<given-names>LM</given-names></string-name>, <string-name><surname>Rijpkema</surname>
+<given-names>M</given-names></string-name>, <string-name><surname>Fernández</surname>
+<given-names>G</given-names></string-name></person-group> (<year>2009</year>) <article-title>Shift from hippocampal to neocortical centered retrieval network with consolidation</article-title>. <source>J Neurosci</source>
+<volume>29</volume>:<fpage>10087</fpage>–<lpage>10093</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.0799-09.2009</pub-id><pub-id pub-id-type="pmid">19675242</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B46">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Takashima</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Petersson</surname>
+<given-names>KM</given-names></string-name>, <string-name><surname>Rutters</surname>
+<given-names>F</given-names></string-name>, <string-name><surname>Tendolkar</surname>
+<given-names>I</given-names></string-name>, <string-name><surname>Jensen</surname>
+<given-names>O</given-names></string-name>, <string-name><surname>Zwarts</surname>
+<given-names>MJ</given-names></string-name>, <string-name><surname>McNaughton</surname>
+<given-names>BL</given-names></string-name>, <string-name><surname>Fernández</surname>
+<given-names>G</given-names></string-name></person-group> (<year>2006</year>) <article-title>Declarative memory consolidation in humans: a prospective functional magnetic resonance imaging study</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>103</volume>:<fpage>756</fpage>–<lpage>761</lpage>. <pub-id pub-id-type="doi">10.1073/pnas.0507774103</pub-id><pub-id pub-id-type="pmid">16407110</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B47">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Treves</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Rolls</surname>
+<given-names>ET</given-names></string-name></person-group> (<year>1992</year>) <article-title>Computational constraints suggest the need for two distinct input systems to the hippocampal CA3 network</article-title>. <source>Hippocampus</source>
+<volume>2</volume>:<fpage>189</fpage>–<lpage>199</lpage>. <pub-id pub-id-type="doi">10.1002/hipo.450020209</pub-id><pub-id pub-id-type="pmid">1308182</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B48">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Treves</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Rolls</surname>
+<given-names>ET</given-names></string-name></person-group> (<year>1994</year>) <article-title>Computational analysis of the role of the hippocampus in memory</article-title>. <source>Hippocampus</source>
+<volume>4</volume>:<fpage>374</fpage>–<lpage>391</lpage>. <pub-id pub-id-type="doi">10.1002/hipo.450040319</pub-id><pub-id pub-id-type="pmid">7842058</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B49">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><string-name><surname>Tulving</surname>
+<given-names>E</given-names></string-name></person-group> (<year>1983</year>) <source>Elements of episodic memory</source>. <publisher-loc>Oxford</publisher-loc>, <publisher-loc>UK</publisher-loc>: <publisher-name>Clarendon Press</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B50">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Tzourio-Mazoyer</surname>
+<given-names>N</given-names></string-name>, <string-name><surname>Landeau</surname>
+<given-names>B</given-names></string-name>, <string-name><surname>Papathanassiou</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Crivello</surname>
+<given-names>F</given-names></string-name>, <string-name><surname>Etard</surname>
+<given-names>O</given-names></string-name>, <string-name><surname>Delcroix</surname>
+<given-names>N</given-names></string-name>, <string-name><surname>Mazoyer</surname>
+<given-names>B</given-names></string-name>, <string-name><surname>Joliot</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2002</year>) <article-title>Automated anatomical labeling of activations in SPM using a macroscopic anatomical parcellation of the MNI MRI single-subject brain</article-title>. <source>NeuroImage</source>
+<volume>15</volume>:<fpage>273</fpage>–<lpage>289</lpage>. <pub-id pub-id-type="doi">10.1006/nimg.2001.0978</pub-id><pub-id pub-id-type="pmid">11771995</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B51">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Vargha-Khadem</surname>
+<given-names>F</given-names></string-name>, <string-name><surname>Gadian</surname>
+<given-names>DG</given-names></string-name>, <string-name><surname>Watkins</surname>
+<given-names>KE</given-names></string-name>, <string-name><surname>Connelly</surname>
+<given-names>A</given-names></string-name>, <string-name><surname>Van Paesschen</surname>
+<given-names>W</given-names></string-name>, <string-name><surname>Mishkin</surname>
+<given-names>M</given-names></string-name></person-group> (<year>1997</year>) <article-title>Differential effects of early hippocampal pathology on episodic and semantic memory</article-title>. <source>Science</source>
+<volume>277</volume>:<fpage>376</fpage>–<lpage>380</lpage>. <pub-id pub-id-type="doi">10.1126/science.277.5324.376</pub-id><pub-id pub-id-type="pmid">9219696</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B52">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Wheeler</surname>
+<given-names>ME</given-names></string-name>, <string-name><surname>Peterson</surname>
+<given-names>SE</given-names></string-name>, <string-name><surname>Buckner</surname>
+<given-names>RL</given-names></string-name></person-group> (<year>2000</year>) <article-title>Memory’s echo: vivid remembering reactivates sensory-specific cortex</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>97</volume>:<fpage>11125</fpage>–<lpage>11129</lpage>. <pub-id pub-id-type="doi">10.1073/pnas.97.20.11125</pub-id><pub-id pub-id-type="pmid">11005879</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B53">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Winocur</surname>
+<given-names>G</given-names></string-name>, <string-name><surname>Moscovitch</surname>
+<given-names>M</given-names></string-name></person-group> (<year>2011</year>) <article-title>Memory transformation and systems consolidation</article-title>. <source>J Int Neuropsychol Soc</source>
+<volume>17</volume>:<fpage>766</fpage>–<lpage>780</lpage>. <pub-id pub-id-type="doi">10.1017/S1355617711000683</pub-id><pub-id pub-id-type="pmid">21729403</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B54">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Woodruff</surname>
+<given-names>CC</given-names></string-name>, <string-name><surname>Johnson</surname>
+<given-names>JD</given-names></string-name>, <string-name><surname>Uncapher</surname>
+<given-names>MR</given-names></string-name>, <string-name><surname>Rugg</surname>
+<given-names>MD</given-names></string-name></person-group> (<year>2005</year>) <article-title>Content-specificity of the neural correlates of recollection</article-title>. <source>Neuropsychologia</source>
+<volume>43</volume>:<fpage>1022</fpage>–<lpage>1032</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuropsychologia.2004.10.013</pub-id><pub-id pub-id-type="pmid">15769488</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B55">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Yonelinas</surname>
+<given-names>AP</given-names></string-name></person-group> (<year>1994</year>) <article-title>Receiver-operating characteristics in recognition memory: evidence for a dual-process model</article-title>. <source>J Exp Psychol Learn Mem Cogn</source>
+<volume>20</volume>:<fpage>1341</fpage>–<lpage>1354</lpage>. <pub-id pub-id-type="doi">10.1037/0278-7393.20.6.1341</pub-id><pub-id pub-id-type="pmid">7983467</pub-id>
+</mixed-citation>
+      </ref>
+      <ref id="B56">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Zeithamova</surname>
+<given-names>D</given-names></string-name>, <string-name><surname>Dominick</surname>
+<given-names>AL</given-names></string-name>, <string-name><surname>Preston</surname>
+<given-names>AR</given-names></string-name></person-group> (<year>2012</year>) <article-title>Hippocampal and ventral medial prefrontal activation during retrieval-mediated learning supports novel inference</article-title>. <source>Neuron</source>
+<volume>75</volume>:<fpage>168</fpage>–<lpage>179</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuron.2012.05.010</pub-id><pub-id pub-id-type="pmid">22794270</pub-id>
+</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

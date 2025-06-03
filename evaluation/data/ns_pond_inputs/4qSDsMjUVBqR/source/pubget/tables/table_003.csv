@@ -1,0 +1,20 @@
+Region,Cluster size,Side,x,y,z,t-Score
+"Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early","Control early ≥ late, PTSD late ≥ early"
+Orbitofrontal cortex,"73,321",Right,26,22,−16,5.04
+Cerebellum,,Left,−10,−72,−36,5.01
+Insula,,Right,38,−2,−2,4.67
+Claustrum,,Right,30,−20,14,4.52
+Fusiform gyrus,,Right,30,−48,−18,4.49
+Lentiform nucleus,,Right,20,−12,4,4.35
+Postcentral gyrus,,Right,40,−30,54,4.27
+Orbitofrontal cortex,,Left,−20,26,−16,4.24
+Precentral gyrus,,Right,34,−16,56,4.21
+Cuneus,,Left,−16,−94,0,4.19
+Mid cingulate cortex,,Right,6,−8,44,4.17
+vlPFC (Inferior frontal gyrus),,Right,38,24,−2,4.16
+Anterior cingulate cortex,,Right,18,28,30,4.15
+Inferior parietal cortex,,Right,58,−30,28,4.14
+Lentiform nucleus,,Right,16,10,−8,4.13
+,,,,,,
+"Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late","Control late ≥ early, PTSD early ≥ late"
+,,,,,,

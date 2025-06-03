@@ -1,0 +1,771 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="brief-report">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Hippocampus</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Hippocampus</journal-id>
+      <journal-id journal-id-type="doi">10.1002/(ISSN)1098-1063</journal-id>
+      <journal-id journal-id-type="publisher-id">HIPO</journal-id>
+      <journal-title-group>
+        <journal-title>Hippocampus</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1050-9631</issn>
+      <issn pub-type="epub">1098-1063</issn>
+      <publisher>
+        <publisher-name>John Wiley and Sons Inc.</publisher-name>
+        <publisher-loc>Hoboken</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">27933668</article-id>
+      <article-id pub-id-type="pmc">5324609</article-id>
+      <article-id pub-id-type="doi">10.1002/hipo.22688</article-id>
+      <article-id pub-id-type="publisher-id">HIPO22688</article-id>
+      <article-categories>
+        <subj-group subj-group-type="overline">
+          <subject>Rapid Communication</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Rapid Communications</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The role of the hippocampus in generalizing configural relationships</article-title>
+        <alt-title alt-title-type="right-running-head">THE ROLE OF THE HIPPOCAMPUS IN GENERALIZATION</alt-title>
+        <alt-title alt-title-type="left-running-head">BERENS AND BIRD</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib id="hipo22688-cr-0001" contrib-type="author" corresp="yes">
+          <name>
+            <surname>Berens</surname>
+            <given-names>Sam C.</given-names>
+          </name>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-8197-8745</contrib-id>
+          <address>
+            <email>S.Berens@sussex.ac.uk</email>
+          </address>
+          <xref ref-type="aff" rid="hipo22688-aff-0001">
+<sup>1</sup>
+</xref>
+        </contrib>
+        <contrib id="hipo22688-cr-0002" contrib-type="author" corresp="yes">
+          <name>
+            <surname>Bird</surname>
+            <given-names>Chris M.</given-names>
+          </name>
+          <address>
+            <email>chris.bird@sussex.ac.uk</email>
+          </address>
+          <xref ref-type="aff" rid="hipo22688-aff-0001">
+<sup>1</sup>
+</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="hipo22688-aff-0001">
+        <label>
+          <sup>1</sup>
+        </label>
+        <named-content content-type="organisation-division">School of Psychology</named-content>
+        <institution>University of Sussex</institution>
+        <named-content content-type="city">Falmer</named-content>
+        <named-content content-type="post-code">BN1 9QH</named-content>
+        <country country="GB">United Kingdom</country>
+      </aff>
+      <author-notes>
+        <corresp id="correspondenceTo"><label>*</label>Correspondence to: Dr Sam C. Berens, School of Psychology, University of Sussex, Falmer, BN1 9QH, United Kingdom. E‐mail: <email>sam.berens@york.ac.uk</email> or Dr. Chris M. Bird, School of Psychology, University of Sussex, Falmer, BN1 9QH, United Kingdom. E‐mail: <email>chris.bird@sussex.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>24</day>
+        <month>1</month>
+        <year>2017</year>
+      </pub-date>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2017</year>
+      </pub-date>
+      <volume>27</volume>
+      <issue>3</issue>
+      <issue-id pub-id-type="doi">10.1002/hipo.v27.3</issue-id>
+      <fpage>223</fpage>
+      <lpage>228</lpage>
+      <history>
+        <date date-type="received">
+          <day>05</day>
+          <month>8</month>
+          <year>2016</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>29</day>
+          <month>11</month>
+          <year>2016</year>
+        </date>
+        <date date-type="accepted">
+          <day>30</day>
+          <month>11</month>
+          <year>2016</year>
+        </date>
+      </history>
+      <permissions>
+        <!--<copyright-statement content-type="issue-copyright"> &#x000a9; 2017 Wiley Periodicals, Inc. <copyright-statement>-->
+        <copyright-statement content-type="article-copyright">© 2016 The Authors Hippocampus Published by Wiley Periodicals, Inc.</copyright-statement>
+        <license license-type="creativeCommonsBy">
+          <license-p>This is an open access article under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</ext-link> License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited.</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="file:HIPO-27-223.pdf"/>
+      <abstract>
+        <title>ABSTRACT</title>
+        <p>The hippocampus has been implicated in integrating information across separate events in support of mnemonic generalizations. These generalizations may be underpinned by processes at both encoding (linking similar information across events) and retrieval (“on‐the‐fly” generalization). However, the relative contribution of the hippocampus to encoding‐ and retrieval‐based generalizations is poorly understood. Using fMRI in humans, we investigated the hippocampal role in gradually learning a set of spatial discriminations and subsequently generalizing them in an acquired equivalence task. We found a highly significant correlation between individuals’ performance on a generalization test and hippocampal activity during the test, providing evidence that hippocampal processes support on‐the‐fly generalizations at retrieval. Within the same hippocampal region there was also a correlation between activity during the final stage of learning (when all associations had been learnt but no generalization was required) and subsequent generalization performance. We suggest that the hippocampus spontaneously retrieves prior events that share overlapping features with the current event. This process may also support the creation of generalized representations during encoding. These findings are supportive of the view that the hippocampus contributes to both encoding‐ and retrieval‐based generalization via the same basic mechanism; retrieval of similar events sharing common features. © 2016 The Authors Hippocampus Published by Wiley Periodicals, Inc.</p>
+      </abstract>
+      <kwd-group kwd-group-type="author-generated">
+        <kwd id="hipo22688-kwd-0001">learning</kwd>
+        <kwd id="hipo22688-kwd-0002">memory</kwd>
+        <kwd id="hipo22688-kwd-0003">pattern completion</kwd>
+        <kwd id="hipo22688-kwd-0004">fMRI</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source>European Research Council Starter</funding-source>
+          <award-id>337822</award-id>
+        </award-group>
+      </funding-group>
+      <funding-group>
+        <award-group>
+          <funding-source>School of Psychology (Sussex)</funding-source>
+        </award-group>
+      </funding-group>
+      <funding-group>
+        <award-group>
+          <funding-source>Economic and Social Research Council</funding-source>
+          <award-id>ES/J500173/1</award-id>
+        </award-group>
+      </funding-group>
+      <counts>
+        <fig-count count="3"/>
+        <table-count count="1"/>
+        <page-count count="6"/>
+        <word-count count="3983"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>source-schema-version-number</meta-name>
+          <meta-value>2.0</meta-value>
+        </custom-meta>
+        <custom-meta>
+          <meta-name>component-id</meta-name>
+          <meta-value>hipo22688</meta-value>
+        </custom-meta>
+        <custom-meta>
+          <meta-name>cover-date</meta-name>
+          <meta-value>March 2017</meta-value>
+        </custom-meta>
+        <custom-meta>
+          <meta-name>details-of-publishers-convertor</meta-name>
+          <meta-value>Converter:WILEY_ML3GV2_TO_NLMPMC version:5.0.7 mode:remove_FC converted:24.02.2017</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <p>Learning relationships between features within the environment is central to complex behaviors such as navigation (Cohen and Eichenbaum, <xref rid="hipo22688-bib-0004" ref-type="ref">1993</xref>). However, it is often not sufficient to rely on information that was learnt within a single episode. Frequently, memories acquired across multiple episodes must be integrated to allow the expression of novel behaviors (Bunsey and Eichenbaum, <xref rid="hipo22688-bib-0003" ref-type="ref">1996</xref>). Such “memory generalizations” are also fundamental to the formation of the context‐free memory structures that characterize semantic knowledge (Eichenbaum, <xref rid="hipo22688-bib-0006" ref-type="ref">2004</xref>).</p>
+    <p>The hippocampus has long been implicated in supporting memory generalization (Bunsey and Eichenbaum, <xref rid="hipo22688-bib-0003" ref-type="ref">1996</xref>). Broadly speaking, there are two classes of model that attempt to describe the role of the hippocampus in generalization. Encoding‐based models propose that when related events are encoded, their representations overlap with each other and therefore contain information that is common to all of the events (Shohamy and Wagner, <xref rid="hipo22688-bib-0019" ref-type="ref">2008</xref>). This results in unitary (or generalized) memory traces where the retrieval of any one detail automatically cues the retrieval of related features. In contrast, retrieval‐based models pose that study events are strictly “pattern separated” at encoding. Nonetheless, these models suggest that the hippocampus can engage “on‐the‐fly” generalization where representational overlaps are inferred during retrieval (e.g., Kumaran and McClelland, <xref rid="hipo22688-bib-0009" ref-type="ref">2012</xref>).</p>
+    <p>Previous investigations have provided evidence for both encoding‐ and retrieval‐based accounts of hippocampal generalization (e.g., Shohamy and Wagner, <xref rid="hipo22688-bib-0019" ref-type="ref">2008</xref>; Preston et al., <xref rid="hipo22688-bib-0014" ref-type="ref">2004</xref>). Indeed, it has been suggested that these models are not mutually exclusive. In particular, the hippocampus may initially form pattern separated representations which gradually become integrated over a period of memory consolidation (Zeithamova et al., <xref rid="hipo22688-bib-0026" ref-type="ref">2012b</xref>). Consolidation is associated with memory traces becoming more dependent on neocortical regions that underlie semantic memory (McClelland et al., <xref rid="hipo22688-bib-0010" ref-type="ref">1995</xref>). This raises the possibility that generalization may sometimes depend on functions of the neocortex rather than the hippocampus.</p>
+    <p>To date, two studies have examined how the hippocampus and neocortex contribute to generalization over the course of both an initial learning phase and a generalization test (Zeithamova and Preston, <xref rid="hipo22688-bib-0024" ref-type="ref">2010</xref>; Zeithamova, et al., <xref rid="hipo22688-bib-0025" ref-type="ref">2012a</xref>). Both have provided good evidence for a mixed encoding/retrieval account. These studies used “relational inference” paradigms where hierarchical or pairwise relationships between stimuli must be inferred from training on a set of “premise pairs.” This contrasts with simpler forms of generalization where novel discriminations are made on the basis that stimuli belong to particular “equivalence classes.” For example, if particular configurations of stimuli are always rewarded, then they belong to the same superordinate class of rewarded items. It remains unclear whether or not generalizations reliant on equivalence class membership depend on hippocampal and/or neocortical involvement at either study or test. We used fMRI to examine the brain mechanisms involved in gradually learning and subsequently generalizing a set of visual discriminations. In particular, we explored whether hippocampal and/or neocortical activity at encoding, retrieval, or both, was associated with generalizations between equivalence classes.</p>
+    <p>Twenty‐three right‐handed students were recruited by way of online advertisement. All gave written informed consent to take part and were compensated for their time. Subjects had either normal or corrected‐to‐normal vision and reported no history of neurological or psychiatric illness. Of those who participated, eight did not exhibit sufficient levels of learning on the task to be included in the analyses (see below). As such, analyses reported here used data from 15 subjects (7 male) with a mean age of 23.8 years (SD = 4.14). The study was approved by the Brighton and Sussex Medical school's Research Governance and Ethics Committee.</p>
+    <p>During scanning participants learned a set of visual discriminations via trial‐and‐error (learning phase), and were subsequently tested on their ability to generalize what they had learned (generalization phase). Both learning and generalization occurred within a single scanning session and took place in the context of a first‐person virtual reality environment (see Fig. <xref rid="hipo22688-fig-0001" ref-type="fig">1</xref>). On each trial, a scene was presented depicting two buildings positioned equidistantly from a start location. One building concealed a pile of gold (the “reward”). The location of this gold was determined by the configuration of wall textures rendered onto the towers of each building. Participants were required to select the rewarded building (within 3 s). Following a response, video feedback was presented (7 s) before an inter‐trial interval (1 s). The stimuli for the task were generated in Unreal Development Kit (Epic Games, 2012) and presented via the Cogent 2000 toolbox in MATLAB (Mathworks).</p>
+    <fig fig-type="Figure" xml:lang="en" id="hipo22688-fig-0001" orientation="portrait" position="float">
+      <label>Figure 1</label>
+      <caption>
+        <p>Upper: Details of the trained and generalized discriminations. Each capitalised letter refers to a unique wall texture as indicated by the three wall texture samples (left). The two tables list how wall textures were combined and which arrangements were rewarded. Each row within a table corresponds to a unique discrimination and vertical bars (i.e. |) indicate spatial arrangements within each building (‘X|Y' indicates ‘X' to the left of ‘Y'). The ‘+' column denotes wall texture combinations that were rewarded while the ‘−' column denotes wall texture combinations that were unrewarded. Note: The reward was equally likely to be in the left or right building. Lower: Example of a trained discrimination within the virtual‐reality reality environment. [Color figure can be viewed at <ext-link ext-link-type="uri" xlink:href="http://wileyonlinelibrary.com">wileyonlinelibrary.com</ext-link>]</p>
+      </caption>
+      <graphic id="nlm-graphic-1" xlink:href="HIPO-27-223-g001"/>
+    </fig>
+    <p>Three discriminations were learnt (see Fig. <xref rid="hipo22688-fig-0001" ref-type="fig">1</xref>). In each discrimination there were two buildings and each building comprised two textures (in other words, each building was a “compound” stimulus). Participants were required to learn not only which combination of textures was rewarded but also which spatial arrangement of textures was rewarded. For example, when texture A appeared with texture B, the building with A to the left of B was rewarded (A|B). However, when texture A appeared with texture C, the building with C to the left of A was rewarded (C|A). This form of “structural” configural learning, which includes a spatial or temporal component, is thought to depend on hippocampal learning mechanisms (Sanderson et al., <xref rid="hipo22688-bib-0015" ref-type="ref">2006</xref>; Aggleton et al., <xref rid="hipo22688-bib-0001" ref-type="ref">2007</xref>). There were 48 trials per discrimination which were presented in a pseudorandom order.</p>
+    <p>The initial learning phase also included a set of non‐memory discriminations (location of gold visible at trial onset) and a further set of three discriminations that constituted a transverse patterning contingency (see Moses et al., <xref rid="hipo22688-bib-0011" ref-type="ref">2009</xref>). However, these trials were not subject to a generalization test after leaning and are therefore not discussed in the current study.</p>
+    <p>The generalization phase involved 12 test trials. Here each rewarded wall texture configuration was presented alongside an unrewarded configuration that had only ever been trained in the context of a different discrimination (e.g., A|B+ vs. A|C−, see Fig. <xref rid="hipo22688-fig-0001" ref-type="fig">1</xref>). As such, these trials involved making novel discriminations between stimuli on the basis of an equivalence class membership (rewarded vs. unrewarded). Encoding‐based models of generalization predict that during the initial training phase, participants not only learn specific relationships between texture combinations (A|B+ vs. B|A−), but also the superordinate equivalence classes (A|B+, B|C+, and C|A+ all belong to a rewarded class whereas B|A−, C|B−, and A|C− all belonging to an unrewarded class). Given this, we would expect brain activity during the initial training phase to be correlated with subsequent generalization performance. In contrast, retrieval‐based models predict that generalization depends on recalling trained associations when stimuli are presented in a novel combination. Under this view, we would expect brain activity during the generalization test itself to correlate with generalization performance. Relatively few generalization trials were run to ensure that participants did not develop a well‐practiced response to each trial type.</p>
+    <p>Behavioral outputs from the task were binary sequences indicating correct versus incorrect responses on each trial. Trials were also coded as incorrect when no response was made within 3 s. For each discrimination of the initial learning phase, these binary sequences were then converted into learning curves using a state‐space smoothing model developed by Smith et al. (<xref rid="hipo22688-bib-0020" ref-type="ref">2004</xref>). This model indicates a “learning trial” defined as the first trial at which there is a significant level of certainty (<italic>P</italic> &lt; 0.05) that a subject is performing above chance and the discrimination has been learnt. All participants included in the sample reached the learning trial for each discrimination at least five trials before the end of training (mean learning trial = 22.56, S.D. = 8.37).</p>
+    <p>We wished to group each trial of the experiment into one of four stages based on how many of the three discriminations had been learnt; from “stage 0” (prior to the learning trial of any discrimination), to “stage 3” (after all three discriminations had been learnt). Across participants, the mean (and S.D.) number of trials within each stage were as follows; Stage 0 = 43.33 (23.39), Stage 1 = 23.13 (22.75), Stage 2 = 21.53 (20.50), Stage 3 = 56 (33.79). Importantly, response times did not significantly differ between learning stage; <italic>F</italic>(3,42) = 1.125, <italic>P</italic> = .350. As such, it is unlikely that any BOLD effects coincident with learning stage are a result of differential reaction times. Performance on the 12 generalization trials was taken as the proportion of correct responses. Although each subject included in the analysis showed a high degree of learning on each of the directly trained discriminations, generalization performance was highly variable across subjects; mean proportion correct: 0.73, range 0.33–0.92.</p>
+    <p>Encoding‐based models of generalization propose that new representations overlap with existing ones, such that the commonalities across different discrimination pairs are also represented. We therefore looked for brain regions where encoding‐related BOLD activity increased linearly with the number of discriminations that had been learnt. This pattern of results would be consistent with the notion that the representation of one discrimination automatically triggers the retrieval of overlapping discriminations that have been learnt by that stage. As an additional and stronger test of encoding‐based models, we carried out a between‐subjects’ analysis to test whether BOLD activity during the final stage of learning (stage 3) correlated with subsequent generalization performance.</p>
+    <p>The imaging analyses were performed in SPM8 (<ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>, see Supporting Information for details about the imaging protocols and pre‐processing). Following image pre‐processing, first‐level models of the fMRI data were produced that specified five regressors of interest; four of these modeled the trial onsets within each learning stage (i.e., stages 0–3) and an additional regressor modeled the trial onset of each generalization test trial. Nuisance regressors included motion parameters and a vector coding for drift in the MR signal. HRF amplitude estimates relating to each event of interest were then subject to group‐level analyses.</p>
+    <p>At the group level, we specified a mixed‐effects regression model that tested for linear increases in activity across the four learning stages (random intercepts for each subject were also modeled). This revealed four clusters showing the predicted linear increases, each significant after controlling for the family‐wise error rate at the cluster‐level (whole‐brain, map‐wide height threshold was <italic>P</italic> &lt; 0.001); see Table <xref rid="hipo22688-tbl-0001" ref-type="table-wrap">1</xref> (upper) and Figure <xref rid="hipo22688-fig-0002" ref-type="fig">2</xref>. An unthresholded statistical image for this contrast can be viewed and downloaded at <ext-link ext-link-type="uri" xlink:href="http://neurovault.org/collections/2058/">http://neurovault.org/collections/2058/</ext-link>. The analysis did not reveal any significant linear increases or decreases in hippocampal BOLD activity when either performing a small volume correction within an bilateral hippocampal ROI (Tzourio‐Mazoyer et al., <xref rid="hipo22688-bib-0022" ref-type="ref">2002</xref>) or, averaging across all hippocampal voxels, <italic>t</italic>(14) = −1.285, <italic>P</italic> = 0.220.</p>
+    <fig fig-type="Figure" xml:lang="en" id="hipo22688-fig-0002" orientation="portrait" position="float">
+      <label>Figure 2</label>
+      <caption>
+        <p>Left panel: Cluster in the left inferior temporal gyrus (ITG) exhibiting linear increases in activity as a function of the number of learnt discriminations. Right panel: Bar chart illustrating the ITG effect. Because the plot shows data selected by a whole‐brain analysis, the bars are a biased representation of the true effect size in this region. Error bars indicate 95% confidence intervals. [Color figure can be viewed at <ext-link ext-link-type="uri" xlink:href="http://wileyonlinelibrary.com">wileyonlinelibrary.com</ext-link>]</p>
+      </caption>
+      <graphic id="nlm-graphic-3" xlink:href="HIPO-27-223-g002"/>
+    </fig>
+    <table-wrap id="hipo22688-tbl-0001" xml:lang="en" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Clusters Showing Linear Changes in BOLD Activity Across the Four Learning Stages</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <col style="border-bottom:solid 1px #000000border-right:solid 1px #000000" width="80pt" span="1"/>
+        <col style="border-bottom:solid 1px #000000border-right:solid 1px #000000" width="80pt" span="1"/>
+        <col style="border-bottom:solid 1px #000000border-right:solid 1px #000000" width="80pt" span="1"/>
+        <col style="border-bottom:solid 1px #000000border-right:solid 1px #000000" width="80pt" span="1"/>
+        <thead valign="bottom">
+          <tr style="border-bottom:solid 1px #000000">
+            <th align="left" valign="bottom" rowspan="1" colspan="1">Region</th>
+            <th align="center" valign="bottom" rowspan="1" colspan="1">Peak MNI [<italic>x</italic>, <italic>y</italic>, <italic>z</italic>]</th>
+            <th align="center" valign="bottom" rowspan="1" colspan="1">Peak <italic>t</italic>
+</th>
+            <th align="center" valign="bottom" rowspan="1" colspan="1">Cluster size</th>
+          </tr>
+        </thead>
+        <tbody valign="top">
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">L Inferior temporal gyrus</td>
+            <td align="left" valign="top" rowspan="1" colspan="1">[−48, −09, −33]</td>
+            <td align="char" char="." valign="top" rowspan="1" colspan="1">6.77</td>
+            <td align="center" valign="top" rowspan="1" colspan="1">132</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">Ventromedial prefrontal (L &amp; R)</td>
+            <td align="left" valign="top" rowspan="1" colspan="1">[−15, +27, −09]</td>
+            <td align="char" char="." valign="top" rowspan="1" colspan="1">6.57</td>
+            <td align="center" valign="top" rowspan="1" colspan="1">162</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">L insula and white matter</td>
+            <td align="left" valign="top" rowspan="1" colspan="1">[−27, −57, +09]</td>
+            <td align="char" char="." valign="top" rowspan="1" colspan="1">5.87</td>
+            <td align="center" valign="top" rowspan="1" colspan="1">187</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">L angular gyrus</td>
+            <td align="left" valign="top" rowspan="1" colspan="1">[−42, −72, +45]</td>
+            <td align="char" char="." valign="top" rowspan="1" colspan="1">5.78</td>
+            <td align="center" valign="top" rowspan="1" colspan="1">109</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <p>For the clusters exhibiting activation increases as a function of learning stage, we, we next examined whether BOLD activity during stage 3 (i.e., the final stage of learning) was correlated with subsequent generalization performance (across participants). A significant positive association was detected in the inferior temporal gyrus but not in any other cluster, <italic>r</italic>(13) = 0.666, <italic>P</italic> = 0.028 (Bonferroni adjusted for four comparisons). This suggests that the region may be involved in representing overlapping associative information in a manner that supports mnemonic generalizations as specified by encoding‐based models.</p>
+    <p>Retrieval‐based models of generalization propose that generalizations are carried out “on‐the‐fly” (i.e., during novel tests) when problems cannot be solved by reproducing exactly what has been learnt. We therefore carried out a between‐subjects’ analysis to identify the brain regions that were activated most by individuals who performed best on the generalization test. To examine this, the HRF amplitude estimates relating to generalization test trials were correlated with generalization performance at the second‐level. This revealed one cluster in the right posterior hippocampus showing a positive association (see Fig. <xref rid="hipo22688-fig-0003" ref-type="fig">3</xref>). This effect was significant after controlling for the family‐wise error rate at the peak level within a bilateral hippocampal ROI (Tzourio‐Mazoyer et al., <xref rid="hipo22688-bib-0022" ref-type="ref">2002</xref>); <italic>r</italic>(13) = 0.861, <italic>P</italic> = 0.011, peak MNI coordinate = [24,−30, −06]). The unthresholded statistical image for this contrast can be viewed and downloaded at <ext-link ext-link-type="uri" xlink:href="http://neurovault.org/collections/2058/">http://neurovault.org/collections/2058/</ext-link>. A Kolmogorov–Smirnov test verified that the assumption of normally distributed errors had been met, <italic>D</italic>(15) = 0.143, <italic>P</italic> &gt; 0.200. However, it is noteworthy that the performance of one subject was numerically below chance (i.e., &lt;0.5) and that this subject yielded a relatively large regression‐residual. As such, we examined whether the hippocampal effect was robust to the removal of this data point. Even after excluding the outlier, the correlation remained significant; <italic>r</italic>(13) = 0.761, <italic>P</italic> &lt; 0.001. No other significant effects were detected.</p>
+    <fig fig-type="Figure" xml:lang="en" id="hipo22688-fig-0003" orientation="portrait" position="float">
+      <label>Figure 3</label>
+      <caption>
+        <p>Correlation between generalization performance and right hippocampal activity during the generalization test. [Color figure can be viewed at <ext-link ext-link-type="uri" xlink:href="http://wileyonlinelibrary.com">wileyonlinelibrary.com</ext-link>]</p>
+      </caption>
+      <graphic id="nlm-graphic-5" xlink:href="HIPO-27-223-g003"/>
+    </fig>
+    <p>We next explored whether the hippocampal region identified above showed a BOLD correlation with generalization performance during the final stage of learning (stage 3). A significant positive association was indeed found (<italic>r</italic> = 0.599, <italic>P</italic> = 0.018) suggesting that the region may also play a role in encoding‐based generalization. We further examined whether the hippocampal cluster exhibited linear changes in activity coincident with initial learning. Across the three learning stages, there was a marginally significant decrease in BOLD activity; <italic>t</italic>(44) = −1.98, <italic>P</italic> = 0.054. This latter result neither corroborates or rules out a role for the hippocampus in learning conjunctions between related discriminations, especially given that decreases in hippocampal BOLD may actually reflect successful associative binding (Olsen et al., <xref rid="hipo22688-bib-0013" ref-type="ref">2012</xref>).</p>
+    <p>Given the above, an important possibility is whether the hippocampal generalization effects actually reflect the retrieval of specific reward contingencies rather than a generalization process per se. Indeed, our study was not ideally suited to examine associative generalization since participants could have solved the generalization task by retrieving the value of individual compound stimuli (e.g., A|B is rewarded). This would entail a form of “stimulus” generalization, that is, the extension of a prelearnt response across similar contexts. As such, while we did not detect any significant modulations of hippocampal BOLD over the course learning, it is possible that the hippocampal effects simply reflect better stimulus generalization in participants with the strongest representations of the original contingencies. However, we consider this to be unlikely. Participants’ ability to generalize was uncorrelated with learning rate (as measured by the time to reach stage 3); <italic>r</italic>(13) = 0.19, <italic>P</italic> = 0.498. Furthermore, the hippocampal correlations with generalization at both stage 3 and the generalization test held after controlling for learning rate; <italic>r</italic>(12) = 0.649, <italic>P</italic> = 0.013, and <italic>r</italic>(12) = 0.843, <italic>P</italic> &lt; 0.001 (respectively). Given these findings, we suggest that the hippocampus contributed to generalization performance over and above simply representing the directly trained associations.</p>
+    <p>The main focus of this study is on the role of the hippocampus in learning a set of related discriminations and generalizing them on the basis of equivalence class membership. We found no strong evidence for learning‐related BOLD changes within the hippocampus that would be consistent with encoding‐based models of generalization. However, it remains a possibility that the small number of subjects included in our final sample may have limited our ability to detect such effects. Nonetheless, during the generalization test, one hippocampal region showed a robust correlation between BOLD activity and individuals’ ability to generalize. Importantly, the association between generalization performance and hippocampal BOLD was also present in the learning phase after all discriminations had been learnt. This suggests that representations necessary for accurate generalization may have been present in the hippocampus before there was any requirement to make generalizations. Although post‐hoc, this latter finding is partially supportive of an encoding‐based mechanism.</p>
+    <p>Taken together, the results of our study support a role for the hippocampus in both “on‐the‐fly” generalizations that are computed in novel situations and in generalizations during initial learning where the hippocampus activates information from previous events which share features relevant to the current event. Our results are therefore consistent with proposals that the hippocampus contributes to generalization at both encoding and test via the same fundamental mechanism (Zeithamova and Preston, <xref rid="hipo22688-bib-0024" ref-type="ref">2010</xref>; Zeithamova et al., <xref rid="hipo22688-bib-0026" ref-type="ref">2012b</xref>).</p>
+    <p>The region of the hippocampus associated with generalization in our study was midway along its length. Several neuroimaging studies have implicated the anterior hippocampus in generalization (Heckers et al., <xref rid="hipo22688-bib-0007" ref-type="ref">2004</xref>; Shohamy and Wagner, <xref rid="hipo22688-bib-0019" ref-type="ref">2008</xref>; Schlichting et al., <xref rid="hipo22688-bib-0017" ref-type="ref">2015</xref>). However, it may be that the site of hippocampal involvement in generalization depends on the nature of the information that must be generalized. It has been argued that the longitudinal axis of the hippocampus is characterized by a functional gradient whereby mnemonic representations that are more local to each other in space or time are coded by more posterior hippocampal regions (see, Strange et al., <xref rid="hipo22688-bib-0021" ref-type="ref">2014</xref>). Moreover, associations between events that are closely related within a narrative structure may be represented by posterior parts of the hippocampus while associations between more distally related events are represented by anterior regions (Collin et al., <xref rid="hipo22688-bib-0005" ref-type="ref">2015</xref>). It is therefore possible that the precise locus of hippocampal involvement in generalization depends on the nature of the associations that are being generalized.</p>
+    <p>Outside of the hippocampus, learning‐related effects were observed in several regions, including two which are strongly implicated in semantic processing (the left angular gyrus [AG] and left inferior temporal gyrus [ITG]). Unlike the hippocampus, the ITG showed activation increases suggestive of gradually learning generalized memory traces. Interestingly, activity in this region also correlated with generalization performance during the initial learning phase. Damage to the ITG results in a loss of semantic knowledge (e.g., Mummery et al., <xref rid="hipo22688-bib-0012" ref-type="ref">2000</xref>; Schwartz et al., <xref rid="hipo22688-bib-0018" ref-type="ref">2009</xref>). Given this, we suggest that the left ITG may be responsible for storing integrated memory traces relevant to subsequent generalization. In contrast, the left AG is believed to play a role in matching the conjunctions of perceptual features to specific memory representations (especially in the light of competition from similar, overlapping representations; see Ansari, <xref rid="hipo22688-bib-0002" ref-type="ref">2008</xref>).</p>
+    <p>We also observed learning‐related effects in the ventromedial prefrontal cortex (vmPFC). Previous learning and generalization studies have shown that vmPFC activity and its connectivity with the hippocampus correlates with subsequent generalization performance, both during encoding and retrieval (Zeithamova and Preston, <xref rid="hipo22688-bib-0024" ref-type="ref">2010</xref>; Zeithamova et al., <xref rid="hipo22688-bib-0025" ref-type="ref">2012a</xref>). Furthermore, lesions to this region impair the ability to make transitive inferences (Koscik and Tranel, <xref rid="hipo22688-bib-0008" ref-type="ref">2012</xref>). One model suggests that the vmPFC acts to reactivate well‐established memories (i.e., schemas) when they are consistent with incoming information and to integrate new information into memory schemas (Van Kesteren et al., <xref rid="hipo22688-bib-0023" ref-type="ref">2012</xref>). Thus the vmPFC, working in close association with the hippocampus, is able to create integrated knowledge representations that have been abstracted away from individual events that share common elements (see also, Schlichting and Preston, <xref rid="hipo22688-bib-0016" ref-type="ref">2015</xref>).</p>
+    <p>To conclude, our findings support the hypothesis that the hippocampus enables generalization, primarily though retrieving stimuli that share overlapping details. This occurs both in novel situations, when there is an explicit requirement to generalize, but is also present during learning, when similar stimuli might be assigned spontaneously to a superordinate equivalence class.</p>
+    <sec sec-type="supplementary-material">
+      <title>Supporting information</title>
+      <supplementary-material content-type="local-data">
+        <caption>
+          <p>Supporting Information</p>
+        </caption>
+        <media xlink:href="HIPO-27-223-s001.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ref-list content-type="cited-references">
+      <title>REFERENCES</title>
+      <ref id="hipo22688-bib-0001">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0001">
+<string-name>
+<surname>Aggleton</surname>
+<given-names>JP</given-names>
+</string-name>, <string-name>
+<surname>Sanderson</surname>
+<given-names>DJ</given-names>
+</string-name>, <string-name>
+<surname>Pearce</surname>
+<given-names>JM.</given-names>
+</string-name>
+<year>2007</year>
+<article-title>Structural learning and the hippocampus</article-title>. <source>Hippocampus</source>
+<volume>17</volume>:<fpage>723</fpage>–<lpage>734</lpage>.
+<pub-id pub-id-type="pmid">17598160</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0002">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0002">
+<string-name>
+<surname>Ansari</surname>
+<given-names>D.</given-names>
+</string-name>
+<year>2008</year>
+<article-title>Effects of development and enculturation on number representation in the brain</article-title>. <source>Nat Rev Neurosci</source>
+<volume>9</volume>:<fpage>278</fpage>–<lpage>291</lpage>.
+<pub-id pub-id-type="pmid">18334999</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0003">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0003">
+<string-name>
+<surname>Bunsey</surname>
+<given-names>M</given-names>
+</string-name>, <string-name>
+<surname>Eichenbaum</surname>
+<given-names>H.</given-names>
+</string-name>
+<year>1996</year>
+<article-title>Conservation of hippocampal memory function in rats and humans</article-title>. <source>Nature</source>
+<volume>379</volume>:<fpage>255</fpage>–<lpage>257</lpage>.
+<pub-id pub-id-type="pmid">8538790</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0004">
+        <mixed-citation publication-type="book" id="hipo22688-cit-0004">
+<string-name>
+<surname>Cohen</surname>
+<given-names>NJ</given-names>
+</string-name>, <string-name>
+<surname>Eichenbaum</surname>
+<given-names>H.</given-names>
+</string-name>
+<year>1993</year>
+<source>Memory, Amnesia, and the Hippocampal System</source>. <publisher-loc>Cambridge (MA)</publisher-loc>: <publisher-name>MIT Press</publisher-name>.
+</mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0005">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0005">
+<string-name>
+<surname>Collin</surname>
+<given-names>SH</given-names>
+</string-name>, <string-name>
+<surname>Milivojevic</surname>
+<given-names>B</given-names>
+</string-name>, <string-name>
+<surname>Doeller</surname>
+<given-names>CF.</given-names>
+</string-name>
+<year>2015</year>
+<article-title>Memory hierarchies map onto the hippocampal long axis in humans</article-title>. <source>Nat Neurosci</source>
+<volume>18</volume>:<fpage>562</fpage>–<lpage>1564</lpage>.
+<pub-id pub-id-type="pmid">25706472</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0006">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0006">
+<string-name>
+<surname>Eichenbaum</surname>
+<given-names>H.</given-names>
+</string-name>
+<year>2004</year>
+<article-title>Hippocampus: Cognitive processes and neural representations that underlie declarative memory</article-title>. <source>Neuron</source>
+<volume>44</volume>:<fpage>109</fpage>–<lpage>120</lpage>.
+<pub-id pub-id-type="pmid">15450164</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0007">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0007">
+<string-name>
+<surname>Heckers</surname>
+<given-names>S</given-names>
+</string-name>, <string-name>
+<surname>Zalesak</surname>
+<given-names>M</given-names>
+</string-name>, <string-name>
+<surname>Weiss</surname>
+<given-names>AP</given-names>
+</string-name>, <string-name>
+<surname>Ditman</surname>
+<given-names>T</given-names>
+</string-name>, <string-name>
+<surname>Titone</surname>
+<given-names>D.</given-names>
+</string-name>
+<year>2004</year>
+<article-title>Hippocampal activation during transitive inference in humans</article-title>. <source>Hippocampus</source>
+<volume>14</volume>:<fpage>153</fpage>–<lpage>162</lpage>.
+<pub-id pub-id-type="pmid">15098721</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0008">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0008">
+<string-name>
+<surname>Koscik</surname>
+<given-names>TR</given-names>
+</string-name>, <string-name>
+<surname>Tranel</surname>
+<given-names>D.</given-names>
+</string-name>
+<year>2012</year>
+<article-title>The human ventromedial prefrontal cortex is critical for transitive inference</article-title>. <source>J Cogn Neurosci</source>
+<volume>24</volume>:<fpage>1191</fpage>–<lpage>1204</lpage>.
+<pub-id pub-id-type="pmid">22288395</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0009">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0009">
+<string-name>
+<surname>Kumaran</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>McClelland</surname>
+<given-names>JL.</given-names>
+</string-name>
+<year>2012</year>
+<article-title>Generalization through the recurrent interaction of episodic memories: A model of the hippocampal system</article-title>. <source>Psychol Rev</source>
+<volume>119</volume>:<fpage>573</fpage>–<lpage>616</lpage>.
+<pub-id pub-id-type="pmid">22775499</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0010">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0010">
+<string-name>
+<surname>McClelland</surname>
+<given-names>JL</given-names>
+</string-name>, <string-name>
+<surname>McNaughton</surname>
+<given-names>BL</given-names>
+</string-name>, <string-name>
+<surname>O'Reilly</surname>
+<given-names>RC.</given-names>
+</string-name>
+<year>1995</year>
+<article-title>Why there are complementary learning systems in the hippocampus and neocortex: Insights from the successes and failures of connectionist models of learning and memory</article-title>. <source>Psychol Rev</source>
+<volume>102</volume>:<fpage>419</fpage>–<lpage>457</lpage>.
+<pub-id pub-id-type="pmid">7624455</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0011">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0011">
+<string-name>
+<surname>Moses</surname>
+<given-names>SN</given-names>
+</string-name>, <string-name>
+<surname>Ryan</surname>
+<given-names>JD</given-names>
+</string-name>, <string-name>
+<surname>Bardouille</surname>
+<given-names>T</given-names>
+</string-name>, <string-name>
+<surname>Kovacevic</surname>
+<given-names>N</given-names>
+</string-name>, <string-name>
+<surname>Hanlon</surname>
+<given-names>FM</given-names>
+</string-name>, <string-name>
+<surname>McIntosh</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2009</year>
+<article-title>Semantic information alters neural activation during transverse patterning performance</article-title>. <source>NeuroImage</source>
+<volume>46</volume>:<fpage>863</fpage>–<lpage>873</lpage>.
+<pub-id pub-id-type="pmid">19281852</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0012">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0012">
+<string-name>
+<surname>Mummery</surname>
+<given-names>CJ</given-names>
+</string-name>, <string-name>
+<surname>Patterson</surname>
+<given-names>K</given-names>
+</string-name>, <string-name>
+<surname>Price</surname>
+<given-names>CJ</given-names>
+</string-name>, <string-name>
+<surname>Ashburner</surname>
+<given-names>J</given-names>
+</string-name>, <string-name>
+<surname>Frackowiak</surname>
+<given-names>RSJ</given-names>
+</string-name>, <string-name>
+<surname>Hodges</surname>
+<given-names>JR.</given-names>
+</string-name>
+<year>2000</year>
+<article-title>A voxel‐based morphometry study of semantic dementia: Relationship between temporal lobe atrophy and semantic memory</article-title>. <source>Ann Neurol</source>
+<volume>47</volume>:<fpage>36</fpage>–<lpage>45</lpage>.
+<pub-id pub-id-type="pmid">10632099</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0013">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0013">
+<string-name>
+<surname>Olsen</surname>
+<given-names>RK</given-names>
+</string-name>, <string-name>
+<surname>Moses</surname>
+<given-names>SN</given-names>
+</string-name>, <string-name>
+<surname>Riggs</surname>
+<given-names>L</given-names>
+</string-name>, <string-name>
+<surname>Ryan</surname>
+<given-names>JD.</given-names>
+</string-name>
+<year>2012</year>
+<article-title>The hippocampus supports multiple cognitive processes through relational binding and comparison</article-title>. <source>Front Hum Neurosci</source>
+<volume>6</volume>:<fpage>146</fpage>.
+<pub-id pub-id-type="pmid">22661938</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0014">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0014">
+<string-name>
+<surname>Preston</surname>
+<given-names>AR</given-names>
+</string-name>, <string-name>
+<surname>Shrager</surname>
+<given-names>Y</given-names>
+</string-name>, <string-name>
+<surname>Dudukovic</surname>
+<given-names>NM</given-names>
+</string-name>, <string-name>
+<surname>Gabrieli</surname>
+<given-names>JD.</given-names>
+</string-name>
+<year>2004</year>
+<article-title>Hippocampal contribution to the novel use of relational information in declarative memory</article-title>. <source>Hippocampus</source>
+<volume>14</volume>:<fpage>148</fpage>–<lpage>152</lpage>.
+<pub-id pub-id-type="pmid">15098720</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0015">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0015">
+<string-name>
+<surname>Sanderson</surname>
+<given-names>DJ</given-names>
+</string-name>, <string-name>
+<surname>Pearce</surname>
+<given-names>JM</given-names>
+</string-name>, <string-name>
+<surname>Kyd</surname>
+<given-names>RJ</given-names>
+</string-name>, <string-name>
+<surname>Aggleton</surname>
+<given-names>JP.</given-names>
+</string-name>
+<year>2006</year>
+<article-title>The importance of the rat hippocampus for learning the structure of visual arrays</article-title>. <source>Eur J Neurosci</source>
+<volume>24</volume>:<fpage>1781</fpage>–<lpage>1788</lpage>.
+<pub-id pub-id-type="pmid">17004941</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0016">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0016">
+<string-name>
+<surname>Schlichting</surname>
+<given-names>ML</given-names>
+</string-name>, <string-name>
+<surname>Preston</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2015</year>
+<article-title>Memory integration: Neural mechanisms and implications for behavior</article-title>. <source>Curr Opin Behav Sci</source>
+<volume>1</volume>:<fpage>1</fpage>–<lpage>8</lpage>.
+<pub-id pub-id-type="pmid">25750931</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0017">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0017">
+<string-name>
+<surname>Schlichting</surname>
+<given-names>ML</given-names>
+</string-name>, <string-name>
+<surname>Mumford</surname>
+<given-names>JA</given-names>
+</string-name>, <string-name>
+<surname>Preston</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2015</year>
+<article-title>Learning‐related representational changes reveal dissociable integration and separation signatures in the hippocampus and prefrontal cortex</article-title>. <source>Nat Commun</source>
+<volume>6</volume>:<fpage>1</fpage>–<lpage>10</lpage>.
+</mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0018">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0018">
+<string-name>
+<surname>Schwartz</surname>
+<given-names>MF</given-names>
+</string-name>, <string-name>
+<surname>Kimberg</surname>
+<given-names>DY</given-names>
+</string-name>, <string-name>
+<surname>Walker</surname>
+<given-names>GM</given-names>
+</string-name>, <string-name>
+<surname>Faseyitan</surname>
+<given-names>O</given-names>
+</string-name>, <string-name>
+<surname>Brecher</surname>
+<given-names>A</given-names>
+</string-name>, <string-name>
+<surname>Dell</surname>
+<given-names>GS</given-names>
+</string-name>, <string-name>
+<surname>Coslett</surname>
+<given-names>HB.</given-names>
+</string-name>
+<year>2009</year>
+<article-title>Anterior temporal involvement in semantic word retrieval: Voxel‐based lesion‐symptom mapping evidence from aphasia</article-title>. <source>Brain</source>
+<volume>132</volume>:<fpage>3411</fpage>–<lpage>3427</lpage>.
+<pub-id pub-id-type="pmid">19942676</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0019">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0019">
+<string-name>
+<surname>Shohamy</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Wagner</surname>
+<given-names>AD.</given-names>
+</string-name>
+<year>2008</year>
+<article-title>Integrating memories in the human brain: Hippocampal‐midbrain encoding of overlapping events</article-title>. <source>Neuron</source>
+<volume>60</volume>:<fpage>378</fpage>–<lpage>389</lpage>.
+<pub-id pub-id-type="pmid">18957228</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0020">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0020">
+<string-name>
+<surname>Smith</surname>
+<given-names>AC</given-names>
+</string-name>, <string-name>
+<surname>Frank</surname>
+<given-names>LM</given-names>
+</string-name>, <string-name>
+<surname>Wirth</surname>
+<given-names>S</given-names>
+</string-name>, <string-name>
+<surname>Yanike</surname>
+<given-names>M</given-names>
+</string-name>, <string-name>
+<surname>Hu</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Kubota</surname>
+<given-names>Y</given-names>
+</string-name>, <string-name>
+<surname>Graybiel</surname>
+<given-names>AM</given-names>
+</string-name>, <string-name>
+<surname>Suzuki</surname>
+<given-names>WA</given-names>
+</string-name>, <string-name>
+<surname>Brown</surname>
+<given-names>EN.</given-names>
+</string-name>
+<year>2004</year>
+<article-title>Dynamical analysis of learning in behavior experiments</article-title>. <source>J Neurosci</source>
+<volume>24</volume>:<fpage>447</fpage>–<lpage>461</lpage>.
+<pub-id pub-id-type="pmid">14724243</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0021">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0021">
+<string-name>
+<surname>Strange</surname>
+<given-names>BA</given-names>
+</string-name>, <string-name>
+<surname>Witter</surname>
+<given-names>MP</given-names>
+</string-name>, <string-name>
+<surname>Lein</surname>
+<given-names>ES</given-names>
+</string-name>, <string-name>
+<surname>Moser</surname>
+<given-names>EI.</given-names>
+</string-name>
+<year>2014</year>
+<article-title>Functional organization of the hippocampal longitudinal axis</article-title>. <source>Nat Rev Neurosci</source>
+<volume>15</volume>:<fpage>655</fpage>–<lpage>669</lpage>.
+<pub-id pub-id-type="pmid">25234264</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0022">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0022">
+<string-name>
+<surname>Tzourio‐Mazoyer</surname>
+<given-names>N</given-names>
+</string-name>, <string-name>
+<surname>Landeau</surname>
+<given-names>B</given-names>
+</string-name>, <string-name>
+<surname>Papathanassiou</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Crivello</surname>
+<given-names>F</given-names>
+</string-name>, <string-name>
+<surname>Etard</surname>
+<given-names>O</given-names>
+</string-name>, <string-name>
+<surname>Delcroix</surname>
+<given-names>N</given-names>
+</string-name>, … <string-name>
+<surname>Joliot</surname>
+<given-names>M.</given-names>
+</string-name>
+<year>2002</year>
+<article-title>Automated anatomical labeling of activations in SPM using a macroscopic anatomical parcellation of the MNI MRI single‐subject brain</article-title>. <source>NeuroImage</source>
+<volume>15</volume>:<fpage>273</fpage>–<lpage>289</lpage>.
+<pub-id pub-id-type="pmid">11771995</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0023">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0023">
+<string-name>
+<surname>van Kesteren</surname>
+<given-names>MT</given-names>
+</string-name>, <string-name>
+<surname>Ruiter</surname>
+<given-names>DJ</given-names>
+</string-name>, <string-name>
+<surname>Fernández</surname>
+<given-names>G</given-names>
+</string-name>, <string-name>
+<surname>Henson</surname>
+<given-names>RN.</given-names>
+</string-name>
+<year>2012</year>
+<article-title>How schema and novelty augment memory formation</article-title>. <source>Trends Neurosci</source>
+<volume>35</volume>:<fpage>211</fpage>–<lpage>219</lpage>.
+<pub-id pub-id-type="pmid">22398180</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0024">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0024">
+<string-name>
+<surname>Zeithamova</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Preston</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2010</year>
+<article-title>Flexible memories: Differential roles for medial temporal lobe and prefrontal cortex in cross‐episode binding</article-title>. <source>J Neurosci</source>
+<volume>30</volume>:<fpage>14676</fpage>–<lpage>14684</lpage>.
+<pub-id pub-id-type="pmid">21048124</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0025">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0025">
+<string-name>
+<surname>Zeithamova</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Dominick</surname>
+<given-names>AL</given-names>
+</string-name>, <string-name>
+<surname>Preston</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2012a</year>
+<article-title>Hippocampal and ventral medial prefrontal activation during retrieval‐mediated learning supports novel inference</article-title>. <source>Neuron</source>
+<volume>75</volume>:<fpage>168</fpage>–<lpage>179</lpage>.
+<pub-id pub-id-type="pmid">22794270</pub-id></mixed-citation>
+      </ref>
+      <ref id="hipo22688-bib-0026">
+        <mixed-citation publication-type="journal" id="hipo22688-cit-0026">
+<string-name>
+<surname>Zeithamova</surname>
+<given-names>D</given-names>
+</string-name>, <string-name>
+<surname>Schlichting</surname>
+<given-names>ML</given-names>
+</string-name>, <string-name>
+<surname>Preston</surname>
+<given-names>AR.</given-names>
+</string-name>
+<year>2012b</year>
+<article-title>The hippocampus and inferential reasoning: Building memories to navigate future decisions</article-title>. <source>Front Hum Neurosci</source>
+<volume>6</volume>:<fpage>1</fpage>–<lpage>14</lpage>.
+<pub-id pub-id-type="pmid">22279433</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

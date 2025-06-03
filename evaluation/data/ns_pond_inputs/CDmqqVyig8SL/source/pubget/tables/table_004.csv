@@ -1,0 +1,9 @@
+Region,Voxels,MNI coordinates,MNI coordinates,MNI coordinates,Z score
+Region,Voxels,X,Y,Z,Z score
+Delay,Delay,Delay,Delay,Delay,Delay
+R hippocampus,2,18,−6,−12,4.99
+L hippocampus,1,−18,−6,−12,4.79
+No-delay,No-delay,No-delay,No-delay,No-delay,No-delay
+L hippocampus,26,−27,−33,−6,5.84
+L hippocampus,1,−33,−12,−12,4.80
+L hippocampus,4,−21,−9,−12,4.74

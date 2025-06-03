@@ -1,0 +1,1241 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Front Hum Neurosci</journal-id>
+      <journal-id journal-id-type="publisher-id">Front. Hum. Neurosci.</journal-id>
+      <journal-title-group>
+        <journal-title>Frontiers in Human Neuroscience</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1662-5161</issn>
+      <publisher>
+        <publisher-name>Frontiers Research Foundation</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">21519392</article-id>
+      <article-id pub-id-type="pmc">3078751</article-id>
+      <article-id pub-id-type="doi">10.3389/fnhum.2011.00038</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Neuroscience</subject>
+          <subj-group>
+            <subject>Original Research</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Caudate Nucleus Signals for Breaches of Expectation in a Movement Observation Paradigm</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schiffer</surname>
+            <given-names>Anne-Marike</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn001">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schubotz</surname>
+            <given-names>Ricarda I.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <sup>1</sup>
+        <institution>Motor Cognition Group, Max Planck Institute for Neurological Research</institution>
+        <country>Cologne, Germany</country>
+      </aff>
+      <author-notes>
+        <fn fn-type="edited-by">
+          <p>Edited by: Hauke R. Heekeren, Max Planck Institute for Human Development, Germany</p>
+        </fn>
+        <fn fn-type="edited-by">
+          <p>Reviewed by: Jeffrey M. Zacks, Washington University, USA; Simone Schütz-Bosbach, Max Planck Institute, Germany</p>
+        </fn>
+        <corresp id="fn001">*Correspondence: Anne-Marike Schiffer, Motor Cognition Group, Max Planck Institute for Neurological Research, Gleueler Straße 50, 50931 Cologne, Germany. e-mail: <email>schiffer@nf.mpg.de</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>08</day>
+        <month>4</month>
+        <year>2011</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2011</year>
+      </pub-date>
+      <volume>5</volume>
+      <elocation-id>38</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>14</day>
+          <month>1</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>27</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2011 Schiffer and Schubotz.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <license license-type="open-access" xlink:href="http://www.frontiersin.org/licenseagreement">
+          <license-p>This is an open-access article subject to a non-exclusive license between the authors and Frontiers Media SA, which permits use, distribution and reproduction in other forums, provided the original authors and source are credited and other Frontiers conditions are complied with.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The striatum has been established as a carrier of reward-related prediction errors. This prediction error signal concerns the difference between how much reward was predicted and how much reward is gained. However, it remains to be established whether general breaches of expectation, i.e., perceptual prediction errors, are also implemented in the striatum. The current study used functional magnetic resonance imaging (fMRI) to investigate the role of caudate nucleus in breaches of expectation. Importantly, breaches were not related to the occurrence or absence of reward. Preceding the fMRI study, participants were trained to produce a sequence of whole-body movements according to auditory cues. In the fMRI session, they watched movies of a dancer producing the same sequences either according to the cue (88%) or not (12%). Caudate nucleus was activated for the prediction-violating movements. This activation was flanked by activity in posterior superior temporal sulcus, the temporo-parietal junction and adjacent angular gyrus, a network that may convey the deviating movement to caudate nucleus, while frontal areas may reflect adaptive adjustments of the current prediction. Alternative interpretations of caudate activity relating either to the saliency of breaches of expectation or to behavioral adaptation could be excluded by two control contrasts. The results foster the notion that neurons in the caudate nucleus code for a breach in expectation, and point toward a distributed network involved in detecting, signaling and adjusting behavior and expectations toward violated prediction.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>caudate nucleus</kwd>
+        <kwd>movement observation</kwd>
+        <kwd>prediction</kwd>
+        <kwd>fMRI</kwd>
+        <kwd>internal model</kwd>
+        <kwd>biological motion</kwd>
+        <kwd>expectation</kwd>
+        <kwd>frontal lobe</kwd>
+      </kwd-group>
+      <counts>
+        <fig-count count="6"/>
+        <table-count count="4"/>
+        <equation-count count="0"/>
+        <ref-count count="63"/>
+        <page-count count="12"/>
+        <word-count count="9379"/>
+      </counts>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="introduction">
+      <title>Introduction</title>
+      <p>The striatum was once considered a site of solely motor function, but research over the last three decades has put its cognitive functions more and more into focus (e.g., Alexander et al., <xref ref-type="bibr" rid="B1">1986</xref>; Saint-Cyr, <xref ref-type="bibr" rid="B39">2003</xref>; Grahn et al., <xref ref-type="bibr" rid="B18">2008</xref>). One prominent function of the striatum is the coding of a reward prediction error in learning. These prediction errors are triggered by reinforcement or reward in conditioning paradigms (Schultz et al., <xref ref-type="bibr" rid="B42">1997</xref>, <xref ref-type="bibr" rid="B44">1998</xref>; Schultz, <xref ref-type="bibr" rid="B41">2000</xref>). Reward prediction errors are signified by increases in striatal firing in the presence of unexpected reward or the presence of a reward-predicting cue, or by a decrease of firing when predicted reward is omitted. The underlying notion to a reward prediction error is that the brain is capable of associating the current circumstances with a specific future state (Wolpert and Flanagan, <xref ref-type="bibr" rid="B60">2001</xref>; Friston, <xref ref-type="bibr" rid="B16">2010</xref>). If the future becomes present and the state is different from what was predicted, this violation of predictions causes a prediction error, which in turn incites learning.</p>
+      <p>That the brain is a “predictive machine” is a feature of many models concerned with learning, action, and perception (Rescorla and Wagner, <xref ref-type="bibr" rid="B35">1972</xref>; Schultz and Dickinson, <xref ref-type="bibr" rid="B43">2000</xref> Kiebel et al., <xref ref-type="bibr" rid="B26">2008</xref>; Bubic et al., <xref ref-type="bibr" rid="B6">2009</xref>; Friston, <xref ref-type="bibr" rid="B16">2010</xref>). In an extension of the theory of motor control (Wolpert and Flanagan, <xref ref-type="bibr" rid="B60">2001</xref>), the brain's ability to constantly predict ongoing movement, be it in the motor domain or in perception, has been emphasized (Schutz-Bosbach and Prinz, <xref ref-type="bibr" rid="B45">2007</xref>). Presence of prediction implies the possibility of computing prediction errors, to adjust internal models according to perceptions and thus shape the correct predictions. The exact anatomic implementation of not reward-related prediction error signals, that code for unexpected perceptions has yet to be revealed (Zacks et al., <xref ref-type="bibr" rid="B62">2007</xref>). The proposed involvement of dopamine (Zacks et al., <xref ref-type="bibr" rid="B62">2007</xref>) and the striatum's extensive connectivity (Alexander et al., <xref ref-type="bibr" rid="B1">1986</xref>; Saint-Cyr, <xref ref-type="bibr" rid="B39">2003</xref>) render it a likely candidate as a site of not only reward-related prediction errors but also more general not reward-related prediction errors.</p>
+      <p>In fact, there is some evidence that striatal firing-patterns indeed convey prediction errors that are not related to reward. The respective authors likewise used the term prediction error to describe this dorso-striatal activity (Horvitz, <xref ref-type="bibr" rid="B21">2000</xref>; Schultz and Dickinson, <xref ref-type="bibr" rid="B43">2000</xref>; Graybiel, <xref ref-type="bibr" rid="B19">2005</xref>). For the sake of distinction, we will refer to activation that has an amplitude that varies with the amount of (expected) reward as “reward prediction errors.” The prediction errors investigated in the current study, that have a positive amplitude to all violated predictions, will be called “breach of expectation” signals. This breach signal is related to a violated prediction in the simplest sense, i.e., a prediction of any given content is not fulfilled. Accordingly, increased activity toward every unexpected stimulus signifies the breach of expectation signal in dorsal striatum. Indeed, recent imaging studies in humans report caudate nucleus activity for unexpected changes in context, rules, and contingencies (Bunge et al., <xref ref-type="bibr" rid="B7">2003</xref>; Delgado et al., <xref ref-type="bibr" rid="B12">2005</xref>; O'Doherty et al., <xref ref-type="bibr" rid="B31">2006</xref>; Badgaiyan et al., <xref ref-type="bibr" rid="B3">2007</xref>; Koch et al., <xref ref-type="bibr" rid="B28">2008</xref>; den Ouden et al., <xref ref-type="bibr" rid="B14">2009</xref>, <xref ref-type="bibr" rid="B13">2010</xref>). These activations can be broadly interpreted as corresponding to the occurrence of unpredicted stimuli. The study of Davidson et al. (<xref ref-type="bibr" rid="B9">2004</xref>), for example, revealed a negative response of the caudate to unexpected target omission, which could be reframed as occurrence of a unpredicted target-free stimulus.</p>
+      <p>Taken collectively, the data suggest that caudate prediction error signals are not restricted to conditioning protocols and that they do not revolve solely around the availability of reward. The empirical evidence implies the presence of breach of expectation signals in caudate nucleus when an event deviates from predictions, but there is a need to probe the assumption directly.</p>
+      <p>The lack of studies that target breach of expectation signals is surprising given not only the role they play in current computer models on the matter (Kilner et al., <xref ref-type="bibr" rid="B27">2007</xref>; Kiebel et al., <xref ref-type="bibr" rid="B26">2008</xref>; Friston, <xref ref-type="bibr" rid="B16">2010</xref>) but the enormous relevance of correcting false assumptions to prevent possibly fatal future mistakes. The educative effect of breaches of expectation is so strong that it operates even when observing other peoples behavior. Consider the example of seeing someone being bitten by a bulldog after having tread on its paw. If you used to regard bulldogs as aggressive animals, this would not breach your expectations and not incite changes in your views on bulldogs and your behavior toward them. In other words, you wouldn't have learned anything. Now consider watching someone being bitten by a poodle after stepping on its paw. This may be a severe breach of your expectations and teach you to regard poodles more suspiciously in future and adapt your behavior toward them accordingly. This is an example of observational learning, which does not imply direct reinforcement – it also embellishes two things. The first is the importance of the severity of a breach of expectation to learning. The second is the bonus derived from valid forward models in guiding behavior.</p>
+      <p>The current study investigates whether caudate nucleus signals for breaches of expectation in a movement observation paradigm. We hypothesized that watching a dancer make a mistake in a setting of clear-cut cue-movement schedule would yield a caudate response. To keep track of the dancer's performance, participants had to register auditory cues that determined what movement the dancer was to perform next, and watch the ensuing movements. To ensure that all participants were capable of the required prediction, we subdued them to motor training, where they had to accord to the cue-movement schedule themselves.</p>
+      <p>Breaches of expectation carry two secondary attributes that could each potentially cause striatal activations. Specifically, these events are of an increased saliency and often prompt to modify ongoing behavior. Saliency can be conceived of as a function of stimulus frequency (Zink et al., <xref ref-type="bibr" rid="B63">2003</xref>) and is an attribute carried of not-habituated stimuli (Redgrave and Gurney, <xref ref-type="bibr" rid="B34">2006</xref>). As violated predictions were rarely encountered in the present paradigm, i.e., infrequent, they might hence elicit striatal activation due to their saliency (Horvitz, <xref ref-type="bibr" rid="B21">2000</xref>; Redgrave and Gurney, <xref ref-type="bibr" rid="B34">2006</xref>). Movement switches as opposed to executing one movement repeatedly have also been associated with striatal activity (Roy et al., <xref ref-type="bibr" rid="B37">1993</xref>; Graybiel, <xref ref-type="bibr" rid="B19">2005</xref>). Encountering violated predictions in the paradigms is related to having to switch to a new internal movement simulation to keep track of the task. Moreover, as the paradigm included extensive training, there may have been an association of movement errors with initiation of a new movement. Hence, saliency and movement switches had to be investigated separately, to ensure that these attributes of violated predictions could not account for potentially recorded striatal activity.</p>
+      <p>We employed an experimental design that allowed to test whether caudate activity actually reflects breaches of expectation (violation hypothesis – i), or is rather dependent on effects of saliency (saliency hypothesis – ii) or switching to a different behavior (change hypothesis – iii). Breaches of expectation were modeled by contrasting predicted with prediction-violating movements. In accordance with the frequency or habituation approach in the literature, we modeled saliency as a function of stimulus frequency in the immediate trial history. Initiation of a new movement was implemented in the movement observation paradigm by contrasting the cues that indicated a new upcoming movement against cues that indicated a movement repetition.</p>
+      <p>Although the present study focused on striatal responses, it was to be expected that they come along with cortical activations, as a prominent characteristic of the neostriatum is its pronounced connectivity with a large number of cortical regions and thalamic nuclei (Alexander et al., <xref ref-type="bibr" rid="B1">1986</xref>; Saint-Cyr, <xref ref-type="bibr" rid="B39">2003</xref>). More specifically, activation could be expected in regions related to the processing of biological motion (due to the mismatch between perceived and expected stimulus; Keysers and Perrett, <xref ref-type="bibr" rid="B25">2004</xref>) and those related to attentional modulation more generally (due to the explicit instruction rendering breaches of expectation task-relevant; Corbetta and Shulman, <xref ref-type="bibr" rid="B8">2002</xref>).</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Materials and Methods</title>
+      <sec>
+        <title>Participants</title>
+        <p>Fourteen right-handed, healthy participants (eight women, age 22–29, mean age 24.8) took part in the study. Each participant's laterality quotient, as assessed with the Edinburgh Handedness Inventory (Oldfield, <xref ref-type="bibr" rid="B32">1971</xref>) was higher than 60. All participants were health screened by a physician and gave informed written consent.</p>
+      </sec>
+      <sec>
+        <title>Task-systematic</title>
+        <p>The movement repertoire consisted of five whole-body movements. Each movement consisted of three sub-movements which engaged a characteristic combination of extremities (Figure <xref ref-type="fig" rid="F1">1</xref>). Each of these movements was assigned an arbitrary name, comprising three syllables, each associated with one corresponding sub-movement (Ko-re-pa; Fe-so-da; Gu-la-mi; Ba-ki-te; Wa-ne-ro). None of these names is meaningful in German; neither were the combinations of the two first or last syllables of each. Importantly, in the course of the experiment, each movement (e.g., Ko-re-pa) could only be followed by one specific other (e.g., Fe-so-da) or by a repetition of itself (e.g., Ko-re-pa). Two piano chords, easily discernible even in absence of former musical training, were used to cue the transition between two movements. Each cue coincided with the onset of one movement and delivered an instruction on which movement was to <italic>follow</italic> the respective movement that had began when the cue sounded. The low chord meant that the transition following the current movement had to be a repetition (i.e., the same movement again; if the movement that started when the cue was presented was for example Ko-re-pa, the low chord meant it had to be followed by another Ko-re-pa). The high chord signaled that the transition following the current movement had to be a switch (i.e., the corresponding next movement; if the concurring movement was Ko-re-pa, the high chord meant it had to be followed by Fe-so-da). Switches were always switches to the next movement in a circular order (Figure <xref ref-type="fig" rid="F1">1</xref>), no movement was ever skipped. Thus, the upcoming movement was fully predictable, even if it differed from the current movement.</p>
+        <fig id="F1" position="float">
+          <label>Figure 1</label>
+          <caption>
+            <p><bold>Movement sequence with depiction of respective sub-movements; the cue presented at each movement onset, determines the transition after completion of respective movement; low tune (red note): repetition of the movement (follows red line); high tune (green note): switch to the next movement (follow the green line)</bold>. Example: (i) a high chord sounds before ko-re-pa (2), indicating that the next movement must be fe-so-da (3 – a switch must take place); before fe-so-da starts, a low chord sounds (4) indicating that fe-so-da (5) must be followed by fe-so-da (6 repetition).</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g001"/>
+        </fig>
+      </sec>
+      <sec>
+        <title>Schedule</title>
+        <p>The overall experimental schedule compromised three stages. Participants first had to pass a computer based behavioral experiment (stage 1) to be admitted to training (stage 2). If they completed training successfully, they were allowed to participate in the fMRI experiment (stage 3), which was virtually identical to the initial behavioral probe. The two test sessions and the movement training incorporated the same system of dynamically evolving movement sequences.</p>
+      </sec>
+      <sec>
+        <title>Stage 1: behavioral probe session</title>
+        <p>In the computer task, participants watched a dancer performing according to cue, but occasionally making mistakes. Previous to playing the task, the participants were instructed on the cue-movement associations that rule the task (low chord: repetition; high chord: switch). They received a short training where they could choose either four or eight example movies that contained up to 19 cued movements, before they started the task. The movie of the dancer was displayed in the middle of an otherwise gray computer screen, using the Software Presentation 12.0 (Neurobehavioral Systems, San Francisco, CA, USA). Visual input did not extend further than 5° of visual angle. The movies were stopped in irregular intervals and participants had to indicate by button press, whether the dancer had performed correctly immediately before video offset. That is, participants had to indicate whether the very last movement had been correct, irrespective of possible earlier errors. Questions were indicated by a question mark (“?”) displayed in font size 24 for 1500 ms or until the first response. Participants had to press the arrow-to-the-left key (index finger) if they judged the last movement to have been according to cue or press the arrow-to-the-right key (middle finger) if they thought the movement had not been according to cue. Responses had to be given within a timeframe of 1500 ms and were followed by a valid feedback for 400 ms indicating correct, incorrect or delayed responses (“+”/“−”/“0”; Figure <xref ref-type="fig" rid="F2">2</xref>).</p>
+        <fig id="F2" position="float">
+          <label>Figure 2</label>
+          <caption>
+            <p><bold>Example for two alternative task-developments: Each picture is one movement within a movie, the notes signify high or low chords</bold>. The actress could either perform the last movement before offset correctly (1), meaning the participants would have to judge the performance as correct by index finger button press (“y”). Or the last movement was not according to cue, a breach of expectation (2); the participants would then have to answer by middle-finger button press (“n”) to judge the dancer's behavior as incorrect. Errors’ during the movie where not to be judged upon. Movie offset and thus relevance of the error to the task was not predictable.</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g002"/>
+        </fig>
+        <p>In both the behavioral and the fMRI session, the task encompassed 400 single movements. Thirty-two movements were not according to cue, i.e., the dancer switched to the next movement when a repetition had been cued (16), or a repetition was performed after a switch had been announced (16). Forty breaks disrupted the movie, which was thus divided into 41 videos of varying duration (3–17 movements each). In the behavioral experiment, all 40 breaks were question trials, 20 of them requesting an affirmative answer.</p>
+        <p>Up to four cues of the same kind, i.e., repetition or switch cues, could appear in a row. At the latest after the fourth identical transition cue (fourth switch or fourth repetition), a dissimilar transition was cued. Across the experiment, four, three, two, and one identical transitions after another appeared equally often. Thus, each cue that was dissimilar from the preceding cues could be differentiated from other first dissimilar cues by the number of preceding transitions that had been identical to each other. For example, a repetition cue could be the first repetition after two switches, or the first repetition after four switches. This randomization was employed to test for the assumptions of the saliency hypothesis (ii). The number of preceding different cues was a measurement of cue saliency against the backdrop of recent cue history.</p>
+      </sec>
+      <sec>
+        <title>Stage 2: movement training</title>
+        <p>The participants that passed the 85% criterion of the behavioral experiment subsequently received six 1-h movement-training sessions within 10 days in order to establish a routine-like training stage for the cued performance of movement sequences. Training sessions were conducted in a small dance hall, one side walled with a mirror. During the first session, participants were taught the strict order of the five encompassed movements and learnt accurate performance of the single movements and the associated movement names. To that end, they were allowed to watch a model performing the respective movement on a laptop screen as often as they liked. Once the trainers were satisfied with accuracy of movement performance, participants were verbally instructed to conduct movement sequences, starting each movement when it was called out to them. In their second training session, participants learnt to move according to the cues. They started with a two-cue sequence. For example: Participants were told to start with the movement Ko-re-pa, as soon as the first cue sounded. If the cuing chord was low, they performed Ko-re-pa twice. Importantly they had to start the second Ko-re-pa after the second cue had rung. They had to withhold the third movement corresponding to the second cue, as they would only have been allowed to start the movement upon presentation of a third cue. Once every participant mastered this first step, the number of successive movements (cues) was constantly increased. If one or more participants made a mistake, the sequence had to be started from the beginning. This procedure was implemented in every training session forthwith, at the end of which participants mastered up to 18 cues in a row. Importantly, during training, more than four identical transitions in a row were possible. At the same time, participants had to keep moving at a high level of accuracy and trainers would correct them verbally, and, if necessary, by showing the model-video, over the entire course of training. At the end of the last training session, participants were filmed while performing three 15-cue sequences without further assistance (motor probe). During recording, they wore uniform clothing to allow for unbiased assessment of their performance in a later video evaluation.</p>
+      </sec>
+      <sec>
+        <title>Stage 3: fMRI session</title>
+        <p>In the fMRI session that was scheduled for the day after each participant's respective last training session, they encountered the same task as in the behavioral probe. Participants lay supine on the scanner. Their head and arms were stabilized using form-fitting cushioning and their hands rested on a rubber foam tablet. On the right hand side, a response panel was mounted and fixed on the tablet. With their right hand index and middle finger resting on two response buttons, participants were able to judge on the correctness of the dancers movements within the same response contingencies as in the behavioral test. They wore earplugs to attenuate scanner noise and received auditory input via headphones. Participants received visual input on a mirror that was built into the head-coil and adjusted individually to allow for a comfortable view of the entire screen. All parameters were identical to the behavioral experiment (stage 1) with the exception that 24 breaks were used for question trials and 16 for null events (empty trials).</p>
+      </sec>
+      <sec>
+        <title>Data acquisition</title>
+        <p>A 3T Siemens Magnetom Trio scanner (Siemens, Erlangen, Germany) was used in the functional imaging session. In a separate session, prior to the functional MRT, high-resolution 3D T1 weighted whole-brain MDEFT sequences were recorded for every participant (128 slices, field of view 256 mm, 256 × 256 pixel matrix, thickness 1 mm, spacing 0.25 mm). The functional session engaged a single-shot gradient echo-planar imaging (EPI) sequence sensitive to blood oxygen level dependent contrast (28 slices, parallel to the bicommisural plane, echo time 30 ms, flip angle 90°; repetition time 2000 ms; interleaved recording). Following the functional session immediately, a set of T1 weighted 2D-FLASH images was acquired for each participant (28 slices, field of view 200 mm, 128 × 128 pixel matrix, thickness 4 mm, spacing 0.6 mm, in-plane resolution 3 × 3 mm).</p>
+      </sec>
+      <sec>
+        <title>fMRI data analysis</title>
+        <p>Functional data were offline motion-corrected using the Siemens motion protocol PACE (Siemens, Erlangen, Germany). Further processing was conducted with the LIPSIA (Lohmann et al., <xref ref-type="bibr" rid="B29">2001</xref>) software package. Cubic-spline interpolation was used to correct for the temporal offset between the slices acquired in one scan. To remove low-frequency signal changes and baseline drifts, a 1/80 Hz filter was applied. The matching parameters (6 degrees of freedom, 3 rotational, 3 translational) of the T1 weighted 2-D FLASH data onto the individual 3-D MDEFT reference set were used to calculate the transformation matrice for linear registration. These Matrices were subsequently normalized to a standardized Talairach brain size (<italic>x</italic> = 135, <italic>y</italic> = 175, <italic>z</italic> = 120 mm; Talairach and Tournoux, <xref ref-type="bibr" rid="B52">1988</xref>) by linear scaling. The normalized transformation matrices were then applied to the functional slices, to transform them using trilinear interpolation and align them with the 3-D reference set in the stereotactic coordinate system. The generated output had thus a spatial resolution of 3 mm × 3 mm × 3 mm (27 mm<sup>3</sup>).</p>
+        <p>The statistical evaluation was based on a least-square estimation using the general linear model (GLM) for serially auto-correlated observations. Temporal Gaussian smoothing (4 s FWHM) was applied to deal with temporal autocorrelation and determine the degrees of freedom (Worsley and Friston, <xref ref-type="bibr" rid="B61">1995</xref>). All design matrices were generated by hemodynamic modeling using a γ-function. We conducted the analysis once using only one GLM and once more using three GLMs (triple-GLM hereafter), one for each competing contrast. In the single-GLM approach, the three contrasts were set to compete for variance in one GLM to achieve a thorough model comparison. In the triple-GLM approach, the same whole-brain analyses was conducted with three separate GLMs, in order to not underestimate the effects of the competing alternative hypotheses and give them a more liberal chance to yield potential caudate activity. The onset vectors were modeled in a time-locked event-related fashion, i.e., the duration set to one second. The first derivative was taken into the model to improve model fit for latency effects.</p>
+      </sec>
+      <sec>
+        <title>Single-GLM approach</title>
+        <p>The events to account for the violation hypothesis (i) were the dancer's incorrect movements, for the other hypotheses (ii and iii) the modeled events were specific cues. Hence, the model encompassed the following event types: correct movements, incorrect movements, first dissimilar transition cues, switch cues, and repetition cues (see below). The model encompassed null events as an additional vector. The violation hypothesis (i) contrasted invalidly cued switches and invalidly cued repetitions vs. validly cued switches and validly cued repetitions. The saliency hypothesis (ii) parametrically modeled the first dissimilar transition cue after 4, 3, 2, or 1 identical transition cue(s), ascribing the highest activation level (vector amplitude) to the dissimilar successor of four cues identical to each other. (The switch cue in Table <xref ref-type="table" rid="T2">2</xref>, for example would have been assigned a vector amplitude of three; the immediately following repetition cue would have been assigned a vector amplitude of one). In addition, to discern whether potential effects would rely more on a first switch after a number of repetitions or first repetition after a number of switches, we modeled these contrasts in the same fashion of increasing vector values separately, too. That is, in one parametric contrast we ascribed a vector amplitude to each first switch according to the number of previous repetitions (saliency of switches contrast); in the other parametric contrast, the vector amplitude of each first repetition accorded to previous switches (saliency of repetitions contrast). The change hypothesis (iii) was modeled by comparing switch cues to repetition cues. Contrast images, i.e., differences of beta-value estimates for the specified conditions, were generated for each participant. All contrast images were fed into a second-level random effects analysis. The group analysis consisted of one-sample <italic>t</italic>-tests across all contrast images to analyze whether the observed differences between conditions were significantly deviant from 0. Acquired <italic>t</italic>-values were transformed to <italic>z</italic>-scores. To correct for false-positive results, an initial <italic>z</italic>-threshold was set to 2.56 (<italic>p</italic> &lt; 0.05, one-tailed, uncorrected for multiple comparisons). In a second step, the results were corrected for multiple comparisons at the cluster level, using cluster size and cluster value thresholds that were obtained by Monte-Carlo simulations. The employed significance level was <italic>p</italic> = 0.05. Hence, the reported activations are significantly activated at <italic>p</italic> ≤ 0.05, corrected for comparison at cluster level.</p>
+      </sec>
+      <sec>
+        <title>Triple-GLM approach</title>
+        <p>In the triple-GLM approach the contrasts (i–iii) were calculated from the same events as described above. However, we employed a different GLM for each contrast that encompassed only the events necessary for the contrast and null-events. The GLM for the violation contrast (i) encompassed validly cued switches, validly cues repetition, invalidly cued switches and invalidly cues repetitions, and null-events. The GLM for the saliency contrast (i) encompassed all first dissimilar cues with a vector amplitude reflecting the number of previous identical repetitions and null-events. The GLM for the change hypothesis encompassed all repetition cues and all switch cues. Group analysis and corrections were identical to the single-GLM analysis described above.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Behavioral</title>
+        <p>Fifteen of 19 volunteers passed the initial behavioral probe at the 85% criterion. All participants completed training and responded correctly to cue – sequences of up to 18 cues. In the fMRI session, 14 out of 15 participants performed to criterion, with a mean rate of 91.1% correct responses, standard deviation (SD) at 5.4%. Mean rate of correct rejections was 91.7% (SD = 7.3%) and that of hits equaled 90.5% (SD = 7.2%). A two-tailed <italic>t</italic>-test revealed no significant difference between the averages of hits and correct rejections. One participant had to be excluded from further analyses due to insufficient performance (below 2 SDs from mean).</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>fMRI</title>
+      <sec>
+        <title>Single-GLM approach</title>
+        <p>The contrast between movements that deviated from cue and movements that accorded to the previous cue (violation hypothesis, i) yielded significant bilateral activations in the basomedial caudate nucleus (Figure <xref ref-type="fig" rid="F3">3</xref>) and right medial pallidum, in the habenula, the anterior dorsal insula, mesial frontomedian cortex (Brodmann's area [BA] 8 and 9), lateral BA 10, and intraparietal sulcus (IPS). Significant lateralized activations were found in left angular gyrus (AG), right posterior superior temporal sulcus (pSTS) and right temporo-parietal junction (TPJ; Figure <xref ref-type="fig" rid="F4">4</xref>; Table <xref ref-type="table" rid="T1">1</xref>).</p>
+        <fig id="F3" position="float">
+          <label>Figure 3</label>
+          <caption>
+            <p><bold>Single-GLM, violation hypothesis (i) contrast: main effect of movements deviating from cue vs. movements accordig to cue; group averaged activations are shown (at <italic>z</italic> &gt; 3.09) on an axial slice (<italic>z</italic> = 10) of an individual brain, normalized and aligned to the Talairach stereotactic space</bold>. Refer to Table <xref ref-type="table" rid="T1">1</xref> for activation coordinates.</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g003"/>
+        </fig>
+        <fig id="F4" position="float">
+          <label>Figure 4</label>
+          <caption>
+            <p><bold>Single-GLM, violation hypothesis (i) contrast: main effect of movements deviating from cue vs. movements according to cue; group averaged activations are shown (at <italic>z</italic> &gt; 3.09) on sagittal slices (<italic>x</italic> = −52; 0; 52) of an individual brain, normalized and aligned to the Talairach stereotactic space</bold>. Refer to Table <xref ref-type="table" rid="T1">1</xref> for activation coordinates.</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g004"/>
+        </fig>
+        <table-wrap id="T1" position="float">
+          <label>Table 1</label>
+          <caption>
+            <p><bold>Single-GLM, violation hypothesis (i) contrast: Anatomical specification, Talairach coordinates (<italic>x,y,z</italic>) and maximal <italic>z</italic>-scores of significantly activated voxels for prediction-violating in contrast to prediction-conform movements</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">Localization</th>
+                <th align="center" colspan="3" rowspan="1">Talairach coordinates</th>
+                <th align="left" rowspan="1" colspan="1"><italic>z</italic>-values, local maxima</th>
+              </tr>
+              <tr>
+                <th align="left" rowspan="1" colspan="1"/>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>x</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>y</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>z</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1"/>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Superior frontal gyrus (SFG)/pre-SMA (BA 8/6)</td>
+                <td align="right" rowspan="1" colspan="1">−2</td>
+                <td align="right" rowspan="1" colspan="1">21</td>
+                <td align="right" rowspan="1" colspan="1">45</td>
+                <td align="left" rowspan="1" colspan="1">5.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">4</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="right" rowspan="1" colspan="1">27</td>
+                <td align="left" rowspan="1" colspan="1">5.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Middle frontal gyrus (MFG; BA 8/9)</td>
+                <td align="right" rowspan="1" colspan="1">−41</td>
+                <td align="right" rowspan="1" colspan="1">15</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">37</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">34</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">5.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsolateral prefrontal cortex (dlPFC), BA 10</td>
+                <td align="right" rowspan="1" colspan="1">31</td>
+                <td align="right" rowspan="1" colspan="1">54</td>
+                <td align="right" rowspan="1" colspan="1">18</td>
+                <td align="left" rowspan="1" colspan="1">4.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−26</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsal anterior insula</td>
+                <td align="right" rowspan="1" colspan="1">−32</td>
+                <td align="right" rowspan="1" colspan="1">21</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="left" rowspan="1" colspan="1">5.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">28</td>
+                <td align="right" rowspan="1" colspan="1">18</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="left" rowspan="1" colspan="1">6.2</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Angular gyrus (AG)</td>
+                <td align="right" rowspan="1" colspan="1">−56</td>
+                <td align="right" rowspan="1" colspan="1">−45</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Inferior parietal lobule (LPI)</td>
+                <td align="right" rowspan="1" colspan="1">34</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">45</td>
+                <td align="left" rowspan="1" colspan="1">5.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−53</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Intraparietal sulcus (IPS)</td>
+                <td align="right" rowspan="1" colspan="1">−41</td>
+                <td align="right" rowspan="1" colspan="1">−36</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">5.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">52</td>
+                <td align="right" rowspan="1" colspan="1">−45</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior cingulate cortex (BA 23)</td>
+                <td align="right" rowspan="1" colspan="1">−5</td>
+                <td align="right" rowspan="1" colspan="1">−21</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">3.5</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">7</td>
+                <td align="right" rowspan="1" colspan="1">−33</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior superior temporal sulcus (pSTS)</td>
+                <td align="right" rowspan="1" colspan="1">49</td>
+                <td align="right" rowspan="1" colspan="1">−36</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="left" rowspan="1" colspan="1">4.5</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Temporal-parietal junction (TPJ)</td>
+                <td align="right" rowspan="1" colspan="1">−50</td>
+                <td align="right" rowspan="1" colspan="1">−48</td>
+                <td align="right" rowspan="1" colspan="1">12</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Precuneus</td>
+                <td align="right" rowspan="1" colspan="1">−8</td>
+                <td align="right" rowspan="1" colspan="1">−66</td>
+                <td align="right" rowspan="1" colspan="1">45</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Basomedial head of caudate nucleus (CAU)</td>
+                <td align="right" rowspan="1" colspan="1">−11</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">5.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">10</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Medial globus pallidus (GPi)</td>
+                <td align="right" rowspan="1" colspan="1">13</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Habenula</td>
+                <td align="right" rowspan="1" colspan="1">1</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Thalamus, ventrolateral nucleus (VL)</td>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−15</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−12</td>
+                <td align="right" rowspan="1" colspan="1">12</td>
+                <td align="left" rowspan="1" colspan="1">4.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Nucleus ruber</td>
+                <td align="right" rowspan="1" colspan="1">−8</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">−6</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">4</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">−6</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Cerebellum</td>
+                <td align="right" rowspan="1" colspan="1">16</td>
+                <td align="right" rowspan="1" colspan="1">−48</td>
+                <td align="right" rowspan="1" colspan="1">−15</td>
+                <td align="left" rowspan="1" colspan="1">4.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−17</td>
+                <td align="right" rowspan="1" colspan="1">−84</td>
+                <td align="right" rowspan="1" colspan="1">−21</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">28</td>
+                <td align="right" rowspan="1" colspan="1">−54</td>
+                <td align="right" rowspan="1" colspan="1">−24</td>
+                <td align="left" rowspan="1" colspan="1">4.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−32</td>
+                <td align="right" rowspan="1" colspan="1">−60</td>
+                <td align="right" rowspan="1" colspan="1">−24</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <p>In the parametric contrasts testing for the saliency hypothesis (ii) only the contrast accounting for activity increase with the number of prior repetitions of identical movements revealed significant activation (saliency of switches contrast). This activity was in supplementary motor area (SMA) and postcentral gyrus. There were no significant correlations with the number of preceding switches. Similarly, there was no significant activation for the general saliency effect, that is number of identical transitions preceding a dissimilar transition, pooled over switches and repetitions. Contrasting switch cues with repetition cues to account for the change hypothesis (iii) yielded the right middle temporal gyrus (MTG) and bilaterally (anterior) IPS. Notably, there was no significant striatal activation, neither in the parametric contrasts relating to the saliency hypothesis (ii), nor in the contrast relating to change hypothesis (iii; Table <xref ref-type="table" rid="T2">2</xref>).</p>
+        <table-wrap id="T2" position="float">
+          <label>Table 2</label>
+          <caption>
+            <p><bold>Single-GLM, change hypothesis (iii) contrast: Anatomical specification, Talairach coordinates (<italic>x,y,z)</italic> and maximal <italic>z</italic>-scores of significantly activated voxels for prediction-violating in contrast to prediction-conform movements</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">Localization</th>
+                <th align="center" colspan="3" rowspan="1">Talairach coordinates</th>
+                <th align="left" rowspan="1" colspan="1"><italic>z</italic>-values, local maxima</th>
+              </tr>
+              <tr>
+                <th align="left" rowspan="1" colspan="1"/>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>x</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>y</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>z</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1"/>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsal premotor cortex (PMd)</td>
+                <td align="right" rowspan="1" colspan="1">28</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="right" rowspan="1" colspan="1">54</td>
+                <td align="left" rowspan="1" colspan="1">3.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−26</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="right" rowspan="1" colspan="1">60</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Middle frontal gyrus</td>
+                <td align="right" rowspan="1" colspan="1">31</td>
+                <td align="right" rowspan="1" colspan="1">42</td>
+                <td align="right" rowspan="1" colspan="1">24</td>
+                <td align="left" rowspan="1" colspan="1">4.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Presupplementary motor area (pre-SMA)</td>
+                <td align="right" rowspan="1" colspan="1">−5</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="left" rowspan="1" colspan="1">3.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Inferior frontal junction (IFJ)</td>
+                <td align="right" rowspan="1" colspan="1">−35</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">4.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Superior parietal lobule (SPL)</td>
+                <td align="right" rowspan="1" colspan="1">19</td>
+                <td align="right" rowspan="1" colspan="1">−54</td>
+                <td align="right" rowspan="1" colspan="1">60</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−69</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Intraparietal sulcus (IPS)</td>
+                <td align="right" rowspan="1" colspan="1">−38</td>
+                <td align="right" rowspan="1" colspan="1">−42</td>
+                <td align="right" rowspan="1" colspan="1">51</td>
+                <td align="left" rowspan="1" colspan="1">4.2</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−29</td>
+                <td align="right" rowspan="1" colspan="1">−75</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">4.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior middle temporal gyrus (pMTG)</td>
+                <td align="right" rowspan="1" colspan="1">43</td>
+                <td align="right" rowspan="1" colspan="1">−69</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">4.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−53</td>
+                <td align="right" rowspan="1" colspan="1">−66</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">4.2</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−47</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">−9</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Cuneus</td>
+                <td align="right" rowspan="1" colspan="1">−20</td>
+                <td align="right" rowspan="1" colspan="1">−96</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">4.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Thalamus</td>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−15</td>
+                <td align="right" rowspan="1" colspan="1">12</td>
+                <td align="left" rowspan="1" colspan="1">4.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Cerebellum</td>
+                <td align="right" rowspan="1" colspan="1">10</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">−36</td>
+                <td align="left" rowspan="1" colspan="1">4.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Triple-GLM approach</title>
+        <p>The triple-GLM analysis was employed to calculate the same contrasts as the single-GLM analysis but from three GLMs, optimized for differential effects. This approach yielded caudate activity also only in the violation contrast (i; Table <xref ref-type="table" rid="T3">3</xref>; Figure <xref ref-type="fig" rid="F5">5</xref>). There was no striatal activity either in the saliency (ii) or change contrast (iii). Likewise, cortical activations identified by the violation (i; Table <xref ref-type="table" rid="T3">3</xref>, Figures <xref ref-type="fig" rid="F5">5</xref> and <xref ref-type="fig" rid="F6">6</xref>) contrast did not differ largely between the analogous contrasts from the single GLM vs. triple-GLM analyses. The triple-GLM analysis also revealed no significant activity for the saliency (ii) contrast. The parallel change (iii) contrasts from the two analysis approaches revealed quite similar patterns (Tables <xref ref-type="table" rid="T2">2</xref> and <xref ref-type="table" rid="T4">4</xref> for comparison).</p>
+        <fig id="F5" position="float">
+          <label>Figure 5</label>
+          <caption>
+            <p><bold>Triple-GLM, violation hypothesis (i) contrast: main effect of movements deviating from cue vs. movements according to cue; group averaged activations are shown (at <italic>z</italic> &gt; 3.09) on an axial slice (<italic>z</italic> = 10) of an individual brain, normalized and aligned to the Talairach stereotactic space</bold>. Refer to Table <xref ref-type="table" rid="T3">3</xref> for activation coordinates.</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g005"/>
+        </fig>
+        <fig id="F6" position="float">
+          <label>Figure 6</label>
+          <caption>
+            <p><bold>Triple-GLM, violation hypothesis (i) contrast: main effect of movements deviating from cue vs. movements according to cue; group averaged activations are shown (at <italic>z</italic> &gt; 3.09) on sagittal slices (<italic>z</italic> = −52; 0; 52) of an individual brain, normalized and aligned to the Talairach stereotactic space</bold>. Refer to Table <xref ref-type="table" rid="T3">3</xref> for activation coordinates.</p>
+          </caption>
+          <graphic xlink:href="fnhum-05-00038-g006"/>
+        </fig>
+        <table-wrap id="T3" position="float">
+          <label>Table 3</label>
+          <caption>
+            <p><bold>Triple-GLM, violation hypothesis (i) contrast: Anatomical specification, Talairach coordinates (<italic>x,y,z</italic>) and maximal <italic>z</italic>-scores of significantly activated voxels for prediction-violating in contrast to prediction-conform movements</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">Localization</th>
+                <th align="center" colspan="3" rowspan="1">Talairach coordinates</th>
+                <th align="left" rowspan="1" colspan="1"><italic>z</italic>-values, local maxima</th>
+              </tr>
+              <tr>
+                <th align="left" rowspan="1" colspan="1"/>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>x</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>y</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>z</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1"/>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Superior frontal gyrus (SFG)/pre-SMA (BA 8/6)</td>
+                <td align="right" rowspan="1" colspan="1">−2</td>
+                <td align="right" rowspan="1" colspan="1">21</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="left" rowspan="1" colspan="1">5.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">4</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="right" rowspan="1" colspan="1">27</td>
+                <td align="left" rowspan="1" colspan="1">5.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Middle frontal gyrus (MFG; BA 8/9)</td>
+                <td align="right" rowspan="1" colspan="1">−41</td>
+                <td align="right" rowspan="1" colspan="1">15</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">37</td>
+                <td align="right" rowspan="1" colspan="1">15</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">37</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="right" rowspan="1" colspan="1">27</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsolateral prefrontal cortex (dlPFC), BA 10</td>
+                <td align="right" rowspan="1" colspan="1">31</td>
+                <td align="right" rowspan="1" colspan="1">54</td>
+                <td align="right" rowspan="1" colspan="1">18</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−26</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsal anterior insula</td>
+                <td align="right" rowspan="1" colspan="1">−32</td>
+                <td align="right" rowspan="1" colspan="1">21</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">28</td>
+                <td align="right" rowspan="1" colspan="1">18</td>
+                <td align="right" rowspan="1" colspan="1">−3</td>
+                <td align="left" rowspan="1" colspan="1">6.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Angular Gyrus (AG)</td>
+                <td align="right" rowspan="1" colspan="1">−56</td>
+                <td align="right" rowspan="1" colspan="1">−45</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Inferior parietal lobule (LPI)</td>
+                <td align="right" rowspan="1" colspan="1">34</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">45</td>
+                <td align="left" rowspan="1" colspan="1">5.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−53</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Intraparietal sulcus (IPS)</td>
+                <td align="right" rowspan="1" colspan="1">−41</td>
+                <td align="right" rowspan="1" colspan="1">−36</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">5.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">52</td>
+                <td align="right" rowspan="1" colspan="1">−45</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior cingulate cortex (BA 23)</td>
+                <td align="right" rowspan="1" colspan="1">−2</td>
+                <td align="right" rowspan="1" colspan="1">−21</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="left" rowspan="1" colspan="1">3.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">7</td>
+                <td align="right" rowspan="1" colspan="1">−33</td>
+                <td align="right" rowspan="1" colspan="1">30</td>
+                <td align="left" rowspan="1" colspan="1">3.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior superior temporal sulcus (pSTS)</td>
+                <td align="right" rowspan="1" colspan="1">49</td>
+                <td align="right" rowspan="1" colspan="1">−36</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="left" rowspan="1" colspan="1">4.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Temporal-parietal junction (TPJ)</td>
+                <td align="right" rowspan="1" colspan="1">−50</td>
+                <td align="right" rowspan="1" colspan="1">−48</td>
+                <td align="right" rowspan="1" colspan="1">12</td>
+                <td align="left" rowspan="1" colspan="1">3.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1"/>
+                <td align="left" rowspan="1" colspan="1"/>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Precuneus</td>
+                <td align="right" rowspan="1" colspan="1">−5</td>
+                <td align="right" rowspan="1" colspan="1">−66</td>
+                <td align="right" rowspan="1" colspan="1">42</td>
+                <td align="left" rowspan="1" colspan="1">4.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Basomedial head of caudate nucleus (CAU)</td>
+                <td align="right" rowspan="1" colspan="1">−11</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">5.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">10</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Medial globus pallidus (GPi)</td>
+                <td align="right" rowspan="1" colspan="1">13</td>
+                <td align="right" rowspan="1" colspan="1">0</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Habenula</td>
+                <td align="right" rowspan="1" colspan="1">1</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Thalamus, ventrolateral nucleus (VL)</td>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−15</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−14</td>
+                <td align="right" rowspan="1" colspan="1">−12</td>
+                <td align="right" rowspan="1" colspan="1">12</td>
+                <td align="left" rowspan="1" colspan="1">4.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Nucleus ruber</td>
+                <td align="right" rowspan="1" colspan="1">−8</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">−6</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">4</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">−6</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Cerebellum</td>
+                <td align="right" rowspan="1" colspan="1">16</td>
+                <td align="right" rowspan="1" colspan="1">−48</td>
+                <td align="right" rowspan="1" colspan="1">−15</td>
+                <td align="left" rowspan="1" colspan="1">4.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−17</td>
+                <td align="right" rowspan="1" colspan="1">−81</td>
+                <td align="right" rowspan="1" colspan="1">−21</td>
+                <td align="left" rowspan="1" colspan="1">4.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">28</td>
+                <td align="right" rowspan="1" colspan="1">−54</td>
+                <td align="right" rowspan="1" colspan="1">−24</td>
+                <td align="left" rowspan="1" colspan="1">4.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−32</td>
+                <td align="right" rowspan="1" colspan="1">−60</td>
+                <td align="right" rowspan="1" colspan="1">−24</td>
+                <td align="left" rowspan="1" colspan="1">5.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <table-wrap id="T4" position="float">
+          <label>Table 4</label>
+          <caption>
+            <p><bold>Triple-GLM, change hypothesis (iii) contrast: Anatomical specification, Talairach coordinates (<italic>x,y,z</italic>) and maximal <italic>z</italic>-scores of significantly activated voxels for prediction-violating in contrast to prediction-conform movements</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">Localization</th>
+                <th align="center" colspan="3" rowspan="1">Talairach coordinates</th>
+                <th align="left" rowspan="1" colspan="1"><italic>z</italic>-values, local maxima</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>x</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>y</italic>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <italic>z</italic>
+                </th>
+                <td align="left" rowspan="1" colspan="1"/>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Dorsal premotor cortex (PMd)</td>
+                <td align="right" rowspan="1" colspan="1">−20</td>
+                <td align="right" rowspan="1" colspan="1">−6</td>
+                <td align="right" rowspan="1" colspan="1">51</td>
+                <td align="left" rowspan="1" colspan="1">4.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Ventral premotor cortex (PMv)</td>
+                <td align="right" rowspan="1" colspan="1">−53</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="left" rowspan="1" colspan="1">4.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Middle frontal gyrus (MFG)</td>
+                <td align="right" rowspan="1" colspan="1">43</td>
+                <td align="right" rowspan="1" colspan="1">24</td>
+                <td align="right" rowspan="1" colspan="1">39</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Superior frontal gyrus (SFG), BA 8</td>
+                <td align="right" rowspan="1" colspan="1">−8</td>
+                <td align="right" rowspan="1" colspan="1">27</td>
+                <td align="right" rowspan="1" colspan="1">36</td>
+                <td align="left" rowspan="1" colspan="1">3.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Presupplementary motor area (pre-SMA)</td>
+                <td align="right" rowspan="1" colspan="1">−5</td>
+                <td align="right" rowspan="1" colspan="1">9</td>
+                <td align="right" rowspan="1" colspan="1">48</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Superior parietal lobule (SPL)</td>
+                <td align="right" rowspan="1" colspan="1">22</td>
+                <td align="right" rowspan="1" colspan="1">−57</td>
+                <td align="right" rowspan="1" colspan="1">63</td>
+                <td align="left" rowspan="1" colspan="1">4.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−26</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">57</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Intraparietal sulcus (IPS)</td>
+                <td align="right" rowspan="1" colspan="1">−50</td>
+                <td align="right" rowspan="1" colspan="1">−27</td>
+                <td align="right" rowspan="1" colspan="1">33</td>
+                <td align="left" rowspan="1" colspan="1">4.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">34</td>
+                <td align="right" rowspan="1" colspan="1">−30</td>
+                <td align="right" rowspan="1" colspan="1">42</td>
+                <td align="left" rowspan="1" colspan="1">4.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">25</td>
+                <td align="right" rowspan="1" colspan="1">−63</td>
+                <td align="right" rowspan="1" colspan="1">42</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Posterior middle temporal gyrus (pMTG)</td>
+                <td align="right" rowspan="1" colspan="1">40</td>
+                <td align="right" rowspan="1" colspan="1">−57</td>
+                <td align="right" rowspan="1" colspan="1">6</td>
+                <td align="left" rowspan="1" colspan="1">4.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−53</td>
+                <td align="right" rowspan="1" colspan="1">−69</td>
+                <td align="right" rowspan="1" colspan="1">3</td>
+                <td align="left" rowspan="1" colspan="1">5.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1"/>
+                <td align="right" rowspan="1" colspan="1">−44</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">−9</td>
+                <td align="left" rowspan="1" colspan="1">3.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Precuneus</td>
+                <td align="right" rowspan="1" colspan="1">7</td>
+                <td align="right" rowspan="1" colspan="1">−51</td>
+                <td align="right" rowspan="1" colspan="1">57</td>
+                <td align="left" rowspan="1" colspan="1">3.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Lingual gyrus</td>
+                <td align="right" rowspan="1" colspan="1">13</td>
+                <td align="right" rowspan="1" colspan="1">−96</td>
+                <td align="right" rowspan="1" colspan="1">−12</td>
+                <td align="left" rowspan="1" colspan="1">3.6</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>The present study set out to investigate the role of the caudate nucleus in events that violate predictions (i). In contrast to previous studies, these events were not feedback in an operant conditioning task and involved neither reinforcement nor punishment. Hence, we termed these prediction-violating events “breaches of expectation” to distinguish them from prediction errors conceived as activity dependent on (future) reception of reward. Moreover, we extended the study-design to exclude the possibility that the striatal activity could be a consequence of potential secondary characteristics of violated predictions, that is responses to salient events (ii) and events that provoke a change in behavior (iii).</p>
+      <p>The contrast accounting for the violation hypothesis (i) yielded activation in the basomedial caudate nucleus. On the contrary, striatal activation was absent in the contrasts that accounted for the saliency (ii) or change (iii) hypotheses, even when we calculated these contrasts from separate optimized GLMs in the triple-GLM approach. This pattern of results suggests the dorsal striatum to be tuned to violations of current predictions rather than to these events’ saliency or implied incite to switch behavior. Moreover, the results show that dorso-striatal responses to violated predictions are not restricted to reinforcement or punishment protocols.</p>
+      <sec>
+        <title>Caudate nucleus signals for breaches of expectation</title>
+        <p>The results of the current study suggest that activity in the head of caudate nucleus signals breaches of expectation, i.e., violated predictions, more generally than previously assumed. This finding may explain why this area is often found in trial and error learning, where its activity diminishes once learning has occurred (Jueptner and Weiller, <xref ref-type="bibr" rid="B24">1998</xref>; Delgado et al., <xref ref-type="bibr" rid="B12">2005</xref>; Shohamy et al., <xref ref-type="bibr" rid="B47">2008</xref>; Ruge and Wolfensteller, <xref ref-type="bibr" rid="B38">2009</xref>). Trial and error learning means building up predictions what cues demand which action to gain reward. If the predictions fail, actions have to be altered. If the predictions are fulfilled, the deterministics of the task are apparently understood. Accordingly, the diminution of caudate activity over the course of learning is rooted in the fact that only as long as the rules of the task are unknown (at the beginning of learning), predictions are constantly violated, driving caudate activity. Once the rules have been established, breaches of expectation wane and so does caudate activity. The notion that a breach of expectation signal is generated in caudate nucleus could also account for impairments of Parkinson's disease patients in trial and error learning (Shohamy et al., <xref ref-type="bibr" rid="B47">2008</xref>). Their compromised breach of expectation signal, due to neostriatal dysfunction, hinders updating wrong beliefs and accordingly adapting behavior. More evidence for a caudate signal for breaches of expectation comes from studies showing that caudate activity ceases the earlier, the easier it is to learn the association between cues and correct actions, i.e., the easier it is to build up operative predictions (Delgado et al., <xref ref-type="bibr" rid="B12">2005</xref>; Koch et al., <xref ref-type="bibr" rid="B28">2008</xref>). The same activity is persistent for cues that are non-informative, and this is for the same reasons, i.e., that they predict that either of two actions could be correct with the same probability. These cues make it impossible to establish reliable predictions (Delgado et al., <xref ref-type="bibr" rid="B12">2005</xref>).</p>
+        <p>The present findings add to these results in an important fashion, showing caudate nucleus involvement for general breaches of expectation, independent of ensuing feedback, in a movement observation paradigm. Breaches of expectation yielded caudate activity, even if the violated prediction was not a prediction on the availability of reinforcement, but only on the next movement that was to be observed. This finding of a “perceptual prediction error” (Zacks et al., <xref ref-type="bibr" rid="B62">2007</xref>) stands in stark contrast to the aforementioned studies that investigated the caudate prediction error signal in relation to feedback on whether the participants had gained or lost money by their last action (Delgado et al., <xref ref-type="bibr" rid="B12">2005</xref>; Koch et al., <xref ref-type="bibr" rid="B28">2008</xref>; Tricomi and Fiez, <xref ref-type="bibr" rid="B53">2008</xref>) Moreover, as the breaches of expectation in this study reflect perceptual prediction error, it establishes that this perceptual prediction error has a neural correlate in caudate nucleus.</p>
+      </sec>
+      <sec>
+        <title>Cortical areas co-active with caudate nucleus</title>
+        <p>We found a number of cortical areas co-activated for the violation contrast, including the right posterior superior temporal sulcus (pSTS) and the adjacent tempo-parietal junction (TPJ) extending into AG. All three cortical regions are connected to the neostriatum by the fronto-occipital fasciculus as well as by the joint fasciculus subcallosal of Muratoff (Schmahmann and Pandya, <xref ref-type="bibr" rid="B40">2006</xref>). This white-matter connectivity points to functionally closely interrelated areas. As the Muratoff bundle directly projects into the dorsal striatum, a fast transmission of perceived deviations to neostriatum is accounted for. Moreover, projections from the AG to caudate nucleus have recently been confirmed by diffusion-tensor imaging in humans (Uddin et al., <xref ref-type="bibr" rid="B54">2010</xref>).</p>
+        <p>With regard to this connectivity and these regions’ functions as described in the literature, the concurrent activation for the violation contrast is quite plausible. The pSTS is activated when perceiving biological motion and shows enhanced activation for movements that deviate from expectations (Keysers and Perrett, <xref ref-type="bibr" rid="B25">2004</xref>). Adjacent TPJ is involved in predicting the end-state of movements (Arzy et al., <xref ref-type="bibr" rid="B2">2006</xref>) and also in reorienting in space (Blanke et al., <xref ref-type="bibr" rid="B4">2004</xref>; Van Overwalle and Baetens, <xref ref-type="bibr" rid="B55">2009</xref>). Accordingly, pSTS enhancement may indicate the dissimilarity between a covert motor plan in our highly trained subjects and the actually perceived (false) movement. TPJ activation, moreover, may result from perceiving limb trajectories toward end-states that differed from the expected (or even covertly prepared) ones. The spreading of activation into AG fosters the idea put forward by other authors that TPJ, extending into AG, actually responds to breaches of expectation (Vossel et al., <xref ref-type="bibr" rid="B58">2006</xref>; Shulman et al., <xref ref-type="bibr" rid="B48">2009</xref>). These authors employed paradigms where a number of cues signaled where a target would appear with different probabilities. Interestingly, when a cue that indicated a high probability of a certain target position was violated, the resulting activation was higher than for the violation of less predictive cues. It therefore seems as if the more surprising an outcome is, that is, the more it violates a current prediction, the higher is the resultant AG activation (Vossel et al., <xref ref-type="bibr" rid="B58">2006</xref>; Shulman et al., <xref ref-type="bibr" rid="B48">2009</xref>). Besides, the aforementioned studies used abstract stimuli, but employed paradigms demanding reorienting in space (Blanke et al., <xref ref-type="bibr" rid="B4">2004</xref>; Vossel et al., <xref ref-type="bibr" rid="B58">2006</xref>; Shulman et al., <xref ref-type="bibr" rid="B48">2009</xref>; Van Overwalle and Baetens, <xref ref-type="bibr" rid="B55">2009</xref>). The current study employed solely stimuli that represented human motion, but results agree with the literature that the function of reorienting of attention is related to activity in the temporo-parietal junction and posterior parietal cortex (Corbetta and Shulman, <xref ref-type="bibr" rid="B8">2002</xref>). Within this framework, TPJ would be reframed as “circuit breaker,” which still implies the same function of detecting a salient stimulus that deviates from expectations (Corbetta and Shulman, <xref ref-type="bibr" rid="B8">2002</xref>).</p>
+        <p>It can be suggested that after transmission of the perceived violation of prediction from the temporo-parietal network to the dorsal striatum, a breach of expectation signal is provided by the dorsal striatum that incites the mediation of frontal responses (Ridderinkhof et al., <xref ref-type="bibr" rid="B36">2004</xref>). The consequential frontal network comprised the mesial frontal cortex bilaterally, specifically Brodmann area 8 (BA), the anterior cingulate cortex (ACC) and the presupplementary motor area (pre-SMA), anterior dorsal insula and middle frontal gyrus (MFG). Of those, the anterior dorsal insula, ACC and mesial BA 8 have been implicated in situations characterized by uncertainty (Volz et al., <xref ref-type="bibr" rid="B57">2003</xref>; Wager and Feldman, <xref ref-type="bibr" rid="B59">2004</xref>; Volz, <xref ref-type="bibr" rid="B56">2005</xref>), signifying the likelihood of errors and a need to adapt one's expectations. In the present study, participants expected to encounter events that would deviate from current predictions, but they lacked information regarding the time-point and frequency of such deviating events. Consequently, there was uncertainty toward the ruling probabilistic of the task.</p>
+        <p>The involvement of MFG signifies the high impact the task had on working memory (Goldman-Rakic, <xref ref-type="bibr" rid="B17">1987</xref>; Braver et al., <xref ref-type="bibr" rid="B5">1997</xref>). The participants had to judge a movement according to an auditory cue that had preceded the currently presented cue. At the same time they had to register the current cue to predict the next movement. This protocol amounts to a one-back-task. Thus, MFG may reflect active retrieval of the last cue in order to judge whether the caudate-conveyed deviation signal was meaningful or not. Engaging working memory in response to a signaled deviation accords to the assumption that in uncertain situations, PFC explores alternatively operating models (Daw et al., <xref ref-type="bibr" rid="B10">2005</xref>).</p>
+      </sec>
+      <sec>
+        <title>Subcortical breach of expectation coding</title>
+        <p>Apart from caudate nucleus, an important subcortical component of the activity in the violation contrast was the habenula. The habenula codes exclusively for negative prediction errors, and thus corresponds in an antagonistic fashion to the classic reward prediction error (Hikosaka et al., <xref ref-type="bibr" rid="B20">2008</xref>). Unexpected positive reinforcement causes a decrease in habenula activity. Meanwhile, during punishment or reward omission the habenula shows an activity increase (Matsumoto and Hikosaka, <xref ref-type="bibr" rid="B30">2009</xref>). In contrast, caudate activity has been suggested to be different from both opponents in that it is increased in activity for every breach of expectation, regardless its valence (Horvitz, <xref ref-type="bibr" rid="B21">2000</xref>). In the present study, the violations of current predictions did not entail negative consequences. However, making a mistake during behavioral training could well have been ascribed a negative valence. We suggest that as the participants probably engaged in motor imagery to solve the task, exploiting their own memorized experiences during training, seeing the dancer deviating from the protocol was regarded an error with all negative implications (Preston and de Waal, <xref ref-type="bibr" rid="B33">2001</xref>; Decety and Jackson, <xref ref-type="bibr" rid="B11">2004</xref>; Singer et al., <xref ref-type="bibr" rid="B49">2004</xref>). However, the fact that in this study the signal to violated predictions in caudate nucleus is enhanced at the same time that the habenula codes for a negative prediction error, underpins the breach of expectation nature of caudate activity. We find an activity increase for events that are not predicted in the current forward model, not a typical negative prediction error, as the corresponding habenula activity may suggest (Jocham and Ullsperger, <xref ref-type="bibr" rid="B22">2009</xref>).</p>
+      </sec>
+      <sec>
+        <title>Predictions, deviations, and learning</title>
+        <p>In the animal literature, prediction errors are mostly described as resultant from the occurrence or omission of reward (Schultz et al., <xref ref-type="bibr" rid="B42">1997</xref>), thereby related to satisfying or averse (external) stimuli. Prediction errors are defined as decreased activity in the face of omitted reward or punishment. However, the current study revealed evidence for heightened caudate activity toward violated predictions in insufficient or failing forward models, and hence breaches of expectation. Establishing predictions and especially signaling for a breach of expectation may be as important as coding how much reward (e.g., food or money) is available, or how unpredicted primary reward was (Spicer et al., <xref ref-type="bibr" rid="B50">2007</xref>). The limitations of fMRI in proving neurotransmitter involvement do not allow drawing the inference that this caudate activity was based in a dopaminergic response (Düzel et al., <xref ref-type="bibr" rid="B15">2009</xref>). The dopaminergic innervation of the dorsal striatum (see Joel and Weiner, <xref ref-type="bibr" rid="B23">2000</xref> #197 for a review) and the response of the habenula (Jocham and Ullsperger, <xref ref-type="bibr" rid="B22">2009</xref>) implicate the dopaminergic system, but further studies are needed to decide whether dopamine is involved in not reward related breaches of expectation. New approaches, especially the free-energy principle (Friston, <xref ref-type="bibr" rid="B16">2010</xref>) stress the value of predictive capability <italic>per se</italic>, i.e., the ability to detect breaches of expectation (Kiebel et al., <xref ref-type="bibr" rid="B26">2008</xref>; Suddendorf et al., <xref ref-type="bibr" rid="B51">2009</xref>; Friston, <xref ref-type="bibr" rid="B16">2010</xref>). This model regards correct predictions as prerequisite for successful interaction with the environment, because recognizing a situation and acting accordingly is a capability owed to the disposal of valid forward models (Kiebel et al., <xref ref-type="bibr" rid="B26">2008</xref>). The according actions may be to the end of satisfying primary needs or an evolved want. A typical aim in a social interaction would be, e.g., to adhere to the arrangement and to the task instruction in an fMRI study that were formerly mutually agreed upon. Operative forward models themselves can be valuable enough to be perceived as rewarding, even though they do not yield primary reward or reinforcement. Consider, for example, the psychological importance of a sense of control. In learned-helplessness paradigms, where animals are not able to predict and avoid punishment, pseudo-depression is a consequence (Seligman and Maier, <xref ref-type="bibr" rid="B46">1967</xref>). Unpredictability is just another facet of non-operative forward-models. To establish operative forward models, breaches of expectation must be registered. If they cease to occur, this can be regarded as evidence that learning, i.e., model adaptation, was sufficient. The sense of accomplishment that goes with feeling in control of a situation provides indeed a powerful motivation to learn. Taken together, breaches of expectation that allow for the generation and improvement of an internal model are of utmost importance to survival, but also psychological wellbeing.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>The results of the current study foster the idea that the caudate nucleus signals for occurrence of events that violate the predictions of the operative forward model. This signal is not due to the perception of salient events or the need to change one's behavior, and it is not based on direct reinforcement or punishment. Frontal activation that we observed may be triggered by this signal from the caudate nucleus and operate to deal with present altered environmental demands; either via update of the current forward model or via assessment of the probability of certain event alternatives.</p>
+    </sec>
+    <sec>
+      <title>Conflict of Interest Statement</title>
+      <p>The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="sm1">
+      <title>Supplementary Material</title>
+      <p>The Movies S1 and S2 for this article can be found online at <uri xlink:type="simple" xlink:href="http://www.frontiersin.org/human_neuroscience/10.3389/fnhum.2011.00038/abstract/">http://www.frontiersin.org/human_neuroscience/10.3389/fnhum.2011.00038/abstract/</uri></p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Alexander</surname><given-names>G. E.</given-names></name><name><surname>DeLong</surname><given-names>M. R.</given-names></name><name><surname>Strick</surname><given-names>P. L.</given-names></name></person-group> (<year>1986</year>). <article-title>Parallel organization of functionally segregated circuits linking basal ganglia and cortex</article-title>. <source>Annu. Rev. Neurosci.</source> <volume>9</volume>, <fpage>357</fpage>–<lpage>381</lpage><pub-id pub-id-type="pmid">3085570</pub-id></mixed-citation>
+      </ref>
+      <ref id="B2">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Arzy</surname><given-names>S.</given-names></name><name><surname>Thut</surname><given-names>G.</given-names></name><name><surname>Mohr</surname><given-names>C.</given-names></name><name><surname>Michel</surname><given-names>C. M.</given-names></name><name><surname>Blanke</surname><given-names>O.</given-names></name></person-group> (<year>2006</year>). <article-title>Neural basis of embodiment: distinct contributions of temporoparietal junction and extrastriate body area</article-title>. <source>J. Neurosci.</source> <volume>26</volume>, <fpage>8074</fpage>–<lpage>8081</lpage><pub-id pub-id-type="doi">10.1523/JNEUROSCI.0745-06.2006</pub-id><pub-id pub-id-type="pmid">16885221</pub-id></mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Badgaiyan</surname><given-names>R. D.</given-names></name><name><surname>Fischman</surname><given-names>A. J.</given-names></name><name><surname>Alpert</surname><given-names>N. M.</given-names></name></person-group> (<year>2007</year>). <article-title>Striatal dopamine release in sequential learning</article-title>. <source>Neuroimage</source> <volume>38</volume>, <fpage>549</fpage>–<lpage>556</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2007.07.052</pub-id><pub-id pub-id-type="pmid">17888684</pub-id></mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Blanke</surname><given-names>O.</given-names></name><name><surname>Theodor</surname><given-names>L.</given-names></name><name><surname>Laurent</surname><given-names>S.</given-names></name><name><surname>Margitta</surname><given-names>S.</given-names></name></person-group> (<year>2004</year>). <article-title>Out-of-body experience and autoscopy of neurological origin</article-title>. <source>Brain</source> <volume>127</volume>, <fpage>243</fpage>–<lpage>258</lpage><pub-id pub-id-type="doi">10.1093/brain/awh040</pub-id><pub-id pub-id-type="pmid">14662516</pub-id></mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Braver</surname><given-names>T. S.</given-names></name><name><surname>Cohen</surname><given-names>J. D.</given-names></name><name><surname>Nystrom</surname><given-names>L. E.</given-names></name><name><surname>Jonides</surname><given-names>J.</given-names></name><name><surname>Smith</surname><given-names>E. E.</given-names></name><name><surname>Noll</surname><given-names>D. C.</given-names></name></person-group> (<year>1997</year>). <article-title>A parametric study of prefrontal cortex involvement in human working memory</article-title>. <source>Neuroimage</source> <volume>5</volume>, <fpage>49</fpage>–<lpage>62</lpage><pub-id pub-id-type="doi">10.1006/nimg.1996.0247</pub-id><pub-id pub-id-type="pmid">9038284</pub-id></mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bubic</surname><given-names>A.</given-names></name><name><surname>Yves Von Cramon</surname><given-names>D.</given-names></name><name><surname>Schubotz</surname><given-names>R. I.</given-names></name></person-group> (<year>2009</year>). <article-title>Prediction, cognition and the brain</article-title>. <source>Front. Hum. Neurosci.</source> <volume>5</volume>:<fpage>12</fpage><pub-id pub-id-type="doi">10.3389/fnhum.2010.00025</pub-id></mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bunge</surname><given-names>S. A.</given-names></name><name><surname>Kahn</surname><given-names>I.</given-names></name><name><surname>Wallis</surname><given-names>J. D.</given-names></name><name><surname>Miller</surname><given-names>E. K.</given-names></name><name><surname>Wagner</surname><given-names>A. D.</given-names></name></person-group> (<year>2003</year>). <article-title>Neural circuits subserving the retrieval and maintenance of abstract rules</article-title>. <source>J. Neurophysiol.</source> <volume>90</volume>, <fpage>3419</fpage>–<lpage>3428</lpage><pub-id pub-id-type="doi">10.1152/jn.00910.2002</pub-id><pub-id pub-id-type="pmid">12867532</pub-id></mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Corbetta</surname><given-names>M.</given-names></name><name><surname>Shulman</surname><given-names>G. L.</given-names></name></person-group> (<year>2002</year>). <article-title>Control of goal-directed and stimulus-driven attention in the brain</article-title>. <source>Nat. Rev. Neurosci.</source> <volume>3</volume>, <fpage>201</fpage>–<lpage>215</lpage><pub-id pub-id-type="pmid">11994752</pub-id></mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Davidson</surname><given-names>M. C.</given-names></name><name><surname>Horvitz</surname><given-names>J. C.</given-names></name><name><surname>Tottenham</surname><given-names>N.</given-names></name><name><surname>Fossella</surname><given-names>J. A.</given-names></name><name><surname>Watts</surname><given-names>R.</given-names></name><name><surname>Ulug</surname><given-names>A. M.</given-names></name><name><surname>Casey</surname><given-names>B. J.</given-names></name></person-group> (<year>2004</year>). <article-title>Differential cingulate and caudate activation following unexpected nonrewarding stimuli</article-title>. <source>Neuroimage</source> <volume>23</volume>, <fpage>1039</fpage>–<lpage>1045</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2004.07.049</pub-id><pub-id pub-id-type="pmid">15528104</pub-id></mixed-citation>
+      </ref>
+      <ref id="B10">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Daw</surname><given-names>N. D.</given-names></name><name><surname>Niv</surname><given-names>Y.</given-names></name><name><surname>Dayan</surname><given-names>P.</given-names></name></person-group> (<year>2005</year>). <article-title>Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control</article-title>. <source>Nat. Neurosci.</source> <volume>8</volume>, <fpage>1704</fpage>–<lpage>1711</lpage><pub-id pub-id-type="pmid">16286932</pub-id></mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Decety</surname><given-names>J.</given-names></name><name><surname>Jackson</surname><given-names>P. L.</given-names></name></person-group> (<year>2004</year>). <article-title>The functional architecture of human empathy</article-title>. <source>Behav. Cogn. Neurosci. Rev.</source> <volume>3</volume>, <fpage>71</fpage>–<lpage>100</lpage><pub-id pub-id-type="pmid">15537986</pub-id></mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Delgado</surname><given-names>M. R.</given-names></name><name><surname>Miller</surname><given-names>M. M.</given-names></name><name><surname>Inati</surname><given-names>S.</given-names></name><name><surname>Phelps</surname><given-names>E. A.</given-names></name></person-group> (<year>2005</year>). <article-title>An fMRI study of reward-related probability learning</article-title>. <source>Neuroimage</source> <volume>24</volume>, <fpage>862</fpage>–<lpage>873</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2004.10.002</pub-id><pub-id pub-id-type="pmid">15652321</pub-id></mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>den Ouden</surname><given-names>H. E.</given-names></name><name><surname>Danizeau</surname><given-names>J.</given-names></name><name><surname>Roiser</surname><given-names>J.</given-names></name><name><surname>Friston</surname><given-names>K. J.</given-names></name><name><surname>Stephan</surname><given-names>K. E.</given-names></name></person-group> (<year>2010</year>). <article-title>Striatal prediction error modulates cortical coupling</article-title>. <source>J. Neurosci.</source> <volume>30</volume>, <fpage>3210</fpage>–<lpage>3219</lpage><pub-id pub-id-type="doi">10.1523/JNEUROSCI.4458-09.2010</pub-id><pub-id pub-id-type="pmid">20203180</pub-id></mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>den Ouden</surname><given-names>H. E.</given-names></name><name><surname>Friston</surname><given-names>K. J.</given-names></name><name><surname>Daw</surname><given-names>N. D.</given-names></name><name><surname>McIntosh</surname><given-names>A. R.</given-names></name><name><surname>Stephan</surname><given-names>K. E.</given-names></name></person-group> (<year>2009</year>). <article-title>A dual role for prediction error in associative learning</article-title>. <source>Cerebr. Cortex</source> <volume>19</volume>, <fpage>1175</fpage></mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Düzel</surname><given-names>E.</given-names></name><name><surname>Bunzeck</surname><given-names>N.</given-names></name><name><surname>Guitart-Masip</surname><given-names>M.</given-names></name><name><surname>Wittmann</surname><given-names>B.</given-names></name><name><surname>Schott</surname><given-names>B. H.</given-names></name><name><surname>Tobler</surname><given-names>P. N.</given-names></name></person-group> (<year>2009</year>). <article-title>Functional imaging of the human dopaminergic midbrain</article-title>. <source>Trends Neurosci.</source> <volume>32</volume>, <fpage>321</fpage>–<lpage>328</lpage><pub-id pub-id-type="doi">10.1016/j.tins.2009.02.005</pub-id><pub-id pub-id-type="pmid">19446348</pub-id></mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Friston</surname><given-names>K.</given-names></name></person-group> (<year>2010</year>). <article-title>The free-energy principle: a unified brain theory?</article-title> <source>Nat. Rev. Neurosci.</source> <volume>11</volume>, <fpage>127</fpage>–<lpage>138</lpage><pub-id pub-id-type="pmid">20068583</pub-id></mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Goldman-Rakic</surname><given-names>P. S.</given-names></name></person-group> (<year>1987</year>). <article-title>“Circuitry of primate prefrontal cortex and regulation of behavior by representational memory,”</article-title> in <source>Handbook of Physiology – The Nervous System</source>, Vol. <volume>5</volume> eds <person-group person-group-type="editor"><name><surname>Plum</surname><given-names>F.</given-names></name><name><surname>Mountcastle</surname><given-names>V.</given-names></name></person-group> (Bethesda), <fpage>373</fpage>–<lpage>417</lpage></mixed-citation>
+      </ref>
+      <ref id="B18">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Grahn</surname><given-names>J. A.</given-names></name><name><surname>Parkinson</surname><given-names>J. A.</given-names></name><name><surname>Owen</surname><given-names>A. M.</given-names></name></person-group> (<year>2008</year>). <article-title>The cognitive functions of the caudate nucleus</article-title>. <source>Prog. Neurobiol.</source> <volume>86</volume>, <fpage>141</fpage>–<lpage>155</lpage><pub-id pub-id-type="pmid">18824075</pub-id></mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Graybiel</surname><given-names>A. M.</given-names></name></person-group> (<year>2005</year>). <article-title>The basal ganglia: learning new tricks and loving it</article-title>. <source>Curr. Opin. Neurobiol.</source> <volume>15</volume>, <fpage>638</fpage>–<lpage>644</lpage><pub-id pub-id-type="pmid">16271465</pub-id></mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hikosaka</surname><given-names>O.</given-names></name><name><surname>Sesack</surname><given-names>S. R.</given-names></name><name><surname>Lecourtier</surname><given-names>L.</given-names></name><name><surname>Shepard</surname><given-names>P. D.</given-names></name></person-group> (<year>2008</year>). <article-title>Habenula: crossroad between the basal ganglia and the limbic system</article-title>. <source>J. Neurosci.</source> <volume>28</volume>, <fpage>11825</fpage>–<lpage>11829</lpage><pub-id pub-id-type="doi">10.1523/JNEUROSCI.3463-08.2008</pub-id><pub-id pub-id-type="pmid">19005047</pub-id></mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Horvitz</surname><given-names>J. C.</given-names></name></person-group> (<year>2000</year>). <article-title>Mesolimbocortical and nigrostriatal dopamine responses to salient non-reward events</article-title>. <source>Neuroscience</source> <volume>96</volume>, <fpage>651</fpage>–<lpage>656</lpage><pub-id pub-id-type="doi">10.1016/S0306-4522(00)00019-1</pub-id><pub-id pub-id-type="pmid">10727783</pub-id></mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Jocham</surname><given-names>G.</given-names></name><name><surname>Ullsperger</surname><given-names>M.</given-names></name></person-group> (<year>2009</year>). <article-title>Neuropharmacology of performance monitoring</article-title>. <source>Neurosci. Biobehav. Rev.</source> <volume>33</volume>, <fpage>48</fpage>–<lpage>60</lpage><pub-id pub-id-type="pmid">18789964</pub-id></mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Joel</surname><given-names>D.</given-names></name><name><surname>Weiner</surname><given-names>I.</given-names></name></person-group> (<year>2000</year>). <article-title>The connections of the dopaminergic system with the striatum in rats and primates: an analysis with respect to the functional and compartmental organization of the striatum</article-title>. <source>Neuroscience</source>, <volume>96</volume>, <fpage>451</fpage>–<lpage>474</lpage><pub-id pub-id-type="doi">10.1016/S0306-4522(99)00575-8</pub-id><pub-id pub-id-type="pmid">10717427</pub-id></mixed-citation>
+      </ref>
+      <ref id="B24">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Jueptner</surname><given-names>M.</given-names></name><name><surname>Weiller</surname><given-names>C.</given-names></name></person-group> (<year>1998</year>). <article-title>A review of differences between basal ganglia and cerebellar control of movements as revealed by functional imaging studies</article-title>. <source>Brain</source> <volume>121</volume>, <fpage>1437</fpage>–<lpage>1449</lpage><pub-id pub-id-type="doi">10.1093/brain/121.8.1437</pub-id><pub-id pub-id-type="pmid">9712006</pub-id></mixed-citation>
+      </ref>
+      <ref id="B25">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Keysers</surname><given-names>C.</given-names></name><name><surname>Perrett</surname><given-names>D. I.</given-names></name></person-group> (<year>2004</year>). <article-title>Demystifying social cognition: a Hebbian perspective</article-title>. <source>Trends Cogn. Sci.</source> <volume>8</volume>, <fpage>501</fpage>–<lpage>507</lpage><pub-id pub-id-type="pmid">15491904</pub-id></mixed-citation>
+      </ref>
+      <ref id="B26">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Kiebel</surname><given-names>S. J.</given-names></name><name><surname>Daunizeau</surname><given-names>J.</given-names></name><name><surname>Friston</surname><given-names>K. J.</given-names></name></person-group> (<year>2008</year>). <article-title>A hierarchy of time-scales and the brain</article-title>. <source>PLoS Comput. Biol.</source> <volume>4</volume>:<fpage>e1000209</fpage><pub-id pub-id-type="doi">10.1371/journal.pcbi.1000209</pub-id><pub-id pub-id-type="pmid">19008936</pub-id></mixed-citation>
+      </ref>
+      <ref id="B27">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Kilner</surname><given-names>J. M.</given-names></name><name><surname>Friston</surname><given-names>K. J.</given-names></name><name><surname>Frith</surname><given-names>C. D.</given-names></name></person-group> (<year>2007</year>). <article-title>Predictive coding: an account of the mirror neuron system</article-title>. <source>Cogn. Process</source> <volume>8</volume>, <fpage>159</fpage>–<lpage>166</lpage><pub-id pub-id-type="pmid">17429704</pub-id></mixed-citation>
+      </ref>
+      <ref id="B28">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Koch</surname><given-names>K.</given-names></name><name><surname>Claudia</surname><given-names>S.</given-names></name><name><surname>Gerd</surname><given-names>W.</given-names></name><name><surname>Reichenbach</surname><given-names>J. R.</given-names></name><name><surname>Sauer</surname><given-names>H.</given-names></name><name><surname>Schlösser</surname><given-names>R.</given-names></name></person-group> (<year>2008</year>). <article-title>The neural correlates of reward-related trial-and-error learning: an fMRI study with a probabilistic learning task</article-title>. <source>Learn. Mem.</source> <volume>15</volume>, <fpage>728</fpage>–<lpage>732</lpage><pub-id pub-id-type="pmid">18832559</pub-id></mixed-citation>
+      </ref>
+      <ref id="B29">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Lohmann</surname><given-names>G.</given-names></name><name><surname>Karsten</surname><given-names>M.</given-names></name><name><surname>Volker</surname><given-names>B.</given-names></name><name><surname>Heiko</surname><given-names>M.</given-names></name><name><surname>Sven</surname><given-names>H.</given-names></name><name><surname>Lin</surname><given-names>C.</given-names></name><name><surname>Zysset</surname><given-names>S.</given-names></name><name><surname>Yves von Cramon</surname><given-names>D.</given-names></name></person-group> (<year>2001</year>). <article-title>Lipsia – a new software system for the evaluation of functional magnetic resonance images of the human brain</article-title>. <source>Comput. Med. Imaging Graph</source> <volume>25</volume>, <fpage>449</fpage>–<lpage>457</lpage><pub-id pub-id-type="doi">10.1016/S0895-6111(01)00008-8</pub-id><pub-id pub-id-type="pmid">11679206</pub-id></mixed-citation>
+      </ref>
+      <ref id="B30">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Matsumoto</surname><given-names>M.</given-names></name><name><surname>Hikosaka</surname><given-names>O.</given-names></name></person-group> (<year>2009</year>). <article-title>Representation of negative motivational value in the primate lateral habenula</article-title>. <source>Nat. Neurosci.</source> <volume>12</volume>, <fpage>77</fpage>–<lpage>84</lpage><pub-id pub-id-type="pmid">19043410</pub-id></mixed-citation>
+      </ref>
+      <ref id="B31">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>O'Doherty</surname><given-names>J. P.</given-names></name><name><surname>Buchanan</surname><given-names>T. W.</given-names></name><name><surname>Seymour</surname><given-names>B.</given-names></name><name><surname>Dolan</surname><given-names>R. J.</given-names></name></person-group> (<year>2006</year>). <article-title>Predictive neural coding of reward preference involves dissociable responses in human ventral midbrain and ventral striatum</article-title>. <source>Neuron</source> <volume>49</volume>, <fpage>157</fpage>–<lpage>166</lpage><pub-id pub-id-type="doi">10.1016/j.neuron.2005.11.014</pub-id><pub-id pub-id-type="pmid">16387647</pub-id></mixed-citation>
+      </ref>
+      <ref id="B32">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Oldfield</surname><given-names>R.C.</given-names></name></person-group> (<year>1971</year>). <article-title>The assessment and analysis of handedness: the Edinburgh inventory</article-title>. <source>Neuropsychologia</source>, <volume>9</volume>, <fpage>97</fpage>–<lpage>113</lpage><pub-id pub-id-type="doi">10.1016/0028-3932(71)90067-4</pub-id><pub-id pub-id-type="pmid">5146491</pub-id></mixed-citation>
+      </ref>
+      <ref id="B33">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Preston</surname><given-names>S. D.</given-names></name><name><surname>de Waal</surname><given-names>F. B.</given-names></name></person-group> (<year>2001</year>). <article-title>Empathy: its ultimate and proximate bases</article-title>. <source>Behav. Brain Sci.</source> <volume>25</volume>, <fpage>1</fpage>–<lpage>71</lpage><pub-id pub-id-type="pmid">12625087</pub-id></mixed-citation>
+      </ref>
+      <ref id="B34">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Redgrave</surname><given-names>P.</given-names></name><name><surname>Gurney</surname><given-names>K.</given-names></name></person-group> (<year>2006</year>). <article-title>The short-latency dopamine signal: a role in discovering novel actions?</article-title> <source>Nat. Rev. Neurosci.</source> <volume>7</volume>, <fpage>967</fpage>–<lpage>975</lpage><pub-id pub-id-type="pmid">17115078</pub-id></mixed-citation>
+      </ref>
+      <ref id="B35">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Rescorla</surname><given-names>R. A.</given-names></name><name><surname>Wagner</surname><given-names>A. W.</given-names></name></person-group> (<year>1972</year>). <article-title>“A theory of Pavlovian conditioning: variations in the effectiveness of reinforcement and nonreinforcement,”</article-title> in <source>Classical Conditioning II: Current Research and Theory</source>, eds <person-group person-group-type="editor"><name><surname>Black</surname><given-names>A. H.</given-names></name><name><surname>Prokasy</surname><given-names>W. F.</given-names></name></person-group> (<publisher-loc>New York</publisher-loc>: <publisher-name>Appleton-Century-Crofts</publisher-name>), <fpage>64</fpage>–<lpage>99</lpage></mixed-citation>
+      </ref>
+      <ref id="B36">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ridderinkhof</surname><given-names>K. R.</given-names></name><name><surname>Ullsperger</surname><given-names>M.</given-names></name><name><surname>Crone</surname><given-names>E. A.</given-names></name><name><surname>Nieuwenhuis</surname><given-names>S.</given-names></name></person-group> (<year>2004</year>). <article-title>The role of the medial frontal cortex in cognitive control</article-title>. <source>Science</source> <volume>306</volume>, <fpage>443</fpage>–<lpage>447</lpage><pub-id pub-id-type="doi">10.1126/science.1100301</pub-id><pub-id pub-id-type="pmid">15486290</pub-id></mixed-citation>
+      </ref>
+      <ref id="B37">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Roy</surname><given-names>E. A.</given-names></name><name><surname>Saint-Cyr</surname><given-names>J.</given-names></name><name><surname>Taylor</surname><given-names>A.</given-names></name><name><surname>Lang</surname><given-names>A.</given-names></name></person-group> (<year>1993</year>). <article-title>Movement sequencing disorders in Parkinson's disease</article-title>. <source>Int. J. Neurosci.</source> <volume>73</volume>, <fpage>183</fpage>–<lpage>194</lpage><pub-id pub-id-type="pmid">8169053</pub-id></mixed-citation>
+      </ref>
+      <ref id="B38">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ruge</surname><given-names>H.</given-names></name><name><surname>Wolfensteller</surname><given-names>U.</given-names></name></person-group> (<year>2009</year>). <article-title>Rapid formation of pragmatic rule representations in the human brain during instruction-based learning</article-title>. <source>Cereb. Cortex</source> <volume>20</volume>, <fpage>1656</fpage>–<lpage>1667</lpage><pub-id pub-id-type="pmid">19889712</pub-id></mixed-citation>
+      </ref>
+      <ref id="B39">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Saint-Cyr</surname><given-names>J. A.</given-names></name></person-group> (<year>2003</year>). <article-title>Frontal-striatal circuit functions: context, sequence, and consequence</article-title>. <source>J. Int. Neuropsychol. Soc.</source> <volume>9</volume>, <fpage>103</fpage>–<lpage>127</lpage><pub-id pub-id-type="pmid">12570364</pub-id></mixed-citation>
+      </ref>
+      <ref id="B40">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Schmahmann</surname><given-names>J. D.</given-names></name><name><surname>Pandya</surname><given-names>D. N.</given-names></name></person-group> (<year>2006</year>). <source>Fiber Pathways of The Brain</source>, <edition>1 Edn</edition> <publisher-loc>New York</publisher-loc>: <publisher-name>Oxford University Press</publisher-name></mixed-citation>
+      </ref>
+      <ref id="B41">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schultz</surname><given-names>W.</given-names></name></person-group> (<year>2000</year>). <article-title>Multiple reward signals in the brain</article-title>. <source>Nat. Rev. Neurosci.</source> <volume>1</volume>, <fpage>199</fpage>–<lpage>207</lpage><pub-id pub-id-type="pmid">11257908</pub-id></mixed-citation>
+      </ref>
+      <ref id="B42">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schultz</surname><given-names>W.</given-names></name><name><surname>Dayan</surname><given-names>P.</given-names></name><name><surname>Montague</surname><given-names>P. R.</given-names></name></person-group> (<year>1997</year>). <article-title>A neural substrate of prediction and reward</article-title>. <source>Science</source> <volume>275</volume>, <fpage>1593</fpage>–<lpage>1599</lpage><pub-id pub-id-type="doi">10.1126/science.275.5306.1593</pub-id><pub-id pub-id-type="pmid">9054347</pub-id></mixed-citation>
+      </ref>
+      <ref id="B43">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schultz</surname><given-names>W.</given-names></name><name><surname>Dickinson</surname><given-names>A.</given-names></name></person-group> (<year>2000</year>). <article-title>Neuronal coding of prediction errors</article-title>. <source>Ann. Rev. Neurosci.</source> <volume>23</volume>, <fpage>473</fpage>–<lpage>500</lpage><pub-id pub-id-type="pmid">10845072</pub-id></mixed-citation>
+      </ref>
+      <ref id="B44">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schultz</surname><given-names>W.</given-names></name><name><surname>Tremblay</surname><given-names>L.</given-names></name><name><surname>Hollerman</surname><given-names>J. R.</given-names></name></person-group> (<year>1998</year>). <article-title>Reward prediction in primate basal ganglia and frontal cortex</article-title>. <source>Neuropharmacology</source> <volume>37</volume>, <fpage>421</fpage>–<lpage>429</lpage><pub-id pub-id-type="doi">10.1016/S0028-3908(98)00071-9</pub-id><pub-id pub-id-type="pmid">9704983</pub-id></mixed-citation>
+      </ref>
+      <ref id="B45">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schutz-Bosbach</surname><given-names>S.</given-names></name><name><surname>Prinz</surname><given-names>W.</given-names></name></person-group> (<year>2007</year>). <article-title>Prospective coding in event representation</article-title>. <source>Cogn. Process</source> <volume>8</volume>, <fpage>93</fpage>–<lpage>102</lpage><pub-id pub-id-type="pmid">17406917</pub-id></mixed-citation>
+      </ref>
+      <ref id="B46">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Seligman</surname><given-names>M. E.</given-names></name><name><surname>Maier</surname><given-names>S. F.</given-names></name></person-group> (<year>1967</year>). <article-title>Failure to escape traumatic shock</article-title>. <source>J. Exp. Psychol.</source> <volume>74</volume>, <fpage>1</fpage>–<lpage>9</lpage><pub-id pub-id-type="pmid">6032570</pub-id></mixed-citation>
+      </ref>
+      <ref id="B47">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Shohamy</surname><given-names>D.</given-names></name><name><surname>Myers</surname><given-names>C. E.</given-names></name><name><surname>Kalanithi</surname><given-names>J.</given-names></name><name><surname>Gluck</surname><given-names>M. A.</given-names></name></person-group> (<year>2008</year>). <article-title>Basal ganglia and dopamine contributions to probabilistic category learning</article-title>. <source>Neurosci. Biobehav. Rev.</source> <volume>32</volume>, <fpage>219</fpage>–<lpage>236</lpage><pub-id pub-id-type="pmid">18061261</pub-id></mixed-citation>
+      </ref>
+      <ref id="B48">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Shulman</surname><given-names>G. L.</given-names></name><name><surname>Astafiev</surname><given-names>S. V.</given-names></name><name><surname>Franke</surname><given-names>D.</given-names></name><name><surname>Pope</surname><given-names>D. L.</given-names></name><name><surname>Snyder</surname><given-names>A. Z.</given-names></name><name><surname>McAvoy</surname><given-names>M. P.</given-names></name><name><surname>Corbetta</surname><given-names>M.</given-names></name></person-group> (<year>2009</year>). <article-title>Interaction of stimulus-driven reorienting and expectation in ventral and dorsal frontoparietal and basal ganglia-cortical networks</article-title>. <source>J. Neurosci.</source> <volume>29</volume>, <fpage>4392</fpage>–<lpage>4407</lpage><pub-id pub-id-type="doi">10.1523/JNEUROSCI.5609-08.2009</pub-id><pub-id pub-id-type="pmid">19357267</pub-id></mixed-citation>
+      </ref>
+      <ref id="B49">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Singer</surname><given-names>T.</given-names></name><name><surname>Seymour</surname><given-names>B.</given-names></name><name><surname>O'Doherty</surname><given-names>J. P.</given-names></name><name><surname>Kaube</surname><given-names>H.</given-names></name><name><surname>Dolan</surname><given-names>R. J.</given-names></name><name><surname>Frith</surname><given-names>C. D.</given-names></name></person-group> (<year>2004</year>). <article-title>Empathy for pain involves the affective but not sensory components of pain</article-title> <source>Science</source> <volume>303</volume>, <fpage>1157</fpage>–<lpage>1162</lpage><pub-id pub-id-type="doi">10.1126/science.1093535</pub-id><pub-id pub-id-type="pmid">14976305</pub-id></mixed-citation>
+      </ref>
+      <ref id="B50">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Spicer</surname><given-names>J.</given-names></name><name><surname>Galvan</surname><given-names>A. G.</given-names></name><name><surname>Hare</surname><given-names>T. A.</given-names></name><name><surname>Voss</surname><given-names>H.</given-names></name><name><surname>Glover</surname><given-names>G.</given-names></name><name><surname>Casey</surname><given-names>B. J.</given-names></name></person-group> (<year>2007</year>). <article-title>Sensitivity of the nucleus accumbens to violations in expectation of reward</article-title>. <source>Neuroimage</source> <volume>34</volume>, <fpage>455</fpage>–<lpage>461</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2006.09.012</pub-id><pub-id pub-id-type="pmid">17049884</pub-id></mixed-citation>
+      </ref>
+      <ref id="B51">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Suddendorf</surname><given-names>T.</given-names></name><name><surname>Donna</surname><given-names>R. A.</given-names></name><name><surname>Corballis</surname><given-names>M. C.</given-names></name></person-group> (<year>2009</year>). <article-title>Mental time travel and the shaping of the human mind</article-title>. <source>Philos. Trans. R. Soc. B. Biol. Sci.</source> <volume>364</volume>, <fpage>1317</fpage>–<lpage>1324</lpage></mixed-citation>
+      </ref>
+      <ref id="B52">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Talairach</surname><given-names>J.</given-names></name><name><surname>Tournoux</surname><given-names>P.</given-names></name></person-group> (<year>1988</year>). <source>Co-planar stereotaxic atlas of the human brain</source>. <publisher-loc>New York</publisher-loc>: <publisher-name>Thieme</publisher-name></mixed-citation>
+      </ref>
+      <ref id="B53">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Tricomi</surname><given-names>E.</given-names></name><name><surname>Fiez</surname><given-names>J. A.</given-names></name></person-group> (<year>2008</year>). <article-title>Feedback signals in the caudate reflect goal achievement on a declarative memory task</article-title>. <source>Neuroimage</source> <volume>41</volume>, <fpage>1154</fpage>–<lpage>1167</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2008.02.066</pub-id><pub-id pub-id-type="pmid">18445531</pub-id></mixed-citation>
+      </ref>
+      <ref id="B54">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Uddin</surname><given-names>L. Q.</given-names></name><name><surname>Supekar</surname><given-names>K.</given-names></name><name><surname>Amin</surname><given-names>H.</given-names></name><name><surname>Rykhlevskaia</surname><given-names>E.</given-names></name><name><surname>Nguyen</surname><given-names>D. A.</given-names></name><name><surname>Greicius</surname><given-names>M. D.</given-names></name><name><surname>Menon</surname><given-names>V.</given-names></name></person-group> (<year>2010</year>). <article-title>Dissociable connectivity within human angular gyrus and intraparietal sulcus: evidence from functional and structural connectivity</article-title>. <source>Cereb. Cortex</source> <volume>20</volume>, <fpage>2636</fpage>–<lpage>2646</lpage><pub-id pub-id-type="doi">10.1093/cercor/bhq011</pub-id><pub-id pub-id-type="pmid">20154013</pub-id></mixed-citation>
+      </ref>
+      <ref id="B55">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Van Overwalle</surname><given-names>F.</given-names></name><name><surname>Baetens</surname><given-names>K.</given-names></name></person-group> (<year>2009</year>). <article-title>Understanding others’ actions and goals by mirror and mentalizing systems: a meta-analysis</article-title>. <source>Neuroimage</source> <volume>48</volume>, <fpage>564</fpage>–<lpage>584</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2009.06.009</pub-id><pub-id pub-id-type="pmid">19524046</pub-id></mixed-citation>
+      </ref>
+      <ref id="B56">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Volz</surname><given-names>K. G.</given-names></name></person-group> (<year>2005</year>). <article-title>Variants of uncertainty in decision-making and their neural correlates</article-title>. <source>Brain Res. Bull.</source> <volume>67</volume>, <fpage>403</fpage>–<lpage>412</lpage><pub-id pub-id-type="pmid">16216687</pub-id></mixed-citation>
+      </ref>
+      <ref id="B57">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Volz</surname><given-names>K. G.</given-names></name><name><surname>Schubotz</surname><given-names>R. I.</given-names></name><name><surname>von Cramon</surname><given-names>D. Y.</given-names></name></person-group> (<year>2003</year>). <article-title>Predicting events of varying probability: uncertainty investigated by fMRI</article-title>. <source>Neuroimage</source> <volume>19</volume>(<issue>2 Pt 1</issue>), <fpage>271</fpage>–<lpage>280</lpage><pub-id pub-id-type="doi">10.1016/S1053-8119(03)00122-8</pub-id><pub-id pub-id-type="pmid">12814578</pub-id></mixed-citation>
+      </ref>
+      <ref id="B58">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Vossel</surname><given-names>S.</given-names></name><name><surname>Thiel</surname><given-names>C. M.</given-names></name><name><surname>Fink</surname><given-names>G. R.</given-names></name></person-group> (<year>2006</year>). <article-title>Cue validity modulates the neural correlates of covert endogenous orienting of attention in parietal and frontal cortex</article-title>. <source>Neuroimage</source> <volume>32</volume>, <fpage>1257</fpage>–<lpage>1264</lpage><pub-id pub-id-type="doi">10.1016/j.neuroimage.2006.05.019</pub-id><pub-id pub-id-type="pmid">16846742</pub-id></mixed-citation>
+      </ref>
+      <ref id="B59">
+        <mixed-citation publication-type="webpage"><person-group person-group-type="author"><name><surname>Wager</surname><given-names>T. D.</given-names></name><name><surname>Feldman</surname><given-names>B. L.</given-names></name></person-group> (<year>2004</year>). <source>From affect to control: functional specialization of the insula in motivation and regulation</source>. Retrieved from <uri xlink:type="simple" xlink:href="http://www.apa.org/psycextra/">www.apa.org/psycextra/</uri> on 29 March 2011.</mixed-citation>
+      </ref>
+      <ref id="B60">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wolpert</surname><given-names>D. M.</given-names></name><name><surname>Flanagan</surname><given-names>J. R.</given-names></name></person-group> (<year>2001</year>). <article-title>Motor prediction</article-title>. <source>Curr. Biol.</source> <volume>11</volume>, <fpage>729</fpage>–<lpage>732</lpage></mixed-citation>
+      </ref>
+      <ref id="B61">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Worsley</surname><given-names>K. J.</given-names></name><name><surname>Friston</surname><given-names>K. J.</given-names></name></person-group> (<year>1995</year>). <article-title>Analysis of FMRI time series revisited – again</article-title>. <source>Neuroimage</source> <volume>2</volume>, <fpage>173</fpage>–<lpage>181</lpage><pub-id pub-id-type="doi">10.1006/nimg.1995.1023</pub-id><pub-id pub-id-type="pmid">9343600</pub-id></mixed-citation>
+      </ref>
+      <ref id="B62">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zacks</surname><given-names>J. M.</given-names></name><name><surname>Speer</surname><given-names>N. K.</given-names></name><name><surname>Swallow</surname><given-names>K. M.</given-names></name><name><surname>Braver</surname><given-names>T. S.</given-names></name><name><surname>Reynolds</surname><given-names>J. R.</given-names></name></person-group> (<year>2007</year>). <article-title>Event perception: a mind-brain perspective</article-title>. <source>Psychol. Bull.</source> <volume>133</volume>, <fpage>273</fpage>–<lpage>293</lpage><pub-id pub-id-type="pmid">17338600</pub-id></mixed-citation>
+      </ref>
+      <ref id="B63">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zink</surname><given-names>C. F.</given-names></name><name><surname>Pagnoni</surname><given-names>G.</given-names></name><name><surname>Martin</surname><given-names>M. E.</given-names></name><name><surname>Dhamala</surname><given-names>M.</given-names></name><name><surname>Berns</surname><given-names>G. S.</given-names></name></person-group> (<year>2003</year>). <article-title>Human striatal response to salient nonrewarding stimuli</article-title>. <source>J. Neurosci.</source> <volume>23</volume>, <fpage>7</fpage><pub-id pub-id-type="pmid">12514194</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

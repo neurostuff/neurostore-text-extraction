@@ -1,0 +1,21 @@
+Region,Voxels,MNI coordinates,MNI coordinates,MNI coordinates,Z score
+Region,Voxels,X,Y,Z,Z score
+People,People,People,People,People,People
+Precuneus cortex,450,3,−57,27,>8
+L lingual gyrus,"1,163",−15,−90,−3,>8
+Frontal medial cortex,368,−3,48,−9,>8
+L middle temporal gyrus,158,−63,−6,−15,>8
+R middle temporal gyrus,56,63,−3,−18,>8
+Superior frontal gyrus,61,−6,57,30,7.80
+Locations,Locations,Locations,Locations,Locations,Locations
+L parahippocampal gyrus,270,−27,−36,−15,>8
+L lateral occipital cortex,276,−39,−81,33,>8
+R precuneus,423,15,−48,9,>8
+R parahippocampal gyrus,159,27,−30,−18,>8
+R lateral occipital cortex,71,48,−72,30,7.67
+R cingulate gyrus,41,−3,−36,42,5.97
+L middle temporal gyrus,48,−57,−51,−9,5.97
+L superior frontal gyrus,40,−24,12,54,5.65
+Objects,Objects,Objects,Objects,Objects,Objects
+L middle temporal gyrus,195,−51,−54,0,7.80
+L frontal pole,30,−48,39,12,5.63

@@ -1,0 +1,13 @@
+Cluster size (k),Voxel (peak Z),MNI coordinates (mm),MNI coordinates (mm),MNI coordinates (mm),Side,Brain region
+Cluster size (k),Voxel (peak Z),x,y,z,Side,Brain region
+Dollar Win > Nil,Dollar Win > Nil,Dollar Win > Nil,Dollar Win > Nil,Dollar Win > Nil,Dollar Win > Nil,Dollar Win > Nil
+2497,5.21,− 36,− 40,7,L,Occipital cortex
+179,4.45,− 36,32,1,L,Orbitofrontal cortex
+246,4.16,27,44,− 5,R,Orbitofrontal cortex
+Cent Win > Nil,Cent Win > Nil,Cent Win > Nil,Cent Win > Nil,Cent Win > Nil,Cent Win > Nil,Cent Win > Nil
+196,4.14,− 48,− 4,13,L,Frontal/Temporal Rolandic operculum
+Dollar Loss > Nil,Dollar Loss > Nil,Dollar Loss > Nil,Dollar Loss > Nil,Dollar Loss > Nil,Dollar Loss > Nil,Dollar Loss > Nil
+123,4.40,24,44,− 5,R,Orbitofrontal cortex
+132,4.14,− 33,44,− 5,L,Orbitofrontal cortex
+Cent Loss > Nil,Cent Loss > Nil,Cent Loss > Nil,Cent Loss > Nil,Cent Loss > Nil,Cent Loss > Nil,Cent Loss > Nil
+98,4.31,45,− 1,25,R,Precentral gyrus
