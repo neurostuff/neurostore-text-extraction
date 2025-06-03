@@ -61,6 +61,7 @@ from ns_extract.pipelines.normalize import (
     normalize_string,
     load_abbreviations,
     resolve_abbreviations,
+    find_and_remove_definitions,
 )
 
 
@@ -978,6 +979,7 @@ class Extractor(ABC):
         result = value
 
         if expand:
+            result = find_and_remove_definitions(result, abbreviations)
             result = resolve_abbreviations(result, abbreviations)
         if normalize:
             result = normalize_string(result)
