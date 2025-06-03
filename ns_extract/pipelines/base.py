@@ -976,9 +976,10 @@ class Extractor(ABC):
         if not isinstance(value, str):
             return value
 
-        result = find_and_remove_definitions(value, abbreviations)
+        result = value
 
         if expand:
+            result = find_and_remove_definitions(result, abbreviations)
             result = resolve_abbreviations(result, abbreviations)
         if normalize:
             result = normalize_string(result)
