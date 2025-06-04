@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the brain mechanisms involved in gradually learning and subsequently generalizing a set of visual discriminations, particularly exploring whether hippocampal and/or neocortical activity at encoding, retrieval, or both, was associated with generalizations between equivalence classes.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Visual Discrimination Learning and Generalization Task",
+            "TaskDescription": "Participants learned a set of visual discriminations via trial-and-error (learning phase) and were subsequently tested on their ability to generalize what they had learned (generalization phase) within a first-person virtual reality environment.",
+            "DesignDetails": "The task consisted of a learning phase followed by a generalization phase, both occurring within a single scanning session. Each trial presented a scene with two buildings, one concealing a reward. Participants had 3 seconds to select the rewarded building, followed by 7 seconds of video feedback and a 1-second intertrial interval. There were 48 trials per discrimination presented in a pseudorandom order, with 12 test trials in the generalization phase.",
+            "Conditions": [
+                "Trained Discriminations",
+                "Generalization Trials"
+            ],
+            "TaskMetrics": [
+                "Binary sequences indicating correct versus incorrect responses",
+                "Response times measured within 3 seconds"
+            ],
+            "Concepts": [
+                "Memory generalization",
+                "Relational inference",
+                "Structural configural learning"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Mixed"
+            ],
+            "TaskDuration": "Single scanning session including learning and generalization phases."
+        }
+    ],
+    "BehavioralTasks": null
+}

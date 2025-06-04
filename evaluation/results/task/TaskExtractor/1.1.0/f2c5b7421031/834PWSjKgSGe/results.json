@@ -1,0 +1,126 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To evaluate cognition performance in severe asymptomatic carotid artery stenosis patients undergoing carotid artery stenting (CAS) and explore the mechanisms underlying cognition changes using integrated MRI techniques including pASL MRI and resting-state fMRI (R-fMRI).",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Resting-state fMRI (R-fMRI)",
+            "TaskDescription": "Participants underwent resting-state fMRI to assess brain activity and connectivity. The primary measure was the amplitude of low-frequency fluctuations (ALFF) and functional connectivity (FC) to the posterior cingulate cortex (PCC).",
+            "DesignDetails": "Resting-state design; no specific trials or blocks; participants were instructed to rest with eyes open; data collected continuously during resting state; response collection was based on brain activity measurements.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Amplitude of low-frequency fluctuations (ALFF)",
+                "Functional connectivity (FC) to the PCC"
+            ],
+            "Concepts": [
+                "Cognitive function",
+                "Brain connectivity",
+                "Spontaneous neuronal activity"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Executive cognitive control"
+            ],
+            "RestingState": true,
+            "RestingStateMetadata": {
+                "TotalDuration": "Not specified",
+                "Instructions": "Participants were instructed to rest with eyes open.",
+                "EyesOpenClosedRequirements": "Eyes open",
+                "PhysiologicalMeasurements": "Not specified"
+            },
+            "TaskDesign": [
+                "Other"
+            ],
+            "TaskDuration": null
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Mini-Mental State Examination (MMSE)",
+            "TaskDescription": "Participants completed the MMSE to assess global cognition, measuring various cognitive functions including attention, memory, and language.",
+            "DesignDetails": "Single administration; no specific trials or blocks; participants answered questions within a set time; responses were recorded as scores.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Cognitive scores"
+            ],
+            "Concepts": [
+                "Global cognition",
+                "Memory",
+                "Attention"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Executive cognitive control"
+            ]
+        },
+        {
+            "TaskName": "Montreal Cognitive Assessment (MoCA)",
+            "TaskDescription": "Participants completed the MoCA to evaluate global cognition, focusing on attention, memory, and executive functions.",
+            "DesignDetails": "Single administration; no specific trials or blocks; participants answered questions within a set time; responses were recorded as scores.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Cognitive scores"
+            ],
+            "Concepts": [
+                "Global cognition",
+                "Memory",
+                "Attention"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Executive cognitive control"
+            ]
+        },
+        {
+            "TaskName": "Digit Symbol Test",
+            "TaskDescription": "Participants translated numbers to symbols within 90 seconds, measuring processing speed and attention.",
+            "DesignDetails": "Single administration; participants had 90 seconds to complete the task; responses were recorded as correct translations.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Number of correct translations"
+            ],
+            "Concepts": [
+                "Processing speed",
+                "Attention"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Executive cognitive control"
+            ]
+        },
+        {
+            "TaskName": "Rey Auditory Verbal Learning Test",
+            "TaskDescription": "Participants recalled words from a list, measuring verbal learning and memory ability across five trials.",
+            "DesignDetails": "Five trials of word recall; responses were recorded for immediate and delayed recall; total number of words recalled was measured.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Total words recalled",
+                "Delayed recall"
+            ],
+            "Concepts": [
+                "Verbal learning",
+                "Memory"
+            ],
+            "Domain": [
+                "Learning and memory"
+            ]
+        },
+        {
+            "TaskName": "Digit Span Test",
+            "TaskDescription": "Participants repeated orally presented lists of numbers in forward and backward order, assessing working memory.",
+            "DesignDetails": "Single administration; began with a two-number sequence, increasing by one number for each correct response; responses were recorded as correct spans.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "Forward and backward spans"
+            ],
+            "Concepts": [
+                "Working memory"
+            ],
+            "Domain": [
+                "Learning and memory"
+            ]
+        }
+    ]
+}

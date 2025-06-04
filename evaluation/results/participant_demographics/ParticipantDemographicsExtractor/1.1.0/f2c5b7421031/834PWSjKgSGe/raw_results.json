@@ -1,0 +1,18 @@
+{
+    "groups": [
+        {
+            "count": 16,
+            "diagnosis": "asymptomatic carotid artery stenosis",
+            "group_name": "patients",
+            "subgroup_name": null,
+            "male_count": null,
+            "female_count": null,
+            "age_mean": null,
+            "age_range": "55-80",
+            "age_minimum": 55,
+            "age_maximum": 80,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

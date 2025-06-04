@@ -1,0 +1,37 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "The present study aims to characterize sex differences in cerebral responses to reward anticipation and feedback and whether women and men differ in the influences of individual reward and punishment sensitivity on these neural processes.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Monetary incentive delay task (MIDT)",
+            "TaskDescription": "The MIDT involved participants making a timed response to win a bet of either a dollar, a cent, or nothing.",
+            "DesignDetails": "In the MIDT, a bet appeared on the screen at the beginning of each trial, followed by a randomized fore-period between 1 and 5 seconds. A target box was shown for a short period, and subjects were instructed to press a button as quickly as possible to collect the money before the target box disappeared. An accurate trial was defined by a button press before the target box disappeared. The inter-trial interval was 1.5 seconds, and the response window started at 300 milliseconds, stair-cased for each trial type. Each subject completed two 10-minute runs of the task, with a total of 1844 trials across subjects.",
+            "Conditions": [
+                "dollar",
+                "cent",
+                "nil"
+            ],
+            "TaskMetrics": [
+                "accuracy rate",
+                "reaction time"
+            ],
+            "Concepts": [
+                "reward anticipation",
+                "feedback processing"
+            ],
+            "Domain": [
+                "Motivation"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "20 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

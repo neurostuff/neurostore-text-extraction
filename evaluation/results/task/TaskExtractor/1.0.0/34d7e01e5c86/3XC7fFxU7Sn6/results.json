@@ -1,0 +1,37 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the activation and connectivity of the brain under three different conditions: (1) right ankle dorsiflexion (Task) as the baseline; (2) ankle dorsiflexion coupled with simultaneous stimulation to the agonist muscle (Task+AgonistStim); and (3) to a control area without agonist or antagonist muscles going through (Task+ControlStim).",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Dorsiflexion Task",
+            "TaskDescription": "The motor task consisted of repetitive alternating dorsiflexion and relaxation of the right foot.",
+            "DesignDetails": "The fMRI session was composed of nine rest-task cycles with 30 s for each period. Foot movements were paced following an audio cue that was sounded every 1.5 s. The last audio cue is a verbal command 'stop'. The verbal command 'ready, right foot movement, go' was delivered within a 2 s duration that is 3 s ahead of each task period. Each subject was trained prior to MR scanning to perform the motor task as gently as possible.",
+            "Conditions": [
+                "Task",
+                "Task+AgonistStim",
+                "Task+ControlStim"
+            ],
+            "TaskMetrics": [
+                "fMRI BOLD signal"
+            ],
+            "Concepts": [
+                "motor control",
+                "somatosensory stimulation"
+            ],
+            "Domain": [
+                "Action",
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "570 s"
+        }
+    ],
+    "BehavioralTasks": null
+}

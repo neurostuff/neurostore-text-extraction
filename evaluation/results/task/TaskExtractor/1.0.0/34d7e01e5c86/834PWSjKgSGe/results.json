@@ -1,0 +1,34 @@
+{
+    "Modality": [
+        "fMRI-BOLD",
+        "StructuralMRI"
+    ],
+    "StudyObjective": "To evaluate cognition performance in severe asymptomatic carotid artery stenosis patients undergoing carotid artery stenting (CAS) and explore the mechanisms underlying cognition changes using integrated MRI techniques including pASL MRI and R-fMRI.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Resting-state functional MRI (R-fMRI)",
+            "TaskDescription": "R-fMRI was used to assess functional connectivity in the brain during rest.",
+            "DesignDetails": "Resting-state functional MRI preprocessing was performed with Data Processing Assistant for Resting-State fMRI (DPABI 2.1). The first 10 volumes of each time series were abandoned. Then, the images were corrected for slice timing and realigned. Afterward, images were normalized into standard MNI space and smoothed with 8-mm FWHM isotropic Gaussian kernel.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "functional connectivity"
+            ],
+            "Concepts": [
+                "cognitive function",
+                "brain connectivity"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Learning and memory"
+            ],
+            "RestingState": true,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Other"
+            ],
+            "TaskDuration": null
+        }
+    ],
+    "BehavioralTasks": null
+}

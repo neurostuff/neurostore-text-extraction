@@ -1,0 +1,18 @@
+{
+    "groups": [
+        {
+            "count": 63,
+            "diagnosis": "Healthy",
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": 36,
+            "female_count": 27,
+            "age_mean": null,
+            "age_range": "25-71",
+            "age_minimum": 25,
+            "age_maximum": 71,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

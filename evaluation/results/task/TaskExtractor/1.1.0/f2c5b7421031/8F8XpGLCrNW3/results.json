@@ -1,0 +1,61 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To explore the interaction between conflict resolution processes and memory encoding in MTLE patients and healthy controls using a face-word Stroop paradigm and an incidental memory task.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Face-Word Stroop Task",
+            "TaskDescription": "Participants viewed male and female faces overlaid with congruent or incongruent words (man or woman) and had to indicate the gender of the face by pressing a button. The task aimed to investigate the effects of response conflict on memory encoding.",
+            "DesignDetails": "The task used an event-related design with 120 trials (60 male and 60 female faces). Faces were displayed for 1500ms with a pseudo-exponentially distributed SOA of 5000ms (75%), 7500ms (17%), and 10000ms (8%). Trials were presented in a randomized order with a 50% probability for congruent and incongruent conditions. A black fixation dot was displayed throughout the task to ensure accurate fixation.",
+            "Conditions": [
+                "Congruent",
+                "Incongruent"
+            ],
+            "TaskMetrics": [
+                "Reaction time (RT)",
+                "Accuracy of responses"
+            ],
+            "Concepts": [
+                "Cognitive control",
+                "Memory encoding",
+                "Conflict resolution",
+                "Attention"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Approximately 30-45 minutes after familiarization."
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Incidental Memory Task",
+            "TaskDescription": "Participants were presented with previously seen faces and novel faces, and had to indicate whether they had seen the face before or not using a four-point scale (definitely old, probably old, probably new, definitely new).",
+            "DesignDetails": "The task was conducted outside the MRI scanner, with faces displayed for 2000ms followed by a 2000ms inter-trial interval. Participants rated their recognition of the faces using a four-button response system.",
+            "Conditions": [
+                "Previously seen faces",
+                "Novel faces"
+            ],
+            "TaskMetrics": [
+                "Recognition rates (definitely old and probably old)",
+                "False alarm rates"
+            ],
+            "Concepts": [
+                "Memory retrieval",
+                "Familiarity",
+                "Recognition"
+            ],
+            "Domain": [
+                "Learning and memory"
+            ]
+        }
+    ]
+}

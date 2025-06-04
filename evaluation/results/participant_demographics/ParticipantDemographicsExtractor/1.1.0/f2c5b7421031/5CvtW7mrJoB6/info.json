@@ -1,0 +1,13 @@
+{
+    "date": "2025-06-03T21:54:27.671148",
+    "identifiers": {
+        "dbid": "5CvtW7mrJoB6",
+        "pmid": "26321993",
+        "pmcid": "PMC4530666",
+        "doi": "10.3389/fpsyg.2015.01181"
+    },
+    "inputs": {
+        "/home/jdkent/projects/neurostore-text-extraction/evaluation/data/ns_pond_inputs/5CvtW7mrJoB6/processed/pubget/text.txt": "78a6760414719c1abb7d3de9c30d3acb"
+    },
+    "valid": true
+}

@@ -1,0 +1,32 @@
+{
+    "groups": [
+        {
+            "count": 272,
+            "diagnosis": "healthy",
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": 123,
+            "female_count": 149,
+            "age_mean": 24.4,
+            "age_median": null,
+            "age_minimum": 18,
+            "age_maximum": 61,
+            "age_range": "18-61",
+            "imaging_sample": "yes"
+        },
+        {
+            "count": 272,
+            "diagnosis": "healthy",
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": 123,
+            "female_count": 149,
+            "age_mean": 24.5,
+            "age_median": null,
+            "age_minimum": 18,
+            "age_maximum": 68,
+            "age_range": "18-68",
+            "imaging_sample": "yes"
+        }
+    ]
+}

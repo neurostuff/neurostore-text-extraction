@@ -1,0 +1,40 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the activation and connectivity of the brain under three different conditions: right ankle dorsiflexion (Task) as the baseline; ankle dorsiflexion coupled with simultaneous stimulation to the agonist muscle (Task+AgonistStim); and to a control area without agonist or antagonist muscles going through (Task+ControlStim).",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Ankle Dorsiflexion Task",
+            "TaskDescription": "Participants performed repetitive alternating dorsiflexion and relaxation of the right foot, paced by an audio cue every 1.5 seconds. The last audio cue was a verbal command to stop. The task aimed to assess brain activation patterns during voluntary movement with and without somatosensory stimulation.",
+            "DesignDetails": "The fMRI session consisted of nine rest-task cycles, each lasting 30 seconds. The total duration of the fMRI experiment was 570 seconds. Each task period was preceded by a verbal command delivered within a 2-second duration, 3 seconds ahead of each task period. Participants were trained to perform the motor task gently to avoid large head motions.",
+            "Conditions": [
+                "Task",
+                "Task+AgonistStim",
+                "Task+ControlStim"
+            ],
+            "TaskMetrics": [
+                "Brain activation patterns",
+                "Functional connectivity",
+                "Signal intensity changes"
+            ],
+            "Concepts": [
+                "Motor control",
+                "Somatosensory feedback",
+                "Voluntary movement"
+            ],
+            "Domain": [
+                "Action",
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Mixed"
+            ],
+            "TaskDuration": "570 seconds"
+        }
+    ],
+    "BehavioralTasks": null
+}

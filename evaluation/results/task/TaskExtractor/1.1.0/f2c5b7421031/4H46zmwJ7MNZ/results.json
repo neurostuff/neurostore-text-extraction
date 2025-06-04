@@ -1,0 +1,63 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "Investigate whether caudate nucleus signals for breaches of expectation in a movement observation paradigm.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Movement Observation Task",
+            "TaskDescription": "Participants watched a dancer perform movements according to auditory cues, while occasionally making mistakes. They had to register the cues and judge the dancer's performance based on the last movement before video offset.",
+            "DesignDetails": "The task was event-related, consisting of 400 single movements with 32 incorrect movements (16 invalidly cued switches and 16 invalidly cued repetitions). The task included 40 breaks, divided into 41 videos of varying duration. Participants had to respond within 1500ms after each movement was displayed, followed by feedback for 400ms.",
+            "Conditions": [
+                "Correct movements",
+                "Incorrect movements",
+                "First dissimilar transition cues",
+                "Switch cues",
+                "Repetition cues"
+            ],
+            "TaskMetrics": [
+                "Accuracy of responses",
+                "Reaction time"
+            ],
+            "Concepts": [
+                "Prediction error",
+                "Observational learning",
+                "Cognitive control"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "fMRI session was conducted after training, specific duration not mentioned."
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Behavioral Probe Session",
+            "TaskDescription": "Participants watched a dancer performing movements according to cues, indicating correctness of the last movement before video offset.",
+            "DesignDetails": "The task was event-related, with 400 single movements and 40 breaks. Participants had to respond within 1500ms, followed by feedback for 400ms. The task included question trials to assess performance accuracy.",
+            "Conditions": [
+                "Correct movements",
+                "Incorrect movements"
+            ],
+            "TaskMetrics": [
+                "Accuracy of responses",
+                "Reaction time"
+            ],
+            "Concepts": [
+                "Cognitive control",
+                "Attention"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Attention"
+            ]
+        }
+    ]
+}

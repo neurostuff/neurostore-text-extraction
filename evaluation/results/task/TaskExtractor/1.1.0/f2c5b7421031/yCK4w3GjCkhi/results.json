@@ -1,0 +1,39 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To investigate spoken word processing in young and older adult listeners in the absence of background noise, focusing on age differences in brain networks supporting spoken word recognition and the effects of task choice.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Attentive Listening and Word Repetition Tasks",
+            "TaskDescription": "Participants were instructed to stay alert and focused on a fixation cross while listening to auditory stimuli, including words and noise, and to repeat the words they heard during the word repetition task. The primary measures included neural activity in response to word recognition and accuracy of word repetition.",
+            "DesignDetails": "Functional MRI scanning took place over four scanning blocks, alternating between blocks of attentive listening and word repetition. The order of blocks was counterbalanced. Each block consisted of auditory stimuli presented with a specific timing structure, and participants' spoken responses were recorded for accuracy.",
+            "Conditions": [
+                "Attentive Listening",
+                "Word Repetition",
+                "Noise Baseline"
+            ],
+            "TaskMetrics": [
+                "Neural activity (BOLD response)",
+                "Accuracy of word repetition"
+            ],
+            "Concepts": [
+                "Spoken word recognition",
+                "Auditory processing",
+                "Executive attention"
+            ],
+            "Domain": [
+                "Perception",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Mixed"
+            ],
+            "TaskDuration": null
+        }
+    ],
+    "BehavioralTasks": null
+}

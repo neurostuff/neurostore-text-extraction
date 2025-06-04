@@ -1,0 +1,32 @@
+{
+    "groups": [
+        {
+            "count": 19,
+            "diagnosis": "Mesial Temporal Lobe Epilepsy",
+            "group_name": "patients",
+            "subgroup_name": null,
+            "male_count": 11,
+            "female_count": 8,
+            "age_mean": 45.3,
+            "age_median": null,
+            "age_minimum": null,
+            "age_maximum": null,
+            "age_range": "29.7-45.3",
+            "imaging_sample": "yes"
+        },
+        {
+            "count": 19,
+            "diagnosis": null,
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": 10,
+            "female_count": 9,
+            "age_mean": 45.8,
+            "age_median": null,
+            "age_minimum": null,
+            "age_maximum": null,
+            "age_range": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

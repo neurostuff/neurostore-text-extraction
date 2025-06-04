@@ -1,0 +1,30 @@
+{
+    "groups": [
+        {
+            "count": 21,
+            "diagnosis": "Ptsd",
+            "group_name": "patients",
+            "subgroup_name": null,
+            "male_count": 6,
+            "female_count": 15,
+            "age_mean": 21.5,
+            "age_median": null,
+            "age_minimum": 18,
+            "age_maximum": 31,
+            "imaging_sample": "yes"
+        },
+        {
+            "count": 21,
+            "diagnosis": "Trauma-exposed Control",
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": 7,
+            "female_count": 14,
+            "age_mean": 22.1,
+            "age_median": null,
+            "age_minimum": 18,
+            "age_maximum": 37,
+            "imaging_sample": "yes"
+        }
+    ]
+}

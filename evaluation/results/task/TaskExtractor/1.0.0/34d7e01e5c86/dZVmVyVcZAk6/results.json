@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To investigate performance and brain activity during a highly difficult task performed under varying levels of task difficulty and the threat of stressors.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Toulouse nback Task (TNT)",
+            "TaskDescription": "The task combines a classical nback task with mental arithmetic, requiring participants to memorize and compare results of arithmetic operations.",
+            "DesignDetails": "The active blocks consisted of 12 trials and lasted 36s, interleaved with 24s rest blocks. Participants responded to targets and nontargets by pressing one of two different buttons, with the side of the buttons counterbalanced across participants. The experiment included five functional runs (two safe runs without any sounds and three threat runs with the possible occurrence of aversive sounds), presented in a counterbalanced order. TNT difficulty levels (0back and 2back) were counterbalanced and alternated with rest periods.",
+            "Conditions": [
+                "0back",
+                "2back"
+            ],
+            "TaskMetrics": [
+                "percentage of correct responses",
+                "reaction times",
+                "dprime"
+            ],
+            "Concepts": [
+                "working memory",
+                "mental workload"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Blocked"
+            ],
+            "TaskDuration": "Approximately 3 hours"
+        }
+    ],
+    "BehavioralTasks": null
+}

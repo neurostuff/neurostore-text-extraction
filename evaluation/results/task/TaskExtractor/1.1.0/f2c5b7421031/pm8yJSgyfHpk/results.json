@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "Investigate gender differences in brain activation and classification accuracy maps in response to vocal (speech and non-speech) and non-vocal sounds using a functional voice localizer.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Voice Localizer Paradigm",
+            "TaskDescription": "Subjects were instructed to close their eyes and passively listen to a variety of sounds, including vocal (speech and non-speech) and non-vocal sounds. The primary objective was to explore brain activation differences between genders in response to these sounds.",
+            "DesignDetails": "The task was designed as a block design with 40 blocks total, consisting of 20 vocal and 20 non-vocal blocks. Each block lasted for 8 seconds with an inter-block interval of 2 seconds. Stimuli were presented in a simple block design, and participants were instructed to listen passively.",
+            "Conditions": [
+                "Vocal Sounds",
+                "Non-Vocal Sounds"
+            ],
+            "TaskMetrics": [
+                "BOLD response",
+                "Classification accuracy"
+            ],
+            "Concepts": [
+                "Voice processing",
+                "Gender differences",
+                "Emotion recognition"
+            ],
+            "Domain": [
+                "Perception",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Blocked"
+            ],
+            "TaskDuration": "10.28 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

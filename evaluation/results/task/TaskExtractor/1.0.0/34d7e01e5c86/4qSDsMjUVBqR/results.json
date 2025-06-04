@@ -1,0 +1,34 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the neural activations associated with involuntary memory processing in PTSD generally, not specifically for traumatic events.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Involuntary Memory Retrieval Task",
+            "TaskDescription": "Participants indicated that they had an involuntary memory from the film clip by pressing a button.",
+            "DesignDetails": "The task involved participants watching emotional film clips and pressing a button when they experienced an involuntary memory. The design included a resting state and a task condition where participants reported involuntary memories. The task was designed to avoid invoking top-down processes that would typically occur during voluntary retrieval.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "neural activity",
+                "BOLD signal"
+            ],
+            "Concepts": [
+                "involuntary memory",
+                "emotional processing"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Emotion"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "4 seconds per sound presentation, followed by a 1.5-second response period."
+        }
+    ],
+    "BehavioralTasks": null
+}

@@ -1,0 +1,193 @@
+{
+    "date": "2025-06-03T21:54:20.759989",
+    "version": "1.1.0",
+    "config_hash": "f2c5b7421031",
+    "extractor": "ParticipantDemographicsExtractor",
+    "extractor_kwargs": {
+        "extraction_model": "gpt-4o-mini-2024-07-18",
+        "env_variable": "OPENAI_API_KEY",
+        "env_file": null,
+        "client_url": null,
+        "kwargs": {}
+    },
+    "transform_kwargs": {},
+    "input_pipelines": {},
+    "schema": {
+        "$defs": {
+            "GroupImaging": {
+                "properties": {
+                    "count": {
+                        "description": "Total number of participants finally included in this group. Must be explicitly stated in the text. Do not include excluded participants.",
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "diagnosis": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Clinical/Medical diagnosis using EXACT terminology from the text. Include subtypes and comorbidities if mentioned. Preserve technical terms precisely.",
+                        "expand_abbreviations": true,
+                        "normalize_text": true,
+                        "title": "Diagnosis"
+                    },
+                    "group_name": {
+                        "description": "Primary group classification: 'healthy' for control/comparison groups, 'patients' for those with clinical conditions",
+                        "enum": [
+                            "healthy",
+                            "patients"
+                        ],
+                        "title": "Group Name",
+                        "type": "string"
+                    },
+                    "subgroup_name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "The verbatim name of the group, if available",
+                        "examples": [
+                            "Professional Collision Sport Athletes",
+                            "Young Hispanic Females",
+                            "Depressed Patients Without Psychotic Symptoms"
+                        ],
+                        "expand_abbreviations": true,
+                        "normalize_text": true,
+                        "title": "Subgroup Name"
+                    },
+                    "male_count": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Number of male participants EXPLICITLY reported for this group.",
+                        "title": "Male Count"
+                    },
+                    "female_count": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Number of female participants EXPLICITLY reported for this group.",
+                        "title": "Female Count"
+                    },
+                    "age_mean": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "Arithmetic mean age as EXPLICITLY stated in the text.",
+                        "title": "Age Mean"
+                    },
+                    "age_range": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "Age range exactly as reported in the text, separated by a dash. Use null if only minimum/maximum are separately reported.",
+                        "title": "Age Range"
+                    },
+                    "age_minimum": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "Lowest age reported for this group, either as explicit minimum or lower bound of range. Must be stated in text.",
+                        "title": "Age Minimum"
+                    },
+                    "age_maximum": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "Highest age reported for this group, either as explicit maximum or upper bound of range. Must be stated in text.",
+                        "title": "Age Maximum"
+                    },
+                    "age_median": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "Median age if EXPLICITLY stated. Return null if not directly reported. Do not calculate from other values.",
+                        "title": "Age Median"
+                    },
+                    "imaging_sample": {
+                        "description": "Indicates if this specific group underwent fMRI, MRI, or any neuroimaging procedure. Must be explicitly mentioned in text.",
+                        "enum": [
+                            "yes",
+                            "no"
+                        ],
+                        "title": "Imaging Sample",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "count",
+                    "diagnosis",
+                    "group_name",
+                    "subgroup_name",
+                    "male_count",
+                    "female_count",
+                    "imaging_sample"
+                ],
+                "title": "GroupImaging",
+                "type": "object"
+            }
+        },
+        "properties": {
+            "groups": {
+                "items": {
+                    "$ref": "#/$defs/GroupImaging"
+                },
+                "title": "Groups",
+                "type": "array"
+            }
+        },
+        "required": [
+            "groups"
+        ],
+        "title": "BaseDemographicsSchema",
+        "type": "object"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "groups": [
+        {
+            "count": 17,
+            "diagnosis": "Panic Disorder (PD)",
+            "group_name": "patients",
+            "subgroup_name": null,
+            "male_count": 2,
+            "female_count": null,
+            "age_mean": null,
+            "age_range": null,
+            "age_minimum": null,
+            "age_maximum": null,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

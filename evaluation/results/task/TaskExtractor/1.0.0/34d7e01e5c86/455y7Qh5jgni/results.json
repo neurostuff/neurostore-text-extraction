@@ -1,0 +1,39 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the brain mechanisms involved in gradually learning and subsequently generalizing a set of visual discriminations, exploring whether hippocampal and/or neocortical activity at encoding, retrieval, or both, was associated with generalizations between equivalence classes.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Visual Discrimination Learning and Generalization Task",
+            "TaskDescription": "Participants learned a set of visual discriminations via trial-and-error and were subsequently tested on their ability to generalize what they had learned.",
+            "DesignDetails": "During scanning, participants engaged in a first-person virtual reality environment where they had to select a rewarded building among two options based on wall texture configurations. Each trial lasted 3 seconds for the selection, followed by 7 seconds of feedback and a 1-second inter-trial interval. There were 48 trials per discrimination presented in a pseudorandom order, and the generalization phase involved 12 test trials.",
+            "Conditions": [
+                "Trained Discriminations",
+                "Generalization Trials"
+            ],
+            "TaskMetrics": [
+                "Response Time",
+                "Accuracy"
+            ],
+            "Concepts": [
+                "Memory Generalization",
+                "Visual Discrimination",
+                "Learning",
+                "Hippocampal Mechanisms"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Single scanning session"
+        }
+    ],
+    "BehavioralTasks": null
+}

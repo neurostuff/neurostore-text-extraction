@@ -1,0 +1,41 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To assess hippocampal pattern completion and its relationship to neocortical reinstatement across delay in episodic memory retrieval.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Episodic Memory Retrieval Task",
+            "TaskDescription": "Participants were cued with one element of a learned event and required to retrieve another element from the same event among five foils. The task aimed to assess the relationship between hippocampal pattern completion and neocortical reinstatement across different delays.",
+            "DesignDetails": "The task was event-related, consisting of two encoding sessions separated by 24 hours, followed by a retrieval session inside the scanner. Each encoding session included 90 trials, with a mix of closed-loop and open-loop pairwise associations. During retrieval, participants performed a six-alternative forced-choice task with a maximum of 6 seconds to respond, preceded by a 1-second fixation and followed by a 1-second blank screen.",
+            "Conditions": [
+                "Closed-loop, Delay",
+                "Closed-loop, No-delay",
+                "Open-loop, Delay",
+                "Open-loop, No-delay"
+            ],
+            "TaskMetrics": [
+                "BOLD response",
+                "Retrieval accuracy",
+                "Response time"
+            ],
+            "Concepts": [
+                "Episodic memory",
+                "Pattern completion",
+                "Neocortical reinstatement"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Executive cognitive control"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Varied by participant, maximum 6 seconds per trial"
+        }
+    ],
+    "BehavioralTasks": null
+}

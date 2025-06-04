@@ -1,0 +1,356 @@
+{
+    "date": "2025-06-03T22:31:53.864472",
+    "version": "1.1.0",
+    "config_hash": "f2c5b7421031",
+    "extractor": "TaskExtractor",
+    "extractor_kwargs": {
+        "extraction_model": "gpt-4o-mini-2024-07-18",
+        "env_variable": "OPENAI_API_KEY",
+        "env_file": null,
+        "client_url": null,
+        "kwargs": {}
+    },
+    "transform_kwargs": {},
+    "input_pipelines": {},
+    "schema": {
+        "$defs": {
+            "TaskMetadataModel": {
+                "properties": {
+                    "TaskName": {
+                        "description": "Exact name of the task as stated in text (e.g., 'Stroop Task', 'Go/No-Go Task'). If no explicit name is provided, create brief descriptive name based on core task features. Use verbatim terminology from source for any technical/scientific terms.",
+                        "title": "Taskname",
+                        "type": "string"
+                    },
+                    "TaskDescription": {
+                        "description": "1-2 sentence summary capturing: (1) What participants were instructed to do (2) Type of stimuli/materials used (3) Primary measures/outcomes (4) Overall task objective Use direct quotes where possible. Maintain original terminology.",
+                        "title": "Taskdescription",
+                        "type": "string"
+                    },
+                    "DesignDetails": {
+                        "description": "Detailed task design description including ALL of: - Design type (block/event-related/mixed) - Number and duration of runs/blocks/trials - Trial structure and timing - Inter-trial/block intervals - Stimulus presentation parameters - Response collection methods Quote directly from text. Flag any missing key details.",
+                        "title": "Designdetails",
+                        "type": "string"
+                    },
+                    "Conditions": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Complete list of distinct experimental conditions and control conditions. Include ALL conditions mentioned in design or analysis. Use exact names/labels from text. Note any hierarchical/nested structure.",
+                        "title": "Conditions"
+                    },
+                    "TaskMetrics": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "ALL outcomes measured during task execution including: - Behavioral measures (e.g., accuracy, reaction time) - Neural measures (e.g., BOLD response) - Subjective measures (e.g., ratings) Use precise terminology from source text.",
+                        "title": "Taskmetrics"
+                    },
+                    "Concepts": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "List of specific mental processes and cognitive concepts that the task engages or measures, including: - Core cognitive processes (e.g., 'working memory', 'attention') - Specific mechanisms (e.g., 'response inhibition', 'conflict monitoring') - Perceptual processes (e.g., 'visual perception', 'auditory processing') - Target mental constructs (e.g., 'emotion regulation', 'reward learning') Extract ONLY terms explicitly mentioned in text. Use exact terminology.",
+                        "title": "Concepts"
+                    },
+                    "Domain": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "enum": [
+                                        "Perception",
+                                        "Attention",
+                                        "Reasoning and decision making",
+                                        "Executive cognitive control",
+                                        "Learning and memory",
+                                        "Language",
+                                        "Action",
+                                        "Emotion",
+                                        "Social function",
+                                        "Motivation"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Primary cognitive domain(s) engaged by the task. Select ALL that apply based on explicit task description and measures. Do not infer domains not clearly indicated in text.",
+                        "title": "Domain"
+                    }
+                },
+                "required": [
+                    "TaskName",
+                    "TaskDescription",
+                    "DesignDetails",
+                    "Conditions",
+                    "TaskMetrics",
+                    "Concepts",
+                    "Domain"
+                ],
+                "title": "TaskMetadataModel",
+                "type": "object"
+            },
+            "fMRITaskMetadataModel": {
+                "properties": {
+                    "TaskName": {
+                        "description": "Exact name of the task as stated in text (e.g., 'Stroop Task', 'Go/No-Go Task'). If no explicit name is provided, create brief descriptive name based on core task features. Use verbatim terminology from source for any technical/scientific terms.",
+                        "title": "Taskname",
+                        "type": "string"
+                    },
+                    "TaskDescription": {
+                        "description": "1-2 sentence summary capturing: (1) What participants were instructed to do (2) Type of stimuli/materials used (3) Primary measures/outcomes (4) Overall task objective Use direct quotes where possible. Maintain original terminology.",
+                        "title": "Taskdescription",
+                        "type": "string"
+                    },
+                    "DesignDetails": {
+                        "description": "Detailed task design description including ALL of: - Design type (block/event-related/mixed) - Number and duration of runs/blocks/trials - Trial structure and timing - Inter-trial/block intervals - Stimulus presentation parameters - Response collection methods Quote directly from text. Flag any missing key details.",
+                        "title": "Designdetails",
+                        "type": "string"
+                    },
+                    "Conditions": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Complete list of distinct experimental conditions and control conditions. Include ALL conditions mentioned in design or analysis. Use exact names/labels from text. Note any hierarchical/nested structure.",
+                        "title": "Conditions"
+                    },
+                    "TaskMetrics": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "ALL outcomes measured during task execution including: - Behavioral measures (e.g., accuracy, reaction time) - Neural measures (e.g., BOLD response) - Subjective measures (e.g., ratings) Use precise terminology from source text.",
+                        "title": "Taskmetrics"
+                    },
+                    "Concepts": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "List of specific mental processes and cognitive concepts that the task engages or measures, including: - Core cognitive processes (e.g., 'working memory', 'attention') - Specific mechanisms (e.g., 'response inhibition', 'conflict monitoring') - Perceptual processes (e.g., 'visual perception', 'auditory processing') - Target mental constructs (e.g., 'emotion regulation', 'reward learning') Extract ONLY terms explicitly mentioned in text. Use exact terminology.",
+                        "title": "Concepts"
+                    },
+                    "Domain": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "enum": [
+                                        "Perception",
+                                        "Attention",
+                                        "Reasoning and decision making",
+                                        "Executive cognitive control",
+                                        "Learning and memory",
+                                        "Language",
+                                        "Action",
+                                        "Emotion",
+                                        "Social function",
+                                        "Motivation"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Primary cognitive domain(s) engaged by the task. Select ALL that apply based on explicit task description and measures. Do not infer domains not clearly indicated in text.",
+                        "title": "Domain"
+                    },
+                    "RestingState": {
+                        "description": "Indicate if this was a resting state acquisition. Set true ONLY if explicitly described as resting state, rest period, or baseline state with no active task demands.",
+                        "title": "Restingstate",
+                        "type": "boolean"
+                    },
+                    "RestingStateMetadata": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": null,
+                        "description": "For resting state tasks ONLY, include following details if available: - Total duration of rest periods - Specific instructions given to participants - Eyes open/closed requirements - Any concurrent physiological measurements Return null for non-resting state tasks. Use exact descriptions from text.",
+                        "title": "Restingstatemetadata"
+                    },
+                    "TaskDesign": {
+                        "description": "Design(s) of the task",
+                        "items": {
+                            "enum": [
+                                "Blocked",
+                                "EventRelated",
+                                "Mixed",
+                                "Other"
+                            ],
+                            "type": "string"
+                        },
+                        "title": "Taskdesign",
+                        "type": "array"
+                    },
+                    "TaskDuration": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "Total duration of the task, e.g., '10 minutes' or '600 seconds'.",
+                        "title": "Taskduration"
+                    }
+                },
+                "required": [
+                    "TaskName",
+                    "TaskDescription",
+                    "DesignDetails",
+                    "Conditions",
+                    "TaskMetrics",
+                    "Concepts",
+                    "Domain",
+                    "RestingState",
+                    "TaskDesign",
+                    "TaskDuration"
+                ],
+                "title": "fMRITaskMetadataModel",
+                "type": "object"
+            }
+        },
+        "description": "Model for capturing fMRI study metadata including tasks and imaging details",
+        "properties": {
+            "Modality": {
+                "description": "Modality of the neuroimaging data",
+                "items": {
+                    "enum": [
+                        "fMRI-BOLD",
+                        "StructuralMRI",
+                        "DiffusionMRI",
+                        "PET FDG",
+                        "PET [15O]-water",
+                        "fMRI-CBF",
+                        "fMRI-CBV",
+                        "MEG",
+                        "EEG",
+                        "Other"
+                    ],
+                    "type": "string"
+                },
+                "title": "Modality",
+                "type": "array"
+            },
+            "StudyObjective": {
+                "anyOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ],
+                "description": "A brief summary of the primary research question or objective of the study.",
+                "title": "Studyobjective"
+            },
+            "Exclude": {
+                "anyOf": [
+                    {
+                        "enum": [
+                            "MetaAnalysis",
+                            "Review"
+                        ],
+                        "type": "string"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ],
+                "description": "Only studies that conduct primary data collection are to be included. Thus, if a study is primarily either a meta-analysis or a review, note here.",
+                "title": "Exclude"
+            },
+            "fMRITasks": {
+                "description": "List of fMRI tasks performed by the subjects inside the scanner and their metadata. If the study did not include fMRI tasks, leave this field empty.",
+                "items": {
+                    "$ref": "#/$defs/fMRITaskMetadataModel"
+                },
+                "title": "Fmritasks",
+                "type": "array"
+            },
+            "BehavioralTasks": {
+                "anyOf": [
+                    {
+                        "items": {
+                            "$ref": "#/$defs/TaskMetadataModel"
+                        },
+                        "type": "array"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ],
+                "description": "List of behavioral tasks performed by the subjects outside the scanner and their metadata. If the study did not include behavioral tasks, leave this field empty.",
+                "title": "Behavioraltasks"
+            }
+        },
+        "required": [
+            "Modality",
+            "StudyObjective",
+            "Exclude",
+            "fMRITasks",
+            "BehavioralTasks"
+        ],
+        "title": "StudyMetadataModel",
+        "type": "object"
+    }
+}
