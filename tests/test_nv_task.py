@@ -25,12 +25,12 @@ def test_TaskExtractor(sample_data, tmp_path):
     task_extractor.transform_dataset(dataset, output_dir)
 
     # Verify directory structure and files
-    version_dir = next(output_dir.glob("TaskExtractor/1.0.0/*"))
+    version_dir = next(output_dir.glob(f"TaskExtractor/{task_extractor._version}/*"))
     assert version_dir.exists()
 
     # Check pipeline info
     pipeline_info = json.loads((version_dir / "pipeline_info.json").read_text())
-    assert pipeline_info["version"] == "1.0.0"
+    assert pipeline_info["version"] == task_extractor._version
     assert (
         pipeline_info["extractor_kwargs"]["extraction_model"]
         == "gpt-4o-mini-2024-07-18"
