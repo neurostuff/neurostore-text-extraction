@@ -14,7 +14,7 @@ from ns_extract.pipelines.api import APIPromptExtractor
 class ParticipantDemographicsExtractor(APIPromptExtractor):
     """Participant demographics extraction pipeline."""
 
-    _version = "1.0.0"
+    _version = "1.1.0"
     _prompt = base_message
     _output_schema = BaseDemographicsSchema
 

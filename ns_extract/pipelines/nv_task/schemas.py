@@ -6,39 +6,59 @@ from typing_extensions import Literal, Optional, Dict
 class TaskMetadataModel(BaseModel):
     TaskName: str = Field(
         description=(
-            "Name of the task, e.g., 'Stroop Task' or 'Go/No-Go Task'. "
-            "Provide the name as it appears in the paper or a descriptive name if unspecified."
+            "Exact name of the task as stated in text (e.g., 'Stroop Task', 'Go/No-Go Task'). "
+            "If no explicit name is provided, "
+            "create brief descriptive name based on core task features. "
+            "Use verbatim terminology from source for any technical/scientific terms."
         )
     )
     TaskDescription: str = Field(
         description=(
-            "In 1-2 sentences, describe the key features of the task, such as its purpose "
-            "or what it measures."
+            "1-2 sentence summary capturing: "
+            "(1) What participants were instructed to do "
+            "(2) Type of stimuli/materials used "
+            "(3) Primary measures/outcomes "
+            "(4) Overall task objective "
+            "Use direct quotes where possible. Maintain original terminology."
         )
     )
     DesignDetails: str = Field(
         description=(
-            "Provide a detailed description of the task design in up to 1 paragraph. Include "
-            "information on the number of conditions, the number of trials per condition, "
-            "the length of trials, and the length of inter-trial intervals. Quote directly "
-            "from the paper where possible."
+            "Detailed task design description including ALL of: "
+            "- Design type (block/event-related/mixed) "
+            "- Number and duration of runs/blocks/trials "
+            "- Trial structure and timing "
+            "- Inter-trial/block intervals "
+            "- Stimulus presentation parameters "
+            "- Response collection methods "
+            "Quote directly from text. Flag any missing key details."
         )
     )
     Conditions: Optional[List[str]] = Field(
-        description="Conditions of task performed by the subjects."
+        description=(
+            "Complete list of distinct experimental conditions and control conditions. "
+            "Include ALL conditions mentioned in design or analysis. "
+            "Use exact names/labels from text. Note any hierarchical/nested structure."
+        )
     )
     TaskMetrics: Optional[List[str]] = Field(
         description=(
-            "Key metrics or outcomes measured during the task, e.g., 'response time', "
-            "'accuracy', 'fMRI BOLD signal'."
+            "ALL outcomes measured during task execution including: "
+            "- Behavioral measures (e.g., accuracy, reaction time) "
+            "- Neural measures (e.g., BOLD response) "
+            "- Subjective measures (e.g., ratings) "
+            "Use precise terminology from source text."
         )
     )
     Concepts: Optional[List[str]] = Field(
         description=(
-            "List of mental concepts associated with the task, such as cognitive processes "
-            "or representations it engages. Examples include 'working memory', 'response "
-            "inhibition', 'visual perception'. Extract terms from the paper that describe "
-            "the underlying mental constructs measured or manipulated by the task."
+            "List of specific mental processes and cognitive concepts that the task "
+            "engages or measures, including: "
+            "- Core cognitive processes (e.g., 'working memory', 'attention') "
+            "- Specific mechanisms (e.g., 'response inhibition', 'conflict monitoring') "
+            "- Perceptual processes (e.g., 'visual perception', 'auditory processing') "
+            "- Target mental constructs (e.g., 'emotion regulation', 'reward learning') "
+            "Extract ONLY terms explicitly mentioned in text. Use exact terminology."
         )
     )
     Domain: Optional[
@@ -56,16 +76,33 @@ class TaskMetadataModel(BaseModel):
                 "Motivation",
             ]
         ]
-    ] = Field(description="Cognitive domain(s) the concept(s) belong to")
+    ] = Field(
+        description=(
+            "Primary cognitive domain(s) engaged by the task. "
+            "Select ALL that apply based on explicit task description and measures. "
+            "Do not infer domains not clearly indicated in text."
+        )
+    )
 
 
 class fMRITaskMetadataModel(TaskMetadataModel):
-    RestingState: bool = Field(description="Was this task a resting state task?")
+    RestingState: bool = Field(
+        description=(
+            "Indicate if this was a resting state acquisition. "
+            "Set true ONLY if explicitly described as resting state, "
+            "rest period, or baseline state with no active task demands."
+        )
+    )
     RestingStateMetadata: Optional[Dict[str, str]] = Field(
         description=(
-            "Additional details about the resting-state task, such as duration and "
-            "instructions provided to participants, if applicable."
-        )
+            "For resting state tasks ONLY, include following details if available: "
+            "- Total duration of rest periods "
+            "- Specific instructions given to participants "
+            "- Eyes open/closed requirements "
+            "- Any concurrent physiological measurements "
+            "Return null for non-resting state tasks. Use exact descriptions from text."
+        ),
+        default=None
     )
     TaskDesign: List[Literal["Blocked", "EventRelated", "Mixed", "Other"]] = Field(
         description="Design(s) of the task"
@@ -76,6 +113,7 @@ class fMRITaskMetadataModel(TaskMetadataModel):
 
 
 class StudyMetadataModel(BaseModel):
+    """Model for capturing fMRI study metadata including tasks and imaging details"""
     Modality: List[
         Literal[
             "fMRI-BOLD",
