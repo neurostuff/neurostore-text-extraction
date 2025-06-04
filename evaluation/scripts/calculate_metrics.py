@@ -219,7 +219,11 @@ def format_results(results: Dict[str, Dict]) -> str:
     for field, metrics in results.items():
         if field == "aggregate":
             continue
-        line = f"{field:<20} {metrics['precision']:>10.2%} {metrics['precision']:>10.2%} {metrics['f1']:>10.2%}"
+        line = (
+            f"{field:<20} {metrics['precision']:>10.2%}",
+            f"{metrics['precision']:>10.2%} {metrics['f1']:>10.2%}"
+        )
+
         output.append(line)
 
     # Aggregate metrics

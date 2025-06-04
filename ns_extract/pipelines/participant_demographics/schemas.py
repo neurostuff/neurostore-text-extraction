@@ -42,6 +42,7 @@ class GroupBase(BaseModel):
         default=None,
         description="Age range exactly as reported in the text, separated by a dash. "
         "Use null if only minimum/maximum are separately reported.",
+        json_schema_extra={NORMALIZE_TEXT: True}
     )
     age_minimum: Optional[int] = Field(
         default=None,

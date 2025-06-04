@@ -18,7 +18,7 @@ to key experimental features and conditions. Focus on identifying:
    - Stimulus properties and presentation details
    - Response requirements and measurements
    - Number of trials/blocks per condition
-   
+
 3. COGNITIVE ASPECTS:
    - Identify all mental concepts engaged (e.g., working memory, attention)
    - Determine primary cognitive domains involved
