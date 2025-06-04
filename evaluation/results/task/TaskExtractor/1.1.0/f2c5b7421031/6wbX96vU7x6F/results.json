@@ -1,0 +1,42 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To characterize sex differences in cerebral responses to reward anticipation and feedback and whether women and men differ in the influences of individual reward and punishment sensitivity on these neural processes.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Monetary Incentive Delay Task (MIDT)",
+            "TaskDescription": "In the MIDT, a bet (a dollar, a cent, or no money) appeared on the screen at the beginning of each trial. After a randomized fore-period between 1 and 5s, a target box was shown for a short period. Subjects were instructed to press a button as quickly as possible to collect the money (win) before the target box disappeared. An accurate trial was defined by a button press before disappearance of the target box. Otherwise, subjects would lose the bet, with the amount deducted from the total win.",
+            "DesignDetails": "The task involved two 10-minute runs with a randomized fore-period between 1 and 5 seconds. The response window started at 300ms and was stair-cased for each trial type (dollar/cent/no money) separately. The inter-trial interval was 1.5 seconds. Approximately 42% of all trials were dollar trials, 42% were cent trials, and no money constituted the remaining trials.",
+            "Conditions": [
+                "Dollar Win",
+                "Dollar Loss",
+                "Cent Win",
+                "Cent Loss",
+                "Nil"
+            ],
+            "TaskMetrics": [
+                "Accuracy Rate (AR)",
+                "Reaction Time (RT)"
+            ],
+            "Concepts": [
+                "Reward Processing",
+                "Punishment Sensitivity",
+                "Behavioral Impulsivity",
+                "Behavioral Avoidance"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Motivation"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "20 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

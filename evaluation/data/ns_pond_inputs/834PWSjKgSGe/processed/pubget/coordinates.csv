@@ -1,0 +1,11 @@
+table_id,table_label,table_caption,table_number,x,y,z,p_value,region,size,statistic,groups
+T2,Table 2,,,-12.0,-81.0,-36.0,,,,,
+T2,Table 2,,,-3.0,15.0,12.0,,,,,
+T3,Table 3,,,24.0,-12.0,60.0,,,,,
+T3,Table 3,,,6.0,-57.0,-27.0,,,,,
+T4,Table 4,,,24.0,57.0,3.0,,,,,
+T2,Table 2,,,-12.0,-81.0,-36.0,,,,,
+T2,Table 2,,,-3.0,15.0,12.0,,,,,
+T3,Table 3,,,24.0,-12.0,60.0,,,,,
+T3,Table 3,,,6.0,-57.0,-27.0,,,,,
+T4,Table 4,,,24.0,57.0,3.0,,,,,

@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To explore neural correlates of threat processing in a suited sample of PD patients by means of script-driven imagery based on a newly developed set of controlled disorder-related and neutral scenarios.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Script-driven imagery",
+            "TaskDescription": "Participants listen to disorder-related and neutral narrative scripts and imagine the active role of the protagonist.",
+            "DesignDetails": "The task involved presenting disorder-related and neutral narrative scripts to participants. Each script lasted exactly 30 seconds, and participants were instructed to close their eyes and imagine the scenarios as vividly as possible. The trials were pseudo-randomised with an inter-trial interval of 20 seconds, and the task lasted for approximately 9 minutes.",
+            "Conditions": [
+                "Disorder-related scripts",
+                "Neutral scripts"
+            ],
+            "TaskMetrics": [
+                "fMRI BOLD signal"
+            ],
+            "Concepts": [
+                "threat processing",
+                "emotional reactivity",
+                "vigilance",
+                "interoceptive processing"
+            ],
+            "Domain": [
+                "Emotion",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "9 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

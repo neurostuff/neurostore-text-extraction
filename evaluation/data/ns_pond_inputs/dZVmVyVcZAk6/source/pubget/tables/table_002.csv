@@ -1,0 +1,15 @@
+Region,Laterality,Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm)
+Region,Laterality,BA,X,Y,Z,t‐value
+Positive interaction,Positive interaction,Positive interaction,Positive interaction,Positive interaction,Positive interaction,Positive interaction
+SMA,Left,6,−6,18,48,4.84
+,Right,6,8,18,46,3.71
+,Left,6,−8,10,56,3.84
+DLPFC,Left,9,−56,16,30,4.49
+,Left,46,−46,18,28,4.78
+Inferior frontal gyrus,Left,44,−52,12,8,3.89
+Inferior parietal lobule,Left,40,−50,−44,44,4.28
+Superior parietal lobule,Left,7,−28,−68,44,3.98
+Negative interaction,Negative interaction,Negative interaction,Negative interaction,Negative interaction,Negative interaction,Negative interaction
+VMPFC/ventral ACC,Left,10/32,−8,40,−8,4.69
+Hippocampus,Left,,−24,−28,−14,4.12
+,Right,,26,−12,−14,4.34

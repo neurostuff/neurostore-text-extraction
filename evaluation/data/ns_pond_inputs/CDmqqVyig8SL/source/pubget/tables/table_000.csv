@@ -1,0 +1,4 @@
+Retrieval of element C,Retrieval of element B,Retrieval of element B
+Retrieval of element C,Correct (PAB),Incorrect (1−PAB)
+Correct (PAC),∑i=1N=PABiPACi,∑i=1N=PACi(1−PABi)
+Incorrect (1−PAC),∑i=1N=PABi(1−PACi),∑i=1N=(1−PABi)(1−PACi)

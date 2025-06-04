@@ -1,0 +1,32 @@
+{
+    "groups": [
+        {
+            "count": 23,
+            "diagnosis": "Anorexia Nervosa (AN)",
+            "group_name": "patients",
+            "subgroup_name": null,
+            "male_count": null,
+            "female_count": null,
+            "age_mean": null,
+            "age_range": null,
+            "age_minimum": null,
+            "age_maximum": null,
+            "age_median": null,
+            "imaging_sample": "yes"
+        },
+        {
+            "count": 24,
+            "diagnosis": "Healthy Control (HC)",
+            "group_name": "healthy",
+            "subgroup_name": null,
+            "male_count": null,
+            "female_count": null,
+            "age_mean": null,
+            "age_range": null,
+            "age_minimum": null,
+            "age_maximum": null,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

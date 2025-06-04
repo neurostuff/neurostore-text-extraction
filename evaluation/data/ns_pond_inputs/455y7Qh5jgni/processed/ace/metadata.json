@@ -1,0 +1,11 @@
+{
+    "title": "The role of the hippocampus in generalizing configural relationships.",
+    "authors": "Berens, Sam C;Bird, Chris M",
+    "journal": "Hippocampus",
+    "keywords": null,
+    "abstract": "The hippocampus has been implicated in integrating information across separate events in support of mnemonic generalizations. These generalizations may be underpinned by processes at both encoding (linking similar information across events) and retrieval (\"on-the-fly\" generalization). However, the relative contribution of the hippocampus to encoding- and retrieval-based generalizations is poorly understood. Using fMRI in humans, we investigated the hippocampal role in gradually learning a set of spatial discriminations and subsequently generalizing them in an acquired equivalence task. We found a highly significant correlation between individuals' performance on a generalization test and hippocampal activity during the test, providing evidence that hippocampal processes support on-the-fly generalizations at retrieval. Within the same hippocampal region there was also a correlation between activity during the final stage of learning (when all associations had been learnt but no generalization was required) and subsequent generalization performance. We suggest that the hippocampus spontaneously retrieves prior events that share overlapping features with the current event. This process may also support the creation of generalized representations during encoding. These findings are supportive of the view that the hippocampus contributes to both encoding- and retrieval-based generalization via the same basic mechanism; retrieval of similar events sharing common features. \u00a9 2016 The Authors Hippocampus Published by Wiley Periodicals, Inc.",
+    "publication_year": 2017,
+    "coordinate_space": "MNI",
+    "license": null,
+    "text": true
+}

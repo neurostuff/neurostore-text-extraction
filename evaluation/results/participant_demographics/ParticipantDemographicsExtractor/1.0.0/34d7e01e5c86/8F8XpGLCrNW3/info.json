@@ -1,0 +1,13 @@
+{
+    "date": "2025-06-03T18:34:27.331710",
+    "identifiers": {
+        "dbid": "8F8XpGLCrNW3",
+        "pmid": "33189928",
+        "pmcid": "PMC7836234",
+        "doi": "10.1016/j.neuroimage.2020.117563"
+    },
+    "inputs": {
+        "/home/jdkent/projects/neurostore-text-extraction/evaluation/data/ns_pond_inputs/8F8XpGLCrNW3/processed/pubget/text.txt": "117bb0e87fe6f12725809b2491adc46c"
+    },
+    "valid": true
+}

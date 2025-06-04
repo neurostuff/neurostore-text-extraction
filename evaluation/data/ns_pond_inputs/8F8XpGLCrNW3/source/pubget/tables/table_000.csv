@@ -1,0 +1,9 @@
+Brain region,Voxels,"Peak voxel Coordinates (x,y,z)","Peak voxel Coordinates (x,y,z).1","Peak voxel Coordinates (x,y,z).2",FWE-corrected cluster p-value
+R Anterior Insula,5832,32,20,−6,<0.001
+L Anterior Insula,640,−26,22,−10,<0.001
+R SMA,2841,2,16,48,<0.001
+L Caudate Nucleus,188,−10,16,−2,0.018
+L Precuneus,690,−18,−74,30,<0.001
+L MFG,374,−48,26,30,<0.001
+L Precentral Gyrus,277,−48,2,46,0.003
+L Putamen,157,−32,−2,−10,0.038

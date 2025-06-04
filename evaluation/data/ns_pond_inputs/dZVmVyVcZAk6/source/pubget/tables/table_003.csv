@@ -1,0 +1,15 @@
+Region,Laterality,Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm)
+Region,Laterality,BA,X,Y,Z,t‐value
+Heart rate and threat of stressors,,,,,,
+Middle occipital gyrus,Left,19.0,−40,−84,12,3.8
+Hippocampus,Right,,30,−26,−6,3.6
+Precuneus,Right,7.0,24,−66,36,3.5
+Ventral PCC,Right,30.0,8,−52,10,3.37
+Superior temporal gyrus,Right,40.0,56,−66,28,3.3
+Middle occipital gyrus,Left,19.0,−44,−74,20,3.06
+Pupil diameter and threat of stressors,,,,,,
+Fusiform gyrus,Left,37.0,−32,−58,−8,3.51
+Anterior PFC???,Right,10.0,24,60,18,3.5
+DMPFC,Right,8.0,12,30,58,3.4
+DLPFC,Right,9.0,46,22,34,2.97
+Inferior occipital gyrus,Left,18.0,−32,−90,−12,2.95

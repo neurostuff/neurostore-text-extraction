@@ -1,0 +1,796 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Front Hum Neurosci</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Front Hum Neurosci</journal-id>
+      <journal-id journal-id-type="publisher-id">Front. Hum. Neurosci.</journal-id>
+      <journal-title-group>
+        <journal-title>Frontiers in Human Neuroscience</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1662-5161</issn>
+      <publisher>
+        <publisher-name>Frontiers Media S.A.</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">33192383</article-id>
+      <article-id pub-id-type="pmc">7649291</article-id>
+      <article-id pub-id-type="doi">10.3389/fnhum.2020.509258</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Neuroscience</subject>
+          <subj-group>
+            <subject>Original Research</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>White Matter Neuroplasticity: Motor Learning Activates the Internal Capsule and Reduces Hemodynamic Response Variability</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Frizzell</surname>
+            <given-names>Tory O.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn002">
+            <sup>†</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/836016/overview"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Grajauskas</surname>
+            <given-names>Lukas A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn002">
+            <sup>†</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/743360/overview"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Careesa C.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff5">
+            <sup>5</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/346895/overview"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ghosh Hajra</surname>
+            <given-names>Sujoy</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/323234/overview"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Song</surname>
+            <given-names>Xiaowei</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/466402/overview"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>D’Arcy</surname>
+            <given-names>Ryan C. N.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff7">
+            <sup>7</sup>
+          </xref>
+          <xref ref-type="corresp" rid="c001">
+            <sup>*</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://loop.frontiersin.org/people/114074/overview"/>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><sup>1</sup><institution>Simon Fraser University ImageTech Lab, Health Science and Innovation, Surrey Memorial Hospital, Fraser Health</institution>, <addr-line>Surrey, BC</addr-line>, <country>Canada</country></aff>
+      <aff id="aff2"><sup>2</sup><institution>Faculty of Applied Sciences, Simon Fraser University</institution>, <addr-line>Burnaby, BC</addr-line>, <country>Canada</country></aff>
+      <aff id="aff3"><sup>3</sup><institution>Cumming School of Medicine, University of Calgary</institution>, <addr-line>Calgary, AB</addr-line>, <country>Canada</country></aff>
+      <aff id="aff4"><sup>4</sup><institution>Department of Biomedical Physiology and Kinesiology, Simon Fraser University</institution>, <addr-line>Burnaby, BC</addr-line>, <country>Canada</country></aff>
+      <aff id="aff5"><sup>5</sup><institution>Rotman Research Institute, Baycrest Health Sciences</institution>, <addr-line>Toronto, ON</addr-line>, <country>Canada</country></aff>
+      <aff id="aff6"><sup>6</sup><institution>Flight Research Laboratory, National Research Council Canada</institution>, <addr-line>Ottawa, ON</addr-line>, <country>Canada</country></aff>
+      <aff id="aff7"><sup>7</sup><institution>Djavad Mowafaghian Centre for Brain Health, University of British Columbia</institution>, <addr-line>Vancouver, BC</addr-line>, <country>Canada</country></aff>
+      <author-notes>
+        <fn fn-type="edited-by">
+          <p>Edited by: Jodie Reanna Gawryluk, University of Victoria, Canada</p>
+        </fn>
+        <fn fn-type="edited-by">
+          <p>Reviewed by: Jiang Zhang, Sichuan University, China; Philippe Ciuciu, Commissariat à l’Energie Atomique et aux Energies Alternatives (CEA), France</p>
+        </fn>
+        <corresp id="c001">*Correspondence: Ryan C. N. D’Arcy, <email>rdarcy@sfu.ca</email></corresp>
+        <fn fn-type="other" id="fn002">
+          <p><sup>†</sup>These authors have contributed equally to this work</p>
+        </fn>
+        <fn fn-type="other" id="fn004">
+          <p>This article was submitted to Brain Imaging and Stimulation, a section of the journal Frontiers in Human Neuroscience</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>10</month>
+        <year>2020</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2020</year>
+      </pub-date>
+      <volume>14</volume>
+      <elocation-id>509258</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>05</day>
+          <month>11</month>
+          <year>2019</year>
+        </date>
+        <date date-type="accepted">
+          <day>29</day>
+          <month>9</month>
+          <year>2020</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2020 Frizzell, Grajauskas, Liu, Ghosh Hajra, Song and D’Arcy.</copyright-statement>
+        <copyright-year>2020</copyright-year>
+        <copyright-holder>Frizzell, Grajauskas, Liu, Ghosh Hajra, Song and D’Arcy</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). The use, distribution or reproduction in other forums is permitted, provided the original author(s) and the copyright owner(s) are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Numerous studies have noted the importance of white matter changes in motor learning, but existing literature only focuses on structural and microstructural MRI changes, as there are limited tools available for <italic>in vivo</italic> investigations of white matter function. One method that has gained recent prominence is the application of blood oxygen level dependent (BOLD) fMRI to white matter, with high-field scanners now being able to better detect the smaller hemodynamic changes present in this tissue type compared to those in the gray matter. However, fMRI techniques have yet to be applied to investigations of neuroplastic change with motor learning in white matter. White matter function represents an unexplored component of neuroplasticity and is essential for gaining a complete understanding of learning-based changes occurring throughout the whole brain. Twelve healthy, right-handed participants completed fine motor and gross motor tasks with both hands, using an MRI compatible computer mouse. Using a crossover design along with a prior analysis approach to establish WM activation, participants received a baseline scan followed by 2 weeks of training, returning for a midpoint and endpoint scan. The motor tasks were designed to be selectively difficult for the left hand, leading to a training effect only in that condition. Analysis targeted the comparison and detection of training-associated right vs left hand changes. A statistically significant improvement in motor task score was only noted for the left-hand motor condition. A corresponding change in the temporal characteristics of the white matter hemodynamic response was shown within only the right corticospinal tract. The hemodynamic response exhibited a reduction in the dispersion characteristics after the training period. To our knowledge, this is the first report of MRI detectable functional neuroplasticity in white matter, suggesting that modifications in temporal characteristics of white matter hemodynamics may underlie functional neuroplasticity in this tissue.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>functional magnetic resonance imaging</kwd>
+        <kwd>white matter activation</kwd>
+        <kwd>neuroplasticity</kwd>
+        <kwd>motor learning</kwd>
+        <kwd>functional connectivity</kwd>
+        <kwd>internal capsule</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source id="cn001">Natural Sciences and Engineering Research Council of Canada<named-content content-type="fundref-id">10.13039/501100000038</named-content></funding-source>
+          <award-id rid="cn001">206875</award-id>
+        </award-group>
+      </funding-group>
+      <counts>
+        <fig-count count="3"/>
+        <table-count count="2"/>
+        <equation-count count="0"/>
+        <ref-count count="50"/>
+        <page-count count="9"/>
+        <word-count count="0"/>
+      </counts>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="S1">
+      <title>Introduction</title>
+      <p>White matter (WM) is a critically important tissue for brain function, making up almost 50% of the brain’s volume (<xref rid="B1" ref-type="bibr">Black, 2007</xref>), and providing connections between cortical areas in a manner vital for communication throughout neural networks (<xref rid="B2" ref-type="bibr">Bassett et al., 2011</xref>). Despite this, WM has been largely excluded from fMRI investigations. By extension, very little is known about the role of WM in brain network activation, and changes in functional activity with time. By focusing neuroplasticity investigations solely on GM areas of brain we restrict our understanding of the complex changes that underly processes such as learning and rehabilitation. Indeed, a focus on WM activation is critical as this has historically been a “blind spot” in functional MRI research (<xref rid="B13" ref-type="bibr">Grajauskas et al., 2019</xref>).</p>
+      <p>Though studies using blood oxygen level dependent (BOLD) signal have largely focused on gray matter (GM), improved MRI technology is allowing for the detection of the lower amplitude BOLD signals coming from WM (<xref rid="B11" ref-type="bibr">Gawryluk et al., 2014b</xref>). Early investigations into capturing WM BOLD signal found it detectable at high field strengths. <xref rid="B9" ref-type="bibr">Gawryluk et al. (2009</xref>, <xref rid="B12" ref-type="bibr">2011)</xref> demonstrated WM fMRI signal at 4T by using an asymmetric spin echo (ASE) sequence to improve sensitivity to the comparatively smaller WM signal. Higher field strengths have an increased ability to detect WM BOLD activation (<xref rid="B25" ref-type="bibr">Mazerolle et al., 2013</xref>), and ASE sequences likewise have increased sensitivity (<xref rid="B26" ref-type="bibr">McWhinney et al., 2012</xref>). <xref rid="B11" ref-type="bibr">Gawryluk et al. (2014b)</xref>, <xref rid="B13" ref-type="bibr">Grajauskas et al. (2019)</xref>, and <xref rid="B21" ref-type="bibr">Li et al. (2019)</xref> provide reviews of the evidence in support of the biological basis of WM BOLD fMRI activation.</p>
+      <p>A great deal of the existing WM BOLD research has focused on the corpus callosum, as the large and isolated nature of the tract makes it ideal for investigations of WM activity (<xref rid="B9" ref-type="bibr">Gawryluk et al., 2009</xref>, <xref rid="B10" ref-type="bibr">2014a</xref>; <xref rid="B25" ref-type="bibr">Mazerolle et al., 2013</xref>). However, there have also been numerous reports of detectable activation in the internal capsule, linked with motor functions such as swallowing (<xref rid="B28" ref-type="bibr">Mosier and Bereznaya, 2001</xref>) and finger tapping tasks (<xref rid="B24" ref-type="bibr">Mazerolle et al., 2010</xref>; <xref rid="B12" ref-type="bibr">Gawryluk et al., 2011</xref>). Similar to the corpus callosum results (<xref rid="B24" ref-type="bibr">Mazerolle et al., 2010</xref>), WM activation in the internal capsule has been integrated with diffusion tensor imaging (DTI) results and the larger GM activation network.</p>
+      <p>Following the initial technical research, WM BOLD signal was subsequently detected in a number of resting state and task-based fMRI studies (<xref rid="B23" ref-type="bibr">Marussich et al., 2017</xref>; <xref rid="B32" ref-type="bibr">Peer et al., 2017</xref>; <xref rid="B47" ref-type="bibr">Wu et al., 2017</xref>; <xref rid="B50" ref-type="bibr">Zhou et al., 2018</xref>) at conventional field strengths. The successful detection of WM BOLD at conventional field strengths and standard sequences improved the accessibility and adoptability within the field of research.</p>
+      <p>More recently, advanced analysis has investigated the unique hemodynamics of white matter, showing that there are different patterns of blood flow within this tissue type. <xref rid="B5" ref-type="bibr">Courtemanche et al. (2018)</xref> demonstrated that sensitivity to WM BOLD signals could be improved by using a WM specific hemodynamic response function (HRF). The hemodynamic response in the corpus callosum has been shown to have a delayed onset slope and delayed peak time when compared to GM (<xref rid="B5" ref-type="bibr">Courtemanche et al., 2018</xref>). <xref rid="B21" ref-type="bibr">Li et al. (2019)</xref> further confirmed this and found that the hemodynamic profile of WM may differ considerably throughout the brain (<xref rid="B21" ref-type="bibr">Li et al., 2019</xref>). This is a contributing factor to the lack of detected WM activation in the literature, as the use of hemodynamic response functions (HRFs) modeled on the properties of GM may not properly reflect the WM signal (<xref rid="B13" ref-type="bibr">Grajauskas et al., 2019</xref>).</p>
+      <p>Though WM is an active functional tissue, investigation into the role of WM in neuroplasticity has historically been limited to structural and microstructural measures. DTI is a leading modality, and though it only offers structural information, it is the foundation of WM neuroplasticity quantification. Specifically, fractional anisotropy (FA) and mean diffusivity (MD) have been used as key biomarkers of WM structure. Numerous studies have demonstrated a measurable change in FA and MD during longitudinal monitoring of visual and motor training tasks (<xref rid="B38" ref-type="bibr">Scholz et al., 2009</xref>; <xref rid="B42" ref-type="bibr">Takeuchi et al., 2010</xref>; <xref rid="B43" ref-type="bibr">Taubert et al., 2010</xref>; <xref rid="B16" ref-type="bibr">Hofstetter et al., 2013</xref>; <xref rid="B44" ref-type="bibr">Wang et al., 2014</xref>; <xref rid="B49" ref-type="bibr">Yotsumoto et al., 2014</xref>). Cross sectional investigations corroborate this link between WM structure and function. Proficiency in skills such as music, dance, and fine motor tasks have been linked with population difference in FA (<xref rid="B3" ref-type="bibr">Bengtsson et al., 2005</xref>; <xref rid="B19" ref-type="bibr">Johansen-Berg et al., 2007</xref>; <xref rid="B17" ref-type="bibr">Imfeld et al., 2009</xref>; <xref rid="B14" ref-type="bibr">Hänggi et al., 2010</xref>; <xref rid="B39" ref-type="bibr">Steele et al., 2013</xref>). Significant changes in WM tract myelination, another key biomarker of WM structure, have also been shown in visuo-motor training tasks (<xref rid="B20" ref-type="bibr">Lakhani et al., 2016</xref>).</p>
+      <p>More recently, a 4-week motor training activity was shown to increase FA in several white matter tracts associated with motor activity. An increase in FA within the right CST, along a tract seeded from areas activated by the tapping task, was found (<xref rid="B35" ref-type="bibr">Reid et al., 2017</xref>). This task showed a significantly lateralized difference in motor training across several modalities between participants non-dominant and dominant hands. The evidence of motor learning-based changes in fMRI (<xref rid="B36" ref-type="bibr">Sale et al., 2017</xref>) and WM structure (<xref rid="B35" ref-type="bibr">Reid et al., 2017</xref>) provided the model for our experimental design in order to best elicit evidence of WM functional neuroplasticity.</p>
+      <p>Given the established role of WM in motor learning, the aim of this study was to apply functional measures of motor learning and plasticity. The first objective was to extend previous findings of WM activation in the internal capsule, showing lateralized activation based on the hand used during the task. Given the novel experimental paradigm, an established analysis approach was used to first establish WM activation. The second objective was to show WM activation changes consistent with a behavioral motor learning effect. Building on the established differences in WM hemodynamic properties, we included metrics to assess HRF changes beyond traditional measures of BOLD amplitude and extent. This allowed a more complete investigation into functional WM changes during neuroplasticity.</p>
+      <p>Hypothesis 1 predicted that WM activation would be detectable in the contralateral internal capsule for both non-dominant and dominant hands. Hypothesis 2 predicted reduced WM HRF variability as a function of neuroplasticity, particularly in the non-dominant hand. The research employed a repeat measures crossover design that included three longitudinal scan sessions (baseline, midpoint, and endpoint).</p>
+    </sec>
+    <sec sec-type="materials|methods" id="S2">
+      <title>Materials and Methods</title>
+      <sec id="S2.SS1">
+        <title>Participants</title>
+        <p>Twelve healthy, right-handed participants were recruited (7 females). The mean age of the participants was 25.8 ± 3.7 years. Right hand dominance was confirmed using the Edinburgh Handedness Inventory (<xref rid="B31" ref-type="bibr">Oldfield, 1971</xref>). Subjects did not report psychiatric or neurological illness, or recent concussions. Written informed consent was obtained from all subjects.</p>
+      </sec>
+      <sec id="S2.SS2">
+        <title>Experimental Design</title>
+        <p>A 2-week motor training experiment was developed, similar in design as <xref rid="B35" ref-type="bibr">Reid et al. (2017)</xref> and <xref rid="B36" ref-type="bibr">Sale et al. (2017)</xref>. The motor training block task paradigm was developed in PsychToolbox3 (<xref rid="B4" ref-type="bibr">Brainard, 1997</xref>; <xref rid="B33" ref-type="bibr">Pelli, 1997</xref>), a package of MATLAB (R2018b, The MathWorks, Inc.). Participants used an MRI compatible mouse (Nata Technologies, Coquitlam B.C.) to guide a cursor through a marked trail displayed on the monitor. Participants were instructed to minimize errors and maximize distance traveled. Performance metrics were recorded based on speed and accuracy. The task difficulty was designed to emphasize the difference in dominant and non-dominant hand proficiency.</p>
+        <p>Participants received a baseline scan during which a fine motor learning task was completed once with each hand, counterbalanced with a matched gross motor comparison task (results not included for brevity). The fine motor learning task involved accurate, rapid tracing of randomize trail mazes, with performance scores incorporating distance and error-rate. All scans were 6 min long with seven on-blocks of 24 s each during which a unique trail was displayed. These on blocks were interleaved with jittered rest blocks averaging 24 s. Each scan began and ended with a rest block. The trails were designed to be too complex to be completed in a single 24 s block. The gross motor training task followed the same block structure and visual display as the fine motor task, but simply had the participants move the mouse at random, with no accuracy metrics.</p>
+        <p>Following the baseline scan, participants completed 2 weeks of daily “at-home” task training with both non-dominant and dominant hands. During the training period each participant underwent a midpoint scan (after 1 week) and an endpoint scan following the same scanning protocol as baseline.</p>
+      </sec>
+      <sec id="S2.SS3">
+        <title>MRI Acquisition</title>
+        <p>MRI scans were acquired from using a 3 Tesla Philips Ingenia CX MRI scanner with a 32-channel dStream head coil. Functional MRI images were acquired using an FFE single-shot GRE-EPI sequence. The acquisition parameters were as follows: TR = 2,000 ms, TE = 30 ms, and flip angle = 90°. Data were collected with an in-plane resolution of 3 × 3 mm and slice thickness 3 mm with matrix dimensions of 80 × 80 voxels and 36 slices.</p>
+        <p>High-resolution T1-weighted images were collected at each session for co-registration of functional images. The acquisition parameters were as follows: TR = 8.2 ms, TE = 3.7 ms, and flip angle = 8°. Data were collected with an in-plane resolution of 1 × 1 mm and slice thickness of 1 mm with matrix dimensions of 288 × 288 voxels and 213 slices.</p>
+      </sec>
+      <sec id="S2.SS4">
+        <title>MRI Analysis</title>
+        <p>Data were analyzed using FMRIB Software Library 6.0.0 (FSL) (<xref rid="B18" ref-type="bibr">Jenkinson et al., 2012</xref>). Pre-statistical processing was completed using FEAT (6.0), and brain extraction was completed using BET. Images were motion corrected using MCFLIRT, spatially smoothed using a Gaussian kernel of FWHM 5 mm, and high pass filtered with a cutoff of 100 s. Functional images were registered to T1 weighted anatomical images using FLIRT, and to MNI152 standard space using FNIRT.</p>
+        <p>To test the hypotheses, analysis was targeted specifically to WM functional activity as the changes in GM BOLD signal will be the subject of future analyses. To this end, predictors were constructed in a manner based on the work of <xref rid="B5" ref-type="bibr">Courtemanche et al. (2018)</xref>, which compared the use of a conventional GLM to a model that included HRF basis sets generated in FLOBS. This created an HRF designed to better reflect white matter hemodynamics. <xref rid="B5" ref-type="bibr">Courtemanche et al. (2018)</xref> showed increased sensitivity to WM activation using the WM HRF, and as such we have followed these procedures in our current work. This method used a linear optimized basis set for the HRF convolution generated in the FSL toolkit “FMRIB’s Linear Optimal Basis Sets” (FLOBS) (<xref rid="B46" ref-type="bibr">Woolrich et al., 2004</xref>). The parameters used follow the procedures laid out in <xref rid="B5" ref-type="bibr">Courtemanche et al. (2018)</xref> and were inputted as follows: M1 = 0–4 s, M2 = 3–12 s, M3 = 3–5 s, M4 = 3–5 s, c = 0–0.3, Bases = 3. These parameters specify a range of example HRFs, with delayed onset slope and a reduced initial overshoot, to better reflect WM hemodynamics (<xref rid="B41" ref-type="bibr">Tae et al., 2014</xref>). From this set of HRFs, FLOBS uses principal component analysis to generate an “optimal basis set” which maximally spans the specified space. Further information on the proofs underlying the FLOBS toolkit can be found in the FSL technical documentation, or in <xref rid="B46" ref-type="bibr">Woolrich et al. (2004)</xref>.</p>
+        <p>Three bases were generated; an “HRF-like” curve, a “latency derivative” that modeled the temporal lag of the HRF, and a “dispersion derivative” that modeled differences in width of the HRF. The bases were convolved with the stimulus time series to determine group differences of both HRF amplitude and associated temporal characteristics (<xref rid="B45" ref-type="bibr">Ward et al., 2008</xref>).</p>
+        <p>Statistical analyses were computed using a generalized linear model for generating cluster-based contrasts corrected for multiple-comparisons. Individual level z-statistics were generated from task vs. rest contrast using significance thresholds of <italic>z</italic> &gt; 2.5 (<italic>p</italic> &lt; 0.05, corrected).</p>
+        <p>Group level statistical analyses were computed using FSL’s FEAT function with FLAME mixed effects. Timepoint contrast for group level analyses compared baseline and endpoint with significance thresholds of (<italic>p</italic> &lt; 0.05, FWE) for each of the HRF bases.</p>
+        <p>Regions of interest masks of white matter were generated from the Harvard-Oxford subcortical structure atlas using conservative thresholds (50%) to reduce the chance of partial volume effects. Masks of gray matter areas associated with motor learning in tracing tasks were generated from the Jülich Histological Atlas and the MNI Structural atlas using typical thresholds (20%).</p>
+        <p>The timeseries BOLD data within the right internal capsule ROI were analyzed during the left-hand task. The BOLD signal was averaged across voxels within the ROI and the timeseries data were windowed around the stimulus presentation times. Subsequently, the timeseries mean were subtracted from the BOLD response. Group averaged ROI BOLD intensity were plotted with respect to stimulus onset times for the baseline and endpoint data. Additionally, the group level standard deviation in BOLD signal was computed and plotted at the baseline and endpoint.</p>
+      </sec>
+      <sec id="S2.SS5">
+        <title>Behavioral Analysis</title>
+        <p>A two way repeated measures ANOVA was conducted to investigate the effect of hand and scan timepoint on the behavioral scores. <italic>Post hoc t</italic>-tests (pairwise, two-tailed) were run to interrogate the timepoint contrasts of the behavioral results, looking at the difference between baseline and endpoint scan for each hand. The significance level was set using Bonferroni adjusted <italic>p</italic> &lt; 0.025 across the two <italic>t</italic>-tests (α = 0.05/2).</p>
+      </sec>
+    </sec>
+    <sec id="S3">
+      <title>Results</title>
+      <sec id="S3.SS1">
+        <title>Behavioral Performance</title>
+        <p>The two way repeated measures ANOVA confirmed a significant effect of hand and scan timepoint on the behavioral scores. The <italic>post hoc t</italic>-tests (pairwise, two-tailed) revealed a significant difference for the left-hand tracing scores between baseline and endpoint, (<italic>p</italic> &lt; 0.005, α = 0.025). After Bonferroni correction for multiple comparisons all results remained significant. There was no significant difference for the right-hand tracing scores between baseline and endpoint, (<italic>p</italic> = 0.099).</p>
+      </sec>
+      <sec id="S3.SS2">
+        <title>Individual Timepoint WM fMRI</title>
+        <p>The analysis of fMRI data was collapsed across groups and analyzed as a baseline vs. endpoint contrast, focusing on our non-dominant/dominant hand training comparison. Local maxima of activation were detected within the internal capsule in a lateralized manner at the group level for both baseline and endpoint with typical thresholds of <italic>z</italic> &gt; 2.5. In order to isolate the white matter local maxima, data were re-thresholded at <italic>z</italic> &gt; 4 (<italic>p</italic> &lt; 0.05, FWE), revealing several peaks of activation within white matter areas. Cluster maps were then masked using the internal capsule ROI as seen in <xref ref-type="fig" rid="F1">Figure 1</xref>. Resulting internal capsule activation is summarized in <xref rid="T1" ref-type="table">Table 1</xref>.</p>
+        <fig id="F1" position="float">
+          <label>FIGURE 1</label>
+          <caption>
+            <p>WM activation revealed in the internal capsule. Activation is lateralized as expected, and still present when conservatively thresholded masks are applied. Images displayed in radiological convention, right side of brain on left side of image. (<italic>z</italic> &gt; 4, <italic>P</italic> &lt; 0.05, FWE corrected).</p>
+          </caption>
+          <graphic xlink:href="fnhum-14-509258-g001"/>
+        </fig>
+        <table-wrap id="T1" position="float">
+          <label>TABLE 1</label>
+          <caption>
+            <p>Voxels showing activation within the internal capsule at each timepoint (<italic>z</italic> &gt; 4, <italic>P</italic> &lt; 0.05, FWE corrected, clusters of 10 or more voxels reported).</p>
+          </caption>
+          <table frame="hsides" rules="groups" cellspacing="5" cellpadding="5">
+            <thead>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1"/>
+                <td valign="top" align="left" rowspan="1" colspan="1">ROI</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">#voxels</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Z-max</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">X (mm)</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Y (mm)</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Z (mm)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Left task baseline</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">Right internal capsule</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">185</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">5.17</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">28</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">-20</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">6</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1"/>
+                <td valign="top" align="center" rowspan="1" colspan="1">12</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.77</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">10</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−26</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−12</td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Left task endpoint</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">Right internal capsule</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">56</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.80</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">20</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−20</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">6</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1"/>
+                <td valign="top" align="center" rowspan="1" colspan="1">18</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.71</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">26</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−24</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">48</td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Right task baseline</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">Left internal capsule</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">20</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.55</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−18</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−6</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4</td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Right task endpoint</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">Left internal capsule</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">22</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.68</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−26</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−28</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">50</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1"/>
+                <td valign="top" align="center" rowspan="1" colspan="1">10</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">4.32</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−20</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">−22</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">10</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <attrib>
+              <italic>
+                <italic>Z-max is the peak z score within the ROI, with location specified in MNI coordinates.</italic>
+              </italic>
+            </attrib>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+      <sec id="S3.SS3">
+        <title>Timepoint Comparisons</title>
+        <p>While WM activation was detected across timepoints, a baseline vs. endpoint comparison revealed no detectable changes, even at low thresholds.</p>
+        <p>A major objective of this research was to investigate the temporal changes of the hemodynamic response in white matter as a functional of neuroplasticity. The subsequent analysis investigated the changes in temporal characteristics of the HRF pre and post training. Timepoint comparisons of the latency derivative revealed no significant findings in any condition.</p>
+        <p>However, group level Baseline &gt; Endpoint comparisons of the dispersion derivative revealed a significant cluster of voxels within the internal capsule for the non-dominant hand tracing condition (<xref ref-type="fig" rid="F2">Figure 2</xref>). Information for the significant cluster is summarized in <xref rid="T2" ref-type="table">Table 2</xref>. This shows a significant reduction in variance of the HRF in WM motor related tracts after the training period. The change in dispersion is aligned well with the structure of the internal capsule, as can be noted in <xref ref-type="fig" rid="F2">Figure 2</xref> (peak cluster voxel 82.7% right cerebral white matter, Harvard-Oxford Subcortical Structure Atlas). <xref ref-type="fig" rid="F3">Figure 3</xref> presents a comparison between the group block averaged time series data at baseline and endpoint for voxels within the internal capsule ROI. No other conditions revealed significant changes. The reverse contrast revealed no significant results for any condition.</p>
+        <fig id="F2" position="float">
+          <label>FIGURE 2</label>
+          <caption>
+            <p>Right internal capsule showing greater HRF dispersion at group level, baseline &gt; endpoint (<italic>z</italic> &gt; 2.5, <italic>p</italic> &lt; 0.05, FWE corrected). No mask applied.</p>
+          </caption>
+          <graphic xlink:href="fnhum-14-509258-g002"/>
+        </fig>
+        <table-wrap id="T2" position="float">
+          <label>TABLE 2</label>
+          <caption>
+            <p>Voxels displaying positive parameter estimates for the timepoint 1 &gt; timepoint 3 contrast of the dispersion derivative (<italic>z</italic> &gt; 2.5, <italic>P</italic> &lt; 0.05, FWE corrected).</p>
+          </caption>
+          <table frame="hsides" rules="groups" cellspacing="5" cellpadding="5">
+            <thead>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Condition</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">ROI</td>
+                <td valign="top" align="center" rowspan="1" colspan="1"># Voxels</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Z-max</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">X (mm)</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Y (mm)</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">Z (mm)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td valign="top" align="left" rowspan="1" colspan="1">Left task</td>
+                <td valign="top" align="left" rowspan="1" colspan="1">Right internal capsule</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">180</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">3.51</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">14</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">8</td>
+                <td valign="top" align="center" rowspan="1" colspan="1">8</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <attrib>
+              <italic>
+                <italic>Z-max is the peak z score within the ROI, with location specified in MNI coordinates.</italic>
+              </italic>
+            </attrib>
+          </table-wrap-foot>
+        </table-wrap>
+        <fig id="F3" position="float">
+          <label>FIGURE 3</label>
+          <caption>
+            <p>Average across ROI voxels with subtracted mean BOLD signal intensity for baseline (orange) and endpoint (blue). Group level standard deviation plotted around timepoint BOLD signal intensity means. Time at 0 s represents the stimulus onset time. Note that the standard deviation is greater at baseline than endpoint.</p>
+          </caption>
+          <graphic xlink:href="fnhum-14-509258-g003"/>
+        </fig>
+        <p>To better visualize the changes occurring in the WM HRF dispersion derivative <xref ref-type="fig" rid="F3">Figure 3</xref> plots the group BOLD signal averages and standard deviation.</p>
+      </sec>
+    </sec>
+    <sec id="S4">
+      <title>Discussion</title>
+      <p>The results supported Hypothesis 1, with WM activation detected in the contralateral internal capsule for both non-dominant and dominant hands. Examination of WM HRF results also supported Hypothesis 2, with reduced WM HRF dispersion as a function of neuroplasticity in the non-dominant hand.</p>
+      <p>Task fMRI revealed clusters of activation with local maxima within the internal capsule, in a manner lateralized as expected (<xref ref-type="fig" rid="F1">Figure 1</xref>; right internal capsule activity during the left-hand task, left internal capsule activity during the right-hand task). A conservative white matter mask of the internal capsule and corticospinal tract was used to verify that the clusters were not the result of partial volume effects. Additionally, in <xref ref-type="fig" rid="F1">Figure 1</xref> it can be noted that even without masking, the detected activation occurs in an area without adjacent gray matter activation, further addressing partial volume effects.</p>
+      <p>The use of a WM specific HRF was key for increasing sensitivity to WM functional activation at conventional MRI field strengths. Our results align well with previous reports of WM activation in the internal capsule (<xref rid="B12" ref-type="bibr">Gawryluk et al., 2011</xref>), with similar lateralization and localization of activation. However, previous studies were completed in a 4T scanner, using a specialized ASE sequence, optimized for WM detection. Higher field strengths have a notable impact on the ability to detect WM BOLD activation (<xref rid="B25" ref-type="bibr">Mazerolle et al., 2013</xref>) and ASE sequences have improved sensitivity compared to the traditional GRE-EPI sequences (<xref rid="B26" ref-type="bibr">McWhinney et al., 2012</xref>). The strong agreement between our current results and previously published reports of activation in the internal capsule (<xref rid="B22" ref-type="bibr">Maldjian et al., 1999</xref>; <xref rid="B29" ref-type="bibr">Mosier et al., 1999</xref>; <xref rid="B12" ref-type="bibr">Gawryluk et al., 2011</xref>) supports the conclusion that a WM specific HRF model is critical for obtaining a holistic representation of brain function (<xref rid="B21" ref-type="bibr">Li et al., 2019</xref>).</p>
+      <p>The analysis into adaptation of HRF profile over time revealed significant reduction in the dispersion (<xref ref-type="fig" rid="F3">Figure 3</xref>). The white matter hemodynamic changes selectively occurred in the contralateral internal capsule for the non-dominant hand only. As seen in <xref ref-type="fig" rid="F2">Figure 2</xref> this cluster aligns well with white matter motor related tracts, even at conventional thresholds with no masking. This finding paralleled the behavioral results where only the non-dominant hand showed significant learning effects.</p>
+      <p>It can be noted that even without masking, the pattern of maximum HRF dispersion change occurs over the anatomy of the internal capsule, with a local maximum occurring at the genu, and activation spreading backwards along the posterior limb. Though motor signals from the corticospinal tract are traditionally thought to travel through the posterior limb of the internal capsule, more recent research has debated the exact localization of these representations (<xref rid="B8" ref-type="bibr">Duerden et al., 2011</xref>; <xref rid="B34" ref-type="bibr">Qian and Tan, 2017</xref>) and the function of the genu (<xref rid="B48" ref-type="bibr">Yim et al., 2013</xref>). Evidence from non-human primates using histopathology and retrograde traces from motor areas showed that arm representations are distributed throughout the internal capsule in an overlapping manner, with fibers from the supplementary motor area passing through the genu (<xref rid="B27" ref-type="bibr">Morecraft et al., 2002</xref>).</p>
+      <p>In future, the investigation into the temporal characteristics of the WM HRF represents a novel detection of functional neuroplasticity in WM. Variation in HRFs is typically quantified using the dispersion derivative (<xref rid="B40" ref-type="bibr">Storti et al., 2013</xref>). HRF profiles have been shown to be extremely variable in white matter, contrary to the consistent HRF throughout gray matter (<xref rid="B21" ref-type="bibr">Li et al., 2019</xref>), and thus warrant further investigation as they relate to neuroplasticity. Given the variability of HRF shapes within separate WM areas, modeling the temporal and dispersion derivatives at group level was essential for the detection of WM functional changes (<xref rid="B5" ref-type="bibr">Courtemanche et al., 2018</xref>; <xref rid="B21" ref-type="bibr">Li et al., 2019</xref>). In particular, direct examination of spatial changes in HRFs through novel methods like functional correlation tensors (FCT; <xref rid="B6" ref-type="bibr">Ding et al., 2013</xref>) will be important to evaluate the detectable extent of BOLD fMRI activity within the larger WM tract. Given that specific GM HRF assumptions around features and analysis approaches may not generalize to WM HRFs, the continued work to narrow down WM-specific features and analysis approach may also be more complex in light of the spatially distributed nature of the activation across WM tracts. Multimodal integration with DTI and other methods will therefore be critical.</p>
+      <p>The recorded changes in WM function are intrinsically linked to changes in structure. <xref rid="B35" ref-type="bibr">Reid et al. (2017)</xref> and <xref rid="B36" ref-type="bibr">Sale et al. (2017)</xref> found increases in fractional anisotropy, seeded by sensorimotor cortex fMRI activation, throughout the right corticospinal tract after a similar motor training paradigm. We expect that similar changes in the structure of the internal capsule as a result of motor training are responsible for the observed changes in WM hemodynamic response in this work. A better understanding of brain changes in terms of both structure and function is essential for a comprehensive picture of the impact of motor training and rehabilitation.</p>
+      <p>While fMRI lacks the ability to draw direct inferences about the underlying cellular or hemodynamic processes at play, there are a few possible physiological mechanisms that may be driving this change. We postulate that the most probable microstructural change underlying our results is an increase WM tract myelination (<xref rid="B37" ref-type="bibr">Sampaio-Baptista and Johansen-Berg, 2017</xref>). This phenomenon, that has been detected in motor related WM tracts during training (<xref rid="B20" ref-type="bibr">Lakhani et al., 2016</xref>; <xref rid="B35" ref-type="bibr">Reid et al., 2017</xref>; <xref rid="B36" ref-type="bibr">Sale et al., 2017</xref>), may drive an increase in neural efficiency. Increased myelination within the white matter tracts improves efficient propagation of action potentials, due to a reduced ion flux during each action potential propagation and thus reduced work to re-establish the resting membrane potential (<xref rid="B30" ref-type="bibr">Neishabouri and Faisal, 2011</xref>). More efficient action potentials reduce the rate in which energy stores in the neurons are depleted, thus changing their metabolic demands and the resulting hemodynamic response. Underlying factors, such as these, understandably contribute to variation in the HRF profile.</p>
+      <p>Despite the reports of structural and microstructural changes throughout the corticospinal tract no activation was detected in the corticospinal tract above the internal capsule. This too reflects several previous reports of isolated activation in this region (<xref rid="B22" ref-type="bibr">Maldjian et al., 1999</xref>; <xref rid="B29" ref-type="bibr">Mosier et al., 1999</xref>; <xref rid="B12" ref-type="bibr">Gawryluk et al., 2011</xref>). WM exhibits a high level of anisotropy compared to GM, meaning that the neural tissue and supporting vasculature are largely oriented in a single direction. Anisotropic tissue oriented parallel to the main magnetic field has a reduced ability to produce a detectable BOLD signal (<xref rid="B15" ref-type="bibr">Hernández-Torres et al., 2017</xref>; <xref rid="B7" ref-type="bibr">Doucette et al., 2019</xref>). The majority of the corticospinal tract is one such anisotropic tract, which aligns parallel to the main magnetic field. The internal capsule, however, exhibits greater isotropy of the fibers compared to the rest of the corticospinal tract which may offer an explanation for the bounded BOLD signal detection in this region.</p>
+      <p>While the current work supports the idea that WM activation can be used to track neuroplasticity, there are a few limitations to interpretation. First, we employed a basic block design, that allowed for higher amplitude hemodynamic responses, helping to compensate for the smaller hemodynamic changes seen in white matter. A jittered interstimulus interval was employed to eliminate long latency hemodynamic effects and allow for the interrogation of latency and dispersion effects. However, employing an event related design in future work will allow for more granular inferences about short latency effects. This work also used a generalized linear model to investigate significant temporal changes between time points. This allowed us to highlight areas where the most change occurred. However, sampling HRFs throughout the white matter and comparing them could allow for comparison within and between white matter tracts. The sample size of this investigation is small and represents an important consideration for statistical power. Future analyses would benefit from a greater participant number, particularly for detecting small signal changes inherent to WM BOLD.</p>
+      <p>Future work will use a technique called functional correlation tensors (<xref rid="B6" ref-type="bibr">Ding et al., 2013</xref>) that can be used to analyze local synchronicity in hemodynamic fluctuations. Functional correlation tensors will be used to further investigate the reduced variability in hemodynamic response throughout the whole brain. Future investigations will also explore co-localizing functional results with DTI to relate WM structural changes with WM BOLD neuroplasticity. Corresponding structural or microstructural information is needed to further understand the underlying mechanisms of WM fMRI activation.</p>
+      <p>This work has determined that a 2-week motor training task can elicit detectable changes in WM BOLD signal. The temporal characteristics of the WM HRF can be altered as a result of training; manifesting as a reduction in the dispersion of the hemodynamic response. This work has highlighted importance of the temporal characteristics of functional activity, particularly for longitudinal analysis of WM activation. This represents an important new direction for future analyses of both white matter neuroplasticity, as well as analysis of BOLD activation in white matter.</p>
+    </sec>
+    <sec sec-type="data-availability" id="S5">
+      <title>Data Availability Statement</title>
+      <p>The raw data supporting the conclusions of this article will be made available by the authors, without undue reservation, to any qualified researcher.</p>
+    </sec>
+    <sec id="S6">
+      <title>Ethics Statement</title>
+      <p>The studies involving human participants were reviewed and approved by the Simon Fraser University Research Ethics Board. The patients/participants provided their written informed consent to participate in this study.</p>
+    </sec>
+    <sec id="S7">
+      <title>Author Contributions</title>
+      <p>LG and TF contributed equally as primary authors with data acquisition, analysis and manuscript drafting. CL and SG provided support in study design and manuscript editing. XS and RD’A assisted in editing the manuscript and acted as lab PI. All authors contributed to the article and approved the submitted version.</p>
+    </sec>
+    <sec id="conf1">
+      <title>Conflict of Interest</title>
+      <p>The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn fn-type="financial-disclosure">
+        <p><bold>Funding.</bold> This study received support from the Natural Sciences and Engineering Research Council Discovery Grant #206875 and from the Surrey Hospital and Outpatient Center Foundation under Grant FH2017-001.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Black</surname><given-names>S. E.</given-names></name></person-group> (<year>2007</year>). <article-title>Imaging white matter and the burden of small vessel disease.</article-title>
+<source><italic>Brain Cogn.</italic></source>
+<volume>63</volume>
+<fpage>192</fpage>–<lpage>193</lpage>. <pub-id pub-id-type="doi">10.1016/j.bandc.2006.08.010</pub-id></mixed-citation>
+      </ref>
+      <ref id="B2">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bassett</surname><given-names>D. S.</given-names></name><name><surname>Brown</surname><given-names>J. A.</given-names></name><name><surname>Deshpande</surname><given-names>V.</given-names></name><name><surname>Carlson</surname><given-names>J. M.</given-names></name><name><surname>Grafton</surname><given-names>S. T.</given-names></name></person-group> (<year>2011</year>). <article-title>Conserved and variable architecture of human white matter connectivity.</article-title>
+<source><italic>Neuroimage</italic></source>
+<volume>54</volume>
+<fpage>1262</fpage>–<lpage>1279</lpage>.<pub-id pub-id-type="pmid">20850551</pub-id></mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bengtsson</surname><given-names>S. L.</given-names></name><name><surname>Nagy</surname><given-names>Z.</given-names></name><name><surname>Skare</surname><given-names>S.</given-names></name><name><surname>Forsman</surname><given-names>L.</given-names></name><name><surname>Forssberg</surname><given-names>H.</given-names></name><name><surname>Ullén</surname><given-names>F.</given-names></name></person-group> (<year>2005</year>). <article-title>Extensive piano practicing has regionally specific effects on white matter development.</article-title>
+<source><italic>Nat. Neurosci.</italic></source>
+<volume>8</volume>
+<fpage>1148</fpage>–<lpage>1150</lpage>. <pub-id pub-id-type="doi">10.1038/nn1516</pub-id><pub-id pub-id-type="pmid">16116456</pub-id></mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Brainard</surname><given-names>D. H.</given-names></name></person-group> (<year>1997</year>). <article-title>The psychophysics toolbox.</article-title>
+<source><italic>Spat. Vis.</italic></source>
+<volume>10</volume>
+<fpage>433</fpage>–<lpage>436</lpage>.<pub-id pub-id-type="pmid">9176952</pub-id></mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Courtemanche</surname><given-names>M.</given-names></name><name><surname>Sparrey</surname><given-names>C.</given-names></name><name><surname>Song</surname><given-names>X.</given-names></name><name><surname>MacKay</surname><given-names>A.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2018</year>). <article-title>Detecting white matter activity using conventional 3 Tesla fMRI: an evaluation of standard field strength and hemodynamic response function.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>169</volume>
+<fpage>145</fpage>–<lpage>150</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2017.12.008</pub-id>
+<pub-id pub-id-type="pmid">29229580</pub-id></mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ding</surname><given-names>Z.</given-names></name><name><surname>Newton</surname><given-names>A. T.</given-names></name><name><surname>Xu</surname><given-names>R.</given-names></name><name><surname>Anderson</surname><given-names>A. W.</given-names></name><name><surname>Morgan</surname><given-names>V. L.</given-names></name><name><surname>Gore</surname><given-names>J. C.</given-names></name></person-group> (<year>2013</year>). <article-title>Spatio-temporal correlation tensors reveal functional structure in human brain.</article-title>
+<source><italic>PLoS One</italic></source>
+<volume>8</volume>:<issue>e0082107</issue>. <pub-id pub-id-type="doi">10.1371/journal.pone.0082107</pub-id>
+<pub-id pub-id-type="pmid">24339997</pub-id></mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Doucette</surname><given-names>J.</given-names></name><name><surname>Wei</surname><given-names>L.</given-names></name><name><surname>Hernández-Torres</surname><given-names>E.</given-names></name><name><surname>Kames</surname><given-names>C.</given-names></name><name><surname>Forkert</surname><given-names>N. D.</given-names></name><name><surname>Aamand</surname><given-names>R.</given-names></name><etal/></person-group> (<year>2019</year>). <article-title>Rapid solution of the Bloch-Torrey equation in anisotropic tissue: application to dynamic susceptibility contrast MRI of cerebral white matter.</article-title>
+<source><italic>Neuroimage</italic></source>
+<volume>185</volume>
+<fpage>198</fpage>–<lpage>207</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2018.10.035</pub-id>
+<pub-id pub-id-type="pmid">30332614</pub-id></mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Duerden</surname><given-names>E. G.</given-names></name><name><surname>Finnis</surname><given-names>K. W.</given-names></name><name><surname>Peters</surname><given-names>T. M.</given-names></name><name><surname>Sadikot</surname><given-names>A. F.</given-names></name></person-group> (<year>2011</year>). <article-title>Three-dimensional somatotopic organization and probabilistic mapping of motor responses from the human internal capsule.</article-title>
+<source><italic>J. Neurosurg.</italic></source>
+<volume>114</volume>
+<fpage>1706</fpage>–<lpage>1714</lpage>. <pub-id pub-id-type="doi">10.3171/2011.1.JNS10136</pub-id>
+<pub-id pub-id-type="pmid">21375376</pub-id></mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Brewer</surname><given-names>K. D.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2009</year>). <article-title>Optimizing the detection of white matter fMRI using asymmetric spin echo spiral.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>45</volume>
+<fpage>83</fpage>–<lpage>88</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2008.11.005</pub-id>
+<pub-id pub-id-type="pmid">19084071</pub-id></mixed-citation>
+      </ref>
+      <ref id="B10">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Mazerolle</surname><given-names>E. L.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2014a</year>). <article-title>Functional MRI activation in white matter during the symbol digit modalities test.</article-title>
+<source><italic>Front. Hum. Neurosci.</italic></source>
+<volume>8</volume>:<issue>589</issue>. <pub-id pub-id-type="doi">10.3389/fnhum.2014.00589</pub-id>
+<pub-id pub-id-type="pmid">25136311</pub-id></mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Mazerolle</surname><given-names>E. L.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2014b</year>). <article-title>Does functional MRI detect activation in white matter? A review of emerging evidence, issues, and future directions.</article-title>
+<source><italic>Front. Neurosci.</italic></source>
+<volume>8</volume>:<issue>239</issue>. <pub-id pub-id-type="doi">10.3389/fnins.2014.00239</pub-id>
+<pub-id pub-id-type="pmid">25152709</pub-id></mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Mazerolle</surname><given-names>E. L.</given-names></name><name><surname>Brewer</surname><given-names>K. D.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2011</year>). <article-title>Investigation of fMRI activation in the internal capsule.</article-title>
+<source><italic>BMC Neurosci.</italic></source>
+<volume>12</volume>:<issue>56</issue>. <pub-id pub-id-type="doi">10.1186/1471-2202-12-56</pub-id>
+<pub-id pub-id-type="pmid">21672250</pub-id></mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Grajauskas</surname><given-names>L. A.</given-names></name><name><surname>Frizzell</surname><given-names>T.</given-names></name><name><surname>Song</surname><given-names>X.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2019</year>). <article-title>White matter fMRI activation cannot be treated as a nuisance regressor: overcoming a historical blind spot.</article-title>
+<source><italic>Front. Neurosci.</italic></source>
+<volume>13</volume>:<issue>1024</issue>. <pub-id pub-id-type="doi">10.3389/fnins.2019.01024</pub-id>
+<pub-id pub-id-type="pmid">31636527</pub-id></mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hänggi</surname><given-names>J.</given-names></name><name><surname>Koeneke</surname><given-names>S.</given-names></name><name><surname>Bezzola</surname><given-names>L.</given-names></name><name><surname>Jäncke</surname><given-names>L.</given-names></name></person-group> (<year>2010</year>). <article-title>Structural neuroplasticity in the sensorimotor network of professional female ballet dancers.</article-title>
+<source><italic>Hum. Brain Mapp.</italic></source>
+<volume>31</volume>
+<fpage>1196</fpage>–<lpage>1206</lpage>. <pub-id pub-id-type="doi">10.1002/hbm.20928</pub-id>
+<pub-id pub-id-type="pmid">20024944</pub-id></mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hernández-Torres</surname><given-names>E.</given-names></name><name><surname>Kassner</surname><given-names>N.</given-names></name><name><surname>Forkert</surname><given-names>N. D.</given-names></name><name><surname>Wei</surname><given-names>L.</given-names></name><name><surname>Wiggermann</surname><given-names>V.</given-names></name><name><surname>Daemen</surname><given-names>M.</given-names></name><etal/></person-group> (<year>2017</year>). <article-title>Anisotropic cerebral vascular architecture causes orientation dependency in cerebral blood flow and volume measured with dynamic susceptibility contrast magnetic resonance imaging.</article-title>
+<source><italic>J. Cereb. Blood Flow Metab.</italic></source>
+<volume>37</volume>
+<fpage>1108</fpage>–<lpage>1119</lpage>. <pub-id pub-id-type="doi">10.1177/0271678X16653134</pub-id>
+<pub-id pub-id-type="pmid">27259344</pub-id></mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hofstetter</surname><given-names>S.</given-names></name><name><surname>Tavor</surname><given-names>I.</given-names></name><name><surname>Tzur Moryosef</surname><given-names>S.</given-names></name><name><surname>Assaf</surname><given-names>Y.</given-names></name></person-group> (<year>2013</year>). <article-title>Short-term learning induces white matter plasticity in the fornix.</article-title>
+<source><italic>J. Neurosci.</italic></source>
+<volume>33</volume>
+<fpage>12844</fpage>–<lpage>12850</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.4520-12.2013</pub-id>
+<pub-id pub-id-type="pmid">23904619</pub-id></mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Imfeld</surname><given-names>A.</given-names></name><name><surname>Oechslin</surname><given-names>M. S.</given-names></name><name><surname>Meyer</surname><given-names>M.</given-names></name><name><surname>Loenneker</surname><given-names>T.</given-names></name><name><surname>Jancke</surname><given-names>L.</given-names></name></person-group> (<year>2009</year>). <article-title>White matter plasticity in the corticospinal tract of musicians: a diffusion tensor imaging study.</article-title>
+<source><italic>Neuroimage</italic></source>
+<volume>46</volume>
+<fpage>600</fpage>–<lpage>607</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2009.02.025</pub-id>
+<pub-id pub-id-type="pmid">19264144</pub-id></mixed-citation>
+      </ref>
+      <ref id="B18">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Jenkinson</surname><given-names>M.</given-names></name><name><surname>Beckmann</surname><given-names>C. F.</given-names></name><name><surname>Behrens</surname><given-names>T. E.</given-names></name><name><surname>Woolrich</surname><given-names>M. W.</given-names></name><name><surname>Smith</surname><given-names>S. M.</given-names></name></person-group> (<year>2012</year>). <article-title>FSL.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>62</volume>
+<fpage>782</fpage>–<lpage>790</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2011.09.015</pub-id>
+<pub-id pub-id-type="pmid">21979382</pub-id></mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Johansen-Berg</surname><given-names>H.</given-names></name><name><surname>Della-Maggiore</surname><given-names>V.</given-names></name><name><surname>Behrens</surname><given-names>T. E. J.</given-names></name><name><surname>Smith</surname><given-names>S. M.</given-names></name><name><surname>Paus</surname><given-names>T.</given-names></name></person-group> (<year>2007</year>). <article-title>Integrity of white matter in the corpus callosum correlates with bimanual co-ordination skills.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>36</volume>(<issue>Suppl. 2</issue>), <fpage>16</fpage>–<lpage>21</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2007.03.041</pub-id>
+<pub-id pub-id-type="pmid">17499163</pub-id></mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Lakhani</surname><given-names>B.</given-names></name><name><surname>Borich</surname><given-names>M. R.</given-names></name><name><surname>Jackson</surname><given-names>J. N.</given-names></name><name><surname>Wadden</surname><given-names>K. P.</given-names></name><name><surname>Peters</surname><given-names>S.</given-names></name><name><surname>Villamayor</surname><given-names>A.</given-names></name><etal/></person-group> (<year>2016</year>). <article-title>Motor skill acquisition promotes human brain myelin plasticity.</article-title>
+<source><italic>Neural Plasticity</italic></source>
+<volume>2016</volume>
+<fpage>1</fpage>–<lpage>7</lpage>. <pub-id pub-id-type="doi">10.1155/2016/7526135</pub-id>
+<pub-id pub-id-type="pmid">27293906</pub-id></mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Li</surname><given-names>M.</given-names></name><name><surname>Newton</surname><given-names>A. T.</given-names></name><name><surname>Anderson</surname><given-names>A. W.</given-names></name><name><surname>Ding</surname><given-names>Z.</given-names></name><name><surname>Gore</surname><given-names>J. C.</given-names></name></person-group> (<year>2019</year>). <article-title>Characterization of the hemodynamic response function in white matter tracts for event-related fMRI.</article-title>
+<source><italic>Nat. Commun.</italic></source>
+<volume>10</volume>:<issue>1140</issue>. <pub-id pub-id-type="doi">10.1038/s41467-019-09076-2</pub-id>
+<pub-id pub-id-type="pmid">30850610</pub-id></mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Maldjian</surname><given-names>J. A.</given-names></name><name><surname>Gottschalk</surname><given-names>A.</given-names></name><name><surname>Detre</surname><given-names>J. A.</given-names></name><name><surname>Alsop</surname><given-names>D.</given-names></name></person-group> (<year>1999</year>). “<article-title>Basal ganglia and white matter activation using functional MRI at 4 Tesla</article-title>,” in <source><italic>Proceedings of the 7th Annual Meeting of the International Society of Magnetic Resonance in Medicine</italic></source>, <publisher-loc>Philadelphia, PA</publisher-loc>.</mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Marussich</surname><given-names>L.</given-names></name><name><surname>Lu</surname><given-names>K. H.</given-names></name><name><surname>Wen</surname><given-names>H.</given-names></name><name><surname>Liu</surname><given-names>Z.</given-names></name></person-group> (<year>2017</year>). <article-title>Mapping white-matter functional organization at rest and during naturalistic visual perception.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>146</volume>
+<fpage>1128</fpage>–<lpage>1141</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2016.10.005</pub-id>
+<pub-id pub-id-type="pmid">27720819</pub-id></mixed-citation>
+      </ref>
+      <ref id="B24">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mazerolle</surname><given-names>E. L.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Brewer</surname><given-names>K. D.</given-names></name><name><surname>Bowen</surname><given-names>C. V.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C.</given-names></name></person-group> (<year>2010</year>). <article-title>White matter fMRI activation in the corpus callosum?: co-localization with DTI tractography.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>50</volume>
+<fpage>616</fpage>–<lpage>621</lpage>.<pub-id pub-id-type="pmid">20053383</pub-id></mixed-citation>
+      </ref>
+      <ref id="B25">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mazerolle</surname><given-names>Erin L</given-names></name><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Dillen</surname><given-names>K. N. H.</given-names></name><name><surname>Patterson</surname><given-names>S. A.</given-names></name><name><surname>Feindel</surname><given-names>K. W.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><etal/></person-group> (<year>2013</year>). <article-title>Sensitivity to White Matter fMRI activation increases with field strength.</article-title>
+<source><italic>PLoS One</italic></source>
+<volume>8</volume>:<issue>e0058130</issue>. <pub-id pub-id-type="doi">10.1371/journal.pone.0058130</pub-id>
+<pub-id pub-id-type="pmid">23483983</pub-id></mixed-citation>
+      </ref>
+      <ref id="B26">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>McWhinney</surname><given-names>S. R.</given-names></name><name><surname>Mazerolle</surname><given-names>E. L.</given-names></name><name><surname>Gawryluk</surname><given-names>J. R.</given-names></name><name><surname>Beyea</surname><given-names>S. D.</given-names></name><name><surname>D’Arcy</surname><given-names>R. C. N.</given-names></name></person-group> (<year>2012</year>). <article-title>Comparing gray and white matter fMRI activation using asymmetric spin echo spiral.</article-title>
+<source><italic>J. Neurosci. Methods</italic></source>
+<volume>209</volume>
+<fpage>351</fpage>–<lpage>356</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2012.06.014</pub-id>
+<pub-id pub-id-type="pmid">22743803</pub-id></mixed-citation>
+      </ref>
+      <ref id="B27">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Morecraft</surname><given-names>R. J.</given-names></name><name><surname>Herrick</surname><given-names>J. L.</given-names></name><name><surname>Stilwell-Morecraft</surname><given-names>K. S.</given-names></name><name><surname>Louie</surname><given-names>J. L.</given-names></name><name><surname>Schroeder</surname><given-names>C. M.</given-names></name><name><surname>Ottenbacher</surname><given-names>J. G.</given-names></name></person-group> (<year>2002</year>). <article-title>Localization of arm representation in the corona radiata and internal capsule in the non-human primate.</article-title>
+<source><italic>Brain</italic></source>
+<volume>125</volume>
+<fpage>176</fpage>–<lpage>198</lpage>. <pub-id pub-id-type="doi">10.1093/brain/awf011</pub-id>
+<pub-id pub-id-type="pmid">11834603</pub-id></mixed-citation>
+      </ref>
+      <ref id="B28">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mosier</surname><given-names>K.</given-names></name><name><surname>Bereznaya</surname><given-names>I.</given-names></name></person-group> (<year>2001</year>). <article-title>Parallel cortical networks for volitional control of swallowing in humans.</article-title>
+<source><italic>Exp. Brain Res.</italic></source>
+<volume>140</volume>
+<fpage>280</fpage>–<lpage>289</lpage>. <pub-id pub-id-type="doi">10.1007/s002210100813</pub-id>
+<pub-id pub-id-type="pmid">11681303</pub-id></mixed-citation>
+      </ref>
+      <ref id="B29">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mosier</surname><given-names>K. M.</given-names></name><name><surname>Liu</surname><given-names>W. C.</given-names></name><name><surname>Maldjian</surname><given-names>J. A.</given-names></name><name><surname>Shah</surname><given-names>R.</given-names></name><name><surname>Modi</surname><given-names>B.</given-names></name></person-group> (<year>1999</year>). <article-title>Lateralization of cortical function in swallowing: a functional MR imaging study.</article-title>
+<source><italic>Am. J. Neuroradiol.</italic></source>
+<volume>20</volume>
+<fpage>1520</fpage>–<lpage>1526</lpage>.<pub-id pub-id-type="pmid">10512240</pub-id></mixed-citation>
+      </ref>
+      <ref id="B30">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Neishabouri</surname><given-names>A. M.</given-names></name><name><surname>Faisal</surname><given-names>A. A.</given-names></name></person-group> (<year>2011</year>). <article-title>The metabolic efficiency of myelinated vs unmyelinated axons.</article-title>
+<source><italic>BMC Neurosci.</italic></source>
+<volume>12(Suppl. 1)</volume>:<issue>100</issue>
+<pub-id pub-id-type="doi">10.1186/1471-2202-12-S1-P100</pub-id></mixed-citation>
+      </ref>
+      <ref id="B31">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Oldfield</surname><given-names>R. C.</given-names></name></person-group> (<year>1971</year>). <article-title>The assessment and analysis of handedness: the Edinburgh inventory.</article-title>
+<source><italic>Neuropsychologia</italic></source>
+<volume>9</volume>
+<fpage>97</fpage>–<lpage>113</lpage>. <pub-id pub-id-type="doi">10.1016/0028-3932(71)90067-4</pub-id><pub-id pub-id-type="pmid">5146491</pub-id></mixed-citation>
+      </ref>
+      <ref id="B32">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Peer</surname><given-names>M.</given-names></name><name><surname>Nitzan</surname><given-names>M.</given-names></name><name><surname>Bick</surname><given-names>A. S.</given-names></name><name><surname>Levin</surname><given-names>N.</given-names></name><name><surname>Arzy</surname><given-names>S.</given-names></name></person-group> (<year>2017</year>). <article-title>Evidence for functional networks within the human brain’s white matter.</article-title>
+<source><italic>J. Neurosci.</italic></source>
+<volume>37</volume>
+<fpage>6394</fpage>–<lpage>6407</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.3872-16.2017</pub-id>
+<pub-id pub-id-type="pmid">28546311</pub-id></mixed-citation>
+      </ref>
+      <ref id="B33">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Pelli</surname><given-names>D. G.</given-names></name></person-group> (<year>1997</year>). <article-title>The VideoToolbox software for visual psychophysics: transforming numbers into movies.</article-title>
+<source><italic>Spat. Vis.</italic></source>
+<volume>10</volume>
+<fpage>437</fpage>–<lpage>442</lpage>.<pub-id pub-id-type="pmid">9176953</pub-id></mixed-citation>
+      </ref>
+      <ref id="B34">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Qian</surname><given-names>C.</given-names></name><name><surname>Tan</surname><given-names>F.</given-names></name></person-group> (<year>2017</year>). <article-title>Internal capsule?: the homunculus distribution in the posterior limb.</article-title>
+<source><italic>Brain Behav.</italic></source>
+<volume>7</volume>:<issue>e00629</issue>. <pub-id pub-id-type="doi">10.1002/brb3.629</pub-id>
+<pub-id pub-id-type="pmid">28293471</pub-id></mixed-citation>
+      </ref>
+      <ref id="B35">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Reid</surname><given-names>L. B.</given-names></name><name><surname>Sale</surname><given-names>M. V.</given-names></name><name><surname>Cunnington</surname><given-names>R.</given-names></name><name><surname>Mattingley</surname><given-names>J. B.</given-names></name><name><surname>Rose</surname><given-names>S. E.</given-names></name></person-group> (<year>2017</year>). <article-title>Brain changes following four weeks of unimanual motor training: evidence from fMRI-guided diffusion MRI tractography.</article-title>
+<source><italic>Hum. Brain Mapp.</italic></source>
+<volume>38</volume>
+<fpage>4302</fpage>–<lpage>4312</lpage>. <pub-id pub-id-type="doi">10.1002/hbm.23514</pub-id>
+<pub-id pub-id-type="pmid">28677154</pub-id></mixed-citation>
+      </ref>
+      <ref id="B36">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Sale</surname><given-names>M. V.</given-names></name><name><surname>Reid</surname><given-names>L. B.</given-names></name><name><surname>Cocchi</surname><given-names>L.</given-names></name><name><surname>Pagnozzi</surname><given-names>A. M.</given-names></name><name><surname>Rose</surname><given-names>S. E.</given-names></name><name><surname>Mattingley</surname><given-names>J. B.</given-names></name></person-group> (<year>2017</year>). <article-title>Brain changes following four weeks of unimanual motor training: evidence from behavior, neural stimulation, cortical thickness, and functional MRI.</article-title>
+<source><italic>Hum. Brain Mapp.</italic></source>
+<volume>38</volume>
+<fpage>4773</fpage>–<lpage>4787</lpage>. <pub-id pub-id-type="doi">10.1002/hbm.23710</pub-id>
+<pub-id pub-id-type="pmid">28677224</pub-id></mixed-citation>
+      </ref>
+      <ref id="B37">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Sampaio-Baptista</surname><given-names>C.</given-names></name><name><surname>Johansen-Berg</surname><given-names>H.</given-names></name></person-group> (<year>2017</year>). <article-title>White matter plasticity in the adult brain.</article-title>
+<source><italic>Neuron</italic></source>
+<volume>96</volume>
+<fpage>1239</fpage>–<lpage>1251</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuron.2017.11.026</pub-id>
+<pub-id pub-id-type="pmid">29268094</pub-id></mixed-citation>
+      </ref>
+      <ref id="B38">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Scholz</surname><given-names>J.</given-names></name><name><surname>Klein</surname><given-names>M. C.</given-names></name><name><surname>Behrens</surname><given-names>T. E. J.</given-names></name><name><surname>Johansen-Berg</surname><given-names>H.</given-names></name></person-group> (<year>2009</year>). <article-title>Training induces changes in white-matter architecture.</article-title>
+<source><italic>Nat. Neurosci.</italic></source>
+<volume>12</volume>:<issue>1370</issue>. <pub-id pub-id-type="doi">10.1038/nn.2412</pub-id>
+<pub-id pub-id-type="pmid">19820707</pub-id></mixed-citation>
+      </ref>
+      <ref id="B39">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Steele</surname><given-names>C. J.</given-names></name><name><surname>Bailey</surname><given-names>J. A.</given-names></name><name><surname>Zatorre</surname><given-names>R. J.</given-names></name><name><surname>Penhune</surname><given-names>V. B.</given-names></name></person-group> (<year>2013</year>). <article-title>Early musical training and white-matter plasticity in the corpus callosum: evidence for a sensitive period.</article-title>
+<source><italic>J. Neurosci.</italic></source>
+<volume>33</volume>
+<fpage>1282</fpage>–<lpage>1290</lpage>. <pub-id pub-id-type="doi">10.1523/jneurosci.3578-12.2013</pub-id>
+<pub-id pub-id-type="pmid">23325263</pub-id></mixed-citation>
+      </ref>
+      <ref id="B40">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Storti</surname><given-names>S. F.</given-names></name><name><surname>Formaggio</surname><given-names>E.</given-names></name><name><surname>Bertoldo</surname><given-names>A.</given-names></name><name><surname>Manganotti</surname><given-names>P.</given-names></name><name><surname>Fiaschi</surname><given-names>A.</given-names></name><name><surname>Toffoloc</surname><given-names>G. M.</given-names></name></person-group> (<year>2013</year>). <article-title>Modelling hemodynamic response function in epilepsy.</article-title>
+<source><italic>Clin. Neurophysiol.</italic></source>
+<volume>124</volume>
+<fpage>2108</fpage>–<lpage>2118</lpage>. <pub-id pub-id-type="doi">10.1016/j.clinph.2013.05.024</pub-id>
+<pub-id pub-id-type="pmid">23845895</pub-id></mixed-citation>
+      </ref>
+      <ref id="B41">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Tae</surname><given-names>W. S.</given-names></name><name><surname>Yakunina</surname><given-names>N.</given-names></name><name><surname>Kim</surname><given-names>T. S.</given-names></name><name><surname>Kim</surname><given-names>S. S.</given-names></name><name><surname>Nam</surname><given-names>E.-C.</given-names></name></person-group> (<year>2014</year>). <article-title>Activation of auditory white matter tracts as revealed by functional magnetic resonance imaging.</article-title>
+<source><italic>Neuroradiology</italic></source>
+<volume>56</volume>
+<fpage>597</fpage>–<lpage>605</lpage>. <pub-id pub-id-type="doi">10.1007/s00234-014-1362-y</pub-id>
+<pub-id pub-id-type="pmid">24736936</pub-id></mixed-citation>
+      </ref>
+      <ref id="B42">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Takeuchi</surname><given-names>H.</given-names></name><name><surname>Sekiguchi</surname><given-names>A.</given-names></name><name><surname>Taki</surname><given-names>Y.</given-names></name><name><surname>Yokoyama</surname><given-names>S.</given-names></name><name><surname>Yomogida</surname><given-names>Y.</given-names></name><name><surname>Komuro</surname><given-names>N.</given-names></name><etal/></person-group> (<year>2010</year>). <article-title>Training of working memory impacts structural connectivity.</article-title>
+<source><italic>J. Neurosci.</italic></source>
+<volume>30</volume>
+<fpage>3297</fpage>–<lpage>3303</lpage>. <pub-id pub-id-type="doi">10.1523/jneurosci.4611-09.2010</pub-id>
+<pub-id pub-id-type="pmid">20203189</pub-id></mixed-citation>
+      </ref>
+      <ref id="B43">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Taubert</surname><given-names>M.</given-names></name><name><surname>Draganski</surname><given-names>B.</given-names></name><name><surname>Anwander</surname><given-names>A.</given-names></name><name><surname>Muller</surname><given-names>K.</given-names></name><name><surname>Horstmann</surname><given-names>A.</given-names></name><name><surname>Villringer</surname><given-names>A.</given-names></name><etal/></person-group> (<year>2010</year>). <article-title>Dynamic properties of human brain structure: learning-related changes in cortical areas and associated fiber connections.</article-title>
+<source><italic>J. Neurosci.</italic></source>
+<volume>30</volume>
+<fpage>11670</fpage>–<lpage>11677</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.2567-10.2010</pub-id>
+<pub-id pub-id-type="pmid">20810887</pub-id></mixed-citation>
+      </ref>
+      <ref id="B44">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wang</surname><given-names>X.</given-names></name><name><surname>Casadio</surname><given-names>M.</given-names></name><name><surname>Weber</surname><given-names>K. A.</given-names><suffix>II</suffix></name><name><surname>Mussa-Ivaldi</surname><given-names>F. A.</given-names></name><name><surname>Parrish</surname><given-names>T. B.</given-names></name></person-group> (<year>2014</year>). <article-title>White matter microstructure changes induced by motor skill learning utilizing a body machine interface.</article-title>
+<source><italic>Neuroimage</italic></source>
+<volume>88</volume>
+<fpage>32</fpage>–<lpage>40</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2013.10.066</pub-id>
+<pub-id pub-id-type="pmid">24220038</pub-id></mixed-citation>
+      </ref>
+      <ref id="B45">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ward</surname><given-names>N. S.</given-names></name><name><surname>Swayne</surname><given-names>O. B. C.</given-names></name><name><surname>Newton</surname><given-names>J. M.</given-names></name></person-group> (<year>2008</year>). <article-title>Age-dependent changes in the neural correlates of force modulation: an fMRI study.</article-title>
+<source><italic>Neurobiol. Aging</italic></source>
+<volume>29</volume>
+<fpage>1434</fpage>–<lpage>1446</lpage>. <pub-id pub-id-type="doi">10.1016/j.neurobiolaging.2007.04.017</pub-id>
+<pub-id pub-id-type="pmid">17566608</pub-id></mixed-citation>
+      </ref>
+      <ref id="B46">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Woolrich</surname><given-names>M. W.</given-names></name><name><surname>Behrens</surname><given-names>T. E. J.</given-names></name><name><surname>Smith</surname><given-names>S. M.</given-names></name></person-group> (<year>2004</year>). <article-title>Constrained linear basis sets for HRF modelling using Variational Bayes.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>21</volume>
+<fpage>1748</fpage>–<lpage>1761</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2003.12.024</pub-id>
+<pub-id pub-id-type="pmid">15050595</pub-id></mixed-citation>
+      </ref>
+      <ref id="B47">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wu</surname><given-names>X.</given-names></name><name><surname>Yang</surname><given-names>Z.</given-names></name><name><surname>Bailey</surname><given-names>S. K.</given-names></name><name><surname>Zhou</surname><given-names>J.</given-names></name><name><surname>Cutting</surname><given-names>L. E.</given-names></name><name><surname>Gore</surname><given-names>J. C.</given-names></name><etal/></person-group> (<year>2017</year>). <article-title>Functional connectivity and activity of white matter in somatosensory pathways under tactile stimulations.</article-title>
+<source><italic>NeuroImage</italic></source>
+<volume>152</volume>
+<fpage>371</fpage>–<lpage>380</lpage>. <pub-id pub-id-type="doi">10.1016/j.neuroimage.2017.02.074</pub-id>
+<pub-id pub-id-type="pmid">28284801</pub-id></mixed-citation>
+      </ref>
+      <ref id="B48">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Yim</surname><given-names>S. H.</given-names></name><name><surname>Kim</surname><given-names>J. H.</given-names></name><name><surname>Han</surname><given-names>Z. A.</given-names></name><name><surname>Jeon</surname><given-names>S.</given-names></name><name><surname>Cho</surname><given-names>J. H.</given-names></name><name><surname>Kim</surname><given-names>G. S.</given-names></name><etal/></person-group> (<year>2013</year>). <article-title>Distribution of the corticobulbar tract in the internal capsule.</article-title>
+<source><italic>J. Neurol. Sci.</italic></source>
+<volume>334</volume>
+<fpage>63</fpage>–<lpage>68</lpage>. <pub-id pub-id-type="doi">10.1016/j.jns.2013.07.015</pub-id>
+<pub-id pub-id-type="pmid">24034408</pub-id></mixed-citation>
+      </ref>
+      <ref id="B49">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Yotsumoto</surname><given-names>Y.</given-names></name><name><surname>Chang</surname><given-names>L. H.</given-names></name><name><surname>Ni</surname><given-names>R.</given-names></name><name><surname>Pierce</surname><given-names>R.</given-names></name><name><surname>Andersen</surname><given-names>G. J.</given-names></name><name><surname>Watanabe</surname><given-names>T.</given-names></name><etal/></person-group> (<year>2014</year>). <article-title>White matter in the older brain is more plastic than in the younger brain.</article-title>
+<source><italic>Nat. Commun.</italic></source>
+<volume>5</volume>
+<fpage>1</fpage>–<lpage>8</lpage>. <pub-id pub-id-type="doi">10.1038/ncomms6504</pub-id>
+<pub-id pub-id-type="pmid">25407566</pub-id></mixed-citation>
+      </ref>
+      <ref id="B50">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zhou</surname><given-names>Y.</given-names></name><name><surname>Zhang</surname><given-names>H.</given-names></name><name><surname>Zhang</surname><given-names>L.</given-names></name><name><surname>Cao</surname><given-names>X.</given-names></name><name><surname>Yang</surname><given-names>R.</given-names></name><name><surname>Feng</surname><given-names>Q.</given-names></name><etal/></person-group> (<year>2018</year>). <article-title>Functional MRI registration with tissue-specific patch-based functional correlation tensors.</article-title>
+<source><italic>Hum. Brain Mapp.</italic></source>
+<volume>39</volume>
+<fpage>2303</fpage>–<lpage>2316</lpage>. <pub-id pub-id-type="doi">10.1002/hbm.24021</pub-id>
+<pub-id pub-id-type="pmid">29504193</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

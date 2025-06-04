@@ -1,0 +1,6 @@
+Delay,Loop,Proportion correct,Proportion of joint retrieval,Proportion of joint retrieval
+Delay,Loop,Proportion correct,Data,Independent model
+No-delay,Open,0.62 (0.19),0.61 (0.14),0.59 (0.12)
+No-delay,Closed,0.68 (0.21),0.69 (0.14),0.65 (0.14)
+Delay,Open,0.50 (0.19),0.56 (0.13),0.55 (0.11)
+Delay,Closed,0.61 (0.21),0.67 (0.12),0.61 (0.13)

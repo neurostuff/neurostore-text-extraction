@@ -1,0 +1,32 @@
+{
+    "groups": [
+        {
+            "count": 19,
+            "diagnosis": "mesial temporal lobe epilepsy (MTLE) due to hippocampal sclerosis",
+            "group_name": "patients",
+            "subgroup_name": "MTLE patients",
+            "male_count": 11,
+            "female_count": 8,
+            "age_mean": 45.31,
+            "age_range": "29.7-15.2",
+            "age_minimum": 29,
+            "age_maximum": 60,
+            "age_median": null,
+            "imaging_sample": "yes"
+        },
+        {
+            "count": 19,
+            "diagnosis": null,
+            "group_name": "healthy",
+            "subgroup_name": "healthy controls",
+            "male_count": 10,
+            "female_count": 9,
+            "age_mean": 45.81,
+            "age_range": "30-15.3",
+            "age_minimum": 30,
+            "age_maximum": 60,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

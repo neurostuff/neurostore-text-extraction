@@ -1,0 +1,39 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To examine the neural activations associated with involuntary memory processing in PTSD and compare negative to neutral involuntary memories.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Involuntary Memory Retrieval Task",
+            "TaskDescription": "Participants indicated involuntary memories from emotional film clips by pressing a button. The task aimed to study neural activity associated with involuntary memory retrieval in PTSD.",
+            "DesignDetails": "The task was event-related, with participants indicating involuntary memories during a 4-second sound presentation, followed by a 1.5-second response period. A fixation period was included with a mean of 4 seconds, jittered between 1.5 to 10.4 seconds. Each sound was presented for 4 seconds, and participants were instructed to respond after the sound ended.",
+            "Conditions": [
+                "Paired sounds",
+                "Unpaired sounds"
+            ],
+            "TaskMetrics": [
+                "Involuntary memory reports",
+                "Emotion ratings",
+                "Vividness ratings"
+            ],
+            "Concepts": [
+                "Involuntary memory",
+                "Emotion regulation",
+                "Cognitive control"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Emotion"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "4 seconds per sound presentation"
+        }
+    ],
+    "BehavioralTasks": null
+}

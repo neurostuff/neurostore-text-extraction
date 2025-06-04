@@ -1,0 +1,60 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To investigate spoken word processing in young and older adult listeners in the absence of background noise, focusing on age differences in brain networks supporting spoken word recognition and the effects of task choice.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Attentive Listening",
+            "TaskDescription": "Participants were asked to stay alert, still, and keep their eyes focused on a fixation cross while listening to a sequence of auditory sounds, including words, silence, and noise.",
+            "DesignDetails": "Functional MRI scanning took place over the course of four scanning blocks, where participants alternated between blocks of attentive listening and word repetition. The order of blocks was counterbalanced such that participants were equally likely to begin with a word repetition or an attentive listening block.",
+            "Conditions": [
+                "Words",
+                "Noise"
+            ],
+            "TaskMetrics": [
+                "fMRI BOLD signal"
+            ],
+            "Concepts": [
+                "spoken word recognition",
+                "auditory processing"
+            ],
+            "Domain": [
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Mixed"
+            ],
+            "TaskDuration": null
+        },
+        {
+            "TaskName": "Word Repetition",
+            "TaskDescription": "Participants were asked to repeat the word they just heard aloud after listening to it.",
+            "DesignDetails": "During word repetition, participants were instructed to repeat the words following the volume acquisition after each word. Participants practiced a simulation of the word repetition task until the experimenter was confident that the participant understood the pacing and the nature of the task.",
+            "Conditions": [
+                "Words",
+                "Noise"
+            ],
+            "TaskMetrics": [
+                "fMRI BOLD signal"
+            ],
+            "Concepts": [
+                "spoken word recognition",
+                "auditory processing"
+            ],
+            "Domain": [
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Mixed"
+            ],
+            "TaskDuration": null
+        }
+    ],
+    "BehavioralTasks": null
+}

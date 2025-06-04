@@ -1,0 +1,71 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "The aim of the current study was to investigate the processing of emotional faces of others, and faces of self, in AN.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Implicit Emotion Processing Task",
+            "TaskDescription": "Participants performed an implicit emotion processing task that involved gender identification of stimuli while undergoing fMRI and eyetracking.",
+            "DesignDetails": "In the implicit task, participants were presented with each stimulus twice in a pseudorandom fashion, resulting in a total of 16 presentations of each emotion over two runs. Faces were displayed pseudorandomly across emotions for 8000 ms on a white background, followed by a black fixation cross for 3000-4300 ms. Each of the two runs also began with a long period of fixation for 15000 ms.",
+            "Conditions": [
+                "Anger",
+                "Disgust",
+                "Fear",
+                "Happiness",
+                "Sadness",
+                "Surprise",
+                "Neutral",
+                "Own Face"
+            ],
+            "TaskMetrics": [
+                "BOLD signal",
+                "Fixation count",
+                "Fixation duration"
+            ],
+            "Concepts": [
+                "Emotion processing",
+                "Facial affect processing",
+                "Gender identification"
+            ],
+            "Domain": [
+                "Perception",
+                "Emotion"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "16 presentations per emotion over two runs"
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Explicit Emotion Identification Task",
+            "TaskDescription": "Participants performed an explicit emotion identification task outside the scanner during eyetracking.",
+            "DesignDetails": "In the explicit task, participants were shown each stimulus once, resulting in eight presentations per emotion over one run. Following the presentation of each face stimulus, a forced-choice screen appeared on the monitor asking participants to identify the emotion displayed in the previous face from a list containing all of the emotions.",
+            "Conditions": [
+                "Anger",
+                "Disgust",
+                "Fear",
+                "Happiness",
+                "Sadness",
+                "Surprise",
+                "Neutral",
+                "Own Face"
+            ],
+            "TaskMetrics": [
+                "Rate of emotion identification errors"
+            ],
+            "Concepts": [
+                "Emotion identification"
+            ],
+            "Domain": [
+                "Perception",
+                "Emotion"
+            ]
+        }
+    ]
+}

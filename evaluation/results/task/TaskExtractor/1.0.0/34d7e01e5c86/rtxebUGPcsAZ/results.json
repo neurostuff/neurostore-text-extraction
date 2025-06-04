@@ -1,0 +1,34 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "The aim of this study was to apply functional measures of motor learning and plasticity, specifically to extend previous findings of WM activation in the internal capsule and to show WM activation changes consistent with a behavioral motor learning effect.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Motor Training Task",
+            "TaskDescription": "Participants used an MRI compatible mouse to guide a cursor through a marked trail displayed on the monitor, aiming to minimize errors and maximize distance traveled.",
+            "DesignDetails": "The task involved a fine motor learning task with accurate, rapid tracing of randomized trail mazes, counterbalanced with a matched gross motor comparison task. Each scan was 6 minutes long, consisting of seven on-blocks of 24 seconds each, interleaved with jittered rest blocks averaging 24 seconds. Each scan began and ended with a rest block, and the trails were designed to be too complex to be completed in a single 24-second block.",
+            "Conditions": null,
+            "TaskMetrics": [
+                "speed",
+                "accuracy"
+            ],
+            "Concepts": [
+                "motor learning",
+                "neuroplasticity"
+            ],
+            "Domain": [
+                "Action",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Blocked"
+            ],
+            "TaskDuration": "6 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

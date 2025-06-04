@@ -1,0 +1,11 @@
+{
+    "title": "Weak but Critical Links between Primary Somatosensory Centers and Motor Cortex during Movement",
+    "authors": "Wei, Pengxu; Bao, Ruixue; Lv, Zeping; Jing, Bin; Wei, Pengxu; Bao, Ruixue; Lv, Zeping; Jing, Bin",
+    "journal": "Front Hum Neurosci",
+    "keywords": "motor control\nfunctional magnetic resonance imaging\nfunctional connectivity\nweighted brain network\ngraph theory\n",
+    "abstract": " \nMotor performance is improved by stimulation of the agonist muscle during movement. However, related brain mechanisms remain unknown. In this work, we perform a functional magnetic resonance imaging (fMRI) study in 21 healthy subjects under three different conditions: (1) movement of right ankle alone; (2) movement and simultaneous stimulation of the agonist muscle; or (3) movement and simultaneous stimulation of a control area. We constructed weighted brain networks for each condition by using functional connectivity. Network features were analyzed using graph theoretical approaches. We found that: (1) the second condition evokes the strongest and most widespread brain activations (5147 vs. 4419 and 2320 activated voxels); and (2) this condition also induces a unique network layout and changes hubs and the modular structure of the brain motor network by activating the most \u201csilent\u201d links between primary somatosensory centers and the motor cortex, particularly weak links from the thalamus to the left primary motor cortex (M1). Significant statistical differences were found when the strength values of the right cerebellum (  P   < 0.001) or the left thalamus (  P   = 0.006) were compared among the three conditions. Over the years, studies reported a small number of projections from the thalamus to the motor cortex. This is the first work to present functions of these pathways. These findings reveal mechanisms for enhancing motor function with somatosensory stimulation, and suggest that network function cannot be thoroughly understood when weak ties are disregarded. \n ",
+    "publication_year": 2018,
+    "coordinate_space": "MNI",
+    "license": "http://creativecommons.org/licenses/by/4.0/",
+    "text": true
+}

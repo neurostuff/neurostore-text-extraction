@@ -1,0 +1,11 @@
+{
+    "title": "Caudate Nucleus Signals for Breaches of Expectation in a Movement Observation Paradigm",
+    "authors": "Schiffer, Anne-Marike; Schubotz, Ricarda I.",
+    "journal": "Front Hum Neurosci",
+    "keywords": "caudate nucleus\nmovement observation\nprediction\nfMRI\ninternal model\nbiological motion\nexpectation\nfrontal lobe\n",
+    "abstract": " \nThe striatum has been established as a carrier of reward-related prediction errors. This prediction error signal concerns the difference between how much reward was predicted and how much reward is gained. However, it remains to be established whether general breaches of expectation, i.e., perceptual prediction errors, are also implemented in the striatum. The current study used functional magnetic resonance imaging (fMRI) to investigate the role of caudate nucleus in breaches of expectation. Importantly, breaches were not related to the occurrence or absence of reward. Preceding the fMRI study, participants were trained to produce a sequence of whole-body movements according to auditory cues. In the fMRI session, they watched movies of a dancer producing the same sequences either according to the cue (88%) or not (12%). Caudate nucleus was activated for the prediction-violating movements. This activation was flanked by activity in posterior superior temporal sulcus, the temporo-parietal junction and adjacent angular gyrus, a network that may convey the deviating movement to caudate nucleus, while frontal areas may reflect adaptive adjustments of the current prediction. Alternative interpretations of caudate activity relating either to the saliency of breaches of expectation or to behavioral adaptation could be excluded by two control contrasts. The results foster the notion that neurons in the caudate nucleus code for a breach in expectation, and point toward a distributed network involved in detecting, signaling and adjusting behavior and expectations toward violated prediction. \n ",
+    "publication_year": 2011,
+    "coordinate_space": "TAL",
+    "license": "http://www.frontiersin.org/licenseagreement",
+    "text": true
+}

@@ -1,0 +1,13 @@
+{
+    "date": "2025-06-03T22:32:01.920155",
+    "identifiers": {
+        "dbid": "CDmqqVyig8SL",
+        "pmid": "38527810",
+        "pmcid": "PMC11063816",
+        "doi": "10.1523/JNEUROSCI.1740-23.2024"
+    },
+    "inputs": {
+        "/home/jdkent/projects/neurostore-text-extraction/evaluation/data/ns_pond_inputs/CDmqqVyig8SL/processed/pubget/text.txt": "f0a25ce15e09ad31773ff63016cbede3"
+    },
+    "valid": true
+}

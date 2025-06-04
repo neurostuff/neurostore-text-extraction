@@ -1,0 +1,60 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To apply functional measures of motor learning and plasticity, focusing on white matter activation in the internal capsule during a motor training task.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Motor Training Task",
+            "TaskDescription": "Participants used an MRI compatible mouse to guide a cursor through a marked trail displayed on the monitor, instructed to minimize errors and maximize distance traveled. Performance metrics were recorded based on speed and accuracy, emphasizing the difference in dominant and non-dominant hand proficiency.",
+            "DesignDetails": "The task was structured as a block design with seven on-blocks of 24 seconds each, interleaved with jittered rest blocks averaging 24 seconds. Each scan lasted 6 minutes, beginning and ending with a rest block. The task difficulty was designed to emphasize differences in hand proficiency.",
+            "Conditions": [
+                "Fine Motor Learning Task",
+                "Gross Motor Comparison Task"
+            ],
+            "TaskMetrics": [
+                "Speed",
+                "Accuracy",
+                "Distance Traveled",
+                "Error Rate"
+            ],
+            "Concepts": [
+                "Motor Learning",
+                "Neuroplasticity"
+            ],
+            "Domain": [
+                "Action",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Blocked"
+            ],
+            "TaskDuration": "6 minutes"
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Fine Motor Learning Task",
+            "TaskDescription": "Participants traced randomized trail mazes as quickly and accurately as possible, with performance scores incorporating distance and error-rate. This task was counterbalanced with a matched gross motor comparison task.",
+            "DesignDetails": "The task was structured as a block design with performance metrics recorded based on speed and accuracy. Each trial involved tracing a complex trail displayed for 24 seconds, with trials designed to be too complex to complete in a single block.",
+            "Conditions": [
+                "Non-Dominant Hand",
+                "Dominant Hand"
+            ],
+            "TaskMetrics": [
+                "Distance Traveled",
+                "Error Rate"
+            ],
+            "Concepts": [
+                "Motor Learning"
+            ],
+            "Domain": [
+                "Action",
+                "Learning and memory"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To explore neural correlates of threat processing in panic disorder (PD) patients by means of script-driven imagery based on controlled disorder-related and neutral scenarios.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Script-Driven Imagery",
+            "TaskDescription": "Participants listened to disorder-related and neutral narrative scripts and imagined the active role of the protagonist, which elicited emotional and physiological responses similar to real-life threats.",
+            "DesignDetails": "The task was event-related with pseudo-randomized trials. Each script lasted 30 seconds, with an inter-trial interval of 20 seconds. Participants were instructed to keep their eyes closed and concentrate on the sounds during the inter-trial interval. The task lasted approximately 9 minutes.",
+            "Conditions": [
+                "Disorder-related scripts",
+                "Neutral scripts"
+            ],
+            "TaskMetrics": [
+                "BOLD response in brain regions (amygdala, PFC, ACC, brainstem)",
+                "Subjective ratings of anxiety, arousal, and valence"
+            ],
+            "Concepts": [
+                "Threat processing",
+                "Emotional reactivity",
+                "Interoceptive processing",
+                "Vigilance"
+            ],
+            "Domain": [
+                "Emotion",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Approximately 9 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

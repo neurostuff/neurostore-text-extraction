@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To explore the interaction between conflict resolution processes and memory encoding in MTLE patients and healthy controls using a face-word Stroop paradigm and an incidental memory task.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Face-word Stroop task",
+            "TaskDescription": "The task comprised face-word stimuli consisting of male and female faces overlaid by the words man or woman, which could be either congruent or incongruent with the sex of the face.",
+            "DesignDetails": "The paradigm consisted of 120 faces (60 males and 60 females) previously presented in a familiarization task. Faces were displayed for 1500ms in the center of a white screen. An event-related design was used to identify separate trial-related Blood-oxygen-level-dependent (BOLD) responses. Trial onsets randomly varied with a pseudo-exponentially distributed SOA of 5000ms (75%), 7500ms (17%) and 10,000ms (8%). Both trial types were presented in a randomized order and occurred with a probability of 50%. Subjects had to indicate whether a face was male or female by pressing the left or right mouse button, with button assignments counterbalanced across participants.",
+            "Conditions": [
+                "Congruent",
+                "Incongruent"
+            ],
+            "TaskMetrics": [
+                "response time",
+                "accuracy"
+            ],
+            "Concepts": [
+                "cognitive control",
+                "memory encoding",
+                "conflict resolution"
+            ],
+            "Domain": [
+                "Executive cognitive control",
+                "Learning and memory"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": null
+        }
+    ],
+    "BehavioralTasks": null
+}

@@ -1,0 +1,72 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To investigate the processing of emotional faces of others, and faces of self, in individuals with anorexia nervosa (AN).",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Implicit Emotion Processing Task",
+            "TaskDescription": "Participants performed a gender identification task while viewing face stimuli displaying various emotions. They were instructed to look at the face and respond with a gender identification only after a fixation cross appeared.",
+            "DesignDetails": "The task was event-related with two runs, each presenting stimuli twice in a pseudorandom order, resulting in 16 presentations of each emotion. Each face was displayed for 8000 ms followed by a fixation cross for 3000-4300 ms. Long fixation periods were included to increase BOLD signal variance.",
+            "Conditions": [
+                "Anger",
+                "Disgust",
+                "Fear",
+                "Happiness",
+                "Sadness",
+                "Neutral",
+                "Own Face"
+            ],
+            "TaskMetrics": [
+                "BOLD response",
+                "Fixation count",
+                "Fixation duration",
+                "Saccade amplitude"
+            ],
+            "Concepts": [
+                "Emotion processing",
+                "Facial affect processing",
+                "Visual attention",
+                "Self-perception"
+            ],
+            "Domain": [
+                "Perception",
+                "Emotion"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Not specified"
+        }
+    ],
+    "BehavioralTasks": [
+        {
+            "TaskName": "Explicit Emotion Identification Task",
+            "TaskDescription": "Participants identified the emotion displayed in face stimuli from a list of emotions after viewing each face.",
+            "DesignDetails": "The task was event-related, with each stimulus presented once, resulting in eight presentations per emotion over one run. A fixation cross appeared before each stimulus, and participants had unlimited time to respond.",
+            "Conditions": [
+                "Anger",
+                "Disgust",
+                "Fear",
+                "Happiness",
+                "Sadness",
+                "Neutral",
+                "Own Face"
+            ],
+            "TaskMetrics": [
+                "Rate of emotion identification errors"
+            ],
+            "Concepts": [
+                "Emotion identification",
+                "Self-perception"
+            ],
+            "Domain": [
+                "Perception",
+                "Emotion"
+            ]
+        }
+    ]
+}

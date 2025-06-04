@@ -1,0 +1,38 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "To investigate gender differences on voice localizer scans by employing the conventional univariate analysis as well as multivariate pattern analysis (MVPA).",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Voice Localizer Paradigm",
+            "TaskDescription": "Subjects were instructed to close their eyes and passively listen to a large variety of sounds, including vocal and non-vocal conditions.",
+            "DesignDetails": "The voice localizer includes 40 blocks presented in a simple block design, with 20 blocks for vocal sounds and 20 blocks for non-vocal sounds. Each block lasted for 8 seconds with an inter-block interval of 2 seconds.",
+            "Conditions": [
+                "Vocal",
+                "Non-vocal"
+            ],
+            "TaskMetrics": [
+                "BOLD signal",
+                "Classification accuracy"
+            ],
+            "Concepts": [
+                "Voice processing",
+                "Gender differences",
+                "Auditory perception"
+            ],
+            "Domain": [
+                "Perception",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "Blocked"
+            ],
+            "TaskDuration": "10.28 minutes"
+        }
+    ],
+    "BehavioralTasks": null
+}

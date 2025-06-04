@@ -1,0 +1,18 @@
+{
+    "groups": [
+        {
+            "count": 21,
+            "diagnosis": null,
+            "group_name": "healthy",
+            "subgroup_name": "right-handed healthy male volunteers",
+            "male_count": 21,
+            "female_count": null,
+            "age_mean": 25.77,
+            "age_range": "20-40",
+            "age_minimum": 20,
+            "age_maximum": 40,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

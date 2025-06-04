@@ -1,0 +1,41 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "We used fMRI and an experimental assay of holistic episodic memory retrieval to assess hippocampal pattern completion and its relationship to neocortical reinstatement across delay.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Cued-Recognition Task",
+            "TaskDescription": "Participants performed a six-alternative forced-choice cued-recognition task to retrieve elements associated with learned events.",
+            "DesignDetails": "During retrieval, participants were presented with a cue and six potential targets. The cue was presented in the middle of the screen with the six possible targets displayed below. Participants had a maximum of 6 seconds to respond with a button corresponding to the target position. Each trial was preceded by a 1-second fixation and followed by a 1-second blank screen. The presentation order was optimized to measure univariate BOLD activity across four within-subject experimental conditions (open-loop, delay; open-loop, no-delay; closed-loop, delay; closed-loop, no-delay).",
+            "Conditions": [
+                "closed-loop",
+                "open-loop",
+                "delay",
+                "no-delay"
+            ],
+            "TaskMetrics": [
+                "BOLD activity",
+                "response time",
+                "accuracy"
+            ],
+            "Concepts": [
+                "episodic memory",
+                "recollection",
+                "pattern completion"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Perception"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "6 seconds"
+        }
+    ],
+    "Behavioraltasks": null
+}

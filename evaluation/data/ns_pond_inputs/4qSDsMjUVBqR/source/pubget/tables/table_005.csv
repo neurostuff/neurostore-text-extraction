@@ -1,0 +1,6 @@
+Region,Cluster size,Side,x,y,z,t-Score
+PTSD ≥ control,PTSD ≥ control,PTSD ≥ control,PTSD ≥ control,PTSD ≥ control,PTSD ≥ control,PTSD ≥ control
+Anterior cingulate cortex,646,Left,−8,30,−4,4.80
+Ventromedial prefrontal cortex,,Right,8,62,−2,4.58
+Control ≥ PTSD,Control ≥ PTSD,Control ≥ PTSD,Control ≥ PTSD,Control ≥ PTSD,Control ≥ PTSD,Control ≥ PTSD
+,,,,,,

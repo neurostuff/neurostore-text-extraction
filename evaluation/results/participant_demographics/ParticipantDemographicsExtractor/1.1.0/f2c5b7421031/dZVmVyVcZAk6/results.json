@@ -1,0 +1,18 @@
+{
+    "groups": [
+        {
+            "count": 20,
+            "diagnosis": null,
+            "group_name": "healthy",
+            "subgroup_name": "Young Participants",
+            "male_count": 14,
+            "female_count": 6,
+            "age_mean": 24,
+            "age_range": "20-34",
+            "age_minimum": 20,
+            "age_maximum": 34,
+            "age_median": null,
+            "imaging_sample": "yes"
+        }
+    ]
+}

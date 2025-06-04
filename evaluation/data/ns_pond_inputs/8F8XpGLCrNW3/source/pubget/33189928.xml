@@ -1,0 +1,2421 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">33189928</article-id>
+      <article-id pub-id-type="pmc">7836234</article-id>
+      <article-id pub-id-type="pii">S1053-8119(20)31048-X</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2020.117563</article-id>
+      <article-id pub-id-type="publisher-id">117563</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Probing the relevance of the hippocampus for conflict-induced memory improvement</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" id="au0001">
+          <name>
+            <surname>Ramm</surname>
+            <given-names>Markus</given-names>
+          </name>
+          <xref rid="aff0001" ref-type="aff">a</xref>
+          <xref rid="aff0002" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0002">
+          <name>
+            <surname>Sundermann</surname>
+            <given-names>Benedikt</given-names>
+          </name>
+          <xref rid="aff0003" ref-type="aff">c</xref>
+          <xref rid="aff0004" ref-type="aff">d</xref>
+          <xref rid="aff0009" ref-type="aff">i</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0003">
+          <name>
+            <surname>Gomes</surname>
+            <given-names>Carlos Alexandre</given-names>
+          </name>
+          <xref rid="aff0001" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0004">
+          <name>
+            <surname>Möddel</surname>
+            <given-names>Gabriel</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">e</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0005">
+          <name>
+            <surname>Langenbruch</surname>
+            <given-names>Lisa</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">e</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0006">
+          <name>
+            <surname>Nayyeri</surname>
+            <given-names>Mahboobeh Dehghan</given-names>
+          </name>
+          <xref rid="aff0003" ref-type="aff">c</xref>
+          <xref rid="aff0008" ref-type="aff">h</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0007">
+          <name>
+            <surname>Young</surname>
+            <given-names>Peter</given-names>
+          </name>
+          <xref rid="aff0006" ref-type="aff">f</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0008">
+          <name>
+            <surname>Pfleiderer</surname>
+            <given-names>Bettina</given-names>
+          </name>
+          <xref rid="aff0003" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0009">
+          <name>
+            <surname>Krebs</surname>
+            <given-names>Ruth M.</given-names>
+          </name>
+          <xref rid="aff0007" ref-type="aff">g</xref>
+          <xref rid="fn1" ref-type="fn">1</xref>
+        </contrib>
+        <contrib contrib-type="author" id="au0010">
+          <name>
+            <surname>Axmacher</surname>
+            <given-names>Nikolai</given-names>
+          </name>
+          <email>nikolai.axmacher@ruhr-uni-bochum.de</email>
+          <xref rid="aff0001" ref-type="aff">a</xref>
+          <xref rid="cor0001" ref-type="corresp">⁎</xref>
+          <xref rid="fn1" ref-type="fn">1</xref>
+        </contrib>
+        <aff id="aff0001"><label>a</label>Department of Neuropsychology, Institute of Cognitive Neuroscience, Faculty of Psychology, Ruhr University Bochum, Universitätsstr. 150, 44801 Bochum, Germany</aff>
+        <aff id="aff0002"><label>b</label>Neurobiology and Genetics of Behavior, Department of Psychology and Psychotherapy, Centre for Biomedical Education and Research (ZBAF), Witten/Herdecke University, Witten, Germany</aff>
+        <aff id="aff0003"><label>c</label>Institute of Clinical Radiology, Medical Faculty – University of Muenster – and University Hospital Muenster, Muenster, Germany</aff>
+        <aff id="aff0004"><label>d</label>Institute of Radiology and Neuroradiology, University of Oldenburg, Evangelisches Krankenhaus, Medical Campus, Oldenburg, Germany</aff>
+        <aff id="aff0005"><label>e</label>Department of Neurology with Institute of Translational Neurology, University Hospital Muenster, Muenster, Germany</aff>
+        <aff id="aff0006"><label>f</label>Department of Neurology, Medical Park Bad Feilnbach Reithofpark, Bad Feilnbach, Germany</aff>
+        <aff id="aff0007"><label>g</label>Department of Experimental Psychology, Ghent University, Ghent, Belgium</aff>
+        <aff id="aff0008"><label>h</label>Department of Psychosomatic Medicine and Psychotherapy, LVR Clinic, Medical Faculty of the Heinrich-Heine-University Düsseldorf, Düsseldorf, Germany</aff>
+        <aff id="aff0009"><label>i</label>Research Center Neurosensory Science, University of Oldenburg, Oldenburg, Germany</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="cor0001"><label>⁎</label>Corresponding author. <email>nikolai.axmacher@ruhr-uni-bochum.de</email></corresp>
+        <fn id="fn1">
+          <label>1</label>
+          <p id="notep0001">These authors contributed equally.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>01</day>
+        <month>2</month>
+        <year>2021</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on <pub-date
+						pub-type="ppub">.-->
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>2</month>
+        <year>2021</year>
+      </pub-date>
+      <volume>226</volume>
+      <elocation-id>117563</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>8</day>
+          <month>6</month>
+          <year>2020</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>3</day>
+          <month>11</month>
+          <year>2020</year>
+        </date>
+        <date date-type="accepted">
+          <day>5</day>
+          <month>11</month>
+          <year>2020</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2020 The Authors</copyright-statement>
+        <copyright-year>2020</copyright-year>
+        <license license-type="CC BY-NC-ND" xlink:href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+          <license-p>This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).</license-p>
+        </license>
+      </permissions>
+      <abstract id="abs0001">
+        <p>The hippocampus plays a key role for episodic memory. In addition, a small but growing number of studies has shown that it also contributes to the resolution of response conflicts. It is less clear how these two functions are related, and how they are affected by hippocampal lesions in patients with mesial temporal lobe epilepsy (MTLE). Previous studies suggested that conflict stimuli might be better remembered, but whether the hippocampus is critical for supporting this interaction between conflict processing and memory formation is unknown. Here, we tested 19 patients with MTLE due to hippocampal sclerosis and 19 matched healthy controls. Participants performed a face-word Stroop task during functional magnetic resonance imaging (fMRI) followed by a recognition task for the faces. We tested whether memory performance and activity in brain regions implicated in long-term memory were modulated by conflict during encoding, and whether this differed between MTLE patients and controls. In controls, we largely replicated previous findings of improved memory for conflict stimuli. While MTLE patients showed response time slowing during conflict trials as well, they did not exhibit a memory benefit. In controls, neural activity of conflict resolution and memory encoding interacted within a hippocampal region of interest. Here, left hippocampal recruitment was less efficient for memory performance in incongruent trials than in congruent trials, suggesting an intrahippocampal competition for limited resources. They also showed an involvement of precuneus and posterior cingulate cortex during conflict resolution. Both effects were not observed in MTLE patients, where activation of the precuneus and posterior cingulate cortex instead predicted later memory. Further research is needed to find out whether our findings reflect widespread functional reorganization of the episodic memory network due to hippocampal dysfunction.</p>
+      </abstract>
+      <kwd-group id="keys0001">
+        <title>Keywords</title>
+        <kwd>Hippocampus</kwd>
+        <kwd>Memory</kwd>
+        <kwd>Mesial temporal lobe epilepsy</kwd>
+        <kwd>Response conflict</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0001">
+      <label>1</label>
+      <title>Introduction</title>
+      <p id="para0002">Only a small proportion of our experiences is transferred into long-term memory. How long-term memory encoding interacts with cognitive control and which brain areas support their relationship has been studied, but many questions remain (<xref rid="bib0013" ref-type="bibr">Chun and Turk-Browne, 2007</xref>; <xref rid="bib0051" ref-type="bibr">Richter and Yeung, 2012</xref>).</p>
+      <p id="para0003">In explicit learning tasks, attention improves memory encoding. Conversely, explicit memory performance deteriorates when subjects perform a demanding secondary task (<xref rid="bib0011" ref-type="bibr">Chiu and Egner, 2015</xref>; <xref rid="bib0014" ref-type="bibr">Craik et al., 1996</xref>). This suggests that cognitive control and memory encoding recruit similar resource-limited neurocognitive processes in frontal and parietal regions (<xref rid="bib0049" ref-type="bibr">Reynolds et al., 2004</xref>). By contrast, in implicit learning tasks, even highly demanding tasks which rely on brain structures that support memory functions may improve memory encoding (<xref rid="bib0004" ref-type="bibr">Blumenfeld and Ranganath, 2006</xref>). For example, a task-switching paradigm caused impaired memory for task-relevant but improved memory for task-irrelevant information (<xref rid="bib0051" ref-type="bibr">Richter and Yeung, 2012</xref>). This suggests that memory performance depends on the selectivity of attention, i.e. in the context of task-switching, the ability to maintain a stable task set and to effectively shield the relevant stimuli from distraction.</p>
+      <p id="para0004">An influential theory of conflict monitoring and cognitive control postulates that conflict in information processing signals reinforcement of top-down control of attention to the current task, which helps resolving conflict (<xref rid="bib0005" ref-type="bibr">Botvinick et al., 2001</xref>). This theory further assumes that while the anterior cingulate cortex provides the conflict signal, the dorsolateral prefrontal cortex (dlPFC) underlies cognitive control mechanisms that enhance attention to task-relevant stimuli (<xref rid="bib0006" ref-type="bibr">Botvinick et al., 2004</xref>). As a result, stimuli that are presented with incongruent distractors should trigger enhanced selective attention and improve memory encoding of the relevant stimulus. We tested this hypothesis in a previous study that combined a face-word Stroop paradigm with a delayed incidental memory task (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). Trial-unique male and female faces were overlaid with congruent or incongruent distractor words (the words “man” or “woman”). This study showed that processing incongruent trials elicited behavioral costs (i.e., longer reaction times), but also improved later memory performance for the relevant stimulus. Conflicts induced activation of a common cognitive control network, including dlPFC and precuneus, and recruitment of these areas was associated with a memory benefit for face stimuli in conflict trials. Furthermore, functional coupling between these areas and the medial temporal lobe was associated with improved memory of incongruent items. These results suggest that prefrontal and parietal brain regions support control processes and exert a top-down modulation of hippocampus mediated memory encoding, highlighting the hippocampus as a crucial link between response conflict resolution and memory encoding.</p>
+      <p id="para0005">In a series of studies, we recently investigated the role of the hippocampus in higher-order cognitive control processes such as response conflict resolution. We found that in healthy participants, the left hippocampus is recruited during the resolution of response conflicts (<xref rid="bib0037" ref-type="bibr">Oehrn et al., 2015</xref>). Patients with a mesial temporal lobe epilepsy (MTLE) due to hippocampal sclerosis had an impaired conflict resolution performance (<xref rid="bib0045" ref-type="bibr">Ramm et al., 2020a</xref>). In these patients, we further observed a reduced recruitment of the left hippocampus that contributed to the deterioration in performance (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>). These studies suggest that the hippocampus is indeed required for the resolution of cognitive response conflicts. However, whether and how these effects relate to the memory function of the hippocampus remains unclear. Specifically, it is still an open question whether hippocampal dysfunction in MTLE patients affects the interaction between conflict resolution and memory encoding.</p>
+      <p id="para0006">Here, we employed the previously established paradigm by <xref rid="bib0027" ref-type="bibr">Krebs et al. (2015)</xref> in MTLE patients and healthy controls to further explore the interaction between conflict resolution processes and memory encoding. First, we tested whether stimuli that evoke a response conflict are subsequently better remembered than control stimuli in a delayed incidental memory task and whether this effect differs between controls and MTLE patients. If cognitive control mechanisms recruited during response conflict resolution promote memory encoding (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>) and MTLE patients exhibit reduced conflict resolution performance (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>), one would expect them to also show a reduced memory benefit for conflict stimuli. Second, we tested whether brain regions recruited during response conflict resolution predicted subsequent memory performance. In our previous study, we found increased functional coupling between prefrontal and parietal conflict processing regions on the one hand and the medial temporal lobe on the other hand in healthy participants (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>) which we interpreted as a top-down modulation of hippocampal memory encoding. In the present study, applying the same paradigm in healthy controls and hippocampus-lesioned patients allowed us to test whether conflict processing specifically provided by the hippocampus further contributes to improved subsequent memory performance. We predicted that a reduced conflict-induced hippocampal recruitment due to medial temporal lobe dysfunction affects the memory benefit for conflict stimuli. We further explored whether functional connectivity of the hippocampus differs between MTLE patients and healthy controls.</p>
+    </sec>
+    <sec id="sec0002">
+      <label>2</label>
+      <title>Methods</title>
+      <sec id="sec0003">
+        <label>2.1</label>
+        <title>Subjects</title>
+        <p id="para0007"><italic>N</italic> = 22 patients with MTLE according to International League Against Epilepsy criteria (<xref rid="bib0054" ref-type="bibr">Scheffer et al., 2017</xref>) participated in the study. These patients are identical with those from our previous study (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>). Two patients were excluded from the study due to their extremely low accuracies in the Stroop task. One additional patient did not remember any faces and was excluded as well. The final group consisted of 19 patients (age: 45.3 ± 14.7 years; 8 females; age at seizure onset: 29.7 ± 13.2 years; disease duration: 15.2 ± 13.5 years). All patients underwent neurological examination, EEG and structural MRI as part of their clinical diagnostic procedure. Based on EEG and seizure semiology, 17 patients were diagnosed with unilateral MTLE (left MTLE: <italic>n</italic> = 7; right MTLE: <italic>n</italic> = 10), two patients had a bilateral MTLE. Nine patients received antiepileptic drug (AED) monotherapy, 10 patients were on polytherapy (for AED dosages, please see supplemental patient characteristics in Table S1). Patients with multifocal epilepsy, comorbid neurological diseases or severe psychiatric disorders were excluded.</p>
+        <p id="para0008">In addition to patients, <italic>n</italic> = 19 age matched healthy controls participated in the study (age: 45.8 ± 13.5 years; 9 females). Subjects with a neurological or psychiatric disease, a central nervous system-active medication or cerebral lesions were excluded.</p>
+        <p id="para0009">All participants gave written informed consent. The study was approved by the ethics committee of the Ärztekammer Westfalen-Lippe and University of Muenster (reference 2016 - 004 - f - S).</p>
+        <p id="para0010">As described previously (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>) the structural MRI scans received concordant evaluations by two radiologists following a standardized protocol to assess signs of hippocampal sclerosis (<xref rid="bib0015" ref-type="bibr">Dekeyzer et al., 2017</xref>). Healthy subjects did not show any signs of hippocampal sclerosis. In MTLE patients, radiological findings of individual MRI scans are described in the Supplemental Results (Table S1). Results of the volumetric analyses confirmed the qualitative findings of the radiologists with respect to the lateralization of the hippocampal lesion (see Supplemental Results, Table S3).</p>
+      </sec>
+      <sec id="sec0004">
+        <label>2.2</label>
+        <title>Experimental procedure</title>
+        <p id="para0011">The participants underwent functional MRI scanning using an adapted version of the face-word Stroop paradigm from a previous fMRI study (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). This version of the task featured conflict and non-conflict trials, but no neutral trials (faces overlaid with an unrelated word) in order to reduce overall memory demands for this sample including patients.</p>
+        <sec id="sec0005">
+          <label>2.2.1</label>
+          <title>Familiarization and training</title>
+          <p id="para0012">Prior to the MRI session, the participants performed a familiarization task for all face stimuli that were later presented in the face-word Stroop task. A pre-exposure to the stimuli of the fMRI task appeared necessary for two reasons. First, MTLE patients are significantly impaired in episodic memory (<xref rid="bib0022" ref-type="bibr">Helmstaedter, 2002</xref>). We aimed to avoid floor effects and moreover to equalize baseline levels so that conflict modulation can be observed. Second, as there is an habituation of hippocampal response to novelty (<xref rid="bib0035" ref-type="bibr">Murty et al., 2013</xref>), a familiarization phase avoids group differences for this effect. How pre-exposure may further affect interpretation will be addressed in the discussion.</p>
+          <p id="para0013">During familiarization, the face stimuli were displayed three times in a randomized order for 2000 ms each with a stimulus-onset-asynchrony (SOA) of 3000 ms. This procedure was chosen to avoid effects of novelty and floor effects during the later memory task. To ensure continuous attention, subjects had to indicate (via left vs. right button-press) whether they had seen the current face before or not. Stimuli were shown in the center of a white screen, and a black fixation dot was presented throughout the entire task. After familiarization, participants performed 20 separate training trials of the face-word Stroop task. These stimuli were different from those presented in the fMRI task.</p>
+        </sec>
+        <sec id="sec0006">
+          <label>2.2.2</label>
+          <title>Face-word Stroop task</title>
+          <p id="para0014">The task comprised face-word stimuli consisting of male and female faces [Glasgow Face Database, <xref rid="bib0008" ref-type="bibr">Bruce et al. (1999)</xref>], overlaid by the words “man” or “woman” (in German language). These words could be either congruent or incongruent with the sex of the face (<xref rid="fig0001" ref-type="fig">Fig. 1</xref>A). The paradigm consisted of the 120 faces (60 males and 60 females) previously presented in the familiarization task. Faces were displayed for 1500 ms in the center of a white screen. We used an event-related design in order to identify separate trial-related Blood-oxygen-level-dependent (BOLD) responses. Trial onsets randomly varied with a pseudo-exponentially distributed SOA of 5000 ms (75%), 7500 ms (17%) and 10,000 ms (8%). The words were displayed in red ink superimposed on the faces. Both trial types were presented in a randomized order and occurred with a probability of 50%. Subjects were randomly assigned to one of two stimulus sets. Stimuli that were congruent in one group of subjects were incongruent in the other group. Subjects had to indicate whether a face was male or female by pressing the left or right mouse button (button assignments were counterbalanced across participants in each group). Throughout the entire paradigm, a black fixation dot was displayed in the middle of the face (and right below the word) to ensure accurate fixation.<fig id="fig0001"><label>Fig. 1</label><caption><p>Face-word Stroop task and behavioral results. (A) In the face-word Stroop task, each trial consisted of a face overlaid by the words “man” and “woman” that were either congruent or incongruent with the sex of the face. ITI, inter-trial interval. (B) Mean of response times (left) and mean of response time differences (right), overlaid with single-subject results. (C) Mean of the response accuracies (left) and response accuracy differences (right), overlaid with single-subject results.</p></caption><alt-text id="alt0001">Fig. 1</alt-text><graphic xlink:href="gr1"/></fig></p>
+        </sec>
+        <sec id="sec0007">
+          <label>2.2.3</label>
+          <title>Incidental memory task</title>
+          <p id="para0015">About 30–45 min after the face-word Stroop task, an incidental memory task of to the previously seen faces was conducted outside of the MRI scanner. All 120 faces that had been shown in the face-word Stroop task and 40 novel faces were presented in a random order on a standard laptop computer. The faces were displayed in the center of a white screen for 2000 ms, followed by an inter-trial interval of 2000 ms (SOA = 4000 ms). Subjects were asked to indicate whether they had seen the face before (during the fMRI task or the familiarization) or not by pressing one of four buttons (4: “definitely old”, 3: “probably old”, 2: “probably new”, 1: “definitely new”). We tested whether this rating scale was used differently by MTLE patients and healthy controls to exclude the possibility of strategic differences. In the supplement, Fig. S1 shows the number of responses for each response category, separately for target items and distractor items as well as for controls and MTLE patients. In a multivariate ANOVA, “group” (MTLE patients vs. controls) did not affect the number of responses for the different response categories (Pillai's Trace; <italic>V</italic> = 0.2, <italic>F</italic> (8, 29) = 1.0, <italic>p</italic> = 0.45), arguing against a differential use of the rating scale in both groups.</p>
+        </sec>
+      </sec>
+      <sec id="sec0008">
+        <label>2.3</label>
+        <title>MR image acquisition</title>
+        <p id="para0016">MR images were collected using a 3T Achieva Philips MR scanner (Philips Medical Systems, Best, NL) equipped with a six-channel head coil. During the face-word Stroop task, a total of 294 T2*-weighted gradient echo-planar images (EPI) were acquired (TR = 2500 ms; TE = 35 ms; 36 axial slices; interleaved acquisition in ascending direction; FOV = 230 × 230 mm<sup>2</sup>; matrix = 64 × 63; slice-thickness = 3.6 mm; no interslice gap; flip angle = 90°). The first 6 vol were discarded. The imaging volumes were tilted upwards by 15° from the AC-PC-plane in order to reduce distortions and signal dropouts in the anterior temporal lobes.</p>
+        <p id="para0017">Additionally, an anatomical 3D T1-weighted (T1w) turbo field echo (TFE) sequence (repetition time [TR] = 7.4 ms; echo time [TE] = 3.4 ms; inversion time [TI] = 900 ms; flip angle = 9°; 176 slices; matrix = 256 × 224; field of view [FOV] = 256 × 224 mm<sup>2</sup>; slice thickness = 1 mm) was acquired. To investigate changes in medial temporal lobe structures, paracoronal T2-weighted (T2w) images perpendicular to the long axis of the hippocampi were acquired using a turbo spin echo (TSE) sequence (TR = 5196 ms; TE = 118 ms; parallel imaging factor [SENSE] = 1.5; turbo factor = 26; 38 slices; FOV = 200 × 200mm<sup>2</sup>; acquisition matrix = 372 × 312; slice thickness = 2 mm; slice gap = 0.2 mm).</p>
+      </sec>
+      <sec id="sec0009">
+        <label>2.4</label>
+        <title>Data analysis</title>
+        <sec id="sec0010">
+          <label>2.4.1</label>
+          <title>Behavioral data</title>
+          <p id="para0018">Mean response times (RT), including only correct responses, and accuracy of responses in the face-word Stroop task were analyzed with two-way mixed analyses of variances (ANOVAs) with “congruency” (incongruent vs. congruent) as a within-subject factor and “group” (healthy controls vs. MTLE patients) as a between-subjects factor.</p>
+          <p id="para0019">Memory performance was analyzed as follows. First, we sought to replicate the previous finding of conflict-enhanced memory. As in our previous study, we contrasted the number of “definitely old” (remembered) with all other ratings (forgotten) for target stimuli, reflecting a high confident recognition measure (putatively mainly based on recollection). In an additional analysis, we counted previously presented stimuli rated as either “definitely old” or “probably old” as remembered, and faces rated as “probably new” and “definitely new” as forgotten, reflecting a more global measure of both recollection and familiarity. We also assessed false alarm rates (distractor items rates as “definitely old” or “probably old”). In all analyses, two-way mixed ANOVAs were conducted to investigate main effects of congruency and group as well as their interaction.</p>
+          <p id="para0020">We additionally analyzed response times for remembered target stimuli (“definitely old” and “probably old”). These results are presented in the supplement.</p>
+          <p id="para0021">We also tested for correlations between Stroop task performance and retrieval rates using non-parametric Kendall's tau, as this parameter is particularly suitable for small groups analyses. We corrected for multiple comparisons using Bonferroni correction (p-value/2). The results are presented in the supplement.</p>
+        </sec>
+        <sec id="sec0011">
+          <label>2.4.2</label>
+          <title>FMRI data preprocessing and analysis</title>
+          <p id="para0022">The fMRI data were preprocessed and analyzed with Statistical Parametric Mapping (SPM12; University College, London, UK) using the same procedure as applied previously (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>). In short, functional EPIs were realigned, normalized, resliced and smoothed using a Gaussian kernel with 8 mm FWHM. We verified the accuracy of normalization in patients with the greatest abnormalities in the medial temporal lobe. Correction of normalization parameters was not necessary.</p>
+          <p id="para0023">Based on our a-priori hypothesis that conflict-induced memory improvement is directly mediated by hippocampal recruitment, in the fMRI analysis, we focused on the effects of congruency and the interaction between congruency and memory within a hippocampal ROI. If significant, we further report main effects of memory and group as well as the interaction “congruency x memory x group”. To not miss any effects outside the hippocampus, we also tested for these effects in a whole-brain analysis.</p>
+          <p id="para0024">In follow-up analyses, we extracted beta-values from significant activation clusters and performed within and between group comparisons, respectively. Please note that such post-hoc comparisons are not corrected for multiple comparisons. They are presented for illustrative purposes and they do not allow inferences.</p>
+          <p id="para0025">The first level general linear model (GLM) included four regressors (and their temporal derivates) related to the experimental conditions and six movement regressors derived from the realignment procedure. Due to the overall high memory performance, the experimental conditions (congruent, incongruent) were divided into trials with faces that were recollected with high confidence vs. faces that were not recollected with high confidence.</p>
+          <p id="para0026">Thus, in the fMRI analysis, we contrasted stimuli rated as “definitely old” with all other ratings, corresponding to an fMRI measure that is putatively mainly based on recollection, as in our previous study (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). In the supplement, we also report fMRI results based on first-level models in which we contrasted remembered (“definitely old” and “probably old”) with forgotten (“probably new” and “definitely new”) items.</p>
+          <p id="para0027">First-level individual contrast images for each of the four experimental conditions were entered into random-effects second-level analyses for the two groups (healthy controls vs. MTLE patients). We applied flexible factorial designs to investigate main effects of “congruency” (incongruent vs. congruent), “memory” (recollected with high confidence vs. not recollected with high confidence) and the interaction (congruency x memory) within each group. Additionally, the contrast images from controls and MTLE patients were entered into a common GLM (flexible factorial design) to test for a main effect of “group” and for interactions of the two within-subject factors “congruency” and “memory” with the between-subjects factor “group” (group x congruency, group x memory).</p>
+          <p id="para0028">Voxel activations were identified at an initial cluster-forming threshold of <italic>p</italic> &lt; 0.001 and family-wise error (FWE) corrected for multiple comparisons at the cluster level (for whole-brain analyses) or at the voxel-level (for hippocampal ROI analyses), respectively. In the hippocampal ROI analysis, we performed small volume correction for a ROI containing left and right hippocampus as defined by the Automatic Anatomic Labeling (AAL) atlas (<xref rid="bib0007" ref-type="bibr">Brett, 2002</xref>). In this analysis, MTLE patients with amygdalohippocampectomy were excluded. For the interpretation of activations, we subdivided the hippocampus into an anterior ( Y ≥ -21 mm MNI) and a posterior (Y ≤ -22 mm MNI) part (<xref rid="bib0043" ref-type="bibr">Poppenk et al., 2013</xref>).</p>
+        </sec>
+        <sec id="sec0012">
+          <label>2.4.3</label>
+          <title>Functional connectivity analyses</title>
+          <p id="para0029">We performed exploratory functional connectivity analyses using the CONN toolbox V18.b (<ext-link ext-link-type="uri" xlink:href="http://www.nitrc.porg/projects/conn" id="interref0001">www.nitrc.porg/projects/conn</ext-link>, RRID:SCR_009550). Functional images were preprocessed using SPM and corrected for noise using the default denoising pipeline (<xref rid="bib0062" ref-type="bibr">Whitfield-Gabrieli and Nieto-Castanon, 2012</xref>). In addition to temporal band-pass filtering (0.008 – 0.09 Hz), the procedure included linear regression of confounding factors, i.e. effects of no interest from white matter, cerebrospinal fluid and movements (realignment parameters).</p>
+          <p id="para0030">The functional connectivity analysis was a seed-based connectivity measure (seed to voxel) based on bivariate correlational analyses during the task (averaging congruent and incongruent trials). We chose two anatomical seed regions, i.e. left and right hippocampus, based on the ROI in the univariate analysis. First-level connectivity maps representing z-transformed correlation coefficients in the BOLD signal between the seed and each voxel in the brain were entered into a second-level ANOVA, allowing us to investigate differences of hippocampal connectivity between MTLE patients and controls. The statistical threshold was identical to that used in the univariate fMRI analysis (i.e. <italic>p</italic> &lt; 0.05; FWE-corrected at the cluster level with an initial cluster-forming voxel threshold of <italic>p</italic> &lt; 0.001). Analysis and results of regional brain volumes are described in the supplement.</p>
+        </sec>
+      </sec>
+      <sec sec-type="data-availability" id="sec0013">
+        <label>2.5</label>
+        <title>Data and code availability</title>
+        <p id="para0031">Group-level statistical maps are accessible under the following link: <ext-link ext-link-type="uri" xlink:href="https://identifiers.org/neurovault.collection:8706" id="ir001">https://identifiers.org/neurovault.collection:8706</ext-link>. Behavioral data can be made available via data sharing agreement upon request to the corresponding author.</p>
+        <p id="para0032">Software used in this study is openly available.</p>
+      </sec>
+    </sec>
+    <sec id="sec0014">
+      <label>3</label>
+      <title>Results</title>
+      <sec id="sec0015">
+        <label>3.1</label>
+        <title>Behavioral results</title>
+        <sec id="sec0016">
+          <label>3.1.1</label>
+          <title>Face-word Stroop task</title>
+          <p id="para0033">The results of the Stroop task are shown in <xref rid="fig0001" ref-type="fig">Fig. 1</xref>B,C.</p>
+          <p id="para0034">With respect to RT, a mixed ANOVA revealed significant main effects of “congruency” (incongruent vs. congruent; F(1,36) = 44.3; <italic>p</italic> &lt; 0.001) and “group” (MTLE patients vs controls; F(1,36) = 4.7; <italic>p</italic> = 0.037) as well as a significant interaction (group x congruency; F(1,36) = 4.6; <italic>p</italic> = 0.039). RT slowing in incongruent compared to congruent trials was found in both healthy subjects (t(18) = −5.4; <italic>p</italic> &lt; 0.001) and MTLE patients (t(18) = −3.9; <italic>p</italic> = 0.001), confirming robust interference effects in our paradigm. Comparing patients with left MTLE and patients with right MTLE, a mixed ANOVA did neither reveal a main effect of group (F(1,15) &lt; 0.001; <italic>p</italic> = 1.0) nor an interaction (group x congruency; F(1,15) = 0.01; <italic>p</italic> = 0.9).</p>
+          <p id="para0035">For response accuracy, a mixed ANOVA showed no significant main effects (congruency: F(1,36) = 0.5; <italic>p</italic> = 0.46; group: F(1,36) = 2.5; <italic>p</italic> = 0.12) or interaction (group x congruency; F(1,36) = 0.5; <italic>p</italic> = 0.51). A mixed ANOVA comparing left and right MTLE patients did not yield a significant main effect of group (F(1,15) = 0.4; <italic>p</italic> = 0.6).</p>
+          <p id="para0036">In sum, in both groups, responses were significantly slower in incongruent trials while accuracy was unaffected. The results indicate conflict effects in both controls and MTLE patients, providing the basis for testing whether memory performance is modulated by conflict-related control processes.</p>
+        </sec>
+        <sec id="sec0017">
+          <label>3.1.2</label>
+          <title>Incidental delayed memory task</title>
+          <p id="para0037">Retrieval rates are presented in <xref rid="fig0002" ref-type="fig">Fig. 2</xref>. Before analysis, we excluded all error trials and misses in the face-word Stroop task. The number of analyzed items did not differ between controls (97%) and MTLE patients (93%; t(36) = 1.79; <italic>p</italic> = 0.082). Notably, false alarm rates (new faces rated as “definitely old” or “probably old”) did not differ between MTLE patients (33%) and controls (34%; t(36) = 0.1; <italic>p</italic> = 0.9).<fig id="fig0002"><label>Fig. 2</label><caption><p>Behavioral results of the retrieval task. (A) Distribution of retrieval ratings. (B) Relative retrieval rates (“definitely old” and “probably old”) and difference scores (incongruent - congruent), overlaid with single-subject results.</p></caption><alt-text id="alt0002">Fig. 2</alt-text><graphic xlink:href="gr2"/></fig></p>
+          <p id="para0038">We first tested whether stimulus congruency (incongruent vs. congruent) influenced the number of high confident recognition responses for target stimuli, i.e., faces rated as “definitely old”. A mixed ANOVA yielded a significant main effect of “group” (healthy controls vs. MTLE patients; F(1,36) = 7.0; <italic>p</italic> = 0.012) and a trend for an interaction (group x congruency; F(1,36) = 3.0; <italic>p</italic> = 0.092) but no significant main effect of conflict (F(1,36) = 0.2; <italic>p</italic> = 0.9). Thus, MTLE patients reached lower high confident recognition scores than healthy controls. This was true for both congruent (t(18) = 2.1; <italic>p</italic> = 0.046) and incongruent trials (t(18) = 3.2; <italic>p</italic> = 0.003). Within groups, high confident recognition scores did not differ between congruent and incongruent trials in either controls (t(18) = −1.3; <italic>p</italic> = 0.21) or MTLE patients (t(18) = 1.2; <italic>p</italic> = 0.25). Retrieval rates did not differ between right and left MTLE patients (main effect of group: F(1,15) = 2.6; <italic>p</italic> = 0.13) and were independent of congruency (interaction: F(1,15) &lt; 0.1; <italic>p</italic> = 0.8).</p>
+          <p id="para0039">In a complementary analysis, stimuli were counted as remembered when rated as either “definitely old” or “probably old” (reflecting a low confidence recognition measure and possibly reflecting familiarity). In a mixed ANOVA of this more global memory measure, MTLE patients reached lower scores (main effect of group; <italic>F</italic>(1,36) = 6.6; <italic>p</italic> = 0.015) and the interaction between “group” and “congruency” was significant (<italic>F</italic>(1,36) = 5.0; <italic>p</italic> = 0.032). This indicates that word congruency modulated memory differently in healthy controls and MTLE patients when considering a more global measure of memory. Specifically, healthy controls showed improved retrieval of faces from incongruent compared to congruent trials in healthy controls (81.6% vs. 77.6%; <italic>t</italic>(18) = −2.5; <italic>p</italic> = 0.021). By contrast, MTLE patients did not show such memory benefit of incongruent stimuli (65% vs. 66%; <italic>t</italic>(18) = −0.7; <italic>p</italic> = 0.5). In incongruent trials, retrieval rates were significantly higher for controls than MTLE patients (<italic>t</italic>(38) = 3.0; <italic>p</italic> = 0.005), while this difference only reached a trend for congruent trials (<italic>t</italic>(30.5) = 2.0; <italic>p</italic> = 0.052).</p>
+          <p id="para0040">In sum, incongruent distractor words in the face-word Stroop task caused typical behavioral costs in terms of RT slowing in both healthy controls and MTLE patients, but familiarity-based recognition scores increased during conflict only in healthy controls.</p>
+        </sec>
+      </sec>
+      <sec id="sec0018">
+        <label>3.2</label>
+        <title>FMRI results</title>
+        <sec id="sec0019">
+          <label>3.2.1</label>
+          <title>Main effect of congruency</title>
+          <p id="para0041"><italic>ROI analysis in the hippocampus</italic>: In line with our main hypothesis and previous work (<xref rid="bib0037" ref-type="bibr">Oehrn et al., 2015</xref>; <xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>), we first analyzed congruency effects in a ROI consisting of bilateral hippocampus. In healthy controls, we found a small but significant activation increase for incongruent vs. congruent trials in both left posterior hippocampus (MNI −30/−24/−16, <italic>Z</italic> = 3.74, p(FWE) = 0.036; cluster size = 1) and right posterior hippocampus (MNI 28/−36/−4, <italic>Z</italic> = 3.72, p(FWE) = 0.038; cluster size = 1). No effect in the reverse direction was observed in the hippocampus. In MTLE patients, the same analysis did not reveal a main effect of congruency in the hippocampus. In a mixed ANOVA with MTLE patients and controls, we did neither find main effects of congruency or group nor an interaction (group x congruency) within the hippocampus ROI.</p>
+          <p id="para0042"><italic>Whole-brain analysis</italic>: In healthy controls, we found several significant clusters of increased activity during incongruent trials (including bilateral insula, bilateral supplementary motor area and cingulate cortex, left precentral gyrus, bilateral middle frontal gyrus, precuneus, caudate nucleus, left putamen; <xref rid="tbl0001" ref-type="table">Table 1</xref>, <xref rid="fig0003" ref-type="fig">Fig. 3</xref>A). No clusters showed a reverse effect. These clusters largely replicate results of our previous study (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>) and are typical findings in cognitive tasks that require behavioral inhibition (<xref rid="bib0036" ref-type="bibr">Niendam et al., 2012</xref>).<table-wrap position="float" id="tbl0001"><label>Table 1</label><caption><p>Activation clusters in controls (main effect of congruency).</p></caption><alt-text id="alt0006">Table 1</alt-text><table frame="hsides" rules="groups"><thead><tr><th align="left" valign="top">Brain region</th><th align="left" valign="top">Voxels</th><th colspan="3" align="left" valign="top">Peak voxel Coordinates (x,y,z)</th><th align="left" valign="top">FWE-corrected cluster <italic>p</italic>-value</th></tr></thead><tbody><tr><td valign="top">R Anterior Insula</td><td valign="top">5832</td><td valign="top">32</td><td valign="top">20</td><td valign="top">−6</td><td valign="top">&lt;0.001</td></tr><tr><td valign="top">L Anterior Insula</td><td valign="top">640</td><td valign="top">−26</td><td valign="top">22</td><td valign="top">−10</td><td valign="top">&lt;0.001</td></tr><tr><td valign="top">R SMA</td><td valign="top">2841</td><td valign="top">2</td><td valign="top">16</td><td valign="top">48</td><td valign="top">&lt;0.001</td></tr><tr><td valign="top">L Caudate Nucleus</td><td valign="top">188</td><td valign="top">−10</td><td valign="top">16</td><td valign="top">−2</td><td valign="top">0.018</td></tr><tr><td valign="top">L Precuneus</td><td valign="top">690</td><td valign="top">−18</td><td valign="top">−74</td><td valign="top">30</td><td valign="top">&lt;0.001</td></tr><tr><td valign="top">L MFG</td><td valign="top">374</td><td valign="top">−48</td><td valign="top">26</td><td valign="top">30</td><td valign="top">&lt;0.001</td></tr><tr><td valign="top">L Precentral Gyrus</td><td valign="top">277</td><td valign="top">−48</td><td valign="top">2</td><td valign="top">46</td><td valign="top">0.003</td></tr><tr><td valign="top">L Putamen</td><td valign="top">157</td><td valign="top">−32</td><td valign="top">−2</td><td valign="top">−10</td><td valign="top">0.038</td></tr></tbody></table><table-wrap-foot><fn><p>MNI, Montreal Neurological Institute system; L, left hemisphere; R, right hemisphere; FWE, family-wise error; SMA, supplementary motor area; MFG, middle frontal gyrus.</p></fn></table-wrap-foot></table-wrap><fig id="fig0003"><label>Fig. 3</label><caption><p>Whole brain analysis of activations related to response conflict. (A) Results in healthy controls for the main effect of congruency (incongruent &gt; congruent trials). (B) Results for the interaction (group x congruency). Activations are presented when surviving an FWE-corrected cluster threshold of <italic>p</italic> &lt; 0.05. Initial cluster-forming threshold was set to <italic>p</italic> &lt; 0.001. (C) Corresponding contrast estimates for the interaction cluster. Error bars show standard error of the mean.</p></caption><alt-text id="alt0003">Fig. 3</alt-text><graphic xlink:href="gr3"/></fig></p>
+          <p id="para0043">In MTLE patients, the same analysis did not yield any significant activation clusters. A mixed ANOVA including controls and patients showed a significant group x congruency interaction in the precuneus spreading to the PCC (MNI peak coordinates: −4/−58/38; cluster size = 182; <italic>p</italic>(FWE) = 0.048; <xref rid="fig0003" ref-type="fig">Fig. 3</xref>B). This interaction indicates a reduced conflict-induced activation increase in MTLE patients compared to controls. Post-hoc paired t-tests in this interaction cluster showed increased activation during incongruent relative to congruent trials in healthy subjects (<italic>t</italic>(18) = −4.5; <italic>p</italic> &lt; 0.001) but not in MTLE patients (<italic>t</italic>(18) = 1.1; <italic>p</italic> = 0.27; <xref rid="fig0003" ref-type="fig">Fig. 3</xref>C).</p>
+          <p id="para0044">In sum, we found conflict-related activations in an extended frontoparietal network in healthy controls and reduced effects in MTLE patients.</p>
+        </sec>
+        <sec id="sec0020">
+          <label>3.2.2</label>
+          <title>Subsequent memory effects</title>
+          <p id="para0045"><italic>ROI analysis in the hippocampus</italic>: In healthy controls, we did not observe a significant main effect of memory in bilateral hippocampi in an ANOVA with the within-subject factors “congruency” (congruent vs. incongruent) and “memory” (recollected with high confidence vs. not recollected with high confidence). Interestingly, however, we found a significant congruency x memory interaction with a peak in the left posterior hippocampus (MNI peak coordinates −32/−24/−16; <italic>Z</italic> = 3.81; p(FWE) = 0.028; cluster size = 4; <xref rid="fig0004" ref-type="fig">Fig. 4</xref>A), spreading into anterior hippocampus (max/min Y(mm): −20/−24). This cluster, which comprises only voxels surviving voxel-level FWE-correction within the hippocampal ROI, was directly adjacent to the area where we found conflict-related activation increase (MNI peak coordinates: −30/−24/−16).<fig id="fig0004"><label>Fig. 4</label><caption><p>BOLD activity related to subsequent memory performance. (A) Results (FWE-corrected) for the “congruency” x “memory” interaction within a hippocampal mask in controls. (B) Corresponding contrast estimates for the hippocampal interaction cluster. (C) Results of the main effect of memory on whole-brain activation in MTLE patients. Activations are presented when surviving an FWE-corrected cluster threshold of <italic>p</italic> &lt; 0.05. Initial cluster-forming threshold was set to <italic>p</italic> &lt; 0.001. (D) Corresponding contrast estimates for the FWE-corrected PCC/precuneus cluster in MTLE patients (top) and controls (bottom). Error bars show standard error of the mean. * significant (<italic>p</italic> &lt; 0.05).</p></caption><alt-text id="alt0004">Fig. 4</alt-text><graphic xlink:href="gr4"/></fig></p>
+          <p id="para0046">Post-hoc paired <italic>t</italic>-tests of the extracted beta values revealed a positive subsequent memory effect for congruent trials (<italic>t</italic>(18) = 2.4; <italic>p</italic> = 0.029), but, somewhat surprisingly, the reverse pattern for incongruent trials (<italic>t</italic>(18) = 2.3; <italic>p</italic> = 0.033), with higher activations for later forgotten as compared to remembered incongruent faces (<xref rid="fig0004" ref-type="fig">Fig. 4</xref>B). In MTLE patients, neither the main effect of memory nor the interaction (congruency x memory) revealed significant activations within the hippocampal ROI.</p>
+          <p id="para0047">In sum, in controls, hippocampal activation was associated with greater memory benefits for faces from congruent trials compared to faces from incongruent trials.</p>
+          <p id="para0048"><italic>Whole-brain analysis</italic>: We next tested whether other brain regions were predictive of memory success. In healthy controls, the whole-brain analysis did not reveal any activation cluster with either a main effect of memory or an interaction (congruency x memory).</p>
+          <p id="para0049">In MTLE patients, we found an activation cluster comprising the PCC and the precuneus (MNI peak coordinates: 0/−52/22, cluster size = 182, <italic>p</italic>(FWE) = 0.022, <xref rid="fig0004" ref-type="fig">Fig. 4</xref>C) that showed a main effect of memory but no interaction with congruency.</p>
+          <p id="para0050">Post-hoc t-tests of the extracted beta values revealed that activation was increased during encoding of later remembered compared to forgotten faces from both congruent (t(18) = 2.9 <italic>p</italic> = 0.01) and incongruent trials (t(18) = 3.7 <italic>p</italic> = 0.002; <xref rid="fig0004" ref-type="fig">Fig. 4</xref>D).</p>
+          <p id="para0051">The results indicate that the PCC/precuneus contributed to later memory success in MTLE patients independent of congruency.</p>
+        </sec>
+      </sec>
+      <sec id="sec0021">
+        <label>3.3</label>
+        <title>Functional connectivity results</title>
+        <p id="para0052">We investigated functional connectivity between activations in hippocampal seeds and each voxel in the brain. For the left hippocampal seed, functional connectivity (over tasks) did not differ between groups. However, MTLE patients showed significantly decreased coupling between right hippocampus and right PCC compared to healthy subjects (MNI 12/−44/30; cluster size = 197, <italic>p</italic>(FWE) = 0.004; <xref rid="fig0005" ref-type="fig">Fig. 5</xref>). The analysis did not reveal a significant interaction (group x congruency).<fig id="fig0005"><label>Fig. 5</label><caption><p>Results of functional connectivity analysis for the right hippocampal seed. Differences in functional connectivity of the right hippocampus between controls and MTLE patients. The color bar represents t-values. Yellow areas indicate significantly increased functional connectivity with the right hippocampal seed in controls compared to MTLE patients. Clusters are presented when surviving a family-wise-error corrected cluster threshold of <italic>p</italic> &lt; 0.05. Initial cluster-forming threshold was set to <italic>p</italic> &lt; 0.001. The left side of the images corresponds to the left side of the brain. MTLE, mesial temporal lobe epilepsy.</p></caption><alt-text id="alt0005">Fig. 5</alt-text><graphic xlink:href="gr5"/></fig></p>
+      </sec>
+    </sec>
+    <sec id="sec0022">
+      <label>4</label>
+      <title>Discussion</title>
+      <p id="para0053">We investigated how hippocampal lesions in MTLE patients affect the impact of conflict resolution on memory encoding at a behavioral level and at the level of BOLD responses. Using a previously established face-word Stroop paradigm and an incidental memory task, we tested whether the conflict-induced memory benefit that we had found in healthy subjects (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>) was reduced in MTLE patients. Moreover, we investigated whether recruitment of the hippocampus or other conflict-related brain regions is necessary for a memory benefit of conflict stimuli.</p>
+      <p id="para0054">While both MTLE patients and healthy controls showed behavioral costs of conflict processing in the Stroop task, only healthy controls exhibited improved memory for incongruent items. Conflict processing was associated with activation of bilateral hippocampus, precuneus and PCC in healthy controls. Conflict-related activation of precuneus and PCC was significantly reduced in MTLE patients compared to controls. Furthermore, activation of precuneus and PCC instead predicted subsequent memory in MTLE patients. Interestingly, in healthy controls, left hippocampal activation was less efficient for memory encoding in case of conflict compared to non-conflict, a seemingly counterintuitive activation pattern.</p>
+      <p id="para0055">In contrast to the auditory Stroop task in our previous studies (<xref rid="bib0045" ref-type="bibr">Ramm et al., 2020</xref>a, <xref rid="bib0045" ref-type="bibr">2020</xref>b), in the face-word Stroop task, MTLE patients showed normal response accuracy and increased RT in congruent but not incongruent trials. This discrepancy may be related to the difference between the tasks: Compared to naming the pitch of a tone (as in our previous study), decisions on the sex of a face are more complex and require integrating various kinds of information. As <xref rid="bib0027" ref-type="bibr">Krebs et al. (2015)</xref> already stated, this might have attenuated effects of conflict on behavioral measures and also explain why the present results do not perfectly match with our previous findings.</p>
+      <p id="para0056">Previous studies found that the processing of incongruent items improved subsequent memory (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>; <xref rid="bib0052" ref-type="bibr">Rosner et al., 2015</xref>). Recently, <xref rid="bib0025" ref-type="bibr">Jimenez et al. (2020)</xref> showed that memory was only enhanced for those incongruent items that were presented after another incongruent trial. These contradictory findings might be explained by different trial orders of congruent and incongruent trials and/or different Stroop trials that were selected for the later memory task. In the present study, the behavioral results in healthy participants indicate a memory benefit for incongruent items, but only when adapting a more global memory measure including high and low confident recognition. Thus, conflict-induced memory benefit seems to depend on task features such as trial composition or which kind of recognition measure is used.</p>
+      <p id="para0057">Importantly, no such memory benefit was found in MTLE patients. More specifically, MTLE patients showed reduced memory particularly for incongruent items. As we found impairments of response conflict resolution during an auditory Stroop task in an MTLE patient cohort largely overlapping with the current sample (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>), one may assume that the decreased memory benefit relates to reduced conflict resolution performance of patients.</p>
+      <p id="para0058">Based on our previous finding of a reduced conflict-related left hippocampus recruitment in MTLE patients (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>), we hypothesized that the hippocampus itself might contribute to improved memory encoding of incongruent items. Indeed, we found a significant interaction between memory and congruency in the left posterior hippocampus in healthy controls. However, hippocampal activation was actually less pronounced for encoding items from incongruent trials compared to congruent trials. This cluster was close to the region showing conflict-related activation in this study as well as in our previous study that used an auditory Stroop paradigm (<xref rid="bib0046" ref-type="bibr">Ramm et al., 2020b</xref>). This suggests that recruiting the hippocampus for the resolution of response conflicts interferes with its role in memory formation. This finding was unexpected since previous fMRI results found posterior hippocampal recruitment during encoding of repeated stimuli (<xref rid="bib0044" ref-type="bibr">Poppenk et al., 2010</xref>). One explanation might be that it reflects a competition for limited resources between two functions that are both hippocampus-dependent. A similar competition for neural resources in prefrontal cortex has previously been suggested as an explanation for lower memory encoding during a demanding secondary task (<xref rid="bib0049" ref-type="bibr">Reynolds et al., 2004</xref>). Furthermore, converging evidence from animal lesion studies and human fMRI recordings suggest that multiple simultaneously activated memory systems interact in a bidirectionally competitive way (<xref rid="bib0042" ref-type="bibr">Poldrack and Packard, 2003</xref>). For example, disruption of hippocampal function in rodents enhanced striatal instrumental learning (<xref rid="bib0034" ref-type="bibr">McDonald and White, 1993</xref>; <xref rid="bib0039" ref-type="bibr">Packard et al., 1989</xref>). The theory of a hippocampal competition is also in line with human neuroimaging studies showing that the type of representation that is used for memory or spatial navigation (hippocampal or striatal mediated) affects both performance and activation (<xref rid="bib0021" ref-type="bibr">Hartley et al., 2003</xref>; <xref rid="bib0041" ref-type="bibr">Poldrack et al., 2001</xref>).</p>
+      <p id="para0059">Alternative explanations for the counterintuitive activation pattern in the hippocampus should be taken into account. Considering that participants had performed a familiarization task before the main experiment, it might be plausible that they did not only encode information during the Stroop task but also retrieved the previously presented items, leading to a competition between encoding and retrieval. This notion is supported by evidence suggesting that encoding and retrieval cannot occur at the same time and, again, compete for limited resources (<xref rid="bib0023" ref-type="bibr">Huijbers et al., 2009</xref>; <xref rid="bib0048" ref-type="bibr">Reas and Brewer, 2013</xref>). Thus, an increased recruitment of the posterior part of the hippocampus might reflect retrieval success (<xref rid="bib0018" ref-type="bibr">Eichenbaum et al., 2007</xref>), leading to reduced memory encoding. This interpretation would be in line with the notion that encoding of familiar or repeated stimuli (possibly due to a retrieval component) more strongly relies on posterior hippocampus (<xref rid="bib0020" ref-type="bibr">Greicius et al., 2003</xref>; <xref rid="bib0026" ref-type="bibr">Kim, 2015</xref>; <xref rid="bib0043" ref-type="bibr">Poppenk et al., 2013</xref>). Nevertheless, since healthy subjects showed an improved memory for conflict-related stimuli, neural activity in other brain regions must have had an even greater impact on memory encoding.</p>
+      <p id="para0060">We further tested whether activation of other, possibly connected, brain areas could account for the behavioral results. Healthy controls exhibited conflict-related activation clusters in prefrontal and parietal brain regions, largely in line with the results of our previous study (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). More specifically, activations in the lateral and medial PFC are thought to mediate conflict monitoring and conflict resolution (<xref rid="bib0005" ref-type="bibr">Botvinick et al., 2001</xref>; <xref rid="bib0038" ref-type="bibr">Oehrn et al., 2014</xref>). From a network perspective, controls’ bilateral activation in the anterior insula suggest an involvement of the salience network (<xref rid="bib0057" ref-type="bibr">Uddin, 2015</xref>). This might represent the neural signal which initiates a switch from default mode activity to cognitive control activity (<xref rid="bib0056" ref-type="bibr">Sridharan et al., 2008</xref>). Posterior midline regions, particularly the precuneus, are also involved in cognitive control processes, probably through their role in directing attention (<xref rid="bib0010" ref-type="bibr">Cavanna and Trimble, 2006</xref>; <xref rid="bib0030" ref-type="bibr">Leech and Sharp, 2014</xref>). Conflict-related activation in the precuneus and partly the PCC was significantly reduced in MTLE patients. Notably, these functional changes in the recruitment of precuneus/PCC of MTLE patients were not reflected by volumetric changes in these areas (see Supplemental Results, Table S3). The results are largely in line, however, with our functional connectivity results that revealed decreased coupling between the right hippocampal seed and right PCC (<xref rid="fig0005" ref-type="fig">Fig. 5</xref>). This finding is consistent with previous studies showing extratemporal functional changes in MTLE patients, particularly in regions involved in the default mode network (DMN; <xref rid="bib0028" ref-type="bibr">Laufs et al., 2007</xref>; <xref rid="bib0060" ref-type="bibr">Waites et al., 2006</xref>), and, more specifically, a decoupling between hippocampus and other parts of the DMN (<xref rid="bib0031" ref-type="bibr">Liao et al., 2011</xref>; <xref rid="bib0040" ref-type="bibr">Pittau et al., 2012</xref>; <xref rid="bib0065" ref-type="bibr">Zhang et al., 2010</xref>).</p>
+      <p id="para0061">The reduced effects of congruency mainly in the precuneus and partly the PCC in MTLE patients compared to healthy controls are in line with the behavioral finding that congruency modulated memory performance in controls but not in MTLE patients. However, can functional changes in the precuneus/PCC indeed explain the reduced memory benefit for conflict stimuli in MTLE patients? Precuneus and also PCC have been suggested to be core nodes of the DMN which is active in the absence of a task and associated with internally directed cognition (<xref rid="bib0019" ref-type="bibr">Fransson and Marrelec, 2008</xref>). In contrast, other studies argued against an involvement of the precuneus in the DMN (<xref rid="bib0009" ref-type="bibr">Buckner et al., 2008</xref>; <xref rid="bib0033" ref-type="bibr">Margulies et al., 2009</xref>). It is likely that there is a functional differentiation within precuneus and PCC. Whereas the ventral precuneus and ventral PCC (corresponding to Brodmann areas 29/30) shows integration in the DMN, the dorsal precuneus (or Brodmann area 7) and dorsal PCC are more strongly related to brain areas of motor execution and cognitive control (<xref rid="bib0029" ref-type="bibr">Leech et al., 2011</xref>; <xref rid="bib0063" ref-type="bibr">Zhang and Li, 2010</xref>, <xref rid="bib0064" ref-type="bibr">2012</xref>). In MTLE patients, functional changes in the precuneus did not show clear restriction to either ventral or dorsal precuneus. Thus, interpretation on the level of functional networks seems equivocal. Instead, there is convincing evidence for a crucial role of the precuneus in episodic memory (<xref rid="bib0003" ref-type="bibr">Berryhill et al., 2007</xref>; <xref rid="bib0016" ref-type="bibr">Dorfel et al., 2009</xref>; <xref rid="bib0032" ref-type="bibr">Lundstrom et al., 2005</xref>; <xref rid="bib0050" ref-type="bibr">Richter et al., 2016</xref>; <xref rid="bib0053" ref-type="bibr">Rugg and Vilberg, 2013</xref>). The idea that the role of the precuneus in episodic memory explains the reduced conflict-related memory benefit in MTLE patients is in line with the finding in our previous study that the precuneus was predictive of a conflict-induced memory benefit (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). Moreover, and most importantly, we found a distinct activation cluster comprising parts of the PCC and the precuneus which predicted retrieval success independent of congruency in MTLE patients. Notably, the precuneus is more strongly related to memory retrieval (<xref rid="bib0032" ref-type="bibr">Lundstrom et al., 2005</xref>) which is in line with the idea that subjects did not only encode but also retrieved the faces they had been familiarized before. Functional impairment in the precuneus due to hippocampal damage might reflect (presumably) maladaptive reorganization of memory processes from hippocampus to posterior midline regions which might contribute to episodic memory impairment and deficits in their modulation by cognitive control. This is largely in line with a previous study showing that functional changes in the posterior cingulum were related to memory performance (<xref rid="bib0017" ref-type="bibr">Doucet et al., 2013</xref>). We speculate that due to changes in precuneus recruitment, memory recall was not modulated by congruency in MTLE patients, leading to similar (additional) encoding efficiency in both trial types.</p>
+      <p id="para0062">From a broader perspective, the present findings are relevant with regard to a related research line on hippocampal involvement during approach-avoidance conflicts (for review, see <xref rid="bib0024" ref-type="bibr">Ito and Lee, 2016</xref>). For instance, it has been shown that behavioral adaptations in an approach-avoidance conflict paradigm, and in particular the avoidance of threats, was associated with larger activity in the anterior hippocampus of healthy participants (<xref rid="bib0001" ref-type="bibr">Bach et al., 2014</xref>). Crucially, behavioral adaptation was impaired in TLE patients, and this did not merely reflect general memory impairments (based on neuropsychological assessment). Moreover, in a recent study, patients with a mesial temporal lobe lesion were impaired in approach-avoidance decision-making but showed recollection of threat memory similar to controls (<xref rid="bib0002" ref-type="bibr">Bach et al., 2019</xref>). These findings suggest that hippocampal involvement during approach-avoidance conflict tasks is not necessarily related to memory. In how far hippocampal activity during these particular conflicts is directly contributing to long-term memory is, however, a matter of debate. Specifically, a recent behavioral study (<xref rid="bib0012" ref-type="bibr">Chu et al., 2020</xref>) did not find memory improvements in an approach-avoidance conflict task. This is not only challenging the above view, but is also inconsistent with our previous (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>) and current findings in the face-word Stroop task. As discussed by <xref rid="bib0012" ref-type="bibr">Chu et al. (2020)</xref>, this behavioral discrepancy might be explained by differences in the task design (i.e., presence vs. absence of incentive valence; associative vs. item memory) and a ceiling effect due to pre-exposure. Moreover, the interpretation of hippocampal involvement in approach-avoidance conflict tasks is complicated by the incentive valence dimension, which is known to modulate memory formation via the hippocampus (<xref rid="bib0055" ref-type="bibr">Shohamy and Adcock, 2010</xref>). Together, the diverse set of results across different studies and domains support the notion that the hippocampus has a role in both (approach-avoidance) conflict processing and conflict-based memory formation, but the exact relationship between these processes seems to depend on the nature of the paradigm. In the light of this discussion, our observation that hippocampal lesions abolish conflict-induced memory improvements might indicate that an active hippocampus during conflict processing indirectly enhances memory encoding by allowing the conflict-related recruitment of other brain regions, such as the precuneus.</p>
+      <p id="para0063">In the present study, we found reduced BOLD signal in several brain regions in MTLE patients. As patients showed altered conflict-modulation of memory, we interpreted changes of the activation pattern as a dysfunctional process. This is in line with the majority of previous studies showing that activation changes represent a pathological process or an inefficient compensatory attempt in TLE (<xref rid="bib0058" ref-type="bibr">Vlooswijk et al., 2010</xref>). The situation is even more complex because the BOLD signal depends on neurovascular coupling between neural activity and blood oxygenation (and volume), and this coupling may be substantially altered in epilepsy. Specifically, in epilepsy patients, interictal epileptiform discharges can affect the BOLD signal and thus lead to deviations from linearity in neurovascular coupling (<xref rid="bib0059" ref-type="bibr">Voges et al., 2012</xref>; <xref rid="bib0061" ref-type="bibr">Watanabe et al., 2014</xref>). In our study, we reduced the impact of this confound by testing the group differences in the relative activations between two conditions (congruent vs. incongruent). Nevertheless, future studies which allow for a direct measurement of neural activity such as intracranial EEG recordings should be conducted with the same paradigm, ideally after running the experiment via fMRI before electrode implantation.</p>
+      <p id="para0064">Our study has several limitations. Our main behavioral outcome measures of the Stroop task were RT and accuracy which we analyzed separately. The results show that RT was clearly modulated by conflict, while accuracy was not affected (ceiling effect), neither in controls nor in patients. This indicates that the present conflict manipulation did not evoke a substantial number of response errors (a reflection of automatic response capture by the irrelevant stimulus), but led to significantly prolonged RTs (a reflection of cognitive control processes to prevent response errors). The low error rate might be related to the fairly simple two-alternative choice (instead of four responses in the regular Stroop task), and the processing of superimposed gender labels might not be as “automatic” as color-word reading in the regular Stroop task. Having said this, integrating the behavioral data into a diffusion decision model, e.g. see <xref rid="bib0047" ref-type="bibr">Ratcliff and McKoon (2008)</xref>, could be useful to better characterize the neural and cognitive processes of decision making in the face-word Stroop task (and in comparison to the color-word Stroop task), but this is beyond the scope of the current study. Here, we focused on how memory processes were modulated by previous conflict processing. The precise mechanisms underlying the Stroop effect in different paradigms may be addressed in future studies. Moreover, RT and accuracy assess partly different aspects of conflict processing and the data do not suggest that participants have traded speed for accuracy.</p>
+      <p id="para0065">Furthermore, none of the conflict-related activation clusters we found in the whole-brain analysis in healthy controls turned out to be predictive of healthy subjects’ memory performance, neither over both task conditions, nor specifically for faces of incongruent trials. This might be explained by an insufficient study power. Moreover, it might be related to the generally increased retrieval rates in healthy subjects in the present study compared to the previous one (<xref rid="bib0027" ref-type="bibr">Krebs et al., 2015</xref>). To account for memory deficits in MTLE patients, we extended the learning phase (familiarization), assuming that this may reduce memory encoding demands during the actual Stroop task. Furthermore, the absence of neutral trials (compared to the paradigm in our previous study) possibly reduced the saliency of the conflict condition. Thus, we suspect that changes in the paradigm that were necessary for investigating MTLE patients reduced the effects of congruency on memory and the corresponding BOLD contrasts of healthy subjects. Related to this, the behavioral congruency effect was particularly evident for the true remembered vs. forgotten comparison. However, which type of memory (i.e. hippocampus-dependent episodic details or hippocampus-independent schematic information) is particularly modulated by conflict, cannot be answered by the current study. This might be an interesting step towards a better understanding of conflict-modulation of memory processes. Furthermore, in contrast to the behavioral contrast, the fMRI recollection contrast (high confident vs. not high confident recollection) revealed more reliable effects due to balanced item numbers. Thus, the relation between behavioral and fMRI results is limited.</p>
+      <p id="para0066">Another limitation is that patients with unilateral left and right MTLE as well as bilateral MTLE were involved in the study, so that we cannot infer whether the fMRI results are modulated by epilepsy lateralization. We did not further analyze fMRI results of subgroups due to their small sample sizes. The delay between learning and retrieval task was not identical between subjects but was between 30 and 45 min. However, the delay randomly varied in all participants and it is unlikely that a systematic error affected group differences.</p>
+    </sec>
+    <sec id="sec0023">
+      <label>5</label>
+      <title>Conclusion</title>
+      <p id="para0067">Our study provides first evidence that the memory benefit of conflicting information is absent in MTLE patients and thus seems to critically rely on the integrity of the hippocampus. In healthy participants, the two functions of memory formation and response conflict resolution competed for resources in the hippocampus. In addition, posterior midline areas such as precuneus and PCC supported conflict resolution. In MTLE patients, these posterior midline areas showed reduced conflict-related activation but were recruited for memory formation instead. These results would be in line with a large-scale reorganization of memory networks in epilepsy patients. These alterations may be related to memory impairments and/or deficits in the employment of memories for cognitive control functions. However, further studies in hippocampus-lesioned patients are needed to test the association between episodic memory networks and cognitive control mechanisms.</p>
+    </sec>
+    <sec id="sec0023a">
+      <title>CRediT authorship contribution statement</title>
+      <p id="para0067a"><bold>Markus Ramm:</bold> Investigation, Writing - original draft, Writing - review &amp; editing. <bold>Benedikt Sundermann:</bold> Writing - review &amp; editing. <bold>Carlos Alexandre Gomes:</bold> Methodology. <bold>Gabriel Möddel:</bold> Investigation. <bold>Lisa Langenbruch:</bold> Investigation. <bold>Mahboobeh Dehghan Nayyeri:</bold> Methodology. <bold>Peter Young:</bold> Funding acquisition. <bold>Bettina Pfleiderer:</bold> Writing - review &amp; editing. <bold>Ruth M. Krebs:</bold> Conceptualization, Supervision, Funding acquisition, Writing - review &amp; editing. <bold>Nikolai Axmacher:</bold> Conceptualization, Supervision, Funding acquisition, Writing - review &amp; editing.</p>
+    </sec>
+    <sec sec-type="COI-statement">
+      <title>Declaration of Competing Interest</title>
+      <p id="para0071">The authors declare no conflict of interest.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list id="cebibl1">
+      <title>References</title>
+      <ref id="bib0001">
+        <element-citation publication-type="journal" id="sbref0001">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Guitart-Masip</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Packard</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Miro</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Falip</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fuentemilla</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Human hippocampus arbitrates approach-avoidance conflict</article-title>
+          <source>Curr. Biol.</source>
+          <volume>24</volume>
+          <issue>5</issue>
+          <year>2014</year>
+          <fpage>541</fpage>
+          <lpage>547</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cub.2014.01.046</pub-id>
+          <pub-id pub-id-type="pmid">24560572</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0002">
+        <element-citation publication-type="journal" id="sbref0002">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Hoffmann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Finke</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hurlemann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ploner</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Disentangling hippocampal and amygdala contribution to human anxiety-like behavior</article-title>
+          <source>J. Neurosci.</source>
+          <volume>39</volume>
+          <issue>43</issue>
+          <year>2019</year>
+          <fpage>8517</fpage>
+          <lpage>8526</lpage>
+          <pub-id pub-id-type="doi">10.1523/jneurosci.0412-19.2019</pub-id>
+          <pub-id pub-id-type="pmid">31501296</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0003">
+        <element-citation publication-type="journal" id="sbref0003">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berryhill</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Phuong</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Picasso</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Cabeza</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Olson</surname>
+              <given-names>I.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parietal lobe and episodic memory: bilateral damage causes impaired free recall of autobiographical memory</article-title>
+          <source>J. Neurosci.</source>
+          <volume>27</volume>
+          <issue>52</issue>
+          <year>2007</year>
+          <fpage>14415</fpage>
+          <lpage>14423</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.4163-07.2007</pub-id>
+          <pub-id pub-id-type="pmid">18160649</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0004">
+        <element-citation publication-type="journal" id="sbref0004">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blumenfeld</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Ranganath</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dorsolateral prefrontal cortex promotes long-term memory formation through its role in working memory organization</article-title>
+          <source>J. Neurosci.</source>
+          <volume>26</volume>
+          <issue>3</issue>
+          <year>2006</year>
+          <fpage>916</fpage>
+          <lpage>925</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.2353-05.2006</pub-id>
+          <pub-id pub-id-type="pmid">16421311</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0005">
+        <element-citation publication-type="journal" id="sbref0005">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Botvinick</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Braver</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Barch</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conflict monitoring and cognitive control</article-title>
+          <source>Psychol. Rev.</source>
+          <volume>108</volume>
+          <issue>3</issue>
+          <year>2001</year>
+          <fpage>624</fpage>
+          <lpage>652</lpage>
+          <pub-id pub-id-type="pmid">11488380</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0006">
+        <element-citation publication-type="journal" id="sbref0006">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Botvinick</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conflict monitoring and anterior cingulate cortex: an update</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <volume>8</volume>
+          <issue>12</issue>
+          <year>2004</year>
+          <fpage>539</fpage>
+          <lpage>546</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tics.2004.10.003</pub-id>
+          <pub-id pub-id-type="pmid">15556023</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0007">
+        <element-citation publication-type="journal" id="sbref0007">
+          <person-group person-group-type="author">
+            <collab>Brett</collab>
+          </person-group>
+          <article-title>Region of interest analysis using the MarsBar toolbox for SPM 99</article-title>
+          <source>Neuroimage</source>
+          <volume>16</volume>
+          <issue>2</issue>
+          <year>2002</year>
+          <fpage>497</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0008">
+        <element-citation publication-type="journal" id="sbref0008">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bruce</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Henderson</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Greenwood</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hancock</surname>
+              <given-names>P.J.B.</given-names>
+            </name>
+            <name>
+              <surname>Burton</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Verification of face identities from images captured on video</article-title>
+          <source>J. Exp. Psychol.: Appl.</source>
+          <volume>5</volume>
+          <issue>4</issue>
+          <year>1999</year>
+          <fpage>339</fpage>
+          <lpage>360</lpage>
+          <pub-id pub-id-type="doi">10.1037/1076-898X.5.4.339</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0009">
+        <element-citation publication-type="journal" id="sbref0009">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buckner</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Andrews-Hanna</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Schacter</surname>
+              <given-names>D.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brain's default network: anatomy, function, and relevance to disease</article-title>
+          <source>Ann. N. Y. Acad. Sci.</source>
+          <volume>1124</volume>
+          <year>2008</year>
+          <fpage>1</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1196/annals.1440.011</pub-id>
+          <pub-id pub-id-type="pmid">18400922</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <element-citation publication-type="journal" id="sbref0010">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cavanna</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Trimble</surname>
+              <given-names>M.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The precuneus: a review of its functional anatomy and behavioural correlates</article-title>
+          <source>Brain</source>
+          <volume>129</volume>
+          <issue>3</issue>
+          <year>2006</year>
+          <fpage>564</fpage>
+          <lpage>583</lpage>
+          <pub-id pub-id-type="doi">10.1093/brain/awl004</pub-id>
+          <pub-id pub-id-type="pmid">16399806</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0011">
+        <element-citation publication-type="journal" id="sbref0011">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chiu</surname>
+              <given-names>Y.C.</given-names>
+            </name>
+            <name>
+              <surname>Egner</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inhibition-induced forgetting: when more control leads to less memory</article-title>
+          <source>Psychol. Sci.</source>
+          <volume>26</volume>
+          <issue>1</issue>
+          <year>2015</year>
+          <fpage>27</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1177/0956797614553945</pub-id>
+          <pub-id pub-id-type="pmid">25398560</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0012">
+        <element-citation publication-type="journal" id="sbref0012">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chu</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Thavabalasingam</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hamel</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Aashat</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tay</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.C.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Exploring the interaction between approach-avoidance conflict and memory processing</article-title>
+          <source>Memory</source>
+          <volume>28</volume>
+          <issue>1</issue>
+          <year>2020</year>
+          <fpage>141</fpage>
+          <lpage>156</lpage>
+          <pub-id pub-id-type="doi">10.1080/09658211.2019.1696827</pub-id>
+          <pub-id pub-id-type="pmid">31795819</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0013">
+        <element-citation publication-type="journal" id="sbref0013">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chun</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Turk-Browne</surname>
+              <given-names>N.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interactions between attention and memory</article-title>
+          <source>Curr. Opin. Neurobiol.</source>
+          <volume>17</volume>
+          <issue>2</issue>
+          <year>2007</year>
+          <fpage>177</fpage>
+          <lpage>184</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.conb.2007.03.005</pub-id>
+          <pub-id pub-id-type="pmid">17379501</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0014">
+        <element-citation publication-type="journal" id="sbref0014">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Craik</surname>
+              <given-names>F.I.</given-names>
+            </name>
+            <name>
+              <surname>Govoni</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Naveh-Benjamin</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>N.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effects of divided attention on encoding and retrieval processes in human memory</article-title>
+          <source>J. Exp. Psychol. Gen.</source>
+          <volume>125</volume>
+          <issue>2</issue>
+          <year>1996</year>
+          <fpage>159</fpage>
+          <lpage>180</lpage>
+          <pub-id pub-id-type="pmid">8683192</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0015">
+        <element-citation publication-type="journal" id="sbref0015">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dekeyzer</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>De Kock</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Nikoubashman</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Vanden Bossche</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Van Eetvelde</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>De Groote</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Achten</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>"Unforgettable" - a pictorial essay on anatomy and pathology of the hippocampus</article-title>
+          <source>Insights Imaging</source>
+          <volume>8</volume>
+          <issue>2</issue>
+          <year>2017</year>
+          <fpage>199</fpage>
+          <lpage>212</lpage>
+          <pub-id pub-id-type="doi">10.1007/s13244-016-0541-2</pub-id>
+          <pub-id pub-id-type="pmid">28108955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0016">
+        <element-citation publication-type="journal" id="sbref0016">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dorfel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Werner</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>von Kummer</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Karl</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct brain networks in recognition memory share a defined region in the precuneus</article-title>
+          <source>Eur. J. Neurosci.</source>
+          <volume>30</volume>
+          <issue>10</issue>
+          <year>2009</year>
+          <fpage>1947</fpage>
+          <lpage>1959</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1460-9568.2009.06973.x</pub-id>
+          <pub-id pub-id-type="pmid">19895564</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0017">
+        <element-citation publication-type="journal" id="sbref0017">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doucet</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Osipowicz</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sharan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sperling</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Tracy</surname>
+              <given-names>J.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Extratemporal functional connectivity impairments at rest are related to memory performance in mesial temporal epilepsy</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>34</volume>
+          <issue>9</issue>
+          <year>2013</year>
+          <fpage>2202</fpage>
+          <lpage>2216</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.22059</pub-id>
+          <pub-id pub-id-type="pmid">22505284</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0018">
+        <element-citation publication-type="journal" id="sbref0018">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eichenbaum</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Yonelinas</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Ranganath</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The medial temporal lobe and recognition memory</article-title>
+          <source>Annu. Rev. Neurosci.</source>
+          <volume>30</volume>
+          <year>2007</year>
+          <fpage>123</fpage>
+          <lpage>152</lpage>
+          <pub-id pub-id-type="doi">10.1146/annurev.neuro.30.051606.094328</pub-id>
+          <pub-id pub-id-type="pmid">17417939</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0019">
+        <element-citation publication-type="journal" id="sbref0019">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fransson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Marrelec</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The precuneus/posterior cingulate cortex plays a pivotal role in the default mode network: evidence from a partial correlation network analysis</article-title>
+          <source>Neuroimage</source>
+          <volume>42</volume>
+          <issue>3</issue>
+          <year>2008</year>
+          <fpage>1178</fpage>
+          <lpage>1184</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2008.05.059</pub-id>
+          <pub-id pub-id-type="pmid">18598773</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <element-citation publication-type="journal" id="sbref0020">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greicius</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Krasnow</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Boyett-Anderson</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Eliez</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Schatzberg</surname>
+              <given-names>A.F.</given-names>
+            </name>
+            <name>
+              <surname>Reiss</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regional analysis of hippocampal activation during memory encoding and retrieval: fMRI study</article-title>
+          <source>Hippocampus</source>
+          <volume>13</volume>
+          <issue>1</issue>
+          <year>2003</year>
+          <fpage>164</fpage>
+          <lpage>174</lpage>
+          <pub-id pub-id-type="doi">10.1002/hipo.10064</pub-id>
+          <pub-id pub-id-type="pmid">12625466</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0021">
+        <element-citation publication-type="journal" id="sbref0021">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartley</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Maguire</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Spiers</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Burgess</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>The well-worn route and the path less traveled: distinct neural bases of route following and wayfinding in humans</article-title>
+          <source>Neuron</source>
+          <volume>37</volume>
+          <issue>5</issue>
+          <year>2003</year>
+          <fpage>877</fpage>
+          <lpage>888</lpage>
+          <pub-id pub-id-type="doi">10.1016/s0896-6273(03)00095-3</pub-id>
+          <pub-id pub-id-type="pmid">12628177</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0022">
+        <element-citation publication-type="journal" id="sbref0022">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Helmstaedter</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effects of chronic epilepsy on declarative memory systems</article-title>
+          <source>Prog. Brain Res.</source>
+          <volume>135</volume>
+          <year>2002</year>
+          <fpage>439</fpage>
+          <lpage>453</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0079-6123(02)35041-6</pub-id>
+          <pub-id pub-id-type="pmid">12143363</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0023">
+        <element-citation publication-type="journal" id="sbref0023">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huijbers</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Pennartz</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Cabeza</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Daselaar</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>When learning and remembering compete: a functional MRI study</article-title>
+          <source>PLoS Biol.</source>
+          <volume>7</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>e11</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pbio.1000011</pub-id>
+          <pub-id pub-id-type="pmid">19143473</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0024">
+        <element-citation publication-type="journal" id="sbref0024">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ito</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of the hippocampus in approach-avoidance conflict decision-making: evidence from rodent and human studies</article-title>
+          <source>Behav. Brain Res.</source>
+          <volume>313</volume>
+          <year>2016</year>
+          <fpage>345</fpage>
+          <lpage>357</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.bbr.2016.07.039</pub-id>
+          <pub-id pub-id-type="pmid">27457133</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <element-citation publication-type="journal" id="sbref0025">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jimenez</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Mendez</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Agra</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Ortiz-Tudela</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Increasing control improves further control, but it does not enhance memory for the targets in a face-word Stroop task</article-title>
+          <source>Mem. Cognit.</source>
+          <year>2020</year>
+          <pub-id pub-id-type="doi">10.3758/s13421-020-01028-2</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0026">
+        <element-citation publication-type="journal" id="sbref0026">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Encoding and retrieval along the long axis of the hippocampus and their relationships with dorsal attention and default mode networks: the HERNET model</article-title>
+          <source>Hippocampus</source>
+          <volume>25</volume>
+          <issue>4</issue>
+          <year>2015</year>
+          <fpage>500</fpage>
+          <lpage>510</lpage>
+          <pub-id pub-id-type="doi">10.1002/hipo.22387</pub-id>
+          <pub-id pub-id-type="pmid">25367784</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0027">
+        <element-citation publication-type="journal" id="sbref0027">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krebs</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Boehler</surname>
+              <given-names>C.N.</given-names>
+            </name>
+            <name>
+              <surname>De Belder</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Egner</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural conflict-control mechanisms improve memory for target stimuli</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>25</volume>
+          <issue>3</issue>
+          <year>2015</year>
+          <fpage>833</fpage>
+          <lpage>843</lpage>
+          <pub-id pub-id-type="doi">10.1093/cercor/bht283</pub-id>
+          <pub-id pub-id-type="pmid">24108799</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0028">
+        <element-citation publication-type="journal" id="sbref0028">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laufs</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hamandi</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Salek-Haddadi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kleinschmidt</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Duncan</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Lemieux</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Temporal lobe interictal epileptic discharges affect cerebral activity in "default mode" brain regions</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>28</volume>
+          <issue>10</issue>
+          <year>2007</year>
+          <fpage>1023</fpage>
+          <lpage>1032</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.20323</pub-id>
+          <pub-id pub-id-type="pmid">17133385</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0029">
+        <element-citation publication-type="journal" id="sbref0029">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leech</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Kamourieh</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Sharp</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fractionating the default mode network: distinct contributions of the ventral and dorsal posterior cingulate cortex to cognitive control</article-title>
+          <source>J. Neurosci.</source>
+          <volume>31</volume>
+          <issue>9</issue>
+          <year>2011</year>
+          <fpage>3217</fpage>
+          <lpage>3224</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.5626-10.2011</pub-id>
+          <pub-id pub-id-type="pmid">21368033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <element-citation publication-type="journal" id="sbref0030">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leech</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Sharp</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of the posterior cingulate cortex in cognition and disease</article-title>
+          <source>Brain</source>
+          <volume>137</volume>
+          <issue>Pt 1</issue>
+          <year>2014</year>
+          <fpage>12</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="doi">10.1093/brain/awt162</pub-id>
+          <pub-id pub-id-type="pmid">23869106</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0031">
+        <element-citation publication-type="journal" id="sbref0031">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liao</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Mantini</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ding</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Default mode network abnormalities in mesial temporal lobe epilepsy: a study combining fMRI and DTI</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>32</volume>
+          <issue>6</issue>
+          <year>2011</year>
+          <fpage>883</fpage>
+          <lpage>895</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.21076</pub-id>
+          <pub-id pub-id-type="pmid">20533558</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0032">
+        <element-citation publication-type="journal" id="sbref0032">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lundstrom</surname>
+              <given-names>B.N.</given-names>
+            </name>
+            <name>
+              <surname>Ingvar</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Petersson</surname>
+              <given-names>K.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of precuneus and left inferior frontal cortex during source memory episodic retrieval</article-title>
+          <source>Neuroimage</source>
+          <volume>27</volume>
+          <issue>4</issue>
+          <year>2005</year>
+          <fpage>824</fpage>
+          <lpage>834</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2005.05.008</pub-id>
+          <pub-id pub-id-type="pmid">15982902</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0033">
+        <element-citation publication-type="journal" id="sbref0033">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Margulies</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Vincent</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Kelly</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Lohmann</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Uddin</surname>
+              <given-names>L.Q.</given-names>
+            </name>
+            <name>
+              <surname>Biswal</surname>
+              <given-names>B.B.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Petrides</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Precuneus shares intrinsic functional architecture in humans and monkeys</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>106</volume>
+          <issue>47</issue>
+          <year>2009</year>
+          <fpage>20069</fpage>
+          <lpage>20074</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0905314106</pub-id>
+          <pub-id pub-id-type="pmid">19903877</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0034">
+        <element-citation publication-type="journal" id="sbref0034">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McDonald</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>N.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A triple dissociation of memory systems: hippocampus, amygdala, and dorsal striatum</article-title>
+          <source>Behav. Neurosci.</source>
+          <volume>107</volume>
+          <issue>1</issue>
+          <year>1993</year>
+          <fpage>3</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1037//0735-7044.107.1.3</pub-id>
+          <pub-id pub-id-type="pmid">8447956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0035">
+        <element-citation publication-type="journal" id="sbref0035">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murty</surname>
+              <given-names>V.P.</given-names>
+            </name>
+            <name>
+              <surname>Ballard</surname>
+              <given-names>I.C.</given-names>
+            </name>
+            <name>
+              <surname>Macduffie</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Krebs</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Adcock</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hippocampal networks habituate as novelty accumulates</article-title>
+          <source>Learn. Mem.</source>
+          <volume>20</volume>
+          <issue>4</issue>
+          <year>2013</year>
+          <fpage>229</fpage>
+          <lpage>235</lpage>
+          <pub-id pub-id-type="doi">10.1101/lm.029728.112</pub-id>
+          <pub-id pub-id-type="pmid">23512939</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0036">
+        <element-citation publication-type="journal" id="sbref0036">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Niendam</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Ray</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Dean</surname>
+              <given-names>Y.M.</given-names>
+            </name>
+            <name>
+              <surname>Glahn</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Meta-analytic evidence for a superordinate cognitive control network subserving diverse executive functions</article-title>
+          <source>Cogn. Affect. Behav. Neurosci.</source>
+          <volume>12</volume>
+          <issue>2</issue>
+          <year>2012</year>
+          <fpage>241</fpage>
+          <lpage>268</lpage>
+          <pub-id pub-id-type="doi">10.3758/s13415-011-0083-5</pub-id>
+          <pub-id pub-id-type="pmid">22282036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0037">
+        <element-citation publication-type="journal" id="sbref0037">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oehrn</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Baumann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fell</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Kessler</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Habel</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Axmacher</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Human hippocampal dynamics during response conflict</article-title>
+          <source>Curr. Biol.</source>
+          <volume>25</volume>
+          <issue>17</issue>
+          <year>2015</year>
+          <fpage>2307</fpage>
+          <lpage>2313</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cub.2015.07.032</pub-id>
+          <pub-id pub-id-type="pmid">26299515</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0038">
+        <element-citation publication-type="journal" id="sbref0038">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oehrn</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Hanslmayr</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fell</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Deuker</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Kremers</surname>
+              <given-names>N.A.</given-names>
+            </name>
+            <name>
+              <surname>Do Lam</surname>
+              <given-names>A.T.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Axmacher</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural communication patterns underlying conflict detection, resolution, and adaptation</article-title>
+          <source>J. Neurosci.</source>
+          <volume>34</volume>
+          <issue>31</issue>
+          <year>2014</year>
+          <fpage>10438</fpage>
+          <lpage>10452</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.3099-13.2014</pub-id>
+          <pub-id pub-id-type="pmid">25080602</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0039">
+        <element-citation publication-type="journal" id="sbref0039">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Packard</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Hirsh</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>N.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential effects of fornix and caudate nucleus lesions on two radial maze tasks: evidence for multiple memory systems</article-title>
+          <source>J. Neurosci.</source>
+          <volume>9</volume>
+          <issue>5</issue>
+          <year>1989</year>
+          <fpage>1465</fpage>
+          <lpage>1472</lpage>
+          <pub-id pub-id-type="pmid">2723738</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <element-citation publication-type="journal" id="sbref0040">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pittau</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Grova</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Moeller</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Dubeau</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Gotman</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Patterns of altered functional connectivity in mesial temporal lobe epilepsy</article-title>
+          <source>Epilepsia</source>
+          <volume>53</volume>
+          <issue>6</issue>
+          <year>2012</year>
+          <fpage>1013</fpage>
+          <lpage>1023</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1528-1167.2012.03464.x</pub-id>
+          <pub-id pub-id-type="pmid">22578020</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0041">
+        <element-citation publication-type="journal" id="sbref0041">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poldrack</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pare-Blagoev</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Shohamy</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Creso Moyano</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Gluck</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interactive memory systems in the human brain</article-title>
+          <source>Nature</source>
+          <volume>414</volume>
+          <issue>6863</issue>
+          <year>2001</year>
+          <fpage>546</fpage>
+          <lpage>550</lpage>
+          <pub-id pub-id-type="doi">10.1038/35107080</pub-id>
+          <pub-id pub-id-type="pmid">11734855</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0042">
+        <element-citation publication-type="journal" id="sbref0042">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poldrack</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Packard</surname>
+              <given-names>M.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Competition among multiple memory systems: converging evidence from animal and human brain studies</article-title>
+          <source>Neuropsychologia</source>
+          <volume>41</volume>
+          <issue>3</issue>
+          <year>2003</year>
+          <fpage>245</fpage>
+          <lpage>251</lpage>
+          <pub-id pub-id-type="doi">10.1016/s0028-3932(02)00157-4</pub-id>
+          <pub-id pub-id-type="pmid">12457750</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0043">
+        <element-citation publication-type="journal" id="sbref0043">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poppenk</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Evensmoen</surname>
+              <given-names>H.R.</given-names>
+            </name>
+            <name>
+              <surname>Moscovitch</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nadel</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Long-axis specialization of the human hippocampus</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <volume>17</volume>
+          <issue>5</issue>
+          <year>2013</year>
+          <fpage>230</fpage>
+          <lpage>240</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tics.2013.03.005</pub-id>
+          <pub-id pub-id-type="pmid">23597720</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0044">
+        <element-citation publication-type="journal" id="sbref0044">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poppenk</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Craik</surname>
+              <given-names>F.I.</given-names>
+            </name>
+            <name>
+              <surname>Moscovitch</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Past experience modulates the neural mechanisms of episodic memory formation</article-title>
+          <source>J. Neurosci.</source>
+          <volume>30</volume>
+          <issue>13</issue>
+          <year>2010</year>
+          <fpage>4707</fpage>
+          <lpage>4716</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.5466-09.2010</pub-id>
+          <pub-id pub-id-type="pmid">20357121</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <element-citation publication-type="journal" id="sbref0045">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramm</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Möddel</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Sundermann</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Last</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Langenbruch</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Jungilligens</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Axmacher</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Impaired processing of response conflicts in mesial temporal lobe epilepsy</article-title>
+          <source>J. Neuropsychol.</source>
+          <volume>14</volume>
+          <issue>2</issue>
+          <year>2020</year>
+          <fpage>283</fpage>
+          <lpage>300</lpage>
+          <pub-id pub-id-type="doi">10.1111/jnp.12186</pub-id>
+          <pub-id pub-id-type="pmid">31207105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0046">
+        <element-citation publication-type="journal" id="sbref0046">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramm</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sundermann</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gomes</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Möddel</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Langenbruch</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Nagelmann</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Axmacher</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reduced hippocampal recruitment during response conflict resolution in mesial temporal lobe epilepsy</article-title>
+          <source>Neuroimage</source>
+          <volume>213</volume>
+          <year>2020</year>
+          <object-id pub-id-type="publisher-id">116723</object-id>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2020.116723</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0047">
+        <element-citation publication-type="journal" id="sbref0047">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ratcliff</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>McKoon</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The diffusion decision model: theory and data for two-choice decision tasks</article-title>
+          <source>Neural Comput.</source>
+          <volume>20</volume>
+          <issue>4</issue>
+          <year>2008</year>
+          <fpage>873</fpage>
+          <lpage>922</lpage>
+          <pub-id pub-id-type="doi">10.1162/neco.2008.12-06-420</pub-id>
+          <pub-id pub-id-type="pmid">18085991</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0048">
+        <element-citation publication-type="journal" id="sbref0048">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reas</surname>
+              <given-names>E.T.</given-names>
+            </name>
+            <name>
+              <surname>Brewer</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effortful retrieval reduces hippocampal activity and impairs incidental encoding</article-title>
+          <source>Hippocampus</source>
+          <volume>23</volume>
+          <issue>5</issue>
+          <year>2013</year>
+          <fpage>367</fpage>
+          <lpage>379</lpage>
+          <pub-id pub-id-type="doi">10.1002/hipo.22096</pub-id>
+          <pub-id pub-id-type="pmid">23378272</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0049">
+        <element-citation publication-type="journal" id="sbref0049">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Donaldson</surname>
+              <given-names>D.I.</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Braver</surname>
+              <given-names>T.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Item- and task-level processes in the left inferior prefrontal cortex: positive and negative correlates of encoding</article-title>
+          <source>Neuroimage</source>
+          <volume>21</volume>
+          <issue>4</issue>
+          <year>2004</year>
+          <fpage>1472</fpage>
+          <lpage>1483</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2003.10.033</pub-id>
+          <pub-id pub-id-type="pmid">15050572</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <element-citation publication-type="journal" id="sbref0050">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Richter</surname>
+              <given-names>F.R.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Bays</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Simons</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct neural mechanisms underlie the success, precision, and vividness of episodic memory</article-title>
+          <source>Elife</source>
+          <volume>5</volume>
+          <year>2016</year>
+          <pub-id pub-id-type="doi">10.7554/eLife.18260</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0051">
+        <element-citation publication-type="journal" id="sbref0051">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Richter</surname>
+              <given-names>F.R.</given-names>
+            </name>
+            <name>
+              <surname>Yeung</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Memory and cognitive control in task switching</article-title>
+          <source>Psychol. Sci.</source>
+          <volume>23</volume>
+          <issue>10</issue>
+          <year>2012</year>
+          <fpage>1256</fpage>
+          <lpage>1263</lpage>
+          <pub-id pub-id-type="doi">10.1177/0956797612444613</pub-id>
+          <pub-id pub-id-type="pmid">22972906</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0052">
+        <element-citation publication-type="journal" id="sbref0052">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosner</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>D'Angelo</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>MacLellan</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Milliken</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selective attention and recognition: effects of congruency on episodic learning</article-title>
+          <source>Psychol. Res.</source>
+          <volume>79</volume>
+          <issue>3</issue>
+          <year>2015</year>
+          <fpage>411</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00426-014-0572-6</pub-id>
+          <pub-id pub-id-type="pmid">24859839</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0053">
+        <element-citation publication-type="journal" id="sbref0053">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rugg</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Vilberg</surname>
+              <given-names>K.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain networks underlying episodic memory retrieval</article-title>
+          <source>Curr. Opin. Neurobiol.</source>
+          <volume>23</volume>
+          <issue>2</issue>
+          <year>2013</year>
+          <fpage>255</fpage>
+          <lpage>260</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.conb.2012.11.005</pub-id>
+          <pub-id pub-id-type="pmid">23206590</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0054">
+        <element-citation publication-type="journal" id="sbref0054">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scheffer</surname>
+              <given-names>I.E.</given-names>
+            </name>
+            <name>
+              <surname>Berkovic</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Capovilla</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Connolly</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>French</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Guilhoto</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Zuberi</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>ILAE classification of the epilepsies: position paper of the ILAe commission for classification and terminology</article-title>
+          <source>Epilepsia</source>
+          <volume>58</volume>
+          <issue>4</issue>
+          <year>2017</year>
+          <fpage>512</fpage>
+          <lpage>521</lpage>
+          <pub-id pub-id-type="doi">10.1111/epi.13709</pub-id>
+          <pub-id pub-id-type="pmid">28276062</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0055">
+        <element-citation publication-type="journal" id="sbref0055">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shohamy</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Adcock</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dopamine and adaptive memory</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <volume>14</volume>
+          <issue>10</issue>
+          <year>2010</year>
+          <fpage>464</fpage>
+          <lpage>472</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tics.2010.08.002</pub-id>
+          <pub-id pub-id-type="pmid">20829095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0056">
+        <element-citation publication-type="journal" id="sbref0056">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sridharan</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Levitin</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>A critical role for the right fronto-insular cortex in switching between central-executive and default-mode networks</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>105</volume>
+          <issue>34</issue>
+          <year>2008</year>
+          <fpage>12569</fpage>
+          <lpage>12574</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0800005105</pub-id>
+          <pub-id pub-id-type="pmid">18723676</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0057">
+        <element-citation publication-type="journal" id="sbref0057">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Uddin</surname>
+              <given-names>L.Q.</given-names>
+            </name>
+          </person-group>
+          <article-title>Salience processing and insular cortical function and dysfunction</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <volume>16</volume>
+          <issue>1</issue>
+          <year>2015</year>
+          <fpage>55</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="doi">10.1038/nrn3857</pub-id>
+          <pub-id pub-id-type="pmid">25406711</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0058">
+        <element-citation publication-type="journal" id="sbref0058">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vlooswijk</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Jansen</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>de Krom</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Majoie</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Hofman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Backes</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Aldenkamp</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional MRI in chronic epilepsy: associations with cognitive impairment</article-title>
+          <source>Lancet Neurol.</source>
+          <volume>9</volume>
+          <issue>10</issue>
+          <year>2010</year>
+          <fpage>1018</fpage>
+          <lpage>1027</lpage>
+          <pub-id pub-id-type="doi">10.1016/s1474-4422(10)70180-0</pub-id>
+          <pub-id pub-id-type="pmid">20708970</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0059">
+        <element-citation publication-type="journal" id="sbref0059">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Voges</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Blanchard</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Wendling</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Benali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Papadopoulo</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Benar</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling of the neurovascular coupling in epileptic discharges</article-title>
+          <source>Brain Topogr.</source>
+          <volume>25</volume>
+          <issue>2</issue>
+          <year>2012</year>
+          <fpage>136</fpage>
+          <lpage>156</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10548-011-0190-1</pub-id>
+          <pub-id pub-id-type="pmid">21706377</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0060">
+        <element-citation publication-type="journal" id="sbref0060">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waites</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Briellmann</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Saling</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>D.F.</given-names>
+            </name>
+            <name>
+              <surname>Jackson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional connectivity networks are disrupted in left temporal lobe epilepsy</article-title>
+          <source>Ann. Neurol.</source>
+          <volume>59</volume>
+          <issue>2</issue>
+          <year>2006</year>
+          <fpage>335</fpage>
+          <lpage>343</lpage>
+          <pub-id pub-id-type="doi">10.1002/ana.20733</pub-id>
+          <pub-id pub-id-type="pmid">16404743</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0061">
+        <element-citation publication-type="journal" id="sbref0061">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watanabe</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Safi-Harb</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dubeau</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Gotman</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hemodynamic response function (HRF) in epilepsy patients with hippocampal sclerosis and focal cortical dysplasia</article-title>
+          <source>Brain Topogr.</source>
+          <volume>27</volume>
+          <issue>5</issue>
+          <year>2014</year>
+          <fpage>613</fpage>
+          <lpage>619</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10548-014-0362-x</pub-id>
+          <pub-id pub-id-type="pmid">24718726</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0062">
+        <element-citation publication-type="journal" id="sbref0062">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whitfield-Gabrieli</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nieto-Castanon</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conn: a functional connectivity toolbox for correlated and anticorrelated brain networks</article-title>
+          <source>Brain Connect.</source>
+          <volume>2</volume>
+          <issue>3</issue>
+          <year>2012</year>
+          <fpage>125</fpage>
+          <lpage>141</lpage>
+          <pub-id pub-id-type="doi">10.1089/brain.2012.0073</pub-id>
+          <pub-id pub-id-type="pmid">22642651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0063">
+        <element-citation publication-type="journal" id="sbref0063">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural measure of behavioral engagement: task-residual low-frequency blood oxygenation level-dependent activity in the precuneus</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>2</issue>
+          <year>2010</year>
+          <fpage>1911</fpage>
+          <lpage>1918</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2009.09.004</pub-id>
+          <pub-id pub-id-type="pmid">19761851</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0064">
+        <element-citation publication-type="journal" id="sbref0064">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional connectivity mapping of the human precuneus by resting state fMRI</article-title>
+          <source>Neuroimage</source>
+          <volume>59</volume>
+          <issue>4</issue>
+          <year>2012</year>
+          <fpage>3548</fpage>
+          <lpage>3562</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2011.11.023</pub-id>
+          <pub-id pub-id-type="pmid">22116037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0065">
+        <element-citation publication-type="journal" id="sbref0065">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Zhong</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Liao</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>. . .</surname>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Altered spontaneous neuronal activity of the default-mode network in mesial temporal lobe epilepsy</article-title>
+          <source>Brain Res.</source>
+          <volume>1323</volume>
+          <year>2010</year>
+          <fpage>152</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.brainres.2010.01.042</pub-id>
+          <pub-id pub-id-type="pmid">20132802</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="sec0029" sec-type="supplementary-material">
+      <label>Appendix</label>
+      <title>Supplementary materials</title>
+      <p id="para0070a">
+        <supplementary-material content-type="local-data" id="ecom0001">
+          <media xlink:href="mmc1.docx">
+            <alt-text>Image, application 1</alt-text>
+          </media>
+        </supplementary-material>
+      </p>
+    </sec>
+    <ack id="ack0001">
+      <sec id="sec0025">
+        <title>Funding/Acknowledgments</title>
+        <p id="para0072">This study was supported by a starting grant of the <funding-source id="gs0001">European Research Council</funding-source> (ERC) under the Horizon 2020 framework (grant No. 636116 awarded to RMK). NA acknowledges support from the <funding-source id="gs0002">Deutsche Forschungsgemeinschaft</funding-source> (DFG, German Research Foundation) Projektnummer 316803389 – SFB 1280, as well as via Projektnummer 122679504 – SFB 874.</p>
+      </sec>
+    </ack>
+    <fn-group>
+      <fn id="sec0028" fn-type="supplementary-material">
+        <p id="para0002a">Supplementary material associated with this article can be found, in the online version, at <ext-link ext-link-type="uri" xlink:href="https://doi.org/10.1016/j.neuroimage.2020.117563" id="interref0004">doi:10.1016/j.neuroimage.2020.117563</ext-link>.</p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

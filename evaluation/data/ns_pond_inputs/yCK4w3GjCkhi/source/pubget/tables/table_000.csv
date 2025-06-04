@@ -1,0 +1,5 @@
+Unnamed: 0,Estimate,SE,Z,p,Unnamed: 5
+Intercept,1.45917,0.20998,6.95,3.67e−12,***
+neighborhood density,0.06476,0.08944,0.724,0.469,
+log word frequency,0.05480,0.08852,0.619,0.536,
+density:frequency,−0.07036,0.09054,−0.777,0.437,

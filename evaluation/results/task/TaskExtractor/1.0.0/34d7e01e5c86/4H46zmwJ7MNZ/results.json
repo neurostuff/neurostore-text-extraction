@@ -1,0 +1,41 @@
+{
+    "Modality": [
+        "fMRI-BOLD"
+    ],
+    "StudyObjective": "The current study investigates whether caudate nucleus signals for breaches of expectation in a movement observation paradigm.",
+    "Exclude": null,
+    "fMRITasks": [
+        {
+            "TaskName": "Movement Observation Task",
+            "TaskDescription": "Participants watched a dancer performing movements according to auditory cues, occasionally making mistakes.",
+            "DesignDetails": "The task involved watching a dancer perform a sequence of movements cued by auditory signals. Participants had to indicate whether the dancer's last movement was correct or not. The task included 400 single movements, with 32 movements not according to cue. The design allowed for contrasting predicted with prediction-violating movements, and included breaks for question trials.",
+            "Conditions": [
+                "Correct movements",
+                "Incorrect movements",
+                "First dissimilar transition cues",
+                "Switch cues",
+                "Repetition cues"
+            ],
+            "TaskMetrics": [
+                "fMRI BOLD signal",
+                "Response accuracy"
+            ],
+            "Concepts": [
+                "Breach of expectation",
+                "Prediction error",
+                "Observational learning"
+            ],
+            "Domain": [
+                "Learning and memory",
+                "Attention"
+            ],
+            "RestingState": false,
+            "RestingStateMetadata": null,
+            "TaskDesign": [
+                "EventRelated"
+            ],
+            "TaskDuration": "Not specified"
+        }
+    ],
+    "BehavioralTasks": null
+}

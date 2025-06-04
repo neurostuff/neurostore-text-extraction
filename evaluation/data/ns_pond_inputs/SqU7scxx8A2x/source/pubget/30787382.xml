@@ -1,0 +1,2930 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Sci Rep</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Sci Rep</journal-id>
+      <journal-title-group>
+        <journal-title>Scientific Reports</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2045-2322</issn>
+      <publisher>
+        <publisher-name>Nature Publishing Group UK</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30787382</article-id>
+      <article-id pub-id-type="pmc">6382839</article-id>
+      <article-id pub-id-type="publisher-id">38990</article-id>
+      <article-id pub-id-type="doi">10.1038/s41598-019-38990-0</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Brain activation during disorder-related script-driven imagery in panic disorder: a pilot study</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Burkhardt</surname>
+            <given-names>Alexander</given-names>
+          </name>
+          <address>
+            <email>alexander.burkhardt@mail.de</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Buff</surname>
+            <given-names>Christine</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Brinkmann</surname>
+            <given-names>Leonie</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Feldker</surname>
+            <given-names>Katharina</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gathmann</surname>
+            <given-names>Bettina</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hofmann</surname>
+            <given-names>David</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Straube</surname>
+            <given-names>Thomas</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <aff id="Aff1"><institution-wrap><institution-id institution-id-type="ISNI">0000 0001 2172 9288</institution-id><institution-id institution-id-type="GRID">grid.5949.1</institution-id><institution>Institute of Medical Psychology and Systems Neuroscience, </institution><institution>University of Muenster, </institution></institution-wrap>Von-Esmarch-Str. 52, 48149 Muenster, Germany </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>20</day>
+        <month>2</month>
+        <year>2019</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>20</day>
+        <month>2</month>
+        <year>2019</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2019</year>
+      </pub-date>
+      <volume>9</volume>
+      <elocation-id>2415</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>24</day>
+          <month>1</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>14</day>
+          <month>1</month>
+          <year>2019</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© The Author(s) 2019</copyright-statement>
+        <license license-type="OpenAccess">
+          <license-p><bold>Open Access</bold> This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <p id="Par1">Despite considerable effort, the neural correlates of altered threat-related processing in panic disorder (PD) remain inconclusive. Mental imagery of disorder-specific situations proved to be a powerful tool to investigate dysfunctional threat processing in anxiety disorders. The current functional magnetic resonance imaging (fMRI) study aimed at investigating brain activation in PD patients during disorder-related script-driven imagery. Seventeen PD patients and seventeen healthy controls (HC) were exposed to newly developed disorder-related and neutral narrative scripts while brain activation was measured with fMRI. Participants were encouraged to imagine the narrative scripts as vividly as possible and they rated their script-induced emotional states after the scanning session. PD patients rated disorder-related scripts as more arousing, unpleasant and anxiety-inducing as compared to HC. Patients relative to HC showed elevated activity in the right amygdala and the brainstem as well as decreased activity in the rostral anterior cingulate cortex, and the medial and lateral prefrontal cortex to disorder-related vs. neutral scripts. The results suggest altered amygdala/ brainstem and prefrontal cortex engagement and point towards the recruitment of brain networks with opposed activation patterns in PD patients during script-driven imagery.</p>
+      </abstract>
+      <funding-group>
+        <award-group>
+          <funding-source>
+            <institution-wrap>
+              <institution-id institution-id-type="FundRef">https://doi.org/10.13039/501100001659</institution-id>
+              <institution>Deutsche Forschungsgemeinschaft (German Research Foundation)</institution>
+            </institution-wrap>
+          </funding-source>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <award-id>DFG:SFB/TRR 58: C07</award-id>
+          <principal-award-recipient>
+            <name>
+              <surname>Burkhardt</surname>
+              <given-names>Alexander</given-names>
+            </name>
+            <name>
+              <surname>Buff</surname>
+              <given-names>Christine</given-names>
+            </name>
+            <name>
+              <surname>Brinkmann</surname>
+              <given-names>Leonie</given-names>
+            </name>
+            <name>
+              <surname>Feldker</surname>
+              <given-names>Katharina</given-names>
+            </name>
+            <name>
+              <surname>Gathmann</surname>
+              <given-names>Bettina</given-names>
+            </name>
+            <name>
+              <surname>Hofmann</surname>
+              <given-names>David</given-names>
+            </name>
+            <name>
+              <surname>Straube</surname>
+              <given-names>Thomas</given-names>
+            </name>
+          </principal-award-recipient>
+        </award-group>
+      </funding-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2019</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Introduction</title>
+      <p id="Par2">Panic disorder (PD) is a frequent disorder with up to 3.1% 12-month-prevalence<sup><xref ref-type="bibr" rid="CR1">1</xref></sup> that causes substantial impairment to the individual. Patients suffering from PD are consistently concerned about the occurrence of a panic attack<sup><xref ref-type="bibr" rid="CR2">2</xref></sup> which is characterised by a sudden outburst of overwhelming fear triggering severe physical reactions<sup><xref ref-type="bibr" rid="CR3">3</xref></sup>. According to cognitive models and behavioural studies, the occurrence of panic attacks is mainly driven by altered threat processing in PD patients<sup><xref ref-type="bibr" rid="CR4">4</xref>–<xref ref-type="bibr" rid="CR6">6</xref></sup>. For example, they appear more vigilant to internal bodily sensations<sup><xref ref-type="bibr" rid="CR7">7</xref></sup>, and tend to misinterpret them in a threatening manner<sup><xref ref-type="bibr" rid="CR8">8</xref>–<xref ref-type="bibr" rid="CR12">12</xref></sup>. This misinterpretation bias appears to facilitate, among other factors, the initiation of panic attacks and may consequently result in the preservation of high levels of anxiety as well as the maintenance of the disorder<sup><xref ref-type="bibr" rid="CR5">5</xref>,<xref ref-type="bibr" rid="CR13">13</xref></sup>.</p>
+      <p id="Par3">Neurobiological models suggest that altered threat processing in PD is related to dysfunctions within a brain network comprising the amygdala, the insula, the prefrontal cortex (PFC), the hippocampus, and brainstem sites, such as the periaqueductal grey (PAG) region and locus coeruleus<sup><xref ref-type="bibr" rid="CR14">14</xref>–<xref ref-type="bibr" rid="CR16">16</xref></sup>. A key role in altered threat processing in PD has been attributed to the amygdala<sup><xref ref-type="bibr" rid="CR15">15</xref>,<xref ref-type="bibr" rid="CR17">17</xref></sup>, which is assumed to reflect increased vigilance towards threat<sup><xref ref-type="bibr" rid="CR14">14</xref>,<xref ref-type="bibr" rid="CR15">15</xref></sup>. However, the precise function in the pathophysiology of PD remains to be resolved, since findings remain equivocal and altered threat-related amygdala activity has not been consistently reported<sup><xref ref-type="bibr" rid="CR16">16</xref>,<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR19">19</xref></sup>. A recent meta-analytical work in the functional neuroanatomy of panic disorder condensed findings, revealing abnormal activity predominantly in an extended fear network comprising brainstem, anterior and midcingulate cortex (ACC and MCC), insula, and lateral as well as medial prefrontal cortex, while aberrant amygdala activation seems to more strongly hinge on particular stimuli and experimental paradigms, sample characteristics, as well as on limited neuroimaging methods<sup><xref ref-type="bibr" rid="CR16">16</xref></sup>.</p>
+      <p id="Par4">Aside the amygdala, altered threat processing in PD patients appears related to aberrant medial PFC and ACC recruitment, with studies showing both increased and decreased activation in response to threat<sup><xref ref-type="bibr" rid="CR20">20</xref>–<xref ref-type="bibr" rid="CR24">24</xref></sup>. Aberrant activity in the PFC and the ACC was considered to reflect a deficiency in top-down control of threat responses in PD patients<sup><xref ref-type="bibr" rid="CR14">14</xref></sup>. Furthermore, emerging evidence points towards threat-related functional perturbations within the brainstem and the insula in PD patients<sup><xref ref-type="bibr" rid="CR15">15</xref>,<xref ref-type="bibr" rid="CR25">25</xref>–<xref ref-type="bibr" rid="CR28">28</xref></sup>. For example, a recent study revealed an association between higher subjective levels of anxiety and brainstem activity as well as increased activity of the insula, interpreted as a token of increased interoceptive processing in PD patients<sup><xref ref-type="bibr" rid="CR25">25</xref></sup>.</p>
+      <p id="Par5">Taken together, the neural correlates of altered threat processing in PD remain inconclusive, but ravel around functional perturbations within the amygdala, the PFC, the ACC, the brainstem and the insula. Results and interpretation of functional imaging studies might depend on varying experimental and analytical methods. Further investigations using controlled symptom provocation designs are warranted to gain a comprehensive understanding of the neurobiological underpinnings of altered threat processing in PD patients.</p>
+      <p id="Par6">A promising tool to explore threat processing mechanisms in patients proved to be the method of script-driven imagery<sup><xref ref-type="bibr" rid="CR29">29</xref>–<xref ref-type="bibr" rid="CR34">34</xref></sup>. Participants typically listen to an emotionally laden narrative script and imagine the active role of the protagonist. It has been shown that the emotional and bodily reactions, resulting from threat imagination, are similar to the physiological arousal when facing <italic>in vivo</italic> threat<sup><xref ref-type="bibr" rid="CR34">34</xref>,<xref ref-type="bibr" rid="CR35">35</xref></sup>. The method has already been implemented in psychophysiological PD studies and revealed that the imagination of disorder related narrative scripts elicited increase startle, heart rate, and blood pressure responses in PD patients<sup><xref ref-type="bibr" rid="CR10">10</xref>,<xref ref-type="bibr" rid="CR36">36</xref>,<xref ref-type="bibr" rid="CR37">37</xref></sup>.</p>
+      <p id="Par7">Besides psychophysiological responses, recent neuroimaging studies suggest that script-driven imagery involves the recruitment of a fear-related brain circuitry including increased activation of the amygdala, insula, cingulate cortex, and the prefrontal cortex (PFC), as well as reduced activation of the ventromedial PFC (vmPFC) in anxiety patients<sup><xref ref-type="bibr" rid="CR19">19</xref>,<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR38">38</xref>–<xref ref-type="bibr" rid="CR42">42</xref></sup>. Given the suggested role of these brain regions as described earlier, script-driven imagery might elicit increased vigilance, increased interoceptive processing, and deficient control of responses to threat in PD patients. We therefore hypothesise that aberrant activation particular for mental threat imagery is to be expected in these brain regions during the present experimental procedure.</p>
+      <p id="Par8">Remarkably, only one fMRI study has used this method in a pilot study with a highly restricted PD sample (<italic>n</italic> = 6) until today and found threat-related increased activation in cingulate cortex and lateral PFC<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>. Thus, relevant brain imaging studies are lacking that use script-driven imagery as a powerful tool to better understand threat-related brain activation patterns in PD patients during a controlled but symptom provoking experimental situation.</p>
+      <p id="Par9">To pursue this auspicious avenue in research, the aim of the present fMRI study was to explore neural correlates of threat processing in a suited sample of PD patients by means of script-driven imagery based on a newly developed set of controlled disorder-related and neutral scenarios. To this end, we presented the disorder-related and neutral narrative scripts to PD patients and healthy controls (HC) and investigated brain activation in several brain regions, suggested to be relevant for threat processing in PD patients, comprising the PFC, cingulate cortex, amygdala, brainstem, and the insula<sup><xref ref-type="bibr" rid="CR43">43</xref></sup>. We would like to mention that, given the methodological limits of a small sample size, medication and comorbidities of patients as well as the lack of high resolution imaging to characterise brain stem responses, the present study should be looked upon as a pilot study.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec3">
+        <title>Rating data</title>
+        <p id="Par10">Mean ratings are provided in Table <xref rid="Tab1" ref-type="table">1</xref>. Analysis of valence, arousal and anxiety rating data revealed significant main effects of group (valence: <italic>F</italic><sub>[1,32]</sub> = 7.84, <italic>p = </italic>0.009; <italic>arousal</italic>: <italic>F</italic><sub>[1,32]</sub> = 35.83, <italic>p</italic> &lt; 0.001; <italic>anxiety</italic>: <italic>F</italic><sub>[1,32]</sub> = 40.70, <italic>p</italic> &lt; 0.001) and stimulus (valence: <italic>F</italic><sub>[1,32]</sub> = 185.90, <italic>p</italic> &lt; 0.001; <italic>arousal</italic>: <italic>F</italic><sub>[1,32]</sub> = 185.90, <italic>p</italic> &lt; 0.001; <italic>anxiety</italic>: <italic>F</italic><sub>[1,32]</sub> = 87.25, <italic>p</italic> &lt; 0.001). Furthermore, there were significant <italic>stimulus</italic> by <italic>group</italic> interaction effects for <italic>anxiety</italic> (F<sub>[1,32]</sub> = 22.41, p &lt; 0.001), <italic>arousal</italic> (F<sub>[1,32]</sub> = 12.49, p = 0.001) and <italic>valence</italic> (F<sub>[1,32]</sub> = 6.34, p = 0.017) (see Fig. <xref rid="Fig1" ref-type="fig">1</xref>). Disorder-related scripts were generally rated as more arousing, more unpleasant, and more anxiety-inducing than neutral scripts. Patients rated all stimuli as more arousing and anxiety-inducing compared to HC, but neutral stimuli not as more unpleasant (t<sub>[32]</sub> = −1.92, p = 0.064). Resolving the interaction effects for valence, arousal, and anxiety ratings revealed that disorder-related scripts were rated as more arousing (t<sub>[32]</sub> = 5.70, p &lt; 0.001), more unpleasant (t<sub>[32]</sub> = −3.22 p = 0.003), and more anxiety-inducing (t<sub>[32]</sub> = 6.11 p &lt; 0.001) by PD patients compared to HC. Analysis of the <italic>ability to imagine</italic> each script yielded no significant effects (all p &gt; 0.069).<table-wrap id="Tab1"><label>Table 1</label><caption><p>Mean rating data for disorder-related and neutral scripts on the dimensions of anxiety, arousal, valence, and ability to imagine the scripts.</p></caption><table frame="hsides" rules="groups"><thead><tr><th>Group</th><th>Script valence</th><th>Anxiety M (SD)</th><th>Arousal M (SD)</th><th>Valence M (SD)</th><th>Ability to imagine the scripts M (SD)</th></tr></thead><tbody><tr><td rowspan="2">PD patients</td><td>Disorder-related</td><td>5.34 (1.66)</td><td>5.61 (1.45)</td><td>3.06 (0.90)</td><td>82.15 (6.93)</td></tr><tr><td>Neutral</td><td>2.39 (0.96)</td><td>3.02 (1.14)</td><td>5.25 (0.84)</td><td>79.95 (6.88)</td></tr><tr><td rowspan="2">HC</td><td>Disorder-related</td><td>2.07 (1.45)</td><td>2.64 (1.59)</td><td>4.40 (1.46)</td><td>76.68 (9.80)</td></tr><tr><td>Neutral</td><td>1.11 (0.21)</td><td>1.46 (0.55)</td><td>5.91 (1.14)</td><td>80.04 (9.46)</td></tr><tr><td rowspan="2">Overall</td><td>Disorder-related</td><td>3.70 (2.26)</td><td>4.12 (2.13)</td><td>3.73 (1.38)</td><td>79.42 (8.81)</td></tr><tr><td>Neutral</td><td>1.75 (0.94)</td><td>2.24 (1.19)</td><td>5,58 (1.04)</td><td>79.99 (8.15)</td></tr><tr><td>PD patients</td><td>Across valence</td><td>3.86 (2.00)</td><td>4.31 (1.84)</td><td>4.15 (1.40)</td><td>78.36 (9.64)</td></tr><tr><td>HC</td><td>Across valence</td><td>1.59 (1.13)</td><td>2.05 (1.32)</td><td>5.15 (1.50)</td><td>81.05 (6.89)</td></tr></tbody></table><table-wrap-foot><p>Note. PD, panic disorder; HC, healthy controls; M, mean; SD, standard deviation.</p></table-wrap-foot></table-wrap><fig id="Fig1"><label>Figure 1</label><caption><p>Mean ratings for disorder-related and neutral scripts on the dimensions of valence, arousal, and anxiety. There were significant interaction effects concerning all ratings: valence, arousal, and anxiety. Patients suffering from panic disorder (PD) compared to healthy controls (HC) rated disorder-related relative to neutral scripts as more anxiety-inducing, more arousing, and more unpleasant. ***p &lt; 0.001, **p &lt; 0.01.</p></caption><graphic xlink:href="41598_2019_38990_Fig1_HTML" id="d29e732"/></fig></p>
+      </sec>
+      <sec id="Sec4">
+        <title>FMRI data</title>
+        <p id="Par11">In response to disorder-related vs. neutral scripts, PD patients showed greater activation in the right amygdala (peak voxel Talairach coordinates: <italic>x</italic> = 24, <italic>y</italic> = −3, <italic>z</italic> = 19; max. t-value: <italic>t</italic><sub>[33]</sub> = 3.37, p &lt; 0.05 corrected; cluster size 144 mm<sup>3</sup>) compared to HC. Furthermore, patients showed decreased activation in several prefrontal regions for the same contrast: left ventrolateral PFC (vlPFC) (peak voxel Talairach coordinates: <italic>x</italic> = −27, <italic>y</italic> = 40, <italic>z</italic> = 3; max. t-value: <italic>t</italic><sub>[33]</sub> = −4.45, p &lt; 0.05 corrected; cluster size 1184 mm<sup>2</sup>), right vlPFC (peak voxel Talairach coordinates: <italic>x</italic> = 22,y = 25, <italic>z</italic> = 5; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.69, p &lt; 0.05 corrected; cluster size 448 mm<sup>3</sup>), right ventromedial PFC (vmPFC) (peak voxel Talairach coordinates: <italic>x</italic> = 14, <italic>y</italic> = 61, <italic>z</italic> = −4; max. t-value: <italic>t</italic><sub>[33]</sub> = −4.13, p &lt; 0.05 corrected; cluster size 408 mm<sup>3</sup>) as well as left dorsomedial PFC (dmPFC) (peak voxel Talairach coordinates: <italic>x</italic> = −4, <italic>y</italic> = 62, <italic>z</italic> = 11; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.55, p &lt; 0.05 corrected; cluster size 208 mm<sup>3</sup>) and right dorsolateral PFC (dlPFC) (peak voxel Talairach coordinates: <italic>x</italic> = 31, <italic>y</italic> = 10, <italic>z</italic> = 33; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.28, p &lt; 0.05 corrected; cluster size 168 mm<sup>3</sup>). Additionally, decreased activation was found in several regions of the cingulate cortex: in left rostral ACC (rACC) (peak voxel Talairach coordinates: <italic>x</italic> = −11, <italic>y</italic> = 32, <italic>z</italic> = −7; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.03, p &lt; 0.05 corrected; cluster size 168 mm<sup>3</sup>), in right rACC (peak voxel: <italic>x</italic> = 7, <italic>y</italic> = 31, <italic>z</italic> = −6; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.47, p &lt; 0.05 corrected; cluster size 592 mm<sup>3</sup>) as well as in dorsal posterior cingulate cortex (dPCC) (peak voxel Talairach coordinates: <italic>x</italic> = 14, <italic>y</italic> = −44, <italic>z</italic> = 38; max. t-value: <italic>t</italic><sub>[33]</sub> = −3.33, p &lt; 0.05 corrected; cluster size 72 mm<sup>3</sup>). Further inspection of brainstem ROI showed marginally significant hyperactivation in right brainstem to disorder-related vs. neutral scripts for PD patients compared to HC (peak voxel Talairach coordinates x = 3, y = −20, z = −18, max. t-value: <italic>t</italic><sub>[33]</sub> = 3.00, p &lt; 0.005 uncorrected; cluster size 16 mm<sup>3</sup>) (Fig. <xref rid="Fig2" ref-type="fig">2</xref>). All significant activations in ROIs during imagination of disorder-related vs. neutral scripts are depicted in Table <xref rid="Tab2" ref-type="table">2</xref>.<fig id="Fig2"><label>Figure 2</label><caption><p>Differential brain activation during imagery exposure, disorder-related &gt; neutral scripts. Panic disorder patients (PD) relative to healthy controls (HC) responded to disorder-related vs. neutral scripts with increased activity in right amygdala and brainstem, and decreased activation in right ventromedial prefrontal cortex (vmPFC), right and left ventrolateral prefrontal cortex (vlPFC), right dorsolateral prefrontal cortex (dlPFC), right and left rostral anterior cingulate cortex (rACC) and right dorsal posterior cingulate cortex (dPCC). Graphs indicate contrasts of parameter estimates (mean ± standard error) per group.</p></caption><graphic xlink:href="41598_2019_38990_Fig2_HTML" id="d29e919"/></fig><table-wrap id="Tab2"><label>Table 2</label><caption><p>Region of interest analysis: Significant activations during imagination of disorder-related vs. neutral scripts.</p></caption><table frame="hsides" rules="groups"><thead><tr><th rowspan="2">Region</th><th rowspan="2">Lateralization</th><th colspan="3">Talairach coordinates of peak voxel</th><th rowspan="2">mm<sup>3</sup></th><th rowspan="2">Maximum t-value</th></tr><tr><th>x</th><th>y</th><th>z</th></tr></thead><tbody><tr><td colspan="7">
+<bold>PD &gt; HC</bold>
+</td></tr><tr><td>Amygdala</td><td>R</td><td>24</td><td>−3</td><td>19</td><td>144</td><td>3.37</td></tr><tr><td>Brainstem*</td><td>R</td><td>3</td><td>−20</td><td>−18</td><td>16</td><td>3.00</td></tr><tr><td colspan="7">
+<bold>HC &gt; PD</bold>
+</td></tr><tr><td>vmPFC</td><td>R</td><td>14</td><td>61</td><td>−4</td><td>408</td><td>−4.13</td></tr><tr><td>vlPFC</td><td>L</td><td>−27</td><td>40</td><td>3</td><td>1184</td><td>−4.45</td></tr><tr><td>vlPFC</td><td>R</td><td>22</td><td>55</td><td>5</td><td>448</td><td>−3.69</td></tr><tr><td>dmPFC</td><td>L</td><td>−4</td><td>62</td><td>11</td><td>208</td><td>−3.55</td></tr><tr><td>dlPFC</td><td>R</td><td>31</td><td>10</td><td>33</td><td>168</td><td>−3.28</td></tr><tr><td>dPCC</td><td>R</td><td>14</td><td>−44</td><td>38</td><td>72</td><td>−3.33</td></tr><tr><td>rACC</td><td>L</td><td>−11</td><td>32</td><td>−7</td><td>168</td><td>−3.03</td></tr><tr><td>rACC</td><td>R</td><td>7</td><td>31</td><td>−6</td><td>592</td><td>−3.47</td></tr></tbody></table><table-wrap-foot><p>Note. PD, panic disorder; HC, healthy controls; vmPFC, ventromedial prefrontal cortex; vlPFC, ventrolateral prefrontal cortex; dmPFC, dorsomedial prefrontal cortex; dlPFC, dorsolateral prefrontal cortex; dPCC, posterior cingulate cortex; rACC, rostral anterior cingulate cortex; L, left; R, right; (x, y, z), Talairach coordinates of maximally activated voxel. If not stated otherwise activations listed were calculated at p &lt; 0.05 (corrected), *p &lt; 0.005 (uncorrected).</p></table-wrap-foot></table-wrap></p>
+      </sec>
+    </sec>
+    <sec id="Sec5" sec-type="discussion">
+      <title>Discussion</title>
+      <p id="Par12">The present study aimed at unveiling neural correlates of altered threat processing in PD patients by means of script-driven imagery. The disorder-related narrative scripts were rated as more arousing, unpleasant, and anxiety-inducing by PD patients as compared to HC. Moreover, PD patients relative to HC showed enhanced amygdala and brainstem activity and decreased activity in dmPFC, dlPFC, vlPFC, vmPFC/rACC and dPCC during imagination of disorder-related vs. neutral narrative scripts.</p>
+      <p id="Par13">To the best of our knowledge, the present study is the first to reveal enhanced amygdala activity in PD patients during the imagination of disorder-related scripts. Absent differential amygdala activity in PD patients in a former script-driven imagery study might have been due to signal dropouts and very small sample size (n = 6)<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>. In line with our findings, increased amygdala activity was found in PD patients during the processing of fearful facial expressions<sup><xref ref-type="bibr" rid="CR44">44</xref>,<xref ref-type="bibr" rid="CR45">45</xref></sup>, symptom provocation<sup><xref ref-type="bibr" rid="CR46">46</xref>,<xref ref-type="bibr" rid="CR47">47</xref></sup>, an emotional Stroop task<sup><xref ref-type="bibr" rid="CR48">48</xref></sup>, and processing of disorder-related pictures<sup><xref ref-type="bibr" rid="CR25">25</xref></sup>. Nevertheless, other studies did not reveal threat-related differential amygdala activity in PD patients (for review see<sup><xref ref-type="bibr" rid="CR18">18</xref></sup>). The amygdala has been suggested to play a role in attentional-vigilance aspects of detecting and processing emotional stimuli in normal and pathological forms of anxiety<sup><xref ref-type="bibr" rid="CR49">49</xref>–<xref ref-type="bibr" rid="CR52">52</xref></sup>, and aberrant activity has been associated with hyperarousal towards threat in anxiety disorders<sup><xref ref-type="bibr" rid="CR53">53</xref>–<xref ref-type="bibr" rid="CR55">55</xref></sup>. The amygdala also proved to be hyperresponsive to subtle environmental cues, triggering intense physiological threat-related responses in anxiety disorders as well as in healthy subjects<sup><xref ref-type="bibr" rid="CR41">41</xref>,<xref ref-type="bibr" rid="CR56">56</xref></sup>. We suggest that designs, in which subjects are strongly trying to control or label their emotions, lead to other brain activation patterns with even reduced amygdala activation (see also<sup><xref ref-type="bibr" rid="CR57">57</xref>–<xref ref-type="bibr" rid="CR60">60</xref></sup>). We infer from these findings that PD patients experienced ongoing, exaggerated vigilance and arousal during the imagination of disorder-related scripts. Furthermore, we would like to note that we do not suggest that the amygdala is necessary for the experience of panic attacks, since such attacks are also possible without amygdala involvement<sup><xref ref-type="bibr" rid="CR61">61</xref>,<xref ref-type="bibr" rid="CR62">62</xref></sup>. However, the amygdala might reduce the threshold for elicitation of such attacks due to their functions described above.</p>
+      <p id="Par14">Apart from increased amygdala activation, we found brainstem hyperactivation in PD patients compared to HC during the imagination of disorder-related scripts. However, these findings have to be interpreted tentatively as brainstem hyperactivation only reached marginal significance (see Table <xref rid="Tab3" ref-type="table">3</xref>). Increased activity in brainstem sites is in accordance with a recent study<sup><xref ref-type="bibr" rid="CR25">25</xref></sup>, showing a link between increased activity in the brainstem and the subjective degree of anxiety evoked by threatening pictures in PD patients. Generally, the brainstem appears to be relevant for autonomic body functions, such as cardio-respiratory control, and seems to be associated with different levels of anxiety and anticipation of threat<sup><xref ref-type="bibr" rid="CR63">63</xref>,<xref ref-type="bibr" rid="CR64">64</xref></sup>. In PD, brainstem sites, such as the PAG, proved to be hyperactive during a face‐word interference task<sup><xref ref-type="bibr" rid="CR21">21</xref></sup> and in the safe condition of a fear conditioning paradigm<sup><xref ref-type="bibr" rid="CR65">65</xref></sup>. In a “carbon dioxide hypersensitivity theory of panic”, it was posited that PD patients hold an altered suffocation alarm monitor, leading to a pathological carbon dioxide hypersensitivity that provides the basis for panic attacks<sup><xref ref-type="bibr" rid="CR66">66</xref></sup>. This hypothesis is supported by recent findings, showing that increased brainstem activation and its correlation with the subjective fear of respiratory symptoms might present a neurobiological basis of such a monitoring system<sup><xref ref-type="bibr" rid="CR67">67</xref></sup>. Supporting this, increased activity in the rostral raphe nuclei was demonstrated in response to hypercapnia<sup><xref ref-type="bibr" rid="CR68">68</xref></sup>. In this context, increased brainstem activity in PD patients in the present study may hint at heightened experience of subjective fear of bodily symptoms during threat imagination in PD patients. However, as mentioned before, these conclusions have to be drawn cautiously due to marginal significance of brainstem activation. Questionnaires on the feelings of suffocation, CO2-monitoring as well as a more nuanced analysis of brainstem subnuclei in future investigations may aid in understanding on the role of altered brainstem activity patterns during threat imagination in PD patients.<table-wrap id="Tab3"><label>Table 3</label><caption><p>Demographics and questionnaire measures.</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th>Range</th><th>PD M (SD)</th><th>HC M (SD)</th><th><italic>t</italic>-value</th><th><italic>p</italic>-value</th></tr></thead><tbody><tr><td>Age in years</td><td>19–35</td><td>24.12 (4.55)</td><td>24.35 (3.37)</td><td>0.17</td><td>0.865</td></tr><tr><td>Years of education</td><td>10–13</td><td>12.47 (0.72)</td><td>12.59 (0.80)</td><td>0.45</td><td>0.654</td></tr><tr><td>HAM-A</td><td>0–56</td><td>13.29 (7.76)</td><td>0.24 (0.56)</td><td>6.92</td><td>&lt;0.001</td></tr><tr><td>STAI-Trait</td><td>20–80</td><td>46.53 (8.02)</td><td>30.24 (6.97)</td><td>6.33</td><td>&lt;0.001</td></tr><tr><td>BDI-II</td><td>0–63</td><td>14.29 (6.86)</td><td>1.59 (2.48)</td><td>7.18</td><td>&lt;0.001</td></tr><tr><td>ASI</td><td>0–64</td><td>49.00 (12.76)</td><td>13.35 (11.01)</td><td>8.72</td><td>&lt;0.001</td></tr><tr><td>PAS</td><td>0–52</td><td>21.82 (6.31)</td><td>0.18 (0.53)</td><td>14.10</td><td>&lt;0.001</td></tr></tbody></table><table-wrap-foot><p>Note. PD, panic disorder patients; HC, healthy controls; M, mean; SD, standard deviation; HAM-A, Hamilton Anxiety Rating-Scale<sup><xref ref-type="bibr" rid="CR116">116</xref></sup>: &lt;17: mild anxiety symptoms; STAI-T, State-Trait Anxiety Inventory<sup><xref ref-type="bibr" rid="CR117">117</xref></sup>: &gt;40: pathologically increased level of anxiety; BDI-II, Beck Depression Inventory<sup><xref ref-type="bibr" rid="CR118">118</xref></sup>: &gt;13–19: mild depressive. symptoms; ASI, Anxiety Sensitivity Index<sup><xref ref-type="bibr" rid="CR119">119</xref></sup>: 0–64, (no standard value); PAS, Panic and Agoraphobia Scale<sup><xref ref-type="bibr" rid="CR103">103</xref></sup>: 19–28: moderately severe PD.</p></table-wrap-foot></table-wrap></p>
+      <p id="Par15">PD patients were also marked by reduced vmPFC/rACC activity during disorder-related imagery. Impairment of vmPFC/rACC recruitment appears to relate to dysfunctional modulation of fear responses across anxiety disorders<sup><xref ref-type="bibr" rid="CR25">25</xref>,<xref ref-type="bibr" rid="CR41">41</xref>,<xref ref-type="bibr" rid="CR43">43</xref>,<xref ref-type="bibr" rid="CR69">69</xref>–<xref ref-type="bibr" rid="CR71">71</xref></sup> and has been observed in studies investigating implicit emotion regulation in HC<sup><xref ref-type="bibr" rid="CR63">63</xref>,<xref ref-type="bibr" rid="CR71">71</xref>,<xref ref-type="bibr" rid="CR72">72</xref></sup>. In fact, the present finding of reduced threat-related vmPFC/rACC activity in PD patients constitutes a common finding across anxiety disorders, since ample evidence revealed reduced vmPFC activity during threat exposure in patient samples<sup><xref ref-type="bibr" rid="CR43">43</xref></sup>. Yet, the former fMRI pilot study on threat-related script-driven imagery in PD patients revealed elevated, instead of reduced ACC activity in PD patients<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>, rendering further investigations necessary. All in all, we assume that reduced activity in the vmPFC/rACC during disorder-related imagination may indicate deficient regulation and modulation of emotional reactivity in PD patients. Out of interest, we conducted a within-group comparison of fMRI data exploring differences between PD patients with and without agoraphobia. This analysis interestingly revealed more pronounced decreased activity of medial prefrontal cortex and rostral anterior cingulate cortex in PD patients with agoraphobia compared to patients without agoraphobia. Given the depicted functions of these brain regions, agoraphobic patients seem even to a higher extend exhibit impaired implicit and explicit emotion suppression and increased focusing when imagining potential threat. This is in line with findings showing that the comorbidity of agoraphobia in patients with panic disorder causes a more severe disturbance compared to PD patients without agoraphobia<sup><xref ref-type="bibr" rid="CR73">73</xref>,<xref ref-type="bibr" rid="CR74">74</xref></sup>.</p>
+      <p id="Par16">Another finding of the present study relates to reduced dmPFC activity in PD patients when imagining disorder-related scripts. The dmPFC seems to be involved in the explicit evaluation and appraisal of threat<sup><xref ref-type="bibr" rid="CR70">70</xref>,<xref ref-type="bibr" rid="CR75">75</xref>–<xref ref-type="bibr" rid="CR77">77</xref></sup>. In PD patients, hypoactive dmPFC activity was found during deliberate reappraisal of negative emotions<sup><xref ref-type="bibr" rid="CR78">78</xref></sup> and during emotional conflict paradigms<sup><xref ref-type="bibr" rid="CR21">21</xref></sup>. The findings hint at reduced resources of dmPFC recruitment during demanding emotional processing and reappraisal of negative emotions in PD patients. This may eventually lead to high anxiety levels in PD patients. Taken together, we assume that decreased vmPFC/rACC, together with decreased dmPFC activity during disorder-related script-driven imagery, may reflect deficient regulation of emotional reactivity as well as a dysfunctional appraisal and evaluation of threat in PD patients.</p>
+      <p id="Par17">Moreover, disorder-related imagery induced decreased activity in the vlPFC as well as in the dlPFC in PD patients relative to HC. Both dlPFC and vlPFC constitute part of a frontoparietal executive network that was shown to mediate intentional, explicit evaluation and regulation of stimuli<sup><xref ref-type="bibr" rid="CR57">57</xref>,<xref ref-type="bibr" rid="CR71">71</xref></sup>. Correspondingly, the vlPFC was related to the suppression of emotional processing of negative pictures and the resulting anxiety responses, often with concurrent aberrant amygdala activity in anxiety disorders as well as in healthy subjects<sup><xref ref-type="bibr" rid="CR20">20</xref>,<xref ref-type="bibr" rid="CR79">79</xref>–<xref ref-type="bibr" rid="CR82">82</xref></sup>. With regard to PD, findings of a study using panic-related words in a go/no-go task showed decreased activity in the vlPFC<sup><xref ref-type="bibr" rid="CR20">20</xref></sup> that was interpreted to indicate deficient emotion suppression functioning. Reduced vlPFC activation during script-driven imagery may therefore reflect dysfunctional, deliberate modulation of emotional reactivity in PD patients. In a similar vein, the dlPFC is assumed to regulate emotional responding to threat and to prevent excessive emotional expressions<sup><xref ref-type="bibr" rid="CR57">57</xref>,<xref ref-type="bibr" rid="CR71">71</xref></sup>. In PD patients, an emotion regulation study showed that patients responded with decreased activation of the dlPFC during the reappraisal of threat, which may hint at emotion regulation deficits<sup><xref ref-type="bibr" rid="CR83">83</xref></sup>. In that respect, the present finding of reduced dlPFC activity during imagination of disorder-related scripts in patients is in accordance with previous findings and hints towards altered modulation of emotional responding in patients. It remains to note that the former fMRI pilot study on script-driven imagery in PD revealed the opposite pattern with elevated instead of reduced dlPFC activity in patients<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>, warranting forthcoming investigations. Altogether, decreased lateral PFC activation in PD might indicate that PD patients may have failed to intentionally dampen their excessive emotional response to the imagination of disorder-related stimuli.</p>
+      <p id="Par18">Decreased activity in response to disorder-related scripts was furthermore found in the dPCC in PD patients relative to HC. The PCC has been suggested to play an important role in arousal and directed attention processes<sup><xref ref-type="bibr" rid="CR84">84</xref></sup>. While increased activity of the PCC was observed in resting or passive task states<sup><xref ref-type="bibr" rid="CR85">85</xref></sup>, directed attention on external stimuli seems to be associated with decreased PCC activity in HC<sup><xref ref-type="bibr" rid="CR86">86</xref>,<xref ref-type="bibr" rid="CR87">87</xref></sup>. Particularly the dorsal part of the PCC appears to be involved in detecting external stimuli that might demand a behavioural response to change situational conditions<sup><xref ref-type="bibr" rid="CR86">86</xref></sup>. Correspondingly, decreased activity of the dPCC was observed in HC in tasks when a narrow focus on external stimuli was needed<sup><xref ref-type="bibr" rid="CR87">87</xref></sup>. Since PD patients show a decrease in dPCC activity during disorder-related imagery, we thus speculate that patients fostered more focused attention to disorder-related scripts as compared to HC.</p>
+      <p id="Par19">Interestingly, several regions found to be hypoactivated in the present study (i.e., mPFC, rACC, and dPCC) closely correspond to the so-called default mode network (DMN)<sup><xref ref-type="bibr" rid="CR88">88</xref></sup>. The DMN is a neural network system that mediates levels of cognitive activity, showing lower activity during specific goal-directed behaviours<sup><xref ref-type="bibr" rid="CR89">89</xref></sup>. It has been suggested that, as a result of direct competition with other systems, focused attention on external stimuli is inclined to attenuate activity in the DMN<sup><xref ref-type="bibr" rid="CR85">85</xref></sup>. These findings lend preliminary support for the interpretation that the observed brain response pattern of the present investigation may reflect a stronger attentional focus on disorder-related scripts in patients relative to HC.</p>
+      <p id="Par20">Script-driven imagery has predominantly been used in anxiety patients in order to research fear-related threat responses<sup><xref ref-type="bibr" rid="CR10">10</xref>,<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR90">90</xref>–<xref ref-type="bibr" rid="CR95">95</xref></sup>. Therefore, it proves to be difficult to ascribe certain neural activation patterns to the paradigm itself. Activation patterns elicited by the paradigm may overlap disorder-specific activation patterns and similarities cannot be completely ruled out. Thus, results have to be carefully interpreted when it comes to draft a model of neural correlates specifically being involved during script-driven imagery. As mentioned before, script-driven imagery hitherto involved aberrant brain activation in the amygdala, insula, cingulate cortex, and the prefrontal cortex (PFC), as well as reduced activation of the ventromedial PFC (vmPFC). Our findings corroborate that script-driven imagery of threat triggers neural emotional reactivity in these structures, although not all of the suggested structures showed aberrant activation. We propose therefore, particularly given the characteristics of the paradigm with regard to its potential impact on the DMN, that during script-driven imagery PD patients seem more vigilant towards possible threat, which might be mediated by the amygdala since it has been involved in the modulation of attention<sup><xref ref-type="bibr" rid="CR96">96</xref></sup>. Attenuated activity in structures of the DMN possibly does not only mean a higher attentional focus on threat, but also a more intense struggle to contain control of threat responses, potentially mediated by the known function of the vmPFC to inhibit amygdala activation<sup><xref ref-type="bibr" rid="CR25">25</xref>,<xref ref-type="bibr" rid="CR43">43</xref>,<xref ref-type="bibr" rid="CR71">71</xref>,<xref ref-type="bibr" rid="CR89">89</xref></sup>.</p>
+      <p id="Par21">Contrary to our hypotheses, the present study did not detect increased insula activation to disorder-related imagery in PD patients. This finding is surprising, since the insula is linked to interoceptive processing<sup><xref ref-type="bibr" rid="CR97">97</xref>,<xref ref-type="bibr" rid="CR98">98</xref></sup> and PD patients are marked by overly sensitive attention towards interoceptive sensations<sup><xref ref-type="bibr" rid="CR7">7</xref></sup>. In PD, hyperactivated insula was recently observed in several studies investigating emotional processing<sup><xref ref-type="bibr" rid="CR25">25</xref>–<xref ref-type="bibr" rid="CR27">27</xref></sup>. Therefore, we expected processing of disorder-related stimuli to evoke elevated insula activity in PD patients. Interestingly, the previous pilot fMRI study on disorder-related imagination in PD patients also did not reveal differential insula activity in PD patients relative to HC<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>. One reason for these findings might be that differential insula effects in PD patients as compared to HC are stronger in response to single highly salient threat-related stimuli<sup><xref ref-type="bibr" rid="CR25">25</xref></sup> and during specific emotional tasks<sup><xref ref-type="bibr" rid="CR99">99</xref></sup> as compared to a continuous script based symptom provocation as used in the present study. Forthcoming investigations are hence required to clarify the role of the insula during altered threat processing in PD depending on specific designs and task conditions.</p>
+      <p id="Par22">Altogether, the findings of the current investigation may reflect that two opposed brain activation patterns were engaged in PD patients when exposed to disorder-related scripts: a hyperactivated pattern including the amygdala and the brainstem as well as a hypoactivated pattern including prefrontal and cingulate cortex regions. The hyperactivated amygdala-brainstem pattern may point towards hyperarousal, a hypersensitive response to potential threat, and a subsequent higher subjective level of anxiety in PD patients. The hypoactivated prefrontal/cingulate cortex pattern may reflect deficient implicit and explicit emotion suppression and increased focusing when imagining potential threat in PD patients.</p>
+      <p id="Par23">We would like to mention some limitations of the present study. Although the sample size is an improvement compared to the previously published imagery fMRI study in PD<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>, a total sample size of 34 subjects (17 HC vs. 17 PD does still not admit a generalisation of the study results. Larger sample sizes would undoubtedly be beneficial not only to relate findings to interindividual differences, but also to investigate small or absent effects, such as the current brainstem effect, in more detail. Moreover, larger samples allow conducting whole-brain rather than ROI analysis, which provides stronger evidence of neural correlates of PD pathophysiology. However, several recent fMRI studies using imagery as a paradigm had comparable sample sizes<sup><xref ref-type="bibr" rid="CR30">30</xref>,<xref ref-type="bibr" rid="CR39">39</xref>,<xref ref-type="bibr" rid="CR40">40</xref>,<xref ref-type="bibr" rid="CR92">92</xref></sup>.</p>
+      <p id="Par24">We also agree that medication intake poses a threat to the interpretation of study results. Thus, we exploratively excluded medicated patients from fMRI analysis, indicating that there was no confounding effect of medication intake on the present results. This finding is in line with a recent review, stating that the influence of psychotropic medication on neuroimaging findings either showed no influence, or a normalising influence<sup><xref ref-type="bibr" rid="CR100">100</xref></sup>.</p>
+      <p id="Par25">Furthermore, the present PD patient sample had comorbidities. Comorbidities represent a possible interference factor for the interpretation of the results. Patients were therefore diagnosed by an experienced clinical psychologist to ensure that PD was the principle diagnosis for all patients. Moreover, PD patients frequently show a high prevalence of comorbidities<sup><xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR101">101</xref></sup> so that including comorbid patients might even enhance external validity. However, it would be beneficial to investigate samples of patients free of comorbidities. Finally, future studies would profit from direct comparisons between different kinds of symptom provocation designs in order to better understand the reasons between discrepancies between different studies/designs.</p>
+      <p id="Par26">Concerning brainstem findings, we have to mention that we did not use high resolution imaging and specialised imaging protocols to better characterize the brain stem response, so that results have to be interpreted with some reservations.</p>
+      <p id="Par27">To conclude, disorder-related relative to neutral scripts elicited increased amygdala and brainstem activity as well as decreased activity in bilateral PFC, the ACC, and the dPCC in PD patients relative to HC. Apparently, two opposed activation patterns were engaged in PD patients when exposed to threat: Firstly, imagining disorder-related scripts led to increased amygdala activity in PD patients, which might correspond to an enhanced arousal and abnormal vigilance towards threat. Elevated brainstem activation might further signify an increased awareness of bodily symptoms and a corresponding heightened subjective anxiety level during imagery of disorder-related scripts. Secondly, decreased activity in the PFC and cingulate cortex might reflect an increased attentional direction to threat and coincident deficient emotional regulation of threat. Altogether, both activation patterns might represent the neural correlates of altered threat processing during the imagination of disorder-related stimuli in PD patients.</p>
+    </sec>
+    <sec id="Sec6">
+      <title>Methods</title>
+      <sec id="Sec7">
+        <title>Subjects</title>
+        <p id="Par28">The sample consisted of 17 PD patients (male <italic>n</italic> = 2) and 17 HC (male <italic>n</italic> = 4), matched for age, gender and years of education (Table <xref rid="Tab3" ref-type="table">3</xref>). All participants were right-handed and native German speakers. Participants were recruited through public advertisements and at an outpatient clinic. Patients met criteria for PD as the main diagnosis by means of the Structured Clinical Interview for DSM-IV Axis I Disorders (German version of the SCID)<sup><xref ref-type="bibr" rid="CR102">102</xref></sup>. Furthermore, the Panic and Agoraphobia Scale (PAS) was used to confirm the diagnosis of PD<sup><xref ref-type="bibr" rid="CR103">103</xref></sup>. This scale was used because we included PD patients with (<italic>n</italic> = 10) and without (<italic>n</italic> = 7) agoraphobia and this scale is characterised by high external validity (Pearson correlation coefficient <italic>r</italic> = 0.79, <italic>p</italic> &lt; 0.0001 with psychiatrists’ clinical global impression of severity) and reliability (Cronbach’s <italic>a</italic> coefficient of 0.88; for further psychometric data see<sup><xref ref-type="bibr" rid="CR103">103</xref></sup>). Exclusion criteria comprised neurological disorders, traumatic brain injury, psychotic or bipolar disorder, and drug abuse or dependence within the past ten years (for further sample characteristics, see Table <xref rid="Tab3" ref-type="table">3</xref>). Comorbidities among PD patients comprised major depressive disorder (n = 2), somatization disorder (n = 2), dysthymia (n = 1), specific phobia (n = 1), generalised anxiety disorder (n = 2), bulimia nervosa (n = 1), obsessive-compulsive disorder (n = 1), and social anxiety disorder (n = 1). The final sample included three patients taking antidepressant medication. Informed consent has been obtained of all participants prior the experiment and the study was approved by the local ethics committee of the Medical Chamber Westphalia-Lippe and the faculty of medicine of the Westphalian Wilhelms-University of Muenster (Ethikkommission der Ärztekammer Westfalen-Lippe und der Medizinischen Fakultät der Westfälischen Wilhelms-Universität Münster). All experimental methods were performed in accordance with relevant guidelines and regulations.</p>
+      </sec>
+      <sec id="Sec8">
+        <title>Stimuli</title>
+        <p id="Par29">Stimulus material was composed of standardised disorder-related (n = 5) and neutral (n = 5) scripts. All scripts lasted exactly 30 seconds. They were recorded in third person present tense. Based on the bio-informational theory<sup><xref ref-type="bibr" rid="CR104">104</xref></sup>, our scripts included sensory representations (i.e. stimuli conceived in the context), information about the context of the situation (who, where, what) and representations of behavioural and physiological response to the context<sup><xref ref-type="bibr" rid="CR35">35</xref></sup>. The disorder-related scripts depicted panic-related situations (e.g. standing on a crowded platform, entering a narrow elevator) and involved suggestive descriptions of autonomic reactions (e.g. sweaty palms, palpitations). Neutral scripts described various everyday life situations (e.g. watching TV at home, reading a newspaper) and sensory information (e.g. warm water, chilly air). Scripts were tape-recorded and read out by a female voice in a neutral tone blind to the hypotheses of the study.</p>
+      </sec>
+      <sec id="Sec9">
+        <title>Experimental procedure</title>
+        <p id="Par30">Outside the scanner, participants received standardised instructions and listened to two neutral scripts via headphones during practice trials. The practice scripts were not presented during the actual experiment. Participants were encouraged to imagine the sceneries as detailed and multi-sensory as possible. If they were able to vividly imagine the scripts on the practice trials, the scanning procedure was started. In the scanner, participants were informed about the procedure by written instructions on a black screen and after practice trials via headphones. They were instructed to close their eyes during the imagination. A beep signal indicated the beginning and the end of each auditory script (400 Hz, 500 ms). The trials were pseudo-randomised with an inter-trial interval of 20 s. The participants were instructed to keep their eyes closed and to concentrate on the surrounding sounds of the scanner during the inter-trial interval. The task lasted for approximately 9 minutes. Upon finishing, participants had to evaluate the scripts on a 9-point Likert scale<sup><xref ref-type="bibr" rid="CR105">105</xref></sup> with regard to anxiety (1 = not anxiety-inducing, 9 = most anxiety-inducing), arousal (1 = not arousing, 9 = most arousing) and valence (1 = most unpleasant, 5 = neutral, 9 = very pleasant). Additionally, they rated their ability to imagine each script (ability to imagine the scripts, measured in %) (Table <xref rid="Tab1" ref-type="table">1</xref>).</p>
+      </sec>
+      <sec id="Sec10">
+        <title>Analysis of sociodemographic, clinical questionnaire and rating data</title>
+        <p id="Par31">Sociodemographic, clinical questionnaire, and rating data were analysed using IBM SPSS software (v22, Armonk, New York, USA). Rating data were analysed using a mixed model analysis of variance (ANOVA) separately for anxiety, valence, arousal, and ability to imagine the scripts to explore within- and between-subject contrasts. A probability level of <italic>p</italic> ≤ 0.05 was considered as statistically significant. To resolve interaction effects, Bonferroni-corrected t-tests were implemented (corrected significance level p ≤ 0.008).</p>
+      </sec>
+      <sec id="Sec11">
+        <title>FMRI acquisition and analysis</title>
+        <p id="Par32">Data were collected using a 3 Tesla magnetic resonance scanner (“Magnetom Prisma”, Siemens, Erlangen, Germany). Before the start of the experiment, anatomical recordings of each participant were made, applying a sagittal high-resolution T1-weighted sequence with 192 slices. Functional data were collected using a T2*-weighted echo-planar sequence and comprised 260 volumes (TE = 30 ms, TR = 2080 ms, matrix = 92 × 92 voxels, field of view 208 mm<sup>2</sup>, flip angle 90°). Each volume consisted of 36 axial slices (thickness 3.0 mm, 0.3 mm gap, in plane resolution = 2.26 mm × 2.26 mm). The functional data were analysed using Brain Voyager QX (Version 2.8; Brain Innovation, Maastricht, The Netherlands). The first four volumes were discarded to warrant adequate steady-state tissue magnetization. The recordings were then corrected for slice time errors and motion deviation using trilinear interpolation.</p>
+        <p id="Par33">Afterwards, anatomical and functional images were co-registered to fit Talairach space<sup><xref ref-type="bibr" rid="CR106">106</xref></sup> and smoothed spatially (6 mm full-width half-maximum [FWHM] Gaussian kernel) and temporally (high-pass filter: 10 cycles per run, low-pass filter 2.8 s; linear trend removal). The voxel-size was resampled to 2 × 2 × 2 mm for further statistical examination. Statistical analysis of <italic>blood oxygenation level dependent (</italic>BOLD) data consisted of multistage linear regression of the signal time course of each voxel. The signal change of each voxel in respect of the different predictors (disorder-related and neutral scripts) was modelled by a canonical hemodynamic response function (HRF) using a general linear model (GLM). Predictors of interest were the disorder-related and neutral scripts. Introducing and concluding sounds as well as the six motion parameters were considered as predictors of no interest. Z-standardised predictor estimates for the voxel-time-course were determined for each participant employing a random-effects model with adjustment for autocorrelation. Further analyses of the originated voxel-wise statistical maps were small-volume corrected for anatomically defined regions of interest (ROIs), including amygdala, insula, cingulate cortex and PFC. Based on the Automated Anatomical Labeling Atlas (AAL)<sup><xref ref-type="bibr" rid="CR107">107</xref>–<xref ref-type="bibr" rid="CR109">109</xref></sup>, ROIs were defined and transformed into Talairach space applying ICBM2tal<sup><xref ref-type="bibr" rid="CR110">110</xref></sup>. For the brainstem, the ROI was downloaded from the digitised version of the Talairach atlas (<ext-link ext-link-type="uri" xlink:href="http://www.talairach.org/nii/gzip/">http://www.talairach.org/nii/gzip/</ext-link>).</p>
+        <p id="Par34">The ROI based voxel-level threshold was set to <italic>p</italic> &lt; 0.005 to balance between Type I and II error rates (see also<sup><xref ref-type="bibr" rid="CR111">111</xref></sup>), considering the realistic effect sizes in studies with patients<sup><xref ref-type="bibr" rid="CR92">92</xref>,<xref ref-type="bibr" rid="CR112">112</xref></sup>. The thresholded maps were submitted to an ROI-based correction criterion for multiple comparisons based on the estimate of the maps spatial smoothness and on an iterative procedure (Monte Carlo simulation as implemented in BrainVoyager), which do not use the Gaussian random-field approach for cluster-size thresholding. It estimated the minimum cluster-size using 10000 iterations, ensuring a false cluster-level-significance to be p &lt; 0.05. Due to small brainstem subnuclei, no cluster threshold was used for brainstem activation<sup><xref ref-type="bibr" rid="CR25">25</xref></sup>. Based on preceding neuroimaging studies in PD using both whole-brain<sup><xref ref-type="bibr" rid="CR25">25</xref>,<xref ref-type="bibr" rid="CR55">55</xref></sup> and ROI analyses<sup><xref ref-type="bibr" rid="CR20">20</xref>,<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR25">25</xref>,<xref ref-type="bibr" rid="CR113">113</xref>,<xref ref-type="bibr" rid="CR114">114</xref></sup>, we restricted our analyses to homogeneous search spaces guided by a hypothesis-driven ROI approach. This contributes to avoid possible inflation of false-positive clusters in parametric analyses due to inhomogeneity of spatial smoothness and spatial autocorrelations across the whole brain with resulting hot spots of false positive clusters<sup><xref ref-type="bibr" rid="CR115">115</xref></sup>. The datasets generated during and/or analysed during the current study are available from the corresponding author on reasonable request.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn>
+        <p><bold>Publisher’s note:</bold> Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This work was supported by the German Research Foundation (DFG: SFB/TRR 58: C07).</p>
+    </ack>
+    <notes notes-type="author-contribution">
+      <title>Author Contributions</title>
+      <p>Conception and design of the study: T.S., C.B., L.B., K.F. Acquisition of data: A.B., C.B., L.B. Analysis and/or interpretation of data: A.B., T.S., C.B., L.B. Drafting the manuscript: A.B. Revising the manuscript critically for important intellectual content: T.S., C.B., L.B., K.F., B.G., D.H. Approval of the version of the manuscript to be published: A.B., T.S., C.B., L.B., K.F., B.G., D.H.</p>
+    </notes>
+    <notes notes-type="COI-statement">
+      <sec id="FPar1">
+        <title>Competing Interests</title>
+        <p>The authors declare no competing interests.</p>
+      </sec>
+    </notes>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wittchen</surname>
+              <given-names>HU</given-names>
+            </name>
+            <name>
+              <surname>Jacobi</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>Size and burden of mental disorders in Europe–a critical review and appraisal of 27 studies</article-title>
+          <source>Eur. Neuropsychopharmacol.</source>
+          <year>2005</year>
+          <volume>15</volume>
+          <fpage>357</fpage>
+          <lpage>376</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.euroneuro.2005.04.012</pub-id>
+          <pub-id pub-id-type="pmid">15961293</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kessler</surname>
+              <given-names>RC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The epidemiology of panic attacks, panic disorder, and agoraphobia in the National Comorbidity Survey Replication</article-title>
+          <source>Archives of general psychiatry</source>
+          <year>2006</year>
+          <volume>63</volume>
+          <fpage>415</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="doi">10.1001/archpsyc.63.4.415</pub-id>
+          <pub-id pub-id-type="pmid">16585471</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <mixed-citation publication-type="other">American Psychiatric Association. <italic>Diagnostic and statistical manual of mental disorders (DSM-5®)</italic>. (American Psychiatric Pub, 2013).</mixed-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kamieniecki</surname>
+              <given-names>GW</given-names>
+            </name>
+            <name>
+              <surname>Wade</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Tsourtos</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Interpretive bias for benign sensations in panic disorder with agoraphobia</article-title>
+          <source>Journal of anxiety disorders</source>
+          <year>1997</year>
+          <volume>11</volume>
+          <fpage>141</fpage>
+          <lpage>156</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0887-6185(97)00003-0</pub-id>
+          <pub-id pub-id-type="pmid">9168339</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ehlers</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Interoception and panic disorder</article-title>
+          <source>Advances in Behaviour Research and Therapy</source>
+          <year>1993</year>
+          <volume>15</volume>
+          <fpage>3</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1016/0146-6402(93)90001-I</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Teachman</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Smith-Janik</surname>
+              <given-names>SB</given-names>
+            </name>
+            <name>
+              <surname>Saporito</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Information processing biases and panic disorder: relationships among cognitive and symptom measures</article-title>
+          <source>Behav. Res. Ther.</source>
+          <year>2007</year>
+          <volume>45</volume>
+          <fpage>1791</fpage>
+          <lpage>1811</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.brat.2007.01.009</pub-id>
+          <pub-id pub-id-type="pmid">17341415</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>NB</given-names>
+            </name>
+            <name>
+              <surname>Lerew</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Trakowski</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>Body vigilance in panic disorder: Evaluating attention to bodily perturbations</article-title>
+          <source>J. Consult. Clin. Psych.</source>
+          <year>1997</year>
+          <volume>65</volume>
+          <fpage>214</fpage>
+          <lpage>220</lpage>
+          <pub-id pub-id-type="doi">10.1037/0022-006x.65.2.214</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Domschke</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Stevens</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pfleiderer</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gerlach</surname>
+              <given-names>AL</given-names>
+            </name>
+          </person-group>
+          <article-title>Interoceptive sensitivity in anxiety and anxiety disorders: an overview and integration of neurobiological findings</article-title>
+          <source>Clinical psychology review</source>
+          <year>2010</year>
+          <volume>30</volume>
+          <fpage>1</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cpr.2009.08.008</pub-id>
+          <pub-id pub-id-type="pmid">19751958</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Paulus</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>MB</given-names>
+            </name>
+          </person-group>
+          <article-title>Interoception in anxiety and depression</article-title>
+          <source>Brain structure &amp; function</source>
+          <year>2010</year>
+          <volume>214</volume>
+          <fpage>451</fpage>
+          <lpage>463</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00429-010-0258-9</pub-id>
+          <pub-id pub-id-type="pmid">20490545</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McTeague</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Laplante</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Bradley</surname>
+              <given-names>MM</given-names>
+            </name>
+          </person-group>
+          <article-title>Aversive imagery in panic disorder: agoraphobia severity, comorbidity, and defensive physiology</article-title>
+          <source>Biological psychiatry</source>
+          <year>2011</year>
+          <volume>70</volume>
+          <fpage>415</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2011.03.005</pub-id>
+          <pub-id pub-id-type="pmid">21550590</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Gorka</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Shankman</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Phan</surname>
+              <given-names>KL</given-names>
+            </name>
+          </person-group>
+          <article-title>Impact of Panic on Psychophysiological and Neural Reactivity to Unpredictable Threat in Depression and Anxiety</article-title>
+          <source>Clinical psychological science: a journal of the Association for Psychological Science</source>
+          <year>2017</year>
+          <volume>5</volume>
+          <fpage>52</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1177/2167702616666507</pub-id>
+          <pub-id pub-id-type="pmid">28138418</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <mixed-citation publication-type="other">Barlow, D. H. <italic>Anxiety and its disorders: the nature and treatment of anxiety and panic</italic>. 2nd edn. (Guilford Press, 2002).</mixed-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Clark</surname>
+              <given-names>DM</given-names>
+            </name>
+          </person-group>
+          <article-title>A cognitive approach to panic</article-title>
+          <source>Behaviour Research and Therapy</source>
+          <year>1986</year>
+          <volume>24</volume>
+          <fpage>461</fpage>
+          <lpage>470</lpage>
+          <pub-id pub-id-type="doi">10.1016/0005-7967(86)90011-2</pub-id>
+          <pub-id pub-id-type="pmid">3741311</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Carvalho</surname>
+              <given-names>MR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Current findings of fMRI in panic disorder: contributions for the fear neurocircuitry and CBT effects</article-title>
+          <source>Expert. Rev. Neurother.</source>
+          <year>2010</year>
+          <volume>10</volume>
+          <fpage>291</fpage>
+          <lpage>303</lpage>
+          <pub-id pub-id-type="doi">10.1586/ern.09.161</pub-id>
+          <pub-id pub-id-type="pmid">20136384</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gorman</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Kent</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>GM</given-names>
+            </name>
+            <name>
+              <surname>Coplan</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroanatomical hypothesis of panic disorder, revised</article-title>
+          <source>The American journal of psychiatry</source>
+          <year>2000</year>
+          <volume>157</volume>
+          <fpage>493</fpage>
+          <lpage>505</lpage>
+          <pub-id pub-id-type="doi">10.1176/appi.ajp.157.4.493</pub-id>
+          <pub-id pub-id-type="pmid">10739407</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sobanski</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional neuroanatomy in panic disorder: Status quo of the research</article-title>
+          <source>World journal of psychiatry</source>
+          <year>2017</year>
+          <volume>7</volume>
+          <fpage>12</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.5498/wjp.v7.i1.12</pub-id>
+          <pub-id pub-id-type="pmid">28401046</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Dager</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Lyoo</surname>
+              <given-names>IK</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of the amygdala in the pathophysiology of panic disorder: evidence from neuroimaging studies</article-title>
+          <source>Biology of mood &amp; anxiety disorders</source>
+          <year>2012</year>
+          <volume>2</volume>
+          <fpage>20</fpage>
+          <pub-id pub-id-type="doi">10.1186/2045-5380-2-20</pub-id>
+          <pub-id pub-id-type="pmid">23168129</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dresler</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Revise the revised? New dimensions of the neuroanatomical hypothesis of panic disorder</article-title>
+          <source>J. Neural. Transm. (Vienna)</source>
+          <year>2013</year>
+          <volume>120</volume>
+          <fpage>3</fpage>
+          <lpage>29</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00702-012-0811-1</pub-id>
+          <pub-id pub-id-type="pmid">22692647</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Etkin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wager</surname>
+              <given-names>TD</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional neuroimaging of anxiety: a meta-analysis of emotional processing in PTSD, social anxiety disorder, and specific phobia</article-title>
+          <source>The American journal of psychiatry</source>
+          <year>2007</year>
+          <volume>164</volume>
+          <fpage>1476</fpage>
+          <lpage>1488</lpage>
+          <pub-id pub-id-type="doi">10.1176/appi.ajp.2007.07030504</pub-id>
+          <pub-id pub-id-type="pmid">17898336</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beutel</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Stark</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Silbersweig</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Dietrich</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Changes of brain activation pre- post short-term psychodynamic inpatient psychotherapy: An fMRI study of panic disorder patients</article-title>
+          <source>Psychiatry Research-Neuroimaging</source>
+          <year>2010</year>
+          <volume>184</volume>
+          <fpage>96</fpage>
+          <lpage>104</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.pscychresns.2010.06.005</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chechko</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Unstable prefrontal response to emotional conflict and activation of lower limbic structures and brainstem in remitted panic disorder</article-title>
+          <source>PLoS One</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>e5537</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0005537</pub-id>
+          <pub-id pub-id-type="pmid">19462002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Demenescu</surname>
+              <given-names>LR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Amygdala activation and its functional connectivity during perception of emotional faces in social phobia and panic disorder</article-title>
+          <source>Journal of psychiatric research</source>
+          <year>2013</year>
+          <volume>47</volume>
+          <fpage>1024</fpage>
+          <lpage>1031</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jpsychires.2013.03.020</pub-id>
+          <pub-id pub-id-type="pmid">23643103</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Domschke</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Association of the functional-1019C/G 5-HT1A polymorphism with prefrontal cortex and amygdala activation measured with 3 T fMRI in panic disorder</article-title>
+          <source>International Journal of Neuropsychopharmacology</source>
+          <year>2006</year>
+          <volume>9</volume>
+          <fpage>349</fpage>
+          <lpage>355</lpage>
+          <pub-id pub-id-type="doi">10.1017/S1461145705005869</pub-id>
+          <pub-id pub-id-type="pmid">16316476</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bystritsky</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Functional MRI changes during panic anticipation and imagery exposure</article-title>
+          <source>Neuroreport</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>3953</fpage>
+          <lpage>3957</lpage>
+          <pub-id pub-id-type="doi">10.1097/00001756-200112210-00020</pub-id>
+          <pub-id pub-id-type="pmid">11742218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feldker</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Brain responses to disorder-related visual threat in panic disorder</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2016</year>
+          <volume>37</volume>
+          <fpage>4439</fpage>
+          <lpage>4453</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.23320</pub-id>
+          <pub-id pub-id-type="pmid">27436308</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <mixed-citation publication-type="other">Engel, K. R. <italic>et al</italic>. Functional MRI activation in response to panic-specific, non-panic aversive, and neutral pictures in patients with panic disorder and healthy controls. <italic>Eur. Arch. Psychiatry Clin. Neurosci</italic>., 10.1007/s00406-015-0653-6 (2015).</mixed-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wittmann</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Anticipating agoraphobic situations: the neural correlates of panic disorder with agoraphobia</article-title>
+          <source>Psychological medicine</source>
+          <year>2014</year>
+          <volume>44</volume>
+          <fpage>2385</fpage>
+          <lpage>2396</lpage>
+          <pub-id pub-id-type="doi">10.1017/S0033291713003085</pub-id>
+          <pub-id pub-id-type="pmid">24398049</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boshuisen</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Ter Horst</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Paans</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Reinders</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>den Boer</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>rCBF differences between panic disorder patients and control subjects during anticipatory anxiety and rest</article-title>
+          <source>Biological psychiatry</source>
+          <year>2002</year>
+          <volume>52</volume>
+          <fpage>126</fpage>
+          <lpage>135</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0006-3223(02)01355-0</pub-id>
+          <pub-id pub-id-type="pmid">12114004</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cuthbert</surname>
+              <given-names>BN</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The psychophysiology of anxiety disorder: fear memory imagery</article-title>
+          <source>Psychophysiology</source>
+          <year>2003</year>
+          <volume>40</volume>
+          <fpage>407</fpage>
+          <lpage>422</lpage>
+          <pub-id pub-id-type="doi">10.1111/1469-8986.00043</pub-id>
+          <pub-id pub-id-type="pmid">12946114</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frewen</surname>
+              <given-names>PA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Neuroimaging social emotional processing in women: fMRI study of script-driven imagery</article-title>
+          <source>Soc. Cogn. Affect. Neurosci.</source>
+          <year>2011</year>
+          <volume>6</volume>
+          <fpage>375</fpage>
+          <lpage>392</lpage>
+          <pub-id pub-id-type="doi">10.1093/scan/nsq047</pub-id>
+          <pub-id pub-id-type="pmid">20525743</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gold</surname>
+              <given-names>AL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Decreased regional cerebral blood flow in medial prefrontal cortex during trauma-unrelated stressful imagery in Vietnam veterans with post-traumatic stress disorder</article-title>
+          <source>Psychological medicine</source>
+          <year>2011</year>
+          <volume>41</volume>
+          <fpage>2563</fpage>
+          <lpage>2572</lpage>
+          <pub-id pub-id-type="doi">10.1017/S0033291711000730</pub-id>
+          <pub-id pub-id-type="pmid">21733221</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hopper</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Frewen</surname>
+              <given-names>PA</given-names>
+            </name>
+            <name>
+              <surname>van der Kolk</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Lanius</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural correlates of reexperiencing, avoidance, and dissociation in PTSD: symptom dimensions and emotion dysregulation in responses to script-driven trauma imagery</article-title>
+          <source>J. Trauma Stress</source>
+          <year>2007</year>
+          <volume>20</volume>
+          <fpage>713</fpage>
+          <lpage>725</lpage>
+          <pub-id pub-id-type="doi">10.1002/jts.20284</pub-id>
+          <pub-id pub-id-type="pmid">17955540</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ohman</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Fear and anxiety: animal models and human cognitive psychophysiology</article-title>
+          <source>Journal of affective disorders</source>
+          <year>2000</year>
+          <volume>61</volume>
+          <fpage>137</fpage>
+          <lpage>159</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0165-0327(00)00343-8</pub-id>
+          <pub-id pub-id-type="pmid">11163418</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Emotional imagery: conceptual structure and pattern of somato-visceral response</article-title>
+          <source>Psychophysiology</source>
+          <year>1980</year>
+          <volume>17</volume>
+          <fpage>179</fpage>
+          <lpage>192</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1469-8986.1980.tb00133.x</pub-id>
+          <pub-id pub-id-type="pmid">7375619</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McTeague</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The anxiety spectrum and the reflex physiology of defense: from circumscribed fear to broad distress</article-title>
+          <source>Depression and anxiety</source>
+          <year>2012</year>
+          <volume>29</volume>
+          <fpage>264</fpage>
+          <lpage>281</lpage>
+          <pub-id pub-id-type="doi">10.1002/da.21891</pub-id>
+          <pub-id pub-id-type="pmid">22511362</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bystritsky</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Maidenberg</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Craske</surname>
+              <given-names>MG</given-names>
+            </name>
+            <name>
+              <surname>Vapnik</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shapiro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Laboratory psychophysiological assessment and imagery exposure in panic disorder patients</article-title>
+          <source>Depression and anxiety</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>102</fpage>
+          <lpage>108</lpage>
+          <pub-id pub-id-type="doi">10.1002/1520-6394(2000)12:2&lt;102::aid-da7&gt;3.0.co;2-b</pub-id>
+          <pub-id pub-id-type="pmid">11091934</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsao</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Craske</surname>
+              <given-names>MG</given-names>
+            </name>
+          </person-group>
+          <article-title>Reactivity to imagery and nocturnal panic attacks</article-title>
+          <source>Depression and anxiety</source>
+          <year>2003</year>
+          <volume>18</volume>
+          <fpage>205</fpage>
+          <lpage>213</lpage>
+          <pub-id pub-id-type="doi">10.1002/da.10091</pub-id>
+          <pub-id pub-id-type="pmid">14661190</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liberzon</surname>
+              <given-names>I</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Brain activation in PTSD in response to trauma-related stimuli</article-title>
+          <source>Biological psychiatry</source>
+          <year>1999</year>
+          <volume>45</volume>
+          <fpage>817</fpage>
+          <lpage>826</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0006-3223(98)00246-7</pub-id>
+          <pub-id pub-id-type="pmid">10202568</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lanius</surname>
+              <given-names>RA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Neural correlates of traumatic memories in posttraumatic stress disorder: a functional MRI investigation</article-title>
+          <source>The American journal of psychiatry</source>
+          <year>2001</year>
+          <volume>158</volume>
+          <fpage>1920</fpage>
+          <lpage>1922</lpage>
+          <pub-id pub-id-type="doi">10.1176/appi.ajp.158.11.1920</pub-id>
+          <pub-id pub-id-type="pmid">11691703</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lanius</surname>
+              <given-names>RA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Recall of emotional states in posttraumatic stress disorder: an fMRI investigation</article-title>
+          <source>Biological psychiatry</source>
+          <year>2003</year>
+          <volume>53</volume>
+          <fpage>204</fpage>
+          <lpage>210</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0006-3223(02)01466-X</pub-id>
+          <pub-id pub-id-type="pmid">12559652</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rauch</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>CI</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroimaging studies of amygdala function in anxiety disorders</article-title>
+          <source>Annals of the New York Academy of Sciences</source>
+          <year>2003</year>
+          <volume>985</volume>
+          <fpage>389</fpage>
+          <lpage>410</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1749-6632.2003.tb07096.x</pub-id>
+          <pub-id pub-id-type="pmid">12724173</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shin</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Regional cerebral blood flow in the amygdala and medial prefrontal cortex during traumatic imagery in male and female Vietnam veterans with PTSD</article-title>
+          <source>Arch Gen Psychiatry</source>
+          <year>2004</year>
+          <volume>61</volume>
+          <fpage>168</fpage>
+          <lpage>176</lpage>
+          <pub-id pub-id-type="doi">10.1001/archpsyc.61.2.168</pub-id>
+          <pub-id pub-id-type="pmid">14757593</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duval</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Javanbakht</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Liberzon</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural circuits in anxiety and stress disorders: a focused review</article-title>
+          <source>Ther. Clin. Risk. Manag.</source>
+          <year>2015</year>
+          <volume>11</volume>
+          <fpage>115</fpage>
+          <lpage>126</lpage>
+          <pub-id pub-id-type="doi">10.2147/TCRM.S48528</pub-id>
+          <pub-id pub-id-type="pmid">25670901</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ohrmann</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Effect of gender on processing threat-related stimuli in patients with panic disorder: sex does matter</article-title>
+          <source>Depression and anxiety</source>
+          <year>2010</year>
+          <volume>27</volume>
+          <fpage>1034</fpage>
+          <lpage>1043</lpage>
+          <pub-id pub-id-type="doi">10.1002/da.20721</pub-id>
+          <pub-id pub-id-type="pmid">20602432</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Domschke</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Influence of the catechol-O-methyltransferase val158met genotype on amygdala and prefrontal cortex emotional processing in panic disorder</article-title>
+          <source>Psychiatry research</source>
+          <year>2008</year>
+          <volume>163</volume>
+          <fpage>13</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.pscychresns.2007.04.016</pub-id>
+          <pub-id pub-id-type="pmid">18440204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eser</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Impact of loudness dependency of auditory evoked potentials on the panic response to CCK-4</article-title>
+          <source>Journal of psychiatric research</source>
+          <year>2009</year>
+          <volume>43</volume>
+          <fpage>393</fpage>
+          <lpage>400</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jpsychires.2008.04.010</pub-id>
+          <pub-id pub-id-type="pmid">18534623</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schunck</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Functional magnetic resonance imaging characterization of CCK-4-induced panic attack and subsequent anticipatory anxiety</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>31</volume>
+          <fpage>1197</fpage>
+          <lpage>1208</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2006.01.035</pub-id>
+          <pub-id pub-id-type="pmid">16600640</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van den Heuvel</surname>
+              <given-names>OA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Disorder-specific neuroanatomical correlates of attentional bias in obsessive-compulsive disorder, panic disorder, and hypochondriasis</article-title>
+          <source>Arch. Gen. Psychiatry</source>
+          <year>2005</year>
+          <volume>62</volume>
+          <fpage>922</fpage>
+          <lpage>933</lpage>
+          <pub-id pub-id-type="doi">10.1001/archpsyc.62.8.922</pub-id>
+          <pub-id pub-id-type="pmid">16061770</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fonzo</surname>
+              <given-names>GA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Common and disorder-specific neural responses to emotional faces in generalised anxiety, social anxiety and panic disorders</article-title>
+          <source>Br. J. Psychiatry</source>
+          <year>2015</year>
+          <volume>206</volume>
+          <fpage>206</fpage>
+          <lpage>215</lpage>
+          <pub-id pub-id-type="doi">10.1192/bjp.bp.114.149880</pub-id>
+          <pub-id pub-id-type="pmid">25573399</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Costafreda</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Brammer</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Fu</surname>
+              <given-names>CH</given-names>
+            </name>
+          </person-group>
+          <article-title>Predictors of amygdala activation during the processing of emotional stimuli: a meta-analysis of 385 PET and fMRI studies</article-title>
+          <source>Brain Res. Rev.</source>
+          <year>2008</year>
+          <volume>58</volume>
+          <fpage>57</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.brainresrev.2007.10.012</pub-id>
+          <pub-id pub-id-type="pmid">18076995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maddock</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Garrett</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Buonocore</surname>
+              <given-names>MH</given-names>
+            </name>
+          </person-group>
+          <article-title>Posterior cingulate cortex activation by emotional words: fMRI evidence from a valence decision task</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2003</year>
+          <volume>18</volume>
+          <fpage>30</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.10075</pub-id>
+          <pub-id pub-id-type="pmid">12454910</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sabatinelli</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Bradley</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Flaisch</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>The neural basis of narrative imagery: emotion and action</article-title>
+          <source>Progress in brain research</source>
+          <year>2006</year>
+          <volume>156</volume>
+          <fpage>93</fpage>
+          <lpage>103</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0079-6123(06)56005-4</pub-id>
+          <pub-id pub-id-type="pmid">17015076</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Holzschneider</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Mulert</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroimaging in anxiety disorders</article-title>
+          <source>Dialogues Clin. Neurosci.</source>
+          <year>2011</year>
+          <volume>13</volume>
+          <fpage>453</fpage>
+          <lpage>461</lpage>
+          <pub-id pub-id-type="pmid">22275850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Etkin</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional neuroanatomy of anxiety: a neural circuit perspective</article-title>
+          <source>Current topics in behavioral neurosciences</source>
+          <year>2010</year>
+          <volume>2</volume>
+          <fpage>251</fpage>
+          <lpage>277</lpage>
+          <pub-id pub-id-type="doi">10.1007/7854_2009_5</pub-id>
+          <pub-id pub-id-type="pmid">21309113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR55">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feldker</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transdiagnostic brain responses to disorder-related threat across four psychiatric disorders</article-title>
+          <source>Psychological medicine</source>
+          <year>2017</year>
+          <volume>47</volume>
+          <fpage>730</fpage>
+          <lpage>743</lpage>
+          <pub-id pub-id-type="doi">10.1017/s0033291716002634</pub-id>
+          <pub-id pub-id-type="pmid">27869064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whalen</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Masked presentations of emotional facial expressions modulate amygdala activity without explicit knowledge</article-title>
+          <source>The Journal of neuroscience: the official journal of the Society for Neuroscience</source>
+          <year>1998</year>
+          <volume>18</volume>
+          <fpage>411</fpage>
+          <lpage>418</lpage>
+          <pub-id pub-id-type="doi">10.1523/JNEUROSCI.18-01-00411.1998</pub-id>
+          <pub-id pub-id-type="pmid">9412517</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR57">
+        <label>57.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buhle</surname>
+              <given-names>JT</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cognitive Reappraisal of Emotion: A Meta-Analysis of Human Neuroimaging Studies</article-title>
+          <source>Cerebral Cortex (New York, NY)</source>
+          <year>2014</year>
+          <volume>24</volume>
+          <fpage>2981</fpage>
+          <lpage>2990</lpage>
+          <pub-id pub-id-type="doi">10.1093/cercor/bht154</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR58">
+        <label>58.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Herwig</surname>
+              <given-names>U</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Modulation of anticipatory emotion and perception processing by cognitive control</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>37</volume>
+          <fpage>652</fpage>
+          <lpage>662</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2007.05.023</pub-id>
+          <pub-id pub-id-type="pmid">17588776</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR59">
+        <label>59.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hariri</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Mattay</surname>
+              <given-names>VS</given-names>
+            </name>
+            <name>
+              <surname>Tessitore</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Fera</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>DR</given-names>
+            </name>
+          </person-group>
+          <article-title>Neocortical modulation of the amygdala response to fearful stimuli</article-title>
+          <source>Biological psychiatry</source>
+          <year>2003</year>
+          <volume>53</volume>
+          <fpage>494</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0006-3223(02)01786-9</pub-id>
+          <pub-id pub-id-type="pmid">12644354</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR60">
+        <label>60.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ochsner</surname>
+              <given-names>KN</given-names>
+            </name>
+            <name>
+              <surname>Gross</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The cognitive control of emotion</article-title>
+          <source>Trends in Cognitive Sciences</source>
+          <year>2005</year>
+          <volume>9</volume>
+          <fpage>242</fpage>
+          <lpage>249</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tics.2005.03.010</pub-id>
+          <pub-id pub-id-type="pmid">15866151</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR61">
+        <label>61.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dresler</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Neural correlates of spontaneous panic attacks</article-title>
+          <source>J. Neural Transm.</source>
+          <year>2011</year>
+          <volume>118</volume>
+          <fpage>263</fpage>
+          <lpage>269</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00702-010-0540-2</pub-id>
+          <pub-id pub-id-type="pmid">21203784</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR62">
+        <label>62.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischer</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Andersson</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Furmark</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Fredrikson</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain correlates of an unexpected panic attack: a human positron emission tomographic study</article-title>
+          <source>Neuroscience letters</source>
+          <year>1998</year>
+          <volume>251</volume>
+          <fpage>137</fpage>
+          <lpage>140</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0304-3940(98)00503-5</pub-id>
+          <pub-id pub-id-type="pmid">9718993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR63">
+        <label>63.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mobbs</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>When fear is near: threat imminence elicits prefrontal-periaqueductal gray shifts in humans</article-title>
+          <source>Science (New York, N.Y.)</source>
+          <year>2007</year>
+          <volume>317</volume>
+          <fpage>1079</fpage>
+          <lpage>1083</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1144298</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR64">
+        <label>64.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mobbs</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>From threat to fear: the neural organization of defensive fear systems in humans</article-title>
+          <source>The Journal of neuroscience: the official journal of the Society for Neuroscience</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>12236</fpage>
+          <lpage>12243</lpage>
+          <pub-id pub-id-type="doi">10.1523/jneurosci.2378-09.2009</pub-id>
+          <pub-id pub-id-type="pmid">19793982</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR65">
+        <label>65.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuescher</surname>
+              <given-names>O</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Differential activity of subgenual cingulate and brainstem in panic disorder and PTSD</article-title>
+          <source>Journal of anxiety disorders</source>
+          <year>2011</year>
+          <volume>25</volume>
+          <fpage>251</fpage>
+          <lpage>257</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.janxdis.2010.09.010</pub-id>
+          <pub-id pub-id-type="pmid">21075593</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR66">
+        <label>66.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klein</surname>
+              <given-names>DF</given-names>
+            </name>
+          </person-group>
+          <article-title>False suffocation alarms, spontaneous panics, and related conditions</article-title>
+          <source>An integrative hypothesis. Arch. Gen. Psychiatry.</source>
+          <year>1993</year>
+          <volume>50</volume>
+          <fpage>306</fpage>
+          <lpage>317</lpage>
+          <pub-id pub-id-type="doi">10.1001/archpsyc.1993.01820160076009</pub-id>
+          <pub-id pub-id-type="pmid">8466392</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR67">
+        <label>67.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feldker</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cardiorespiratory concerns shape brain responses during automatic panic-related scene processing in patients with panic disorder</article-title>
+          <source>Journal of psychiatry &amp; neuroscience: JPN</source>
+          <year>2017</year>
+          <volume>42</volume>
+          <fpage>160226</fpage>
+          <pub-id pub-id-type="doi">10.1503/jpn.160226</pub-id>
+          <pub-id pub-id-type="pmid">28949287</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR68">
+        <label>68.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goossens</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Brainstem response to hypercapnia: a symptom provocation study into the pathophysiology of panic disorder</article-title>
+          <source>Journal of psychopharmacology (Oxford, England)</source>
+          <year>2014</year>
+          <volume>28</volume>
+          <fpage>449</fpage>
+          <lpage>456</lpage>
+          <pub-id pub-id-type="doi">10.1177/0269881114527363</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR69">
+        <label>69.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Taber</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Gabbard</surname>
+              <given-names>GO</given-names>
+            </name>
+            <name>
+              <surname>Hurley</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural underpinnings of fear and its modulation: implications for anxiety disorders</article-title>
+          <source>The Journal of neuropsychiatry and clinical neurosciences</source>
+          <year>2005</year>
+          <volume>17</volume>
+          <fpage>1</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1176/jnp.17.1.1</pub-id>
+          <pub-id pub-id-type="pmid">15746477</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR70">
+        <label>70.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Etkin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Egner</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Kalisch</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Emotional processing in anterior cingulate and medial prefrontal cortex</article-title>
+          <source>Trends in Cognitive Sciences</source>
+          <year>2011</year>
+          <volume>15</volume>
+          <fpage>85</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tics.2010.11.004</pub-id>
+          <pub-id pub-id-type="pmid">21167765</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR71">
+        <label>71.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Etkin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Buchel</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Gross</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The neural bases of emotion regulation</article-title>
+          <source>Nat.Rev. Neurosci.</source>
+          <year>2015</year>
+          <volume>16</volume>
+          <fpage>693</fpage>
+          <lpage>700</lpage>
+          <pub-id pub-id-type="doi">10.1038/nrn4044</pub-id>
+          <pub-id pub-id-type="pmid">26481098</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR72">
+        <label>72.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Etkin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Prater</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Hoeft</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Schatzberg</surname>
+              <given-names>AF</given-names>
+            </name>
+          </person-group>
+          <article-title>Failure of anterior cingulate activation and connectivity with the amygdala during implicit regulation of emotional processing in generalized anxiety disorder</article-title>
+          <source>The American journal of psychiatry</source>
+          <year>2010</year>
+          <volume>167</volume>
+          <fpage>545</fpage>
+          <lpage>554</lpage>
+          <pub-id pub-id-type="doi">10.1176/appi.ajp.2009.09070931</pub-id>
+          <pub-id pub-id-type="pmid">20123913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR73">
+        <label>73.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marshall</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>Comorbidity and its effects on panic disorder</article-title>
+          <source>Bulletin of the Menninger Clinic</source>
+          <year>1996</year>
+          <volume>60</volume>
+          <fpage>A39</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="pmid">8857426</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR74">
+        <label>74.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kikuchi</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Panic disorder with and without agoraphobia: comorbidity within a half-year of the onset of panic disorder</article-title>
+          <source>Psychiatry and clinical neurosciences</source>
+          <year>2005</year>
+          <volume>59</volume>
+          <fpage>639</fpage>
+          <lpage>643</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1440-1819.2005.01430.x</pub-id>
+          <pub-id pub-id-type="pmid">16401237</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR75">
+        <label>75.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Raczka</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A neuropeptide S receptor variant associated with overinterpretation of fear reactions: a potential neurogenetic basis for catastrophizing (vol 15, pg 1067, 2010)</article-title>
+          <source>Mol. Psychiatr.</source>
+          <year>2012</year>
+          <volume>17</volume>
+          <fpage>468</fpage>
+          <lpage>468</lpage>
+          <pub-id pub-id-type="doi">10.1038/mp.2010.114</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR76">
+        <label>76.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Siegle</surname>
+              <given-names>GJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Common and distinct brain networks underlying explicit emotional evaluation: a meta-analytic study</article-title>
+          <source>Soc. Cogn. Affect. Neur</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <fpage>521</fpage>
+          <lpage>534</lpage>
+          <pub-id pub-id-type="doi">10.1093/scan/nsp001</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR77">
+        <label>77.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kalisch</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Wiech</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Critchley</surname>
+              <given-names>HD</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Levels of appraisal: a medial prefrontal role in high-level appraisal of emotional material</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1458</fpage>
+          <lpage>1466</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2005.11.011</pub-id>
+          <pub-id pub-id-type="pmid">16388969</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR78">
+        <label>78.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ball</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Ramsawh</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Campbell-Sills</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Paulus</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>MB</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal dysfunction during emotion regulation in generalized anxiety and panic disorders</article-title>
+          <source>Psychological medicine</source>
+          <year>2013</year>
+          <volume>43</volume>
+          <fpage>1475</fpage>
+          <lpage>1486</lpage>
+          <pub-id pub-id-type="doi">10.1017/s0033291712002383</pub-id>
+          <pub-id pub-id-type="pmid">23111120</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR79">
+        <label>79.</label>
+        <mixed-citation publication-type="other">Cohen, J. R., Berkman, E. T. &amp; Lieberman, M. D. Intentional and incidental self-control in ventrolateral PFC. In Stuss, D. T. &amp; Knight, R. T. (Eds) <italic>Principles of Frontal Lobe Function</italic>, 417–440 (2013).</mixed-citation>
+      </ref>
+      <ref id="CR80">
+        <label>80.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hariri</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Bookheimer</surname>
+              <given-names>SY</given-names>
+            </name>
+            <name>
+              <surname>Mazziotta</surname>
+              <given-names>JC</given-names>
+            </name>
+          </person-group>
+          <article-title>Modulating emotional responses: effects of a neocortical network on the limbic system</article-title>
+          <source>Neuroreport</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>43</fpage>
+          <lpage>48</lpage>
+          <pub-id pub-id-type="doi">10.1097/00001756-200001170-00009</pub-id>
+          <pub-id pub-id-type="pmid">10683827</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR81">
+        <label>81.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>MD</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Putting feelings into words: affect labeling disrupts amygdala activity in response to affective stimuli</article-title>
+          <source>Psychol. Sci.</source>
+          <year>2007</year>
+          <volume>18</volume>
+          <fpage>421</fpage>
+          <lpage>428</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1467-9280.2007.01916.x</pub-id>
+          <pub-id pub-id-type="pmid">17576282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR82">
+        <label>82.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Phan</surname>
+              <given-names>KL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Neural substrates for voluntary suppression of negative affect: a functional magnetic resonance imaging study</article-title>
+          <source>Biological psychiatry</source>
+          <year>2005</year>
+          <volume>57</volume>
+          <fpage>210</fpage>
+          <lpage>219</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2004.10.030</pub-id>
+          <pub-id pub-id-type="pmid">15691521</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR83">
+        <label>83.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Manber Ball</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ramsawh</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Campbell-Sills</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Paulus</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>MB</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal Dysfunction during Emotion Regulation in Generalized Anxiety and Panic Disorder</article-title>
+          <source>Psychological medicine</source>
+          <year>2013</year>
+          <volume>43</volume>
+          <fpage>1475</fpage>
+          <lpage>1486</lpage>
+          <pub-id pub-id-type="doi">10.1017/S0033291712002383</pub-id>
+          <pub-id pub-id-type="pmid">23111120</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR84">
+        <label>84.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vogt</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Laureys</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Posterior cingulate, precuneal and retrosplenial cortices: cytology and components of the neural network correlates of consciousness</article-title>
+          <source>Progress in brain research</source>
+          <year>2005</year>
+          <volume>150</volume>
+          <fpage>205</fpage>
+          <lpage>217</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0079-6123(05)50015-3</pub-id>
+          <pub-id pub-id-type="pmid">16186025</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR85">
+        <label>85.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buckner</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Andrews-Hanna</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Schacter</surname>
+              <given-names>DL</given-names>
+            </name>
+          </person-group>
+          <article-title>The brain’s default network: anatomy, function, and relevance to disease</article-title>
+          <source>Annals of the New York Academy of Sciences</source>
+          <year>2008</year>
+          <volume>1124</volume>
+          <fpage>1</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1196/annals.1440.011</pub-id>
+          <pub-id pub-id-type="pmid">18400922</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR86">
+        <label>86.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leech</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sharp</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of the posterior cingulate cortex in cognition and disease</article-title>
+          <source>Brain: a journal of neurology</source>
+          <year>2014</year>
+          <volume>137</volume>
+          <fpage>12</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="doi">10.1093/brain/awt162</pub-id>
+          <pub-id pub-id-type="pmid">23869106</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR87">
+        <label>87.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leech</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kamourieh</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Sharp</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Fractionating the Default Mode Network: Distinct Contributions of the Ventral and Dorsal Posterior Cingulate Cortex to Cognitive Control</article-title>
+          <source>The Journal of Neuroscience</source>
+          <year>2011</year>
+          <volume>31</volume>
+          <fpage>3217</fpage>
+          <lpage>3224</lpage>
+          <pub-id pub-id-type="doi">10.1523/jneurosci.5626-10.2011</pub-id>
+          <pub-id pub-id-type="pmid">21368033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR88">
+        <label>88.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andrews-Hanna</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Smallwood</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Spreng</surname>
+              <given-names>RN</given-names>
+            </name>
+          </person-group>
+          <article-title>The default network and self-generated thought: component processes, dynamic control, and clinical relevance</article-title>
+          <source>Annals of the New York Academy of Sciences</source>
+          <year>2014</year>
+          <volume>1316</volume>
+          <fpage>29</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.1111/nyas.12360</pub-id>
+          <pub-id pub-id-type="pmid">24502540</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR89">
+        <label>89.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Raichle</surname>
+              <given-names>ME</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A default mode of brain function</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <fpage>676</fpage>
+          <lpage>682</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.98.2.676</pub-id>
+          <pub-id pub-id-type="pmid">11209064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR90">
+        <label>90.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shin</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Regional cerebral blood flow during script-driven imagery in childhood sexual abuse-related PTSD: A PET investigation</article-title>
+          <source>The American journal of psychiatry</source>
+          <year>1999</year>
+          <volume>156</volume>
+          <fpage>575</fpage>
+          <lpage>584</lpage>
+          <pub-id pub-id-type="doi">10.1176/ajp.156.4.575</pub-id>
+          <pub-id pub-id-type="pmid">10200737</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR91">
+        <label>91.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rauch</surname>
+              <given-names>SL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A symptom provocation study of posttraumatic stress disorder using positron emission tomography and script-driven imagery</article-title>
+          <source>Arch. Gen. Psychiatry.</source>
+          <year>1996</year>
+          <volume>53</volume>
+          <fpage>380</fpage>
+          <lpage>387</lpage>
+          <pub-id pub-id-type="doi">10.1001/archpsyc.1996.01830050014003</pub-id>
+          <pub-id pub-id-type="pmid">8624181</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR92">
+        <label>92.</label>
+        <mixed-citation publication-type="other">Buff, C. <italic>et al</italic>. Directed threat imagery in generalized anxiety disorder. <italic>Psychological medicine</italic>, 1–12, 10.1017/S0033291717001957 (2017).</mixed-citation>
+      </ref>
+      <ref id="CR93">
+        <label>93.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Costa</surname>
+              <given-names>VD</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Functional Neuroanatomy of Narrative Emotional Imagery</article-title>
+          <source>Psychophysiology</source>
+          <year>2012</year>
+          <volume>49</volume>
+          <fpage>S21</fpage>
+          <lpage>S21</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1469-8986.2012.01437.x</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR94">
+        <label>94.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McTeague</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Aversive imagery in posttraumatic stress disorder: trauma recurrence, comorbidity, and physiological reactivity</article-title>
+          <source>Biological psychiatry</source>
+          <year>2010</year>
+          <volume>67</volume>
+          <fpage>346</fpage>
+          <lpage>356</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2009.08.023</pub-id>
+          <pub-id pub-id-type="pmid">19875104</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR95">
+        <label>95.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McTeague</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fearful imagery in social phobia: generalization, comorbidity, and physiological reactivity</article-title>
+          <source>Biological psychiatry</source>
+          <year>2009</year>
+          <volume>65</volume>
+          <fpage>374</fpage>
+          <lpage>382</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2008.09.023</pub-id>
+          <pub-id pub-id-type="pmid">18996510</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR96">
+        <label>96.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pessoa</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Emotion and cognition and the amygdala: from “what is it?” to “what’s to be done?”</article-title>
+          <source>Neuropsychologia</source>
+          <year>2010</year>
+          <volume>48</volume>
+          <fpage>3416</fpage>
+          <lpage>3429</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuropsychologia.2010.06.038</pub-id>
+          <pub-id pub-id-type="pmid">20619280</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR97">
+        <label>97.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Paulus</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>MB</given-names>
+            </name>
+          </person-group>
+          <article-title>An insular view of anxiety</article-title>
+          <source>Biological psychiatry</source>
+          <year>2006</year>
+          <volume>60</volume>
+          <fpage>383</fpage>
+          <lpage>387</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2006.03.042</pub-id>
+          <pub-id pub-id-type="pmid">16780813</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR98">
+        <label>98.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Critchley</surname>
+              <given-names>HD</given-names>
+            </name>
+            <name>
+              <surname>Wiens</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Rotshtein</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Ohman</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural systems supporting interoceptive awareness</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2004</year>
+          <volume>7</volume>
+          <fpage>189</fpage>
+          <lpage>195</lpage>
+          <pub-id pub-id-type="doi">10.1038/nn1176</pub-id>
+          <pub-id pub-id-type="pmid">14730305</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR99">
+        <label>99.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Straube</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Mentzel</surname>
+              <given-names>H-J</given-names>
+            </name>
+            <name>
+              <surname>Miltner</surname>
+              <given-names>WHR</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural Mechanisms of Automatic and Direct Processing of Phobogenic Stimuli in Specific Phobia</article-title>
+          <source>Biological psychiatry</source>
+          <year>2006</year>
+          <volume>59</volume>
+          <fpage>162</fpage>
+          <lpage>170</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.biopsych.2005.06.013</pub-id>
+          <pub-id pub-id-type="pmid">16139812</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR100">
+        <label>100.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hafeman</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>KD</given-names>
+            </name>
+            <name>
+              <surname>Garrett</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Sanders</surname>
+              <given-names>EM</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>ML</given-names>
+            </name>
+          </person-group>
+          <article-title>Effects of medication on neuroimaging findings in bipolar disorder: an updated review</article-title>
+          <source>Bipolar Disord.</source>
+          <year>2012</year>
+          <volume>14</volume>
+          <fpage>375</fpage>
+          <lpage>410</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1399-5618.2012.01023.x</pub-id>
+          <pub-id pub-id-type="pmid">22631621</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR101">
+        <label>101.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brown</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Lehman</surname>
+              <given-names>CL</given-names>
+            </name>
+            <name>
+              <surname>Grisham</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Mancill</surname>
+              <given-names>RB</given-names>
+            </name>
+          </person-group>
+          <article-title>Current and lifetime comorbidity of the DSM-IV anxiety and mood disorders in a large clinical sample</article-title>
+          <source>Journal of abnormal psychology</source>
+          <year>2001</year>
+          <volume>110</volume>
+          <fpage>585</fpage>
+          <lpage>599</lpage>
+          <pub-id pub-id-type="doi">10.1037/0021-843X.110.4.585</pub-id>
+          <pub-id pub-id-type="pmid">11727948</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR102">
+        <label>102.</label>
+        <mixed-citation publication-type="other">Wittchen, H.-U., Gruschwitz, S. &amp; Zaudig, M. SKID I. Strukturiertes Klinisches Interview für DSM-IV. Achse I: Psychische Störungen. Interviewheft und Beurteilungsheft. Eine deutschsprachige, erweiterte Bearb. d. amerikanischen Originalversion des SKID I. <italic>Z Fur. Klin. Psychol. Psychother</italic>. <bold>28</bold> (1997).</mixed-citation>
+      </ref>
+      <ref id="CR103">
+        <label>103.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bandelow</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the efficacy of treatments for panic disorder and agoraphobia. II. The Panic and Agoraphobia Scale</article-title>
+          <source>Int. Clin. Psychopharmacol.</source>
+          <year>1995</year>
+          <volume>10</volume>
+          <fpage>73</fpage>
+          <lpage>81</lpage>
+          <pub-id pub-id-type="doi">10.1097/00004850-199506000-00003</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR104">
+        <label>104.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Presidential address, 1978. A bio-informational theory of emotional imagery</article-title>
+          <source>Psychophysiology</source>
+          <year>1979</year>
+          <volume>16</volume>
+          <fpage>495</fpage>
+          <lpage>512</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1469-8986.1979.tb01511.x</pub-id>
+          <pub-id pub-id-type="pmid">515293</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR105">
+        <label>105.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bradley</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>PJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Measuring Emotion - the Self-Assessment Mannequin and the Semantic Differential</article-title>
+          <source>Journal of Behavior Therapy and Experimental Psychiatry</source>
+          <year>1994</year>
+          <volume>25</volume>
+          <fpage>49</fpage>
+          <lpage>59</lpage>
+          <pub-id pub-id-type="doi">10.1016/0005-7916(94)90063-9</pub-id>
+          <pub-id pub-id-type="pmid">7962581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR106">
+        <label>106.</label>
+        <mixed-citation publication-type="other">Talairach, J. &amp; Tournoux, P. <italic>Co-planar stereotaxic atlas of the human brain: 3-dimensional proportional system: an approach to cerebral imaging</italic>. (Georg Thieme, 1988).</mixed-citation>
+      </ref>
+      <ref id="CR107">
+        <label>107.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maldjian</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Laurienti</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Kraft</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Burdette</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>An automated method for neuroanatomic and cytoarchitectonic atlas-based interrogation of fMRI data sets</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>1233</fpage>
+          <lpage>1239</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1053-8119(03)00169-1</pub-id>
+          <pub-id pub-id-type="pmid">12880848</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR108">
+        <label>108.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maldjian</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Laurienti</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Burdette</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>Precentral gyrus discrepancy in electronic versions of the Talairach atlas</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>450</fpage>
+          <lpage>455</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.neuroimage.2003.09.032</pub-id>
+          <pub-id pub-id-type="pmid">14741682</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR109">
+        <label>109.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tzourio-Mazoyer</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Automated anatomical labeling of activations in SPM using a macroscopic anatomical parcellation of the MNI MRI single-subject brain</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>15</volume>
+          <fpage>273</fpage>
+          <lpage>289</lpage>
+          <pub-id pub-id-type="doi">10.1006/nimg.2001.0978</pub-id>
+          <pub-id pub-id-type="pmid">11771995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR110">
+        <label>110.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lancaster</surname>
+              <given-names>JL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Bias between MNI and Talairach coordinates analyzed using the ICBM-152 brain template</article-title>
+          <source>Hum. Brain. Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>1194</fpage>
+          <lpage>1205</lpage>
+          <pub-id pub-id-type="doi">10.1002/hbm.20345</pub-id>
+          <pub-id pub-id-type="pmid">17266101</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR111">
+        <label>111.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>WA</given-names>
+            </name>
+          </person-group>
+          <article-title>Type I and Type II error concerns in fMRI research: re-balancing the scale</article-title>
+          <source>Soc. Cogn. Affect. Neur.</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>423</fpage>
+          <lpage>428</lpage>
+          <pub-id pub-id-type="doi">10.1093/scan/nsp052</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR112">
+        <label>112.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Neumeister</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Interpersonal violence in posttraumatic women: brain networks triggered by trauma-related pictures</article-title>
+          <source>Soc. Cogn. Affect. Neurosci.</source>
+          <year>2017</year>
+          <volume>12</volume>
+          <fpage>555</fpage>
+          <lpage>568</lpage>
+          <pub-id pub-id-type="doi">10.1093/scan/nsw165</pub-id>
+          <pub-id pub-id-type="pmid">27998993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR113">
+        <label>113.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brinkmann</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Distinct phasic and sustained brain responses and connectivity of amygdala and bed nucleus of the stria terminalis during threat anticipation in panic disorder</article-title>
+          <source>Psychological medicine</source>
+          <year>2017</year>
+          <volume>47</volume>
+          <fpage>2675</fpage>
+          <lpage>2688</lpage>
+          <pub-id pub-id-type="doi">10.1017/S0033291717001192</pub-id>
+          <pub-id pub-id-type="pmid">28485259</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR114">
+        <label>114.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buff</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Specifically altered brain responses to threat in generalized anxiety disorder relative to social anxiety disorder and panic disorder</article-title>
+          <source>Neuroimage Clin.</source>
+          <year>2016</year>
+          <volume>12</volume>
+          <fpage>698</fpage>
+          <lpage>706</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.nicl.2016.09.023</pub-id>
+          <pub-id pub-id-type="pmid">27761400</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR115">
+        <label>115.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eklund</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>TE</given-names>
+            </name>
+            <name>
+              <surname>Knutsson</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Cluster failure: Why fMRI inferences for spatial extent have inflated false-positive rates</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2016</year>
+          <volume>113</volume>
+          <fpage>7900</fpage>
+          <lpage>7905</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.1602413113</pub-id>
+          <pub-id pub-id-type="pmid">27357684</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR116">
+        <label>116.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hamilton</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>The assessment of anxiety states by rating</article-title>
+          <source>The British journal of medical psychology</source>
+          <year>1959</year>
+          <volume>32</volume>
+          <fpage>50</fpage>
+          <lpage>55</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.2044-8341.1959.tb00467.x</pub-id>
+          <pub-id pub-id-type="pmid">13638508</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR117">
+        <label>117.</label>
+        <mixed-citation publication-type="other">Spielberger, C. D., Gorsuch, R. L., Lushene, R., Vagg, P. R. &amp; Jacobs, G. A. <italic>Manual for the State-Trait Anxiety Inventory</italic>. (Consulting Psychologists Press, 1983).</mixed-citation>
+      </ref>
+      <ref id="CR118">
+        <label>118.</label>
+        <mixed-citation publication-type="other">Beck, A. T., Steer, R.A. &amp; Brown, G.K. <italic>Manual for the Beck Depression Inventory-II</italic>. (Psychological Corporation, 1996).</mixed-citation>
+      </ref>
+      <ref id="CR119">
+        <label>119.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reiss</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Gursky</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>McNally</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Anxiety sensitivity, anxiety frequency and the prediction of fearfulness</article-title>
+          <source>Behav. Res. Ther.</source>
+          <year>1986</year>
+          <volume>24</volume>
+          <fpage>1</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/0005-7967(86)90143-9</pub-id>
+          <pub-id pub-id-type="pmid">3947307</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

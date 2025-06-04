@@ -1,0 +1,23 @@
+Region,Laterality,Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm),Local peak MNI coordinates (mm)
+Region,Laterality,BA,X,Y,Z,t‐value
+Threat > safe,,,,,,
+SMA,Left,6,−4,8,50,6.01
+Inferior parietal lobule,Left,40,−42,−40,46,7.56
+Inferior parietal lobule,Right,40,40,−40,46,5.77
+Precuneus,Left,7,−26,−66,34,6.06
+Threat < safe,,,,,,
+DMPFC,Left,9,−10,52,28,5.92
+,Left,8,14,44,48,6.05
+,Left,10,−18,54,30,7.15
+Orbitofrontal cortex,Right,47,50,34,−4,6.85
+Superior temporal gyrus,Right,41/42,50,−26,10,21.9
+,Left,41,−44,−24,4,19.99
+,Left,22,−62,−28,8,15.79
+,Right,22,60,−6,6,13.92
+Dorsal ACC,Left,24,−4,−12,42,6.97
+Anterior insula,Left,13,−38,−20,10,8.81
+,Right,13,42,−16,10,8.83
+Dorsal PCC,Left,31,−6,−42,36,8.52
+Lingual gyrus,Left,18,−4,−84,−4,9.67
+Cuneus,Left,18,−6,−96,8,9.02
+Amygdala,Left,,−28,2,−24,7.05

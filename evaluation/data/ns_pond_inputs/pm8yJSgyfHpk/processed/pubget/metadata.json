@@ -1,0 +1,11 @@
+{
+    "title": "Gender differences in the temporal voice areas",
+    "authors": "Ahrens, Merle-Marie; Awwad Shiekh Hasan, Bashar; Giordano, Bruno L.; Belin, Pascal; Ahrens, Merle-Marie; Awwad Shiekh Hasan, Bashar; Giordano, Bruno L.; Belin, Pascal",
+    "journal": "Front Neurosci",
+    "keywords": "gender difference\nfMRI\nvoice localizer\ntemporal voice areas\nmultivariate pattern analysis (MVPA)\nvoice perception\n",
+    "abstract": " \nThere is not only evidence for behavioral differences in voice perception between female and male listeners, but also recent suggestions for differences in neural correlates between genders. The fMRI functional voice localizer (comprising a univariate analysis contrasting stimulation with vocal vs. non-vocal sounds) is known to give robust estimates of the temporal voice areas (TVAs). However, there is growing interest in employing multivariate analysis approaches to fMRI data (e.g., multivariate pattern analysis; MVPA). The aim of the current study was to localize voice-related areas in both female and male listeners and to investigate whether brain maps may differ depending on the gender of the listener. After a univariate analysis, a random effects analysis was performed on female (  n   = 149) and male (  n   = 123) listeners and contrasts between them were computed. In addition, MVPA with a whole-brain searchlight approach was implemented and classification maps were entered into a second-level permutation based random effects models using statistical non-parametric mapping (SnPM; Nichols and Holmes,  ). Gender differences were found only in the MVPA. Identified regions were located in the middle part of the middle temporal gyrus (bilateral) and the middle superior temporal gyrus (right hemisphere). Our results suggest differences in classifier performance between genders in response to the voice localizer with higher classification accuracy from local BOLD signal patterns in several temporal-lobe regions in female listeners. \n ",
+    "publication_year": 2014,
+    "coordinate_space": "MNI",
+    "license": "http://creativecommons.org/licenses/by/3.0/",
+    "text": true
+}

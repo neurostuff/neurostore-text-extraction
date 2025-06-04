@@ -1,0 +1,22 @@
+Region,Voxels,MNI coordinates,MNI coordinates,MNI coordinates,Z score
+Region,Voxels,X,Y,Z,Z score
+Delay,Delay,Delay,Delay,Delay,Delay
+R inferior temporal Gyrus,57,57,−51,−15,5.73
+L middle temporal Gyrus,45,−60,−33,6,5.54
+L amygdala,65,−18,−3,−15,5.37
+R insular,5,36,9,−15,5.08
+R putamen,14,21,9,3,5.04
+R hippocampus,12,18,−6,−12,4.99
+No-delay,No-delay,No-delay,No-delay,No-delay,No-delay
+L hippocampus,39,−27,−33,−6,5.84
+L superior temporal gyrus,299,−60,−36,9,5.80
+L cerebellum,94,−15,−63,−33,5.60
+R cingulate gyrus,35,6,3,30,5.46
+L putamen,64,−33,−9,−9,5.45
+L temporal pole,52,−48,9,−6,5.41
+L putamen,110,−24,9,9,5.39
+R superior temporal sulcus,82,57,−30,3,5.39
+R cingulate gyrus,33,9,45,15,5.28
+L medial frontal gyrus,38,−9,−21,48,5.20
+R frontal orbital Cortex,17,33,30,−12,5.18
+R cerebral white Matter,24,18,12,6,5.16
