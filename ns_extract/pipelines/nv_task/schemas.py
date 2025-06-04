@@ -102,7 +102,7 @@ class fMRITaskMetadataModel(TaskMetadataModel):
             "- Any concurrent physiological measurements "
             "Return null for non-resting state tasks. Use exact descriptions from text."
         ),
-        default=None
+        default=None,
     )
     TaskDesign: List[Literal["Blocked", "EventRelated", "Mixed", "Other"]] = Field(
         description="Design(s) of the task"
@@ -114,6 +114,7 @@ class fMRITaskMetadataModel(TaskMetadataModel):
 
 class StudyMetadataModel(BaseModel):
     """Model for capturing fMRI study metadata including tasks and imaging details"""
+
     Modality: List[
         Literal[
             "fMRI-BOLD",

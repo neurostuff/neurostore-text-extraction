@@ -17,14 +17,15 @@ class GroupBase(BaseModel):
     group_name: str = Field(
         description="Primary group classification: 'healthy' for control/comparison groups, "
         "'patients' for those with clinical conditions",
-        enum=["healthy", "patients"]
+        enum=["healthy", "patients"],
     )
     subgroup_name: Optional[str] = Field(
         description="The verbatim name of the group, if available",
         examples=[
             "Professional Collision Sport Athletes",
             "Young Hispanic Females",
-            "Depressed Patients Without Psychotic Symptoms"],
+            "Depressed Patients Without Psychotic Symptoms",
+        ],
         json_schema_extra={NORMALIZE_TEXT: True, EXPAND_ABBREVIATIONS: True},
     )
     male_count: Optional[int] = Field(
@@ -35,27 +36,27 @@ class GroupBase(BaseModel):
     )
     age_mean: Optional[float] = Field(
         default=None,
-        description="Arithmetic mean age as EXPLICITLY stated in the text."
+        description="Arithmetic mean age as EXPLICITLY stated in the text.",
     )
     age_range: Optional[str] = Field(
         default=None,
         description="Age range exactly as reported in the text, separated by a dash. "
-        "Use null if only minimum/maximum are separately reported."
+        "Use null if only minimum/maximum are separately reported.",
     )
     age_minimum: Optional[int] = Field(
         default=None,
         description="Lowest age reported for this group, either as explicit minimum "
-        "or lower bound of range. Must be stated in text."
+        "or lower bound of range. Must be stated in text.",
     )
     age_maximum: Optional[int] = Field(
         default=None,
         description="Highest age reported for this group, either as explicit maximum "
-        "or upper bound of range. Must be stated in text."
+        "or upper bound of range. Must be stated in text.",
     )
     age_median: Optional[int] = Field(
         default=None,
         description="Median age if EXPLICITLY stated. Return null if not directly "
-        "reported. Do not calculate from other values."
+        "reported. Do not calculate from other values.",
     )
 
 
