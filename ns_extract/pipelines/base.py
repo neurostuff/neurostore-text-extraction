@@ -81,8 +81,6 @@ CONFIG_VERSION = "latest"  # Default config version
 SOURCE_INPUTS = ["text", "coordinates", "metadata"]
 PIPELINE_INPUTS = ["results", "raw_results", "info"]
 
-EXCLUDED_PARAMS = ["post_process", "overwrite", "num_workers"]
-
 logger = logging.getLogger(__name__)
 
 
@@ -279,12 +277,8 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         Note: Dependent pipelines include dataset keys in the hash
         """
 
-        # Extractor config - exclude private attrs and specified params
-        args = [
-            arg
-            for arg in inspect.signature(self.__init__).parameters.keys()
-            if arg not in EXCLUDED_PARAMS
-        ]
+        # Extractor config - get public args from __init__
+        args = list(inspect.signature(self.__init__).parameters.keys())
         args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
         version_str = self.extractor._version
 
