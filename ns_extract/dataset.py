@@ -158,10 +158,15 @@ class Study:
             processed_dir = self.study_dir / "processed" / t
             if processed_dir.exists():
                 try:
+                    coordinates_path = processed_dir / "coordinates.csv"
+                    text_path = processed_dir / "text.txt"
+                    metadata_path = processed_dir / "metadata.json"
                     processed = ProcessedData(
-                        coordinates=processed_dir / "coordinates.csv",
-                        text=processed_dir / "text.txt",
-                        metadata=processed_dir / "metadata.json",
+                        coordinates=(
+                            coordinates_path if coordinates_path.exists() else None
+                        ),
+                        text=text_path,
+                        metadata=metadata_path if metadata_path.exists() else None,
                         raw=ace_raw if t == "ace" else pubget_raw,
                     )
                 except ValueError as e:
