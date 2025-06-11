@@ -395,7 +395,7 @@ def test_text_and_demographics_update(sample_data, mock_demographics, tmp_path):
 def test_post_process_only_missing_results(sample_data, mock_demographics, tmp_path):
     """Test post_process='only' gracefully handles missing results."""
     demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
-    
+
     # Create test data with clear transformation differences
     test_study_id = list(mock_demographics.keys())[0]
     modified_dataset = sample_data.slice([test_study_id])
@@ -409,23 +409,25 @@ def test_post_process_only_missing_results(sample_data, mock_demographics, tmp_p
             "pipeline_dir": Path(demographics_dir),
         }
     }
-    
+
     # Create output dir but don't run pipeline
     output_dir = tmp_path / "output"
     output_dir.mkdir(parents=True)
-    
+
     # Try post-process only - should log warning but not error
     hash_dir = extractor.transform_dataset(
         modified_dataset,
         output_dir,
         post_process="only",
-        input_pipeline_info=input_pipeline_info
+        input_pipeline_info=input_pipeline_info,
     )
-    
+
     # Check directory exists but no results were created
     study_dir = hash_dir / test_study_id
     assert not (study_dir / "results.json").exists(), "No results should be created"
-    assert not (study_dir / "raw_results.json").exists(), "No raw results should be created"
+    assert not (
+        study_dir / "raw_results.json"
+    ).exists(), "No raw results should be created"
 
 
 def test_post_process_and_file_handling(sample_data, mock_demographics, tmp_path):

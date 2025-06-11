@@ -98,9 +98,9 @@ class PubgetRaw:
 
 @dataclass
 class ProcessedData:
-    coordinates: Path = None
+    coordinates: Optional[Path] = None
     text: Path = None
-    metadata: Path = None
+    metadata: Optional[Path] = None
     raw: Optional[Union["PubgetRaw", "AceRaw"]] = field(default=None)
 
     def __post_init__(self):
