@@ -178,26 +178,39 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
                     raw_file = study_dir / "raw_results.json"
                     results_file = study_dir / "results.json"
 
-                    # Try raw_results.json first
-                    if raw_file.exists():
-                        try:
-                            with raw_file.open() as f:
-                                raw_results[dbid] = json.load(f)
-                        except (IOError, json.JSONDecodeError) as e:
-                            raise ProcessingError(
-                                dbid, f"Failed to load raw results: {e}"
+                    try:
+                        # Try raw_results.json first
+                        if raw_file.exists():
+                            try:
+                                with raw_file.open() as f:
+                                    raw_results[dbid] = json.load(f)
+                            except (IOError, json.JSONDecodeError) as e:
+                                logger.error(
+                                    f"Failed to load raw results for study {dbid}: {e}"
+                                )
+                                continue
+                        # Fallback to results.json
+                        elif results_file.exists():
+                            try:
+                                with results_file.open() as f:
+                                    raw_results[dbid] = json.load(f)
+                            except (IOError, json.JSONDecodeError) as e:
+                                logger.error(
+                                    f"Failed to load results for study {dbid}: {e}"
+                                )
+                                continue
+                        elif post_process == "only":
+                            logger.warning(
+                                f"Skipping study {dbid}: no results found for post-processing"
                             )
-                    # Fallback to results.json
-                    elif results_file.exists():
-                        try:
-                            with results_file.open() as f:
-                                raw_results[dbid] = json.load(f)
-                        except (IOError, json.JSONDecodeError) as e:
-                            raise ProcessingError(dbid, f"Failed to load results: {e}")
-                    elif post_process == "only":
-                        raise ProcessingError(
-                            dbid, "No results found for post-processing"
-                        )
+                            continue
+                    except Exception as e:
+                        logger.error(f"Error processing study {dbid}: {e}")
+                        continue
+
+                if not raw_results and post_process == "only":
+                    logger.warning("No results found for post-processing in any study")
+                    return hash_outdir
 
                 kwargs["raw_results"] = raw_results
 
