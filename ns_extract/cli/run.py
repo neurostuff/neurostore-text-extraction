@@ -97,7 +97,7 @@ def run_pipelines(
     output_path: Path,
     pipeline_configs: list,
     pipeline_map: dict,
-    num_workers: int = 1,
+    transform_args: dict,
 ) -> None:
     """Run specified pipelines on dataset.
 
@@ -106,7 +106,7 @@ def run_pipelines(
         output_path: Path to save pipeline outputs
         pipeline_configs: List of tuples (pipeline_name, pipeline_args) to execute
         pipeline_map: Mapping of pipeline names to pipeline classes
-        num_workers: Number of worker threads for parallel processing (default: 1)
+        transform_args: Arguments for transform_dataset (num_workers, post_process, overwrite)
     """
     # Initialize dataset
     try:
@@ -130,7 +130,9 @@ def run_pipelines(
             # Run pipeline
             pipeline_output_dir = output_path / pipeline_name
             pipeline.transform_dataset(
-                dataset, pipeline_output_dir, num_workers=num_workers
+                dataset,
+                pipeline_output_dir,
+                **transform_args
             )
 
             print(f"Completed {pipeline_name} pipeline")
@@ -153,6 +155,27 @@ def main():
         type=int,
         default=1,
         help="Number of worker threads for parallel processing (default: 1)",
+    )
+    # Post-processing control (default=True)
+    parser.set_defaults(post_process=True)
+    post_process_group = parser.add_mutually_exclusive_group()
+    post_process_group.add_argument(
+        "--no-post-process",
+        action="store_false",
+        dest="post_process",
+        help="Disable post-processing of results",
+    )
+    post_process_group.add_argument(
+        "--post-process-only",
+        action="store_const",
+        const="only",
+        dest="post_process",
+        help="Only post-process existing results",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Overwrite existing results",
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
@@ -181,12 +204,19 @@ def main():
         pipeline_configs = [(name, {}) for name in args.pipelines]
 
     # Run pipelines
+    # Collect transform arguments
+    transform_args = {
+        "num_workers": args.num_workers,
+        "post_process": args.post_process,
+        "overwrite": args.overwrite,
+    }
+
     run_pipelines(
         args.dataset_path,
         args.output_path,
         pipeline_configs,
         pipeline_map,
-        num_workers=args.num_workers,
+        transform_args=transform_args,
     )
 
 
