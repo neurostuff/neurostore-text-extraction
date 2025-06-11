@@ -24,7 +24,9 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
     pde.transform_dataset(dataset, output_dir)
 
     # Verify directory structure and files
-    version_dir = next(output_dir.glob(f"ParticipantDemographicsExtractor/{pde._version}/*"))
+    version_dir = next(
+        output_dir.glob(f"ParticipantDemographicsExtractor/{pde._version}/*")
+    )
     assert version_dir.exists()
 
     # Check pipeline info

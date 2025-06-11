@@ -21,6 +21,10 @@ class ExampleOutput(BaseModel):
     confidence: float = Field(
         ..., description="Confidence score of the extraction", ge=0.0, le=1.0
     )
+    was_post_processed: bool = Field(
+        False,
+        description="Indicates whether post-processing was applied to this result",
+    )
 
 
 class ExampleExtractor(Extractor, DependentPipeline):
@@ -94,6 +98,21 @@ class ExampleExtractor(Extractor, DependentPipeline):
                 value = "no_data"
                 confidence = 0.0
 
-            results[study_id] = {"value": value, "confidence": confidence}
+            results[study_id] = {
+                "value": value,
+                "confidence": confidence,
+                "was_post_processed": False,  # Will be set to True during post_process
+            }
 
         return results
+
+    def post_process(
+        self,
+        results: Dict[str, Dict[str, Any]],
+        study_inputs: Dict[str, Dict[str, Any]],
+    ) -> Dict[str, Dict[str, Any]]:
+        """Post-process transform results, setting was_post_processed flag."""
+        processed = super().post_process(results, study_inputs)
+        for result in processed.values():
+            result["was_post_processed"] = True
+        return processed

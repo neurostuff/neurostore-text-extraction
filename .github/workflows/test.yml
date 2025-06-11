@@ -50,5 +50,4 @@ jobs:
         env:
           OPENAI_API_KEY: "fake_key"
         run: |
-          cp .keys.example .keys
           pytest
