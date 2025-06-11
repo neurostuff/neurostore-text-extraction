@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import (
     Any,
     Dict,
+    Literal,
     Optional,
     Tuple,
     Type,
@@ -80,6 +81,7 @@ CONFIG_VERSION = "latest"  # Default config version
 SOURCE_INPUTS = ["text", "coordinates", "metadata"]
 PIPELINE_INPUTS = ["results", "raw_results", "info"]
 
+EXCLUDED_PARAMS = ["post_process", "overwrite", "num_workers"]
 
 logger = logging.getLogger(__name__)
 
@@ -122,10 +124,12 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         output_directory: Union[str, Path],
+        post_process: Optional[Union[bool, Literal["only"]]] = True,
+        overwrite: bool = False,
         input_pipeline_info: Optional[Dict[str, InputPipelineInfo]] = None,
         num_workers: int = 1,
         **kwargs: Any,
-    ) -> None:
+    ) -> Path:
         """Process a dataset through the pipeline.
 
         Args:
@@ -153,12 +157,12 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         )
 
         # If directory exists, check for changes
-        if hash_outdir.exists():
+        # Check overwrite flag and directory existence
+        if hash_outdir.exists() and not overwrite:
             if not self._has_study_changes(hash_outdir, dataset):
                 print("No studies need processing")
-                return
-            # Get next available directory for new results if a DependentPipeline
-            # For IndependentPipeline, we overwrite the existing directory
+                return hash_outdir
+            # Only get new directory for DependentPipeline
             if isinstance(self, DependentPipeline):
                 hash_outdir = self._find_unique_directory(hash_outdir)
 
@@ -168,9 +172,42 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         # Collect and process study inputs
         try:
+            # Handle post-processing modes
+            if post_process in (True, "only"):
+                raw_results = {}
+                for dbid in dataset.data:
+                    study_dir = hash_outdir / dbid
+                    raw_file = study_dir / "raw_results.json"
+                    results_file = study_dir / "results.json"
+
+                    # Try raw_results.json first
+                    if raw_file.exists():
+                        try:
+                            with raw_file.open() as f:
+                                raw_results[dbid] = json.load(f)
+                        except (IOError, json.JSONDecodeError) as e:
+                            raise ProcessingError(
+                                dbid, f"Failed to load raw results: {e}"
+                            )
+                    # Fallback to results.json
+                    elif results_file.exists():
+                        try:
+                            with results_file.open() as f:
+                                raw_results[dbid] = json.load(f)
+                        except (IOError, json.JSONDecodeError) as e:
+                            raise ProcessingError(dbid, f"Failed to load results: {e}")
+                    elif post_process == "only":
+                        raise ProcessingError(
+                            dbid, "No results found for post-processing"
+                        )
+
+                kwargs["raw_results"] = raw_results
+
             self._process_dataset(
                 dataset,
                 hash_outdir,
+                post_process,
+                overwrite,
                 num_workers=num_workers,
                 **kwargs,
             )
@@ -229,7 +266,10 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         return hash_outdir
 
-    def _generate_config_hash_string(self, dataset: Dataset) -> str:
+    def _generate_config_hash_string(
+        self,
+        dataset: Dataset,
+    ) -> str:
         """Create string for hashing pipeline configuration.
 
         The hash combines:
@@ -239,8 +279,12 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         Note: Dependent pipelines include dataset keys in the hash
         """
 
-        # Extractor config - exclude private attrs
-        args = list(inspect.signature(self.__init__).parameters.keys())
+        # Extractor config - exclude private attrs and specified params
+        args = [
+            arg
+            for arg in inspect.signature(self.__init__).parameters.keys()
+            if arg not in EXCLUDED_PARAMS
+        ]
         args_str = "_".join([f"{arg}_{str(getattr(self, arg))}" for arg in args])
         version_str = self.extractor._version
 
@@ -425,6 +469,8 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
         self,
         dataset: Dataset,
         hash_outdir: Path,
+        post_process: Optional[Union[bool, Literal["only"]]] = True,
+        overwrite: bool = True,
         **kwargs: Any,
     ) -> None:
         """Process the dataset.
@@ -481,6 +527,8 @@ class DependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         hash_outdir: Path,
+        post_process: Optional[Union[bool, Literal["only"]]] = True,
+        overwrite: bool = True,
         **kwargs: Any,
     ) -> None:
         """Process all studies in the dataset as a group.
@@ -524,7 +572,9 @@ class DependentPipeline(Pipeline):
                     )
 
             # Process loaded inputs and get results
-            transform_outputs = self.transform(loaded_study_inputs, **kwargs)
+            transform_outputs = self.transform(
+                loaded_study_inputs, post_process, **kwargs
+            )
             cleaned_results, raw_results, validation_status = transform_outputs
 
             if cleaned_results:
@@ -532,6 +582,16 @@ class DependentPipeline(Pipeline):
                     try:
                         study_outdir = hash_outdir / dbid
                         study_outdir.mkdir(parents=True, exist_ok=True)
+
+                        results_file = study_outdir / "results.json"
+                        if not overwrite and results_file.exists():
+                            try:
+                                with results_file.open() as f:
+                                    existing_results = json.load(f)
+                                if existing_results == cleaned_results[dbid]:
+                                    continue
+                            except (IOError, json.JSONDecodeError):
+                                pass
 
                         # Write study results using PipelineOutputsMixin method
                         self._write_study_results(
@@ -603,6 +663,7 @@ class IndependentPipeline(Pipeline):
         self,
         study_data: Tuple[str, Dict[str, Any], Path],
         hash_outdir: Path,
+        overwrite: bool = True,
         **kwargs,
     ) -> bool:
         """Process a single study and write its results."""
@@ -621,16 +682,33 @@ class IndependentPipeline(Pipeline):
                 raise InputError(f"Failed to load inputs for study {dbid}: {str(e)}")
 
             try:
-                transform_results = self.transform(loaded_inputs, **kwargs)
+                transform_results = self.transform(
+                    loaded_inputs,
+                    post_process=kwargs.pop("post_process", True),
+                    **kwargs,
+                )
                 cleaned_results, raw_results, validation_status = transform_results
             except Exception as e:
                 raise ProcessingError(dbid, str(e))
 
             if cleaned_results:
                 try:
+                    results_file = study_outdir / "results.json"
+                    if not overwrite and results_file.exists():
+                        try:
+                            with results_file.open() as f:
+                                existing_results = json.load(f)
+                            if existing_results == cleaned_results[dbid]:
+                                return True
+                        except (IOError, json.JSONDecodeError):
+                            pass
+
                     # Write study results using PipelineOutputsMixin method
                     self._write_study_results(
-                        study_outdir, dbid, cleaned_results[dbid], raw_results[dbid]
+                        study_outdir,
+                        dbid,
+                        cleaned_results[dbid],
+                        raw_results[dbid],
                     )
 
                     # Write study info with validation status
@@ -662,12 +740,17 @@ class IndependentPipeline(Pipeline):
         self,
         dataset: Dataset,
         hash_outdir: Path,
+        post_process: Optional[Union[bool, Literal["only"]]] = True,
+        overwrite: bool = False,
         num_workers: int = 1,
         **kwargs: Any,
     ) -> None:
         """Process studies independently with optional parallelization."""
         # Filter and prepare studies that need processing
-        filtered_dataset = self._filter_unprocessed_studies(hash_outdir, dataset)
+        if not overwrite:
+            filtered_dataset = self._filter_unprocessed_studies(hash_outdir, dataset)
+        else:
+            filtered_dataset = dataset
         studies_to_process = []
 
         for dbid, study in filtered_dataset.data.items():
@@ -701,6 +784,8 @@ class IndependentPipeline(Pipeline):
                             self.__process_and_write_study,
                             study_data,
                             hash_outdir,
+                            post_process=post_process,
+                            overwrite=overwrite,
                             **kwargs,
                         )
                         future.add_done_callback(lambda _: pbar.update(1))
@@ -791,16 +876,8 @@ class Extractor(ABC):
         fields = self._read_schema_metadata(self._output_schema)
         self._normalize_fields, self._expand_abbrev_fields = fields
 
-        # Initialize NLP model if we have any fields needing abbreviation expansion
-        if self._expand_abbrev_fields and not disable_abbreviation_expansion:
-            import spacy
-
-            try:
-                self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
-            except OSError:
-                print(f"Downloading {nlp_model} model...")
-                spacy.cli.download(nlp_model)
-                self._nlp = spacy.load(nlp_model, disable=["parser", "ner"])
+        # Store nlp_model name for lazy initialization
+        self.nlp_model = nlp_model
 
     def _read_schema_metadata(
         self, model: Type[BaseModel], prefix: str = ""
@@ -867,6 +944,27 @@ class Extractor(ABC):
 
         return normalize_fields, expand_abbrev_fields
 
+    def _init_nlp_components(self) -> None:
+        """Initialize NLP components lazily when needed."""
+        if not hasattr(self, "_nlp_initialized"):
+            self._nlp_initialized = False
+
+        if (
+            not self._nlp_initialized
+            and self._expand_abbrev_fields
+            and not self.disable_abbreviation_expansion
+        ):
+            import spacy
+
+            try:
+                self._nlp = spacy.load(self.nlp_model, disable=["parser", "ner"])
+                self._nlp_initialized = True
+            except OSError:
+                print(f"Downloading {self.nlp_model} model...")
+                spacy.cli.download(self.nlp_model)
+                self._nlp = spacy.load(self.nlp_model, disable=["parser", "ner"])
+                self._nlp_initialized = True
+
     @abstractmethod
     def _transform(
         self, inputs: Dict[str, Dict[str, Any]], **kwargs: Any
@@ -898,7 +996,10 @@ class Extractor(ABC):
         pass
 
     def transform(
-        self, study_inputs: Dict[str, Dict[str, Any]], **kwargs: Any
+        self,
+        study_inputs: Dict[str, Dict[str, Any]],
+        post_process: Optional[Union[bool, Literal["only"]]] = True,
+        **kwargs: Any,
     ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, bool]]:
         """Transform and validate input data.
 
@@ -927,8 +1028,13 @@ class Extractor(ABC):
         Raises:
             ProcessingError: If transformation fails
         """
-        # Get raw results from transform
-        raw_results = self._transform(study_inputs, **kwargs)
+        # Handle post-process modes
+        if post_process == "only":
+            # Use provided raw results
+            raw_results = kwargs.pop("raw_results")
+        else:
+            # Get new raw results from transform
+            raw_results = self._transform(study_inputs, **kwargs)
 
         # Ensure raw results maintain study ID structure
         if not isinstance(raw_results, dict):
@@ -936,8 +1042,17 @@ class Extractor(ABC):
                 None, "Transform must return dict with study IDs as keys"
             )
 
-        # Post-process results with original inputs for abbreviation expansion
-        cleaned_results = self.post_process(raw_results, study_inputs)
+        # Initialize NLP components if needed for post-processing
+        if post_process and (
+            self._expand_abbrev_fields and not self.disable_abbreviation_expansion
+        ):
+            self._init_nlp_components()
+
+        # Post-process results if enabled
+        if post_process:
+            cleaned_results = self.post_process(raw_results, study_inputs)
+        else:
+            cleaned_results = raw_results.copy()
 
         # Validate each study's results individually
         validation_status = self.validate_results(cleaned_results)
@@ -1028,10 +1143,12 @@ class Extractor(ABC):
             ):
                 if "text" in study_inputs[study_id]:
                     source_text = study_inputs[study_id].get("text", None)
-                    if isinstance(source_text, str) and self._nlp is not None:
-                        study_abbreviations = load_abbreviations(
-                            source_text, model=self._nlp
-                        )
+                    if isinstance(source_text, str):
+                        self._init_nlp_components()
+                        if self._nlp_initialized:
+                            study_abbreviations = load_abbreviations(
+                                source_text, model=self._nlp
+                            )
 
             # Find which transformations each path needs
             field_transforms = {

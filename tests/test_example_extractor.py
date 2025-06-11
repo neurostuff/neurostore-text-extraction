@@ -219,7 +219,7 @@ def test_idempotency(sample_data, mock_demographics, tmp_path):
             assert second_run_results == first_run_results[study_dir.name]
 
 
-def test_remove_and_readd_study(sample_data, mock_demographics, tmp_path):
+def test_remove_and_read_study(sample_data, mock_demographics, tmp_path):
     """Test that removing and re-adding a study works correctly."""
     demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
 
@@ -390,3 +390,85 @@ def test_text_and_demographics_update(sample_data, mock_demographics, tmp_path):
     assert first_run_info != second_run_info
     assert first_hash_dir != second_hash_dir
     assert "modified_text.txt" in str(second_run_info["inputs"])
+
+
+def test_post_process_and_file_handling(sample_data, mock_demographics, tmp_path):
+    """Test post-processing modes and file handling behavior."""
+    demographics_dir = setup_demographics_dir(tmp_path, mock_demographics)
+
+    # Create test data with clear transformation differences
+    test_study_id = list(mock_demographics.keys())[0]
+    modified_dataset = sample_data.slice([test_study_id])
+    modified_dataset.data[test_study_id].pubget.text = Path(tmp_path / "test_text.txt")
+    test_text = "TEST with Magnetic Resonance Imaging (MRI) DATA"
+    with open(modified_dataset.data[test_study_id].pubget.text, "w") as f:
+        f.write(test_text)
+
+    # Set group name in lowercase to test normalization
+    mock_demographics[test_study_id]["groups"][0]["name"] = "test_group"
+    input_pipeline_info = {
+        "participant_demographics": {
+            "version": "1.0.0",
+            "config_hash": "abc123",
+            "pipeline_dir": Path(demographics_dir),
+        }
+    }
+    extractor = ExampleExtractor()
+
+    # Test 1: Create initial results with post_process=False
+    output_dir = tmp_path / "output"
+    hash_dir = extractor.transform_dataset(
+        modified_dataset,
+        output_dir,
+        post_process=False,
+        overwrite=True,
+        input_pipeline_info=input_pipeline_info,
+    )
+
+    # Get study path
+    study_dir = hash_dir / test_study_id
+
+    # Verify raw results weren't post-processed
+    with open(study_dir / "results.json") as f:
+        raw_results = json.load(f)
+    assert not raw_results[
+        "was_post_processed"
+    ], "Raw results should not be post-processed"
+
+    # Test 2: Post-process existing results with post_process="only"
+    hash_dir2 = extractor.transform_dataset(
+        modified_dataset,
+        output_dir,
+        post_process="only",
+        overwrite=True,
+        input_pipeline_info=input_pipeline_info,
+    )
+    assert hash_dir == hash_dir2, "Should use same directory"
+
+    # Verify was_post_processed flag is set
+    with open(study_dir / "results.json") as f:
+        processed_results = json.load(f)
+    assert processed_results[
+        "was_post_processed"
+    ], "Results should be marked as post-processed"
+
+    # Test 3: Try post-processing again with overwrite=False
+    hash_dir3 = extractor.transform_dataset(
+        modified_dataset,
+        output_dir,
+        post_process=True,
+        overwrite=False,
+        input_pipeline_info=input_pipeline_info,
+    )
+    assert hash_dir3 == hash_dir, "Should use same directory for all operations"
+
+    # Verify none of the files were modified
+    with open(study_dir / "results.json") as f:
+        final_results = json.load(f)
+
+    assert (
+        final_results == processed_results
+    ), "Results shouldn't change with overwrite=False"
+    assert final_results[
+        "was_post_processed"
+    ], "Post-processed state should be preserved"
