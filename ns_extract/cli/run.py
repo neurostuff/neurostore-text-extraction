@@ -129,11 +129,7 @@ def run_pipelines(
 
             # Run pipeline
             pipeline_output_dir = output_path / pipeline_name
-            pipeline.transform_dataset(
-                dataset,
-                pipeline_output_dir,
-                **transform_args
-            )
+            pipeline.transform_dataset(dataset, pipeline_output_dir, **transform_args)
 
             print(f"Completed {pipeline_name} pipeline")
 
