@@ -21,6 +21,7 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
         env_variable: Optional[str] = None,
         env_file: Optional[str] = None,
         client_url: Optional[str] = None,
+        disable_abbreviation_expansion: bool = False,
         **kwargs,
     ):
         """Initialize the prompt-based pipeline.
@@ -30,7 +31,8 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
             env_variable: Environment variable containing API key
             env_file: Path to file containing API key
             client_url: Optional URL for OpenAI client
-            **kwargs: Additional arguments for the completion function
+            disable_abbreviation_expansion: If True, disables abbreviation expansion
+            **kwargs: Additional arguments for the OpenAI completion function
         """
         if not self._prompt:
             raise ValueError("Subclass must define _prompt template")
@@ -41,12 +43,17 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
         self.env_variable = env_variable
         self.env_file = env_file
         self.client_url = client_url
-        self.kwargs = kwargs
+
+        # Split parameters between publang and OpenAI
+        self.text_processing_kwargs = {
+            "disable_abbreviation_expansion": disable_abbreviation_expansion
+        }
+        self.completion_kwargs = kwargs
 
         # Initialize OpenAI client
         self.client = self._load_client()
 
-        super().__init__()
+        super().__init__(disable_abbreviation_expansion=disable_abbreviation_expansion)
 
     def _load_client(self) -> OpenAI:
         """Load the OpenAI client.
@@ -113,8 +120,8 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
                 ],
                 "output_schema": self._extraction_schema.model_json_schema(),
             }
-            if self.kwargs:
-                completion_config.update(self.kwargs)
+            if self.completion_kwargs:
+                completion_config.update(self.completion_kwargs)
 
             # Replace $ with $$ to escape $ signs in the prompt
             # (otherwise interpreted as a special character by Template())
