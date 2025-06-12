@@ -43,12 +43,7 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
         self.env_variable = env_variable
         self.env_file = env_file
         self.client_url = client_url
-
-        # Split parameters between publang and OpenAI
-        self.text_processing_kwargs = {
-            "disable_abbreviation_expansion": disable_abbreviation_expansion
-        }
-        self.completion_kwargs = kwargs
+        self.kwargs = kwargs
 
         # Initialize OpenAI client
         self.client = self._load_client()
@@ -120,8 +115,8 @@ class APIPromptExtractor(Extractor, IndependentPipeline):
                 ],
                 "output_schema": self._extraction_schema.model_json_schema(),
             }
-            if self.completion_kwargs:
-                completion_config.update(self.completion_kwargs)
+            if self.kwargs:
+                completion_config.update(self.kwargs)
 
             # Replace $ with $$ to escape $ signs in the prompt
             # (otherwise interpreted as a special character by Template())
