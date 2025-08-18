@@ -6,7 +6,9 @@ from ns_extract.dataset import Dataset
 
 @pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
 @pytest.mark.parametrize("text_source", ["title", "abstract", "full_text"])
-def test_GeneralAPIEmbeddingExtractor(sample_data, tmp_path, text_source, setup_tiktoken_cache):
+def test_GeneralAPIEmbeddingExtractor(
+    sample_data, tmp_path, text_source, setup_tiktoken_cache
+):
     """Test the GeneralAPIEmbeddingExtractor pipeline."""
     extractor = GeneralAPIEmbeddingExtractor(
         extraction_model="text-embedding-3-small",
@@ -20,7 +22,9 @@ def test_GeneralAPIEmbeddingExtractor(sample_data, tmp_path, text_source, setup_
     extractor.transform_dataset(dataset, output_dir)
 
     # Check output structure
-    version_dir = next(output_dir.glob(f"GeneralAPIEmbeddingExtractor/{extractor._version}/*"))
+    version_dir = next(
+        output_dir.glob(f"GeneralAPIEmbeddingExtractor/{extractor._version}/*")
+    )
     assert version_dir.exists()
 
     # Check pipeline info
