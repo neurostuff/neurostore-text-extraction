@@ -8,7 +8,7 @@ def sample_data():
     return Path(__file__).parents[1] / "tests/data/sample_inputs"
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="module", autouse=True)
 def vcr_config():
     return {
         "filter_headers": [
@@ -22,5 +22,6 @@ def vcr_config():
             "x-stainless-package-version",
             "x-stainless-runtime",
             "x-stainless-runtime-version",
-        ]
+        ],
+        "ignore_hosts": ["blob.core.windows.net"],
     }
