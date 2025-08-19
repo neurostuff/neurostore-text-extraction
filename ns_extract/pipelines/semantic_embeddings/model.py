@@ -18,5 +18,5 @@ class GeneralAPIEmbeddingExtractor(APIEmbeddingExtractor, IndependentPipeline):
 
     _version = "1.0.0"
     _output_schema = EmbeddingSchema
-    _data_pond_inputs = {("pubget", "ace"): ("text", "metadata")}
+    _data_pond_inputs = {("pubget", "ace", "db"): ("text", "metadata")}
     _pipeline_inputs = {}

@@ -99,7 +99,7 @@ class PubgetRaw:
 @dataclass
 class ProcessedData:
     coordinates: Optional[Path] = None
-    text: Path = None
+    text: Optional[Path] = None
     metadata: Optional[Path] = None
     raw: Optional[Union["PubgetRaw", "AceRaw"]] = field(default=None)
 
@@ -122,6 +122,7 @@ class Study:
     pmcid: str = None
     ace: ProcessedData = None
     pubget: ProcessedData = None
+    db: ProcessedData = None
     pipeline_results: Dict[str, PipelineRunResult] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -154,7 +155,7 @@ class Study:
             pubget_raw = PubgetRaw(xml=pubget_xml_path, tables_xml=tables_xml_path)
 
         # Load processed data
-        for t in ["ace", "pubget"]:
+        for t in ["ace", "pubget", "db"]:
             processed_dir = self.study_dir / "processed" / t
             if processed_dir.exists():
                 try:
@@ -165,7 +166,7 @@ class Study:
                         coordinates=(
                             coordinates_path if coordinates_path.exists() else None
                         ),
-                        text=text_path,
+                        text=text_path if text_path.exists() else None,
                         metadata=metadata_path if metadata_path.exists() else None,
                         raw=ace_raw if t == "ace" else pubget_raw,
                     )

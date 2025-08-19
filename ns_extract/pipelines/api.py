@@ -124,8 +124,11 @@ class APIPromptExtractor(APIBaseExtractor):
         results = {}
         for study_id, study_inputs in inputs.items():
             # Get text content - already loaded by InputManager
-            text = study_inputs["text"]
-
+            text = study_inputs.get("text", "")
+            if not text:
+                logging.warning(f"No text found for study {study_id}")
+                results[study_id] = {}
+                continue
             # Create chat completion configuration
             completion_config = {
                 "messages": [
@@ -175,7 +178,9 @@ def get_nested_value(data: dict, key_path: str):
     """Access nested dictionary values using dot notation."""
     keys = key_path.split(".")
     for key in keys:
-        data = data[key]
+        data = data.get(key, {})
+    if not data:
+        return None
     return data
 
 
@@ -199,6 +204,7 @@ class APIEmbeddingExtractor(APIBaseExtractor):
         **kwargs,
     ):
         self.text_source = text_source
+        self.enc = tiktoken.encoding_for_model(extraction_model)
         super().__init__(
             extraction_model=extraction_model,
             env_variable=env_variable,
@@ -207,6 +213,33 @@ class APIEmbeddingExtractor(APIBaseExtractor):
             disable_abbreviation_expansion=disable_abbreviation_expansion,
             **kwargs,
         )
+
+    def chunk_paragraph(self, paragraph, max_tokens=MAX_TOKENS):
+        tokens = self.enc.encode(paragraph)
+        if len(tokens) <= max_tokens and len(tokens) >= MINIMUM_CHUNK_SIZE:
+            return [paragraph]
+        if len(tokens) < MINIMUM_CHUNK_SIZE:
+            return []
+        # Use spaCy to split into sentences
+        if not self._nlp_initialized:
+            self._init_nlp_components()
+        doc = self._nlp(paragraph)
+        sentences = [sent.text for sent in doc.sents]
+        chunks = []
+        current_chunk = ""
+        for sent in sentences:
+            test_chunk = current_chunk + " " + sent if current_chunk else sent
+            if len(self.enc.encode(test_chunk)) <= max_tokens:
+                current_chunk = test_chunk
+            else:
+                if current_chunk:
+                    chunks.append(current_chunk.strip())
+                current_chunk = sent
+        if current_chunk:
+            chunks.append(current_chunk.strip())
+        # Filter out chunks that are too short
+        chunks = [chunk for chunk in chunks if len(chunk) >= MINIMUM_CHUNK_SIZE]
+        return chunks
 
     def _transform(self, inputs: dict, **kwargs) -> dict:
         """
@@ -219,41 +252,17 @@ class APIEmbeddingExtractor(APIBaseExtractor):
 
         results = {}
         text_source = TEXT_MAPPING[self.text_source]
-        enc = tiktoken.encoding_for_model(self.extraction_model)
-
-        def chunk_paragraph(paragraph, max_tokens=MAX_TOKENS):
-            tokens = enc.encode(paragraph)
-            if len(tokens) <= max_tokens and len(tokens) >= MINIMUM_CHUNK_SIZE:
-                return [paragraph]
-            if len(tokens) < MINIMUM_CHUNK_SIZE:
-                return []
-            # Use spaCy to split into sentences
-            if not self._nlp_initialized:
-                self._init_nlp_components()
-            doc = self._nlp(paragraph)
-            sentences = [sent.text for sent in doc.sents]
-            chunks = []
-            current_chunk = ""
-            for sent in sentences:
-                test_chunk = current_chunk + " " + sent if current_chunk else sent
-                if len(enc.encode(test_chunk)) <= max_tokens:
-                    current_chunk = test_chunk
-                else:
-                    if current_chunk:
-                        chunks.append(current_chunk.strip())
-                    current_chunk = sent
-            if current_chunk:
-                chunks.append(current_chunk.strip())
-            # Filter out chunks that are too short
-            chunks = [chunk for chunk in chunks if len(chunk) >= MINIMUM_CHUNK_SIZE]
-            return chunks
 
         for study_id, study_inputs in inputs.items():
             text = get_nested_value(study_inputs, text_source)
+            if not text:
+                logging.warning(f"No text found for study {study_id}")
+                results[study_id] = {"embedding": []}
+                continue
             paragraphs = text.split("\n\n")
             all_chunks = []
             for para in paragraphs:
-                all_chunks.extend(chunk_paragraph(para, MAX_TOKENS))
+                all_chunks.extend(self.chunk_paragraph(para, MAX_TOKENS))
             embeddings = []
             for chunk in all_chunks:
                 embedding_response = self.client.embeddings.create(

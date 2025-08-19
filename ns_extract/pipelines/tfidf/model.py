@@ -1,3 +1,5 @@
+import logging
+
 from pydantic import BaseModel, Field
 from typing import Dict, List, Literal, Optional
 from ns_extract.pipelines.base import DependentPipeline, Extractor
@@ -89,10 +91,14 @@ class TFIDFExtractor(Extractor, DependentPipeline):
         # Process all texts
         study_texts = {}
         for study_id, study_inputs in inputs.items():
-            text = study_inputs["text"]
-            metadata = study_inputs["metadata"]
+            text = study_inputs.get("text", "")
+            metadata = study_inputs.get("metadata", {})
             content = self.get_text_content(text, metadata)
-            study_texts[study_id] = content
+            if not content:
+                logging.warning(f"No content found for study {study_id}")
+                study_texts[study_id] = ""
+            else:
+                study_texts[study_id] = content
 
         # Get list of all texts in same order as study IDs
         study_ids = list(study_texts.keys())
