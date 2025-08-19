@@ -32,6 +32,11 @@ def test_TFIDFExtractor(sample_data, tmp_path):
         assert results_file.exists()
         assert info_file.exists()
 
+        info = json.loads(info_file.read_text())
+        inputs = info.get("inputs", {})
+        if not inputs:  # No input files, skip this study
+            continue
+
         # Validate results schema
         results = json.loads(results_file.read_text())
         assert "terms" in results

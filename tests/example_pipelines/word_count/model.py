@@ -41,7 +41,7 @@ class WordCountExtractor(Extractor, IndependentPipeline):
             Dictionary containing word count
         """
         word_counts = {
-            study_id: {"word_count": len(inputs["text"].split())}
+            study_id: {"word_count": len(inputs.get("text", "").split())}
             for study_id, inputs in inputs.items()
         }  # Already loaded by InputManager
         return word_counts
@@ -87,7 +87,7 @@ class WordDevianceExtractor(Extractor, DependentPipeline):
         """
         # Calculate word counts for all studies
         study_word_counts = {
-            study_id: len(inputs["text"].split()) for study_id, inputs in inputs.items()
+            study_id: len(inputs.get("text", "").split()) for study_id, inputs in inputs.items()
         }
 
         # Calculate average
