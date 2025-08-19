@@ -6,6 +6,7 @@ from .nv_task import TaskExtractor
 from .base import Pipeline, IndependentPipeline, DependentPipeline
 from .api import APIPromptExtractor
 from .tfidf import TFIDFExtractor
+from .semantic_embeddings import GeneralAPIEmbeddingExtractor
 
 __all__ = [
     "ParticipantDemographicsExtractor",
@@ -16,4 +17,5 @@ __all__ = [
     "APIPromptExtractor",
     "TFIDFExtractor",
     "UMLSDiseaseExtractor",
+    "GeneralAPIEmbeddingExtractor",
 ]
