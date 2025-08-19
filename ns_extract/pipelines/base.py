@@ -390,18 +390,20 @@ class Pipeline(StudyInputsMixin, PipelineOutputsMixin):
 
         for dbid, study in dataset.data.items():
             # Get existing input file hashes for this study
-            existing = existing_results.get(dbid, {}).get("inputs", {})
+            existing_output = existing_results.get(dbid, {})
+            existing = existing_output.get("inputs", {})
 
-            # Skip if no existing results and there are current inputs
-            if not existing and dbid in study_inputs and study_inputs[dbid]:
+            # There is no match if there are no outputs
+            if not existing_output:
                 result_matches[dbid] = False
                 continue
-            elif not study_inputs[dbid]:
-                # no current inputs, so results are matching
+            elif not study_inputs[dbid] and existing_output:
+                # no current inputs and output file already exists
+                # so results are matching
                 result_matches[dbid] = True
                 continue
 
-            # Use __are_file_hashes_identical to compare hashes
+            # Compare file hashes to determine if the inputs have changed
             result_matches[dbid] = self.__do_file_hashes_match(
                 study_inputs[dbid], existing
             )

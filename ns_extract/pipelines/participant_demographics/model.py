@@ -22,6 +22,9 @@ class ParticipantDemographicsExtractor(APIPromptExtractor):
         # Clean known issues with GPT demographics result
         cleaned_results = super().post_process(results, study_inputs, **kwargs)
         for study_id, study_result in cleaned_results.items():
+            if study_result == dict():
+                study_result = {"groups": []}
+                continue
             meta_keys = ["pmid", "rank", "start_char", "end_char", "id"]
             meta_keys = [k for k in meta_keys if k in study_result]
 
