@@ -10,7 +10,7 @@ from ns_extract.pipelines.nv_task.schemas import (
 )
 
 
-@pytest.mark.vcr(record_mode="new_episodes", filter_headers=["authorization"])
+@pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
 def test_TaskExtractor(sample_data, tmp_path):
     """Test the task extraction pipeline."""
     # Initialize extractor

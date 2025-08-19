@@ -9,7 +9,7 @@ from ns_extract.pipelines.participant_demographics.schemas import (
 )
 
 
-@pytest.mark.vcr(record_mode="new_episodes", filter_headers=["authorization"])
+@pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
 def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
     """Test the participant demographics extraction pipeline."""
     # Initialize extractor
