@@ -87,7 +87,8 @@ class WordDevianceExtractor(Extractor, DependentPipeline):
         """
         # Calculate word counts for all studies
         study_word_counts = {
-            study_id: len(inputs.get("text", "").split()) for study_id, inputs in inputs.items()
+            study_id: len(inputs.get("text", "").split())
+            for study_id, inputs in inputs.items()
         }
 
         # Calculate average
