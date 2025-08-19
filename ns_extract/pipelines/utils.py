@@ -9,6 +9,7 @@ The mixins are designed to be composable and reusable across different
 pipeline implementations.
 """
 
+import math
 import hashlib
 import inspect
 from pathlib import Path
@@ -66,7 +67,12 @@ class FileOperationsMixin:
             json.JSONDecodeError: If file contains invalid JSON
         """
         with file_path.open("r") as f:
-            return json.load(f)
+            data = json.load(f)
+        if isinstance(data.get("title", ""), float) and math.isnan(data["title"]):
+            data["title"] = ""
+        if isinstance(data.get("abstract", ""), float) and math.isnan(data["abstract"]):
+            data["abstract"] = ""
+        return data
 
     def _write_json(self, file_path: Path, data: Dict[str, Any]) -> None:
         """Write data to a JSON file.

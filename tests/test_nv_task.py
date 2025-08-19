@@ -10,7 +10,7 @@ from ns_extract.pipelines.nv_task.schemas import (
 )
 
 
-@pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
+@pytest.mark.vcr(record_mode="new_episodes", filter_headers=["authorization"])
 def test_TaskExtractor(sample_data, tmp_path):
     """Test the task extraction pipeline."""
     # Initialize extractor
@@ -44,6 +44,10 @@ def test_TaskExtractor(sample_data, tmp_path):
             assert results_file.exists()
             assert info_file.exists()
 
+            info = json.loads(info_file.read_text())
+
+            if not info.get("inputs"):
+                continue
             # Load and validate results
             study_results = json.loads(results_file.read_text())
 

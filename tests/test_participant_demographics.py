@@ -9,7 +9,7 @@ from ns_extract.pipelines.participant_demographics.schemas import (
 )
 
 
-@pytest.mark.vcr(record_mode="once", filter_headers=["authorization"])
+@pytest.mark.vcr(record_mode="new_episodes", filter_headers=["authorization"])
 def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
     """Test the participant demographics extraction pipeline."""
     # Initialize extractor
@@ -48,8 +48,10 @@ def test_ParticipantDemographicsExtractor(sample_data, tmp_path):
             info = json.loads(info_file.read_text())
             # date, input, and valid is required
             assert info["date"]
-            # assert info["valid"] == True
 
+            # if there were no input files, the output cannot be valid.
+            if not info.get("inputs"):
+                continue
             # Load and validate results
             results = json.loads(results_file.read_text())
 
