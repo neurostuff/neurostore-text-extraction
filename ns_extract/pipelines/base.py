@@ -867,6 +867,7 @@ class Extractor(ABC):
         Raises:
             ValueError: If _output_schema or _version not defined by subclass
         """
+        self._nlp_initialized = False
         self.disable_abbreviation_expansion = disable_abbreviation_expansion
         if not self._output_schema:
             raise ValueError("Subclass must define _output_schema class variable")
@@ -956,20 +957,16 @@ class Extractor(ABC):
         if not hasattr(self, "_nlp_initialized"):
             self._nlp_initialized = False
 
-        if (
-            not self._nlp_initialized
-            and self._expand_abbrev_fields
-            and not self.disable_abbreviation_expansion
-        ):
+        if not self._nlp_initialized:
             import spacy
 
             try:
-                self._nlp = spacy.load(self.nlp_model, disable=["parser", "ner"])
+                self._nlp = spacy.load(self.nlp_model, disable=["ner"])
                 self._nlp_initialized = True
             except OSError:
                 print(f"Downloading {self.nlp_model} model...")
                 spacy.cli.download(self.nlp_model)
-                self._nlp = spacy.load(self.nlp_model, disable=["parser", "ner"])
+                self._nlp = spacy.load(self.nlp_model, disable=["ner"])
                 self._nlp_initialized = True
 
     @abstractmethod

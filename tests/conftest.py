@@ -1,4 +1,6 @@
+import os
 from pathlib import Path
+
 import pytest
 
 
@@ -8,7 +10,17 @@ def sample_data():
     return Path(__file__).parents[1] / "tests/data/sample_inputs"
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
+def setup_tiktoken_cache():
+    """
+    Ensure tiktoken finds encoding files in tests.
+    Downloads cl100k_base.tiktoken to data/tiktoken if not present.
+    """
+    local_vocab_dir = Path(os.path.dirname(__file__)) / "data" / "tiktoken"
+    os.environ["TIKTOKEN_CACHE_DIR"] = str(local_vocab_dir)
+
+
+@pytest.fixture(scope="module", autouse=True)
 def vcr_config():
     return {
         "filter_headers": [
@@ -22,5 +34,5 @@ def vcr_config():
             "x-stainless-package-version",
             "x-stainless-runtime",
             "x-stainless-runtime-version",
-        ]
+        ],
     }
