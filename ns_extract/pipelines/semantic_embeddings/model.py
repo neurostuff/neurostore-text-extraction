@@ -5,7 +5,7 @@ from ns_extract.pipelines.base import IndependentPipeline
 
 
 class EmbeddingSchema(BaseModel):
-    """Schema for TFIDF output"""
+    """Schema for semantic embedding output"""
 
     embedding: List[float] = Field(description="Vector representation of the text")
 
