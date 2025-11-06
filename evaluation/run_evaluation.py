@@ -82,6 +82,13 @@ def run_extraction_pipelines():
                 "env_variable": "OPENAI_API_KEY",
             },
         ),
+        (
+            "contrasts",
+            {
+                "extraction_model": "gpt-4o-mini-2024-07-18",
+                "env_variable": "OPENAI_API_KEY",
+            },
+        ),
     ]
 
     # Define paths
@@ -168,7 +175,39 @@ def load_extracted_results(output_path: Path, dataset_type: str) -> pd.DataFrame
                     "diagnosis": group.get("diagnosis", ""),
                 }
                 all_records.append(record)
-        else:
+
+        elif dataset_type == "contrasts":
+                    # For task extractor, extract contrast information
+                    if "MRIContrasts" in results:
+                        # Combine all tasks into a single record per study
+                        contrasts = results.get("MRIContrasts", [])
+
+                        if not identifiers.get("pmcid"):
+                            continue
+
+                    record = {
+                        "pmcid": str(
+                            identifiers.get("pmcid").lstrip("PMC")
+                        ),
+                        "comparison": contrasts.get("comparison", ""),
+                        "control_group": group.get("control_group", ""),
+                        "group": group.get("group", ""),
+                        "contrast_statistc": group.get("contrast_statistc", ""),
+                        "atlas": group.get("atlas", ""),
+                        "atlas_n_regions": group.get("atlas_n_regions"),
+                        "roi": group.get("roi", ""),
+                        "coord_system": group.get("coord_system", ""),
+                        "x": group.get("x"),
+                        "y": group.get("y"),
+                        "z": group.get("z"),
+                        "significance": group.get("significance"),
+                        "significance_level": group.get("significance_level", ""),
+
+                    }
+                        
+                    all_records.append(record)
+
+        elif dataset_type == "task":
             # For task extractor, extract task information
             if "fMRITasks" in results:
                 # Combine all tasks into a single record per study
